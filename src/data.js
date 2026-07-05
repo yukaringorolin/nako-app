@@ -143,7 +143,12 @@ const foodItems = [
     t("Topping Recipes", "トッピングレシピ", "အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"), 
     t("Approved Nako topping recipes with ingredients and amounts.", "材料と分量が記載された、承認済みのナコ用トッピングレシピ。", "ပါဝင်ပစ္စည်းများနှင့် ပမာဏများပါဝင်သော Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ။"), 
     t("Open a recipe before preparing any topping.", "トッピングを準備する前にレシピを開いてください。", "မည်သည့်အပေါ်မှတင်စရာမဆို မပြင်ဆင်မီ ဟင်းချက်နည်းကို အရင်ဖွင့်ပါ။"), 
-    t("No seasoning, oil, onion, or garlic unless approved.", "承認されない限り、調味料、油、玉ねぎ、にんにくは使用しないでください。", "ခွင့်ပြုချက်မရှိဘဲ ဟင်းခတ်မှုန့်、ဆီ、ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မသုံးပါနှင့်။"), 1),
+    t("No seasoning, oil, onion, or garlic unless approved.", "承認されない限り、調味料、油、玉ねぎ、にんにくは使用しないでください。", "ခွင့်ပြုချက်မရှိဘဲ ဟင်းခတ်မှုန့်、ဆီ、ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မသုံးပါနှင့်။"), 1,
+    [
+      photo("assets/sections/topping-recipes.png", 
+        t("Healthy dog food bowl with chicken, broccoli, and carrots", "鶏肉、ブロッコリー、にんじんが入った健康的なドッグフードボウル", "ကြက်သား၊ ပန်းဂေါ်ဖီစိမ်းနှင့် မုန်လာဥနီတို့ပါဝင်သော ကျန်းမာရေးနှင့်ညီညွတ်သည့် ခွေးစာခွက်"),
+        t("Topping Recipes", "トッピングレシピ", "အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
+    ]),
   food("cooking-rules", "rules", "!", 
     t("Cooking Rules", "料理のルール", "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"), 
     t("Rules to check before cooking or changing any menu.", "調理を始める前やメニューを変更する前に確認すべきルール。", "ချက်ပြုတ်ခြင်း သို့မဟုတ် မီနူးပြောင်းလဲခြင်းမပြုမီ စစ်ဆေးရမည့်စည်းကမ်းများ။"), 
@@ -176,8 +181,8 @@ const foodItems = [
     t("Notify Edwin before doing anything else.", "他のことをする前にエドウィンに連絡してください。", "အခြားအရာများ မလုပ်ဆောင်မီ Edwin ထံ အရင်အကြောင်းကြားပါ။"), 7),
 ];
 
-function food(id, type, icon, title, summary, instructions, note, sortOrder) {
-  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: [note], videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
+  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
 function photo(src, alt, caption) {

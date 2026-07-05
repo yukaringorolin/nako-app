@@ -135,7 +135,8 @@ function renderFood(foodId) {
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label(item.trackingMode === "future" ? "futureTracking" : "foodItems"))}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label(item.trackingMode === "future" ? "futureTracking" : "foodItems"), primaryPhoto(item.photos))}
+    ${renderPhotos(item.photos)}
     ${item.type === "rules" ? renderRulesPanel() : ""}
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
@@ -146,7 +147,8 @@ function renderFood(foodId) {
 
 function renderRecipeIndex(item) {
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("recipes"))}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("recipes"), primaryPhoto(item.photos))}
+    ${renderPhotos(item.photos)}
     <section class="card-list">${recipes.map(renderRecipeCard).join("")}</section>`;
   renderShell(tr(item.title), content, true);
 }
@@ -174,7 +176,7 @@ function renderSectionCard(section) {
 }
 
 function renderFoodCard(item) {
-  return `<button class="item-card" data-food="${esc(item.id)}" style="--accent:#f19a82;--icon-bg:#fff0eb"><span class="card-icon">${esc(item.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(item.title))}</span><span class="card-description">${esc(tr(item.summary))}</span><span class="card-meta"><span class="badge">${esc(item.trackingMode === "future" ? label("futureTracking") : label("foodItems"))}</span></span></span><span class="chevron">›</span></button>`;
+  return `<button class="item-card" data-food="${esc(item.id)}" style="--accent:#f19a82;--icon-bg:#fff0eb">${renderCardIcon(item.icon, primaryPhoto(item.photos))}<span class="card-copy"><span class="card-title">${esc(tr(item.title))}</span><span class="card-description">${esc(tr(item.summary))}</span><span class="card-meta"><span class="badge">${esc(item.trackingMode === "future" ? label("futureTracking") : label("foodItems"))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderRoutineCard(task, section) {
