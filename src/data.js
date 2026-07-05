@@ -20,16 +20,9 @@ const ui = {
     frequency: "Frequency",
     description: "Description",
     instructions: "Instructions",
+    photos: "Photos",
     mustRemember: "Must remember",
-    checklist: "Checklist",
     video: "Training video",
-    videoComingSoon: "Video can be added later.",
-    lastCompleted: "Last completed",
-    never: "Not completed yet",
-    markDoneToday: "Done today",
-    completedToday: "Completed today",
-    needHelp: "Need help",
-    helpRequested: "Help requested",
     memo: "Memo",
     memoPlaceholder: "Add notes, questions, or anything to confirm.",
     cookingRules: "Cooking rules",
@@ -54,16 +47,9 @@ const ui = {
     frequency: "頻度",
     description: "説明",
     instructions: "指示事項",
+    photos: "写真",
     mustRemember: "重要注意事項",
-    checklist: "チェックリスト",
     video: "トレーニング動画",
-    videoComingSoon: "動画は後で追加できます。",
-    lastCompleted: "最終完了日",
-    never: "未完了",
-    markDoneToday: "本日完了",
-    completedToday: "本日完了済み",
-    needHelp: "手助けが必要",
-    helpRequested: "手助けを要請中",
     memo: "メモ",
     memoPlaceholder: "メモ、質問、または確認したいことを追加してください。",
     cookingRules: "料理のルール",
@@ -88,16 +74,9 @@ const ui = {
     frequency: "ကြိမ်နှုန်း",
     description: "ဖော်ပြချက်",
     instructions: "ညွှန်ကြားချက်များ",
+    photos: "ဓာတ်ပုံများ",
     mustRemember: "မဖြစ်မနေ မှတ်သားရန်",
-    checklist: "စစ်ဆေးရန်စာရင်း",
     video: "လေ့ကျင့်ရေးဗီဒီယို",
-    videoComingSoon: "ဗီဒီယိုကို နောက်မှ ထည့်နိုင်သည်။",
-    lastCompleted: "နောက်ဆုံးပြီးစီးမှု",
-    never: "မပြီးသေးပါ",
-    markDoneToday: "ယနေ့ပြီးပြီ",
-    completedToday: "ယနေ့ပြီးစီးပါပြီ",
-    needHelp: "အကူအညီလိုသည်",
-    helpRequested: "အကူအညီတောင်းထားသည်",
     memo: "မှတ်စု",
     memoPlaceholder: "မှတ်စု၊ မေးခွန်း သို့မဟုတ် အတည်ပြုရန်အရာများ ထည့်ပါ။",
     cookingRules: "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ",
@@ -122,9 +101,6 @@ const homeSections = [
   sec("daily", "D", "#f7b7be", "#fff1f2", 
     t("Daily / Active", "毎日 / アクティブ", "နေ့စဉ် / လက်ရှိလုပ်ဆောင်ဆဲ"), 
     t("Tasks that happen every day, after use, or whenever Nako is active.", "毎日、使用後、またはナコが活動しているときに発生するタスク。", "နေ့စဉ်၊ အသုံးပြုပြီးနောက် သို့မဟုတ် Nako လှုပ်ရှားနေချိန် လုပ်ဆောင်ရမည့်အရာများ။")),
-  sec("every-2-3-days", "2", "#9bc4db", "#eaf6fb", 
-    t("Every 2-3 Days", "2〜3日おき", "၂ ရက် သို့မဟုတ် ၃ ရက်တစ်ကြိမ်"), 
-    t("Fast-build-up areas that are easy to miss.", "汚れが溜まりやすく、見落としやすい場所。", "အညစ်အကြေးများ လွယ်ကူစွာစုပုံနိုင်ပြီး သတိမထားမိဘဲ ကျန်ခဲ့နိုင်သောနေရာများ။")),
   sec("weekly", "W", "#92c9ad", "#e7f6ee", 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     t("The main weekly reset list for the home, Nako, and supplies.", "家庭、ナコ、および消耗品の主な週次リセットリスト。", "အိမ်၊ Nako နှင့် အိမ်သုံးပစ္စည်းများအတွက် အဓิက အပတ်စဉ်ရှင်းလင်းရေးစာရင်း။")),
@@ -197,8 +173,12 @@ function food(id, type, icon, title, summary, instructions, note, sortOrder) {
   return { id, type, icon, title, summary, instructions: [instructions], mustRemember: [note], videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
-function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: [note], videoUrl: "", trackingMode: "light", tags: [], sortOrder };
+function photo(src, alt, caption) {
+  return { src, alt, caption };
+}
+
+function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
 }
 
 const routineTasks = [
@@ -206,7 +186,20 @@ const routineTasks = [
     t("Drinking Water Prep", "飲料水の準備", "သောက်ရေပြင်ဆင်ခြင်း"), 
     t("Boil water, cool it, and store it in the fridge so there is always enough drinking water at home.", "お湯を沸かして冷まし、冷蔵庫に保管して、常に十分な飲料水があるようにします。", "ရေကိုကျိုပြီး အအေးခံကာ ရေခဲသေတ္တာထဲတွင် ထည့်ထားပါ။ အိမ်တွင် သောက်ရေအမြဲလုံလောက်စွာ ရှိပါစေ။"), 
     t("Daily", "毎日", "နေ့စဉ်"), 
-    t("This helps reduce the need to keep buying bottled water.", "これによりボトル入りの水を購入し続ける必要が減ります。", "၎င်းသည် ရေသန့်ဗူးများ အမြဲဝယ်ယူရန် လိုအပ်မှုကို လျှော့ချပေးသည်။")),
+    t("This helps reduce the need to keep buying bottled water.", "これによりボトル入りの水を購入し続ける必要が減ります。", "၎င်းသည် ရေသန့်ဗူးများ အမြဲဝယ်ယူရန် လိုအပ်မှုကို လျှော့ချပေးသည်။"),
+    [
+      photo("assets/routines/drinking-water-prep-kettle.jpg",
+        t("Kettle for boiling drinking water", "飲料水を沸かすやかん", "သောက်ရေကျိုရန် ရေနွေးအိုး"),
+        t("Use this kettle to boil the drinking water.", "このやかんで飲料水を沸かします。", "သောက်ရေကို ဤရေနွေးအိုးဖြင့် ကျိုပါ။")),
+      photo("assets/routines/drinking-water-prep-fridge-bottles.jpg",
+        t("Upright reused glass bottles in the fridge", "冷蔵庫内で立てて保管する再利用ガラス瓶", "ရေခဲသေတ္တာထဲတွင် မတ်မတ်ထားသော ပြန်သုံးဖန်ပုလင်းများ"),
+        t("After the boiled water cools, store it upright in the reused glass bottles in the fridge.", "沸かした水が冷めたら、再利用しているガラス瓶に入れて、冷蔵庫で立てて保管します。", "ကျိုထားသောရေ အေးသွားပြီးနောက် ပြန်သုံးသော ဖန်ပုလင်းများထဲထည့်ပြီး ရေခဲသေတ္တာတွင် မတ်မတ်ထား၍ သိမ်းပါ။")),
+    ]),
+  routine("protein-shake-creatine-prep", "daily", 15, "P",
+    t("Protein Shake & Creatine Prep", "プロテインシェイクとクレアチン準備", "protein shake နှင့် creatine ပြင်ဆင်ခြင်း"),
+    t("Make Edwin's daily protein shake using 1 scoop Optimum Nutrition protein powder and 1 scoop creatine. One scoop of protein powder is about 24g protein.", "エドウィン用に毎日、Optimum Nutritionのプロテインパウダー1スクープとクレアチン1スクープでプロテインシェイクを作る。プロテイン1スクープは約24gのタンパク質。", "Edwin အတွက် နေ့စဉ် protein shake ပြင်ပါ။ Optimum Nutrition protein powder ၁ scoop နှင့် creatine ၁ scoop ကို အသုံးပြုပါ။ protein powder ၁ scoop သည် protein ၂၄g ခန့်ပါသည်။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    t("Use the correct scoop for protein and creatine. Keep the portions consistent unless Edwin gives different instructions.", "プロテインとクレアチンはそれぞれ正しいスプーンを使う。エドウィンから別の指示がない限り、量は一定にする。", "protein နှင့် creatine အတွက် မှန်ကန်သော scoop ကို အသုံးပြုပါ။ Edwin က မတူညီသော ညွှန်ကြားချက် မပေးလျှင် ပမာဏကို တည်ငြိမ်စွာ ထားပါ။")),
   routine("clean-up-cooking-appliances", "daily", 20, "K", 
     t("Clean Up & Cooking Appliances", "片付けと調理器具の清掃", "သန့်ရှင်းရေးနှင့် ချက်ပြုတ်သည့်ပစ္စည်းများ"), 
     t("Wash cookware and plates. Wipe kitchen down after every meal. Clean cooking appliances used, including Ninja air fryer, hob, Fujioh hood area, and removable parts if oily or dirty.", "調理器具と皿を洗います。毎食後にキッチンを拭きます。使用した調理器具（Ninjaノンフライヤー、コンロ、Fujiohレンジフード、油汚れのある取り外し可能な部品など）を掃除します。", "အိုးခွက်ပန်းကန်များ ဆေးကြောပါ။ ထမင်းစားပြီးတိုင်း မီးဖိုချောင်ကို သုတ်ပါ။ အသုံးပြုထားသော Ninja လေပူကြော်အိုး၊ မီးဖို၊ Fujioh မီးခိုးစုပ်စက်နှင့် ဆီပေနေသော ဖြုတ်၍ရသည့် အစိတ်အပိုင်းများကို သန့်ရှင်းရေးလုပ်ပါ။"), 
@@ -277,10 +270,10 @@ const routineTasks = [
     t("Check bathroom/toilet drain holes and hair traps. Remove hair or stuck debris. Use the drain pump only after being taught.", "浴室/トイレの排水口とヘアトラップをチェックします。髪の毛や詰まったゴミを取り除きます。排水ポンプは使用方法を教わってから使用してください。", "ရေချိုးခန်း/အိမ်သာ ရေနုတ်မြောင်းပေါက်များနှင့် ဆံပင်ခံဇကာများကို စစ်ဆေးပါ။ ဆံပင် သို့မဟုတ် ပိတ်မိနေသောအမှိုက်များကို ဖယ်ရှားပါ။ ရေစုပ်စက်ကို သင်ကြားပေးပြီးမှသာ အသုံးပြုပါ။"), 
     t("Daily check + as needed", "毎日チェック＋必要に応じて", "နေ့စဉ်စစ်ဆေးမှု + လိုအပ်သလို"), 
     t("Tell Edwin if water remains stuck or smells bad.", "水が詰まったままの場合や悪臭がする場合は、エドウィンに報告してください。", "ရေတင်နေခြင်း သို့မဟုတ် အနံ့ဆိုးထွက်ခြင်းရှိပါက Edwin ထံ အကြောင်းကြားပါ။")),
-  routine("high-touch-surfaces", "every-2-3-days", 10, "H", 
+  routine("high-touch-surfaces", "weekly", 10, "H",
     t("High-Touch Surface Cleaning", "頻繁に触れる場所の掃除", "မကြာခဏကိုင်တွယ်သော မျက်နှာပြင်များ သန့်ရှင်းရေး"), 
     t("Clean door knobs, handles, switches, appliance handles, dish area, frequently used surfaces, and Edwin's workspace including keyboard, mouse, and work table.", "ドアノブ、取っ手、スイッチ、電化製品のハンドル、食器洗いエリア、頻繁に使用する表面、およびエドウィンのキーボード、マウス、デスクを含む作業スペースを掃除します。", "တံခါးလက်ကိုင်များ၊ ขလုတ်များ၊ စက်ပစ္စည်းလက်ကိုင်များ၊ ပန်းကန်ဆေးသည့်နေရာ၊ မကြာခဏအသုံးပြုသော မျက်နှာပြင်များနှင့် Edwin ၏ ကီးဘုတ်၊ မောက်စ်၊ အလုပ်စားပွဲ အပါအဝင် အလုပ်လုပ်သည့်နေရာကို သန့်ရှင်းရေးလုပ်ပါ။"), 
-    t("Every 2-3 days", "2〜3日おき", "၂-၃ ရက်တစ်ကြိမ်"), 
+    t("Weekly", "毎週", "အပတ်စဉ်"),
     t("Be gentle around electronics and avoid excess liquid near keyboard or mouse.", "電化製品の周囲は優しく扱い、キーボードやマウスの近くで液体を多く使わないでください。", "အီလက်ထရွန်နစ်ပစ္စည်းများကို ညင်သာစွာကိုင်တွယ်ပြီး ကီးဘုတ် သို့မဟုတ် မောက်စ်အနီးတွင် အရည်များများသုံးခြင်းကို ရှောင်ကြဉ်ပါ။")),
   routine("household-supplies-online", "weekly", 10, "S", 
     t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 

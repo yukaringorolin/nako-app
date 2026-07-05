@@ -1,7 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import base64
+import mimetypes
 import os
+import re
 
 st.set_page_config(
     page_title="Nako Home Care",
@@ -34,12 +36,22 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-def get_base64_image(image_path):
+def get_data_uri(image_path):
     if os.path.exists(image_path):
         with open(image_path, "rb") as image_file:
             encoded = base64.b64encode(image_file.read()).decode()
-            return f"data:image/png;base64,{encoded}"
+            mime_type, _ = mimetypes.guess_type(image_path)
+            return f"data:{mime_type or 'application/octet-stream'};base64,{encoded}"
     return ""
+
+def inline_local_assets(content):
+    def replace_asset(match):
+        quote = match.group(1)
+        asset_path = match.group(2)
+        data_uri = get_data_uri(asset_path)
+        return f"{quote}{data_uri or asset_path}{quote}"
+
+    return re.sub(r"([\"'])(assets/[^\"']+)\1", replace_asset, content)
 
 def load_app():
     # Load files
@@ -55,13 +67,8 @@ def load_app():
     with open("src/app.js", "r", encoding="utf-8") as f:
         app_js = f.read()
         
-    # Get base64 logo
-    logo_base64 = get_base64_image("assets/nako-logo.png")
-    
-    # Inline the logo in JavaScript
-    if logo_base64:
-        app_js = app_js.replace('"assets/nako-logo.png"', f'"{logo_base64}"')
-        app_js = app_js.replace("'assets/nako-logo.png'", f"'{logo_base64}'")
+    data_js = inline_local_assets(data_js)
+    app_js = inline_local_assets(app_js)
     
     # Inline CSS and JS into HTML
     # Replace stylesheet link tag with styles

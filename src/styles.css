@@ -215,8 +215,7 @@ img {
 .category-card:active,
 .item-card:active,
 .recipe-card:active,
-.icon-button:active,
-.status-button:active {
+.icon-button:active {
   transform: translateY(1px);
 }
 
@@ -325,7 +324,6 @@ img {
   line-height: 1.6;
 }
 
-.checklist,
 .note-list,
 .method-list {
   display: grid;
@@ -333,23 +331,6 @@ img {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.check-row {
-  display: grid;
-  grid-template-columns: 26px minmax(0, 1fr);
-  gap: 9px;
-  align-items: start;
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.check-row input {
-  width: 21px;
-  height: 21px;
-  margin: 1px 0 0;
-  accent-color: var(--mint);
 }
 
 .note-list li,
@@ -362,27 +343,32 @@ img {
   line-height: 1.55;
 }
 
-.status-group {
+.photo-guide {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7px;
+  gap: 12px;
 }
 
-.status-button {
-  min-height: 44px;
-  padding: 8px 7px;
+.task-photo {
+  margin: 0;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #f8fbf9;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 850;
+  background: #fbfdfc;
 }
 
-.status-button[aria-pressed="true"] {
-  background: var(--mint-soft);
-  border-color: var(--mint);
-  color: #286246;
+.task-photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #f2f6f4;
+}
+
+.task-photo figcaption {
+  padding: 10px 12px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.5;
 }
 
 .memo-field,
@@ -396,46 +382,6 @@ img {
   background: #fbfdfc;
   color: var(--ink);
   line-height: 1.5;
-}
-
-.photo-input {
-  display: none;
-}
-
-.photo-button {
-  min-height: 46px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfdfc;
-  color: var(--ink);
-  font-weight: 850;
-}
-
-.photo-preview {
-  width: 100%;
-  max-height: 220px;
-  margin-top: 12px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid var(--line);
-}
-
-.last-date {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.last-date strong {
-  color: var(--ink);
 }
 
 .rule-strip {
@@ -599,7 +545,6 @@ img {
     height: 46px;
   }
 
-  .status-group,
   .shopping-grid {
     grid-template-columns: 1fr;
   }
@@ -624,14 +569,6 @@ img {
   font-weight: 900;
 }
 
-.routine-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.done-button,
-.help-button,
 .mini-link {
   min-height: 44px;
   border: 1px solid var(--line);
@@ -639,18 +576,6 @@ img {
   background: #fbfdfc;
   color: var(--ink);
   font-weight: 850;
-}
-
-.done-button[aria-pressed="true"] {
-  border-color: var(--mint);
-  background: var(--mint-soft);
-  color: #286246;
-}
-
-.help-button[aria-pressed="true"] {
-  border-color: #f1b47f;
-  background: #fff0e5;
-  color: #a04c28;
 }
 
 .mini-list {
@@ -661,10 +586,6 @@ img {
 .mini-link {
   text-align: left;
   padding: 10px 12px;
-}
-
-.muted-panel {
-  background: #f8fbf9;
 }
 
 .video-shell {
@@ -687,10 +608,4 @@ img {
 
 .routine-card .card-title {
   font-size: 17px;
-}
-
-@media (max-width: 370px) {
-  .routine-actions {
-    grid-template-columns: 1fr;
-  }
 }

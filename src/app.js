@@ -1,15 +1,12 @@
 ﻿const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules } = window.nakoData;
-const text = (en) => ({ en, jp: en, mm: en });
-
 let currentLang = langs.includes(localStorage.getItem(LANG_KEY)) ? localStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
 const app = document.querySelector("#app");
 
 window.addEventListener("hashchange", render);
 document.addEventListener("click", handleClick);
-document.addEventListener("change", handleChange);
 document.addEventListener("input", handleInput);
 render();
 
@@ -106,21 +103,14 @@ function renderRoutine(routineId) {
   const task = routineTasks.find((entry) => entry.id === routineId);
   if (!task) return renderHome();
   const section = homeSections.find((entry) => entry.id === task.frequencyBucket);
-  const state = getRoutineState(task.id);
-  const doneToday = state.lastCompleted === todayString();
   const content = `
     ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText))}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
     <section class="panel"><h2>${esc(label("description"))}</h2><p>${esc(tr(task.summary))}</p></section>
     <section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>
+    ${renderPhotos(task.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(task.mustRemember)}</section>
-    ${renderVideo(task.videoUrl)}
-    <section class="panel"><h2>${esc(label("checklist"))}</h2>${renderChecklist("routine", task.id, defaultChecklist(), state)}</section>
-    <section class="panel"><div class="routine-actions">
-      <button class="done-button" data-routine-done="${esc(task.id)}" aria-pressed="${doneToday}">${esc(doneToday ? label("completedToday") : label("markDoneToday"))}</button>
-      <button class="help-button" data-routine-help="${esc(task.id)}" aria-pressed="${!!state.needHelp}">${esc(state.needHelp ? label("helpRequested") : label("needHelp"))}</button>
-    </div></section>
-    <section class="panel"><div class="last-date"><span>${esc(label("lastCompleted"))}</span><strong>${esc(state.lastCompleted || label("never"))}</strong></div></section>`;
+    ${renderVideo(task.videoUrl)}`;
   renderShell(tr(task.title), content, true);
 }
 
@@ -175,10 +165,7 @@ function renderFoodCard(item) {
 }
 
 function renderRoutineCard(task, section) {
-  const state = getRoutineState(task.id);
-  const badgeClass = state.lastCompleted === todayString() ? "complete" : state.needHelp ? "need_help" : "";
-  const badgeText = state.needHelp ? label("helpRequested") : state.lastCompleted === todayString() ? label("completedToday") : tr(task.frequencyText);
-  return `<button class="item-card routine-card" data-routine="${esc(task.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}"><span class="card-icon">${esc(task.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(task.title))}</span><span class="card-description">${esc(tr(task.summary))}</span><span class="card-meta"><span class="badge ${badgeClass}">${esc(badgeText)}</span></span></span><span class="chevron">›</span></button>`;
+  return `<button class="item-card routine-card" data-routine="${esc(task.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}"><span class="card-icon">${esc(task.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(task.title))}</span><span class="card-description">${esc(tr(task.summary))}</span><span class="card-meta"><span class="badge">${esc(tr(task.frequencyText))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderRecipeCard(recipe) {
@@ -194,16 +181,17 @@ function renderRulesPanel() {
   return `<section class="rule-strip"><h2>${esc(label("cookingRules"))}</h2><ul>${cookingRules.map((rule) => `<li>${esc(tr(rule))}</li>`).join("")}</ul></section>`;
 }
 
+function renderPhotos(photos = []) {
+  if (!photos.length) return "";
+  return `<section class="panel photo-panel"><h2>${esc(label("photos"))}</h2><div class="photo-guide">${photos.map(renderPhoto).join("")}</div></section>`;
+}
+
+function renderPhoto(photo) {
+  return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
+}
+
 function renderIngredient(item) {
   return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-name">${esc(tr(item.name))}</span><span class="amount">${esc(item.amount)}</span></li>`;
-}
-
-function renderChecklist(kind, id, entries, state) {
-  return `<div class="checklist">${entries.map((entry, index) => `<label class="check-row"><input type="checkbox" data-check-kind="${kind}" data-check-id="${esc(id)}" data-check-index="${index}" ${state.checklist?.[index] ? "checked" : ""}/><span>${esc(tr(entry))}</span></label>`).join("")}</div>`;
-}
-
-function defaultChecklist() {
-  return [text("Read the instructions"), text("Complete the task"), text("Reset the area and report anything unusual")];
 }
 
 function orderedList(items) {
@@ -215,7 +203,7 @@ function noteList(items) {
 }
 
 function renderVideo(videoUrl) {
-  if (!videoUrl) return `<section class="panel muted-panel"><h2>${esc(label("video"))}</h2><p>${esc(label("videoComingSoon"))}</p></section>`;
+  if (!videoUrl) return "";
   return `<section class="panel"><h2>${esc(label("video"))}</h2><div class="video-shell"><iframe src="${esc(videoUrl)}" title="${esc(label("video"))}" allowfullscreen></iframe></div></section>`;
 }
 
@@ -235,19 +223,6 @@ function handleClick(event) {
   if (food) return go(`#food/${food.dataset.food}`);
   const recipe = event.target.closest("[data-recipe]");
   if (recipe) return go(`#recipe/${recipe.dataset.recipe}`);
-  const done = event.target.closest("[data-routine-done]");
-  if (done) { const state = getRoutineState(done.dataset.routineDone); state.lastCompleted = todayString(); state.needHelp = false; defaultChecklist().forEach((_, index) => state.checklist[index] = true); saveState(); return render(); }
-  const help = event.target.closest("[data-routine-help]");
-  if (help) { const state = getRoutineState(help.dataset.routineHelp); state.needHelp = !state.needHelp; saveState(); return render(); }
-}
-
-function handleChange(event) {
-  const check = event.target.closest("[data-check-kind]");
-  if (!check) return;
-  const state = check.dataset.checkKind === "routine" ? getRoutineState(check.dataset.checkId) : getFoodState(check.dataset.checkId);
-  state.checklist ||= {};
-  state.checklist[check.dataset.checkIndex] = check.checked;
-  saveState();
 }
 
 function handleInput(event) {
@@ -257,16 +232,9 @@ function handleInput(event) {
   if (recipeMemo) { getRecipeState(recipeMemo.dataset.recipeMemo).memo = recipeMemo.value; saveState(); }
 }
 
-function getRoutineState(id) {
-  appState.routines ||= {};
-  appState.routines[id] ||= { checklist: {}, lastCompleted: "", needHelp: false };
-  appState.routines[id].checklist ||= {};
-  return appState.routines[id];
-}
-
 function getFoodState(id) {
   appState.food ||= {};
-  appState.food[id] ||= { checklist: {}, memo: "" };
+  appState.food[id] ||= { memo: "" };
   return appState.food[id];
 }
 
@@ -274,11 +242,6 @@ function getRecipeState(id) {
   appState.recipes ||= {};
   appState.recipes[id] ||= { memo: "" };
   return appState.recipes[id];
-}
-
-function todayString() {
-  const date = new Date();
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 function ingredientImage(key) {
