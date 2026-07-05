@@ -216,8 +216,7 @@ const foodItems = [
     t("Human Food", "人間の食事", "လူသားများအတွက် အစားအစာ"), 
     t("Ideas and recipes for human meals.", "人間用の食事のアイデアとレシピ。", "လူသားများအတွက် စားစရာအိုင်ဒီယာများနှင့် ဟင်းချက်နည်းများ။"), 
     t("Select a recipe to view details.", "詳細を表示するレシピを選択してください。", "အသေးစိတ်ကြည့်ရန် ဟင်းချက်နည်းတစ်ခုကို ရွေးချယ်ပါ။"), 
-    t("Double-check ingredients at home before starting to cook.", "料理を始める前に、家にある食材を再確認してください。", "ဟင်းမချက်မီ အိမ်ရှိပါဝင်ပစ္စည်းများကို ထပ်မံစစ်ဆေးပါ။"), 8,
-    [
+    t("Double-check ingredients at home before starting to cook.", "料理を始める前に、家にある食材を再確認してください。", "ဟင်းမချက်မီ အိမ်ရှိပါဝင်ပစ္စည်းများကို ထပ်မံစစ်ဆေးပါ။"), 0, [
       photo("assets/sections/human-food.png", 
         t("Healthy breakfast tray with salmon, egg, rice, and miso soup", "鮭、卵、ご飯、味噌汁が入った健康的な朝食トレイ", "ဆယ်လ်မွန်ငါး၊ ကြက်ဥ၊ ထမင်းနှင့် မစ်ဆိုစွပ်ပြုတ်တို့ပါဝင်သည့် ကျန်းမာရေးနှင့်ညီညွတ်သော နံနက်စာလင်ပန်း"),
         t("Human Food", "人間の食事", "လူသားများအတွက် အစားအစာ"))
