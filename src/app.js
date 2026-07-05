@@ -192,7 +192,7 @@ function renderCardIcon(icon, photo = null) {
 
 function renderLargeIcon(icon, photo = null) {
   if (photo?.src) return `<div class="large-icon image-icon"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /></div>`;
-  return `<div class="large-icon">${esc(icon)}</div>`;
+  return "";
 }
 
 function primaryPhoto(photos = []) {
