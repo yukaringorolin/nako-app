@@ -12,35 +12,44 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Hide Streamlit header, footer and adjust margins to make the iframe fill the screen
 st.markdown("""
     <style>
+        header[data-testid="stHeader"], [data-testid="stHeader"] {
+            display: none !important;
+        }
+        footer, [data-testid="stFooter"] {
+            display: none !important;
+        }
         #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-        div.block-container {
-            padding-top: 0rem;
-            padding-bottom: 0rem;
-            padding-left: 0rem;
-            padding-right: 0rem;
-            height: 100vh;
+        div[data-testid="stAppViewBlockContainer"], div.block-container {
+            padding-top: 0rem !important;
+            padding-bottom: 0rem !important;
+            padding-left: 0rem !important;
+            padding-right: 0rem !important;
+            height: 100vh !important;
+            overflow: hidden !important;
         }
         iframe {
-            width: 100%;
-            height: calc(100vh - 5px);
-            border: none;
-            display: block;
-            margin: 0;
-            padding: 0;
+            width: 100% !important;
+            height: 100vh !important;
+            border: none !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: auto !important;
         }
     </style>
 """, unsafe_allow_html=True)
 
 def get_data_uri(image_path):
-    if os.path.exists(image_path):
-        with open(image_path, "rb") as image_file:
+    full_path = os.path.join(APP_DIR, image_path)
+    if os.path.exists(full_path):
+        with open(full_path, "rb") as image_file:
             encoded = base64.b64encode(image_file.read()).decode()
-            mime_type, _ = mimetypes.guess_type(image_path)
+            mime_type, _ = mimetypes.guess_type(full_path)
             return f"data:{mime_type or 'application/octet-stream'};base64,{encoded}"
     return ""
 
@@ -55,16 +64,16 @@ def inline_local_assets(content):
 
 def load_app():
     # Load files
-    with open("index.html", "r", encoding="utf-8") as f:
+    with open(os.path.join(APP_DIR, "index.html"), "r", encoding="utf-8") as f:
         html = f.read()
     
-    with open("src/styles.css", "r", encoding="utf-8") as f:
+    with open(os.path.join(APP_DIR, "src/styles.css"), "r", encoding="utf-8") as f:
         css = f.read()
         
-    with open("src/data.js", "r", encoding="utf-8") as f:
+    with open(os.path.join(APP_DIR, "src/data.js"), "r", encoding="utf-8") as f:
         data_js = f.read()
         
-    with open("src/app.js", "r", encoding="utf-8") as f:
+    with open(os.path.join(APP_DIR, "src/app.js"), "r", encoding="utf-8") as f:
         app_js = f.read()
         
     data_js = inline_local_assets(data_js)

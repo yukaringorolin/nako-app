@@ -1,7 +1,19 @@
-﻿const LANG_KEY = "nako-care-language";
+const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
+const NAKO_LOGO_SRC = "assets/nako-logo.png";
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules } = window.nakoData;
-let currentLang = langs.includes(localStorage.getItem(LANG_KEY)) ? localStorage.getItem(LANG_KEY) : "en";
+
+// safeStorage wraps localStorage to handle blocked access/SecurityErrors
+const safeStorage = {
+  getItem(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  },
+  setItem(key, value) {
+    try { localStorage.setItem(key, value); } catch {}
+  }
+};
+
+let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
 const app = document.querySelector("#app");
 
@@ -11,11 +23,11 @@ document.addEventListener("input", handleInput);
 render();
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
+  try { return JSON.parse(safeStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
 }
 
 function saveState() {
-  localStorage.setItem(STATE_KEY, JSON.stringify(appState));
+  safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
 }
 
 function tr(value) {
@@ -57,7 +69,7 @@ function renderShell(title, content, showBack = false) {
       <header class="topbar">
         <button class="icon-button ${showBack ? "" : "is-hidden"}" data-back aria-label="${esc(label("back"))}">‹</button>
         <div class="brand-mini">
-          <img src="assets/nako-logo.png" alt="Nako" />
+          <img src="${NAKO_LOGO_SRC}" alt="Nako" />
           <span class="screen-title">${esc(title)}</span>
         </div>
         <div class="language-toggle" aria-label="Language">
@@ -71,7 +83,7 @@ function renderShell(title, content, showBack = false) {
 function renderHome() {
   const content = `
     <section class="home-hero">
-      <img src="assets/nako-logo.png" alt="Nako" />
+      <img src="${NAKO_LOGO_SRC}" alt="Nako" />
       <div>
         <p class="eyebrow">${esc(label("homeEyebrow"))}</p>
         <h1>${esc(label("appTitle"))}</h1>
@@ -103,11 +115,12 @@ function renderRoutine(routineId) {
   const task = routineTasks.find((entry) => entry.id === routineId);
   if (!task) return renderHome();
   const section = homeSections.find((entry) => entry.id === task.frequencyBucket);
+  const hasInstructions = task.instructions.length > 1 || (task.instructions.length === 1 && tr(task.instructions[0]) !== tr(task.summary));
+  const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>` : "";
   const content = `
-    ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText))}
+    ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), primaryPhoto(task.photos))}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
-    <section class="panel"><h2>${esc(label("description"))}</h2><p>${esc(tr(task.summary))}</p></section>
-    <section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>
+    ${instructionsPanel}
     ${renderPhotos(task.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(task.mustRemember)}</section>
     ${renderVideo(task.videoUrl)}`;
@@ -119,11 +132,12 @@ function renderFood(foodId) {
   if (!item) return renderHome();
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
   const state = getFoodState(item.id);
+  const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
+  const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label(item.trackingMode === "future" ? "futureTracking" : "foodItems"))}
     ${item.type === "rules" ? renderRulesPanel() : ""}
-    <section class="panel"><h2>${esc(label("description"))}</h2><p>${esc(tr(item.summary))}</p></section>
-    <section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>
+    ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
     ${renderVideo(item.videoUrl)}
     <section class="panel"><h2>${esc(label("memo"))}</h2><textarea class="memo-field" data-food-memo="${esc(item.id)}" placeholder="${esc(label("memoPlaceholder"))}">${esc(state.memo || "")}</textarea></section>`;
@@ -151,8 +165,8 @@ function renderRecipe(recipeId) {
   renderShell(tr(recipe.title), content, true);
 }
 
-function renderHead(icon, title, description, iconBg, eyebrow) {
-  return `<section class="detail-head" style="--icon-bg:${iconBg}"><div class="large-icon">${esc(icon)}</div><div><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p></div></section>`;
+function renderHead(icon, title, description, iconBg, eyebrow, photo = null) {
+  return `<section class="detail-head" style="--icon-bg:${iconBg}">${renderLargeIcon(icon, photo)}<div><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p></div></section>`;
 }
 
 function renderSectionCard(section) {
@@ -165,11 +179,25 @@ function renderFoodCard(item) {
 }
 
 function renderRoutineCard(task, section) {
-  return `<button class="item-card routine-card" data-routine="${esc(task.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}"><span class="card-icon">${esc(task.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(task.title))}</span><span class="card-description">${esc(tr(task.summary))}</span><span class="card-meta"><span class="badge">${esc(tr(task.frequencyText))}</span></span></span><span class="chevron">›</span></button>`;
+  return `<button class="item-card routine-card" data-routine="${esc(task.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(task.icon, primaryPhoto(task.photos))}<span class="card-copy"><span class="card-title">${esc(tr(task.title))}</span><span class="card-description">${esc(tr(task.summary))}</span><span class="card-meta"><span class="badge">${esc(tr(task.frequencyText))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderRecipeCard(recipe) {
   return `<button class="recipe-card" data-recipe="${esc(recipe.id)}"><span class="card-icon">${esc(recipe.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
+}
+
+function renderCardIcon(icon, photo = null) {
+  if (photo?.src) return `<span class="card-icon image-icon"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /></span>`;
+  return `<span class="card-icon">${esc(icon)}</span>`;
+}
+
+function renderLargeIcon(icon, photo = null) {
+  if (photo?.src) return `<div class="large-icon image-icon"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /></div>`;
+  return `<div class="large-icon">${esc(icon)}</div>`;
+}
+
+function primaryPhoto(photos = []) {
+  return Array.isArray(photos) && photos.length ? photos[0] : null;
 }
 
 function renderPinnedSafety() {
@@ -212,9 +240,9 @@ function bySort(a, b) { return a.sortOrder - b.sortOrder; }
 
 function handleClick(event) {
   const back = event.target.closest("[data-back]");
-  if (back) return history.length > 1 ? history.back() : go("");
+  if (back) return handleBack();
   const langButton = event.target.closest("[data-lang]");
-  if (langButton) { currentLang = langButton.dataset.lang; localStorage.setItem(LANG_KEY, currentLang); return render(); }
+  if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
   const section = event.target.closest("[data-section]");
   if (section) return go(`#section/${section.dataset.section}`);
   const routine = event.target.closest("[data-routine]");
@@ -223,6 +251,26 @@ function handleClick(event) {
   if (food) return go(`#food/${food.dataset.food}`);
   const recipe = event.target.closest("[data-recipe]");
   if (recipe) return go(`#recipe/${recipe.dataset.recipe}`);
+}
+
+function handleBack() {
+  const route = parseRoute();
+  if (route.view === "section") {
+    go("");
+  } else if (route.view === "routine") {
+    const task = routineTasks.find((entry) => entry.id === route.routineId);
+    if (task && task.frequencyBucket) {
+      go(`#section/${task.frequencyBucket}`);
+    } else {
+      go("");
+    }
+  } else if (route.view === "food") {
+    go("#section/food");
+  } else if (route.view === "recipe") {
+    go("#food/recipes");
+  } else {
+    go("");
+  }
 }
 
 function handleInput(event) {
