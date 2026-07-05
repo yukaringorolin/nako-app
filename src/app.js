@@ -135,8 +135,7 @@ function renderFood(foodId) {
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label(item.trackingMode === "future" ? "futureTracking" : "foodItems"), primaryPhoto(item.photos))}
-    ${renderPhotos(item.photos)}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label(item.trackingMode === "future" ? "futureTracking" : "foodItems"))}
     ${item.type === "rules" ? renderRulesPanel() : ""}
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
@@ -147,8 +146,7 @@ function renderFood(foodId) {
 
 function renderRecipeIndex(item) {
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("recipes"), primaryPhoto(item.photos))}
-    ${renderPhotos(item.photos)}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("recipes"))}
     <section class="card-list">${recipes.map(renderRecipeCard).join("")}</section>`;
   renderShell(tr(item.title), content, true);
 }
