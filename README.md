@@ -7,7 +7,7 @@ A lightweight, mobile-first, multi-language onboarding guide designed for househ
 - **Frequency-Based Routines**: Onboarding references categorized by frequency (Daily, Weekly, Fortnightly, Monthly, Quarterly, and As Needed) to organize home management guidance.
 - **Dog Care & Tracking (Nako)**: Specific protocols for Nako (the resident dog) including walks, feeding, grooming, weight checks, supply inventory, and emergency quick references.
 - **Recipes & Cooking Guidelines**: Clear instructions for preparing approved dog-food toppings (e.g., Chicken Tender, Whitefish, and Chicken Breast) with precise ingredient proportions and general cooking restrictions (no onion, garlic, seasoning, etc.).
-- **Reference Notes**: Food and recipe pages can keep text memos for questions or future tracking notes.
+- **Reference Notes**: Food and reference pages can keep text memos for questions or future tracking notes.
 - **Memo Persistence**: Uses browser `localStorage` to save text memos so notes are not lost on reload.
 - **Multi-Language Support**: Instantly toggles UI text and data descriptions between English (**EN**), Japanese (**JP**), and Burmese (**MM**).
 

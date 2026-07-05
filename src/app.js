@@ -154,14 +154,12 @@ function renderRecipeIndex(item) {
 function renderRecipe(recipeId) {
   const recipe = recipes.find((entry) => entry.id === recipeId);
   if (!recipe) return renderHome();
-  const state = getRecipeState(recipe.id);
   const content = `
     ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"))}
     <section class="panel"><h2>${esc(label("recipeName"))}</h2><p>${esc(tr(recipe.title))}</p></section>
     <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map(renderIngredient).join("")}</ul></section>
     <section class="panel"><h2>${esc(label("method"))}</h2>${orderedList(recipe.method)}</section>
-    <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2><p>${esc(tr(recipe.note))}</p></section>
-    <section class="panel"><h2>${esc(label("memo"))}</h2><textarea class="memo-field" data-recipe-memo="${esc(recipe.id)}" placeholder="${esc(label("memoPlaceholder"))}">${esc(state.memo || "")}</textarea></section>`;
+    <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2><p>${esc(tr(recipe.note))}</p></section>`;
   renderShell(tr(recipe.title), content, true);
 }
 
@@ -171,7 +169,7 @@ function renderHead(icon, title, description, iconBg, eyebrow, photo = null) {
 
 function renderSectionCard(section) {
   const count = section.id === "food" ? foodItems.length : routineTasks.filter((task) => task.frequencyBucket === section.id).length;
-  return `<button class="category-card" data-section="${esc(section.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}"><span class="card-icon">${esc(section.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(section.id === "food" ? label("foodItems") : label("routineItems"))}</span></span></span><span class="chevron">›</span></button>`;
+  return `<button class="category-card" data-section="${esc(section.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(section.id === "food" ? label("foodItems") : label("routineItems"))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderFoodCard(item) {
@@ -198,6 +196,10 @@ function renderLargeIcon(icon, photo = null) {
 
 function primaryPhoto(photos = []) {
   return Array.isArray(photos) && photos.length ? photos[0] : null;
+}
+
+function sectionPhoto(section) {
+  return section.image ? { src: section.image, alt: section.title } : null;
 }
 
 function renderPinnedSafety() {
@@ -276,20 +278,12 @@ function handleBack() {
 function handleInput(event) {
   const foodMemo = event.target.closest("[data-food-memo]");
   if (foodMemo) { getFoodState(foodMemo.dataset.foodMemo).memo = foodMemo.value; return saveState(); }
-  const recipeMemo = event.target.closest("[data-recipe-memo]");
-  if (recipeMemo) { getRecipeState(recipeMemo.dataset.recipeMemo).memo = recipeMemo.value; saveState(); }
 }
 
 function getFoodState(id) {
   appState.food ||= {};
   appState.food[id] ||= { memo: "" };
   return appState.food[id];
-}
-
-function getRecipeState(id) {
-  appState.recipes ||= {};
-  appState.recipes[id] ||= { memo: "" };
-  return appState.recipes[id];
 }
 
 function ingredientImage(key) {

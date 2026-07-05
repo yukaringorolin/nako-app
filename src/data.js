@@ -100,7 +100,8 @@ const homeSections = [
     t("Recipes, cooking rules, and future daily tracking placeholders.", "レシピ、料理のルール、および将来の日々の追跡用プレースホルダー。", "ဟင်းချက်နည်းများ၊ ချက်ပြုတ်ခြင်းစည်းကမ်းများနှင့် နေ့စဉ်ခြေရာခံရန်နေရာများ။")),
   sec("daily", "D", "#f7b7be", "#fff1f2", 
     t("Daily / Active", "毎日 / アクティブ", "နေ့စဉ် / လက်ရှိလုပ်ဆောင်ဆဲ"), 
-    t("Tasks that happen every day, after use, or whenever Nako is active.", "毎日、使用後、またはナコが活動しているときに発生するタスク。", "နေ့စဉ်၊ အသုံးပြုပြီးနောက် သို့မဟုတ် Nako လှုပ်ရှားနေချိန် လုပ်ဆောင်ရမည့်အရာများ။")),
+    t("Tasks that happen every day, after use, or whenever Nako is active.", "毎日、使用後、またはナコが活動しているときに発生するタスク。", "နေ့စဉ်၊ အသုံးပြုပြီးနောက် သို့မဟုတ် Nako လှုပ်ရှားနေချိန် လုပ်ဆောင်ရမည့်အရာများ။"),
+    "assets/sections/daily-active.jpg"),
   sec("weekly", "W", "#92c9ad", "#e7f6ee", 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     t("The main weekly reset list for the home, Nako, and supplies.", "家庭、ナコ、および消耗品の主な週次リセットリスト。", "အိမ်၊ Nako နှင့် အိမ်သုံးပစ္စည်းများအတွက် အဓิက အပတ်စဉ်ရှင်းလင်းရေးစာရင်း။")),
@@ -118,8 +119,8 @@ const homeSections = [
     t("Tasks triggered by shopping, travel, or unusual household needs.", "買い物、旅行、または特別な家庭の必要性によって発生するタスク。", "စျေးဝယ်ခြင်း၊ ခရီးသွားခြင်း သို့မဟုတ် ထူးခြားသောအိမ်သုံးလိုအပ်ချက်များကြောင့် လုပ်ဆောင်ရမည့်အရာများ。")),
 ];
 
-function sec(id, icon, accent, iconBg, title, description) {
-  return { id, icon, accent, iconBg, title, description };
+function sec(id, icon, accent, iconBg, title, description, image = "") {
+  return { id, icon, accent, iconBg, title, description, image };
 }
 
 const cookingRules = [
@@ -497,7 +498,17 @@ function recipe(id, title, ingredients, method, note) {
     description: t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း。"), 
     ingredients: ingredients.map(([name, amount, key]) => ({ key, name, amount })), 
     method, 
-    note 
+    note: recipeNote(note)
+  };
+}
+
+function recipeNote(note) {
+  return {
+    en: `TBC - this recipe has not been tried yet and no photos have been added. ${note.en}`,
+    jp: `TBC - このレシピはまだ試しておらず、写真もまだ追加されていません。${note.jp}`,
+    mm: `TBC - ဤဟင်းချက်နည်းကို မစမ်းရသေးပြီး ဓာတ်ပုံများလည်း မထည့်ရသေးပါ။ ${note.mm}`,
+    _missingJp: note._missingJp,
+    _missingMm: note._missingMm
   };
 }
 
