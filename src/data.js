@@ -98,7 +98,7 @@ const homeSections = [
   sec("food", "F", "#f19a82", "#fff0eb", 
     t("Food, Recipes & Nako Tracking", "食事、レシピ、ナコの追跡", "အစားအသောက်၊ ဟင်းချက်နည်းနှင့် Nako ခြေရာခံခြင်း"), 
     t("Recipes, cooking rules, and future daily tracking placeholders.", "レシピ、料理のルール、および将来の日々の追跡用プレースホルダー。", "ဟင်းချက်နည်းများ၊ ချက်ပြုတ်ခြင်းစည်းကမ်းများနှင့် နေ့စဉ်ခြေရာခံရန်နေရာများ။"),
-    "assets/sections/food.jpg"),
+    "assets/sections/food.png"),
   sec("daily", "D", "#f7b7be", "#fff1f2", 
     t("Daily / Active", "毎日 / アクティブ", "နေ့စဉ် / လက်ရှိလုပ်ဆောင်ဆဲ"), 
     t("Tasks that happen every day, after use, or whenever Nako is active.", "毎日、使用後、またはナコが活動しているときに発生するタスク。", "နေ့စဉ်၊ အသုံးပြုပြီးနောက် သို့မဟုတ် Nako လှုပ်ရှားနေချိန် လုပ်ဆောင်ရမည့်အရာများ။"),
