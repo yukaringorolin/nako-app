@@ -1,0 +1,7 @@
+# OS generated files
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# IDE and Agent files if you want to keep them local (uncomment if you wish to ignore .agents)
+# .agents/
