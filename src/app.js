@@ -145,9 +145,11 @@ function renderFood(foodId) {
 }
 
 function renderRecipeIndex(item) {
+  const isHuman = item.id === "human-food";
+  const filteredRecipes = recipes.filter((r) => isHuman ? r.type === "human" : (!r.type || r.type === "dog"));
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("recipes"))}
-    <section class="card-list">${recipes.map(renderRecipeCard).join("")}</section>`;
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
+    <section class="card-list">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
   renderShell(tr(item.title), content, true);
 }
 
@@ -270,7 +272,12 @@ function handleBack() {
   } else if (route.view === "food") {
     go("#section/food");
   } else if (route.view === "recipe") {
-    go("#food/recipes");
+    const r = recipes.find((entry) => entry.id === route.recipeId);
+    if (r && r.type === "human") {
+      go("#food/human-food");
+    } else {
+      go("#food/recipes");
+    }
   } else {
     go("");
   }
