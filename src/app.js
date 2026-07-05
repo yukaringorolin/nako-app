@@ -155,7 +155,8 @@ function renderRecipe(recipeId) {
   const recipe = recipes.find((entry) => entry.id === recipeId);
   if (!recipe) return renderHome();
   const content = `
-    ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"))}
+    ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"), primaryPhoto(recipe.photos))}
+    ${renderPhotos(recipe.photos)}
     <section class="panel"><h2>${esc(label("recipeName"))}</h2><p>${esc(tr(recipe.title))}</p></section>
     <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map(renderIngredient).join("")}</ul></section>
     <section class="panel"><h2>${esc(label("method"))}</h2>${orderedList(recipe.method)}</section>
@@ -181,7 +182,7 @@ function renderRoutineCard(task, section) {
 }
 
 function renderRecipeCard(recipe) {
-  return `<button class="recipe-card" data-recipe="${esc(recipe.id)}"><span class="card-icon">${esc(recipe.icon)}</span><span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
+  return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, primaryPhoto(recipe.photos))}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
 }
 
 function renderCardIcon(icon, photo = null) {
