@@ -46,6 +46,14 @@
         setStatus({ mode: "error", error: readableError(error) });
         return "";
       }
+    },
+    updateHouseholdCode(code) {
+      if (code && code.trim() !== "") {
+        try { localStorage.setItem("nako-household-code", code.trim()); } catch {}
+      } else {
+        try { localStorage.removeItem("nako-household-code"); } catch {}
+      }
+      updateStateDoc();
     }
   };
 
@@ -94,20 +102,34 @@
   window.addEventListener("pagehide", flushPendingState);
 
   function handleAuthState(user) {
-    if (!user) {
+    updateStateDoc();
+  }
+
+  function updateStateDoc() {
+    detachStateListener();
+
+    if (!auth || !auth.currentUser) {
       stateDoc = null;
-      detachStateListener();
-      setStatus({ mode: "connecting", uid: "", error: "" });
+      setStatus({ mode: "local", uid: "", error: "" });
       return;
     }
 
-    stateDoc = db
-      .collection("users")
-      .doc(user.uid)
-      .collection("state")
-      .doc(STATE_DOC_ID);
+    let code = "";
+    try {
+      code = localStorage.getItem("nako-household-code") || "";
+    } catch {}
 
-    setStatus({ mode: "connecting", uid: user.uid, error: "" });
+    if (code && code.trim() !== "") {
+      stateDoc = db.collection("households").doc(code.trim());
+    } else {
+      stateDoc = db
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .collection("state")
+        .doc(STATE_DOC_ID);
+    }
+
+    setStatus({ mode: "connecting", uid: auth.currentUser.uid, error: "" });
     if (syncCallbacks) attachStateListener();
   }
 

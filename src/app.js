@@ -90,7 +90,12 @@ function renderSyncIndicator() {
   const modes = ["local", "connecting", "synced", "error"];
   const mode = modes.includes(firebaseStatus?.mode) ? firebaseStatus.mode : "local";
   const key = mode === "synced" ? "syncCloud" : mode === "connecting" ? "syncConnecting" : mode === "error" ? "syncOff" : "syncLocal";
-  return `<span class="sync-status sync-${mode}" role="status" title="${esc(label(key))}" aria-label="${esc(label(key))}"></span>`;
+  let code = "";
+  try {
+    code = localStorage.getItem("nako-household-code") || "";
+  } catch {}
+  const displayLabel = code ? `${label(key)} (${code})` : label(key);
+  return `<button class="sync-indicator-btn" data-sync-settings aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></button>`;
 }
 
 function renderHome() {
@@ -261,6 +266,8 @@ function handleClick(event) {
   if (back) return handleBack();
   const langButton = event.target.closest("[data-lang]");
   if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
+  const syncBtn = event.target.closest("[data-sync-settings]");
+  if (syncBtn) { handleSyncSettings(); return; }
   const section = event.target.closest("[data-section]");
   if (section) return go(`#section/${section.dataset.section}`);
   const routine = event.target.closest("[data-routine]");
@@ -293,6 +300,36 @@ function handleBack() {
     }
   } else {
     go("");
+  }
+}
+
+function handleSyncSettings() {
+  let currentCode = "";
+  try {
+    currentCode = localStorage.getItem("nako-household-code") || "";
+  } catch {}
+
+  const code = prompt(
+    "Enter a Shared Household Sync Code to link your devices (e.g. 'our-dog-nako'):\n\nLeave blank to run in solo/private backup mode.",
+    currentCode
+  );
+  if (code === null) return; // Cancelled by user
+
+  const trimmed = code.trim();
+  if (trimmed === currentCode) return;
+
+  if (trimmed && trimmed.length < 3) {
+    alert("Household code must be at least 3 characters.");
+    return;
+  }
+
+  if (window.nakoFirebase?.updateHouseholdCode) {
+    window.nakoFirebase.updateHouseholdCode(trimmed);
+  } else {
+    try {
+      if (trimmed) localStorage.setItem("nako-household-code", trimmed);
+      else localStorage.removeItem("nako-household-code");
+    } catch {}
   }
 }
 
