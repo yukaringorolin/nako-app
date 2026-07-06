@@ -25,9 +25,9 @@ const ui = {
     video: "Training video",
     memo: "Memo",
     memoPlaceholder: "Add notes, questions, or anything to confirm.",
-    cookingRules: "Cooking rules",
+    cookingRules: "Cooking Rules For Humans",
     futureTracking: "Tracking placeholder",
-    recipes: "Topping recipes",
+    recipes: "Nako Topping Recipes",
     recipeName: "Recipe name",
     ingredients: "Ingredients",
     amount: "Amount",
@@ -52,6 +52,9 @@ const ui = {
     syncLocal: "Local only",
     syncConnecting: "Connecting sync",
     syncOff: "Cloud sync off",
+    quickShortcuts: "Quick Shortcuts",
+    shortcutHumanFood: "Human Food Ideas",
+    shortcutDogTraining: "Nako Dog Training",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -67,9 +70,9 @@ const ui = {
     video: "トレーニング動画",
     memo: "メモ",
     memoPlaceholder: "メモ、質問、または確認したいことを追加してください。",
-    cookingRules: "料理のルール",
+    cookingRules: "人間用の料理ルール",
     futureTracking: "追跡用プレースホルダー",
-    recipes: "トッピングレシピ",
+    recipes: "ナコのトッピングレシピ",
     recipeName: "レシピ名",
     ingredients: "材料",
     amount: "分量",
@@ -94,6 +97,9 @@ const ui = {
     syncLocal: "ローカルのみ",
     syncConnecting: "同期接続中",
     syncOff: "クラウド同期オフ",
+    quickShortcuts: "クイックショートカット",
+    shortcutHumanFood: "人間の食事アイデア",
+    shortcutDogTraining: "ナコのドッグトレーニング",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -109,9 +115,9 @@ const ui = {
     video: "လေ့ကျင့်ရေးဗီဒီယို",
     memo: "မှတ်စု",
     memoPlaceholder: "မှတ်စု၊ မေးခွန်း သို့မဟုတ် အတည်ပြုရန်အရာများ ထည့်ပါ။",
-    cookingRules: "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ",
+    cookingRules: "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ",
     futureTracking: "ခြေရာခံရန်နေရာ",
-    recipes: "အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ",
+    recipes: "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ",
     recipeName: "ဟင်းချက်နည်းအမည်",
     ingredients: "ပါဝင်ပစ္စည်းများ",
     amount: "ပမာဏ",
@@ -136,6 +142,9 @@ const ui = {
     syncLocal: "စက်တွင်းသာ",
     syncConnecting: "စင့်ခ်ချိတ်ဆက်နေသည်",
     syncOff: "ကလောင်ဒ်စင့်ခ် ပိတ်ထားသည်",
+    quickShortcuts: "အမြန်ဖြတ်လမ်းများ",
+    shortcutHumanFood: "လူသားများအတွက် အစားအစာအိုင်ဒီယာများ",
+    shortcutDogTraining: "Nako ၏ခွေးလေ့ကျင့်ရေး",
   },
 };
 
@@ -185,34 +194,34 @@ const cookingRules = [
 
 const foodItems = [
   food("recipes", "recipeIndex", "R", 
-    t("Topping Recipes", "トッピングレシピ", "အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"), 
+    t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"), 
     t("Approved Nako topping recipes with ingredients and amounts.", "材料と分量が記載された、承認済みのナコ用トッピングレシピ。", "ပါဝင်ပစ္စည်းများနှင့် ပမာဏများပါဝင်သော Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ။"), 
     t("Open a recipe before preparing any topping.", "トッピングを準備する前にレシピを開いてください。", "မည်သည့်အပေါ်မှတင်စရာမဆို မပြင်ဆင်မီ ဟင်းချက်နည်းကို အရင်ဖွင့်ပါ။"), 
     t("No seasoning, oil, onion, or garlic unless approved.", "承認されない限り、調味料、油、玉ねぎ、にんにくは使用しないでください。", "ခွင့်ပြုချက်မရှိဘဲ ဟင်းခတ်မှုန့်、ဆီ、ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မသုံးပါနှင့်။"), 1,
     [
       photo("assets/sections/topping-recipes.png", 
         t("Healthy dog food bowl with chicken, broccoli, and carrots", "鶏肉、ブロッコリー、にんじんが入った健康的なドッグフードボウル", "ကြက်သား၊ ပန်းဂေါ်ဖီစိမ်းနှင့် မုန်လာဥနီတို့ပါဝင်သော ကျန်းမာရေးနှင့်ညီညွတ်သည့် ခွေးစာခွက်"),
-        t("Topping Recipes", "トッピングレシピ", "အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
+        t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
     ]),
   food("cooking-rules", "rules", "!", 
-    t("Cooking Rules", "料理のルール", "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"), 
+    t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"), 
     t("Rules to check before cooking or changing any menu.", "調理を始める前やメニューを変更する前に確認すべきルール。", "ချက်ပြုတ်ခြင်း သို့မဟုတ် မီနူးပြောင်းလဲခြင်းမပြုမီ စစ်ဆေးရမည့်စည်းကမ်းများ။"), 
     t("Read all rules before cooking.", "調理する前にすべてのルールを読んでください。", "မချက်ပြုတ်မီ စည်းကမ်းအားလုံးကို ဖတ်ပါ။"), 
     t("Menu changes and unfamiliar ingredients must be confirmed first.", "メニューの変更や見慣れない食材については、まず確認が必要です。", "မီနူးပြောင်းလဲခြင်းနှင့် မရင်းနှီးသော ပါဝင်ပစ္စည်းများကို အရင်အတည်ပြုရမည်။"), 2,
     [
       photo("assets/sections/cooking-rules.png", 
         t("Chef hat with warning and forbidden ingredients", "警告と禁止食材が描かれたシェフの帽子", "သတိပေးချက်နှင့် တားမြစ်ထားသော ဟင်းချက်ပါဝင်ပစ္စည်းများပါရှိသည့် စားဖိုမှူးဦးထုပ်"),
-        t("Cooking Rules", "料理のルール", "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"))
+        t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"))
     ]),
   food("meal-logs", "placeholder", "L", 
-    t("Meal Logs", "食事記録", "အစားအသောက်မှတ်တမ်းများ"), 
+    t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"), 
     t("Future Streamlit tracking for meals, protein target, and notes.", "食事、タンパク質目標、およびメモのための将来的なStreamlit追跡機能。", "အစားအစာ၊ ပရိုတင်းရည်မှန်းချက်နှင့် မှတ်စုများအတွက် နောင်တွင်သုံးမည့် Streamlit ခြေရာခံခြင်း။"), 
     t("Placeholder only for now. Detailed meal tracking will be handled later.", "現在はプレースホルダーのみです。詳細な食事追跡は後で対応します。", "လောလောဆယ် နေရာလွတ်ပြထားခြင်းသာဖြစ်သည်။ အသေးစိတ်အစားအစာခြေရာခံခြင်းကို နောက်မှဆောင်ရွက်မည်။"), 
     t("Keep cooking rules visible until tracking is built.", "追跡機能が構築されるまで、料理ルールを表示したままにしてください。", "ခြေရာခံစနစ် မဆောက်ရသေးမီ ချက်ပြုတ်ခြင်းစည်းကမ်းများကို မြင်သာအောင်ထားပါ။"), 3,
     [
       photo("assets/sections/meal-logs.png", 
         t("Meal tray with rice, miso soup, salmon, and log notebook", "ご飯、味噌汁、鮭、ログノートが入った食事トレイ", "ထမင်း၊ မစ်ဆိုဆွပ်၊ ဆယ်လ်မွန်ငါးနှင့် မှတ်တမ်းစာအုပ်ပါဝင်သော အစားအစာလင်ပန်း"),
-        t("Meal Logs", "食事記録", "အစားအသောက်မှတ်တမ်းများ"))
+        t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"))
     ]),
   food("nako-feeding", "placeholder", "N", 
     t("Nako Feeding", "ナコの給餌", "Nako ကိုအစာကျွေးခြင်း"), 

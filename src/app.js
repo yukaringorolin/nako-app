@@ -110,10 +110,58 @@ function renderHome() {
         <p class="lead">${esc(label("appSubtitle"))}</p>
       </div>
     </section>
+    <p class="section-label">${esc(label("quickShortcuts"))}</p>
+    <section class="shortcut-grid">
+      ${renderShortcuts()}
+    </section>
     <section class="rule-strip compact"><h2>${esc(label("foodItems"))}</h2><p>${esc(label("foodFirst"))}</p></section>
     <p class="section-label">${esc(label("sections"))}</p>
     <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>`;
   renderShell(label("appTitle"), content, false);
+}
+
+function renderShortcuts() {
+  const shortcutList = [
+    { id: "nako-weight", type: "food" },
+    { id: "meal-logs", type: "food" },
+    { id: "recipes", type: "food" },
+    { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
+    { id: "cooking-rules", type: "food" },
+    { id: "nako-training-fun", type: "routine", labelKey: "shortcutDogTraining" }
+  ];
+
+  return shortcutList.map(shortcut => {
+    let titleText = "";
+    let icon = "";
+    let accent = "#f19a82";
+    let iconBg = "#fff0eb";
+
+    if (shortcut.type === "food") {
+      const item = foodItems.find(entry => entry.id === shortcut.id);
+      if (item) {
+        titleText = shortcut.labelKey ? label(shortcut.labelKey) : tr(item.title);
+        icon = item.icon;
+      }
+    } else if (shortcut.type === "routine") {
+      const task = routineTasks.find(entry => entry.id === shortcut.id);
+      if (task) {
+        titleText = shortcut.labelKey ? label(shortcut.labelKey) : tr(task.title);
+        icon = task.icon;
+        const sec = homeSections.find(s => s.id === task.frequencyBucket);
+        if (sec) {
+          accent = sec.accent;
+          iconBg = sec.iconBg;
+        }
+      }
+    }
+
+    const dataAttr = shortcut.type === "food" ? `data-food="${esc(shortcut.id)}"` : `data-routine="${esc(shortcut.id)}"`;
+
+    return `<button class="shortcut-btn" ${dataAttr} style="--accent:${accent};--icon-bg:${iconBg}">
+      <span class="shortcut-icon" style="background:var(--icon-bg);color:var(--accent);">${esc(icon)}</span>
+      <span class="shortcut-title">${esc(titleText)}</span>
+    </button>`;
+  }).join("");
 }
 
 function renderSection(sectionId) {
