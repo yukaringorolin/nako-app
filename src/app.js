@@ -309,19 +309,19 @@ function handleBack() {
 function handleSyncSettings() {
   let currentCode = "";
   try {
-    currentCode = localStorage.getItem("nako-household-code") || "";
+    currentCode = localStorage.getItem("nako-household-code") || "our-dog-nako";
   } catch {}
 
   const code = prompt(
-    "Enter a Shared Household Sync Code to link your devices (e.g. 'our-dog-nako'):\n\nLeave blank to run in solo/private backup mode.",
+    "Enter a Shared Household Sync Code to link your devices (e.g. 'our-dog-nako'):\n\nLeave blank to use default ('our-dog-nako').",
     currentCode
   );
   if (code === null) return; // Cancelled by user
 
-  const trimmed = code.trim();
+  const trimmed = code.trim() || "our-dog-nako";
   if (trimmed === currentCode) return;
 
-  if (trimmed && trimmed.length < 3) {
+  if (trimmed.length < 3) {
     alert("Household code must be at least 3 characters.");
     return;
   }
@@ -330,8 +330,7 @@ function handleSyncSettings() {
     window.nakoFirebase.updateHouseholdCode(trimmed);
   } else {
     try {
-      if (trimmed) localStorage.setItem("nako-household-code", trimmed);
-      else localStorage.removeItem("nako-household-code");
+      localStorage.setItem("nako-household-code", trimmed);
     } catch {}
   }
 }

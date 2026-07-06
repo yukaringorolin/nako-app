@@ -114,20 +114,12 @@
       return;
     }
 
-    let code = "";
+    let code = "our-dog-nako";
     try {
-      code = localStorage.getItem("nako-household-code") || "";
+      code = localStorage.getItem("nako-household-code") || "our-dog-nako";
     } catch {}
 
-    if (code && code.trim() !== "") {
-      stateDoc = db.collection("households").doc(code.trim());
-    } else {
-      stateDoc = db
-        .collection("users")
-        .doc(auth.currentUser.uid)
-        .collection("state")
-        .doc(STATE_DOC_ID);
-    }
+    stateDoc = db.collection("households").doc(code.trim());
 
     setStatus({ mode: "connecting", uid: auth.currentUser.uid, error: "" });
     if (syncCallbacks) attachStateListener();
