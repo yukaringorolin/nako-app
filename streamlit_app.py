@@ -72,11 +72,15 @@ def load_app():
         
     with open(os.path.join(APP_DIR, "src/data.js"), "r", encoding="utf-8") as f:
         data_js = f.read()
+
+    with open(os.path.join(APP_DIR, "src/firebase.js"), "r", encoding="utf-8") as f:
+        firebase_js = f.read()
         
     with open(os.path.join(APP_DIR, "src/app.js"), "r", encoding="utf-8") as f:
         app_js = f.read()
         
     data_js = inline_local_assets(data_js)
+    firebase_js = inline_local_assets(firebase_js)
     app_js = inline_local_assets(app_js)
     
     # Inline CSS and JS into HTML
@@ -89,8 +93,13 @@ def load_app():
         f'<style>{css}</style>'
     )
     
-    # Replace script tags with inlined JavaScript content
+    # Replace script tags with inlined JavaScript content. Firebase Hosting
+    # reserved SDK scripts are left in place; the app falls back to local mode
+    # when they are not available inside Streamlit.
     html = html.replace(
+        '<script src="src/firebase.js"></script>',
+        f'<script>{firebase_js}</script>'
+    ).replace(
         '<script src="src/data.js"></script>',
         f'<script>{data_js}</script>'
     ).replace(

@@ -15,19 +15,22 @@ const safeStorage = {
 
 let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
+let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
 const app = document.querySelector("#app");
 
 window.addEventListener("hashchange", render);
 document.addEventListener("click", handleClick);
 document.addEventListener("input", handleInput);
+initFirebaseSync();
 render();
 
 function loadState() {
   try { return JSON.parse(safeStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
 }
 
-function saveState() {
+function saveState(options = {}) {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
+  if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(appState);
 }
 
 function tr(value) {
@@ -72,12 +75,22 @@ function renderShell(title, content, showBack = false) {
           <img src="${NAKO_LOGO_SRC}" alt="Nako" />
           <span class="screen-title">${esc(title)}</span>
         </div>
-        <div class="language-toggle" aria-label="Language">
-          ${langs.map((language) => `<button data-lang="${language}" aria-pressed="${language === currentLang}">${language.toUpperCase()}</button>`).join("")}
+        <div class="topbar-actions">
+          ${renderSyncIndicator()}
+          <div class="language-toggle" aria-label="Language">
+            ${langs.map((language) => `<button data-lang="${language}" aria-pressed="${language === currentLang}">${language.toUpperCase()}</button>`).join("")}
+          </div>
         </div>
       </header>
       <div class="content">${content}</div>
     </div>`;
+}
+
+function renderSyncIndicator() {
+  const modes = ["local", "connecting", "synced", "error"];
+  const mode = modes.includes(firebaseStatus?.mode) ? firebaseStatus.mode : "local";
+  const key = mode === "synced" ? "syncCloud" : mode === "connecting" ? "syncConnecting" : mode === "error" ? "syncOff" : "syncLocal";
+  return `<span class="sync-status sync-${mode}" role="status" title="${esc(label(key))}" aria-label="${esc(label(key))}"></span>`;
 }
 
 function renderHome() {
@@ -292,6 +305,25 @@ function getFoodState(id) {
   appState.food ||= {};
   appState.food[id] ||= { memo: "" };
   return appState.food[id];
+}
+
+function initFirebaseSync() {
+  const firebaseSync = window.nakoFirebase;
+  if (!firebaseSync) return;
+
+  firebaseSync.onStatus((status) => {
+    firebaseStatus = status;
+    render();
+  });
+
+  firebaseSync.startStateSync({
+    getLocalState: () => appState,
+    applyRemoteState: (nextState) => {
+      appState = nextState && typeof nextState === "object" ? nextState : {};
+      saveState({ remote: false });
+      render();
+    }
+  });
 }
 
 function ingredientImage(key) {

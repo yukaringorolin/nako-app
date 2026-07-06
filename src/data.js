@@ -38,6 +38,10 @@ const ui = {
     noItems: "No items yet.",
     back: "Back",
     humanRecipes: "Human recipes",
+    syncCloud: "Cloud sync on",
+    syncLocal: "Local only",
+    syncConnecting: "Connecting sync",
+    syncOff: "Cloud sync off",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -66,6 +70,10 @@ const ui = {
     noItems: "項目はありません。",
     back: "戻る",
     humanRecipes: "人間のレシピ",
+    syncCloud: "クラウド同期オン",
+    syncLocal: "ローカルのみ",
+    syncConnecting: "同期接続中",
+    syncOff: "クラウド同期オフ",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -94,6 +102,10 @@ const ui = {
     noItems: "ဘာမှမရှိသေးပါ။",
     back: "နောက်သို့",
     humanRecipes: "လူသားများအတွက် ဟင်းချက်နည်းများ",
+    syncCloud: "ကလောင်ဒ်စင့်ခ် ဖွင့်ထားသည်",
+    syncLocal: "စက်တွင်းသာ",
+    syncConnecting: "စင့်ခ်ချိတ်ဆက်နေသည်",
+    syncOff: "ကလောင်ဒ်စင့်ခ် ပိတ်ထားသည်",
   },
 };
 
