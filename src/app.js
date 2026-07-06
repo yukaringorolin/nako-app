@@ -15,6 +15,7 @@ const safeStorage = {
 
 let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
+let selectedArchiveYear = null;
 let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
 const app = document.querySelector("#app");
 
@@ -386,6 +387,12 @@ function handleChange(event) {
     appState.weightTracking[weightInput.dataset.weightDate] = val !== "" ? parseFloat(val) : "";
     saveState();
     render();
+    return;
+  }
+  const yearSelect = event.target.closest("[data-archive-year-select]");
+  if (yearSelect) {
+    selectedArchiveYear = parseInt(yearSelect.value);
+    render();
   }
 }
 
@@ -408,20 +415,65 @@ function formatWeightDate(date, lang) {
   return `${formatted} (${dayNames[lang] || dayNames.en})`;
 }
 
-function getSundays() {
+function getLatestDueSunday() {
   const start = new Date(2026, 6, 12); // July 12, 2026
   const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  if (now < start) return start;
+
+  const latest = new Date(now);
+  latest.setDate(now.getDate() - now.getDay());
+  latest.setHours(0, 0, 0, 0);
+
+  return latest < start ? start : latest;
+}
+
+function getPreviousWeight(targetDateStr) {
+  const tracking = appState.weightTracking || {};
+  const dates = Object.keys(tracking)
+    .filter(d => d < targetDateStr && tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .sort();
+  if (dates.length > 0) {
+    const prevDate = dates[dates.length - 1];
+    return parseFloat(tracking[prevDate]);
+  }
+  return null;
+}
+
+function getArchiveYears() {
+  const startYear = 2026;
+  const currentYear = new Date().getFullYear();
+  const years = new Set();
   
-  const minWeeks = 6;
+  for (let y = startYear; y <= currentYear; y++) {
+    years.add(y);
+  }
+  
+  const tracking = appState.weightTracking || {};
+  Object.keys(tracking).forEach(dateStr => {
+    const match = dateStr.match(/^(\d{4})/);
+    if (match) {
+      years.add(parseInt(match[1]));
+    }
+  });
+  
+  return Array.from(years).sort((a, b) => b - a);
+}
+
+function getSundaysForYear(year) {
+  const startOfTracking = new Date(2026, 6, 12); // July 12, 2026
   const sundays = [];
-  let current = new Date(start);
+  let current = new Date(year, 0, 1);
   
-  const sixWeeksFromStart = new Date(start.getTime() + (minWeeks - 1) * 7 * 24 * 60 * 60 * 1000);
-  const oneWeekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-  const limit = new Date(Math.max(sixWeeksFromStart.getTime(), oneWeekFromNow.getTime()));
+  while (current.getDay() !== 0) {
+    current.setDate(current.getDate() + 1);
+  }
   
-  while (current <= limit) {
-    sundays.push(new Date(current));
+  while (current.getFullYear() === year) {
+    if (current >= startOfTracking) {
+      sundays.push(new Date(current));
+    }
     current.setDate(current.getDate() + 7);
   }
   return sundays;
@@ -430,22 +482,195 @@ function getSundays() {
 function renderWeightTracking(item) {
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
+  
+  if (!selectedArchiveYear) {
+    const years = getArchiveYears();
+    selectedArchiveYear = years[0] || new Date().getFullYear();
+  }
+
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("foodItems"))}
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
     
     <section class="panel">
+      <h2>${esc(label("quickEntry"))}</h2>
+      ${renderQuickEntryPanel()}
+    </section>
+
+    <section class="panel">
       <h2>${esc(label("weightTrend"))}</h2>
       ${renderWeightGraph()}
     </section>
     
     <section class="panel">
-      <h2>${esc(label("weightLog"))}</h2>
-      ${renderWeightLogTable()}
+      <h2>${esc(label("recentEntries"))}</h2>
+      ${renderRecentEntriesPanel()}
+    </section>
+
+    <section class="panel">
+      <h2>${esc(label("archive"))}</h2>
+      ${renderArchivePanel()}
     </section>
   `;
   renderShell(tr(item.title), content, true);
+}
+
+function renderQuickEntryPanel() {
+  const latestSunday = getLatestDueSunday();
+  const key = dateToKey(latestSunday);
+  const tracking = appState.weightTracking || {};
+  const val = tracking[key] !== undefined ? tracking[key] : "";
+  
+  const prevWeight = getPreviousWeight(key);
+  let prevHtml = "";
+  let diffHtml = "";
+
+  if (prevWeight !== null) {
+    prevHtml = `<span class="prev-weight">${esc(label("previous"))}: <strong>${prevWeight.toFixed(2)} kg</strong></span>`;
+    const numVal = parseFloat(val);
+    if (!isNaN(numVal)) {
+      const diff = numVal - prevWeight;
+      if (diff > 0) {
+        diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
+      } else if (diff < 0) {
+        diffHtml = `<span class="diff minus">${diff.toFixed(2)} kg</span>`;
+      } else {
+        diffHtml = `<span class="diff neutral">0.00 kg</span>`;
+      }
+    }
+  } else {
+    prevHtml = `<span class="prev-weight">${esc(label("previous"))}: <strong>—</strong></span>`;
+  }
+
+  const displayDate = formatWeightDate(latestSunday, currentLang);
+  return `
+    <div class="quick-entry-card">
+      <div class="quick-entry-header">
+        <span class="label-due">${esc(label("latestDueSunday"))}</span>
+        <span class="date">${esc(displayDate)}</span>
+      </div>
+      <div class="quick-entry-body">
+        <div class="input-wrapper">
+          <input type="number" step="0.01" min="0" placeholder="--" value="${esc(val)}" data-weight-date="${esc(key)}" aria-label="${esc(displayDate)}" />
+          <span class="unit">kg</span>
+        </div>
+        <div class="quick-entry-meta">
+          ${prevHtml}
+          ${diffHtml}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRecentEntriesPanel() {
+  const tracking = appState.weightTracking || {};
+  const loggedKeys = Object.keys(tracking)
+    .filter(d => tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .sort(); // ascending chronological
+
+  if (loggedKeys.length === 0) {
+    return `<div class="empty-state">${esc(label("noWeightYet"))}</div>`;
+  }
+
+  const diffs = {};
+  for (let i = 0; i < loggedKeys.length; i++) {
+    const key = loggedKeys[i];
+    const val = parseFloat(tracking[key]);
+    if (i > 0) {
+      const prevKey = loggedKeys[i - 1];
+      const prevVal = parseFloat(tracking[prevKey]);
+      diffs[key] = val - prevVal;
+    }
+  }
+
+  const recentKeys = [...loggedKeys].reverse().slice(0, 8);
+
+  const rows = recentKeys.map(key => {
+    const val = parseFloat(tracking[key]);
+    const diff = diffs[key];
+    let diffHtml = '<span class="diff neutral">—</span>';
+    if (diff !== undefined) {
+      if (diff > 0) {
+        diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
+      } else if (diff < 0) {
+        diffHtml = `<span class="diff minus">${diff.toFixed(2)} kg</span>`;
+      } else {
+        diffHtml = `<span class="diff neutral">0.00 kg</span>`;
+      }
+    }
+
+    const dateObj = new Date(key);
+    const displayDate = formatWeightDate(dateObj, currentLang);
+
+    return `
+      <div class="recent-weight-row">
+        <span class="date">${esc(displayDate)}</span>
+        <span class="weight-value">${val.toFixed(2)} <span class="unit">kg</span></span>
+        ${diffHtml}
+      </div>
+    `;
+  }).join("");
+
+  return `<div class="recent-entries-list">${rows}</div>`;
+}
+
+function renderArchivePanel() {
+  const years = getArchiveYears();
+  const selectedYear = selectedArchiveYear || years[0] || new Date().getFullYear();
+  
+  const dropdownOptions = years.map(y => `
+    <option value="${y}" ${y === selectedYear ? "selected" : ""}>${y}</option>
+  `).join("");
+
+  const sundays = getSundaysForYear(selectedYear);
+  const tracking = appState.weightTracking || {};
+
+  const rows = [...sundays].reverse().map(date => {
+    const key = dateToKey(date);
+    const val = tracking[key] !== undefined ? tracking[key] : "";
+    
+    let diffHtml = '<span class="diff neutral">—</span>';
+    const numVal = parseFloat(val);
+    if (!isNaN(numVal)) {
+      const prevWeight = getPreviousWeight(key);
+      if (prevWeight !== null) {
+        const diff = numVal - prevWeight;
+        if (diff > 0) {
+          diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
+        } else if (diff < 0) {
+          diffHtml = `<span class="diff minus">${diff.toFixed(2)} kg</span>`;
+        } else {
+          diffHtml = `<span class="diff neutral">0.00 kg</span>`;
+        }
+      }
+    }
+
+    const displayDate = formatWeightDate(date, currentLang);
+    return `
+      <div class="weight-row">
+        <span class="date">${esc(displayDate)}</span>
+        <div class="input-wrapper">
+          <input type="number" step="0.01" min="0" placeholder="--" value="${esc(val)}" data-weight-date="${esc(key)}" aria-label="${esc(displayDate)}" />
+          <span class="unit">kg</span>
+        </div>
+        ${diffHtml}
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="archive-controls">
+      <label for="archive-year-select">${esc(label("selectYear"))}:</label>
+      <select id="archive-year-select" data-archive-year-select>
+        ${dropdownOptions}
+      </select>
+    </div>
+    <div class="weight-log-table">
+      ${rows}
+    </div>
+  `;
 }
 
 function renderWeightGraph() {
@@ -537,62 +762,6 @@ function renderWeightGraph() {
       </svg>
     </div>
   `;
-}
-
-function renderWeightLogTable() {
-  const sundays = getSundays();
-  const tracking = appState.weightTracking || {};
-
-  const diffs = {};
-  for (let i = 0; i < sundays.length; i++) {
-    const key = dateToKey(sundays[i]);
-    const val = parseFloat(tracking[key]);
-    if (isNaN(val)) continue;
-    
-    let prevVal = NaN;
-    for (let j = i - 1; j >= 0; j--) {
-      const prevKey = dateToKey(sundays[j]);
-      const pv = parseFloat(tracking[prevKey]);
-      if (!isNaN(pv)) {
-        prevVal = pv;
-        break;
-      }
-    }
-    if (!isNaN(prevVal)) {
-      diffs[key] = val - prevVal;
-    }
-  }
-
-  const rows = [...sundays].reverse().map(date => {
-    const key = dateToKey(date);
-    const val = tracking[key] !== undefined ? tracking[key] : "";
-    const diff = diffs[key];
-    
-    let diffHtml = '<span class="diff neutral">—</span>';
-    if (diff !== undefined) {
-      if (diff > 0) {
-        diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
-      } else if (diff < 0) {
-        diffHtml = `<span class="diff minus">${diff.toFixed(2)} kg</span>`;
-      } else {
-        diffHtml = `<span class="diff neutral">0.00 kg</span>`;
-      }
-    }
-    
-    const displayDate = formatWeightDate(date, currentLang);
-    return `
-      <div class="weight-row">
-        <span class="date">${esc(displayDate)}</span>
-        <div class="input-wrapper">
-          <input type="number" step="0.01" min="0" placeholder="--" value="${esc(val)}" data-weight-date="${esc(key)}" aria-label="${esc(displayDate)}" />
-          <span class="unit">kg</span>
-        </div>
-        ${diffHtml}
-      </div>
-    `;
-  }).join("");
-
-  return `<div class="weight-log-table">${rows}</div>`;
 }
 
 
