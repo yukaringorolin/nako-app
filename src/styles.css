@@ -679,3 +679,127 @@ img {
 .routine-card .card-title {
   font-size: 17px;
 }
+
+/* Weight Tracking Custom Styles */
+.weight-graph-wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+}
+
+.weight-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.graph-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 16px;
+  background: #fdfdfd;
+  border: 2px dashed #e6e9e7;
+  border-radius: 16px;
+  color: #718076;
+}
+
+.graph-placeholder svg {
+  margin-bottom: 12px;
+}
+
+.graph-point {
+  cursor: pointer;
+}
+
+.graph-point text {
+  opacity: 0.85;
+  transition: opacity 0.15s ease, font-size 0.15s ease;
+}
+
+.graph-point:hover text {
+  opacity: 1;
+  font-size: 11px;
+}
+
+.weight-log-table {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.weight-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 80px;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f3f2;
+}
+
+.weight-row:last-child {
+  border-bottom: none;
+}
+
+.weight-row .date {
+  font-weight: 500;
+  color: #25302c;
+  font-size: 14px;
+}
+
+.weight-row .input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.weight-row input {
+  width: 75px;
+  padding: 6px 8px;
+  border: 1px solid #c2c9c5;
+  border-radius: 8px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #25302c;
+  background: #fafbfa;
+}
+
+.weight-row input:focus {
+  border-color: #e86f88;
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(232, 111, 136, 0.15);
+}
+
+.weight-row .unit {
+  font-size: 12px;
+  color: #718076;
+  font-weight: 500;
+}
+
+.weight-row .diff {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.weight-row .diff.plus {
+  color: #c95d6f;
+}
+
+.weight-row .diff.minus {
+  color: #2f7352;
+}
+
+.weight-row .diff.neutral {
+  color: #718076;
+}

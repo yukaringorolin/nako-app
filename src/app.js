@@ -21,6 +21,7 @@ const app = document.querySelector("#app");
 window.addEventListener("hashchange", render);
 document.addEventListener("click", handleClick);
 document.addEventListener("input", handleInput);
+document.addEventListener("change", handleChange);
 initFirebaseSync();
 render();
 
@@ -149,6 +150,7 @@ function renderFood(foodId) {
   const item = foodItems.find((entry) => entry.id === foodId);
   if (!item) return renderHome();
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
+  if (item.id === "nako-weight") return renderWeightTracking(item);
   const state = getFoodState(item.id);
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
@@ -374,6 +376,223 @@ function ingredientImage(key) {
 
 function esc(value) {
   return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+
+function handleChange(event) {
+  const weightInput = event.target.closest("[data-weight-date]");
+  if (weightInput) {
+    appState.weightTracking ||= {};
+    const val = weightInput.value.trim();
+    appState.weightTracking[weightInput.dataset.weightDate] = val !== "" ? parseFloat(val) : "";
+    saveState();
+    render();
+  }
+}
+
+function dateToKey(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function formatWeightDate(date, lang) {
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  const formatted = date.toLocaleDateString(lang === 'jp' ? 'ja-JP' : lang === 'mm' ? 'my-MM' : 'en-US', options);
+  
+  const dayNames = {
+    en: "Sunday",
+    jp: "日曜日",
+    mm: "တနင်္ဂနွေ"
+  };
+  return `${formatted} (${dayNames[lang] || dayNames.en})`;
+}
+
+function getSundays() {
+  const start = new Date(2026, 6, 12); // July 12, 2026
+  const now = new Date();
+  
+  const minWeeks = 6;
+  const sundays = [];
+  let current = new Date(start);
+  
+  const sixWeeksFromStart = new Date(start.getTime() + (minWeeks - 1) * 7 * 24 * 60 * 60 * 1000);
+  const oneWeekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const limit = new Date(Math.max(sixWeeksFromStart.getTime(), oneWeekFromNow.getTime()));
+  
+  while (current <= limit) {
+    sundays.push(new Date(current));
+    current.setDate(current.getDate() + 7);
+  }
+  return sundays;
+}
+
+function renderWeightTracking(item) {
+  const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
+  const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
+  const content = `
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("foodItems"))}
+    ${instructionsPanel}
+    <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
+    
+    <section class="panel">
+      <h2>${esc(label("weightTrend"))}</h2>
+      ${renderWeightGraph()}
+    </section>
+    
+    <section class="panel">
+      <h2>${esc(label("weightLog"))}</h2>
+      ${renderWeightLogTable()}
+    </section>
+  `;
+  renderShell(tr(item.title), content, true);
+}
+
+function renderWeightGraph() {
+  const tracking = appState.weightTracking || {};
+  const entries = Object.keys(tracking)
+    .filter(d => tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .sort()
+    .map(d => ({ dateStr: d, weight: parseFloat(tracking[d]) }));
+
+  if (entries.length < 2) {
+    return `
+      <div class="graph-placeholder">
+        <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="#f7b7be" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10,90 L90,90 M10,90 L10,10 M10,90 L30,70 L50,80 L70,40 L90,20" />
+          <circle cx="90" cy="20" r="5" fill="#e86f88" />
+        </svg>
+        <p style="margin: 8px 0 0; font-size: 13px;">${esc(label("weightGraphPlaceholder"))}</p>
+      </div>
+    `;
+  }
+
+  const width = 600;
+  const height = 220;
+  const paddingLeft = 40;
+  const paddingRight = 25;
+  const paddingTop = 20;
+  const paddingBottom = 30;
+
+  const chartWidth = width - paddingLeft - paddingRight;
+  const chartHeight = height - paddingTop - paddingBottom;
+
+  const weights = entries.map(e => e.weight);
+  const minW = Math.min(...weights) - 0.2;
+  const maxW = Math.max(...weights) + 0.2;
+  const rangeW = maxW - minW || 1;
+
+  const getX = (index) => paddingLeft + (index / (entries.length - 1)) * chartWidth;
+  const getY = (w) => paddingTop + chartHeight - ((w - minW) / rangeW) * chartHeight;
+
+  const pathD = entries.map((e, i) => `${i === 0 ? 'M' : 'L'} ${getX(i)} ${getY(e.weight)}`).join(" ");
+  const areaD = `${pathD} L ${getX(entries.length - 1)} ${paddingTop + chartHeight} L ${getX(0)} ${paddingTop + chartHeight} Z`;
+
+  const gridLines = [];
+  const gridCount = 3;
+  for (let i = 0; i < gridCount; i++) {
+    const wVal = minW + (i / (gridCount - 1)) * rangeW;
+    const yVal = getY(wVal);
+    gridLines.push(`
+      <line x1="${paddingLeft}" y1="${yVal}" x2="${width - paddingRight}" y2="${yVal}" stroke="#f1f3f2" stroke-width="1" stroke-dasharray="4,4" />
+      <text x="${paddingLeft - 8}" y="${yVal + 4}" text-anchor="end" font-family="system-ui" font-size="10" fill="#718076">${wVal.toFixed(1)}</text>
+    `);
+  }
+
+  const xLabels = [];
+  const labelIndices = [0, Math.floor((entries.length - 1) / 2), entries.length - 1];
+  const uniqueIndices = [...new Set(labelIndices.filter(idx => idx >= 0 && idx < entries.length))];
+  
+  uniqueIndices.forEach(idx => {
+    const entry = entries[idx];
+    const xVal = getX(idx);
+    const dateObj = new Date(entry.dateStr);
+    const dateText = dateObj.toLocaleDateString(currentLang === 'jp' ? 'ja-JP' : currentLang === 'mm' ? 'my-MM' : 'en-US', { day: 'numeric', month: 'short' });
+    xLabels.push(`
+      <text x="${xVal}" y="${height - 10}" text-anchor="middle" font-family="system-ui" font-size="10" fill="#718076">${dateText}</text>
+    `);
+  });
+
+  const dots = entries.map((e, i) => `
+    <g class="graph-point">
+      <circle cx="${getX(i)}" cy="${getY(e.weight)}" r="6" fill="#e86f88" stroke="#ffffff" stroke-width="2" />
+      <text x="${getX(i)}" y="${getY(e.weight) - 10}" text-anchor="middle" font-family="system-ui" font-size="10" font-weight="700" fill="#25302c" class="point-label">${e.weight}</text>
+    </g>
+  `).join("");
+
+  return `
+    <div class="weight-graph-wrapper">
+      <svg viewBox="0 0 ${width} ${height}" class="weight-chart">
+        <defs>
+          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f7b7be" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#f7b7be" stop-opacity="0.0" />
+          </linearGradient>
+        </defs>
+        ${gridLines.join("")}
+        <path d="${areaD}" fill="url(#chartGrad)" />
+        <path d="${pathD}" fill="none" stroke="#e86f88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        ${xLabels.join("")}
+        ${dots}
+      </svg>
+    </div>
+  `;
+}
+
+function renderWeightLogTable() {
+  const sundays = getSundays();
+  const tracking = appState.weightTracking || {};
+
+  const diffs = {};
+  for (let i = 0; i < sundays.length; i++) {
+    const key = dateToKey(sundays[i]);
+    const val = parseFloat(tracking[key]);
+    if (isNaN(val)) continue;
+    
+    let prevVal = NaN;
+    for (let j = i - 1; j >= 0; j--) {
+      const prevKey = dateToKey(sundays[j]);
+      const pv = parseFloat(tracking[prevKey]);
+      if (!isNaN(pv)) {
+        prevVal = pv;
+        break;
+      }
+    }
+    if (!isNaN(prevVal)) {
+      diffs[key] = val - prevVal;
+    }
+  }
+
+  const rows = [...sundays].reverse().map(date => {
+    const key = dateToKey(date);
+    const val = tracking[key] !== undefined ? tracking[key] : "";
+    const diff = diffs[key];
+    
+    let diffHtml = '<span class="diff neutral">—</span>';
+    if (diff !== undefined) {
+      if (diff > 0) {
+        diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
+      } else if (diff < 0) {
+        diffHtml = `<span class="diff minus">${diff.toFixed(2)} kg</span>`;
+      } else {
+        diffHtml = `<span class="diff neutral">0.00 kg</span>`;
+      }
+    }
+    
+    const displayDate = formatWeightDate(date, currentLang);
+    return `
+      <div class="weight-row">
+        <span class="date">${esc(displayDate)}</span>
+        <div class="input-wrapper">
+          <input type="number" step="0.01" min="0" placeholder="--" value="${esc(val)}" data-weight-date="${esc(key)}" aria-label="${esc(displayDate)}" />
+          <span class="unit">kg</span>
+        </div>
+        ${diffHtml}
+      </div>
+    `;
+  }).join("");
+
+  return `<div class="weight-log-table">${rows}</div>`;
 }
 
 
