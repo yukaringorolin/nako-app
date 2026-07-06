@@ -5,3 +5,7 @@ Thumbs.db
 
 # IDE and Agent files if you want to keep them local (uncomment if you wish to ignore .agents)
 # .agents/
+
+# Firebase cache
+.firebase/
+
