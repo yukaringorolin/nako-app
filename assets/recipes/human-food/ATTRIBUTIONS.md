@@ -35,3 +35,33 @@ This file lists the sources and licensing for the open-license images downloaded
   - **Author/Artist**: gamene
   - **License**: [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
 
+## CHICKEN-TERIYAKI-RICE-BOWL
+- **File**: `chicken-teriyaki-rice-bowl-main.jpg`
+  - **Source Page**: [File:Bowl of Teriyaki chicken and beef YakinikuCNE.jpg](https://commons.wikimedia.org/wiki/File:Bowl_of_Teriyaki_chicken_and_beef_YakinikuCNE.jpg)
+  - **Author/Artist**: CNEcija12345
+  - **License**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+
+## SALMON-SHIOYAKI-PROTEIN-SET
+- **File**: `salmon-shioyaki-protein-set-main.jpg`
+  - **Source Page**: [File:Grilled Salmon (16802375986).jpg](https://commons.wikimedia.org/wiki/File:Grilled_Salmon_(16802375986).jpg)
+  - **Author/Artist**: Flickr user (via Wikimedia Commons)
+  - **License**: [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
+
+## PORK-SHOGAYAKI-NO-ONION
+- **File**: `pork-shogayaki-no-onion-main.jpg`
+  - **Source Page**: [File:Shogayaki 002.jpg](https://commons.wikimedia.org/wiki/File:Shogayaki_002.jpg)
+  - **Author/Artist**: Ocdp
+  - **License**: [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+
+## CHICKEN-OYAKODON-NO-ONION
+- **File**: `chicken-oyakodon-no-onion-main.jpg`
+  - **Source Page**: [File:Oyakodon 005.jpg](https://commons.wikimedia.org/wiki/File:Oyakodon_005.jpg)
+  - **Author/Artist**: Ocdp
+  - **License**: [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+
+## TUNA-TOFU-EGG-RICE-BOWL
+- **File**: `tuna-tofu-egg-rice-bowl-main.jpg`
+  - **Source Page**: [File:Spicy tuna rice bowl (35032450572).jpg](https://commons.wikimedia.org/wiki/File:Spicy_tuna_rice_bowl_(35032450572).jpg)
+  - **Author/Artist**: pelican from Tokyo, Japan
+  - **License**: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+
