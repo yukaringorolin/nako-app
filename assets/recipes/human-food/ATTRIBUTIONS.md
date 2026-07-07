@@ -48,3 +48,21 @@ This file lists the sources and licensing for the open-license images downloaded
   - **License**: [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
 
 ---
+
+## chicken-soboro-don
+
+- **File**: `chicken-soboro-don-main.jpg`
+  - **Source Page**: [File:Tori-soboro-don,seasoned-chicken-powder,japan.JPG](https://commons.wikimedia.org/wiki/File:Tori-soboro-don,seasoned-chicken-powder,japan.JPG)
+  - **Author/Artist**: katorisi
+  - **License**: [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/)
+
+---
+
+## chicken-miso-nabe
+
+- **File**: `chicken-miso-nabe-main.jpg`
+  - **Source Page**: [File:Chankonabe.jpg](https://commons.wikimedia.org/wiki/File:Chankonabe.jpg)
+  - **Author/Artist**: George N
+  - **License**: [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)
+
+---

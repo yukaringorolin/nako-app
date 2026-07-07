@@ -44,6 +44,18 @@ const recipesToFetch = [
     queries: [
       { key: 'main', term: 'Spicy tuna rice bowl (35032450572).jpg', exactFile: true }
     ]
+  },
+  {
+    id: 'chicken-soboro-don',
+    queries: [
+      { key: 'main', term: 'Tori-soboro-don,seasoned-chicken-powder,japan.JPG', exactFile: true }
+    ]
+  },
+  {
+    id: 'chicken-miso-nabe',
+    queries: [
+      { key: 'main', term: 'Chankonabe.jpg', exactFile: true }
+    ]
   }
 ];
 
