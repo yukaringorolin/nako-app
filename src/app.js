@@ -26,6 +26,9 @@ document.addEventListener("change", handleChange);
 initFirebaseSync();
 render();
 
+/* ==========================================================================
+   SECTION 1: STATE MANAGEMENT & ROUTING HELPERS
+   ========================================================================== */
 function loadState() {
   try { return JSON.parse(safeStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
 }
@@ -58,6 +61,9 @@ function go(hash) {
   else location.hash = hash;
 }
 
+/* ==========================================================================
+   SECTION 2: RENDERERS - MAIN LAYOUT & SHELL
+   ========================================================================== */
 function render() {
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang === "mm" ? "my" : "en";
   const route = parseRoute();
@@ -100,6 +106,9 @@ function renderSyncIndicator() {
   return `<button class="sync-indicator-btn" data-sync-settings aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></button>`;
 }
 
+/* ==========================================================================
+   SECTION 3: RENDERERS - PAGES & VIEWS
+   ========================================================================== */
 function renderHome() {
   const content = `
     <section class="home-hero">
@@ -240,6 +249,9 @@ function renderRecipe(recipeId) {
   renderShell(tr(recipe.title), content, true);
 }
 
+/* ==========================================================================
+   SECTION 4: RENDERERS - COMPONENT VIEWS & CARD BUILDERS
+   ========================================================================== */
 function renderHead(icon, title, description, iconBg, eyebrow, photo = null) {
   return `<section class="detail-head" style="--icon-bg:${iconBg}">${renderLargeIcon(icon, photo)}<div><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p></div></section>`;
 }
@@ -362,6 +374,9 @@ function renderVideo(videoUrl) {
 function emptyState() { return `<div class="empty-state">${esc(label("noItems"))}</div>`; }
 function bySort(a, b) { return a.sortOrder - b.sortOrder; }
 
+/* ==========================================================================
+   SECTION 5: INTERACTIVE EVENT LISTENERS & CONTROLLERS
+   ========================================================================== */
 function handleClick(event) {
   const back = event.target.closest("[data-back]");
   if (back) return handleBack();
@@ -438,6 +453,9 @@ function handleInput(event) {
   if (foodMemo) { getFoodState(foodMemo.dataset.foodMemo).memo = foodMemo.value; return saveState(); }
 }
 
+/* ==========================================================================
+   SECTION 6: FIREBASE DATABASE SYNC INTEGRATION
+   ========================================================================== */
 function getFoodState(id) {
   appState.food ||= {};
   appState.food[id] ||= { memo: "" };
@@ -497,6 +515,9 @@ function handleChange(event) {
   }
 }
 
+/* ==========================================================================
+   SECTION 7: WEIGHT LOGGING MODULE & TREND GRAPH
+   ========================================================================== */
 function dateToKey(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");

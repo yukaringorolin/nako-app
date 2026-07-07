@@ -26,11 +26,13 @@
       listener({ ...status });
       return () => listeners.delete(listener);
     },
+    // startStateSync: Registers listener callbacks and starts Firestore doc tracking
     startStateSync(callbacks) {
       syncCallbacks = callbacks || {};
       if (stateDoc) attachStateListener();
       return Boolean(stateDoc);
     },
+    // saveRemoteState: Debounces state updates to avoid exceeding Firestore write rate limits
     saveRemoteState(nextState) {
       if (!stateDoc) return false;
       pendingState = cloneState(nextState);
@@ -101,10 +103,12 @@
 
   window.addEventListener("pagehide", flushPendingState);
 
+  // handleAuthState: Triggers when the Firebase Auth user changes
   function handleAuthState(user) {
     updateStateDoc();
   }
 
+  // updateStateDoc: Connects database reference path based on current local household code
   function updateStateDoc() {
     detachStateListener();
 
@@ -125,6 +129,7 @@
     if (syncCallbacks) attachStateListener();
   }
 
+  // attachStateListener: Sets up the live doc snapshot listener to merge remote and local state
   function attachStateListener() {
     if (!stateDoc || !syncCallbacks) return;
     detachStateListener();
@@ -158,6 +163,7 @@
     unsubscribeState = null;
   }
 
+  // flushPendingState: Flushes debounced updates by saving changes using set() with { merge: true }
   async function flushPendingState() {
     if (!stateDoc || !pendingState) return false;
 
@@ -184,6 +190,7 @@
     }
   }
 
+  // mergeStates: Integrates remote and local database schemas
   function mergeStates(remoteState, localState) {
     return {
       ...remoteState,

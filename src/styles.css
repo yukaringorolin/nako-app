@@ -1,5 +1,8 @@
+/* ==========================================================================
+   SECTION 1: CSS VARIABLE TOKENS & RESET STYLE SETTINGS
+   ========================================================================== */
 :root {
-  color-scheme: light;
+color-scheme: light;
   --bg: #f4faf7;
   --surface: #ffffff;
   --surface-soft: #fff8f8;
@@ -52,6 +55,9 @@ img {
   max-width: 100%;
 }
 
+/* ==========================================================================
+   SECTION 2: APP SHELL LAYOUT & STICKY TOPBAR
+   ========================================================================== */
 .app-shell {
   width: min(100%, 480px);
   min-height: 100vh;
@@ -520,6 +526,9 @@ img {
   font-size: 34px;
 }
 
+/* ==========================================================================
+   SECTION 4: PANEL VIEWS & ROUTINE TASK DETAIL SHEETS
+   ========================================================================== */
 .panel {
   margin: 12px 0;
   padding: 14px;
@@ -841,6 +850,9 @@ img {
   margin-bottom: 24px;
 }
 
+/* ==========================================================================
+   SECTION 5: WEIGHT TRACKING DATA VISUALIZATION GRAPH
+   ========================================================================== */
 .weight-chart {
   width: 100%;
   height: auto;

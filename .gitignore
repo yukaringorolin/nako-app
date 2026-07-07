@@ -15,3 +15,6 @@ ui-debug.log
 # Firebase cache
 .firebase/
 
+# Python cache
+__pycache__/
+*.pyc
