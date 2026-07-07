@@ -122,17 +122,18 @@ function renderHome() {
 
 function renderShortcuts() {
   const shortcutList = [
-    { id: "nako-weight", type: "food" },
-    { id: "meal-logs", type: "food" },
-    { id: "recipes", type: "food" },
+    { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
+    { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
+    { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
-    { id: "cooking-rules", type: "food" },
+    { id: "cooking-rules", type: "food", labelKey: "shortcutCookingRules" },
     { id: "nako-training-fun", type: "routine", labelKey: "shortcutDogTraining" }
   ];
 
   return shortcutList.map(shortcut => {
     let titleText = "";
     let icon = "";
+    let photo = null;
     let accent = "#f19a82";
     let iconBg = "#fff0eb";
 
@@ -141,6 +142,7 @@ function renderShortcuts() {
       if (item) {
         titleText = shortcut.labelKey ? label(shortcut.labelKey) : tr(item.title);
         icon = item.icon;
+        photo = primaryPhoto(item.photos) || sectionPhoto(homeSections.find(s => s.id === "food"));
       }
     } else if (shortcut.type === "routine") {
       const task = routineTasks.find(entry => entry.id === shortcut.id);
@@ -151,6 +153,7 @@ function renderShortcuts() {
         if (sec) {
           accent = sec.accent;
           iconBg = sec.iconBg;
+          photo = primaryPhoto(task.photos) || sectionPhoto(sec);
         }
       }
     }
@@ -158,7 +161,7 @@ function renderShortcuts() {
     const dataAttr = shortcut.type === "food" ? `data-food="${esc(shortcut.id)}"` : `data-routine="${esc(shortcut.id)}"`;
 
     return `<button class="shortcut-btn" ${dataAttr} style="--accent:${accent};--icon-bg:${iconBg}">
-      <span class="shortcut-icon" style="background:var(--icon-bg);color:var(--accent);">${esc(icon)}</span>
+      ${renderShortcutIcon(icon, photo)}
       <span class="shortcut-title">${esc(titleText)}</span>
     </button>`;
   }).join("");
@@ -183,6 +186,7 @@ function renderRoutine(routineId) {
   const task = routineTasks.find((entry) => entry.id === routineId);
   if (!task) return renderHome();
   const section = homeSections.find((entry) => entry.id === task.frequencyBucket);
+  if (task.id === "nako-weight-tracking") return renderWeightTracking(task);
   const hasInstructions = task.instructions.length > 1 || (task.instructions.length === 1 && tr(task.instructions[0]) !== tr(task.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>` : "";
   const content = `
@@ -196,10 +200,10 @@ function renderRoutine(routineId) {
 }
 
 function renderFood(foodId) {
+  if (foodId === "nako-weight") return go("#routine/nako-weight-tracking");
   const item = foodItems.find((entry) => entry.id === foodId);
   if (!item) return renderHome();
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
-  if (item.id === "nako-weight") return renderWeightTracking(item);
   const state = getFoodState(item.id);
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
@@ -259,6 +263,11 @@ function renderRecipeCard(recipe) {
 function renderCardIcon(icon, photo = null) {
   if (photo?.src) return `<span class="card-icon image-icon"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /></span>`;
   return `<span class="card-icon">${esc(icon)}</span>`;
+}
+
+function renderShortcutIcon(icon, photo = null) {
+  if (photo?.src) return `<span class="shortcut-icon image-icon"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /></span>`;
+  return `<span class="shortcut-icon" style="background:var(--icon-bg);color:var(--accent);">${esc(icon)}</span>`;
 }
 
 function renderLargeIcon(icon, photo = null) {
@@ -529,6 +538,9 @@ function getSundaysForYear(year) {
 function renderWeightTracking(item) {
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
+  const section = item.frequencyBucket ? homeSections.find((entry) => entry.id === item.frequencyBucket) : null;
+  const headerLabel = section ? tr(section.title) : label("foodItems");
+  const headerIconBg = section?.iconBg || "#fff0eb";
   
   if (!selectedArchiveYear) {
     const years = getArchiveYears();
@@ -536,7 +548,7 @@ function renderWeightTracking(item) {
   }
 
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", label("foodItems"))}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), headerIconBg, headerLabel, primaryPhoto(item.photos))}
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
     

@@ -53,7 +53,11 @@ const ui = {
     syncConnecting: "Connecting sync",
     syncOff: "Cloud sync off",
     quickShortcuts: "Quick Shortcuts",
+    shortcutNakoWeight: "Nako Weight Tracking",
+    shortcutMealLogs: "Edwin Meal Logs",
+    shortcutNakoToppings: "Nako Topping Recipes",
     shortcutHumanFood: "Human Food Ideas",
+    shortcutCookingRules: "Cooking Rules For Humans",
     shortcutDogTraining: "Nako Dog Training",
   },
   jp: {
@@ -98,7 +102,11 @@ const ui = {
     syncConnecting: "同期接続中",
     syncOff: "クラウド同期オフ",
     quickShortcuts: "クイックショートカット",
+    shortcutNakoWeight: "ナコの体重測定",
+    shortcutMealLogs: "エドウィンの食事記録",
+    shortcutNakoToppings: "ナコのトッピングレシピ",
     shortcutHumanFood: "人間の食事アイデア",
+    shortcutCookingRules: "人間用の料理ルール",
     shortcutDogTraining: "ナコのドッグトレーニング",
   },
   mm: {
@@ -143,8 +151,12 @@ const ui = {
     syncConnecting: "စင့်ခ်ချိတ်ဆက်နေသည်",
     syncOff: "ကလောင်ဒ်စင့်ခ် ပိတ်ထားသည်",
     quickShortcuts: "အမြန်ဖြတ်လမ်းများ",
-    shortcutHumanFood: "လူသားများအတွက် အစားအစာအိုင်ဒီယာများ",
-    shortcutDogTraining: "Nako ၏ခွေးလေ့ကျင့်ရေး",
+    shortcutNakoWeight: "Nako ကိုယ်အလေးချိန်",
+    shortcutMealLogs: "Edwin အစားမှတ်တမ်း",
+    shortcutNakoToppings: "Nako topping ချက်နည်း",
+    shortcutHumanFood: "လူ့အစားအစာ အိုင်ဒီယာ",
+    shortcutCookingRules: "လူ့ချက်ပြုတ် စည်းကမ်း",
+    shortcutDogTraining: "Nako လေ့ကျင့်ရေး",
   },
 };
 
@@ -232,16 +244,6 @@ const foodItems = [
       photo("assets/sections/nako-feeding.png", 
         t("Nako's pink food bowl with kibble and white water bowl", "ナコのピンク色のフードボウルと白い水ボウル", "Nako ၏ ပန်းရောင်ခွေးစာခွက်နှင့် အဖြူရောင်ရေခွက်"),
         t("Nako Feeding", "ナコの給餌", "Nako ကိုအစာကျွေးခြင်း"))
-    ]),
-  food("nako-weight", "placeholder", "KG", 
-    t("Nako Weight Tracking", "ナコの体重測定", "Nako ၏ကိုယ်အလေးချိန် ခြေရာခံခြင်း"), 
-    t("Future weekly weight log for Nako.", "ナコの将来的な週次の体重記録機能。", "Nako အတွက် နောင်တွင်သုံးမည့် အပတ်စဉ် ကိုယ်အလေးချိန်မှတ်တမ်း။"), 
-    t("Weigh Nako Sunday morning before breakfast using the same scale when possible.", "可能な限り同じ体重計を使用し、日曜日の朝食前にナコの体重を測定します。", "ဖြစ်နိုင်လျှင် တူညီသောကိုယ်အလေးချိန်စက်ကို သုံး၍ တနင်္ဂနွေနေ့နံနက် အစာမစားမီ ချိန်ပေးပါ။"), 
-    t("Consistency matters more than exact timing perfection.", "正確なタイミングよりも、継続して行うことが重要です。", "တိကျသောအချိန်ထက် ပုံမှန်ပြုလုပ်ရန်က ပိုအရေးကြီးသည်။"), 5,
-    [
-      photo("assets/sections/nako-weight.png", 
-        t("Pink weight scale with paw prints and dog tail", "肉球のプリントと犬の尻尾が付いたピンクの体重計", "ခြေရာများနှင့် ခွေးအမြီးပါဝင်သော ပန်းရောင်ကိုယ်အလေးချိန်စက်"),
-        t("Nako Weight Tracking", "ナコの体重測定", "Nako ၏ကိုယ်အလေးချိန် ခြေရာခံခြင်း"))
     ]),
   food("nako-inventory", "placeholder", "I", 
     t("Nako Inventory", "ナコの在庫状況", "Nako ၏ပစ္စည်းစာရင်း"), 
@@ -429,7 +431,12 @@ const routineTasks = [
     t("Nako - Weight Tracking", "ナコ - 体重測定", "Nako - ကိုယ်အလေးချိန် ခြေရာခံခြင်း"), 
     t("Weigh Nako first thing Sunday morning before breakfast and record the date and weight clearly.", "日曜日の朝一番、朝食前にナコの体重を測り、日付と体重を明確に記録します。", "တနင်္ဂနွေနေ့ နံနက်ပိုင်း အစာမစားမီ Nako ကို ကိုယ်အလေးချိန်ချိန်ပြီး နေ့စွဲနှင့် ကိုယ်အလေးချိန်ကို ရှင်းလင်းစွာ မှတ်တမ်းတင်ပါ။"), 
     t("Every Sunday morning before breakfast", "毎週日曜日の朝食前", "တနင်္ဂနွေနေ့ နံနက်တိုင်း အစာမစားမီ"), 
-    t("Use the same scale each time where possible.", "可能な限り毎回同じ体重計を使用してください。", "ဖြစ်နိုင်လျှင် အချိန်တိုင်း တူညီသော ကိုယ်အလေးချိန်စက်ကို အသုံးပြုပါ။")),
+    t("Use the same scale each time where possible.", "可能な限り毎回同じ体重計を使用してください。", "ဖြစ်နိုင်လျှင် အချိန်တိုင်း တူညီသော ကိုယ်အလေးချိန်စက်ကို အသုံးပြုပါ။"),
+    [
+      photo("assets/sections/nako-weight.png",
+        t("Pink weight scale with paw prints and dog tail", "肉球のプリントと犬の尻尾が付いたピンクの体重計", "ခြေရာများနှင့် ခွေးအမြီးပါဝင်သော ပန်းရောင်ကိုယ်အလေးချိန်စက်"),
+        t("Nako Weight Tracking", "ナコの体重測定", "Nako ၏ကိုယ်အလေးချိန် ခြေရာခံခြင်း"))
+    ]),
   routine("nako-inventory-check", "weekly", 50, "I", 
     t("Nako - Inventory Check", "ナコ - 在庫チェック", "Nako - ပစ္စည်းစစ်ဆေးခြင်း"), 
     t("Check Nako's food, treats, pee pads, wipes, poop bags, cleaning spray, and other dog supplies.", "ナコのドッグフード、おやつ、おしっこシート、ウェットティッシュ、うんち袋、掃除用スプレー、その他の犬用品をチェックします。", "Nako ၏ အစာ၊ မုန့်၊ ဆီးခံပြား၊ စိုစွတ်သော တစ်ရှူး၊ ချေးကောက်သည့် အိတ်၊ သန့်ရှင်းရေးဖြန်းဆေးနှင့် အခြားခွေးသုံးပစ္စည်းများကို စစ်ဆေးပါ။"), 
