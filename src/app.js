@@ -1,7 +1,7 @@
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
-const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules } = window.nakoData;
+const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources } = window.nakoData;
 
 // safeStorage wraps localStorage to handle blocked access/SecurityErrors
 const safeStorage = {
@@ -116,7 +116,8 @@ function renderHome() {
     </section>
     <section class="rule-strip compact"><h2>${esc(label("foodItems"))}</h2><p>${esc(label("foodFirst"))}</p></section>
     <p class="section-label">${esc(label("sections"))}</p>
-    <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>`;
+    <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>
+    ${renderAdditionalResources()}`;
   renderShell(label("appTitle"), content, false);
 }
 
@@ -248,6 +249,37 @@ function renderSectionCard(section) {
   return `<button class="category-card" data-section="${esc(section.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(section.id === "food" ? label("foodItems") : label("routineItems"))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
+function renderAdditionalResources() {
+  if (!additionalResources?.items?.length) return "";
+  return `<section class="additional-resources" aria-labelledby="additional-resources-title">
+    <div class="resource-section-head">
+      <p id="additional-resources-title" class="section-label">${esc(tr(additionalResources.title))}</p>
+      <p>${esc(tr(additionalResources.subtitle))}</p>
+    </div>
+    <div class="resource-list">${additionalResources.items.map(renderResourceCard).join("")}</div>
+  </section>`;
+}
+
+function renderResourceCard(resource) {
+  const embed = resource.embedUrl ? `<div class="resource-video"><iframe src="${esc(resource.embedUrl)}" title="${esc(tr(resource.videoTitle))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>` : "";
+  const takeaways = Array.isArray(resource.takeaways) ? resource.takeaways : [];
+  return `<article class="resource-card">
+    <div class="resource-card-head">
+      <span class="resource-icon" aria-hidden="true">${esc(resource.icon || "R")}</span>
+      <div>
+        <h2>${esc(tr(resource.title))}</h2>
+        <p class="resource-meta">${esc(tr(resource.source))}</p>
+      </div>
+    </div>
+    <p class="resource-video-title">${esc(tr(resource.videoTitle))}</p>
+    ${embed}
+    <a class="resource-link" href="${esc(resource.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr(resource.watchLabel))}</a>
+    <p class="resource-description">${esc(tr(resource.description))}</p>
+    <p class="resource-note">${esc(tr(resource.note))}</p>
+    ${takeaways.length ? `<div class="resource-takeaways"><h3>${esc(tr(resource.takeawaysTitle))}</h3><ul>${takeaways.map((item) => `<li>${esc(tr(item))}</li>`).join("")}</ul></div>` : ""}
+  </article>`;
+}
+
 function renderFoodCard(item) {
   return `<button class="item-card" data-food="${esc(item.id)}" style="--accent:#f19a82;--icon-bg:#fff0eb">${renderCardIcon(item.icon, primaryPhoto(item.photos))}<span class="card-copy"><span class="card-title">${esc(tr(item.title))}</span><span class="card-description">${esc(tr(item.summary))}</span><span class="card-meta"><span class="badge">${esc(item.trackingMode === "future" ? label("futureTracking") : label("foodItems"))}</span></span></span><span class="chevron">›</span></button>`;
 }
@@ -315,11 +347,11 @@ function renderIngredient(item) {
 }
 
 function orderedList(items) {
-  return `<ol class="method-list">${items.map((item, index) => `<li><span>${index + 1}.</span><span>${esc(tr(item))}</span></li>`).join("")}</ol>`;
+  return `<ol class="method-list">${items.map((item, index) => `<li><span>${index + 1}.</span><span>${richText(tr(item))}</span></li>`).join("")}</ol>`;
 }
 
 function noteList(items) {
-  return `<ul class="note-list">${items.map((item) => `<li><span>•</span><span>${esc(tr(item))}</span></li>`).join("")}</ul>`;
+  return `<ul class="note-list">${items.map((item) => `<li><span>•</span><span>${richText(tr(item))}</span></li>`).join("")}</ul>`;
 }
 
 function renderVideo(videoUrl) {
@@ -442,6 +474,10 @@ function ingredientImage(key) {
 
 function esc(value) {
   return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+}
+
+function richText(value) {
+  return esc(value).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 }
 
 function handleChange(event) {

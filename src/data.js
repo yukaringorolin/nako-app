@@ -204,6 +204,35 @@ const cookingRules = [
   t("Clean the kitchen after cooking.", "調理後にキッチンを掃除してください。", "ချက်ပြုတ်ပြီးနောက် မီးဖိုချောင်ကို သန့်ရှင်းရေးလုပ်ပါ။"),
 ];
 
+const additionalResources = {
+  title: t("Additional Resources", "Additional Resources", "Additional Resources"),
+  subtitle: t("Helpful videos and references for Nako care, dog behaviour, training, and household routines.", "Helpful videos and references for Nako care, dog behaviour, training, and household routines.", "Helpful videos and references for Nako care, dog behaviour, training, and household routines."),
+  items: [
+    {
+      icon: "▶",
+      title: t("Dog Behaviour & Calm Energy", "Dog Behaviour & Calm Energy", "Dog Behaviour & Calm Energy"),
+      source: t("Huberman Lab with Cesar Millan", "Huberman Lab with Cesar Millan", "Huberman Lab with Cesar Millan"),
+      videoTitle: t("Raising a Dog & Mastering Calm Assertive Energy", "Raising a Dog & Mastering Calm Assertive Energy", "Raising a Dog & Mastering Calm Assertive Energy"),
+      youtubeUrl: "https://www.youtube.com/watch?v=n_qKxNcMvtM",
+      embedUrl: "https://www.youtube.com/embed/n_qKxNcMvtM",
+      watchLabel: t("Watch video", "Watch video", "Watch video"),
+      description: t("A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure.", "A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure.", "A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure."),
+      note: t("General learning resource only; not veterinary advice.", "General learning resource only; not veterinary advice.", "General learning resource only; not veterinary advice."),
+      takeawaysTitle: t("Key Takeaways", "Key Takeaways", "Key Takeaways"),
+      takeaways: [
+        t("Nako responds to human tone, body language, and energy - not just words.", "Nako responds to human tone, body language, and energy - not just words.", "Nako responds to human tone, body language, and energy - not just words."),
+        t("Stay calm before handling her, especially when she is excited, barking, anxious, or pulling.", "Stay calm before handling her, especially when she is excited, barking, anxious, or pulling.", "Stay calm before handling her, especially when she is excited, barking, anxious, or pulling."),
+        t("When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention.", "When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention.", "When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention."),
+        t("Keep walks structured and calm, not rushed or chaotic.", "Keep walks structured and calm, not rushed or chaotic.", "Keep walks structured and calm, not rushed or chaotic."),
+        t("Use a simple order: exercise first, rules and boundaries second, affection after she is calm.", "Use a simple order: exercise first, rules and boundaries second, affection after she is calm.", "Use a simple order: exercise first, rules and boundaries second, affection after she is calm."),
+        t("Consistent routines help Nako understand what is expected.", "Consistent routines help Nako understand what is expected.", "Consistent routines help Nako understand what is expected."),
+        t("Do not try new behaviour techniques if unsure. Ask Edwin first.", "Do not try new behaviour techniques if unsure. Ask Edwin first.", "Do not try new behaviour techniques if unsure. Ask Edwin first."),
+        t("If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.", "If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.", "If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.")
+      ]
+    }
+  ]
+};
+
 const foodItems = [
   food("recipes", "recipeIndex", "R", 
     t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"), 
@@ -880,6 +909,207 @@ const routineTasks = [
     t("Use common sense. Ask if unsure, especially if outside normal household duties.", "常識を働かせてください。特に通常の家事の範囲外で不明な点がある場合は質問してください。", "ယေဘုယျဆင်ခြင်တုံတရားကို အသုံးပြုပါ။ မသေချာပါက အထူးသဖြင့် သာမန်အိမ်မှုကิစ္စများအပြင်ဘက်ဖြစ်ပါか မေးမြန်းပါ။")),
 ];
 
+const microwaveInteriorRoutine = routineTasks.find((task) => task.id === "microwave-interior");
+if (microwaveInteriorRoutine) {
+  microwaveInteriorRoutine.photos = [
+    photo("assets/routines/nako-microwave-interior.jpg",
+      t("Open microwave interior", "Open microwave interior", "Open microwave interior"),
+      t("Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use.", "Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use.", "Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use."))
+  ];
+}
+
+const generalSurfaceCleaningRoutine = routineTasks.find((task) => task.id === "general-surface-cleaning");
+if (generalSurfaceCleaningRoutine) {
+  generalSurfaceCleaningRoutine.photos = [
+    photo("assets/routines/nako-general-surface-cleaning.jpg",
+      t("General surfaces around the home", "General surfaces around the home", "General surfaces around the home"),
+      t("Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.", "Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.", "Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.")),
+    ...generalSurfaceCleaningRoutine.photos
+  ];
+}
+
+const pillowMattressVacuumingRoutine = routineTasks.find((task) => task.id === "pillow-mattress-vacuuming");
+if (pillowMattressVacuumingRoutine) {
+  pillowMattressVacuumingRoutine.photos = [
+    photo("assets/routines/nako-pillow-mattress-vacuuming.jpg",
+      t("Small vacuum cleaner on the bed", "Small vacuum cleaner on the bed", "Small vacuum cleaner on the bed"),
+      t("Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris.", "Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris.", "Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris."))
+  ];
+}
+
+const airconFilterFanCoilRoutine = routineTasks.find((task) => task.id === "aircon-filter-fan-coil");
+if (airconFilterFanCoilRoutine) {
+  airconFilterFanCoilRoutine.photos = [
+    photo("assets/routines/nako-aircon-filter-fan-coil.jpg",
+      t("Open aircon filter and fan coil area", "Open aircon filter and fan coil area", "Open aircon filter and fan coil area"),
+      t("Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts.", "Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts.", "Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts."))
+  ];
+}
+
+const washerDeepCleanRoutine = routineTasks.find((task) => task.id === "washer-deep-clean");
+if (washerDeepCleanRoutine) {
+  washerDeepCleanRoutine.mustRemember.push(
+    t("Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.", "Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.", "Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.")
+  );
+  washerDeepCleanRoutine.photos = [
+    photo("assets/routines/nako-washer-deep-clean.jpg",
+      t("Washing machine cleaner for deep clean", "Washing machine cleaner for deep clean", "Washing machine cleaner for deep clean"),
+      t("Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps.", "Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps.", "Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps."))
+  ];
+}
+
+const doorbellChargingRoutine = routineTasks.find((task) => task.id === "doorbell-charging");
+if (doorbellChargingRoutine) {
+  doorbellChargingRoutine.mustRemember.push(
+    t("Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.", "Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.", "Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.")
+  );
+  doorbellChargingRoutine.photos = [
+    photo("assets/routines/nako-doorbell-charging.jpg",
+      t("Dlingsmart doorbell mounted outside", "Dlingsmart doorbell mounted outside", "Dlingsmart doorbell mounted outside"),
+      t("This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step.", "This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step.", "This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step."))
+  ];
+}
+
+const coffeeMachineDescalingRoutine = routineTasks.find((task) => task.id === "coffee-machine-descaling");
+if (coffeeMachineDescalingRoutine) {
+  coffeeMachineDescalingRoutine.instructions = [
+    t("Turn the machine on and wait until it is ready.", "Turn the machine on and wait until it is ready.", "Turn the machine on and wait until it is ready."),
+    t("Empty the drip tray and coffee grounds container.", "Empty the drip tray and coffee grounds container.", "Empty the drip tray and coffee grounds container."),
+    t("Remove the water filter if one is installed.", "Remove the water filter if one is installed.", "Remove the water filter if one is installed."),
+    t("Add coffee-machine-safe descaler into the water tank, then add water to the marked level.", "Add coffee-machine-safe descaler into the water tank, then add water to the marked level.", "Add coffee-machine-safe descaler into the water tank, then add water to the marked level."),
+    t("Place a large container under the cappuccino or steam spout.", "Place a large container under the cappuccino or steam spout.", "Place a large container under the cappuccino or steam spout."),
+    t("Start descaling mode when the descale button/light flashes red.", "Start descaling mode when the descale button/light flashes red.", "Start descaling mode when the descale button/light flashes red."),
+    t("Let the machine run the descaling cycle.", "Let the machine run the descaling cycle.", "Let the machine run the descaling cycle."),
+    t("Rinse the tank, refill with clean water, then run the rinse cycle.", "Rinse the tank, refill with clean water, then run the rinse cycle.", "Rinse the tank, refill with clean water, then run the rinse cycle."),
+    t("Reinsert the water filter after rinsing, if one is used.", "Reinsert the water filter after rinsing, if one is used.", "Reinsert the water filter after rinsing, if one is used.")
+  ];
+  coffeeMachineDescalingRoutine.mustRemember.push(
+    t("When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026."),
+    t("Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.")
+  );
+  coffeeMachineDescalingRoutine.photos = [
+    photo("assets/routines/nako-coffee-machine-descaling.jpg",
+      t("De'Longhi descaling tutorial", "De'Longhi descaling tutorial", "De'Longhi descaling tutorial"),
+      t("Use the De'Longhi descaling tutorial video as the reference for this task.", "Use the De'Longhi descaling tutorial video as the reference for this task.", "Use the De'Longhi descaling tutorial video as the reference for this task.")),
+    photo("assets/routines/nako-coffee-machine-descaling-red-button.jpg",
+      t("Red flashing descale button", "Red flashing descale button", "Red flashing descale button"),
+      t("When the machine needs descaling, the descale button/light will flash red.", "When the machine needs descaling, the descale button/light will flash red.", "When the machine needs descaling, the descale button/light will flash red."))
+  ];
+  coffeeMachineDescalingRoutine.videoUrl = "https://www.youtube.com/embed/30EVN-fIM3I";
+}
+
+const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-shopping");
+if (groceryShoppingRoutine) {
+  groceryShoppingRoutine.frequencyBucket = "daily";
+  groceryShoppingRoutine.frequencyText = t("Daily", "Daily", "Daily");
+  groceryShoppingRoutine.sortOrder = 32;
+  groceryShoppingRoutine.mustRemember.push(
+    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.")
+  );
+  groceryShoppingRoutine.photos = [
+    photo("assets/routines/nako-grocery-shopping.png",
+      t("Daily grocery shopping items", "Daily grocery shopping items", "Daily grocery shopping items"),
+      t("Buy daily groceries based on what is running low and what is needed for meals.", "Buy daily groceries based on what is running low and what is needed for meals.", "Buy daily groceries based on what is running low and what is needed for meals.")),
+    ...groceryShoppingRoutine.photos
+  ];
+}
+
+const yukariFlightPackingRoutine = routineTasks.find((task) => task.id === "yukari-flight-packing");
+if (yukariFlightPackingRoutine) {
+  yukariFlightPackingRoutine.instructions = [
+    t("Check the details/packing list for the specific items needed for that flight or trip.", "Check the details/packing list for the specific items needed for that flight or trip.", "Check the details/packing list for the specific items needed for that flight or trip."),
+    t("Packing depends on the trip type, destination, and length of the flight duty.", "Packing depends on the trip type, destination, and length of the flight duty.", "Packing depends on the trip type, destination, and length of the flight duty."),
+    t("For turnaround trips, pack much less; usually one small luggage is enough.", "For turnaround trips, pack much less; usually one small luggage is enough.", "For turnaround trips, pack much less; usually one small luggage is enough."),
+    t("For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.")
+  ];
+  yukariFlightPackingRoutine.mustRemember.push(
+    t("Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.")
+  );
+  yukariFlightPackingRoutine.photos = [
+    photo("assets/routines/nako-yukari-flight-packing.jpg",
+      t("Flight work packing with luggage", "Flight work packing with luggage", "Flight work packing with luggage"),
+      t("Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.")),
+    ...yukariFlightPackingRoutine.photos
+  ];
+}
+
+const nakoSupervisionRoutine = routineTasks.find((task) => task.id === "nako-supervision");
+if (nakoSupervisionRoutine) {
+  nakoSupervisionRoutine.mustRemember.unshift(
+    t("⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.")
+  );
+  nakoSupervisionRoutine.photos = [
+    photo("assets/routines/nako-window-no-grills-alert.jpg",
+      t("Open window with no grills", "Open window with no grills", "Open window with no grills"),
+      t("Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.")),
+    ...nakoSupervisionRoutine.photos
+  ];
+}
+
+const nakoPottyPenRoutine = routineTasks.find((task) => task.id === "nako-potty-pen");
+if (nakoPottyPenRoutine) {
+  nakoPottyPenRoutine.instructions = [
+    ...nakoPottyPenRoutine.instructions,
+    t("When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line."),
+    t("If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad."),
+    t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.")
+  ];
+  nakoPottyPenRoutine.mustRemember.push(
+    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "Key principle: pee and poop must not be visible or anywhere outside the pee tray.")
+  );
+  nakoPottyPenRoutine.photos = [
+    photo("assets/routines/nako-potty-pee-pad-line.jpg",
+      t("Correct pee pad placement inside the pink line", "Correct pee pad placement inside the pink line", "Correct pee pad placement inside the pink line"),
+      t("Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.")),
+    ...nakoPottyPenRoutine.photos
+  ];
+}
+
+const generalHouseholdDutiesRoutine = routineTasks.find((task) => task.id === "general-household-duties");
+if (generalHouseholdDutiesRoutine) {
+  generalHouseholdDutiesRoutine.photos = [
+    photo("assets/routines/nako-general-household-duties.png",
+      t("General household duties catch-all", "General household duties catch-all", "General household duties catch-all"),
+      t("Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks.", "Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks.", "Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks."))
+  ];
+}
+
+const blanketWashingRoutine = routineTasks.find((task) => task.id === "blanket-washing");
+if (blanketWashingRoutine) {
+  blanketWashingRoutine.photos = [
+    photo("assets/routines/nako-blanket-washing.jpg",
+      t("Blankets for fortnightly washing", "Blankets for fortnightly washing", "Blankets for fortnightly washing"),
+      t("Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day.", "Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day.", "Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day."))
+  ];
+}
+
+const outsideShoeRackRoutine = routineTasks.find((task) => task.id === "outside-shoe-rack");
+if (outsideShoeRackRoutine) {
+  outsideShoeRackRoutine.photos = [
+    photo("assets/routines/nako-outside-shoe-rack.jpg",
+      t("Outside shoe rack and shoes", "Outside shoe rack and shoes", "Outside shoe rack and shoes"),
+      t("Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear."))
+  ];
+}
+
+const curtainSteamingRoutine = routineTasks.find((task) => task.id === "curtain-steaming");
+if (curtainSteamingRoutine) {
+  curtainSteamingRoutine.photos = [
+    photo("assets/routines/nako-curtain-steaming.jpg",
+      t("Curtain steaming setup and curtain areas", "Curtain steaming setup and curtain areas", "Curtain steaming setup and curtain areas"),
+      t("Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels."))
+  ];
+}
+
+const ikeaBedFrameRoutine = routineTasks.find((task) => task.id === "ikea-bed-frame");
+if (ikeaBedFrameRoutine) {
+  ikeaBedFrameRoutine.photos = [
+    photo("assets/routines/nako-ikea-bed-frame-under-compartment.jpg",
+      t("IKEA bed frame under-compartment", "IKEA bed frame under-compartment", "IKEA bed frame under-compartment"),
+      t("Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath."))
+  ];
+}
+
 const recipes = [
   recipe("sasami", 
     t("Chicken tender topping", "ささみトッピング", "ကြက်သားဖတ် အပေါ်မှထည့်ရန်"), 
@@ -1078,6 +1308,7 @@ function checkTranslations() {
   checkObj(window.nakoData.foodItems, "foodItems");
   checkObj(window.nakoData.routineTasks, "routineTasks");
   checkObj(window.nakoData.recipes, "recipes");
+  checkObj(window.nakoData.additionalResources, "additionalResources");
 
   return missing;
 }
@@ -1090,6 +1321,7 @@ window.nakoData = {
   routineTasks, 
   recipes, 
   cookingRules,
+  additionalResources,
   checkTranslations
 };
 
