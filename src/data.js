@@ -28,7 +28,7 @@ function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, not
 }
 
 
-function recipe(id, title, ingredients, method, note, photos = [], type = "dog") {
+function recipe(id, title, ingredients, method, note, photos = [], type = "dog", attrs = {}) {
   const isHuman = type === "human";
   return { 
     id, 
@@ -41,7 +41,8 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog")
     method, 
     note: isHuman ? note : (photos.length > 0 ? note : recipeNote(note)),
     photos,
-    type
+    type,
+    ...attrs
   };
 }
 
@@ -105,6 +106,7 @@ const ui = {
     shortcutHumanFood: "Human Food Ideas",
     shortcutCookingRules: "Cooking Rules For Humans",
     shortcutDogTraining: "Nako Dog Training",
+    highProtein: "High Protein",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -154,6 +156,7 @@ const ui = {
     shortcutHumanFood: "人間の食事アイデア",
     shortcutCookingRules: "人間用の料理ルール",
     shortcutDogTraining: "ナコのドッグトレーニング",
+    highProtein: "高タンパク",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -203,6 +206,7 @@ const ui = {
     shortcutHumanFood: "လူ့အစားအစာ အိုင်ဒီယာ",
     shortcutCookingRules: "လူ့ချက်ပြုတ် စည်းကမ်း",
     shortcutDogTraining: "Nako လေ့ကျင့်ရေး",
+    highProtein: "ပရိုတင်းဓာတ်မြင့်မားသည်",
   },
 };
 
@@ -1229,8 +1233,21 @@ const recipes = [
       t("Slide carefully onto a bowl of hot steamed rice.", "温かいご飯を盛った丼の上に、崩さないようにスライドさせてのせます。", "ချက်ပြီးသား ထမင်းပူပူတစ်ပန်းကန်ပေါ်သို့ သေသေချာချာ ပုံလောင်းထည့်ပါ။")
     ], 
     t("Watch the eggs closely; they taste best when slightly runny and soft-set.", "卵の状態をよく確認してください。少し半熟でとろりとしているのが一番美味しいです。", "ကြက်ဥကို သေချာကြည့်ပါ၊ ကြက်ဥအနှစ် ပျော့ပျော့ပျောင်းပျောင်းဖြစ်နေချိန်တွင် အကောင်းဆုံးဖြစ်ပါသည်မို့ပါ။"),
-    [],
-    "human"
+    [
+      photo("assets/recipes/human-food/oyakodon-main.jpg",
+        t("Finished oyakodon in a bowl", "丼に盛られた出来上がりの親子丼", "ပန်းကန်လုံးထဲတွင် အဆင်သင့်ဖြစ်နေသော ကြက်သားဥဝိုင်းထမင်းသုပ်"),
+        t("Savory chicken and egg over rice", "鶏肉と卵の美味しい親子丼", "အရသာရှိသော ကြက်သားနှင့် ကြက်ဥ ထမင်းသုပ်")),
+      photo("assets/recipes/human-food/oyakodon-prep.jpg",
+        t("Cooking oyakodon in a pan", "フライパンで親子丼を調理中", "ဒယ်အိုးထဲတွင် ကြက်သားဥဝိုင်းထမင်းသုပ် ချက်ပြုတ်နေပုံ"),
+        t("Simmering the chicken, onion, and eggs", "鶏肉、玉ねぎ、卵を煮ています", "ကြက်သား၊ ကြက်သွန်နီနှင့် ကြက်ဥတို့ကို မီးအေးအေးဖြင့် တည်ထားခြင်း"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
+      style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
+      timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
+      highProtein: true
+    }
   ),
   recipe("nikujaga", 
     t("Nikujaga (Beef & Potato Stew)", "肉じゃが", "အမဲသားအာလူးစွပ်ပြုတ်"), 
@@ -1248,18 +1265,31 @@ const recipes = [
     [
       t("Cut potatoes, carrots, and onions into bite-sized chunks. Cut beef into 2-inch wide strips.", "じゃがいも、にんじん、玉ねぎを一口大の大きさに切ります。牛肉は幅約5cmに切ります。", "အာလူး၊ မုန်လာဥနီနှင့် ကြက်သွန်နီတို့ကို တစ်လုပ်စာအရွယ် တုံးပါ။ အမဲသားကို ၅ စင်တီမီတာခန့် အရှည် ဖြတ်ပါ။"), 
       t("Heat oil in a pot. Sauté onions, potatoes, and carrots for 2-3 minutes.", "鍋に油を熱し、玉ねぎ、じゃがいも、にんじんを2〜3分間炒めます。", "အိုးထဲတွင် ဆီပူအောင်တည်ပါ။ ကြက်သွန်နီ၊ အာလူးနှင့် မုန်လာဥနီတို့ကို ၂-၃ မိနစ်ခန့် ဆီသတ်ပါ။"), 
-      t("Add beef and sauté until the color changes. Pour in dashi stock, bring to a boil, and skim off any foam.", "牛肉を加えて色が変わるまで炒めます。だし汁を注ぎ、沸騰させてアクをすくい取ります。", "အမဲသားကို ထည့်ပြီး အရောင်ပြောင်းသည်အထိ ဆီသတ်ပါ။ ဒါရှီရည်ကို လောင်းထည့်ပါ၊ ဆူပွက်အောင်တည်ပြီး အမြှုပ်များကို ခပ်ထုတ်ပါ။"),
+      t("Add beef and sauté until the color changes. Pour in dashi stock, bring to a boil, and skim off any foam.", "牛肉を加えて色が変わるまで炒めます。だし汁を注ぎ、沸騰させてアクをすくい取ります。", "အမဲသားကို ထည့်ပြီး အရောင်ပြောင်းသည်အထိ ဆီသတ်ပါ။ ဒါရှီရည်ကို လောင်းထည့်ပါ، ဆူပွက်အောင်တည်ပြီး အမြှုပ်များကို ခပ်ထုတ်ပါ။"),
       t("Add sugar, mirin, and soy sauce. Cover with a drop-lid (otoshibuta) and simmer on medium-low for 15-20 minutes until potatoes are soft.", "砂糖、みりん、醤油を加えます。落とし蓋をして、中火から弱火でじゃがいもが柔らかくなるまで15〜20分間煮込みます。", "သကြား၊ ဂျပန်ချိုသာသောဝိုင်နှင့် ပဲငံပြာရည်တို့ကို ထည့်ပါ။ အဖုံးအုပ်ပြီး အလယ်အလတ်မီးအေးအေးဖြင့် အာလူးများနူးသွားသည်အထိ ၁၅-၂၀ မိနစ်ခန့် တည်ပါ။"),
       t("Remove the lid, turn up the heat slightly, and cook for another few minutes to reduce the sauce. Let cool slightly to absorb flavors before serving.", "蓋を外し、火を少し強めて余分な水分を飛ばします。少し冷ますことで味がより染み込みます。", "အဖုံးကိုဖွင့်၊ မီးအနည်းငယ်မြှင့်ပြီး အရည်ခမ်းအောင် တည်ပါ။ အရသာပိုဝင်စေရန် မသုံးဆောင်မီ ခဏအေးအောင် ထားပါ။")
     ], 
     t("Letting nikujaga sit for a bit after cooking allows the seasoning to penetrate the potatoes.", "調理後にしばらく置くことで、じゃがいもに味がしっかりと染み込みます。", "ချက်ပြုတ်ပြီးနောက် ခဏထားခြင်းက အရသာကို အာလူးထဲသို့ ပိုမိုစိမ့်ဝင်စေပါသည်။"),
-    [],
-    "human"
+    [
+      photo("assets/recipes/human-food/nikujaga-main.jpg",
+        t("Finished beef and potato stew", "出来上がりの肉じゃが", "ချက်ပြုတ်ပြီးစီးသွားသော အမဲသားအာလူးစွပ်ပြုတ်"),
+        t("Nikujaga main dish", "肉じゃがのメイン料理", "အမဲသားအာလူးစွပ်ပြုတ် အဓိကဟင်းလျာ")),
+      photo("assets/recipes/human-food/nikujaga-prep.jpg",
+        t("Cooking nikujaga ingredients", "肉じゃがの食材を調理中", "အမဲသားအာလူးစွပ်ပြုတ် ချက်ပြုတ်နေပုံ"),
+        t("Simmering potatoes, meat, and carrots in dashi", "だし汁でじゃがいも、肉、にんじんを煮ています", "ဒါရှီစွပ်ပြုတ်ရည်ဖြင့် အာလူး၊ အသားနှင့် မုန်လာဥနီတို့ကို တည်နေပုံ"))
+    ],
+    "human",
+    {
+      mealType: t("Dinner", "夕食", "ညစာ"),
+      style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
+      timeEstimate: t("30 mins", "30分", "၃၀ မိနစ်"),
+      highProtein: true
+    }
   ),
   recipe("miso-salmon", 
     t("Miso Glazed Salmon", "鮭の味噌焼き", "ဆယ်လ်မွန်ငါး မစ်ဆိုကင်"), 
     [
-      [t("Salmon fillets", "鮭の切り身", "ဆယ်လ်မွန်ငါးအသားလွှာ"), "2", "salmon-fillet"], 
+      [t("Salmon fillets", "鮭の切り身", "ဆယ်လ်မွန်ငါးအသားလွှာ"), "2", "salmon-filter"], 
       [t("Miso paste", "味噌", "မစ်ဆိုအနှစ်"), "2 tbsp", "miso"], 
       [t("Sake", "酒", "ဂျပန်အရက် (ဆာကေး)"), "1 tbsp", "sake"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "1 tbsp", "mirin"],
@@ -1270,12 +1300,25 @@ const recipes = [
       t("In a small bowl, mix miso, sake, mirin, and sugar until smooth.", "小さなボウルに味噌、酒、みりん、砂糖を入れて滑らかになるまでよく混ぜ合わせます。", "ဇလုံအသေးတစ်ခုထဲတွင် မစ်ဆိုအနှစ်၊ ဆာကေး၊ ဂျပန်ချိုသာသောဝိုင်နှင့် သကြားတို့ကို သမအောင် မွှေပါ။"), 
       t("Pat salmon fillets dry with paper towels. Spread the miso mixture evenly over both sides of the salmon.", "鮭の切り身の水分をキッチンペーパーで拭き取ります。味噌ダレを鮭の両面に均等に塗ります。", "ဆယ်လ်မွန်ငါးများကို စက္ကူတစ်ရှူးဖြင့် ခြောက်အောင်သုတ်ပါ။ မစ်ဆိုအရောကို ငါး၏တစ်ဖက်စီတွင် ညီညာစွာ သုတ်လိမ်းပါ။"), 
       t("Let marinate in the fridge for 30 minutes (or up to overnight). Wipe off excess marinade gently before cooking to prevent burning.", "冷蔵庫で30分間（または一晩）マリネします。焦げ付きを防ぐため、焼く前に余分な味噌を軽く拭き取ります。", "ရေခဲသေတ္တာထဲတွင် မိနစ် ၃၀ ခန့် (သို့မဟုတ် တစ်ညလုံး) နှပ်ထားပါ။ မကျွမ်းစေရန် မကင်မီ ပိုနေသော မစ်ဆိုများကို ဖွဖွသုတ်ထုတ်ပါ။"),
-      t("Heat oil in a pan over medium-low heat. Cook salmon for 3-4 minutes on one side until lightly browned.", "フライパンに油をひき、中火から弱火で熱します。鮭を片面3〜4分間、軽く焼き色がつくまで焼きます。", "ဒယ်အိုးထဲတွင် ဆီကို အလယ်အလတ်မီးအေးအေးဖြင့် ပူအောင်တည်ပါ။ ဆယ်လ်မွန်ငါးကို တစ်ဖက်လျှင် ၃-၄ မိနစ်ခန့် ရွှေဝါရောင်သန်းသည်အထိ ကင်ပါ။"),
+      t("Heat oil in a pan over medium-low heat. Cook salmon for 3-4 minutes on one side until lightly browned.", "フライパンに油をひき、中火から弱火で熱します。鮭を片面3〜4分感、軽く焼き色がつくまで焼きます。", "ဒယ်အိုးထဲတွင် ဆီကို အလယ်အလတ်မီးအေးအေးဖြင့် ပူအောင်တည်ပါ။ ဆယ်လ်မွန်ငါးကို တစ်ဖက်လျှင် ၃-၄ မိနစ်ခန့် ရွှေဝါရောင်သန်းသည်အထိ ကင်ပါ။"),
       t("Flip and cook the other side for 3 minutes. Cover and cook for another 1-2 minutes until cooked through.", "ひっくり返してもう片面を3分間焼きます。蓋をしてさらに1〜2分間加熱し、中まで火を通します。", "အခြားတစ်ဖက်သို့လှန်ပြီး ၃ မိနစ်ခန့် ကင်ပါ။ အဖုံးအုပ်ပြီး ငါးကျက်သည်အထိ နောက်ထပ် ၁-၂ မိနစ်ခန့် ချက်ပါ။")
     ], 
     t("Miso burns very easily. Keep the heat low and watch closely while pan-frying.", "味噌は非常に焦げやすいです。焼くときは弱火に保ち、目を離さないようにしてください。", "မစ်ဆိုသည် အလွန်ကျွမ်းလွယ်ပါသည်။ ကင်စဉ်အတွင်း မီးအေးအေးထားပြီး သေက်ာစောင့်ကြည့်ပါ။"),
-    [],
-    "human"
+    [
+      photo("assets/recipes/human-food/miso-salmon-main.jpg",
+        t("Finished miso glazed salmon fillet", "出来上がりの鮭の味噌焼き", "ဆယ်လ်မွန်ငါး မစ်ဆိုကင် အဆင်သင့်ဖြစ်နေပုံ"),
+        t("Miso glazed salmon main dish", "鮭の味噌焼きのメイン料理", "ဆယ်လ်မွန်ငါး မစ်ဆိုကင် အဓိကဟင်းလျာ")),
+      photo("assets/recipes/human-food/miso-salmon-prep.jpg",
+        t("Serving the miso salmon in a bento box with rice", "ご飯と一緒にお弁当箱に鮭の味噌焼きを盛り付けます", "ထမင်းနှင့်အတူ ဆယ်လ်မွန်ငါး မစ်ဆိုကင်ကို ထမင်းဗူးထဲ ထည့်ပြင်ဆင်ပုံ"),
+        t("Miso salmon bento prep", "鮭の味噌焼き弁当の準備", "ဆယ်လ်မွန်ငါး မစ်ဆိုကင် ထမင်းဗူးပြင်ဆင်ခြင်း"))
+    ],
+    "human",
+    {
+      mealType: t("Dinner", "夕食", "ညစာ"),
+      style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
+      timeEstimate: t("45 mins", "45分", "၄၅ မိနစ်"),
+      highProtein: true
+    }
   )
 ];
 

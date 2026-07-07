@@ -329,6 +329,94 @@ img {
   font-size: 24px;
 }
 
+/* Recipe Card with Large Prominent Image */
+.recipe-card.has-large-image {
+  grid-template-columns: 1fr;
+  padding: 0;
+  overflow: hidden;
+  border-left: none;
+}
+
+.recipe-card-banner {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.recipe-card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card.has-large-image:active .recipe-card-banner img {
+  transform: scale(1.03);
+}
+
+.recipe-card-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.recipe-card-content .card-title {
+  margin-bottom: 2px;
+}
+
+.recipe-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.recipe-badges .badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.recipe-badges .badge.meal-type {
+  background: #fff0eb;
+  color: #db6e80;
+}
+
+.recipe-badges .badge.style {
+  background: #e7f6ee;
+  color: #2e6d4c;
+}
+
+.recipe-badges .badge.time {
+  background: #f2f7f5;
+  color: var(--muted);
+}
+
+.recipe-badges .badge.protein {
+  background: #e4f4fb;
+  color: #2b708e;
+}
+
+/* Large Hero Image for Recipe Details */
+.recipe-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.recipe-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-meta {
   display: flex;
   flex-wrap: wrap;

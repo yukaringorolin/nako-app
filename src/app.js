@@ -239,9 +239,23 @@ function renderRecipeIndex(item) {
 function renderRecipe(recipeId) {
   const recipe = recipes.find((entry) => entry.id === recipeId);
   if (!recipe) return renderHome();
+  
+  const isHuman = recipe.type === "human";
+  const mainPhoto = primaryPhoto(recipe.photos);
+  const supportingPhotos = isHuman && mainPhoto ? recipe.photos.slice(1) : recipe.photos;
+  
+  let heroHtml = "";
+  let headPhoto = mainPhoto;
+  
+  if (isHuman && mainPhoto) {
+    heroHtml = `<div class="recipe-hero-image"><img src="${esc(mainPhoto.src)}" alt="${esc(tr(mainPhoto.alt || mainPhoto.caption))}" /></div>`;
+    headPhoto = null;
+  }
+  
   const content = `
-    ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"), primaryPhoto(recipe.photos))}
-    ${renderPhotos(recipe.photos)}
+    ${heroHtml}
+    ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"), headPhoto)}
+    ${renderPhotos(supportingPhotos)}
     <section class="panel"><h2>${esc(label("recipeName"))}</h2><p>${esc(tr(recipe.title))}</p></section>
     <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map(renderIngredient).join("")}</ul></section>
     <section class="panel"><h2>${esc(label("method"))}</h2>${orderedList(recipe.method)}</section>
@@ -301,7 +315,32 @@ function renderRoutineCard(task, section) {
 }
 
 function renderRecipeCard(recipe) {
-  return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, primaryPhoto(recipe.photos))}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
+  const isHuman = recipe.type === "human";
+  const mainPhoto = primaryPhoto(recipe.photos);
+  
+  if (isHuman && mainPhoto) {
+    const badgesHtml = renderRecipeBadges(recipe);
+    return `<button class="recipe-card has-large-image" data-recipe="${esc(recipe.id)}"><div class="recipe-card-banner"><img src="${esc(mainPhoto.src)}" alt="${esc(tr(mainPhoto.alt || mainPhoto.caption))}" loading="lazy" /></div><div class="recipe-card-content"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span><div class="recipe-badges">${badgesHtml}</div></div></button>`;
+  }
+  
+  return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, mainPhoto)}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
+}
+
+function renderRecipeBadges(recipe) {
+  let html = "";
+  if (recipe.mealType) {
+    html += `<span class="badge meal-type">${esc(tr(recipe.mealType))}</span>`;
+  }
+  if (recipe.style) {
+    html += `<span class="badge style">${esc(tr(recipe.style))}</span>`;
+  }
+  if (recipe.timeEstimate) {
+    html += `<span class="badge time">${esc(tr(recipe.timeEstimate))}</span>`;
+  }
+  if (recipe.highProtein) {
+    html += `<span class="badge protein">${esc(label("highProtein"))}</span>`;
+  }
+  return html;
 }
 
 function renderCardIcon(icon, photo = null) {

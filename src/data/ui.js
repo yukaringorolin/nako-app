@@ -47,6 +47,7 @@ const ui = {
     shortcutHumanFood: "Human Food Ideas",
     shortcutCookingRules: "Cooking Rules For Humans",
     shortcutDogTraining: "Nako Dog Training",
+    highProtein: "High Protein",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -96,6 +97,7 @@ const ui = {
     shortcutHumanFood: "人間の食事アイデア",
     shortcutCookingRules: "人間用の料理ルール",
     shortcutDogTraining: "ナコのドッグトレーニング",
+    highProtein: "高タンパク",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -145,5 +147,6 @@ const ui = {
     shortcutHumanFood: "လူ့အစားအစာ အိုင်ဒီယာ",
     shortcutCookingRules: "လူ့ချက်ပြုတ် စည်းကမ်း",
     shortcutDogTraining: "Nako လေ့ကျင့်ရေး",
+    highProtein: "ပရိုတင်းဓာတ်မြင့်မားသည်",
   },
 };

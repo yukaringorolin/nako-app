@@ -27,7 +27,7 @@ function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, not
 }
 
 
-function recipe(id, title, ingredients, method, note, photos = [], type = "dog") {
+function recipe(id, title, ingredients, method, note, photos = [], type = "dog", attrs = {}) {
   const isHuman = type === "human";
   return { 
     id, 
@@ -40,7 +40,8 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog")
     method, 
     note: isHuman ? note : (photos.length > 0 ? note : recipeNote(note)),
     photos,
-    type
+    type,
+    ...attrs
   };
 }
 
