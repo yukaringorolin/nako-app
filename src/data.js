@@ -205,29 +205,29 @@ const cookingRules = [
 ];
 
 const additionalResources = {
-  title: t("Additional Resources", "Additional Resources", "Additional Resources"),
-  subtitle: t("Helpful videos and references for Nako care, dog behaviour, training, and household routines.", "Helpful videos and references for Nako care, dog behaviour, training, and household routines.", "Helpful videos and references for Nako care, dog behaviour, training, and household routines."),
+  title: t("Additional Resources", "追加リソース", "နောက်ထပ် အသုံးဝင်သော အချက်အလက်များ"),
+  subtitle: t("Helpful videos and references for Nako care, dog behaviour, training, and household routines.", "Nakoのお世話、犬の行動、トレーニング、家庭内ルーティンに役立つ動画や参考情報です。", "Nako ကိုစောင့်ရှောက်ခြင်း၊ ခွေးအပြုအမူ၊ လေ့ကျင့်ရေးနှင့် အိမ်တွင်းလုပ်ရိုးလုပ်စဉ်များအတွက် အသုံးဝင်သော ဗီဒီယိုများနှင့် ကိုးကားချက်များ။"),
   items: [
     {
       icon: "▶",
-      title: t("Dog Behaviour & Calm Energy", "Dog Behaviour & Calm Energy", "Dog Behaviour & Calm Energy"),
-      source: t("Huberman Lab with Cesar Millan", "Huberman Lab with Cesar Millan", "Huberman Lab with Cesar Millan"),
-      videoTitle: t("Raising a Dog & Mastering Calm Assertive Energy", "Raising a Dog & Mastering Calm Assertive Energy", "Raising a Dog & Mastering Calm Assertive Energy"),
+      title: t("Dog Behaviour & Calm Energy", "犬の行動と落ち着いた接し方", "ခွေးအပြုအမူနှင့် တည်ငြိမ်သော စွမ်းအင်"),
+      source: t("Huberman Lab with Cesar Millan", "Huberman Lab（Cesar Millan出演）", "Huberman Lab - Cesar Millan ပါဝင်သည်"),
+      videoTitle: t("Raising a Dog & Mastering Calm Assertive Energy", "犬の育て方と落ち着いた自信のある接し方", "ခွေးမွေးမြူခြင်းနှင့် တည်ငြိမ်ပြီး ယုံကြည်မှုရှိသော စွမ်းအင်ကို လေ့လာခြင်း"),
       youtubeUrl: "https://www.youtube.com/watch?v=n_qKxNcMvtM",
       embedUrl: "https://www.youtube.com/embed/n_qKxNcMvtM",
-      watchLabel: t("Watch video", "Watch video", "Watch video"),
-      description: t("A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure.", "A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure.", "A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure."),
-      note: t("General learning resource only; not veterinary advice.", "General learning resource only; not veterinary advice.", "General learning resource only; not veterinary advice."),
-      takeawaysTitle: t("Key Takeaways", "Key Takeaways", "Key Takeaways"),
+      watchLabel: t("Watch video", "動画を見る", "ဗီဒီယိုကြည့်ရန်"),
+      description: t("A useful video on staying calm around dogs, creating structure, and using consistent routines to help Nako feel secure.", "犬のそばで落ち着いて接すること、ルールを作ること、一貫したルーティンでNakoが安心できるようにすることを学ぶための参考動画です。", "ခွေးများနှင့်အနီးတွင် တည်ငြိမ်စွာနေခြင်း၊ စည်းကမ်းနှင့်ဖွဲ့စည်းပုံထားခြင်း၊ တူညီသောလုပ်ရိုးလုပ်စဉ်များဖြင့် Nako ကို လုံခြုံစိတ်ချစေရန် အသုံးဝင်သော ဗီဒီယိုဖြစ်သည်။"),
+      note: t("General learning resource only; not veterinary advice.", "一般的な学習用リソースです。獣医療の助言ではありません。", "အထွေထွေ လေ့လာရန်အတွက်သာဖြစ်ပြီး တိရစ္ဆာန်ဆရာဝန် အကြံပြုချက် မဟုတ်ပါ။"),
+      takeawaysTitle: t("Key Takeaways", "重要ポイント", "အရေးကြီးသော မှတ်ချက်များ"),
       takeaways: [
-        t("Nako responds to human tone, body language, and energy - not just words.", "Nako responds to human tone, body language, and energy - not just words.", "Nako responds to human tone, body language, and energy - not just words."),
-        t("Stay calm before handling her, especially when she is excited, barking, anxious, or pulling.", "Stay calm before handling her, especially when she is excited, barking, anxious, or pulling.", "Stay calm before handling her, especially when she is excited, barking, anxious, or pulling."),
-        t("When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention.", "When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention.", "When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention."),
-        t("Keep walks structured and calm, not rushed or chaotic.", "Keep walks structured and calm, not rushed or chaotic.", "Keep walks structured and calm, not rushed or chaotic."),
-        t("Use a simple order: exercise first, rules and boundaries second, affection after she is calm.", "Use a simple order: exercise first, rules and boundaries second, affection after she is calm.", "Use a simple order: exercise first, rules and boundaries second, affection after she is calm."),
-        t("Consistent routines help Nako understand what is expected.", "Consistent routines help Nako understand what is expected.", "Consistent routines help Nako understand what is expected."),
-        t("Do not try new behaviour techniques if unsure. Ask Edwin first.", "Do not try new behaviour techniques if unsure. Ask Edwin first.", "Do not try new behaviour techniques if unsure. Ask Edwin first."),
-        t("If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.", "If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.", "If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.")
+        t("Nako responds to human tone, body language, and energy - not just words.", "Nakoは言葉だけでなく、人の声のトーン、体の動き、雰囲気にも反応します。", "Nako သည် စကားလုံးများသာမက လူ၏အသံနေအသံထား၊ ကိုယ်ဟန်အမူအရာနှင့် စွမ်းအင်ကိုပါ တုံ့ပြန်သည်။"),
+        t("Stay calm before handling her, especially when she is excited, barking, anxious, or pulling.", "Nakoが興奮している、吠えている、不安そう、または引っ張っているときほど、触る前にまず落ち着いてください。", "Nako စိတ်လှုပ်ရှားနေခြင်း၊ ဟောင်နေခြင်း၊ စိုးရိမ်နေခြင်း သို့မဟုတ် ဆွဲနေခြင်းရှိပါက ကိုင်တွယ်မီ ကိုယ်တိုင်အရင် တည်ငြိမ်ပါ။"),
+        t("When coming home, avoid over-exciting her immediately. Wait for her to settle, then give attention.", "帰宅した直後にNakoを過度に興奮させないでください。落ち着くのを待ってから相手をしてください。", "အိမ်ပြန်ရောက်ချိန်တွင် Nako ကို ချက်ချင်း အလွန်စိတ်လှုပ်ရှားစေခြင်း မလုပ်ပါနှင့်။ သူမအေးဆေးသွားမှ ဂရုစိုက်ပေးပါ။"),
+        t("Keep walks structured and calm, not rushed or chaotic.", "散歩は急いだり慌ただしくしたりせず、落ち着いた流れで行ってください。", "လမ်းလျှောက်ရာတွင် အလျင်အမြန် သို့မဟုတ် ရှုပ်ထွေးစွာ မလုပ်ဘဲ စနစ်တကျနှင့် တည်ငြိမ်စွာလုပ်ပါ။"),
+        t("Use a simple order: exercise first, rules and boundaries second, affection after she is calm.", "順番はシンプルにします。まず運動、次にルールと境界線、Nakoが落ち着いてから愛情を示します。", "ရိုးရှင်းသောအစဉ်လိုက်ကို သုံးပါ။ ပထမ လှုပ်ရှားမှု၊ ဒုတိယ စည်းကမ်းနှင့်ကန့်သတ်ချက်များ၊ သူမအေးဆေးပြီးမှ ချစ်ခင်မှုပေးပါ။"),
+        t("Consistent routines help Nako understand what is expected.", "一貫したルーティンは、Nakoが何を求められているか理解する助けになります。", "တူညီသောလုပ်ရိုးလုပ်စဉ်များက Nako အနေဖြင့် မည်သို့ပြုမူရမည်ကို နားလည်စေသည်။"),
+        t("Do not try new behaviour techniques if unsure. Ask Edwin first.", "自信がない場合は、新しいしつけ方法を試さないでください。まずEdwinに確認してください。", "မသေချာပါက အပြုအမူနည်းလမ်းအသစ်များကို မစမ်းပါနှင့်။ Edwin ကို အရင်မေးပါ။"),
+        t("If Nako is vomiting, refusing food, injured, aggressive, or behaving unusually, ask Edwin immediately.", "Nakoが吐く、食べない、けがをしている、攻撃的、または普段と違う様子の場合は、すぐEdwinに確認してください。", "Nako အန်နေခြင်း၊ အစာမစားခြင်း၊ ဒဏ်ရာရခြင်း၊ ရန်လိုခြင်း သို့မဟုတ် ပုံမှန်မဟုတ်သော အပြုအမူရှိပါက Edwin ကို ချက်ချင်းမေးပါ။")
       ]
     }
   ]
@@ -913,8 +913,8 @@ const microwaveInteriorRoutine = routineTasks.find((task) => task.id === "microw
 if (microwaveInteriorRoutine) {
   microwaveInteriorRoutine.photos = [
     photo("assets/routines/nako-microwave-interior.jpg",
-      t("Open microwave interior", "Open microwave interior", "Open microwave interior"),
-      t("Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use.", "Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use.", "Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use."))
+      t("Open microwave interior", "開いた電子レンジ内部", "ဖွင့်ထားသော မိုက်ခရိုဝေ့ဗ် အတွင်းပိုင်း"),
+      t("Reference setup for wiping the inside walls, door, and glass turntable. Keep the microwave clean and dry after use.", "内側の壁、ドア、ガラス皿を拭くための参考写真です。使用後は電子レンジを清潔で乾いた状態にしてください。", "အတွင်းနံရံများ၊ တံခါးနှင့် ဖန်လှည့်ပြားကို သုတ်ရန် ကိုးကားပုံဖြစ်သည်။ အသုံးပြုပြီးနောက် မိုက်ခရိုဝေ့ဗ်ကို သန့်ရှင်းပြီး ခြောက်သွေ့အောင်ထားပါ။"))
   ];
 }
 
@@ -922,8 +922,8 @@ const generalSurfaceCleaningRoutine = routineTasks.find((task) => task.id === "g
 if (generalSurfaceCleaningRoutine) {
   generalSurfaceCleaningRoutine.photos = [
     photo("assets/routines/nako-general-surface-cleaning.jpg",
-      t("General surfaces around the home", "General surfaces around the home", "General surfaces around the home"),
-      t("Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.", "Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.", "Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.")),
+      t("General surfaces around the home", "家の中の一般的な表面", "အိမ်တွင်းရှိ အထွေထွေ မျက်နှာပြင်များ"),
+      t("Main reference for tables, cabinets, drawers, and visible surfaces. Wipe dust, clear loose items, and keep these areas neat.", "テーブル、棚、引き出し、見える表面の主な参考写真です。ほこりを拭き、散らかった物を片付け、きれいに保ってください。", "စားပွဲများ၊ ကဗတ်များ၊ အံဆွဲများနှင့် မြင်ရသောမျက်နှာပြင်များအတွက် အဓိကကိုးကားပုံဖြစ်သည်။ ဖုန်သုတ်၊ ပြန့်ကျဲနေသောပစ္စည်းများကိုရှင်းပြီး သပ်ရပ်အောင်ထားပါ။")),
     ...generalSurfaceCleaningRoutine.photos
   ];
 }
@@ -932,8 +932,8 @@ const pillowMattressVacuumingRoutine = routineTasks.find((task) => task.id === "
 if (pillowMattressVacuumingRoutine) {
   pillowMattressVacuumingRoutine.photos = [
     photo("assets/routines/nako-pillow-mattress-vacuuming.jpg",
-      t("Small vacuum cleaner on the bed", "Small vacuum cleaner on the bed", "Small vacuum cleaner on the bed"),
-      t("Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris.", "Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris.", "Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris."))
+      t("Small vacuum cleaner on the bed", "ベッド上の小型掃除機", "အိပ်ရာပေါ်ရှိ သေးငယ်သော ဖုန်စုပ်စက်"),
+      t("Use the small vacuum cleaner on pillows and accessible mattress surfaces. Focus on dust, hair, and fabric debris.", "枕と手が届くマットレス表面に小型掃除機を使ってください。ほこり、毛、布くずを重点的に掃除します。", "ခေါင်းအုံးများနှင့် လက်လှမ်းမီသော မွေ့ရာမျက်နှာပြင်များတွင် သေးငယ်သော ဖုန်စုပ်စက်ကို အသုံးပြုပါ။ ဖုန်၊ အမွှေးနှင့် အထည်အမှိုက်များကို အဓိကထားပါ။"))
   ];
 }
 
@@ -941,59 +941,59 @@ const airconFilterFanCoilRoutine = routineTasks.find((task) => task.id === "airc
 if (airconFilterFanCoilRoutine) {
   airconFilterFanCoilRoutine.photos = [
     photo("assets/routines/nako-aircon-filter-fan-coil.jpg",
-      t("Open aircon filter and fan coil area", "Open aircon filter and fan coil area", "Open aircon filter and fan coil area"),
-      t("Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts.", "Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts.", "Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts."))
+      t("Open aircon filter and fan coil area", "開いたエアコンフィルターとファンコイル部分", "ဖွင့်ထားသော အဲကွန်း filter နှင့် fan coil နေရာ"),
+      t("Reference for the accessible aircon filter and fan coil area. Clean only the safe parts that have been taught, and do not dismantle deeper parts.", "手が届くエアコンフィルターとファンコイル部分の参考写真です。教わった安全な部分だけを掃除し、奥の部品は分解しないでください。", "လက်လှမ်းမီသော အဲကွန်း filter နှင့် fan coil နေရာအတွက် ကိုးကားပုံဖြစ်သည်။ သင်ပေးထားသော လုံခြုံသော အပိုင်းများကိုသာ သန့်ရှင်းရေးလုပ်ပြီး အတွင်းပိုင်းကို မဖြုတ်ပါနှင့်။"))
   ];
 }
 
 const washerDeepCleanRoutine = routineTasks.find((task) => task.id === "washer-deep-clean");
 if (washerDeepCleanRoutine) {
   washerDeepCleanRoutine.mustRemember.push(
-    t("Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.", "Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.", "Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.")
+    t("Rare guided task: do this only when Edwin asks and guides the exact steps. More detailed steps will be added here after the first walkthrough.", "まれに行うガイド付き作業です。Edwinが依頼し、正確な手順を案内したときだけ行ってください。最初の説明後に、より詳しい手順をここに追加します。", "ရှားရှားပါးပါး လမ်းညွှန်ချက်ဖြင့်လုပ်ရသောအလုပ်ဖြစ်သည်။ Edwin ကတောင်းဆိုပြီး တိကျသောအဆင့်များကို လမ်းညွှန်သောအခါမှသာလုပ်ပါ။ ပထမဆုံး walkthrough ပြီးနောက် အသေးစိတ်အဆင့်များကို ဤနေရာတွင် ထပ်ထည့်မည်။")
   );
   washerDeepCleanRoutine.photos = [
     photo("assets/routines/nako-washer-deep-clean.jpg",
-      t("Washing machine cleaner for deep clean", "Washing machine cleaner for deep clean", "Washing machine cleaner for deep clean"),
-      t("Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps.", "Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps.", "Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps."))
+      t("Washing machine cleaner for deep clean", "洗濯機の徹底洗浄用クリーナー", "အဝတ်လျှော်စက် deep clean အတွက် သန့်ရှင်းရေးဆေး"),
+      t("Use this washing machine cleaner for the empty-drum deep clean only when guided. Follow Edwin's instructions for the exact cycle and steps.", "案内があるときだけ、この洗濯機クリーナーを空のドラムの徹底洗浄に使用してください。正確なコースと手順はEdwinの指示に従ってください。", "လမ်းညွှန်ချက်ရှိသောအခါမှသာ ဤအဝတ်လျှော်စက်သန့်ရှင်းရေးဆေးကို အဝတ်မရှိသော drum deep clean အတွက် အသုံးပြုပါ။ တိကျသော cycle နှင့် အဆင့်များအတွက် Edwin ၏ညွှန်ကြားချက်ကို လိုက်နာပါ။"))
   ];
 }
 
 const doorbellChargingRoutine = routineTasks.find((task) => task.id === "doorbell-charging");
 if (doorbellChargingRoutine) {
   doorbellChargingRoutine.mustRemember.push(
-    t("Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.", "Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.", "Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.")
+    t("Use the small pin on the top release hole to remove the doorbell, then bring it inside to charge. Edwin will demonstrate first and add more detailed photos/steps here later.", "上部の解除穴に小さなピンを差してドアベルを外し、室内に持って入って充電してください。Edwinが先に実演し、あとで詳しい写真と手順をここに追加します。", "အပေါ်ပိုင်း release hole တွင် သေးငယ်သော pin ကိုထိုး၍ doorbell ကိုဖြုတ်ပြီး အိမ်ထဲယူလာကာ အားသွင်းပါ။ Edwin က အရင်ပြသမည်ဖြစ်ပြီး နောက်ပိုင်းတွင် ပိုအသေးစိတ်သော ဓာတ်ပုံနှင့်အဆင့်များကို ဤနေရာတွင် ထည့်မည်။")
   );
   doorbellChargingRoutine.photos = [
     photo("assets/routines/nako-doorbell-charging.jpg",
-      t("Dlingsmart doorbell mounted outside", "Dlingsmart doorbell mounted outside", "Dlingsmart doorbell mounted outside"),
-      t("This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step.", "This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step.", "This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step."))
+      t("Dlingsmart doorbell mounted outside", "外に取り付けられているDlingsmartドアベル", "အပြင်ဘက်တွင် တပ်ထားသော Dlingsmart doorbell"),
+      t("This is the Dlingsmart doorbell to remove for charging. Use the small pin at the top only after Edwin has demonstrated the release step.", "充電のために外すDlingsmartドアベルです。上部の小さなピンは、Edwinが外し方を実演した後にだけ使ってください。", "အားသွင်းရန် ဖြုတ်ရမည့် Dlingsmart doorbell ဖြစ်သည်။ Edwin က release လုပ်နည်းကို ပြသပြီးမှသာ အပေါ်ပိုင်း pin သေးသေးကို အသုံးပြုပါ။"))
   ];
 }
 
 const coffeeMachineDescalingRoutine = routineTasks.find((task) => task.id === "coffee-machine-descaling");
 if (coffeeMachineDescalingRoutine) {
   coffeeMachineDescalingRoutine.instructions = [
-    t("Turn the machine on and wait until it is ready.", "Turn the machine on and wait until it is ready.", "Turn the machine on and wait until it is ready."),
-    t("Empty the drip tray and coffee grounds container.", "Empty the drip tray and coffee grounds container.", "Empty the drip tray and coffee grounds container."),
-    t("Remove the water filter if one is installed.", "Remove the water filter if one is installed.", "Remove the water filter if one is installed."),
-    t("Add coffee-machine-safe descaler into the water tank, then add water to the marked level.", "Add coffee-machine-safe descaler into the water tank, then add water to the marked level.", "Add coffee-machine-safe descaler into the water tank, then add water to the marked level."),
-    t("Place a large container under the cappuccino or steam spout.", "Place a large container under the cappuccino or steam spout.", "Place a large container under the cappuccino or steam spout."),
-    t("Start descaling mode when the descale button/light flashes red.", "Start descaling mode when the descale button/light flashes red.", "Start descaling mode when the descale button/light flashes red."),
-    t("Let the machine run the descaling cycle.", "Let the machine run the descaling cycle.", "Let the machine run the descaling cycle."),
-    t("Rinse the tank, refill with clean water, then run the rinse cycle.", "Rinse the tank, refill with clean water, then run the rinse cycle.", "Rinse the tank, refill with clean water, then run the rinse cycle."),
-    t("Reinsert the water filter after rinsing, if one is used.", "Reinsert the water filter after rinsing, if one is used.", "Reinsert the water filter after rinsing, if one is used.")
+    t("Turn the machine on and wait until it is ready.", "マシンの電源を入れ、準備完了になるまで待ちます。", "စက်ကိုဖွင့်ပြီး အသင့်ဖြစ်သည်အထိ စောင့်ပါ။"),
+    t("Empty the drip tray and coffee grounds container.", "水受けトレーとコーヒーかす容器を空にします。", "ရေစက်ခံ tray နှင့် ကော်ဖီအကြွင်းအကျန်ဘူးကို ရှင်းပါ။"),
+    t("Remove the water filter if one is installed.", "ウォーターフィルターが付いている場合は外します。", "ရေ filter တပ်ထားပါက ဖြုတ်ပါ။"),
+    t("Add coffee-machine-safe descaler into the water tank, then add water to the marked level.", "コーヒーマシン用の安全な除石灰剤を水タンクに入れ、表示された線まで水を足します。", "ကော်ဖီစက်အတွက်သင့်သော descaler ကို ရေတိုင်ကီထဲထည့်ပြီး သတ်မှတ်ထားသောအမှတ်အထိ ရေဖြည့်ပါ။"),
+    t("Place a large container under the cappuccino or steam spout.", "カプチーノまたはスチームノズルの下に大きな容器を置きます。", "cappuccino သို့မဟုတ် steam spout အောက်တွင် ကြီးသောခွက်/ဘူးတစ်ခု ထားပါ။"),
+    t("Start descaling mode when the descale button/light flashes red.", "除石灰ボタンまたはランプが赤く点滅したら、除石灰モードを開始します。", "descale ခလုတ်/မီးနီ တောက်လာသောအခါ descaling mode ကိုစတင်ပါ။"),
+    t("Let the machine run the descaling cycle.", "マシンに除石灰サイクルを実行させます。", "စက်ကို descaling cycle ပြီးဆုံးသည်အထိ လည်ပတ်စေပါ။"),
+    t("Rinse the tank, refill with clean water, then run the rinse cycle.", "タンクをすすぎ、きれいな水を入れて、すすぎサイクルを実行します。", "တိုင်ကီကို ဆေးကြောပြီး ရေသန့်ပြန်ဖြည့်ကာ rinse cycle ကိုလုပ်ပါ။"),
+    t("Reinsert the water filter after rinsing, if one is used.", "ウォーターフィルターを使っている場合は、すすぎ後に戻します。", "ရေ filter အသုံးပြုပါက ဆေးကြောပြီးနောက် ပြန်တပ်ပါ။")
   ];
   coffeeMachineDescalingRoutine.mustRemember.push(
-    t("When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026."),
-    t("Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.")
+    t("When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "除石灰が必要になると、除石灰ボタンまたはランプが赤く点滅します。2026年7月時点では、まだこの作業は行っていません。", "Descaling လိုအပ်လာသောအခါ descale ခလုတ်/မီးနီ တောက်မည်။ 2026 ဇူလိုင်အထိ ဤအလုပ်ကို မလုပ်ရသေးပါ။"),
+    t("Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "コーヒーマシン用として安全な除石灰剤だけを使用してください。こぼれた場合は表面を傷めることがあるため、すぐに拭き取ってください。", "ကော်ဖီစက်အတွက် သင့်သော descaler ကိုသာ အသုံးပြုပါ။ ဖိတ်ကျပါက မျက်နှာပြင်များ ပျက်စီးနိုင်သောကြောင့် ချက်ချင်းသုတ်ပါ။")
   );
   coffeeMachineDescalingRoutine.photos = [
     photo("assets/routines/nako-coffee-machine-descaling.jpg",
-      t("De'Longhi descaling tutorial", "De'Longhi descaling tutorial", "De'Longhi descaling tutorial"),
-      t("Use the De'Longhi descaling tutorial video as the reference for this task.", "Use the De'Longhi descaling tutorial video as the reference for this task.", "Use the De'Longhi descaling tutorial video as the reference for this task.")),
+      t("De'Longhi descaling tutorial", "De'Longhi除石灰チュートリアル", "De'Longhi descaling သင်ခန်းစာ"),
+      t("Use the De'Longhi descaling tutorial video as the reference for this task.", "この作業の参考としてDe'Longhiの除石灰チュートリアル動画を使ってください。", "ဤအလုပ်အတွက် De'Longhi descaling သင်ခန်းစာဗီဒီယိုကို ကိုးကားပါ။")),
     photo("assets/routines/nako-coffee-machine-descaling-red-button.jpg",
-      t("Red flashing descale button", "Red flashing descale button", "Red flashing descale button"),
-      t("When the machine needs descaling, the descale button/light will flash red.", "When the machine needs descaling, the descale button/light will flash red.", "When the machine needs descaling, the descale button/light will flash red."))
+      t("Red flashing descale button", "赤く点滅する除石灰ボタン", "နီရောင်တောက်နေသော descale ခလုတ်"),
+      t("When the machine needs descaling, the descale button/light will flash red.", "マシンに除石灰が必要なとき、除石灰ボタンまたはランプが赤く点滅します。", "စက်သည် descaling လိုအပ်သောအခါ descale ခလုတ်/မီးနီ တောက်မည်။"))
   ];
   coffeeMachineDescalingRoutine.videoUrl = "https://www.youtube.com/embed/30EVN-fIM3I";
 }
@@ -1001,15 +1001,15 @@ if (coffeeMachineDescalingRoutine) {
 const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-shopping");
 if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyBucket = "daily";
-  groceryShoppingRoutine.frequencyText = t("Daily", "Daily", "Daily");
+  groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
   groceryShoppingRoutine.sortOrder = 32;
   groceryShoppingRoutine.mustRemember.push(
-    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.")
+    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။")
   );
   groceryShoppingRoutine.photos = [
     photo("assets/routines/nako-grocery-shopping.png",
-      t("Daily grocery shopping items", "Daily grocery shopping items", "Daily grocery shopping items"),
-      t("Buy daily groceries based on what is running low and what is needed for meals.", "Buy daily groceries based on what is running low and what is needed for meals.", "Buy daily groceries based on what is running low and what is needed for meals.")),
+      t("Daily grocery shopping items", "毎日の食料品の買い物品", "နေ့စဉ် ကုန်စုံဝယ်သော ပစ္စည်းများ"),
+      t("Buy daily groceries based on what is running low and what is needed for meals.", "少なくなっているものと食事に必要なものを確認して、毎日の食料品を買ってください。", "ကုန်သွားခါနီးသောအရာများနှင့် အစားအစာအတွက် လိုအပ်သောအရာများအပေါ်မူတည်၍ နေ့စဉ်ကုန်စုံဝယ်ပါ။")),
     ...groceryShoppingRoutine.photos
   ];
 }
@@ -1017,18 +1017,18 @@ if (groceryShoppingRoutine) {
 const yukariFlightPackingRoutine = routineTasks.find((task) => task.id === "yukari-flight-packing");
 if (yukariFlightPackingRoutine) {
   yukariFlightPackingRoutine.instructions = [
-    t("Check the details/packing list for the specific items needed for that flight or trip.", "Check the details/packing list for the specific items needed for that flight or trip.", "Check the details/packing list for the specific items needed for that flight or trip."),
-    t("Packing depends on the trip type, destination, and length of the flight duty.", "Packing depends on the trip type, destination, and length of the flight duty.", "Packing depends on the trip type, destination, and length of the flight duty."),
-    t("For turnaround trips, pack much less; usually one small luggage is enough.", "For turnaround trips, pack much less; usually one small luggage is enough.", "For turnaround trips, pack much less; usually one small luggage is enough."),
-    t("For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.")
+    t("Check the details/packing list for the specific items needed for that flight or trip.", "そのフライトまたは旅行に必要な具体的な物は、詳細または荷造りリストで確認してください。", "ထိုလေယာဉ်ခရီး သို့မဟုတ် ခရီးစဉ်အတွက် လိုအပ်သောပစ္စည်းများကို အသေးစိတ်/packing list တွင် စစ်ပါ။"),
+    t("Packing depends on the trip type, destination, and length of the flight duty.", "荷造りは、旅行の種類、行き先、フライト勤務の長さによって変わります。", "အထုပ်ပြင်ခြင်းသည် ခရီးအမျိုးအစား၊ သွားမည့်နေရာနှင့် flight duty ကြာချိန်အပေါ် မူတည်သည်။"),
+    t("For turnaround trips, pack much less; usually one small luggage is enough.", "日帰り往復のようなターンアラウンド便では荷物は少なめで、通常は小さいスーツケース1つで十分です。", "Turnaround ခရီးများအတွက် ပစ္စည်းအနည်းငယ်သာထည့်ပါ။ ပုံမှန်အားဖြင့် luggage အသေးတစ်လုံးလုံလောက်သည်။"),
+    t("For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "日本行きや長いフライトでは、大きなグレーのスーツケースが必要になる場合があります。荷造り前に確認してください。", "Japan ခရီး သို့မဟုတ် ပိုရှည်သော flight များအတွက် မီးခိုးရောင် luggage ကြီးလိုနိုင်သည်။ အထုပ်မပြင်မီ အတည်ပြုပါ။")
   ];
   yukariFlightPackingRoutine.mustRemember.push(
-    t("Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.")
+    t("Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "すべてのフライトで同じ荷物が必要だと思い込まないでください。実際の旅行に合わせてバッグの大きさと中身を調整してください。", "Flight တိုင်းတွင် luggage တူတူလိုသည်ဟု မယူဆပါနှင့်။ အမှန်တကယ်ခရီးနှင့်ကိုက်ညီအောင် အိတ်အရွယ်အစားနှင့် ထည့်မည့်ပစ္စည်းများကို ရွေးပါ။")
   );
   yukariFlightPackingRoutine.photos = [
     photo("assets/routines/nako-yukari-flight-packing.jpg",
-      t("Flight work packing with luggage", "Flight work packing with luggage", "Flight work packing with luggage"),
-      t("Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.")),
+      t("Flight work packing with luggage", "フライト勤務用の荷物準備", "Flight အလုပ်အတွက် luggage ထုပ်ပိုးခြင်း"),
+      t("Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "フライト勤務用品の荷造り参考写真です。詳細リストを使い、旅行の種類に合わせてスーツケースの大きさを調整してください。", "Flight အလုပ်ပစ္စည်းများ ထုပ်ပိုးရန် ကိုးကားပုံဖြစ်သည်။ အသေးစိတ်စာရင်းကိုသုံးပြီး ခရီးအမျိုးအစားအလိုက် luggage အရွယ်အစားကိုညှိပါ။")),
     ...yukariFlightPackingRoutine.photos
   ];
 }
@@ -1036,12 +1036,12 @@ if (yukariFlightPackingRoutine) {
 const nakoSupervisionRoutine = routineTasks.find((task) => task.id === "nako-supervision");
 if (nakoSupervisionRoutine) {
   nakoSupervisionRoutine.mustRemember.unshift(
-    t("⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.")
+    t("⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **窓の安全注意:** 現在、窓にグリルは付いていません。Chocho/ヘルパーは開いた窓から身を乗り出したり近くに立ったりしないでください。Nakoも常に窓の端から離してください。", "⚠️ **ပြတင်းပေါက် ဘေးကင်းရေး သတိပေးချက်:** လောလောဆယ် ပြတင်းပေါက်တွင် grill မရှိပါ။ Chocho/helper သည် ဖွင့်ထားသောပြတင်းပေါက်အနားတွင် မယောင်းထွက်ရ၊ မနီးကပ်စွာမရပ်ရပါ။ Nako ကိုလည်း အမြဲ ပြတင်းပေါက်အနားမှ ဝေးဝေးထားပါ။")
   );
   nakoSupervisionRoutine.photos = [
     photo("assets/routines/nako-window-no-grills-alert.jpg",
-      t("Open window with no grills", "Open window with no grills", "Open window with no grills"),
-      t("Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.")),
+      t("Open window with no grills", "グリルのない開いた窓", "grill မရှိသော ဖွင့်ထားသည့် ပြတင်းပေါက်"),
+      t("Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "窓の安全リマインダーです。現在グリルがないため、Chocho/ヘルパーもNakoも開いた窓の端から安全に離れてください。", "ပြတင်းပေါက် ဘေးကင်းရေး သတိပေးချက်ဖြစ်သည်။ လောလောဆယ် grill မတပ်ထားသောကြောင့် Chocho/helper နှင့် Nako နှစ်ဦးလုံး ဖွင့်ထားသောပြတင်းပေါက်အနားမှ လုံခြုံစွာဝေးဝေးနေပါ။")),
     ...nakoSupervisionRoutine.photos
   ];
 }
@@ -1050,17 +1050,17 @@ const nakoPottyPenRoutine = routineTasks.find((task) => task.id === "nako-potty-
 if (nakoPottyPenRoutine) {
   nakoPottyPenRoutine.instructions = [
     ...nakoPottyPenRoutine.instructions,
-    t("When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line."),
-    t("If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad."),
-    t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.")
+    t("When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "ペットシーツを交換するときは、シーツをピンクの横線の内側に収めてください。絶対に線を越えないようにします。", "pee pad လဲသောအခါ pad ကို ပန်းရောင်ဘေးလိုင်းအတွင်းတွင်ထားပါ။ pad သည် လိုင်းကို ဘယ်တော့မှ မကျော်ရပါ။"),
+    t("If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "ペットシーツが線を越えると、トレーの上カバーで完全に隠れず、Nakoが噛んだり引っ張り出したり破いたりする可能性があります。", "pee pad သည် လိုင်းကျော်ပါက tray cover က အပြည့်မဖုံးနိုင်ဘဲ Nako က ကိုက်ခြင်း၊ ဆွဲထုတ်ခြင်း၊ ဖြဲခြင်းလုပ်နိုင်သည်။"),
+    t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "Nakoがペットシーツを引っ張り出したり荒らしたりした場合は、ペン全体をしっかり掃除してください。", "Nako က pee pad ကို ဆွဲထုတ်ခြင်း သို့မဟုတ် ဖျက်ဆီးခြင်းလုပ်ပါက pen တစ်ခုလုံးကို အပြည့်သန့်ရှင်းရေးလုပ်ပါ။")
   ];
   nakoPottyPenRoutine.mustRemember.push(
-    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "Key principle: pee and poop must not be visible or anywhere outside the pee tray.")
+    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "重要原則: おしっことうんちは見えてはいけません。トレーの外にも絶対に出ないようにしてください。", "အဓိကစည်းမျဉ်း: ဆီးနှင့်အညစ်အကြေးများကို မြင်မနေရပါ။ pee tray အပြင်ဘက်တွင်လည်း ဘယ်နေရာမှ မရှိရပါ။")
   );
   nakoPottyPenRoutine.photos = [
     photo("assets/routines/nako-potty-pee-pad-line.jpg",
-      t("Correct pee pad placement inside the pink line", "Correct pee pad placement inside the pink line", "Correct pee pad placement inside the pink line"),
-      t("Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.")),
+      t("Correct pee pad placement inside the pink line", "ピンクの線の内側に正しく置かれたペットシーツ", "ပန်းရောင်လိုင်းအတွင်းတွင် မှန်ကန်စွာထားသော pee pad"),
+      t("Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "トレーのカバーを閉める前に、ペットシーツをピンクの横線の内側に収めてください。はみ出すと、Nakoがつかんで破ることがあります。", "tray cover မပိတ်မီ pee pad ကို ပန်းရောင်ဘေးလိုင်းအတွင်းထားပါ။ အပြင်ထွက်နေပါက Nako က ဆွဲယူပြီး ဖြဲနိုင်သည်။")),
     ...nakoPottyPenRoutine.photos
   ];
 }
@@ -1069,8 +1069,8 @@ const generalHouseholdDutiesRoutine = routineTasks.find((task) => task.id === "g
 if (generalHouseholdDutiesRoutine) {
   generalHouseholdDutiesRoutine.photos = [
     photo("assets/routines/nako-general-household-duties.png",
-      t("General household duties catch-all", "General household duties catch-all", "General household duties catch-all"),
-      t("Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks.", "Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks.", "Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks."))
+      t("General household duties catch-all", "一般的な家事のまとめ項目", "အထွေထွေ အိမ်မှုကိစ္စများ စုစည်းထားသော အပိုင်း"),
+      t("Catch-all section for reasonable household duties that are not specifically listed elsewhere. Ask if unsure, especially for unusual tasks.", "他の場所に明記されていない、通常の範囲内の家事をまとめる項目です。不明な場合、特に普段と違う作業は確認してください。", "အခြားနေရာတွင် သီးသန့်မဖော်ပြထားသော သင့်လျော်သည့် အိမ်မှုကိစ္စများအတွက် စုစည်းထားသောအပိုင်းဖြစ်သည်။ မသေချာပါက၊ အထူးသဖြင့် ပုံမှန်မဟုတ်သောအလုပ်များအတွက် မေးပါ။"))
   ];
 }
 
@@ -1078,8 +1078,8 @@ const blanketWashingRoutine = routineTasks.find((task) => task.id === "blanket-w
 if (blanketWashingRoutine) {
   blanketWashingRoutine.photos = [
     photo("assets/routines/nako-blanket-washing.jpg",
-      t("Blankets for fortnightly washing", "Blankets for fortnightly washing", "Blankets for fortnightly washing"),
-      t("Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day.", "Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day.", "Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day."))
+      t("Blankets for fortnightly washing", "隔週で洗うブランケット", "နှစ်ပတ်တစ်ကြိမ် လျှော်ရန် စောင်များ"),
+      t("Wash thicker blankets one at a time so one blanket is always available. Do not wash both blankets on the same day.", "厚めのブランケットは1枚ずつ洗い、常に1枚は使えるようにしてください。2枚を同じ日に洗わないでください。", "ထူသောစောင်များကို တစ်ကြိမ်လျှင် တစ်ထည်စီလျှော်ပါ၊ ထို့ကြောင့် စောင်တစ်ထည် အမြဲအသုံးပြုနိုင်မည်။ စောင်နှစ်ထည်လုံးကို တစ်နေ့တည်း မလျှော်ပါနှင့်။"))
   ];
 }
 
@@ -1087,8 +1087,8 @@ const outsideShoeRackRoutine = routineTasks.find((task) => task.id === "outside-
 if (outsideShoeRackRoutine) {
   outsideShoeRackRoutine.photos = [
     photo("assets/routines/nako-outside-shoe-rack.jpg",
-      t("Outside shoe rack and shoes", "Outside shoe rack and shoes", "Outside shoe rack and shoes"),
-      t("Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear."))
+      t("Outside shoe rack and shoes", "外の靴ラックと靴", "အပြင်ဘက် ဖိနပ်စင်နှင့် ဖိနပ်များ"),
+      t("Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "外の靴ラックを掃除し、靴を拭き、周辺を整え、廊下をすっきり保つための隔週の参考写真です。", "အပြင်ဘက် ဖိနပ်စင်ကို သန့်ရှင်းရေးလုပ်ခြင်း၊ ဖိနပ်များသုတ်ခြင်း၊ အနီးတဝိုက်ကိုသပ်ရပ်စေခြင်းနှင့် လမ်းကြောင်းရှင်းလင်းထားခြင်းအတွက် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။"))
   ];
 }
 
@@ -1096,8 +1096,8 @@ const curtainSteamingRoutine = routineTasks.find((task) => task.id === "curtain-
 if (curtainSteamingRoutine) {
   curtainSteamingRoutine.photos = [
     photo("assets/routines/nako-curtain-steaming.jpg",
-      t("Curtain steaming setup and curtain areas", "Curtain steaming setup and curtain areas", "Curtain steaming setup and curtain areas"),
-      t("Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels."))
+      t("Curtain steaming setup and curtain areas", "カーテンスチームの準備と対象エリア", "ကာတန် steam လုပ်ရန် ပြင်ဆင်မှုနှင့် ကာတန်နေရာများ"),
+      t("Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "教わった後、部屋のカーテンにスチームをかけるための隔週の参考写真です。スチーマーは注意して使い、見えているカーテン部分を一通り行ってください。", "သင်ပေးပြီးနောက် အခန်းများရှိ ကာတန်များကို steam လုပ်ရန် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။ steamer ကို ဂရုတစိုက်အသုံးပြုပြီး မြင်ရသော ကာတန် panel များကို လုပ်ပါ။"))
   ];
 }
 
@@ -1105,8 +1105,8 @@ const ikeaBedFrameRoutine = routineTasks.find((task) => task.id === "ikea-bed-fr
 if (ikeaBedFrameRoutine) {
   ikeaBedFrameRoutine.photos = [
     photo("assets/routines/nako-ikea-bed-frame-under-compartment.jpg",
-      t("IKEA bed frame under-compartment", "IKEA bed frame under-compartment", "IKEA bed frame under-compartment"),
-      t("Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath."))
+      t("IKEA bed frame under-compartment", "IKEAベッドフレーム下の収納部分", "IKEA အိပ်ရာဘောင်အောက် သိုလှောင်ခန်း"),
+      t("Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "IKEAベッドフレームの収納部分を持ち上げる、または開けて、下にたまったほこりや毛を掃除するための隔週の参考写真です。", "IKEA အိပ်ရာဘောင် storage area ကို မထောင်ခြင်း သို့မဟုတ် ဖွင့်ခြင်းဖြင့် အောက်တွင် စုနေသောဖုန်နှင့်အမွှေးများကို သန့်ရှင်းရေးလုပ်ရန် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။"))
   ];
 }
 
@@ -1265,19 +1265,24 @@ function recipeNote(note) {
 function checkTranslations() {
   const missing = [];
   const ui = window.nakoData.ui;
+  const allowSameAsEnglish = new Set([
+    "Nako Home Care"
+  ]);
+  const shouldCheck = (value) => value && !allowSameAsEnglish.has(value);
+  const addIssue = (type, key, english, flags) => {
+    missing.push({ type, key, english, ...flags });
+  };
   
   // 1. Check UI Keys
-  const ignoreList = ["Nako Home Care", "Back", "De'Longhi", "Shopee", "Ninja", "Fujioh", "IKEA", "Dling"];
   for (const key in ui.en) {
     const val = ui.en[key];
-    const isIgnored = ignoreList.some(ig => val.includes(ig));
-    if (isIgnored) continue;
+    if (!shouldCheck(val)) continue;
 
     if (!ui.jp[key] || ui.jp[key] === val) {
-      missing.push({ type: "UI Key (JP)", key: `ui.jp.${key}`, english: val });
+      addIssue("UI Key (JP)", `ui.jp.${key}`, val, { missingJp: !ui.jp[key], sameAsEnglishJp: ui.jp[key] === val });
     }
     if (!ui.mm[key] || ui.mm[key] === val) {
-      missing.push({ type: "UI Key (MM)", key: `ui.mm.${key}`, english: val });
+      addIssue("UI Key (MM)", `ui.mm.${key}`, val, { missingMm: !ui.mm[key], sameAsEnglishMm: ui.mm[key] === val });
     }
   }
 
@@ -1285,13 +1290,12 @@ function checkTranslations() {
   const checkObj = (obj, path) => {
     if (!obj || typeof obj !== "object") return;
     if (obj.en !== undefined) {
-      const isIgnored = ignoreList.some(ig => obj.en.includes(ig));
-      if (!isIgnored) {
-        if (obj._missingJp) {
-          missing.push({ type: "Content (JP)", key: path, english: obj.en });
+      if (shouldCheck(obj.en)) {
+        if (obj._missingJp || !obj.jp || obj.jp === obj.en) {
+          addIssue("Content (JP)", path, obj.en, { missingJp: obj._missingJp || !obj.jp, sameAsEnglishJp: obj.jp === obj.en });
         }
-        if (obj._missingMm) {
-          missing.push({ type: "Content (MM)", key: path, english: obj.en });
+        if (obj._missingMm || !obj.mm || obj.mm === obj.en) {
+          addIssue("Content (MM)", path, obj.en, { missingMm: obj._missingMm || !obj.mm, sameAsEnglishMm: obj.mm === obj.en });
         }
       }
       return;

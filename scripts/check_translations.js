@@ -32,9 +32,17 @@ const missing = nakoData.checkTranslations();
 
 if (missing.length > 0) {
   console.error("\x1b[31m[Translation Reconciliation Check FAILED]\x1b[0m");
-  console.error(`Found ${missing.length} missing or untranslated keys:`);
+  console.error(`Found ${missing.length} missing or same-as-English translation keys:`);
   console.log("");
-  console.table(missing);
+  console.table(missing.map((item) => ({
+    type: item.type,
+    key: item.key,
+    missingJp: Boolean(item.missingJp),
+    sameAsEnglishJp: Boolean(item.sameAsEnglishJp),
+    missingMm: Boolean(item.missingMm),
+    sameAsEnglishMm: Boolean(item.sameAsEnglishMm),
+    english: item.english
+  })));
   process.exit(1);
 } else {
   console.log("\x1b[32m[Translation Reconciliation Check PASSED]\x1b[0m All translations are complete and verified!");
