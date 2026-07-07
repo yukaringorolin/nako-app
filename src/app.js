@@ -524,6 +524,49 @@ function initFirebaseSync() {
 }
 
 function ingredientImage(key) {
+  const images = {
+    "chicken-tender": "chicken-breast.jpg",
+    "chicken-minced": "chicken-breast.jpg",
+    "chicken-breast": "chicken-breast.jpg",
+    "chicken-thigh": "chicken-thigh.jpg",
+    "pumpkin": "pumpkin.jpg",
+    "carrot": "carrot.jpg",
+    "whitefish": "whitefish.jpg",
+    "sweet-potato": "sweet-potato.jpg",
+    "zucchini": "zucchini.jpg",
+    "napa-cabbage": "napa-cabbage.jpg",
+    "broccoli": "broccoli.jpg",
+    "rice": "rice.jpg",
+    "soy-sauce": "soy-sauce.jpg",
+    "mirin": "mirin.jpg",
+    "sake": "sake.jpg",
+    "sugar": "sugar.jpg",
+    "ginger": "ginger.jpg",
+    "oil": "oil.jpg",
+    "sesame": "sesame.jpg",
+    "salmon-fillet": "salmon.jpg",
+    "salt": "salt.jpg",
+    "eggs": "egg.jpg",
+    "spinach": "spinach.jpg",
+    "lemon": "lemon.jpg",
+    "pork": "pork.jpg",
+    "cabbage": "cabbage.jpg",
+    "mushroom": "mushroom.jpg",
+    "dashi": "dashi.jpg",
+    "tuna": "tuna.jpg",
+    "tofu": "firm-tofu.jpg",
+    "cucumber": "cucumber.jpg",
+    "sesame-oil": "sesame-oil.jpg",
+    "vinegar": "vinegar.jpg",
+    "water": "water.jpg",
+    "miso": "miso-paste.jpg"
+  };
+
+  const filename = images[key];
+  if (filename) {
+    return `assets/ingredients/${filename}`;
+  }
+
   const visuals = {
     "chicken-tender": ["CT", "#f7d9c4"], pumpkin: ["P", "#ffd998"], carrot: ["C", "#ffd1a8"], whitefish: ["F", "#d8edf7"], "sweet-potato": ["SP", "#f1d0e4"], zucchini: ["Z", "#d7edce"], "chicken-breast": ["CB", "#f4d9d2"], "napa-cabbage": ["NC", "#dff2cf"], broccoli: ["B", "#d7efd9"],
   };
