@@ -16,24 +16,33 @@ if (!fs.existsSync(TARGET_DIR)) {
 
 const recipesToFetch = [
   {
-    id: 'oyakodon',
+    id: 'chicken-teriyaki-rice-bowl',
     queries: [
-      { key: 'main', term: 'Oyakodon 003.jpg', exactFile: true },
-      { key: 'prep', term: 'Oyakodon 004.jpg', exactFile: true }
+      { key: 'main', term: 'Bowl of Teriyaki chicken and beef YakinikuCNE.jpg', exactFile: true }
     ]
   },
   {
-    id: 'nikujaga',
+    id: 'salmon-shioyaki-protein-set',
     queries: [
-      { key: 'main', term: 'Nikujaga.jpg', exactFile: true },
-      { key: 'prep', term: 'Minced meat nikujaga by kina3.jpg', exactFile: true }
+      { key: 'main', term: 'Grilled Salmon (16802375986).jpg', exactFile: true }
     ]
   },
   {
-    id: 'miso-salmon',
+    id: 'pork-shogayaki-no-onion',
     queries: [
-      { key: 'main', term: 'Miso Salmon.jpg', exactFile: true },
-      { key: 'prep', term: 'Miso salmon bento (3975148119).jpg', exactFile: true }
+      { key: 'main', term: 'Shogayaki 002.jpg', exactFile: true }
+    ]
+  },
+  {
+    id: 'chicken-oyakodon-no-onion',
+    queries: [
+      { key: 'main', term: 'Oyakodon 005.jpg', exactFile: true }
+    ]
+  },
+  {
+    id: 'tuna-tofu-egg-rice-bowl',
+    queries: [
+      { key: 'main', term: 'Spicy tuna rice bowl (35032450572).jpg', exactFile: true }
     ]
   }
 ];
@@ -136,23 +145,26 @@ async function main() {
 
 This file lists the sources and licensing for the open-license images downloaded for the Human Food section.
 
+---
 `;
 
   for (const recipe of recipesToFetch) {
     const recipeAtts = attributions.filter(a => a.recipeId === recipe.id);
     if (recipeAtts.length === 0) continue;
 
-    mdContent += `## ${recipe.id.toUpperCase()}\n`;
+    mdContent += `\n## ${recipe.id}\n\n`;
     for (const att of recipeAtts) {
       mdContent += `- **File**: \`${att.filename}\`
   - **Source Page**: [${att.title}](${att.descriptionUrl})
   - **Author/Artist**: ${att.artist}
   - **License**: [${att.license}](${att.licenseUrl || '#'})
-\n`;
+
+---
+`;
     }
   }
 
-  fs.writeFileSync(ATTRIBUTION_FILE, mdContent, 'utf8');
+  fs.writeFileSync(ATTRIBUTION_FILE, mdContent.trim() + '\n', 'utf8');
   console.log(`\nCreated attribution log: ${ATTRIBUTION_FILE}`);
   console.log('Image fetch complete!');
 }

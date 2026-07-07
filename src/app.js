@@ -252,9 +252,12 @@ function renderRecipe(recipeId) {
     headPhoto = null;
   }
   
+  const badgesHtml = isHuman ? `<div class="recipe-badges" style="margin: -8px 16px 16px 16px;">${renderRecipeBadges(recipe)}</div>` : "";
+  
   const content = `
     ${heroHtml}
     ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"), headPhoto)}
+    ${badgesHtml}
     ${renderPhotos(supportingPhotos)}
     <section class="panel"><h2>${esc(label("recipeName"))}</h2><p>${esc(tr(recipe.title))}</p></section>
     <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map(renderIngredient).join("")}</ul></section>
