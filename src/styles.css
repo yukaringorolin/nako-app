@@ -426,7 +426,8 @@ img {
   background: #fbfdfc;
 }
 
-.task-photo img {
+.task-photo img,
+.task-photo video {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;

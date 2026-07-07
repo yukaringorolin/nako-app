@@ -276,7 +276,12 @@ function renderLargeIcon(icon, photo = null) {
 }
 
 function primaryPhoto(photos = []) {
-  return Array.isArray(photos) && photos.length ? photos[0] : null;
+  if (!Array.isArray(photos) || !photos.length) return null;
+  // Return the first image that is not a video
+  return photos.find(p => {
+    const src = p.src.toLowerCase();
+    return !src.endsWith('.mov') && !src.endsWith('.mp4') && !src.endsWith('.webm');
+  }) || null;
 }
 
 function sectionPhoto(section) {
@@ -298,6 +303,10 @@ function renderPhotos(photos = []) {
 }
 
 function renderPhoto(photo) {
+  const isVideo = photo.src.toLowerCase().endsWith('.mov') || photo.src.toLowerCase().endsWith('.mp4') || photo.src.toLowerCase().endsWith('.webm');
+  if (isVideo) {
+    return `<figure class="task-photo"><video src="${esc(photo.src)}" controls playsinline preload="metadata"></video><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
+  }
   return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
 }
 

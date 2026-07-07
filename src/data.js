@@ -233,8 +233,12 @@ const foodItems = [
     [
       photo("assets/sections/meal-logs.png", 
         t("Meal tray with rice, miso soup, salmon, and log notebook", "ご飯、味噌汁、鮭、ログノートが入った食事トレイ", "ထမင်း၊ မစ်ဆိုဆွပ်၊ ဆယ်လ်မွန်ငါးနှင့် မှတ်တမ်းစာအုပ်ပါဝင်သော အစားအစာလင်ပန်း"),
-        t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"))
+        t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ")),
+      photo("assets/recipes/edwin-food-tracking-meal.jpg",
+        t("Edwin's high-protein meal bowl", "エドウィンの高タンパク質食事ボウル", "Edwin ၏ protein မြင့်မားသော အစားအစာခွက်"),
+        t("An example of Edwin's high-protein meal containing scrambled eggs, squid, octopus, wood ear mushrooms, pork, and shrimp.", "スクランブルエッグ、イカ、タコ、きくらげ、豚肉、エビが入ったエドウィンの高タンパク質な食事例。", "ကြက်ဥမွှေ၊ ပြည်ကြီးငါး၊ ရေဘဝဲ၊ wood ear မှို၊ ဝက်သားနှင့် ပုစွန်တို့ ပါဝင်သော Edwin ၏ protein မြင့်မားသော အစားအစာ နမူနာ။"))
     ]),
+
   food("nako-feeding", "placeholder", "N", 
     t("Nako Feeding", "ナコの給餌", "Nako ကိုအစာကျွေးခြင်း"), 
     t("Future tracking for Nako meals, appetite, water, and notes.", "ナコの食事、食欲、水、およびメモのための将来的な追跡機能。", "Nako ၏အစားအစာ၊ အစာစားချင်စိတ်၊ ရေနှင့် မှတ်စုများအတွက် နောင်တွင်သုံးမည့် ခြေရာခံခြင်း။"), 
@@ -306,7 +310,12 @@ const routineTasks = [
     t("Daily Cooking", "毎日の料理", "နေ့စဉ်ချက်ပြုတ်ခြင်း"),
     t("Cook 3 meals a day, focusing on high-protein, lower-fat dishes to hit the 180g daily target, plus ad hoc snacks.", "高タンパク・低脂質を意識して、1日3食と必要に応じた軽食を作る。", "တစ်နေ့ ၃ နပ် ချက်ပါ။ နေ့စဉ် protein 180g ရောက်ရန် protein များပြီး အဆီနည်းသော ဟင်းများကို အဓိကထားပါ။ လိုအပ်လျှင် snack များလည်းပြင်ပါ။"),
     t("3 meals/day + snacks", "1日3食＋軽食", "တစ်နေ့ ၃ နပ် + snack"),
-    t("Strictly NO onions, NO coriander, NO parsley, NO beansprouts", "玉ねぎ、パクチー、パセリ、もやしは絶対に入れない。", "ကြက်သွန်နီ၊ နံနံပင်၊ parsley၊ ပဲပင်ပေါက် လုံးဝမထည့်ပါ။")),
+    t("Strictly NO onions, NO coriander, NO parsley, NO beansprouts", "玉ねぎ、パクチー、パセリ、もやしは絶対に入れない。", "ကြက်သွန်နီ、နံနံပင်、parsley、ပဲပင်ပေါက် လုံးဝမထည့်ပါ။"),
+    [
+      photo("assets/routines/daily-cooking-induction.jpg",
+        t("Pots on the induction hob for daily cooking", "日々の料理で使用するIHコンロ上の鍋", "နေ့စဉ်ချက်ပြုတ်ခြင်းအတွက် hob ပေါ်ရှိ အိုးများ"),
+        t("Cook meals using the induction hob and stainless steel pots.", "IHコンロとステンレス鍋を使用して料理を作ります。", "Hob နှင့် အိုးများကို အသုံးပြု၍ နေ့စဉ်ဟင်းလျာများ ချက်ပြုတ်ပါ။"))
+    ]),
   routine("protein-shake-creatine-prep", "daily", 18, "P",
     t("Protein Shake & Creatine Prep", "プロテインシェイクとクレアチン準備", "protein shake နှင့် creatine ပြင်ဆင်ခြင်း"),
     t("Make Edwin's daily protein shake using 1 scoop Optimum Nutrition protein powder and 1 scoop creatine. One scoop of protein powder is about 24g protein.", "エドウィン用に毎日、Optimum Nutritionのプロテインパウダー1スクープとクレアチン1スクープでプロテインシェイクを作る。プロテイン1スクープは約24gのタンパク質。", "Edwin အတွက် နေ့စဉ် protein shake ပြင်ပါ။ Optimum Nutrition protein powder ၁ scoop နှင့် creatine ၁ scoop ကို အသုံးပြုပါ။ protein powder ၁ scoop သည် protein ၂၄g ခန့်ပါသည်။"),
@@ -341,7 +350,24 @@ const routineTasks = [
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
     t("Feed Nako about 3-4 times a day: kibbles + K9 Natural. Current preferred method: feed dry unless instructed otherwise. After she finishes eating, let her drink water directly from the water bottle to increase water intake. Once her mouth is wet, wipe her mouth down. Wash and refill water bottle daily.", "ナコに1日3〜4回、キブルとK9 Naturalを与える。現在の希望方法は、特に指示がなければドライで与える。食べ終わった後、水分摂取を増やすために水ボトルから直接水を飲ませる。口元が濡れたら口周りを拭く。水ボトルは毎日洗って補充する。", "နာကိုကို တစ်နေ့ ၃-၄ ကြိမ် kibbles + K9 Natural ကျွေးပါ။ လောလောဆယ် ညွှန်ကြားချက်မရှိလျှင် dry အဖြစ်ကျွေးပါ။ စားပြီးနောက် ရေပိုသောက်စေရန် ရေဘူးမှ တိုက်ရိုက်ရေသောက်ခိုင်းပါ။ ပါးစပ်စိုလာလျှင် ပါးစပ်ပတ်ဝန်းကျင်ကို သုတ်ပါ။ ရေဘူးကို နေ့စဉ်ဆေးပြီး ပြန်ဖြည့်ပါ။"),
     t("3-4 meals/day", "1日3〜4食", "တစ်နေ့ ၃-၄ ကြိမ်"),
-    t("Monitor whether she eats properly. Keep meal portions consistent unless instructed otherwise. Make sure she drinks water after eating and wipe her mouth after it gets wet.", "ちゃんと食べているか確認する。特に指示がなければ食事量は一定にする。食後に水を飲ませ、口元が濡れたら拭く。", "သူမ အစာကောင်းကောင်းစားနေသလား စောင့်ကြည့်ပါ။ ညွှန်ကြားချက်မရှိလျှင် အစာပမာဏကို မပြောင်းပါနှင့်။ စားပြီးနောက် ရေသောက်စေပြီး ပါးစပ်စိုလာလျှင် သုတ်ပါ။")),
+    [
+      t("Monitor whether she eats properly. Keep meal portions consistent unless instructed otherwise. Make sure she drinks water after eating and wipe her mouth after it gets wet.", "ちゃんと食べているか確認する。特に指示がなければ食事量は一定にする。食後に水を飲ませ、口元が濡れたら拭く。", "သူမ အစာကောင်းကောင်းစားနေသလား စောင့်ကြည့်ပါ။ ညွှန်ကြားချက်မရှိလျှင် အစာပမာဏကို မပြောင်းပါနှင့်။ စားပြီးနောက် ရေသောက်စေပြီး ပါးစပ်စိုလာလျှင် သုတ်ပါ။"),
+      t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။"),
+      t("Let Nako drink water regularly from her manual water bottle. The water nozzle attached to her pen flows too slowly, which can cause dehydration. Do not use a water bowl in the pen because she will immediately put her paws in and play with the water, spilling it everywhere.", "手動の給水ボトルから定期的に水を飲ませてください。サークルに取り付けられている給水器は水の出が遅く、脱水症状になる恐れがあります。サークル内に水皿を置くと、ナコがすぐに足を入れて水遊びをしてしまい、辺り一面が濡れてしまうため、水皿は置かないでください。", "လက်ဆွဲရေဘူးမှ ရေကို ပုံမှန်တိုက်ပေးပါ။ ခြံတွင်တပ်ဆင်ထားသော ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် ရေဓာတ်ခမ်းခြောက်နိုင်ပါသည်။ ခြံထဲတွင် ရေခွက်မထားပါနှင့်၊ အဘယ်ကြောင့်ဆိုသော် သူမသည် ချက်ချင်းခြေထောက်ထည့်၍ ရေဆော့ပြီး ဖိတ်စင်စေသောကြောင့် ဖြစ်သည်။")
+    ],
+    [
+      photo("assets/routines/nako-feeding-spillage.jpg",
+        t("Nako standing in her cage next to spilt food on the floor", "床にこぼれたエサの横のケージに立つナコ", "ကြမ်းပြင်ပေါ်တွင် ဖိတ်ကျနေသော အစားအစာဘေးရှိ ခြံထဲတွင်ရပ်နေသော နာကို"),
+        t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။")),
+      photo("assets/routines/nako-meal-prep-bowl.jpg",
+        t("Nako's meal bowl with kibble and chicken mixture", "キブルとチキンが混ざったナコのエサ皿", "kibbles နှင့် ကြက်သားရောထားသော နာကို၏ အစာခွက်"),
+        t("Portion kibbles mixed with K9 Natural chicken toppings as instructed.", "指示通りにキブルとK9 Naturalのチキントッピングを混ぜ合わせて与えます。", "ညွှန်ကြားထားသည့်အတိုင်း K9 Natural ကြက်သားတပတ်နှင့် kibbles ကို ရောစပ်ကျွေးပါ။")),
+      photo("assets/routines/nako-manual-water-bottle.jpg",
+        t("Offering water from the manual squeeze travel bottle", "手動のスクイーズボトルから水を飲ませる様子", "လက်ဆွဲရေဘူးဖြင့် ရေတိုက်ကျွေးခြင်း"),
+        t("Squeeze the manual water bottle to let her drink regularly, as the pen's nozzle flows too slowly.", "サークルの給水器は水の出が遅いため、手動ボトルを少し押して定期的に水を飲ませてください。", "ခြံ၏ ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် လက်ဆွဲရေဘူးကို ညှစ်၍ ပုံမှန်ရေတိုက်ပေးပါ။"))
+    ]),
+  
+
   routine("nako-potty-pen", "daily", 40, "N", 
     t("Nako - Potty & Pen", "ナコ - トイレとケージ", "Nako - အပေါ့အလေးသွားရာနေရာနှင့် ခြံ"), 
     t("Pick up poop immediately, change soaked pee pads, clean the tray daily, and wash towels or wipe toys regularly.", "ウンチはすぐに拾い、濡れたおしっこシートを交換し、トレイを毎日掃除し、タオルを洗うか、おもちゃを定期的に拭きます。", "ချေးများကို ချက်ချင်းကောက်ပါ၊ စိုစွတ်သော ဆီးခံပြားများကို လဲလှယ်ပါ、လင်ပန်းကို နေ့စဉ်ဆေးကြောပါ、တဘက်များကို လျှော်ပါ သို့မဟုတ် ကစားစရာများကို ပုံမှန်သုတ်ပါ။"), 
@@ -354,59 +380,164 @@ const routineTasks = [
     ]),
   routine("nako-exercise-grooming", "daily", 50, "N", 
     t("Nako - Clean, Dry & Groomed", "ナコ - 清潔・乾燥・グルーミング", "နာကို - သန့်ရှင်း၊ ခြောက်သွေ့၊ grooming"), 
-    t("After walks, outdoor play, or beach trips, wipe Nako down, dry her fully, brush her coat, and wipe her eyes before she rests on the bed or sofa.", "散歩、外遊び、ビーチの後は、ナコの体を拭き、しっかり乾かし、毛をブラッシングし、目元を拭いてからベッドやソファで休ませる。", "လမ်းလျှောက်ပြီးနောက်၊ အပြင်ကစားပြီးနောက် သို့မဟုတ် ကမ်းခြေသွားပြီးနောက် နာကိုကို သုတ်ပါ၊ အပြည့်အဝ ခြောက်အောင်လုပ်ပါ၊ အမွေးကိုဖြီးပါ၊ မျက်လုံးပတ်ဝန်းကျင်ကို သုတ်ပြီးမှ အိပ်ရာ သို့မဟုတ် sofa ပေါ်မှာ နားစေပါ။"), 
+    t("After walks, outdoor play, or beach trips, wipe Nako down, dry her fully, brush her coat, and wipe her eyes before she rests on the bed or sofa.", "散歩、外遊び、ビーチの後は、ナコの体を拭き、しっかり乾かし、毛をブラッシングし、目元を拭いてからベッドやソファで休ませる。", "လမ်းလျှောက်ပြီးနောက်၊ အပြင်ကစားပြီးနောက် သို့မဟုတ် ကမ်းခြေသွားပြီးနောက် နာကိုကို သုတ်ပါ၊ အပြည့်အဝ ခြောက်အောင်လုပ်ပါ၊ အမွေးကိုဖြီးပါ、မျက်လုံးပတ်ဝန်းကျင်ကို သုတ်ပြီးမှ အိပ်ရာ သို့မဟုတ် sofa ပေါ်မှာ နားစေပါ။"), 
     t("Daily + after outings / beach", "毎日＋外出・ビーチの後", "နေ့စဉ် + အပြင်ထွက်ပြီးနောက် / ကမ်းခြေပြီးနောက်"), 
-    t("Do not leave her damp after wiping; blow dry gently if needed.", "体を拭いた後、湿ったまま放置しないでください。必要に応じてドライヤーで優しく乾かします。", "သုတ်ပြီးနောက် စိုစွတ်မထားပါနှင့်၊ လိုအပ်ပါက လေမှုတ်စက်ဖြင့် ညင်သာစွာ ခြောက်သွေ့အောင် မှုတ်ပေးပါ။")),
+    [
+      t("Do not leave her damp after wiping; blow dry gently if needed.", "体を拭いた後、湿ったまま放置しないでください。必要に応じてドライヤーで優しく乾かします。", "သုတ်ပြီးနောက် စိုစွတ်မထားပါနှင့်၊ လိုအပ်ပါက လေမှုတ်စက်ဖြင့် ညင်သာစွာ ခြောက်သွေ့အောင် မှုတ်ပေးပါ။"),
+      t("After walks, make sure to wipe her down thoroughly with pet wet wipes. Brush her coat, and optionally reward her with a nice treat for being overall obedient.", "散歩の後は、ペット用ウェットティッシュで体を丁寧に拭いてあげてください。毛並みをブラッシングし、全体的にお利口にしていたらご褒美としておやつをあげてもよいでしょう。", "လမ်းလျှောက်ပြီးနောက် သူမကို pet wet wipes (ခွေးသုံးစိုစွတ်သောတစ်ရှူး) ဖြင့် သေချာသုတ်ပေးပါ။ အမွေးများကို ဖြီးပေးပါ၊ သူမ လိမ္မာစွာနေထိုင်မှုအတွက် ဆုအဖြစ် မုန့်ကောင်းကောင်းတစ်ခု ပေးနိုင်ပါသည်။")
+    ],
+    [
+      photo("assets/routines/nako-wet-wipes.jpg",
+        t("Pet wet wipes for post-walk cleaning", "散歩後の体拭き用ペットウェットティッシュ", "လမ်းလျှောက်ပြီးနောက် သန့်ရှင်းရန် ခွေးသုံးစိုစွတ်သောတစ်ရှူး"),
+        t("Wipe Nako thoroughly with these pet wet wipes after walks.", "散歩後、このペット用ウェットティッシュでナコの体を丁寧に拭いてください。", "လမ်းလျှောက်ပြီးနောက် ဤစိုစွတ်သောတစ်ရှူးများဖြင့် နာကိုကို သေချာစွာ သုတ်ပေးပါ။")),
+      photo("assets/routines/nako-grooming-brush.jpg",
+        t("Slicker brush for Nako's coat", "ナコのブラッシング用スリッカーブラシ", "နာကို၏အမွေးများအတွက် သုံးသော ဘရပ်ရှ်"),
+        t("Brush her coat gently using this slicker brush.", "このスリッカーブラシを使用して、優しく毛をブラッシングします。", "ဤဘရပ်ရှ်ကို အသုံးပြု၍ သူမ၏အမွေးများကို ညင်သာစွာ ဖြီးပေးပါ။")),
+      photo("assets/routines/nako-indoor-walk.jpg",
+        t("Walking Nako indoors", "室内でナコを散歩させる様子", "မိုးလုံလေလုံနေရာတွင် နာကိုကို လမ်းလျှောက်ခေါ်ခြင်း"),
+        t("Keep walks regular. Reward Nako with a treat after walks for being overall obedient.", "定期的にお散歩をさせてください。お散歩の後は、お利口にしていたご褒美としておやつをあげます。", "ပုံမှန်လမ်းလျှောက်ပေးပါ။ လမ်းလျှောက်ပြီးနောက် သူမ၏ လိမ္မာမှုအတွက် မုန့်ကျွေး၍ ဆုချပါ။"))
+    ]),
+
   routine("nako-training-fun", "daily", 60, "N", 
     t("Nako - Dog Training & Fun", "ナコ - ドッグトレーニングと遊び", "Nako - လေ့ကျင့်ပေးခြင်းနှင့် ကစားခြင်း"), 
     t("Refresh Nako's commands and do short positive training sessions with treats. Let her out under supervision if she needs to drain energy.", "ナコのコマンドを復習し、おやつを使って短いポジティブなトレーニングを行います。体力を発散させる必要がある場合は、目の届く範囲でケージの外に出します。", "Nako ၏ အမိန့်များကို ပြန်လည်လေ့ကျင့်ပေးပြီး မုန့်များဖြင့် တိုတောင်းသော အပြုသဘောဆောင်သည့် လေ့ကျင့်ခန်းများ ပြုလုပ်ပါ။ အားအင်ကုန်ခမ်းရန် လိုအပ်ပါက စောင့်ကြည့်မှုအောက်တွင် အပြင်သို့ လွှတ်ပေးပါ။"), 
     t("Daily + as needed", "毎日＋必要に応じて", "နေ့စဉ် + လိုအပ်သလို"), 
-    t("When out of the pen, use house leash / house line and 100% active supervision.", "ケージの外に出すときは、ハウスリードを使用し、100%注意を怠らないでください。", "ခြံပြင်ပသို့ ရောက်ရှိနေစဉ်၊ အိမ်သုံးကြိုးကို အသုံးပြုပြီး ၁၀၀% အပြည့်အဝ စောင့်ကြည့်ပါ။")),
+    [
+      t("When out of the pen, use house leash / house line and 100% active supervision.", "ケージの外に出すときは、ハウスリードを使用し、100%注意を怠らないでください。", "ခြံပြင်ပသို့ ရောက်ရှိနေစဉ်၊ အိမ်သုံးကြိုးကို အသုံးပြုပြီး ၁၀၀% အပြည့်အဝ စောင့်ကြည့်ပါ။"),
+      t("When Nako starts jumping in her cage or raising her toys, try to play with her a bit because it is fun for her.", "ナコがケージの中で飛び跳ねたり、おもちゃを持ち上げたりし始めたら、本人は楽しんでいるので少し遊んであげてください。", "နာကိုသည် ခြံထဲတွင် ခုန်ပေါက်နေစဉ် သို့မဟုတ် ကစားစရာများကို မြှောက်ပြစဉ် သူမနှင့် အနည်းငယ် ကစားပေးပါ (၎င်းသည် သူမအတွက် ပျော်စရာဖြစ်သောကြောင့်ဖြစ်သည်)။"),
+      t("Use treats for training and positive reinforcement. Keep training sessions short and fun.", "トレーニングやポジティブな行動の強化には、おやつを使用してください。トレーニング時間は短く、楽しいものに保ちます。", "လေ့ကျင့်ပေးရန်နှင့် အပြုသဘောဆောင်သောအပြုအမူများအတွက် မုန့်များကို အသုံးပြုပါ။ လေ့ကျင့်ချိန်ကို တိုတောင်းပြီး ပျော်စရာကောင်းအောင် ထားပါ။")
+    ],
+    [
+      photo("assets/routines/nako-playing-toys.jpg",
+        t("Nako sitting in her dog bed in the cage with a purple toy in her mouth", "口に紫のおもちゃをくわえてケージのドッグベッドに座るナコ", "ပါးစပ်တွင် ခရမ်းရောင်ကစားစရာကို ကိုက်ကာ ခြံထဲရှိ ခွေးအိပ်ရာပေါ်တွင် ထိုင်နေသော နာကို"),
+        t("When Nako starts jumping in her cage or raising her toys, try to play with her a bit because it is fun for her.", "ナコがケージの中で飛び跳ねたり、おもちゃを持ち上げたりし始めたら、本人は楽しんでいるので少し遊んであげてください。", "နာကိုသည် ခြံထဲတွင် ခုန်ပေါက်နေစဉ် သို့မဟုတ် ကစားစရာများကို မြှောက်ပြစဉ် သူမနှင့် အနည်းငယ် ကစားပေးပါ (၎င်းသည် သူမအတွက် ပျော်စရာဖြစ်သောကြောင့်ဖြစ်သည်)။")),
+      photo("assets/routines/nako-training-treats.jpg",
+        t("Dog treats container for positive training", "ポジティブトレーニング用のドッグおやつ容器", "အပြုသဘောဆောင်သောလေ့ကျင့်မှုအတွက်သုံးသော ခွေးမုန့်ဘူး"),
+        t("Use these treats to reward Nako during training sessions.", "トレーニングの際、このおやつを使ってナコにご褒美をあげてください。", "လေ့ကျင့်ခန်းလုပ်နေစဉ် နာကိုကို ဆုချရန် ဤမုန့်များကို အသုံးပြုပါ။")),
+      photo("assets/routines/nako-bribe-houseline.mov",
+        t("Bribing Nako with a treat to remove her houseline", "ハウスリードを外すためにおやつでナコを誘う様子", "အိမ်သုံးကြိုးဖြုတ်ရန် နာကိုကို မုန့်ဖြင့် ဆွဲဆောင်ခြင်း"),
+        t("An example video showing how to bribe Nako with a treat so you can safely take off her houseline.", "ハウスリードを安全に外すために、おやつでナコを誘い出す手順の実演動画。", "အိမ်သုံးကြိုးကို ဘေးကင်းစွာ ဖြုတ်နိုင်ရန် နာကိုကို မုန့်ဖြင့် ဆွဲဆောင်နည်းကို ပြသထားသည့် နမူနာဗီဒီယို။")),
+      photo("assets/routines/nako-obedience-training.mov",
+        t("Example obedience training session", "服従訓練（オベディエンストレーニング）の実演", "နာခံမှုရှိစေရန် လေ့ကျင့်ပေးသည့် နမူနာဗီဒီယို"),
+        t("An example video showing Nako doing basic obedience training.", "ナコが基本的な服従訓練（コマンド練習）を行っている実演動画。", "နာကို အခြေခံနာခံမှုလေ့ကျင့်ခန်းများ ပြုလုပ်နေသည်ကို ပြသထားသည့် နမူနာဗီဒီယို။"))
+    ]),
+
   routine("nako-supervision", "daily", 70, "!", 
     t("Nako - Supervision", "ナコ - 監視", "Nako - စောင့်ကြည့်ခြင်း"), 
     t("Whenever Nako is out of the pen, she must wear her collar and house leash / house line and be monitored actively.", "ナコがケージの外に出ているときは、常に首輪とハウスリードを着用させ、積極的に監視する必要があります。", "Nako သည် ခြံပြင်ပတွင် ရှိနေသည့်အချိန်တိုင်း လည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ဆင်ထားရမည်ဖြစ်ပြီး တက်ကြွစွာ စောင့်ကြည့်ရမည်။"), 
     t("Whenever out of pen / roaming", "ケージの外に出ているとき / 自由に歩き回っているとき", "ခြံပြင်ပသို့ ရောက်နေစဉ် / လွတ်လပ်စွာသွားလာနေစဉ်"), 
     t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။")),
   routine("nako-kind-handling", "daily", 80, "!", 
-    t("Nako - Kind Handling Reminder", "ナコ - 優しく扱うためのリマインダー", "Nako - ညင်သာစွာ ဆက်ဆံရန် သတိပေးချက်"), 
-    t("Always treat Nako gently, kindly, and humanely. Use calm handling only.", "常にナコを優しく、親切に、人道的に扱ってください。穏やかな扱い方のみを行ってください。", "Nako ကို အမြဲတမ်း ညင်သာစွာ၊ ကြင်နာစွာနှင့် လူသားဆန်စွာ ဆက်ဆံပါ။ အေးဆေးတည်ငြိမ်စွာသာ ကိုင်တွယ်ပါ။"), 
-    t("Always", "常に", "အမြဲတမ်း"), 
-    t("Tell Edwin immediately if there is any issue.", "問題がある場合は、すぐにエドウィンに報告してください。", "ပြဿနာတစ်စုံတစ်ရာရှိပါက Edwin ထံ ချက်ချင်းအကြောင်းကြားပါ။")),
+    t("Nako - Kind Handling Reminder", "ナコ - 優しい扱いの注意", "နာကို - နူးညံ့စွာကိုင်တွယ်ရန် သတိပြုချက်"),
+    t("Always treat Nako gently, kindly, and humanely. Follow Singapore animal welfare law, including Animals and Birds Act 1965 section 42.", "ナコは常に優しく、人道的に扱う。Animals and Birds Act 1965第42条を含むシンガポールの動物福祉法に従う。", "နာကိုကို အမြဲ နူးညံ့၊ ကြင်နာစွာနှင့် လူသားဆန်စွာ ဆက်ဆံပါ။ Singapore animal welfare law၊ Animals and Birds Act 1965 section 42 အပါအဝင် လိုက်နာပါ။"),
+    t("Always", "常に", "အမြဲ"),
+    t("Tell Edwin immediately if there is any issue. Use calm handling only.", "問題があればすぐエドウィンに伝える。落ち着いて扱うこと。", "ပြဿနာရှိလျှင် Edwin ကို ချက်ချင်းပြောပါ။ အေးဆေးတည်ငြိမ်စွာသာ ကိုင်တွယ်ပါ။"),
+    [
+      photo("assets/routines/nako-kind-handling-reminder.jpg",
+        t("Nako standing inside her pen looking up kindly", "サークルの中で優しそうな表情で見上げるナコ", "ခြံထဲတွင် ချစ်စဖွယ်မော့ကြည့်နေသော နာကို"),
+        t("Nako Kind Handling Reminder", "ナコ - 優しい扱いの注意", "နာကို - နူးညံ့စွာကိုင်တွယ်ရန် သတိပြုချက်"))
+    ]),
+
   routine("nako-emergency", "daily", 90, "!", 
-    t("Nako Emergency", "ナコ 緊急事態", "Nako အရေးပေါ်အခြေအနေ"), 
-    t("If she vomits, has diarrhoea, refuses food, or seems unsafe, isolate her safely, take a photo if useful, and notify Edwin immediately.", "嘔吐、下痢、食欲不振、または安全でない様子が見られる場合は、安全に隔離し、必要に応じて写真を撮り、すぐにエドウィンに通知してください。", "သူမ အော့အန်ခြင်း၊ ဝမ်းလျှောခြင်း၊ အစာမစားခြင်း သို့မဟုတ် မလုံခြုံဟု ထင်ရပါက၊ ဘေးကင်းစွာ သီးခြားထားပါ၊ လိုအပ်ပါက ဓာတ်ပုံရိုက်ပြီး Edwin ထံ ချက်ချင်း အကြောင်းကြားပါ။"), 
-    t("Immediately", "すぐに", "ချက်ချင်း"), 
-    t("Notify Edwin before doing anything else.", "他のことをする前にエドウィンに連絡してください。", "အခြားအရာများ မလုပ်ဆောင်မီ Edwin ထံ အရင်အကြောင်းကြားပါ။")),
+    t("🚨 Nako Emergency", "ナコの緊急事態", "🚨 နာကို အရေးပေါ်အခြေအနေ"),
+    t("If she vomits, has diarrhoea, or refuses food, safely isolate her, take a photo of the mess, and notify me immediately before doing anything else.", "吐く、下痢をする、ご飯を食べない場合は、安全に隔離し、汚れた場所の写真を撮り、何かする前にすぐ連絡する。", "အန်ခြင်း၊ ဝမ်းလျှောခြင်း သို့မဟုတ် အစာမစားခြင်းရှိပါက လုံခြုံစွာ ခွဲထားပါ၊ ညစ်ပတ်နေသည့်နေရာကို ဓာတ်ပုံရိုက်ပါ၊ အခြားဘာမှမလုပ်ခင် ချက်ချင်း ဆက်သွယ်ပါ။"),
+    t("Immediately", "すぐに", "ချက်ချင်း"),
+    t("Notify Edwin before doing anything else.", "何かする前にエドウィンへ連絡する。", "อခြားဘာမှမလုပ်ခင် Edwin ကို အသိပေးပါ။"),
+    [
+      photo("assets/routines/nako-emergency-vomit.jpg",
+        t("Nako's vomit on the tiled floor", "タイルの床の上のナコの嘔吐物", "ကြွေပြားကြမ်းပြင်ပေါ်ရှိ နာကို၏ အန်ဖတ်"),
+        t("An example photo of Nako's vomit on the floor.", "床の上のナコの嘔吐物の写真例。", "ကြမ်းပြင်ပေါ်ရှိ နာကို၏ အန်ဖတ်ပုံစံ နမူနာဓာတ်ပုံ။"))
+    ]),
+
   routine("mail-deliveries", "daily", 100, "P", 
-    t("Mail & Deliveries", "郵便物と配達物", "စာနှင့် ပါဆယ်ပစ္စည်းများ"), 
-    t("Check the mailbox daily, bring in packages, answer the door for deliveries, unpack outside, discard packaging, and wipe items before bringing them in.", "毎日ポストをチェックし、荷物を受け取り、配達に対応します。外で開梱して梱包材を処分し、品物を拭いてから家の中に入れます。", "စာတိုက်ပုံးကို နေ့စဉ်စစ်ဆေးပါ၊ ပါဆယ်များကို ယူပါ、တံခါးဖွင့်ပေးပါ、အပြင်တွင် ပါဆယ်များကို ဖွင့်ပြီး ထုပ်ပိုးမှုများကို စွန့်ပစ်ပါ၊ အထဲသို့ မယူဆောင်မီ ပစ္စည်းများကို သုတ်ပါ။"), 
-    t("Daily", "毎日", "နေ့စဉ်"), 
-    t("Do not bring dirty packaging directly into the house.", "汚れた梱包材を直接家の中に持ち込まないでください。", "ညစ်ပတ်သော ထုပ်ပိုးမှုများကို အိမ်ထဲသို့ တိုက်ရိုက်မယူလာပါနှင့်။")),
+    t("Mail & Deliveries", "郵便物と配達対応", "စာတိုက်နှင့် delivery များ"),
+    t("Check the mailbox daily, bring in packages, and answer the door for deliveries. Upon receiving items, unpack them outside, throw away the packaging, and fully wipe down the items outside the house before bringing them in.", "毎日郵便受けを確認し、荷物を持ち帰り、配達が来たら対応する。荷物を受け取ったら、家の外で開封し、梱包材を捨て、家に入れる前に外で商品をしっかり拭く。", "mailbox ကိုနေ့စဉ်စစ်ပါ၊ package များယူလာပါ၊ delivery လာပါက တံခါးဖွင့်လက်ခံပါ။ ပစ္စည်းရပါက အိမ်အပြင်မှာ unpack လုပ်၊ packaging ကိုလွှင့်ပြီး အိမ်ထဲမသွင်းခင် ပစ္စည်းကို အပြင်မှာ သေချာသုတ်ပါ။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    [
+      t("Keep parcels safe and inform Edwin/Yukari if anything important arrives. Do not bring dirty packaging directly into the house.", "荷物を安全に保管し、大事な物が届いたらエドウィン／ゆかりに知らせる。汚れた梱包材をそのまま家に入れない。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။ ညစ်ပတ်သော packaging ကို အိမ်ထဲ တိုက်ရိုက်မသွင်းပါနှင့်။"),
+      t("Unpack everything outside of the house. All unnecessary packaging stays outside and never enters the house; strip the items to bare.", "すべての開封作業は屋外で行ってください。不要な梱包材は屋外に留め、家の中に持ち込まないようにし、中身だけにしてください。", "အိမ်အပြင်ဘက်မှာ အရာအားလုံးကို ထုပ်ပိုးမှုဖြုတ်ပါ။ မလိုအပ်သောအကာအကွယ်ထုပ်ပိုးမှုများအားလုံးကို အပြင်မှာထားခဲ့ပါ၊ အိမ်ထဲကို ဘယ်တော့မှမသွင်းပါနှင့်၊ ပစ္စည်းသက်သက်သာဖြစ်အောင် အခွံခွာပါ။"),
+      t("Wipe down the items using disinfectant spray (or wash with water if the item is water-washable, e.g. not electronics) before bringing them in.", "家に入れる前に、消毒スプレーで商品を拭いてください（電化製品以外など、水洗い可能なものは水洗いします）。", "ပစ္စည်းများကို အိမ်ထဲသို့မသွင်းမီ ပိုးသတ်ဆေးစပရေးဖြင့် သုတ်ပါ (အကယ်၍ ပစ္စည်းမှာ ရေဆေးနိုင်သောပစ္စည်းဖြစ်လျှင် ရေဖြင့်ဆေးပါ၊ ဥပမာ- လျှပ်စစ်ပစ္စည်းများ မဟုတ်လျှင်)။")
+    ],
+    [
+      photo("assets/routines/nako-delivery-unpack-outside.jpg",
+        t("Package left outside the door", "ドアの外に置かれた荷物", "တံခါးအပြင်ဘက်တွင် ထားရှိသော ပါဆယ်လ်"),
+        t("Unpack all mail and packages outside. Disinfect or wash items before bringing them in.", "郵便物や荷物はすべて屋外で開封してください。家に入れる前に消毒または洗浄します。", "စာတိုက်ပစ္စည်းများနှင့် ပါဆယ်လ်အားလုံးကို အပြင်တွင် ထုပ်ပိုးမှုဖြုတ်ပါ။ အိမ်ထဲမသွင်းမီ ပိုးသတ်ဆေးဖျန်းပါ သို့မဟုတ် ဆေးကြောပါ။"))
+    ]),
+
   routine("general-tidiness", "daily", 110, "T", 
     t("General Tidiness", "一般的な整理整頓", "ယေဘုယျ သန့်ရှင်းသပ်ရပ်မှု"), 
     t("Wipe down items left outside and keep them properly back in place so things are not left lying around.", "出しっぱなしになっている物を拭き取り、適切に元の場所に戻して、散らかったままにしないようにします。", "အပြင်တွင် ကျန်ခဲ့သော ပစ္စည်းများကို သုတ်ပြီး ပစ္စည်းများ ရှုပ်ပွမနေစေရန် သင့်တော်သောနေရာတွင် ပြန်သိမ်းပါ။"), 
     t("Daily + as needed", "毎日＋必要に応じて", "နေ့စဉ် + လိုအပ်သလို"), 
     t("Do not leave items lying around.", "物を出しっぱなしにしないでください。", "ပစ္စည်းများကို ဟိုဟိုဒီဒီ ပြန့်ကြဲမထားပါနှင့်。")),
   routine("floor-cleaning", "daily", 120, "F", 
-    t("Floor Cleaning", "床の掃除", "ကြမ်းပြင်သန့်ရှင်းရေး"), 
-    t("Sweep and mop daily. Include normal reachable areas under the sofa and cabinets.", "毎日掃き掃除とモップ掛けを行います。ソファやキャビネットの下の手の届く範囲も含めます。", "နေ့စဉ် တံမြက်လှည်းပြီး ကြမ်းတိုက်ပါ။ ဆိုဖาနှင့် ဗีရိုများအောက်ရှိ ပုံမှန်လက်လှမ်းမီသော နေရာများကိုပါ ထည့်သွင်းပါ။"), 
-    t("Daily", "毎日", "နေ့စဉ်"), 
-    t("Use only stone-safe, pH-neutral cleaners to protect the onyx green marble.", "オニキスグリーン大理石を保護するため、石材に安全な中性クリーナーのみを使用してください。", "အိုနစ် အစိမ်းရောင် စကျင်ကျောက်ကို ကာကွယ်ရန် ကျောက်ပြားအတွက် စိတ်ချရသော、pH မျှたသော သန့်ရှင်းရေးဆေးရည်များကိုသာ အသုံးပြုပါ။")),
+    t("Floor Cleaning", "床掃除", "ကြမ်းပြင်သန့်ရှင်းရေး"),
+    t("Sweep and mop daily. Include normal reachable areas under the sofa/cabinets as part of floor cleaning.", "毎日掃き掃除とモップがけをする。ソファやキャビネット下など、通常手が届く範囲も床掃除に含める。", "နေ့စဉ် တံမြက်စည်းလှည်းပြီး mop လုပ်ပါ။ sofa/cabinet အောက်မှ ပုံမှန်လက်လှမ်းမီသည့်နေရာများကိုလည်း ကြမ်းပြင်သန့်ရှင်းရေးတွင် ထည့်ပါ။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    [
+      t("Use only stone-safe, pH-neutral cleaners to protect the onyx green marble.", "オニキスグリーン大理石を守るため、石材対応でpH中性の洗剤だけを使う。", "onyx green marble ကို ကာကွယ်ရန် stone-safe၊ pH-neutral cleaner များကိုသာ အသုံးပြုပါ။"),
+      t("Use the sweep broom, dustpan, and the flat mop with bucket system to sweep and mop the floors daily.", "毎日床を掃き、モップをかけるために、ほうき、ちりとり、およびバケツ付きフラットモップシステムを使用してください。", "ကြမ်းပြင်များကို နေ့စဉ်တံမြက်စည်းလှည်းပြီး mop တိုက်ရန်အတွက် တံမြက်စည်း၊ ဂေါ်ပြားနှင့် bucket ပါသော flat mop system ကို အသုံးပြုပါ။")
+    ],
+    [
+      photo("assets/routines/nako-floor-cleaning-tools.jpg",
+        t("Broom, dustpan, and mop bucket system", "ほうき、ちりとり、およびモップバケツシステム", "တံမြက်စည်း၊ ဂေါ်ပြားနှင့် mop bucket system"),
+        t("Floor cleaning tools including broom, dustpan, and clean water flat mop bucket system.", "ほうき、ちりとり、および清水フラットモップバケツシステムを含む床掃除用具。", "တံမြက်စည်း၊ ဂေါ်ပြားနှင့် ရေသန့် flat mop bucket system အပါအဝင် ကြမ်းပြင်သန့်ရှင်းရေးသုံးပစ္စည်းများ။"))
+    ]),
+
   routine("rubbish", "daily", 130, "R", 
-    t("Rubbish", "ゴミ出し", "အမှိုက်"), 
-    t("Take out general trash and dog waste bins daily.", "一般ゴミと犬用ゴミ箱のゴミを毎日出します。", "အထွေထွေအမှိုက်နှင့် ขွေးအမှိုက်ပုံးများကို နေ့စဉ် စွန့်ပစ်ပါ။"), 
-    t("Daily", "毎日", "နေ့စဉ်"), 
-    t("Dog waste bin should not be left to smell.", "犬用ゴミ箱に臭いが残らないようにしてください。", "ခွေးအမှိုက်ပုံးမှ အနံ့ဆိုးများ မထွက်စေရန် သတိပြုပါ။")),
+    t("Rubbish", "ゴミ出し", "အမှိုက်ပစ်ခြင်း"),
+    t("Take out general trash and dog waste bins daily.", "一般ゴミと犬用ゴミ箱を毎日捨てる。", "အထွေထွေအမှိုက်နှင့် ခွေးအမှိုက်ပုံးကို နေ့စဉ်သွန်ပါ။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    [
+      t("Dog waste bin should not be left to smell.", "犬用ゴミ箱は臭いが出るまで放置しない。", "ခွေးအမှိုက်ပုံးကို အနံ့ထွက်သည်အထိ မထားပါနှင့်။"),
+      t("Throw all rubbish and general trash daily. Do not let trash accumulate in the bins.", "毎日すべてのゴミや一般ゴミを捨ててください。ゴミ箱にゴミがたまらないようにしてください。", "အမှိုက်များနှင့် အထွေထွေအမှိုက်အားလုံးကို နေ့စဉ်ပစ်ပါ။ အမှိုက်ပုံးထဲတွင် အမှိုက်များ စုပုံမနေပါစေနှင့်။")
+    ],
+    [
+      photo("assets/routines/nako-rubbish-bin-daily.jpg",
+        t("Rubbish bin with orange plastic bag liner", "オレンジ色のゴミ袋が入ったゴミ箱", "လိမ္မော်ရောင်အမှိုက်အိတ်စွပ်ထားသော အမှိုက်ပုံး"),
+        t("Throw general trash and rubbish daily. Do not let trash build up.", "一般ゴミや生ゴミは毎日捨ててください。ゴミをためないようにします。", "အထွေထွေအမှိုက်နှင့် အမှိုက်များကို နေ့စဉ်ပစ်ပါ။ အမှိုက်များ စုမနေအောင် ထားပါ။"))
+    ]),
+
   routine("laundry", "daily", 140, "L", 
-    t("Laundry", "洗濯", "အဝတ်လျှော်ခြင်း"), 
-    t("Wash, dry, fold, and iron clothes as needed.", "必要に応じて洗濯、乾燥、たたみ、アイロン掛けを行います。", "လိုအပ်သလို အဝတ်လျှော်ပါ၊ အခြောက်ခံပါ、ခေါက်ပါ、မီးပူတိုက်ပါ။"), 
-    t("Daily", "毎日", "နေ့စဉ်"), 
-    t("Do not let damp clothes sit too long. Iron work clothes neatly when required.", "室内の湿った服を長時間放置しないでください。仕事用の服は必要に応じてきれいにアイロンを掛けます。", "စိုစွတ်သောအဝတ်များကို အကြာကြီး ပစ်မထားပါနှင့်။ လိုအပ်ပါက အလုပ်ဝတ်စုံများကို သပ်ရပ်စွာ မီးပူတိုက်ပေးပါ။")),
+    t("Laundry", "洗濯", "အဝတ်လျှော်ခြင်း"),
+    t("Wash, dry, fold, and iron clothes as needed.", "服を洗い、乾かして、たたみ、必要に応じてアイロンをかける。", "အဝတ်များကို လျှော်၊ အခြောက်ခံ၊ ခေါက်ပြီး လိုအပ်ပါက ironing လုပ်ပါ။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    [
+      t("Separate items if needed. Do not let damp clothes sit too long. Iron work clothes neatly when required.", "必要なら分けて洗う。濡れた服を長時間放置しない。必要な時は仕事着をきれいにアイロンする。", "လိုအပ်လျှင် ပစ္စည်းများကို ခွဲပါ။ စိုနေသောအဝတ်များကို ကြာကြာမထားပါနှင့်။ လိုအပ်ပါက work clothes ကို သပ်သပ်ရပ်ရပ် ironing လုပ်ပါ။"),
+      t("Do daily laundry. Wash clothes in the washing machine and hang them on the drying rack near the window to dry properly.", "毎日洗濯を行ってください。洗濯機で服を洗い、窓際の物干しラックに掛けてしっかりと乾かします。", "နေ့စဉ် အဝတ်လျှော်ပါ။ အဝတ်များကို အဝတ်လျှော်စက်ဖြင့် လျှော်ပြီး သေချာခြောက်သွေ့စေရန် ပြတင်းပေါက်အနီးရှိ အခြောက်လှန်းစင်ပေါ်တွင် လှန်းထားပါ။")
+    ],
+    [
+      photo("assets/routines/nako-laundry-washing-machine.jpg",
+        t("LG washing machine setup", "LG洗濯機のセットアップ", "LG အဝတ်လျှော်စက် တပ်ဆင်မှု"),
+        t("Use the LG washing machine to wash dirty clothes daily.", "毎日汚れた衣服を洗うために、LG洗濯機を使用してください。", "ညစ်ပတ်သောအဝတ်များကို နေ့စဉ်လျှော်ရန် LG အဝတ်လျှော်စက်ကို အသုံးပြုပါ။")),
+      photo("assets/routines/nako-laundry-drying-rack.jpg",
+        t("Hanging clothes drying rack", "室内物干しラック", "အဝတ်လှန်းစင်"),
+        t("Hang washed clothes on this drying rack near the window so they dry thoroughly.", "洗濯した服は窓際のこの物干しラックに掛けて、しっかりと乾かしてください。", "လျှော်ပြီးသောအဝတ်များကို သေချာခြောက်သွေ့စေရန် ပြတင်းပေါက်အနီးရှိ ဤအဝတ်လှန်းစင်ပေါ်တွင် လှန်းထားပါ။"))
+    ]),
+
   routine("toilet-drain-hair-trap", "daily", 150, "D", 
-    t("Toilet Drain & Hair Trap Cleaning", "浴室の排水口とヘアトラップの掃除", "ရေချိုးခန်း ရေနုတ်မြောင်းနှင့် ဆံပင်ခံဇကာ သန့်ရှင်းရေး"), 
-    t("Check bathroom/toilet drain holes and hair traps. Remove hair or stuck debris. Use the drain pump only after being taught.", "浴室/トイレの排水口とヘアトラップをチェックします。髪の毛や詰まったゴミを取り除きます。排水ポンプは使用方法を教わってから使用してください。", "ရေချိုးခန်း/အိမ်သာ ရေနုတ်မြောင်းပေါက်များနှင့် ဆံပင်ခံဇကာများကို စစ်ဆေးပါ။ ဆံပင် သို့မဟုတ် ပိတ်မိနေသောအမှိုက်များကို ဖယ်ရှားပါ။ ရေစုပ်စက်ကို သင်ကြားပေးပြီးမှသာ အသုံးပြုပါ။"), 
-    t("Daily check + as needed", "毎日チェック＋必要に応じて", "နေ့စဉ်စစ်ဆေးမှု + လိုအပ်သလို"), 
-    t("Tell Edwin if water remains stuck or smells bad.", "水が詰まったままの場合や悪臭がする場合は、エドウィンに報告してください。", "ရေတင်နေခြင်း သို့မဟုတ် အနံ့ဆိုးထွက်ခြင်းရှိပါက Edwin ထံ အကြောင်းကြားပါ။")),
+    t("Toilet Drain & Hair Trap Cleaning", "トイレ・排水口・ヘアトラップ掃除", "အိမ်သာရေစီးပေါက်နှင့် hair trap သန့်ရှင်းရေး"),
+    t("Check the bathroom/toilet drain holes and hair traps. Remove hair or stuck debris. If water does not drain properly, use the drain pump tool after being taught.", "トイレ・浴室 de 排水口やヘアトラップを確認し、髪の毛や詰まった汚れを取る。水の流れが悪い時は、教わった後に排水ポンプを使う。", "bathroom/toilet drain holes နှင့် hair traps ကို စစ်ပါ။ ဆံပင် သို့မဟုတ် ပိတ်နေသောအညစ်အကြေးများကို ဖယ်ရှားပါ။ ရေကောင်းကောင်းမစီးပါက သင်ပေးပြီးနောက် drain pump tool ကို အသုံးပြုပါ။"),
+    t("Daily check + as needed", "毎日確認＋必要に応じて", "နေ့စဉ်စစ်ဆေး + လိုအပ်သလို"),
+    [
+      t("Do not force the pump tool until taught. Tell Edwin if water remains stuck or smells bad.", "教わるまではポンプを無理に使わない。水が詰まったまま、または臭いがする場合はエドウィンに伝える。", "သင်မပေးခင် pump tool ကို အတင်းမသုံးပါနှင့်။ ရေမဆင်းသေးလျှင် သို့မဟုတ် အနံ့ဆိုးရှိလျှင် Edwin ကို ပြောပါ။"),
+      t("Clean the floor trap and hair trap regularly to prevent blockages.", "排水詰まりを防ぐため、床の排水口とヘアトラップを定期的に掃除してください。", "ပိတ်ဆို့မှုများမဖြစ်စေရန် ကြမ်းပြင်ရေစီးပေါက်နှင့် hair trap ကို ပုံမှန်သန့်ရှင်းရေးလုပ်ပါ။"),
+      t("When the toilet is clogged or flooding, use the pressure pump (pumper) to clear the blockage. The pump is stored in the narrow closet next to the refrigerator.", "トイレが詰まったり水が溢れたりした場合は、圧力ポンプを使用して詰まりを解消します。ポンプは冷蔵庫の横にある細い戸棚に保管されています。", "အိမ်သာပိတ်ဆို့လျှင် သို့မဟုတ် ရေလျှံလျှင် ပိတ်ဆို့မှုကိုရှင်းလင်းရန် ဖိအားစုပ်စက်ကို အသုံးပြုပါ။ စုပ်စက်ကို ရေခဲသေတ္တာဘေးရှိ သပ်ရပ်သော ဗီရိုထဲတွင် သိမ်းဆည်းထားသည်။"),
+      t("Make sure to clean and rinse the pump after use, and store it back in the closet next to the fridge.", "使用後は必ずポンプをきれいに洗い、冷蔵庫横の戸棚に戻してください。", "အသုံးပြုပြီးနောက် စုပ်စက်ကို သန့်ရှင်းအောင်ဆေးကြောပြီး ရေခဲသေတ္တာဘေးရှိ ဗီရိုထဲသို့ ပြန်သိမ်းပါ။"),
+      t("If the toilet remains clogged or continues to flood, notify Edwin immediately.", "詰まりが解消しない場合や水が溢れ続ける場合は、すぐにエドウィンに報告してください。", "အိမ်သာဆက်လက်ပိတ်ဆို့နေပါက သို့မဟုတ် ရေဆက်လျှံနေပါက Edwin ထံ ချက်ချင်းအကြောင်းကြားပါ။")
+    ],
+    [
+      photo("assets/routines/nako-toilet-hair-trap.jpg",
+        t("Bathroom floor drain and hair trap", "浴室の床の排水口とヘアトラップ", "ရေချိုးခန်းကြမ်းပြင် ရေစီးပေါက်နှင့် hair trap"),
+        t("Clean the floor trap and remove any hair regularly to keep the drains flowing.", "排水をスムーズに保つため、定期的に床のトラップを掃除し、髪の毛を取り除いてください。", "ရေစီးဆင်းမှု ကောင်းမွန်စေရန် ကြမ်းပြင် trap ကို ပုံမှန်သန့်ရှင်းရေးလုပ်ပြီး ဆံပင်များကို ဖယ်ရှားပါ။")),
+      photo("assets/routines/toilet-flooding-clog.jpg",
+        t("Flooded bathroom floor next to a toilet bowl", "便器の横の溢れた浴室の床", "အိမ်သာခွက်ဘေးရှိ ရေလျှံနေသော ရေချိုးခန်းကြမ်းပြင်"),
+        t("Flooded or clogged bathroom floor that needs pumping.", "ポンプで吸い出す必要がある、溢れたまたは詰まった浴室の床。", "ရေစုပ်ရန်လိုအပ်သော ရေလျှံနေသည့် သို့မဟုတ် ပိတ်ဆို့နေသည့် ရေချိုးခန်းကြမ်းပြင်။")),
+      photo("assets/routines/toilet-pump-closet.jpg",
+        t("Pressure pump stored in a narrow white cabinet next to the refrigerator", "冷蔵庫の横の細い白い戸棚に保管された圧力ポンプ", "ရေခဲသေတ္တာဘေးရှိ အဖြူရောင်ဗီရိုကျဉ်းကျဉ်းထဲတွင် သိမ်းထားသော ဖိအားစုပ်စက်"),
+        t("The pump is located inside this cabinet next to the fridge.", "ポンプはこの冷蔵庫の横の戸棚の中にあります。", "ရေစုပ်စက်သည် ရေခဲသေတ္တာဘေးရှိ ဤဗီရိုထဲတွင် ရှိသည်။"))
+    ]),
+
+
   routine("high-touch-surfaces", "weekly", 10, "H",
     t("High-Touch Surface Cleaning", "頻繁に触れる場所の掃除", "မကြာခဏကိုင်တွယ်သော မျက်နှာပြင်များ သန့်ရှင်းရေး"), 
     t("Clean door knobs, handles, switches, appliance handles, dish area, frequently used surfaces, and Edwin's workspace including keyboard, mouse, and work table.", "ドアノブ、取っ手、スイッチ、電化製品のハンドル、食器洗いエリア、頻繁に使用する表面、およびエドウィンのキーボード、マウス、デスクを含む作業スペースを掃除します。", "တံခါးလက်ကိုင်များ၊ ขလုတ်များ၊ စက်ပစ္စည်းလက်ကိုင်များ၊ ပန်းကန်ဆေးသည့်နေရာ၊ မကြာခဏအသုံးပြုသော မျက်နှာပြင်များနှင့် Edwin ၏ ကီးဘုတ်၊ မောက်စ်၊ အလုပ်စားပွဲ အပါအဝင် အလုပ်လုပ်သည့်နေရာကို သန့်ရှင်းရေးလုပ်ပါ။"), 
@@ -524,9 +655,17 @@ const routineTasks = [
     t("Clean spills early so stains and smells do not set.", "シミや臭いが定着しないよう、こぼれたものは早めに掃除してください。", "အစွန်းအထင်းနှင့် အနံ့ဆိုးများ မကျန်စေရန် စောစောစီးစီး သန့်ရှင်းရေးလုပ်ပါ။")),
   routine("general-surface-cleaning", "monthly", 20, "S", 
     t("General Surface Cleaning", "一般的な表面の掃除", "ယေဘုယျမျက်နှာပြင်များ သန့်ရှင်းရေး"), 
-    t("Wipe general surfaces including cabinets, cupboards, TV area, router, shelves, vases, handles, and decorative items. Organise if messy.", "キャビネット、食器棚、テレビ周辺、ルーター、棚、花瓶、取っ手、装飾品などの一般的な表面を拭きます。散らかっている場合は整理します。", "ဗီရိုများ၊ တီဗီဧရိယာ၊ ရောက်တာ、စင်များ、ပန်းအိုးများ、လက်ကိုင်များနှင့် အလှဆင်ပစ္စည်းများ အပါအဝင် ယေဘုယျမျက်နှာပြင်များကို သုတ်ပါ။ ရှုပ်ပွနေပါက စနစ်တကျ ပြန်စီပါ။"), 
+    t("Wipe general surfaces including cabinets, cupboards, TV area, router, shelves, vases, handles, and decorative items. Organise if messy.", "キャビネット、食器棚、テレビ周辺、ルーター、棚、花瓶、取っ手、装飾品などの一般的な表面を拭きます。散らかっている場合は整理します。", "ဗီရိုများ၊ တီဗီဧရိယာ၊ ရောက်တာ၊စင်များ၊ ပန်းအိုးများ၊ လက်ကိုင်များနှင့် အလှဆင်ပစ္စည်းများ အပါအဝင် ယေဘုယျမျက်နှာပြင်များကို သုတ်ပါ။ ရှုပ်ပွနေပါက စနစ်တကျ ပြန်စီပါ။"), 
     t("Monthly", "毎月", "လစဉ်"), 
-    t("Do ad hoc cleaning sooner if dusty, sticky, oily, or after spills.", "ほこり、粘つき、油汚れがある場合、またはこぼした後は、早めに臨時掃除を行ってください。", "ဖုန်ထူခြင်း、စေးကပ်ခြင်း、ဆီပေခြင်း သို့မဟုတ် ဖိတ်စင်ပြီးနောက် လိုအပ်ပါက သန့်ရှင်းရေးကို စောစောလုပ်ပါ။")),
+    [
+      t("Do ad hoc cleaning sooner if dusty, sticky, oily, or after spills.", "ほこり、粘つき、油汚れがある場合、またはこぼした後は、早めに臨時掃除を行ってください。", "ဖုန်ထူခြင်း၊ စေးကပ်ခြင်း၊ ဆီပေခြင်း သို့မဟုတ် ဖိတ်စင်ပြီးနောက် လိုအပ်ပါက သန့်ရှင်းရေးကို စောစောလုပ်ပါ။"),
+      t("Edwin is very sensitive to dust and will get an itchy nose and skin. Perform dusting and surface wiping regularly to keep the home dust-free.", "エドウィンはほこりに非常に敏感で、鼻のかゆみや皮膚の荒れ（かゆみ）を引き起こします。家の中にほこりがたまらないよう、定期的にほこり取りと表面の拭き掃除を行ってください。", "Edwin သည် ဖုန်မှုန့်များနှင့် မတည့်ပါ (နှာခေါင်းယားခြင်းနှင့် အရေပြားယားယံခြင်း ဖြစ်စေသည်)။ အိမ်တွင် ဖုန်ကင်းစင်စေရန် ပုံမှန် ဖုန်သုတ်ခြင်းနှင့် မျက်နှာပြင်များကို သုတ်ခြင်းတို့ ပြုလုပ်ပါ။")
+    ],
+    [
+      photo("assets/routines/edwin-dust-allergy.jpg",
+        t("Edwin's skin showing allergic redness and itching from dust", "ほこりによるアレルギー性の赤みとかゆみが出たエドウィンの肌", "ဖုန်မှုန့်ကြောင့် အရေပြားနီရဲပြီး ယားယံသည့် ဓာတ်မတည့်မှုဖြစ်နေသော Edwin ၏ အရေပြား"),
+        t("Edwin is very sensitive to dust and will get an itchy nose and skin.", "エドウィンはほこりに非常に敏感で、鼻のかゆみや皮膚の荒れ（かゆみ）を引き起こします。", "Edwin သည် ဖုန်မှုန့်များနှင့် မတည့်ပါ (နှာခေါင်းယားခြင်းနှင့် အရေပြားယားယံခြင်း ဖြစ်စေသည်)။"))
+    ]),
   routine("pillow-mattress-vacuuming", "monthly", 30, "P", 
     t("Pillow & Mattress Vacuuming", "枕とマットレスの掃除機掛け", "ခေါင်းအုံးနှင့် မွေ့ရာများကို ဖုန်စုပ်ခြင်း"), 
     t("Vacuum pillows and accessible mattress surfaces using a small mattress/pillow vacuum cleaner after one is bought.", "専用の小型掃除機が購入された後、それを使用して枕と手の届くマットレス表面に掃除機を掛けます。", "ခေါင်းအုံး/မွေ့ရာ ဖုန်စုပ်စက်ဝယ်ပြီးပါက ခေါင်းအုံးများနှင့် လက်လှမ်းမီသော မွေ့ရာမျက်နှာပြင်များကို ဖုန်စုပ်ပေးပါ။"), 
