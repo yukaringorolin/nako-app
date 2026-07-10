@@ -1,11 +1,6 @@
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
-const DIARY_TRANSLATION_LANGS = [
-  { key: "en", title: "English" },
-  { key: "jp", title: "日本語" },
-  { key: "mm", title: "မြန်မာ" }
-];
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources } = window.nakoData;
 
 // safeStorage wraps localStorage to handle blocked access/SecurityErrors
@@ -441,8 +436,9 @@ function renderDiaryFeedback(item) {
   const entry = diary.entries[todayKey] || null;
   const draft = getDiaryDraft(todayKey);
   const textValue = draft.text ?? entry?.originalText ?? "";
-  const status = diarySaveInProgress ? "pending" : entry?.status || (firebaseStatus.mode === "local" ? "unavailable" : "");
-  const statusText = diarySaveInProgress ? label("diarySaving") : diaryEntryStatusLabel(status);
+  const status = diarySaveInProgress ? "pending" : entry?.submittedAt ? "saved" : "idle";
+  const statusText = diarySaveInProgress ? label("diarySaving") : entry?.submittedAt ? diaryEntryStatusLabel(status) : "";
+  const statusBadge = statusText ? `<span class="diary-status ${esc(status)}">${esc(statusText)}</span>` : "";
   const actionLabel = entry?.submittedAt ? label("diaryUpdate") : label("diarySubmit");
   const message = diaryStatusMessage ? `<p class="diary-message">${esc(diaryStatusMessage)}</p>` : "";
   const content = `
@@ -456,11 +452,11 @@ function renderDiaryFeedback(item) {
       <textarea class="diary-field" data-diary-text="${esc(todayKey)}" placeholder="${esc(label("diaryPlaceholder"))}" ${diarySaveInProgress ? "disabled" : ""}>${esc(textValue)}</textarea>
       <div class="diary-actions">
         <button class="action-button primary" data-diary-submit="${esc(todayKey)}" ${diarySaveInProgress ? "disabled" : ""}>${esc(actionLabel)}</button>
-        <span class="diary-status ${esc(status || "idle")}">${esc(statusText)}</span>
+        ${statusBadge}
       </div>
       ${message}
     </section>
-    ${renderDiaryTranslations(entry)}
+    ${renderDiarySavedEntry(entry)}
     <section class="panel">
       <h2>${esc(label("diaryRecent"))}</h2>
       ${renderDiaryHistory()}
@@ -468,30 +464,20 @@ function renderDiaryFeedback(item) {
   renderShell(tr(item.title), content, true);
 }
 
-function renderDiaryTranslations(entry) {
+function renderDiarySavedEntry(entry) {
   if (!entry) return "";
   const original = entry.originalText || "";
-  const detected = entry.sourceLanguage ? `<span>${esc(label("diaryDetectedLanguage"))}: <strong>${esc(entry.sourceLanguage)}</strong></span>` : "";
   const updated = entry.updatedAt ? `<span>${esc(label("diaryLastUpdated"))}: <strong>${esc(formatDiaryTimestamp(entry.updatedAt))}</strong></span>` : "";
-  const translations = entry.translations || {};
-  const hasTranslations = entry.status === "ready" && DIARY_TRANSLATION_LANGS.some(({ key }) => translations[key]);
-  const cards = hasTranslations
-    ? `<div class="translation-grid">${DIARY_TRANSLATION_LANGS.map(({ key, title }) => `<article class="translation-card">
-        <h3>${esc(title)}</h3>
-        <p>${esc(translations[key] || original)}</p>
-      </article>`).join("")}</div>`
-    : `<p class="diary-message">${esc(label("diaryLocalOnly"))}</p>`;
-  return `<section class="panel diary-translation-panel">
+  return `<section class="panel diary-saved-panel">
     <div class="diary-panel-head">
-      <h2>${esc(label("diaryTranslations"))}</h2>
-      <span class="diary-status ${esc(entry.status || "idle")}">${esc(diaryEntryStatusLabel(entry.status))}</span>
+      <h2>${esc(label("diarySavedEntry"))}</h2>
+      <span class="diary-status saved">${esc(label("diarySavedStatus"))}</span>
     </div>
-    <div class="diary-meta-line">${detected}${updated}</div>
-    <article class="translation-card original">
-      <h3>${esc(label("diaryOriginal"))}</h3>
+    <div class="diary-meta-line">${updated}</div>
+    <article class="diary-text-card">
+      <h3>${esc(label("diaryEntryText"))}</h3>
       <p>${esc(original)}</p>
     </article>
-    ${cards}
     <button class="action-button secondary" data-diary-whatsapp>${esc(label("diaryWhatsApp"))}</button>
   </section>`;
 }
@@ -505,13 +491,12 @@ function renderDiaryHistory() {
   if (!entries.length) return `<div class="empty-state">${esc(label("diaryNoEntries"))}</div>`;
 
   return `<div class="diary-history-list">${entries.map((entry) => {
-    const translated = entry.translations?.[currentLang] || entry.originalText;
     return `<article class="diary-history-card">
       <div>
         <h3>${esc(formatDiaryDate(entry.dateKey))}</h3>
-        <p>${esc(translated)}</p>
+        <p>${esc(entry.originalText)}</p>
       </div>
-      <span class="diary-status ${esc(entry.status || "idle")}">${esc(diaryEntryStatusLabel(entry.status))}</span>
+      <span class="diary-status saved">${esc(label("diarySavedStatus"))}</span>
     </article>`;
   }).join("")}</div>`;
 }
@@ -594,7 +579,7 @@ function handleSyncSettings() {
   }
 }
 
-async function handleDiarySubmit(dateKey) {
+function handleDiarySubmit(dateKey) {
   const draft = getDiaryDraft(dateKey);
   const text = String(draft.text || "").trim();
 
@@ -611,78 +596,19 @@ async function handleDiarySubmit(dateKey) {
   const now = nowIso();
   const diary = getDiaryState();
   const previousEntry = diary.entries[dateKey] || {};
-  const existingTranslations = previousEntry.originalText === text ? previousEntry.translations || {} : {};
   diary.entries[dateKey] = {
-    ...previousEntry,
     dateKey,
     originalText: text,
-    translations: existingTranslations,
-    sourceLanguage: previousEntry.sourceLanguage || "",
-    status: "pending",
-    error: "",
+    status: "saved",
     submittedAt: previousEntry.submittedAt || now,
     updatedAt: now
   };
   diary.drafts[dateKey] = { text, updatedAt: now };
   saveState();
+  diarySaveInProgress = false;
+  diaryStatusMessage = label("diarySaved");
   render();
-
-  try {
-    const translation = await requestDiaryTranslation(text, dateKey);
-    const liveEntry = getDiaryState().entries[dateKey];
-    if (liveEntry?.originalText === text) {
-      liveEntry.translations = translation.ok ? normalizeDiaryTranslations(translation.translations, text) : {};
-      liveEntry.sourceLanguage = translation.sourceLanguage || "";
-      liveEntry.status = translation.ok ? "ready" : "unavailable";
-      liveEntry.error = translation.error || "";
-      liveEntry.updatedAt = nowIso();
-      saveState();
-      diaryStatusMessage = translation.ok ? label("diarySaved") : label("diaryLocalOnly");
-    }
-  } catch (error) {
-    const liveEntry = getDiaryState().entries[dateKey];
-    if (liveEntry?.originalText === text) {
-      liveEntry.status = "unavailable";
-      liveEntry.translations = {};
-      liveEntry.error = error?.message || label("diaryTranslationError");
-      liveEntry.updatedAt = nowIso();
-      saveState();
-      diaryStatusMessage = label("diaryLocalOnly");
-    }
-  } finally {
-    diarySaveInProgress = false;
-    render();
-    openWhatsAppNotice();
-  }
-}
-
-async function requestDiaryTranslation(text, dateKey) {
-  const firebaseSync = window.nakoFirebase;
-  if (!firebaseSync?.translateDiary || firebaseStatus.mode === "local") {
-    return {
-      ok: false,
-      sourceLanguage: "",
-      translations: {},
-      error: label("diaryLocalOnly")
-    };
-  }
-
-  const result = await firebaseSync.translateDiary({ text, dateKey });
-  return result?.ok ? result : {
-    ok: false,
-    sourceLanguage: "",
-    translations: {},
-    error: result?.error || label("diaryLocalOnly")
-  };
-}
-
-function normalizeDiaryTranslations(translations, fallbackText) {
-  const source = translations && typeof translations === "object" ? translations : {};
-  return {
-    en: source.en || fallbackText,
-    jp: source.jp || fallbackText,
-    mm: source.mm || fallbackText
-  };
+  openWhatsAppNotice();
 }
 
 function openWhatsAppNotice() {
@@ -874,11 +800,8 @@ function formatDiaryTimestamp(value) {
 }
 
 function diaryEntryStatusLabel(status) {
-  if (status === "ready") return label("diaryTranslationReady");
-  if (status === "pending") return label("diaryTranslationPending");
-  if (status === "error") return label("diaryTranslationUnavailable");
-  if (status === "unavailable") return label("diaryTranslationUnavailable");
-  return label("diaryTranslationUnavailable");
+  if (status === "pending") return label("diarySaving");
+  return label("diarySavedStatus");
 }
 
 function formatWeightDate(date, lang) {

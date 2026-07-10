@@ -40,30 +40,6 @@
       pendingTimer = window.setTimeout(flushPendingState, 450);
       return true;
     },
-    async translateDiary(payload) {
-      if (!auth || !auth.currentUser) {
-        return { ok: false, error: "Firebase Auth unavailable" };
-      }
-
-      try {
-        const token = await auth.currentUser.getIdToken();
-        const response = await fetch("/api/translateDiary", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload || {})
-        });
-        const body = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          return { ok: false, error: body.error || `Translation request failed (${response.status})` };
-        }
-        return body;
-      } catch (error) {
-        return { ok: false, error: readableError(error) };
-      }
-    },
     async getStorageDownloadURL(path) {
       if (!storage || !path) return "";
       try {
