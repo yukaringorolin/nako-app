@@ -100,14 +100,40 @@ function go(hash) {
 /* ==========================================================================
    SECTION 2: RENDERERS - MAIN LAYOUT & SHELL
    ========================================================================== */
+const scrollPositions = {};
+let activeRouteKey = null;
+
 function render() {
+  const currentScroll = window.scrollY;
+  const oldRouteKey = activeRouteKey;
+
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang === "mm" ? "my" : "en";
   const route = parseRoute();
-  if (route.view === "section") return renderSection(route.sectionId);
-  if (route.view === "routine") return renderRoutine(route.routineId);
-  if (route.view === "food") return renderFood(route.foodId);
-  if (route.view === "recipe") return renderRecipe(route.recipeId);
-  renderHome();
+  
+  const newRouteKey = location.hash || "#home";
+  activeRouteKey = newRouteKey;
+
+  if (oldRouteKey) {
+    scrollPositions[oldRouteKey] = currentScroll;
+  }
+
+  if (route.view === "section") {
+    renderSection(route.sectionId);
+  } else if (route.view === "routine") {
+    renderRoutine(route.routineId);
+  } else if (route.view === "food") {
+    renderFood(route.foodId);
+  } else if (route.view === "recipe") {
+    renderRecipe(route.recipeId);
+  } else {
+    renderHome();
+  }
+
+  const targetScroll = oldRouteKey === newRouteKey ? currentScroll : (scrollPositions[newRouteKey] || 0);
+  window.scrollTo(0, targetScroll);
+  setTimeout(() => {
+    window.scrollTo(0, targetScroll);
+  }, 0);
 }
 
 function renderShell(title, content, showBack = false) {
@@ -844,7 +870,7 @@ function ingredientImage(key) {
     "sake": "sake.jpg",
     "sugar": "sugar.jpg",
     "ginger": "ginger.jpg",
-    "oil": "oil.jpg",
+    "oil": "oil.png",
     "sesame": "sesame.jpg",
     "salmon-fillet": "salmon.jpg",
     "salt": "salt.jpg",
@@ -860,7 +886,7 @@ function ingredientImage(key) {
     "cucumber": "cucumber.jpg",
     "sesame-oil": "sesame-oil.jpg",
     "vinegar": "vinegar.jpg",
-    "water": "water.jpg",
+    "water": "water.png",
     "miso": "miso-paste.jpg"
   };
 
