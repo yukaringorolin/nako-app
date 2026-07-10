@@ -30,6 +30,7 @@ window.addEventListener("hashchange", render);
 document.addEventListener("click", handleClick);
 document.addEventListener("input", handleInput);
 document.addEventListener("change", handleChange);
+document.addEventListener("blur", handleBlur, true);
 initFirebaseSync();
 render();
 
@@ -43,6 +44,14 @@ function loadState() {
 function saveState(options = {}) {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
   if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(appState);
+}
+
+function renderUnlessDiaryTyping() {
+  if (!isDiaryTextInputActive()) render();
+}
+
+function isDiaryTextInputActive() {
+  return Boolean(document.activeElement?.matches?.("[data-diary-text]"));
 }
 
 function tr(value) {
@@ -692,8 +701,13 @@ function handleInput(event) {
     draft.text = diaryText.value;
     draft.updatedAt = nowIso();
     diaryStatusMessage = "";
-    return saveState();
+    return saveState({ remote: false });
   }
+}
+
+function handleBlur(event) {
+  const diaryText = event.target.closest?.("[data-diary-text]");
+  if (diaryText) saveState();
 }
 
 /* ==========================================================================
@@ -733,7 +747,7 @@ function initFirebaseSync() {
 
   firebaseSync.onStatus((status) => {
     firebaseStatus = status;
-    render();
+    renderUnlessDiaryTyping();
   });
 
   firebaseSync.startStateSync({
@@ -741,7 +755,7 @@ function initFirebaseSync() {
     applyRemoteState: (nextState) => {
       appState = nextState && typeof nextState === "object" ? nextState : {};
       saveState({ remote: false });
-      render();
+      renderUnlessDiaryTyping();
     }
   });
 }
