@@ -23,6 +23,14 @@ function photo(src, alt, caption) {
   return { src, alt, caption };
 }
 
+function ingredient(name, amount, key, alternatives = []) {
+  return { name, amount, key, alternatives };
+}
+
+function ingredientOption(key, name) {
+  return { key, name };
+}
+
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
   return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
 }
@@ -37,7 +45,10 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog",
     description: isHuman 
       ? t("Japanese home-cooked recipe idea.", "日本の家庭料理レシピのアイデア。", "ဂျပန်အိမ်ချက် ဟင်းချက်နည်းအိုင်ဒီယာ။")
       : t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း。"), 
-    ingredients: ingredients.map(([name, amount, key]) => ({ key, name, amount })), 
+    ingredients: ingredients.map((entry) => Array.isArray(entry) ? (() => {
+      const [name, amount, key] = entry;
+      return { key, name, amount, alternatives: [] };
+    })() : { ...entry, alternatives: entry.alternatives || [] }),
     method, 
     note: isHuman ? note : (photos.length > 0 ? note : recipeNote(note)),
     photos,
@@ -1327,7 +1338,15 @@ const recipes = [
       [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"],
@@ -1406,7 +1425,15 @@ const recipes = [
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "10g", "ginger"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "20g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
     ],
@@ -1438,11 +1465,35 @@ const recipes = [
     t("Chicken Oyakodon (No Onion)", "親子丼（玉ねぎなし）", "ကြက်သားဥဝိုင်းထမင်းသုပ် (ကြက်သွန်မပါ)"),
     [
       [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice"],
-      [t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "200g", "chicken-thigh"],
+      ingredient(
+        t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"),
+        "200g",
+        "chicken-thigh",
+        [
+          ingredientOption("chicken-thigh", t("Skinless chicken thigh", "皮なし鶏もも肉", "အရေပြားမပါသော ကြက်ပေါင်သား")),
+          ingredientOption("chicken-breast", t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"))
+        ]
+      ),
       [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "70g", "mushroom"],
+      ingredient(
+        t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"),
+        "70g",
+        "shimeji-mushroom",
+        [
+          ingredientOption("shimeji-mushroom", t("Shimeji mushroom", "しめじ", "ရှီမဲဂျီမှို")),
+          ingredientOption("button-mushroom", t("Button mushroom", "マッシュルーム", "ဘတန်မှို"))
+        ]
+      ),
       [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "70g", "napa-cabbage"],
-      [t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"), "100g", "dashi"],
+      ingredient(
+        t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"),
+        "100g",
+        "dashi",
+        [
+          ingredientOption("dashi", t("Dashi stock", "だし汁", "ဒါရှီစတော့")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
       [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"]
@@ -1485,7 +1536,7 @@ const recipes = [
       [t("Cucumber", "きゅうり", "သခွားသီး"), "80g", "cucumber"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "12g", "soy-sauce"],
       [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "4g", "sesame-oil"],
-      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "vinegar"],
+      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "rice-vinegar"],
       [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame"]
     ],
     [
@@ -1523,7 +1574,15 @@ const recipes = [
       [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
@@ -1558,10 +1617,26 @@ const recipes = [
   recipe("chicken-miso-nabe",
     t("Chicken Miso Nabe", "鶏肉の味噌鍋", "ကြက်သား မစ်ဆိုဟော့ပေါ့"),
     [
-      [t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "220g", "chicken-thigh"],
+      ingredient(
+        t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"),
+        "220g",
+        "chicken-thigh",
+        [
+          ingredientOption("chicken-thigh", t("Skinless chicken thigh", "皮なし鶏もも肉", "အရေပြားမပါသော ကြက်ပေါင်သား")),
+          ingredientOption("chicken-breast", t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"))
+        ]
+      ),
       [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu"],
       [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "150g", "napa-cabbage"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "80g", "mushroom"],
+      ingredient(
+        t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"),
+        "80g",
+        "shimeji-mushroom",
+        [
+          ingredientOption("shimeji-mushroom", t("Shimeji mushroom", "しめじ", "ရှီမဲဂျီမှို")),
+          ingredientOption("button-mushroom", t("Button mushroom", "マッシュルーム", "ဘတန်မှို"))
+        ]
+      ),
       [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
       [t("Water", "水", "ရေ"), "450g", "water"],
       [t("Miso paste", "味噌", "မစ်ဆိုအနှစ်"), "35g", "miso"],
@@ -1654,6 +1729,52 @@ function checkTranslations() {
 
   return missing;
 }
+
+
+(() => {
+  const fairPrice = "https://www.fairprice.com.sg";
+  const product = (path) => `${fairPrice}${path}`;
+  const search = (query) => `${fairPrice}/search?query=${encodeURIComponent(query)}`;
+
+  window.nakoIngredientCatalog = Object.freeze({
+    "chicken-tender": { file: "chicken-tender.jpg", source: product("/product/master-grocer-99-fat-free-chicken-tenderloin-250g-chilled-250-g-90175216"), target: "Raw chicken tenderloin in a chilled supermarket pack" },
+    "chicken-minced": { file: "chicken-minced.jpg", source: product("/product/kee-song-fresh-chicken-minced-300g-13097678"), target: "Fresh minced chicken in a labelled supermarket tray" },
+    "chicken-breast": { file: "chicken-breast.jpg", source: product("/product/aw-s-market-kampong-chicken-breast-fillet-cube-300-g-90125965"), target: "Raw skinless chicken breast in a chilled supermarket pack" },
+    "chicken-thigh": { file: "chicken-thigh.jpg", source: product("/product/farmfresh-chicken-leg-boneless-cube-250-g-90199908"), target: "Raw boneless chicken thigh in a chilled supermarket pack" },
+    pumpkin: { file: "pumpkin.jpg", source: product("/product/orgo-fresh-pumpkin-whole-pumkin-1-pc-90145601"), target: "Whole fresh pumpkin" },
+    carrot: { file: "carrot.jpg", source: product("/product/snackables-snack-fresh-carrots-250g-13280574"), target: "Fresh whole carrots" },
+    whitefish: { file: "whitefish.jpg", source: product("/product/catch-seafood-pacific-dory-fillet"), target: "Plain frozen dory / white-fish fillet package" },
+    "sweet-potato": { file: "sweet-potato.jpg", source: product("/product/13135134"), target: "Fresh sweet potatoes" },
+    zucchini: { file: "zucchini.jpg", source: product("/product/thygrace-green-zucchini-2-per-pack-13183890"), target: "Fresh green zucchini" },
+    "napa-cabbage": { file: "napa-cabbage.jpg", source: product("/product/wa-wa-chye-baby-wongbok-250g-10950392"), target: "Whole wong bok / napa cabbage" },
+    broccoli: { file: "broccoli.jpg", source: product("/product/orgo-fresh-royal-broccoli-280-g-90153099"), target: "Fresh broccoli head or supermarket pack" },
+    rice: { file: "rice.jpg", source: product("/product/fairprice-japonica-rice-premium-short-grain-25kg-13086207"), target: "Japanese-style short-grain rice bag" },
+    "soy-sauce": { file: "soy-sauce.jpg", source: product("/product/12400028"), target: "Japanese-style soy sauce bottle" },
+    mirin: { file: "mirin.jpg", source: product("/product/takara-mirin-japanese-sweet-cooking-rice-wine-300ml-90002289"), target: "Mirin bottle" },
+    "cooking-sake": { file: "cooking-sake.jpg", source: product("/product/kirei-premium-hinode-japan-ryorishu-cooking-sake-400-ml-90121995"), target: "Japanese cooking-sake bottle" },
+    sugar: { file: "sugar.jpg", source: product("/product/fairprice-pure-cane-sugar-fine-grain-3kg-13179180"), target: "White-sugar packet" },
+    ginger: { file: "ginger.jpg", source: product("/product/orgo-fresh-ginger-210-g-90160216"), target: "Fresh ginger root" },
+    oil: { file: "oil.jpg", source: product("/product/fairprice-premium-canola-with-sunflower-oil-3l-13176832"), target: "Neutral cooking-oil bottle" },
+    sesame: { file: "sesame.jpg", source: product("/product/pasar-white-sesame-seed-150g-13218883"), target: "White sesame seed packet" },
+    "salmon-fillet": { file: "salmon.jpg", source: product("/product/catch-seafood-atlantic-salmon-fillet-1-3-kg-90122048"), target: "Raw salmon fillet package" },
+    salt: { file: "salt.jpg", source: product("/product/fairprice-premium-fine-salt-500g-432823"), target: "Ordinary table-salt packet" },
+    eggs: { file: "egg.jpg", source: product("/product/pasar-fresh-eggs-30-per-pack-13197730"), target: "Fresh egg carton" },
+    spinach: { file: "spinach.jpg", source: product("/product/kok-fah-baby-spinach-200g-13032623"), target: "Fresh spinach pack" },
+    lemon: { file: "lemon.jpg", source: product("/product/freshco-lemons-fresh"), target: "Fresh lemons" },
+    pork: { file: "pork.jpg", source: product("/product/simply-yumme-pork-lean-slice"), target: "Lean raw pork slices in a labelled pack" },
+    cabbage: { file: "cabbage.jpg", source: product("/product/orgo-fresh-cabbage-whole-1-pc-90150967"), target: "Ordinary whole green cabbage" },
+    "shimeji-mushroom": { file: "shimeji-mushroom.jpg", source: product("/product/hokto-mushroom-white-shimeiji-100g-11017131"), target: "Shimeji mushroom retail pack" },
+    "button-mushroom": { file: "button-mushroom.jpg", source: product("/product/pasar-white-button-mushroom-200g-13101275"), target: "White button mushroom retail pack" },
+    dashi: { file: "dashi.jpg", source: product("/product/ajinomoto-hon-dashi-kirei-1-kg-90155858"), target: "Japanese dashi stock packet" },
+    tuna: { file: "tuna.jpg", source: product("/product/fairprice-tuna-flakes-in-water-160g-13256630"), target: "Canned tuna in water" },
+    tofu: { file: "firm-tofu.jpg", source: product("/product/fairprice-tau-kwa-2s-400g-13233989"), target: "Firm tofu in refrigerated retail packaging" },
+    cucumber: { file: "cucumber.jpg", source: product("/product/malaysia-naturally-fresh-japanese-cucumber-400g-13097478"), target: "Fresh Japanese cucumber" },
+    "sesame-oil": { file: "sesame-oil.jpg", source: product("/product/lee-kum-kee-pure-sesame-oil-207ml-13160717"), target: "Sesame-oil bottle" },
+    "rice-vinegar": { file: "rice-vinegar.jpg", source: product("/product/redman-rice-vinegar"), target: "Rice-vinegar bottle" },
+    miso: { file: "miso-paste.jpg", source: product("/product/kirei-yamataka-omiso-ya-san-japanese-shiro-miso-paste-1-kg-90085339"), target: "Japanese miso tub or pouch" },
+    water: { file: null, source: null, target: "No image: water is not a shopping item" }
+  });
+})();
 
 
 window.nakoData = { 

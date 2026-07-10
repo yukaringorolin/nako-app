@@ -61,7 +61,15 @@ const recipes = [
       [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"],
@@ -140,7 +148,15 @@ const recipes = [
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "10g", "ginger"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "20g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
     ],
@@ -172,11 +188,35 @@ const recipes = [
     t("Chicken Oyakodon (No Onion)", "親子丼（玉ねぎなし）", "ကြက်သားဥဝိုင်းထမင်းသုပ် (ကြက်သွန်မပါ)"),
     [
       [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice"],
-      [t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "200g", "chicken-thigh"],
+      ingredient(
+        t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"),
+        "200g",
+        "chicken-thigh",
+        [
+          ingredientOption("chicken-thigh", t("Skinless chicken thigh", "皮なし鶏もも肉", "အရေပြားမပါသော ကြက်ပေါင်သား")),
+          ingredientOption("chicken-breast", t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"))
+        ]
+      ),
       [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "70g", "mushroom"],
+      ingredient(
+        t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"),
+        "70g",
+        "shimeji-mushroom",
+        [
+          ingredientOption("shimeji-mushroom", t("Shimeji mushroom", "しめじ", "ရှီမဲဂျီမှို")),
+          ingredientOption("button-mushroom", t("Button mushroom", "マッシュルーム", "ဘတန်မှို"))
+        ]
+      ),
       [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "70g", "napa-cabbage"],
-      [t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"), "100g", "dashi"],
+      ingredient(
+        t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"),
+        "100g",
+        "dashi",
+        [
+          ingredientOption("dashi", t("Dashi stock", "だし汁", "ဒါရှီစတော့")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
       [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"]
@@ -219,7 +259,7 @@ const recipes = [
       [t("Cucumber", "きゅうり", "သခွားသီး"), "80g", "cucumber"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "12g", "soy-sauce"],
       [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "4g", "sesame-oil"],
-      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "vinegar"],
+      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "rice-vinegar"],
       [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame"]
     ],
     [
@@ -257,7 +297,15 @@ const recipes = [
       [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
       [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
+      ingredient(
+        t("Cooking sake or water", "料理酒または水", "ဟင်းချက်ဆာကေး သို့မဟုတ် ရေ"),
+        "18g",
+        "cooking-sake",
+        [
+          ingredientOption("cooking-sake", t("Cooking sake", "料理酒", "ဟင်းချက်ဆာကေး")),
+          ingredientOption("water", t("Water", "水", "ရေ"))
+        ]
+      ),
       [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
       [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
       [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
@@ -292,10 +340,26 @@ const recipes = [
   recipe("chicken-miso-nabe",
     t("Chicken Miso Nabe", "鶏肉の味噌鍋", "ကြက်သား မစ်ဆိုဟော့ပေါ့"),
     [
-      [t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "220g", "chicken-thigh"],
+      ingredient(
+        t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"),
+        "220g",
+        "chicken-thigh",
+        [
+          ingredientOption("chicken-thigh", t("Skinless chicken thigh", "皮なし鶏もも肉", "အရေပြားမပါသော ကြက်ပေါင်သား")),
+          ingredientOption("chicken-breast", t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"))
+        ]
+      ),
       [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu"],
       [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "150g", "napa-cabbage"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "80g", "mushroom"],
+      ingredient(
+        t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"),
+        "80g",
+        "shimeji-mushroom",
+        [
+          ingredientOption("shimeji-mushroom", t("Shimeji mushroom", "しめじ", "ရှီမဲဂျီမှို")),
+          ingredientOption("button-mushroom", t("Button mushroom", "マッシュルーム", "ဘတန်မှို"))
+        ]
+      ),
       [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
       [t("Water", "水", "ရေ"), "450g", "water"],
       [t("Miso paste", "味噌", "မစ်ဆိုအနှစ်"), "35g", "miso"],

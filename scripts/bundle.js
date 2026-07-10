@@ -3,6 +3,7 @@ const path = require('path');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT_DIR, 'src/data');
+const INGREDIENT_CATALOG_FILE = path.join(ROOT_DIR, 'src/ingredient_catalog.js');
 const OUTPUT_FILE = path.join(ROOT_DIR, 'src/data.js');
 
 const filesToBundle = [
@@ -30,6 +31,12 @@ try {
     const content = fs.readFileSync(filePath, 'utf8');
     combinedContent += content + '\n\n';
   }
+
+  if (!fs.existsSync(INGREDIENT_CATALOG_FILE)) {
+    throw new Error(`Required ingredient catalog not found: ${INGREDIENT_CATALOG_FILE}`);
+  }
+  console.log('Bundling ingredient_catalog.js...');
+  combinedContent += fs.readFileSync(INGREDIENT_CATALOG_FILE, 'utf8') + '\n\n';
 
   // Append export registration and check logic
   combinedContent += `window.nakoData = { 
