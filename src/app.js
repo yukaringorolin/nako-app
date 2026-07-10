@@ -474,14 +474,13 @@ function renderDiaryTranslations(entry) {
   const detected = entry.sourceLanguage ? `<span>${esc(label("diaryDetectedLanguage"))}: <strong>${esc(entry.sourceLanguage)}</strong></span>` : "";
   const updated = entry.updatedAt ? `<span>${esc(label("diaryLastUpdated"))}: <strong>${esc(formatDiaryTimestamp(entry.updatedAt))}</strong></span>` : "";
   const translations = entry.translations || {};
-  const cards = DIARY_TRANSLATION_LANGS.map(({ key, title }) => {
-    const translated = translations[key] || "";
-    const body = translated ? esc(translated) : esc(diaryEntryStatusLabel(entry.status));
-    return `<article class="translation-card">
-      <h3>${esc(title)}</h3>
-      <p>${body}</p>
-    </article>`;
-  }).join("");
+  const hasTranslations = entry.status === "ready" && DIARY_TRANSLATION_LANGS.some(({ key }) => translations[key]);
+  const cards = hasTranslations
+    ? `<div class="translation-grid">${DIARY_TRANSLATION_LANGS.map(({ key, title }) => `<article class="translation-card">
+        <h3>${esc(title)}</h3>
+        <p>${esc(translations[key] || original)}</p>
+      </article>`).join("")}</div>`
+    : `<p class="diary-message">${esc(label("diaryLocalOnly"))}</p>`;
   return `<section class="panel diary-translation-panel">
     <div class="diary-panel-head">
       <h2>${esc(label("diaryTranslations"))}</h2>
@@ -492,7 +491,7 @@ function renderDiaryTranslations(entry) {
       <h3>${esc(label("diaryOriginal"))}</h3>
       <p>${esc(original)}</p>
     </article>
-    <div class="translation-grid">${cards}</div>
+    ${cards}
     <button class="action-button secondary" data-diary-whatsapp>${esc(label("diaryWhatsApp"))}</button>
   </section>`;
 }
@@ -643,12 +642,12 @@ async function handleDiarySubmit(dateKey) {
   } catch (error) {
     const liveEntry = getDiaryState().entries[dateKey];
     if (liveEntry?.originalText === text) {
-      liveEntry.status = "error";
+      liveEntry.status = "unavailable";
       liveEntry.translations = {};
       liveEntry.error = error?.message || label("diaryTranslationError");
       liveEntry.updatedAt = nowIso();
       saveState();
-      diaryStatusMessage = label("diaryTranslationError");
+      diaryStatusMessage = label("diaryLocalOnly");
     }
   } finally {
     diarySaveInProgress = false;
@@ -669,10 +668,12 @@ async function requestDiaryTranslation(text, dateKey) {
   }
 
   const result = await firebaseSync.translateDiary({ text, dateKey });
-  if (!result?.ok) {
-    throw new Error(result?.error || label("diaryTranslationError"));
-  }
-  return result;
+  return result?.ok ? result : {
+    ok: false,
+    sourceLanguage: "",
+    translations: {},
+    error: result?.error || label("diaryLocalOnly")
+  };
 }
 
 function normalizeDiaryTranslations(translations, fallbackText) {
@@ -875,7 +876,7 @@ function formatDiaryTimestamp(value) {
 function diaryEntryStatusLabel(status) {
   if (status === "ready") return label("diaryTranslationReady");
   if (status === "pending") return label("diaryTranslationPending");
-  if (status === "error") return label("diaryTranslationError");
+  if (status === "error") return label("diaryTranslationUnavailable");
   if (status === "unavailable") return label("diaryTranslationUnavailable");
   return label("diaryTranslationUnavailable");
 }
