@@ -125,6 +125,12 @@ const ui = {
     diaryWhatsApp: "Open WhatsApp notice",
     diaryWhatsAppMessage: "I logged today's diary in the Nako Home Care app.",
     diaryLastUpdated: "Last updated",
+    diaryOriginal: "Original diary",
+    diaryManualTranslations: "Manual translations",
+    diaryJapaneseTranslation: "Japanese translation",
+    diaryMyanmarTranslation: "Myanmar translation",
+    diaryTranslationPlaceholder: "Add manual translation here.",
+    diaryCurrentLanguagePreview: "Current language preview",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -193,6 +199,12 @@ const ui = {
     diaryWhatsApp: "WhatsApp通知を開く",
     diaryWhatsAppMessage: "Nako Home Careアプリに今日の日記を記録しました。",
     diaryLastUpdated: "最終更新",
+    diaryOriginal: "元のテキスト",
+    diaryManualTranslations: "手動翻訳",
+    diaryJapaneseTranslation: "日本語翻訳",
+    diaryMyanmarTranslation: "ミャンマー語翻訳",
+    diaryTranslationPlaceholder: "ここに手動翻訳を追加してください。",
+    diaryCurrentLanguagePreview: "現在の言語プレビュー",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -261,6 +273,12 @@ const ui = {
     diaryWhatsApp: "WhatsApp အသိပေးချက်ဖွင့်ရန်",
     diaryWhatsAppMessage: "Nako Home Care app ထဲတွင် ဒီနေ့မှတ်တမ်းကို ရေးပြီးပါပြီ။",
     diaryLastUpdated: "နောက်ဆုံးပြင်ဆင်ချိန်",
+    diaryOriginal: "မူရင်းဒိုင်ယာရီ",
+    diaryManualTranslations: "ကိုယ်တိုင် ဘာသာပြန်ခြင်း",
+    diaryJapaneseTranslation: "ဂျပန်ဘာသာပြန်",
+    diaryMyanmarTranslation: "မြန်မာဘာသာပြန်",
+    diaryTranslationPlaceholder: "ဤနေရာတွင် ကိုယ်တိုင်ဘာသာပြန်ချက် ထည့်ပါ။",
+    diaryCurrentLanguagePreview: "လက်ရှိဘာသာစကားဖြင့် အစမ်းကြည့်ရှုခြင်း",
   },
 };
 

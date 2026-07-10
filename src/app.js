@@ -46,7 +46,7 @@ function renderUnlessDiaryTyping() {
 }
 
 function isDiaryTextInputActive() {
-  return Boolean(document.activeElement?.matches?.("[data-diary-text]"));
+  return Boolean(document.activeElement?.matches?.("[data-diary-text], [data-diary-translation-date]"));
 }
 
 function tr(value) {
@@ -463,21 +463,54 @@ function renderDiaryFeedback(item) {
     </section>`;
   renderShell(tr(item.title), content, true);
 }
+function getDiaryDisplayText(entry) {
+  if (!entry) return "";
+  if (currentLang === "jp" && entry.translations?.jp) {
+    return entry.translations.jp;
+  }
+  if (currentLang === "mm" && entry.translations?.mm) {
+    return entry.translations.mm;
+  }
+  return entry.originalText || "";
+}
 
 function renderDiarySavedEntry(entry) {
   if (!entry) return "";
   const original = entry.originalText || "";
   const updated = entry.updatedAt ? `<span>${esc(label("diaryLastUpdated"))}: <strong>${esc(formatDiaryTimestamp(entry.updatedAt))}</strong></span>` : "";
+  const jpTrans = entry.translations?.jp || "";
+  const mmTrans = entry.translations?.mm || "";
+  const currentPreview = getDiaryDisplayText(entry);
+
   return `<section class="panel diary-saved-panel">
     <div class="diary-panel-head">
       <h2>${esc(label("diarySavedEntry"))}</h2>
       <span class="diary-status saved">${esc(label("diarySavedStatus"))}</span>
     </div>
     <div class="diary-meta-line">${updated}</div>
+    
     <article class="diary-text-card">
-      <h3>${esc(label("diaryEntryText"))}</h3>
+      <h3>${esc(label("diaryOriginal"))}</h3>
       <p>${esc(original)}</p>
     </article>
+
+    <article class="diary-text-card">
+      <h3>${esc(label("diaryCurrentLanguagePreview"))} (${currentLang.toUpperCase()})</h3>
+      <p>${esc(currentPreview)}</p>
+    </article>
+
+    <div class="diary-translations-section" style="display: grid; gap: 8px;">
+      <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: var(--ink);">${esc(label("diaryManualTranslations"))}</h3>
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 4px;">${esc(label("diaryJapaneseTranslation"))}</label>
+        <textarea class="diary-field" data-diary-translation-date="${esc(entry.dateKey)}" data-diary-translation-lang="jp" placeholder="${esc(label("diaryTranslationPlaceholder"))}" style="min-height: 80px;">${esc(jpTrans)}</textarea>
+      </div>
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 4px;">${esc(label("diaryMyanmarTranslation"))}</label>
+        <textarea class="diary-field" data-diary-translation-date="${esc(entry.dateKey)}" data-diary-translation-lang="mm" placeholder="${esc(label("diaryTranslationPlaceholder"))}" style="min-height: 80px;">${esc(mmTrans)}</textarea>
+      </div>
+    </div>
+
     <button class="action-button secondary" data-diary-whatsapp>${esc(label("diaryWhatsApp"))}</button>
   </section>`;
 }
@@ -494,7 +527,7 @@ function renderDiaryHistory() {
     return `<article class="diary-history-card">
       <div>
         <h3>${esc(formatDiaryDate(entry.dateKey))}</h3>
-        <p>${esc(entry.originalText)}</p>
+        <p>${esc(getDiaryDisplayText(entry))}</p>
       </div>
       <span class="diary-status saved">${esc(label("diarySavedStatus"))}</span>
     </article>`;
@@ -596,9 +629,11 @@ function handleDiarySubmit(dateKey) {
   const now = nowIso();
   const diary = getDiaryState();
   const previousEntry = diary.entries[dateKey] || {};
+  const translations = previousEntry.translations || {};
   diary.entries[dateKey] = {
     dateKey,
     originalText: text,
+    translations,
     status: "saved",
     submittedAt: previousEntry.submittedAt || now,
     updatedAt: now
@@ -630,11 +665,26 @@ function handleInput(event) {
     diaryStatusMessage = "";
     return saveState({ remote: false });
   }
+  const diaryTrans = event.target.closest("[data-diary-translation-date]");
+  if (diaryTrans) {
+    const dateKey = diaryTrans.dataset.diaryTranslationDate;
+    const lang = diaryTrans.dataset.diaryTranslationLang;
+    const diary = getDiaryState();
+    const entry = diary.entries[dateKey];
+    if (entry) {
+      entry.translations ||= {};
+      entry.translations[lang] = diaryTrans.value;
+      entry.updatedAt = nowIso();
+    }
+    return saveState({ remote: false });
+  }
 }
 
 function handleBlur(event) {
   const diaryText = event.target.closest?.("[data-diary-text]");
   if (diaryText) saveState();
+  const diaryTrans = event.target.closest?.("[data-diary-translation-date]");
+  if (diaryTrans) saveState();
 }
 
 /* ==========================================================================
