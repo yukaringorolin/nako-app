@@ -915,6 +915,11 @@ img {
   background: #fbfdfc;
 }
 
+.ingredient-row.without-image {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-left: 12px;
+}
+
 .ingredient-row img {
   width: 64px;
   height: 64px;
@@ -926,6 +931,42 @@ img {
 .ingredient-name {
   min-width: 0;
   font-weight: 900;
+}
+
+.ingredient-details {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.ingredient-choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ingredient-choice {
+  border: 1px solid #cfe0d6;
+  border-radius: 999px;
+  background: #fff;
+  color: #456052;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 5px 8px;
+}
+
+.ingredient-choice.is-selected {
+  border-color: #78aa8e;
+  background: var(--mint-soft);
+  color: #1d5a3e;
+}
+
+.ingredient-choice:focus-visible {
+  outline: 3px solid rgba(80, 142, 110, .35);
+  outline-offset: 2px;
 }
 
 .amount {

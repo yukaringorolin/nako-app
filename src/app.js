@@ -2,6 +2,7 @@ const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources } = window.nakoData;
+const ingredientCatalog = window.nakoIngredientCatalog || {};
 
 // safeStorage wraps localStorage to handle blocked access/SecurityErrors
 const safeStorage = {
@@ -19,6 +20,7 @@ let selectedArchiveYear = null;
 let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
 let diarySaveInProgress = false;
 let diaryStatusMessage = "";
+let selectedIngredientChoices = {};
 const app = document.querySelector("#app");
 
 window.addEventListener("hashchange", render);
@@ -325,7 +327,7 @@ function renderRecipe(recipeId) {
     ${badgesHtml}
     ${renderPhotos(supportingPhotos)}
     <section class="panel"><h2>${esc(label("recipeName"))}</h2><p>${esc(tr(recipe.title))}</p></section>
-    <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map(renderIngredient).join("")}</ul></section>
+    <section class="panel"><h2>${esc(label("ingredients"))}</h2><ul class="ingredient-list">${recipe.ingredients.map((item, index) => renderIngredient(item, recipe.id, index)).join("")}</ul></section>
     <section class="panel"><h2>${esc(label("method"))}</h2>${orderedList(recipe.method)}</section>
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2><p>${esc(tr(recipe.note))}</p></section>`;
   renderShell(tr(recipe.title), content, true);
@@ -498,12 +500,26 @@ function renderPhoto(photo) {
   return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
 }
 
+<<<<<<< HEAD
 function renderIngredient(item) {
   if (item.macros) {
     const macrosText = `${item.macros.calories} kcal · P ${item.macros.protein}g · C ${item.macros.carbs}g · F ${item.macros.fat}g`;
     return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-copy"><span class="ingredient-name">${esc(tr(item.name))}</span><span class="ingredient-macros">${esc(macrosText)}</span></span><span class="amount">${esc(item.amount)}</span></li>`;
   }
   return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-name">${esc(tr(item.name))}</span><span class="amount">${esc(item.amount)}</span></li>`;
+=======
+function renderIngredient(item, recipeId, ingredientIndex) {
+  const choiceId = `${recipeId}:${ingredientIndex}`;
+  const selectedKey = selectedIngredientChoices[choiceId] || item.key;
+  const selectedOption = item.alternatives?.find((option) => option.key === selectedKey);
+  const name = selectedOption?.name || item.name;
+  const image = ingredientImage(selectedKey);
+  const choices = item.alternatives?.length
+    ? `<div class="ingredient-choice-group" role="group" aria-label="${esc(tr(item.name))}">${item.alternatives.map((option) => `<button class="ingredient-choice ${option.key === selectedKey ? "is-selected" : ""}" data-ingredient-choice data-ingredient-choice-id="${esc(choiceId)}" data-ingredient-key="${esc(option.key)}" aria-pressed="${option.key === selectedKey}">${esc(tr(option.name))}</button>`).join("")}</div>`
+    : "";
+  const imageHtml = image ? `<img src="${esc(image)}" alt="${esc(tr(name))}" loading="lazy" />` : "";
+  return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="amount">${esc(item.amount)}</span></li>`;
+>>>>>>> origin/main
 }
 
 function orderedList(items) {
@@ -649,6 +665,11 @@ function handleClick(event) {
   if (diarySubmit) { handleDiarySubmit(diarySubmit.dataset.diarySubmit); return; }
   const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
   if (diaryWhatsApp) { openWhatsAppNotice(); return; }
+  const ingredientChoice = event.target.closest("[data-ingredient-choice]");
+  if (ingredientChoice) {
+    selectedIngredientChoices[ingredientChoice.dataset.ingredientChoiceId] = ingredientChoice.dataset.ingredientKey;
+    return render();
+  }
   const section = event.target.closest("[data-section]");
   if (section) return go(`#section/${section.dataset.section}`);
   const routine = event.target.closest("[data-routine]");
@@ -852,55 +873,8 @@ function initFirebaseSync() {
 }
 
 function ingredientImage(key) {
-  const images = {
-    "chicken-tender": "chicken-breast.jpg",
-    "chicken-minced": "chicken-breast.jpg",
-    "chicken-breast": "chicken-breast.jpg",
-    "chicken-thigh": "chicken-thigh.jpg",
-    "pumpkin": "pumpkin.jpg",
-    "carrot": "carrot.jpg",
-    "whitefish": "whitefish.jpg",
-    "sweet-potato": "sweet-potato.jpg",
-    "zucchini": "zucchini.jpg",
-    "napa-cabbage": "napa-cabbage.jpg",
-    "broccoli": "broccoli.jpg",
-    "rice": "rice.jpg",
-    "soy-sauce": "soy-sauce.jpg",
-    "mirin": "mirin.jpg",
-    "sake": "sake.jpg",
-    "sugar": "sugar.jpg",
-    "ginger": "ginger.jpg",
-    "oil": "oil.png",
-    "sesame": "sesame.jpg",
-    "salmon-fillet": "salmon.jpg",
-    "salt": "salt.jpg",
-    "eggs": "egg.jpg",
-    "spinach": "spinach.jpg",
-    "lemon": "lemon.jpg",
-    "pork": "pork.jpg",
-    "cabbage": "cabbage.jpg",
-    "mushroom": "mushroom.jpg",
-    "dashi": "dashi.jpg",
-    "tuna": "tuna.jpg",
-    "tofu": "firm-tofu.jpg",
-    "cucumber": "cucumber.jpg",
-    "sesame-oil": "sesame-oil.jpg",
-    "vinegar": "vinegar.jpg",
-    "water": "water.png",
-    "miso": "miso-paste.jpg"
-  };
-
-  const filename = images[key];
-  if (filename) {
-    return `assets/ingredients/${filename}`;
-  }
-
-  const visuals = {
-    "chicken-tender": ["CT", "#f7d9c4"], pumpkin: ["P", "#ffd998"], carrot: ["C", "#ffd1a8"], whitefish: ["F", "#d8edf7"], "sweet-potato": ["SP", "#f1d0e4"], zucchini: ["Z", "#d7edce"], "chicken-breast": ["CB", "#f4d9d2"], "napa-cabbage": ["NC", "#dff2cf"], broccoli: ["B", "#d7efd9"],
-  };
-  const [text, color] = visuals[key] || ["?", "#edf1ee"];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect width="96" height="96" rx="16" fill="${color}"/><circle cx="70" cy="22" r="20" fill="#fff" opacity=".38"/><text x="48" y="57" text-anchor="middle" font-family="Arial" font-size="26" font-weight="700" fill="#25302c">${text}</text></svg>`;
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+  const filename = ingredientCatalog[key]?.file;
+  return filename ? `assets/ingredients/${filename}` : null;
 }
 
 function esc(value) {

@@ -22,6 +22,14 @@ function photo(src, alt, caption) {
   return { src, alt, caption };
 }
 
+function ingredient(name, amount, key, alternatives = []) {
+  return { name, amount, key, alternatives };
+}
+
+function ingredientOption(key, name) {
+  return { key, name };
+}
+
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
   return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
 }
@@ -36,7 +44,10 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog",
     description: isHuman 
       ? t("Japanese home-cooked recipe idea.", "日本の家庭料理レシピのアイデア。", "ဂျပန်အိမ်ချက် ဟင်းချက်နည်းအိုင်ဒီယာ။")
       : t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း。"), 
-    ingredients: ingredients.map(([name, amount, key]) => ({ key, name, amount })), 
+    ingredients: ingredients.map((entry) => Array.isArray(entry) ? (() => {
+      const [name, amount, key] = entry;
+      return { key, name, amount, alternatives: [] };
+    })() : { ...entry, alternatives: entry.alternatives || [] }),
     method, 
     note: isHuman ? note : (photos.length > 0 ? note : recipeNote(note)),
     photos,
