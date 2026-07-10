@@ -1039,6 +1039,11 @@ const routineTasks = [
     [
       t("Protect her head immediately from the floor or nearby furniture, and move hard or sharp objects away.", "すぐに頭を床や近くの家具から守り、硬い物や鋭い物を周りからどけてください。", "သူမ၏ခေါင်းကို ကြမ်းပြင် သို့မဟုတ် အနီးရှိ furniture နှင့် မတိုက်မိအောင် ချက်ချင်းကာကွယ်ပြီး မာသော သို့မဟုတ် ချွန်သောပစ္စည်းများကို ဖယ်ရှားပါ။"),
       t("Stay calm and tell Edwin immediately. If she is injured or does not recover normally, call for emergency help.", "落ち着いて、すぐにエドウィンへ知らせてください。けがをした場合、または普通に回復しない場合は、緊急の助けを呼んでください。", "စိတ်အေးအေးထားပြီး Edwin ကို ချက်ချင်းပြောပါ။ ဒဏ်ရာရပါက သို့မဟုတ် ပုံမှန်အတိုင်း ပြန်မကောင်းပါက emergency help ကို ခေါ်ပါ။")
+    ],
+    [
+      photo("assets/routines/yukari-cataplexy.png",
+        t("Yukari resting", "休息するゆかり", "နားနေသော ယူကာရီ"),
+        t("Reference photo of Yukari resting or experiencing a cataplexy episode.", "休息中またはカタプレキシー発作時のゆかりの参考写真。", "ယူကာရီ နားနေစဉ် သို့မဟုတ် cataplexy ဖြစ်နေစဉ် ကိုးကားပုံ။"))
     ]),
   routine("yukari-flight-packing", "as-needed", 20, "Y", 
     t("Yukari - Flight Work Packing", "ゆかり - フライト業務の荷造り", "Yukari - လေယာဉ်ခရီးစဉ်အတွက် အထုပ်ပြင်ခြင်း"), 
@@ -1593,79 +1598,6 @@ const recipes = [
   )
 ];
 
-
-function addRoutineReference(id, note, reference) {
-  const task = routineTasks.find((item) => item.id === id);
-  if (!task) return;
-  task.mustRemember.push(note);
-  task.photos.push(reference);
-}
-
-addRoutineReference("kitchen-sink-drain-rack-counter",
-  t("When cleaning under the kitchen sink, inspect all visible pipes, joints, and the cabinet base for drips, dampness, water stains, or unusual smells. If any leak is found, stop using the sink if necessary, take a photo, wipe up standing water, and tell Edwin immediately. Do not dismantle or tighten the pipes yourself.", "キッチンシンク下を掃除するときは、見える配管、接続部、収納の底に水滴、湿り、水跡、異臭がないか確認してください。漏れを見つけた場合は、必要ならシンクの使用を止め、写真を撮り、たまった水を拭き取り、すぐにEdwinへ知らせてください。自分で配管を外したり締めたりしないでください。", "မီးဖိုချောင်စင်အောက်ကို သန့်ရှင်းရေးလုပ်သည့်အခါ မြင်ရသော ရေပိုက်များ၊ ဆက်သွယ်နေရာများနှင့် ဗီရိုအောက်ခြေတွင် ရေစက်၊ စိုစွတ်မှု၊ ရေကွက် သို့မဟုတ် အနံ့မမှန်တာရှိမရှိ စစ်ပါ။ ရေယိုနေပါက လိုအပ်လျှင် စင်ကို မသုံးဘဲထား၊ ဓာတ်ပုံရိုက်၊ စုပုံနေသောရေကို သုတ်ပြီး Edwin ကို ချက်ချင်းပြောပါ။ ရေပိုက်ကို ကိုယ်တိုင် မဖြုတ်ပါနှင့်၊ မတင်းပါနှင့်။"),
-  photo("assets/routines/kitchen-under-sink-piping-leak-check.jpg",
-    t("Kitchen sink piping and cabinet interior", "キッチンシンク下の配管と収納内部", "မီးဖိုချောင်စင်အောက်ရှိ ရေပိုက်များနှင့် ဗီရိုအတွင်းပိုင်း"),
-    t("Check the visible pipes, joints, and cabinet base for signs of a leak while cleaning under the sink.", "シンク下を掃除する際は、見える配管、接続部、収納の底に漏れの兆候がないか確認してください。", "စင်အောက်ကို သန့်ရှင်းရေးလုပ်စဉ် မြင်ရသော ရေပိုက်များ၊ ဆက်သွယ်နေရာများနှင့် ဗီရိုအောက်ခြေတွင် ရေယိုခြင်းလက္ခဏာရှိမရှိ စစ်ပါ။")));
-
-addRoutineReference("laundry",
-  t("Use the ironing board and steam iron only for clothes that need ironing. Check the garment care label and begin with a low temperature. Do not leave the hot soleplate resting on clothes. Unplug the iron after use and let it cool completely before storing it.", "アイロンが必要な衣類にだけ、アイロン台とスチームアイロンを使ってください。洗濯表示を確認し、低温から始めます。熱いアイロン面を衣類の上に置いたままにしないでください。使用後は電源プラグを抜き、完全に冷めてから収納してください。", "မီးပူတိုက်ရန်လိုသောအဝတ်များအတွက်သာ မီးပူတိုက်ဘုတ်နှင့် ရေနွေးငွေ့မီးပူကို သုံးပါ။ အဝတ်တံဆိပ်ကိုစစ်ပြီး အပူနည်းနည်းမှ စပါ။ ပူနေသောမီးပူအောက်ခြေကို အဝတ်ပေါ်တွင် မထားပါနှင့်။ သုံးပြီးလျှင် ပလပ်ဖြုတ်ပြီး လုံးဝအေးမှ သိမ်းပါ။"),
-  photo("assets/routines/laundry-ironing-board-steam-iron.jpg",
-    t("Ironing board and steam iron", "アイロン台とスチームアイロン", "မီးပူတိုက်ဘုတ်နှင့် ရေနွေးငွေ့မီးပူ"),
-    t("Use this setup only for clothes that need ironing, then unplug and let the iron cool before storing it.", "アイロンが必要な衣類にだけこのセットを使い、使用後はプラグを抜いて冷めてから収納してください。", "မီးပူတိုက်ရန်လိုသောအဝတ်များအတွက်သာ ဤပစ္စည်းများကိုသုံးပြီး သုံးပြီးနောက် ပလပ်ဖြုတ်ကာ အေးမှ သိမ်းပါ။")));
-
-addRoutineReference("laundry",
-  t("MelaSoft 9x is fabric softener. For a standard load, add 1 pump, about 10 mL, to the fabric-softener compartment. Do not pour it directly onto clothes. Check the care label before using it on delicate or special materials, and ask Edwin if unsure.", "MelaSoft 9xは柔軟剤です。通常の洗濯量には1プッシュ（約10mL）を柔軟剤投入口に入れてください。衣類に直接かけないでください。デリケート素材や特殊な衣類は洗濯表示を確認し、不明な場合はEdwinに確認してください。", "MelaSoft 9x သည် အဝတ်ပျော့ဆေးဖြစ်သည်။ ပုံမှန်အဝတ်တစ်လှည့်အတွက် softener အကန့်ထဲ ၁ pump (၁၀ mL ခန့်) ထည့်ပါ။ အဝတ်ပေါ်သို့ တိုက်ရိုက်မလောင်းပါနှင့်။ နူးညံ့သော သို့မဟုတ် အထူးအဝတ်များအတွက် care label ကိုစစ်ပြီး မသေချာပါက Edwin ကိုမေးပါ။"),
-  photo("assets/routines/laundry-melasoft-fabric-softener.jpg",
-    t("MelaSoft 9x fabric softener", "MelaSoft 9x 柔軟剤", "MelaSoft 9x အဝတ်ပျော့ဆေး"),
-    t("For a standard load, add one pump (about 10 mL) to the fabric-softener compartment.", "通常の洗濯量には、柔軟剤投入口へ1プッシュ（約10mL）入れてください。", "ပုံမှန်အဝတ်တစ်လှည့်အတွက် softener အကန့်ထဲ ၁ pump (၁၀ mL ခန့်) ထည့်ပါ။")));
-
-addRoutineReference("laundry",
-  t("MelaBrite 9x is a color booster, not regular detergent and not chlorine bleach. Use it only when clothes need extra brightening or stain-removal support and only when the garment care label allows it. Follow the bottle directions, do not pour it directly onto dry clothes, and never mix it with chlorine bleach or other cleaning chemicals. Ask Edwin if unsure.", "MelaBrite 9xは色を明るく保つためのカラーブースターで、通常の洗剤でも塩素系漂白剤でもありません。衣類を明るくしたいときや汚れ落ちを補助したいときだけ、洗濯表示を確認して使用してください。ボトルの使用方法に従い、乾いた衣類へ直接かけず、塩素系漂白剤や他の洗浄剤と混ぜないでください。不明な場合はEdwinに確認してください。", "MelaBrite 9x သည် color booster ဖြစ်ပြီး ပုံမှန် detergent မဟုတ်သလို chlorine bleach လည်းမဟုတ်ပါ။ အဝတ်အရောင်တောက်ပစေရန် သို့မဟုတ် အစွန်းအထင်းဖယ်ရှားမှုကို ကူညီရန်လိုအပ်သည့်အခါသာ care label ကိုစစ်ပြီး သုံးပါ။ ဘူးပေါ်ညွှန်ကြားချက်အတိုင်းသုံးပါ၊ ခြောက်သွေ့သောအဝတ်ပေါ်သို့ တိုက်ရိုက်မလောင်းပါနှင့်၊ chlorine bleach သို့မဟုတ် အခြားသန့်ရှင်းရေးဓာတုပစ္စည်းများနှင့် မရောပါနှင့်။ မသေချာပါက Edwin ကိုမေးပါ။"),
-  photo("assets/routines/laundry-melabrite-color-booster.jpg",
-    t("MelaBrite 9x color booster", "MelaBrite 9x カラーブースター", "MelaBrite 9x အရောင်တောက်ပစေသော laundry booster"),
-    t("This is a color booster, not regular detergent or chlorine bleach. Follow the bottle directions and never mix it with other cleaners.", "これは通常の洗剤や塩素系漂白剤ではなく、カラーブースターです。ボトルの使用方法に従い、他の洗浄剤と混ぜないでください。", "ဤသည် color booster ဖြစ်ပြီး ပုံမှန် detergent သို့မဟုတ် chlorine bleach မဟုတ်ပါ။ ဘူးပေါ်ညွှန်ကြားချက်အတိုင်းသုံးပြီး အခြား cleaner များနှင့် မရောပါနှင့်။")));
-
-addRoutineReference("laundry",
-  t("MelaPower 9x is the regular laundry detergent. For a standard load, add 1 pump, about 10 mL, to the detergent compartment. For a larger or heavily soiled load, use no more than 2 pumps unless Edwin instructs otherwise. It is highly concentrated, so do not use 3 pumps as the normal amount. Too much detergent may leave soap or suds after washing.", "MelaPower 9xは通常の洗濯用洗剤です。通常の洗濯量には洗剤投入口へ1プッシュ（約10mL）入れてください。量が多い場合や汚れが強い場合でも、Edwinから別の指示がない限り最大2プッシュまでにしてください。高濃縮なので、通常は3プッシュ使わないでください。入れすぎると洗濯後も洗剤や泡が残ることがあります。", "MelaPower 9x သည် ပုံမှန်အဝတ်လျှော် detergent ဖြစ်သည်။ ပုံမှန်အဝတ်တစ်လှည့်အတွက် detergent အကန့်ထဲ ၁ pump (၁၀ mL ခန့်) ထည့်ပါ။ အဝတ်များသော သို့မဟုတ် အရမ်းညစ်သောအခါ Edwin က အခြားညွှန်ကြားချက်မပေးလျှင် ၂ pump ထက်မပိုပါနှင့်။ အလွန်ပြင်းသော concentrate ဖြစ်သောကြောင့် ၃ pump ကို ပုံမှန်မသုံးပါနှင့်။ ဆပ်ပြာများလွန်းလျှင် လျှော်ပြီးနောက် ဆပ်ပြာ သို့မဟုတ် အမြှုပ်ကျန်နိုင်သည်။"),
-  photo("assets/routines/laundry-melapower-detergent.jpg",
-    t("MelaPower 9x laundry detergent", "MelaPower 9x 洗濯用洗剤", "MelaPower 9x အဝတ်လျှော်ဆပ်ပြာရည်"),
-    t("For a standard load, use one pump (about 10 mL) in the detergent compartment. Use no more than two pumps for a large or heavily soiled load.", "通常の洗濯量には洗剤投入口へ1プッシュ（約10mL）入れます。量が多い場合や汚れが強い場合でも2プッシュまでにしてください。", "ပုံမှန်အဝတ်တစ်လှည့်အတွက် detergent အကန့်ထဲ ၁ pump (၁၀ mL ခန့်) ထည့်ပါ။ အဝတ်များသော သို့မဟုတ် အရမ်းညစ်သောအခါလည်း ၂ pump ထက်မပိုပါနှင့်။")));
-
-addRoutineReference("laundry",
-  t("Do not put socks in the washing machine. Hand-wash them separately with a small amount of laundry detergent. Soak briefly if needed, rub gently, rinse thoroughly until no suds remain, squeeze gently, and hang them to dry.", "靴下は洗濯機に入れないでください。少量の洗濯用洗剤で分けて手洗いします。必要なら短時間つけ置きし、優しくもみ洗いして、泡が残らなくなるまでよくすすぎ、軽く絞って干してください。", "ခြေအိတ်များကို အဝတ်လျှော်စက်ထဲ မထည့်ပါနှင့်။ ဆပ်ပြာအနည်းငယ်ဖြင့် သီးခြားလက်လျှော်ပါ။ လိုအပ်လျှင် ခဏစိမ်ပြီး ညင်သာစွာပွတ်ပါ၊ အမြှုပ်မကျန်တော့အောင် သေချာဆေးပြီး ညင်သာစွာညှစ်ကာ လှန်းပါ။"),
-  photo("assets/routines/laundry-socks-hand-wash.jpg",
-    t("Socks separated for hand washing", "手洗い用に分けた靴下", "လက်လျှော်ရန် သီးခြားထားသောခြေအိတ်များ"),
-    t("Hand-wash socks separately; do not put them in the washing machine.", "靴下は分けて手洗いし、洗濯機に入れないでください。", "ခြေအိတ်များကို သီးခြားလက်လျှော်ပြီး အဝတ်လျှော်စက်ထဲ မထည့်ပါနှင့်။")));
-
-addRoutineReference("laundry",
-  t("For normal everyday clothes, check the pockets and care labels and load the drum loosely without overfilling it. Add 1 pump of MelaPower to the detergent compartment, turn on the machine, select Mixed Fabric, normally leave the settings at 40°C and 1000 rpm, and press Start. The normal household routine is wash only, followed by hanging the clothes to dry. Do not use Dry, Steam, Boost, or special cycles unless instructed. Use an appropriate cycle for delicates, wool, or clothes with special care requirements. After use, leave the door and detergent drawer slightly open so the inside can dry.", "普段着はポケットと洗濯表示を確認し、詰め込みすぎないようドラムにゆったり入れてください。洗剤投入口へMelaPowerを1プッシュ入れ、電源を入れ、Mixed Fabricを選び、通常は40°C・1000 rpmのままStartを押します。家庭での通常手順は洗濯のみで、その後は干して乾かします。指示がない限りDry、Steam、Boost、特別なコースは使わないでください。デリケート、ウール、特別な手入れが必要な衣類には適切なコースを使います。使用後は内部を乾かすため、ドアと洗剤ケースを少し開けてください。", "နေ့စဉ်အဝတ်များအတွက် အိတ်ကပ်နှင့် care label ကိုစစ်ပြီး drum ထဲ မပြည့်ကျပ်အောင် ထည့်ပါ။ detergent အကန့်ထဲ MelaPower ၁ pump ထည့်၊ စက်ဖွင့်၊ Mixed Fabric ကိုရွေး၊ ပုံမှန်အားဖြင့် 40°C နှင့် 1000 rpm ထားပြီး Start နှိပ်ပါ။ အိမ်သုံးပုံမှန်လုပ်နည်းမှာ wash only ဖြစ်ပြီးနောက် အဝတ်လှန်းခြင်းဖြစ်သည်။ ညွှန်ကြားချက်မရှိလျှင် Dry၊ Steam၊ Boost သို့မဟုတ် special cycle မသုံးပါနှင့်။ နူးညံ့သောအဝတ်၊ သိုးမွေး သို့မဟုတ် အထူးဂရုစိုက်ရသောအဝတ်များအတွက် သင့်တော်သော cycle ကိုသုံးပါ။ သုံးပြီးနောက် အတွင်းခြောက်စေရန် တံခါးနှင့် detergent drawer ကို နည်းနည်းဖွင့်ထားပါ။"),
-  photo("assets/routines/laundry-lg-washer-mixed-fabric.jpg",
-    t("LG ThinQ 10/6 kg washer-dryer control panel", "LG ThinQ 10/6kg 洗濯乾燥機の操作パネル", "LG ThinQ 10/6 kg အဝတ်လျှော်ခြောက်စက် ထိန်းချုပ်ခလုတ်များ"),
-    t("For normal everyday clothes, select Mixed Fabric at 40°C and 1000 rpm, then hang clothes to dry after the wash.", "普段着はMixed Fabricを選び、40°C・1000 rpmで洗濯した後に干して乾かしてください。", "နေ့စဉ်အဝတ်များအတွက် Mixed Fabric ကိုရွေးကာ 40°C နှင့် 1000 rpm ဖြင့်လျှော်ပြီးနောက် အဝတ်လှန်းပါ။")));
-
-addRoutineReference("daily-cooking",
-  t("For normal cooking, use flat-bottomed induction-compatible cookware, select the correct cooking zone, and normally keep the power level between 3 and 6. Do not use Boost or maximum power unless Edwin specifically instructs you. Turn the hob off after cooking and wait for the residual-heat indicator to clear before cleaning it. The lock prevents accidental operation; use the timer only after being taught.", "通常の調理では、底が平らなIH対応の調理器具を使い、正しい調理ゾーンを選び、通常は火力を3から6の間にしてください。Edwinから特別な指示がない限り、Boostや最大火力は使わないでください。調理後はIHコンロの電源を切り、余熱表示が消えてから掃除してください。ロックは誤操作防止のためのものです。タイマーは教わってから使ってください。", "ပုံမှန်ချက်ပြုတ်ရာတွင် အောက်ခြေပြားသော induction သုံးလို့ရသည့်အိုးကိုသုံးပြီး မှန်ကန်သောချက်ပြုတ်နေရာကိုရွေးကာ power level ကို ပုံမှန်အားဖြင့် ၃ မှ ၆ ကြားထားပါ။ Edwin က သီးသန့်ညွှန်ကြားမှသာ Boost သို့မဟုတ် အမြင့်ဆုံး power ကိုသုံးပါ။ ချက်ပြီးလျှင် hob ကိုပိတ်ပြီး အပူကျန်အမှတ်အသားပျောက်မှ သန့်ရှင်းပါ။ lock သည် မတော်တဆဖွင့်မိခြင်းကိုကာကွယ်သည်၊ timer ကို သင်ကြားပြီးမှသုံးပါ။"),
-  photo("assets/routines/daily-cooking-fujioh-hob.jpg",
-    t("Cooking on the FUJIOH FH-ID 5120 induction hob", "FUJIOH FH-ID 5120 IHコンロでの調理", "FUJIOH FH-ID 5120 induction hob ပေါ်တွင် ချက်ပြုတ်နေခြင်း"),
-    t("Use induction-compatible flat-bottomed cookware and normally keep the power between levels 3 and 6.", "IH対応で底が平らな調理器具を使い、通常は火力を3から6の間にしてください。", "Induction သုံးလို့ရသည့် အောက်ခြေပြားသောအိုးကိုသုံးပြီး power ကို ပုံမှန်အားဖြင့် ၃ မှ ၆ ကြားထားပါ။")));
-
-addRoutineReference("clean-up-cooking-appliances",
-  t("Place the metal sieve over the sink and pour leftover soup, sauce, or food through it. Let the liquid drain, then throw the remaining solid food into the rubbish bin. Never push food scraps into the drain. Rinse the sieve after use. This helps prevent the kitchen pipes from becoming clogged.", "金属製のこし器をシンクの上に置き、残ったスープ、ソース、食べ物を通してください。液体を流してから、残った固形の食べ物をゴミ箱に捨てます。食べかすを排水口へ押し込まないでください。使用後はこし器をすすいでください。これによりキッチンの配管詰まりを防ぎます。", "သတ္တုစစ်ကို စင်ပေါ်တင်ပြီး ကျန်သောဟင်းရည်၊ ဆော့စ် သို့မဟုတ် အစားအစာကို စစ်ထဲသို့လောင်းပါ။ အရည်စီးသွားပြီးနောက် ကျန်သောအခဲအစားအစာကို အမှိုက်ပုံးထဲပစ်ပါ။ အစားအစာအကြွင်းအကျန်များကို ရေနုတ်မြောင်းထဲ မတွန်းပါနှင့်။ သုံးပြီးနောက် စစ်ကိုဆေးပါ။ ဤနည်းသည် မီးဖိုချောင်ရေပိုက်ပိတ်ခြင်းကို ကာကွယ်ပေးသည်။"),
-  photo("assets/routines/kitchen-food-waste-sieve.jpg",
-    t("Metal sieve for draining leftover food", "残り物の水切り用金属製こし器", "ကျန်သောအစားအစာကို ရေစစ်ရန် သတ္တုစစ်"),
-    t("Drain liquids through the sieve and throw solid food waste in the rubbish bin, never down the sink drain.", "液体はこし器で水切りし、固形の食べ物はゴミ箱に捨て、シンクの排水口へ流さないでください。", "အရည်ကို စစ်ဖြင့်စစ်ပြီး အခဲအစားအစာအမှိုက်ကို အမှိုက်ပုံးထဲပစ်ပါ။ စင်ရေနုတ်မြောင်းထဲ မထည့်ပါနှင့်။")));
-
-addRoutineReference("nako-potty-pen",
-  t("During a normal pad change, do not wash the entire pee tray or replace every pee pad at the same time. Work section by section and temporarily leave one lightly used pad or section as a scent cue so Nako remembers the toilet area. However, if it is heavily soaked, soiled, strongly smelly, or unhygienic, replace everything and clean the whole tray. Never leave poop behind.", "通常のペットシーツ交換では、トイレトレー全体を洗ったり、すべてのペットシーツを同時に替えたりしないでください。場所を覚えられるよう、少しだけ使用したシーツまたは区画を匂いの目印として一時的に残し、区画ごとに作業してください。ただし、ひどく濡れている、汚れている、強い臭いがある、不衛生な場合は、すべて交換してトレー全体を掃除してください。うんちは絶対に残さないでください。", "ပုံမှန် pee pad လဲရာတွင် pee tray တစ်ခုလုံးကိုမဆေးပါနှင့်၊ pee pad အားလုံးကိုလည်း တစ်ပြိုင်နက်မလဲပါနှင့်။ Nako က အိမ်သာနေရာကိုမှတ်မိစေရန် တစ်ပိုင်းချင်းလုပ်ပြီး အနည်းငယ်အသုံးပြုပြီးသော pad သို့မဟုတ် အပိုင်းတစ်ခုကို အနံ့အမှတ်အသားအဖြစ် ခဏထားပါ။ သို့သော် အရမ်းစိုနေ၊ ညစ်ပတ်နေ၊ အနံ့ပြင်းနေ သို့မဟုတ် မသန့်ရှင်းလျှင် အားလုံးလဲပြီး tray တစ်ခုလုံးသန့်ရှင်းပါ။ အညစ်အကြေးကို ဘယ်တော့မှမထားခဲ့ပါနှင့်။"),
-  photo("assets/routines/nako-pee-tray-partial-change.jpg",
-    t("Cleaning Nako's pee tray one section at a time", "ナコのトイレトレーを区画ごとに掃除する", "Nako ၏ pee tray ကို အပိုင်းလိုက် သန့်ရှင်းနေခြင်း"),
-    t("During a normal pad change, clean one section at a time and leave one lightly used section as a scent cue when hygienic.", "通常のシーツ交換では、衛生上問題がない場合に限り、区画ごとに掃除し、少し使用した区画を匂いの目印として一つ残してください。", "ပုံမှန် pad လဲရာတွင် သန့်ရှင်းလုံလောက်ပါက တစ်ပိုင်းချင်းသန့်ရှင်းပြီး အနည်းငယ်အသုံးပြုပြီးသော အပိုင်းတစ်ခုကို အနံ့အမှတ်အသားအဖြစ်ထားပါ။")));
-
-addRoutineReference("general-surface-cleaning",
-  t("Use this only for general cleaning of suitable hard household surfaces. Edwin's household rule is to dilute it at least 1:20 in a labelled spray bottle: 1 part MagicClean to 20 parts water, or weaker. Spray it onto a cloth or tissue rather than directly onto the item, then wipe and dry the surface. Patch-test unfamiliar surfaces and avoid excess liquid around electronics. Never use it on Nako, her body, paws, bowls, food or water equipment, toys, bedding, pee tray, pen, or anything she may lick. Do not mix it with bleach or other cleaners. Rinse food-contact surfaces with clean water after cleaning, and store the concentrate and spray bottle away from Nako.", "適した硬い家庭内の表面の一般清掃にだけ使ってください。Edwinの家庭内ルールは、ラベル付きスプレーボトルでMagicClean 1に対して水20以上（またはそれ以上に薄く）に薄めることです。物へ直接スプレーせず、布またはティッシュへ吹きかけてから拭き、表面を乾かしてください。初めて使う表面は目立たない場所で試し、電子機器の周りでは液体を使いすぎないでください。ナコの体、足、食器、食べ物や水に使う物、おもちゃ、寝具、トイレトレー、サークル、またはナコが舐める可能性のある物には絶対に使わないでください。漂白剤や他の洗浄剤と混ぜないでください。食品が触れる面は、清掃後にきれいな水ですすぎ、原液とスプレーボトルはナコの届かない場所に保管してください。", "သင့်တော်သောမာကျောသည့် အိမ်သုံးမျက်နှာပြင်များကို ပုံမှန်သန့်ရှင်းရန်သာ ဤဆေးကိုသုံးပါ။ Edwin ၏အိမ်သုံးစည်းကမ်းမှာ label ပါသော spray bottle ထဲတွင် MagicClean ၁ ပိုင်းနှင့် ရေ ၂၀ ပိုင်း သို့မဟုတ် ထို့ထက်ပိုဖျော့အောင်ရောရန်ဖြစ်သည်။ ပစ္စည်းပေါ်သို့တိုက်ရိုက်မဖြန်းဘဲ အဝတ် သို့မဟုတ် tissue ပေါ်ဖြန်းပြီးမှ သုတ်ကာခြောက်အောင်လုပ်ပါ။ မရင်းနှီးသောမျက်နှာပြင်ကို အရင်စမ်းပြီး electronics အနီးတွင် အရည်အများကြီးမသုံးပါနှင့်။ Nako ၏ကိုယ်ခန္ဓာ၊ ခြေထောက်၊ အစာခွက်၊ ရေခွက်၊ ကစားစရာ၊ အိပ်ရာ၊ pee tray၊ pen သို့မဟုတ် လျက်နိုင်သောအရာများတွင် ဘယ်တော့မှမသုံးပါနှင့်။ Bleach သို့မဟုတ် အခြား cleaner များနှင့် မရောပါနှင့်။ အစားအသောက်ထိတွေ့သောမျက်နှာပြင်များကို သန့်ရှင်းပြီးနောက် ရေသန့်ဖြင့် ပြန်သုတ်ပါ၊ concentrate နှင့် spray bottle ကို Nako မရောက်နိုင်သောနေရာတွင်သိမ်းပါ။"),
-  photo("assets/routines/general-cleaning-magiclean-disinfectant.jpg",
-    t("MagicClean household multi-purpose disinfectant", "MagicClean 家庭用多目的クリーナー", "MagicClean အိမ်သုံး ဘက်စုံသန့်ရှင်းရေးဆေး"),
-    t("For suitable hard household surfaces only: dilute at least 1:20, spray onto a cloth or tissue, then wipe and dry. Never use it on Nako or anything she may lick.", "適した硬い家庭内の表面にだけ使用してください。少なくとも1:20に薄め、布またはティッシュへ吹きかけてから拭き、乾かしてください。ナコやナコが舐める可能性のある物には絶対に使わないでください。", "သင့်တော်သောမာကျောသည့်အိမ်သုံးမျက်နှာပြင်များအတွက်သာသုံးပါ။ အနည်းဆုံး 1:20 ဖျော်ပြီး အဝတ် သို့မဟုတ် tissue ပေါ်ဖြန်းကာ သုတ်ပြီးခြောက်အောင်လုပ်ပါ။ Nako သို့မဟုတ် သူမလျက်နိုင်သောအရာများတွင် ဘယ်တော့မှမသုံးပါနှင့်။")));
 
 // Global Translation Reconciliation Check Function
 function checkTranslations() {
