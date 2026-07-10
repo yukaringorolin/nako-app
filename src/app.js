@@ -27,6 +27,8 @@ let trainingHistoryCommandId = "";
 let trainingExpandedCommandId = "";
 let trainingDraft = null;
 let trainingSuccessMessage = "";
+const scrollPositions = {};
+let activeRouteKey = null;
 const app = document.querySelector("#app");
 
 window.addEventListener("hashchange", render);
@@ -109,9 +111,6 @@ function go(hash) {
 /* ==========================================================================
    SECTION 2: RENDERERS - MAIN LAYOUT & SHELL
    ========================================================================== */
-const scrollPositions = {};
-let activeRouteKey = null;
-
 function render() {
   const currentScroll = window.scrollY;
   const oldRouteKey = activeRouteKey;
