@@ -36,9 +36,34 @@ function loadState() {
   try { return JSON.parse(safeStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
 }
 
+let translationDebounceTimer = null;
+function saveStateDebounced() {
+  // Save locally immediately
+  saveState({ remote: false });
+  // Debounce remote save
+  if (translationDebounceTimer) clearTimeout(translationDebounceTimer);
+  translationDebounceTimer = setTimeout(() => {
+    saveState();
+    translationDebounceTimer = null;
+  }, 1000);
+}
+
 function saveState(options = {}) {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
   if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(appState);
+}
+
+window.addEventListener("pagehide", () => {
+  if (translationDebounceTimer) {
+    clearTimeout(translationDebounceTimer);
+    saveState();
+    translationDebounceTimer = null;
+  }
+});
+
+function getWeightValue(val) {
+  if (val && typeof val === "object") return val.value;
+  return val;
 }
 
 function renderUnlessDiaryTyping() {
@@ -482,6 +507,13 @@ function renderDiarySavedEntry(entry) {
   const mmTrans = entry.translations?.mm || "";
   const currentPreview = getDiaryDisplayText(entry);
 
+  const warningHtml = entry.translationReviewRequired
+    ? `<div class="translation-warning" style="padding: 10px 12px; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 8px; color: #be123c; font-size: 13px; font-weight: 800; line-height: 1.4; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+        <span>⚠️</span>
+        <span>${esc(label("diaryTranslationWarning"))}</span>
+      </div>`
+    : "";
+
   return `<section class="panel diary-saved-panel">
     <div class="diary-panel-head">
       <h2>${esc(label("diarySavedEntry"))}</h2>
@@ -501,6 +533,7 @@ function renderDiarySavedEntry(entry) {
 
     <div class="diary-translations-section" style="display: grid; gap: 8px;">
       <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: var(--ink);">${esc(label("diaryManualTranslations"))}</h3>
+      ${warningHtml}
       <div>
         <label style="display: block; font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 4px;">${esc(label("diaryJapaneseTranslation"))}</label>
         <textarea class="diary-field" data-diary-translation-date="${esc(entry.dateKey)}" data-diary-translation-lang="jp" placeholder="${esc(label("diaryTranslationPlaceholder"))}" style="min-height: 80px;">${esc(jpTrans)}</textarea>
@@ -630,10 +663,16 @@ function handleDiarySubmit(dateKey) {
   const diary = getDiaryState();
   const previousEntry = diary.entries[dateKey] || {};
   const translations = previousEntry.translations || {};
+
+  const hasTranslations = translations.jp || translations.mm;
+  const textChanged = previousEntry.originalText && previousEntry.originalText !== text;
+  const translationReviewRequired = hasTranslations && textChanged ? true : (previousEntry.translationReviewRequired || false);
+
   diary.entries[dateKey] = {
     dateKey,
     originalText: text,
     translations,
+    translationReviewRequired,
     status: "saved",
     submittedAt: previousEntry.submittedAt || now,
     updatedAt: now
@@ -656,7 +695,12 @@ function buildWhatsAppNoticeUrl() {
 
 function handleInput(event) {
   const foodMemo = event.target.closest("[data-food-memo]");
-  if (foodMemo) { getFoodState(foodMemo.dataset.foodMemo).memo = foodMemo.value; return saveState(); }
+  if (foodMemo) {
+    const foodState = getFoodState(foodMemo.dataset.foodMemo);
+    foodState.memo = foodMemo.value;
+    foodState.updatedAt = nowIso();
+    return saveState();
+  }
   const diaryText = event.target.closest("[data-diary-text]");
   if (diaryText) {
     const draft = getDiaryDraft(diaryText.dataset.diaryText);
@@ -674,9 +718,11 @@ function handleInput(event) {
     if (entry) {
       entry.translations ||= {};
       entry.translations[lang] = diaryTrans.value;
+      entry.translationReviewRequired = false;
       entry.updatedAt = nowIso();
     }
-    return saveState({ remote: false });
+    saveStateDebounced();
+    return;
   }
 }
 
@@ -692,7 +738,7 @@ function handleBlur(event) {
    ========================================================================== */
 function getFoodState(id) {
   appState.food ||= {};
-  appState.food[id] ||= { memo: "" };
+  appState.food[id] ||= { memo: "", updatedAt: "" };
   return appState.food[id];
 }
 
@@ -802,7 +848,10 @@ function handleChange(event) {
   if (weightInput) {
     appState.weightTracking ||= {};
     const val = weightInput.value.trim();
-    appState.weightTracking[weightInput.dataset.weightDate] = val !== "" ? parseFloat(val) : "";
+    appState.weightTracking[weightInput.dataset.weightDate] = {
+      value: val !== "" ? parseFloat(val) : "",
+      updatedAt: nowIso()
+    };
     saveState();
     render();
     return;
@@ -883,11 +932,14 @@ function getLatestDueSunday() {
 function getPreviousWeight(targetDateStr) {
   const tracking = appState.weightTracking || {};
   const dates = Object.keys(tracking)
-    .filter(d => d < targetDateStr && tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .filter(d => {
+      const val = getWeightValue(tracking[d]);
+      return d < targetDateStr && val !== "" && !isNaN(parseFloat(val));
+    })
     .sort();
   if (dates.length > 0) {
     const prevDate = dates[dates.length - 1];
-    return parseFloat(tracking[prevDate]);
+    return parseFloat(getWeightValue(tracking[prevDate]));
   }
   return null;
 }
@@ -974,7 +1026,7 @@ function renderQuickEntryPanel() {
   const latestSunday = getLatestDueSunday();
   const key = dateToKey(latestSunday);
   const tracking = appState.weightTracking || {};
-  const val = tracking[key] !== undefined ? tracking[key] : "";
+  const val = getWeightValue(tracking[key]) !== undefined ? getWeightValue(tracking[key]) : "";
   
   const prevWeight = getPreviousWeight(key);
   let prevHtml = "";
@@ -1021,7 +1073,7 @@ function renderQuickEntryPanel() {
 function renderRecentEntriesPanel() {
   const tracking = appState.weightTracking || {};
   const loggedKeys = Object.keys(tracking)
-    .filter(d => tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .filter(d => getWeightValue(tracking[d]) !== "" && !isNaN(parseFloat(getWeightValue(tracking[d]))))
     .sort(); // ascending chronological
 
   if (loggedKeys.length === 0) {
@@ -1031,10 +1083,10 @@ function renderRecentEntriesPanel() {
   const diffs = {};
   for (let i = 0; i < loggedKeys.length; i++) {
     const key = loggedKeys[i];
-    const val = parseFloat(tracking[key]);
+    const val = parseFloat(getWeightValue(tracking[key]));
     if (i > 0) {
       const prevKey = loggedKeys[i - 1];
-      const prevVal = parseFloat(tracking[prevKey]);
+      const prevVal = parseFloat(getWeightValue(tracking[prevKey]));
       diffs[key] = val - prevVal;
     }
   }
@@ -1042,7 +1094,7 @@ function renderRecentEntriesPanel() {
   const recentKeys = [...loggedKeys].reverse().slice(0, 8);
 
   const rows = recentKeys.map(key => {
-    const val = parseFloat(tracking[key]);
+    const val = parseFloat(getWeightValue(tracking[key]));
     const diff = diffs[key];
     let diffHtml = '<span class="diff neutral">—</span>';
     if (diff !== undefined) {
@@ -1083,7 +1135,7 @@ function renderArchivePanel() {
 
   const rows = [...sundays].reverse().map(date => {
     const key = dateToKey(date);
-    const val = tracking[key] !== undefined ? tracking[key] : "";
+    const val = getWeightValue(tracking[key]) !== undefined ? getWeightValue(tracking[key]) : "";
     
     let diffHtml = '<span class="diff neutral">—</span>';
     const numVal = parseFloat(val);
@@ -1130,9 +1182,9 @@ function renderArchivePanel() {
 function renderWeightGraph() {
   const tracking = appState.weightTracking || {};
   const entries = Object.keys(tracking)
-    .filter(d => tracking[d] !== "" && !isNaN(parseFloat(tracking[d])))
+    .filter(d => getWeightValue(tracking[d]) !== "" && !isNaN(parseFloat(getWeightValue(tracking[d]))))
     .sort()
-    .map(d => ({ dateStr: d, weight: parseFloat(tracking[d]) }));
+    .map(d => ({ dateStr: d, weight: parseFloat(getWeightValue(tracking[d])) }));
 
   if (entries.length < 2) {
     return `

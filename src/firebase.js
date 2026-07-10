@@ -200,14 +200,8 @@
     return {
       ...remoteState,
       ...localState,
-      food: {
-        ...(remoteState.food || {}),
-        ...(localState.food || {})
-      },
-      weightTracking: {
-        ...(remoteState.weightTracking || {}),
-        ...(localState.weightTracking || {})
-      },
+      food: mergeDatedRecords(remoteState.food, localState.food),
+      weightTracking: mergeDatedRecords(remoteState.weightTracking, localState.weightTracking),
       diary: mergeDiaryState(remoteState.diary, localState.diary)
     };
   }

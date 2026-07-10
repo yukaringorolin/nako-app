@@ -16,7 +16,7 @@ function sec(id, icon, accent, iconBg, title, description, image = "") {
 
 
 function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
 function photo(src, alt, caption) {
@@ -24,7 +24,7 @@ function photo(src, alt, caption) {
 }
 
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
 }
 
 
@@ -131,6 +131,7 @@ const ui = {
     diaryMyanmarTranslation: "Myanmar translation",
     diaryTranslationPlaceholder: "Add manual translation here.",
     diaryCurrentLanguagePreview: "Current language preview",
+    diaryTranslationWarning: "Original text changed - please review translations",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -205,6 +206,7 @@ const ui = {
     diaryMyanmarTranslation: "ミャンマー語翻訳",
     diaryTranslationPlaceholder: "ここに手動翻訳を追加してください。",
     diaryCurrentLanguagePreview: "現在の言語プレビュー",
+    diaryTranslationWarning: "元のテキストが変更されました。翻訳を確認してください。",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -279,6 +281,7 @@ const ui = {
     diaryMyanmarTranslation: "မြန်မာဘာသာပြန်",
     diaryTranslationPlaceholder: "ဤနေရာတွင် ကိုယ်တိုင်ဘာသာပြန်ချက် ထည့်ပါ။",
     diaryCurrentLanguagePreview: "လက်ရှိဘာသာစကားဖြင့် အစမ်းကြည့်ရှုခြင်း",
+    diaryTranslationWarning: "မူရင်းစာသား ပြောင်းလဲသွားသဖြင့် ဘာသာပြန်ချက်များကို ပြန်လည်စစ်ဆေးပေးပါ။",
   },
 };
 

@@ -15,7 +15,7 @@ function sec(id, icon, accent, iconBg, title, description, image = "") {
 
 
 function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
 function photo(src, alt, caption) {
@@ -23,7 +23,7 @@ function photo(src, alt, caption) {
 }
 
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "light", tags: [], sortOrder };
 }
 
 
