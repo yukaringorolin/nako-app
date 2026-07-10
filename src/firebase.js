@@ -202,8 +202,31 @@
       ...localState,
       food: mergeDatedRecords(remoteState.food, localState.food),
       weightTracking: mergeDatedRecords(remoteState.weightTracking, localState.weightTracking),
-      diary: mergeDiaryState(remoteState.diary, localState.diary)
+      diary: mergeDiaryState(remoteState.diary, localState.diary),
+      training: mergeTrainingState(remoteState.training, localState.training)
     };
+  }
+
+  function mergeTrainingState(remoteTraining = {}, localTraining = {}) {
+    const remote = remoteTraining || {};
+    const local = localTraining || {};
+    return {
+      ...remote,
+      ...local,
+      commands: mergeDatedRecords(remote.commands, local.commands),
+      commandLogs: mergeLogsById(remote.commandLogs, local.commandLogs),
+      playLogs: mergeLogsById(remote.playLogs, local.playLogs)
+    };
+  }
+
+  function mergeLogsById(remoteLogs = [], localLogs = []) {
+    const merged = new Map();
+    [...(remoteLogs || []), ...(localLogs || [])].forEach((log) => {
+      if (!log || !log.id) return;
+      const current = merged.get(log.id);
+      if (!current || (Date.parse(log.updatedAt || log.createdAt || "") || 0) >= (Date.parse(current.updatedAt || current.createdAt || "") || 0)) merged.set(log.id, log);
+    });
+    return [...merged.values()];
   }
 
   function mergeDiaryState(remoteDiary = {}, localDiary = {}) {

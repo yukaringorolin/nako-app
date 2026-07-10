@@ -14,6 +14,7 @@ const filesToBundle = [
   'additional_resources.js',
   'food_items.js',
   'routine_tasks.js',
+  'training.js',
   'recipes.js',
   'check_translations.js'
 ];
@@ -48,6 +49,7 @@ try {
   recipes, 
   cookingRules,
   additionalResources,
+  trainingData,
   checkTranslations
 };
 

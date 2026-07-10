@@ -26,6 +26,9 @@ function checkTranslations() {
   // 2. Check Database Objects
   const checkObj = (obj, path) => {
     if (!obj || typeof obj !== "object") return;
+    // Official video titles and channel names are source metadata, so retain the
+    // verified YouTube spelling rather than translating or flagging those names.
+    if (path?.startsWith("trainingData.videos") && (path.endsWith(".title") || path.endsWith(".channel"))) return;
     if (obj.en !== undefined) {
       if (shouldCheck(obj.en)) {
         if (obj._missingJp || !obj.jp || obj.jp === obj.en) {
@@ -50,6 +53,7 @@ function checkTranslations() {
   checkObj(window.nakoData.routineTasks, "routineTasks");
   checkObj(window.nakoData.recipes, "recipes");
   checkObj(window.nakoData.additionalResources, "additionalResources");
+  checkObj(window.nakoData.trainingData, "trainingData");
 
   return missing;
 }
