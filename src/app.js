@@ -500,14 +500,6 @@ function renderPhoto(photo) {
   return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
 }
 
-<<<<<<< HEAD
-function renderIngredient(item) {
-  if (item.macros) {
-    const macrosText = `${item.macros.calories} kcal · P ${item.macros.protein}g · C ${item.macros.carbs}g · F ${item.macros.fat}g`;
-    return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-copy"><span class="ingredient-name">${esc(tr(item.name))}</span><span class="ingredient-macros">${esc(macrosText)}</span></span><span class="amount">${esc(item.amount)}</span></li>`;
-  }
-  return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-name">${esc(tr(item.name))}</span><span class="amount">${esc(item.amount)}</span></li>`;
-=======
 function renderIngredient(item, recipeId, ingredientIndex) {
   const choiceId = `${recipeId}:${ingredientIndex}`;
   const selectedKey = selectedIngredientChoices[choiceId] || item.key;
@@ -518,8 +510,13 @@ function renderIngredient(item, recipeId, ingredientIndex) {
     ? `<div class="ingredient-choice-group" role="group" aria-label="${esc(tr(item.name))}">${item.alternatives.map((option) => `<button class="ingredient-choice ${option.key === selectedKey ? "is-selected" : ""}" data-ingredient-choice data-ingredient-choice-id="${esc(choiceId)}" data-ingredient-key="${esc(option.key)}" aria-pressed="${option.key === selectedKey}">${esc(tr(option.name))}</button>`).join("")}</div>`
     : "";
   const imageHtml = image ? `<img src="${esc(image)}" alt="${esc(tr(name))}" loading="lazy" />` : "";
+
+  if (item.macros) {
+    const macrosText = `${item.macros.calories} kcal · P ${item.macros.protein}g · C ${item.macros.carbs}g · F ${item.macros.fat}g`;
+    return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-copy"><div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="ingredient-macros">${esc(macrosText)}</span></div><span class="amount">${esc(item.amount)}</span></li>`;
+  }
+
   return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="amount">${esc(item.amount)}</span></li>`;
->>>>>>> origin/main
 }
 
 function orderedList(items) {
