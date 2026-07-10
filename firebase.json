@@ -53,7 +53,20 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/translateDiary",
+        "function": {
+          "functionId": "translateDiary",
+          "region": "asia-southeast1"
+        }
+      }
     ]
+  },
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs20"
   },
   "firestore": {
     "rules": "firestore.rules",

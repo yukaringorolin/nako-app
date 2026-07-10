@@ -40,6 +40,30 @@
       pendingTimer = window.setTimeout(flushPendingState, 450);
       return true;
     },
+    async translateDiary(payload) {
+      if (!auth || !auth.currentUser) {
+        return { ok: false, error: "Firebase Auth unavailable" };
+      }
+
+      try {
+        const token = await auth.currentUser.getIdToken();
+        const response = await fetch("/api/translateDiary", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload || {})
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          return { ok: false, error: body.error || `Translation request failed (${response.status})` };
+        }
+        return body;
+      } catch (error) {
+        return { ok: false, error: readableError(error) };
+      }
+    },
     async getStorageDownloadURL(path) {
       if (!storage || !path) return "";
       try {
@@ -149,7 +173,12 @@
           return;
         }
 
-        syncCallbacks.applyRemoteState?.(remoteState);
+        const localState = cloneState(syncCallbacks.getLocalState?.() || {});
+        const mergedState = mergeStates(remoteState, localState);
+        syncCallbacks.applyRemoteState?.(mergedState);
+        if (hasDiaryMergeChanges(remoteState.diary, mergedState.diary)) {
+          service.saveRemoteState(mergedState);
+        }
         setStatus({ mode: "synced", error: "" });
       },
       (error) => {
@@ -198,8 +227,58 @@
       food: {
         ...(remoteState.food || {}),
         ...(localState.food || {})
-      }
+      },
+      weightTracking: {
+        ...(remoteState.weightTracking || {}),
+        ...(localState.weightTracking || {})
+      },
+      diary: mergeDiaryState(remoteState.diary, localState.diary)
     };
+  }
+
+  function mergeDiaryState(remoteDiary = {}, localDiary = {}) {
+    return {
+      ...remoteDiary,
+      ...localDiary,
+      entries: mergeDatedRecords(remoteDiary.entries, localDiary.entries),
+      drafts: mergeDatedRecords(remoteDiary.drafts, localDiary.drafts)
+    };
+  }
+
+  function mergeDatedRecords(remoteRecords = {}, localRecords = {}) {
+    const merged = { ...(remoteRecords || {}) };
+    Object.entries(localRecords || {}).forEach(([dateKey, localValue]) => {
+      const remoteValue = merged[dateKey];
+      merged[dateKey] = pickLatestRecord(remoteValue, localValue);
+    });
+    return merged;
+  }
+
+  function pickLatestRecord(remoteValue, localValue) {
+    if (!remoteValue) return localValue;
+    if (!localValue) return remoteValue;
+    const remoteTime = Date.parse(remoteValue.updatedAt || remoteValue.submittedAt || "") || 0;
+    const localTime = Date.parse(localValue.updatedAt || localValue.submittedAt || "") || 0;
+    return localTime >= remoteTime ? localValue : remoteValue;
+  }
+
+  function hasDiaryMergeChanges(remoteDiary = {}, mergedDiary = {}) {
+    return diaryRecordSignature(remoteDiary.entries) !== diaryRecordSignature(mergedDiary.entries)
+      || diaryRecordSignature(remoteDiary.drafts) !== diaryRecordSignature(mergedDiary.drafts);
+  }
+
+  function diaryRecordSignature(records = {}) {
+    return JSON.stringify(Object.keys(records || {}).sort().map((dateKey) => {
+      const record = records[dateKey] || {};
+      return [
+        dateKey,
+        record.updatedAt || "",
+        record.submittedAt || "",
+        record.status || "",
+        record.text || "",
+        record.originalText || ""
+      ];
+    }));
   }
 
   function cloneState(value) {

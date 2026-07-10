@@ -1,6 +1,11 @@
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
+const DIARY_TRANSLATION_LANGS = [
+  { key: "en", title: "English" },
+  { key: "jp", title: "日本語" },
+  { key: "mm", title: "မြန်မာ" }
+];
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources } = window.nakoData;
 
 // safeStorage wraps localStorage to handle blocked access/SecurityErrors
@@ -17,6 +22,8 @@ let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.ge
 let appState = loadState();
 let selectedArchiveYear = null;
 let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
+let diarySaveInProgress = false;
+let diaryStatusMessage = "";
 const app = document.querySelector("#app");
 
 window.addEventListener("hashchange", render);
@@ -132,6 +139,7 @@ function renderHome() {
 
 function renderShortcuts() {
   const shortcutList = [
+    { id: "helper-diary-feedback", type: "routine", labelKey: "shortcutDiary" },
     { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
     { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
@@ -196,6 +204,7 @@ function renderRoutine(routineId) {
   const task = routineTasks.find((entry) => entry.id === routineId);
   if (!task) return renderHome();
   const section = homeSections.find((entry) => entry.id === task.frequencyBucket);
+  if (task.id === "helper-diary-feedback") return renderDiaryFeedback(task);
   if (task.id === "nako-weight-tracking") return renderWeightTracking(task);
   const hasInstructions = task.instructions.length > 1 || (task.instructions.length === 1 && tr(task.instructions[0]) !== tr(task.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>` : "";
@@ -416,6 +425,89 @@ function renderVideo(videoUrl) {
 function emptyState() { return `<div class="empty-state">${esc(label("noItems"))}</div>`; }
 function bySort(a, b) { return a.sortOrder - b.sortOrder; }
 
+function renderDiaryFeedback(item) {
+  const section = item.frequencyBucket ? homeSections.find((entry) => entry.id === item.frequencyBucket) : null;
+  const todayKey = dateToKey(new Date());
+  const diary = getDiaryState();
+  const entry = diary.entries[todayKey] || null;
+  const draft = getDiaryDraft(todayKey);
+  const textValue = draft.text ?? entry?.originalText ?? "";
+  const status = diarySaveInProgress ? "pending" : entry?.status || (firebaseStatus.mode === "local" ? "unavailable" : "");
+  const statusText = diarySaveInProgress ? label("diarySaving") : diaryEntryStatusLabel(status);
+  const actionLabel = entry?.submittedAt ? label("diaryUpdate") : label("diarySubmit");
+  const message = diaryStatusMessage ? `<p class="diary-message">${esc(diaryStatusMessage)}</p>` : "";
+  const content = `
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), section?.iconBg || "#fff1f2", tr(section?.title || item.frequencyText), primaryPhoto(item.photos))}
+    <section class="panel diary-entry-panel">
+      <div class="diary-date-row">
+        <span>${esc(label("diaryDate"))}</span>
+        <strong>${esc(formatDiaryDate(todayKey))}</strong>
+      </div>
+      <p class="diary-prompt">${esc(label("diaryPrompt"))}</p>
+      <textarea class="diary-field" data-diary-text="${esc(todayKey)}" placeholder="${esc(label("diaryPlaceholder"))}" ${diarySaveInProgress ? "disabled" : ""}>${esc(textValue)}</textarea>
+      <div class="diary-actions">
+        <button class="action-button primary" data-diary-submit="${esc(todayKey)}" ${diarySaveInProgress ? "disabled" : ""}>${esc(actionLabel)}</button>
+        <span class="diary-status ${esc(status || "idle")}">${esc(statusText)}</span>
+      </div>
+      ${message}
+    </section>
+    ${renderDiaryTranslations(entry)}
+    <section class="panel">
+      <h2>${esc(label("diaryRecent"))}</h2>
+      ${renderDiaryHistory()}
+    </section>`;
+  renderShell(tr(item.title), content, true);
+}
+
+function renderDiaryTranslations(entry) {
+  if (!entry) return "";
+  const original = entry.originalText || "";
+  const detected = entry.sourceLanguage ? `<span>${esc(label("diaryDetectedLanguage"))}: <strong>${esc(entry.sourceLanguage)}</strong></span>` : "";
+  const updated = entry.updatedAt ? `<span>${esc(label("diaryLastUpdated"))}: <strong>${esc(formatDiaryTimestamp(entry.updatedAt))}</strong></span>` : "";
+  const translations = entry.translations || {};
+  const cards = DIARY_TRANSLATION_LANGS.map(({ key, title }) => {
+    const translated = translations[key] || "";
+    const body = translated ? esc(translated) : esc(diaryEntryStatusLabel(entry.status));
+    return `<article class="translation-card">
+      <h3>${esc(title)}</h3>
+      <p>${body}</p>
+    </article>`;
+  }).join("");
+  return `<section class="panel diary-translation-panel">
+    <div class="diary-panel-head">
+      <h2>${esc(label("diaryTranslations"))}</h2>
+      <span class="diary-status ${esc(entry.status || "idle")}">${esc(diaryEntryStatusLabel(entry.status))}</span>
+    </div>
+    <div class="diary-meta-line">${detected}${updated}</div>
+    <article class="translation-card original">
+      <h3>${esc(label("diaryOriginal"))}</h3>
+      <p>${esc(original)}</p>
+    </article>
+    <div class="translation-grid">${cards}</div>
+    <button class="action-button secondary" data-diary-whatsapp>${esc(label("diaryWhatsApp"))}</button>
+  </section>`;
+}
+
+function renderDiaryHistory() {
+  const entries = Object.values(getDiaryState().entries || {})
+    .filter((entry) => entry?.dateKey && entry?.originalText)
+    .sort((a, b) => String(b.dateKey).localeCompare(String(a.dateKey)))
+    .slice(0, 7);
+
+  if (!entries.length) return `<div class="empty-state">${esc(label("diaryNoEntries"))}</div>`;
+
+  return `<div class="diary-history-list">${entries.map((entry) => {
+    const translated = entry.translations?.[currentLang] || entry.originalText;
+    return `<article class="diary-history-card">
+      <div>
+        <h3>${esc(formatDiaryDate(entry.dateKey))}</h3>
+        <p>${esc(translated)}</p>
+      </div>
+      <span class="diary-status ${esc(entry.status || "idle")}">${esc(diaryEntryStatusLabel(entry.status))}</span>
+    </article>`;
+  }).join("")}</div>`;
+}
+
 /* ==========================================================================
    SECTION 5: INTERACTIVE EVENT LISTENERS & CONTROLLERS
    ========================================================================== */
@@ -426,6 +518,10 @@ function handleClick(event) {
   if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
   const syncBtn = event.target.closest("[data-sync-settings]");
   if (syncBtn) { handleSyncSettings(); return; }
+  const diarySubmit = event.target.closest("[data-diary-submit]");
+  if (diarySubmit) { handleDiarySubmit(diarySubmit.dataset.diarySubmit); return; }
+  const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
+  if (diaryWhatsApp) { openWhatsAppNotice(); return; }
   const section = event.target.closest("[data-section]");
   if (section) return go(`#section/${section.dataset.section}`);
   const routine = event.target.closest("[data-routine]");
@@ -490,9 +586,114 @@ function handleSyncSettings() {
   }
 }
 
+async function handleDiarySubmit(dateKey) {
+  const draft = getDiaryDraft(dateKey);
+  const text = String(draft.text || "").trim();
+
+  if (!text) {
+    diaryStatusMessage = label("diaryEmptyError");
+    alert(label("diaryEmptyError"));
+    render();
+    return;
+  }
+
+  diarySaveInProgress = true;
+  diaryStatusMessage = label("diarySaving");
+
+  const now = nowIso();
+  const diary = getDiaryState();
+  const previousEntry = diary.entries[dateKey] || {};
+  const existingTranslations = previousEntry.originalText === text ? previousEntry.translations || {} : {};
+  diary.entries[dateKey] = {
+    ...previousEntry,
+    dateKey,
+    originalText: text,
+    translations: existingTranslations,
+    sourceLanguage: previousEntry.sourceLanguage || "",
+    status: "pending",
+    error: "",
+    submittedAt: previousEntry.submittedAt || now,
+    updatedAt: now
+  };
+  diary.drafts[dateKey] = { text, updatedAt: now };
+  saveState();
+  render();
+
+  try {
+    const translation = await requestDiaryTranslation(text, dateKey);
+    const liveEntry = getDiaryState().entries[dateKey];
+    if (liveEntry?.originalText === text) {
+      liveEntry.translations = translation.ok ? normalizeDiaryTranslations(translation.translations, text) : {};
+      liveEntry.sourceLanguage = translation.sourceLanguage || "";
+      liveEntry.status = translation.ok ? "ready" : "unavailable";
+      liveEntry.error = translation.error || "";
+      liveEntry.updatedAt = nowIso();
+      saveState();
+      diaryStatusMessage = translation.ok ? label("diarySaved") : label("diaryLocalOnly");
+    }
+  } catch (error) {
+    const liveEntry = getDiaryState().entries[dateKey];
+    if (liveEntry?.originalText === text) {
+      liveEntry.status = "error";
+      liveEntry.translations = {};
+      liveEntry.error = error?.message || label("diaryTranslationError");
+      liveEntry.updatedAt = nowIso();
+      saveState();
+      diaryStatusMessage = label("diaryTranslationError");
+    }
+  } finally {
+    diarySaveInProgress = false;
+    render();
+    openWhatsAppNotice();
+  }
+}
+
+async function requestDiaryTranslation(text, dateKey) {
+  const firebaseSync = window.nakoFirebase;
+  if (!firebaseSync?.translateDiary || firebaseStatus.mode === "local") {
+    return {
+      ok: false,
+      sourceLanguage: "",
+      translations: {},
+      error: label("diaryLocalOnly")
+    };
+  }
+
+  const result = await firebaseSync.translateDiary({ text, dateKey });
+  if (!result?.ok) {
+    throw new Error(result?.error || label("diaryTranslationError"));
+  }
+  return result;
+}
+
+function normalizeDiaryTranslations(translations, fallbackText) {
+  const source = translations && typeof translations === "object" ? translations : {};
+  return {
+    en: source.en || fallbackText,
+    jp: source.jp || fallbackText,
+    mm: source.mm || fallbackText
+  };
+}
+
+function openWhatsAppNotice() {
+  window.open(buildWhatsAppNoticeUrl(), "_blank", "noopener,noreferrer");
+}
+
+function buildWhatsAppNoticeUrl() {
+  return `https://wa.me/?text=${encodeURIComponent(label("diaryWhatsAppMessage"))}`;
+}
+
 function handleInput(event) {
   const foodMemo = event.target.closest("[data-food-memo]");
   if (foodMemo) { getFoodState(foodMemo.dataset.foodMemo).memo = foodMemo.value; return saveState(); }
+  const diaryText = event.target.closest("[data-diary-text]");
+  if (diaryText) {
+    const draft = getDiaryDraft(diaryText.dataset.diaryText);
+    draft.text = diaryText.value;
+    draft.updatedAt = nowIso();
+    diaryStatusMessage = "";
+    return saveState();
+  }
 }
 
 /* ==========================================================================
@@ -502,6 +703,28 @@ function getFoodState(id) {
   appState.food ||= {};
   appState.food[id] ||= { memo: "" };
   return appState.food[id];
+}
+
+function getDiaryState() {
+  appState.diary ||= {};
+  appState.diary.entries ||= {};
+  appState.diary.drafts ||= {};
+  return appState.diary;
+}
+
+function getDiaryDraft(dateKey) {
+  const diary = getDiaryState();
+  const entry = diary.entries[dateKey];
+  const draft = diary.drafts[dateKey];
+
+  if (!draft || typeof draft !== "object") {
+    diary.drafts[dateKey] = {
+      text: entry?.originalText || "",
+      updatedAt: entry?.updatedAt || ""
+    };
+  }
+
+  return diary.drafts[dateKey];
 }
 
 function initFirebaseSync() {
@@ -608,6 +831,39 @@ function dateToKey(date) {
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
   return `${y}-${m}-${d}`;
+}
+
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function formatDiaryDate(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00`);
+  return date.toLocaleDateString(currentLang === "jp" ? "ja-JP" : currentLang === "mm" ? "my-MM" : "en-SG", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    weekday: "short"
+  });
+}
+
+function formatDiaryTimestamp(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleString(currentLang === "jp" ? "ja-JP" : currentLang === "mm" ? "my-MM" : "en-SG", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+function diaryEntryStatusLabel(status) {
+  if (status === "ready") return label("diaryTranslationReady");
+  if (status === "pending") return label("diaryTranslationPending");
+  if (status === "error") return label("diaryTranslationError");
+  if (status === "unavailable") return label("diaryTranslationUnavailable");
+  return label("diaryTranslationUnavailable");
 }
 
 function formatWeightDate(date, lang) {
