@@ -294,6 +294,7 @@ function renderRecipe(recipeId) {
   
   const content = `
     ${heroHtml}
+    ${isHuman ? renderNutritionSummary(recipe) : ""}
     ${renderHead(recipe.icon, tr(recipe.title), tr(recipe.description), "#fff0eb", label("recipes"), headPhoto)}
     ${badgesHtml}
     ${renderPhotos(supportingPhotos)}
@@ -302,6 +303,43 @@ function renderRecipe(recipeId) {
     <section class="panel"><h2>${esc(label("method"))}</h2>${orderedList(recipe.method)}</section>
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2><p>${esc(tr(recipe.note))}</p></section>`;
   renderShell(tr(recipe.title), content, true);
+}
+
+function renderNutritionSummary(recipe) {
+  if (!recipe.nutrition) return "";
+
+  return `
+    <section class="nutrition-summary">
+      <div class="nutrition-summary-header">
+        <span class="nutrition-summary-title">${esc(label("nutritionEstimate"))}</span>
+        <span class="nutrition-whole-label">${esc(label("nutritionWholeRecipe"))}</span>
+      </div>
+      <div class="nutrition-grid">
+        <div class="nutrition-stat">
+          <span class="nutrition-value">${recipe.nutrition.calories} <span class="nutrition-unit">kcal</span></span>
+          <span class="nutrition-label">${esc(label("calories"))}</span>
+        </div>
+        <div class="nutrition-stat">
+          <span class="nutrition-value">${recipe.nutrition.protein} <span class="nutrition-unit">g</span></span>
+          <span class="nutrition-label">${esc(label("protein"))}</span>
+        </div>
+        <div class="nutrition-stat">
+          <span class="nutrition-value">${recipe.nutrition.carbs} <span class="nutrition-unit">g</span></span>
+          <span class="nutrition-label">${esc(label("carbohydrates"))}</span>
+        </div>
+        <div class="nutrition-stat">
+          <span class="nutrition-value">${recipe.nutrition.fat} <span class="nutrition-unit">g</span></span>
+          <span class="nutrition-label">${esc(label("fat"))}</span>
+        </div>
+      </div>
+      <div class="nutrition-basis">
+        <strong>${esc(label("nutritionBasis"))}:</strong> ${esc(tr(recipe.nutrition.basis))}
+      </div>
+      <div class="nutrition-disclaimer">
+        ${esc(label("nutritionDisclaimer"))}
+      </div>
+    </section>
+  `;
 }
 
 /* ==========================================================================
@@ -435,6 +473,10 @@ function renderPhoto(photo) {
 }
 
 function renderIngredient(item) {
+  if (item.macros) {
+    const macrosText = `${item.macros.calories} kcal · P ${item.macros.protein}g · C ${item.macros.carbs}g · F ${item.macros.fat}g`;
+    return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-copy"><span class="ingredient-name">${esc(tr(item.name))}</span><span class="ingredient-macros">${esc(macrosText)}</span></span><span class="amount">${esc(item.amount)}</span></li>`;
+  }
   return `<li class="ingredient-row"><img src="${ingredientImage(item.key)}" alt="${esc(tr(item.name))}" /><span class="ingredient-name">${esc(tr(item.name))}</span><span class="amount">${esc(item.amount)}</span></li>`;
 }
 

@@ -37,7 +37,12 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog",
     description: isHuman 
       ? t("Japanese home-cooked recipe idea.", "日本の家庭料理レシピのアイデア。", "ဂျပန်အိမ်ချက် ဟင်းချက်နည်းအိုင်ဒီယာ။")
       : t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း。"), 
-    ingredients: ingredients.map(([name, amount, key]) => ({ key, name, amount })), 
+    ingredients: ingredients.map(([name, amount, key, macros]) => ({
+      key,
+      name,
+      amount,
+      macros: macros || null
+    })), 
     method, 
     note: isHuman ? note : (photos.length > 0 ? note : recipeNote(note)),
     photos,
@@ -132,6 +137,14 @@ const ui = {
     diaryTranslationPlaceholder: "Add manual translation here.",
     diaryCurrentLanguagePreview: "Current language preview",
     diaryTranslationWarning: "Original text changed - please review translations",
+    nutritionEstimate: "Estimated macros",
+    nutritionWholeRecipe: "Whole recipe total",
+    calories: "Calories",
+    protein: "Protein",
+    carbohydrates: "Carbs",
+    fat: "Fat",
+    nutritionBasis: "Calculation basis",
+    nutritionDisclaimer: "Estimated from the listed ingredient weights. Actual values may vary by brand, preparation, cooking and food left in the pan.",
   },
   jp: {
     appTitle: "Nako Home Care",
@@ -207,6 +220,14 @@ const ui = {
     diaryTranslationPlaceholder: "ここに手動翻訳を追加してください。",
     diaryCurrentLanguagePreview: "現在の言語プレビュー",
     diaryTranslationWarning: "元のテキストが変更されました。翻訳を確認してください。",
+    nutritionEstimate: "推定マクロ",
+    nutritionWholeRecipe: "レシピ全量",
+    calories: "カロリー",
+    protein: "たんぱく質",
+    carbohydrates: "炭水化物",
+    fat: "脂質",
+    nutritionBasis: "計算条件",
+    nutritionDisclaimer: "記載された材料重量に基づく推定値です。ブランド、下処理、調理方法、鍋に残る量によって実際の値は変わる場合があります。",
   },
   mm: {
     appTitle: "Nako Home Care",
@@ -282,6 +303,14 @@ const ui = {
     diaryTranslationPlaceholder: "ဤနေရာတွင် ကိုယ်တိုင်ဘာသာပြန်ချက် ထည့်ပါ။",
     diaryCurrentLanguagePreview: "လက်ရှိဘာသာစကားဖြင့် အစမ်းကြည့်ရှုခြင်း",
     diaryTranslationWarning: "မူရင်းစာသား ပြောင်းလဲသွားသဖြင့် ဘာသာပြန်ချက်များကို ပြန်လည်စစ်ဆေးပေးပါ။",
+    nutritionEstimate: "ခန့်မှန်း macros",
+    nutritionWholeRecipe: "ဟင်းချက်နည်းတစ်ခုလုံး",
+    calories: "ကယ်လိုရီ",
+    protein: "ပရိုတင်း",
+    carbohydrates: "ကာဗိုဟိုက်ဒရိတ်",
+    fat: "အဆီ",
+    nutritionBasis: "တွက်ချက်မှုအခြေခံ",
+    nutritionDisclaimer: "ဖော်ပြထားသော ပါဝင်ပစ္စည်းအလေးချိန်များအပေါ် အခြေခံ၍ ခန့်မှန်းထားခြင်းဖြစ်သည်။ အမှတ်တံဆိပ်၊ ပြင်ဆင်ပုံ၊ ချက်ပြုတ်ပုံနှင့် ဒယ်အိုးထဲကျန်သည့်ပမာဏအလိုက် တကယ့်တန်ဖိုး ကွာနိုင်သည်။",
   },
 };
 
@@ -1321,17 +1350,17 @@ const recipes = [
   recipe("chicken-teriyaki-rice",
     t("Chicken Teriyaki Rice Bowl", "鶏の照り焼き丼", "ကြက်သား ထရီယာကီ ထမင်းသုပ်"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice"],
-      [t("Skinless chicken breast", "鶏むね肉（皮なし）", "အရေပြားမပါသော ကြက်ရင်ပုံသား"), "220g", "chicken-breast"],
-      [t("Broccoli", "ブロッコリー", "ပန်းဂေါ်ဖီစိမ်း"), "80g", "broccoli"],
-      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
-      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
-      [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
-      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
-      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"],
-      [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.7, fat: 0.3 }],
+      [t("Skinless chicken breast", "鶏むね肉（皮なし）", "အရေပြားမပါသော ကြက်ရင်ပုံသား"), "220g", "chicken-breast", { calories: 247, protein: 49.6, carbs: 0.0, fat: 4.3 }],
+      [t("Broccoli", "ブロッコリー", "ပန်းဂေါ်ဖီစိမ်း"), "80g", "broccoli", { calories: 27, protein: 2.3, carbs: 5.3, fat: 0.3 }],
+      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot", { calories: 20, protein: 0.5, carbs: 4.8, fat: 0.1 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce", { calories: 10, protein: 1.5, carbs: 0.9, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin", { calories: 43, protein: 0.1, carbs: 7.8, fat: 0.0 }],
+      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Sugar", "砂糖", "သကြား"), "4g", "sugar", { calories: 15, protein: 0.0, carbs: 4.0, fat: 0.0 }],
+      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger", { calories: 4, protein: 0.1, carbs: 0.9, fat: 0.0 }],
+      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil", { calories: 44, protein: 0.0, carbs: 0.0, fat: 5.0 }],
+      [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame", { calories: 11, protein: 0.4, carbs: 0.5, fat: 1.0 }]
     ],
     [
       t("Cut 220g chicken breast into bite-sized pieces of about 2cm.", "220gの鶏むね肉を約2cmの一口大に切ります。", "ကြက်ရင်ပုံသား ၂၂၀ ဂရမ်ကို ၂ စင်တီမီတာခန့် အတုံးလေးများ တုံးပါ။"),
@@ -1355,20 +1384,31 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 657,
+        protein: 58.5,
+        carbs: 75.8,
+        fat: 11.1,
+        basis: t(
+          "Calculated using water for the sake-or-water option.",
+          "酒または水の選択肢は、水を使用して計算しています。",
+          "ဆာကေး သို့မဟုတ် ရေ ရွေးချယ်မှုတွင် ရေကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("salmon-shioyaki-set",
     t("Salmon Shioyaki Protein Set", "鮭の塩焼き定食", "ဆယ်လ်မွန်ငါး ဆားကင် ပရိုတင်းအစုံ"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "160g", "rice"],
-      [t("Salmon fillet", "鮭の切り身", "ဆယ်လ်မွန်ငါးအသားလွှာ"), "180g", "salmon-fillet"],
-      [t("Salt", "塩", "ဆား"), "2g", "salt"],
-      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "8g", "soy-sauce"],
-      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "3g", "oil"],
-      [t("Lemon wedge", "レモンくし切り", "ရှောက်သီးလွှာ"), "15g", "lemon"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "160g", "rice", { calories: 208, protein: 3.8, carbs: 46.0, fat: 0.3 }],
+      [t("Salmon fillet", "鮭の切り身", "ဆယ်လ်မွန်ငါးအသားလွှာ"), "180g", "salmon-fillet", { calories: 374, protein: 36.8, carbs: 0.0, fat: 24.2 }],
+      [t("Salt", "塩", "ဆား"), "2g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs", { calories: 143, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach", { calories: 18, protein: 2.3, carbs: 2.9, fat: 0.3 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "8g", "soy-sauce", { calories: 4, protein: 0.7, carbs: 0.4, fat: 0.0 }],
+      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "3g", "oil", { calories: 27, protein: 0.0, carbs: 0.0, fat: 3.0 }],
+      [t("Lemon wedge", "レモンくし切り", "ရှောက်သီးလွှာ"), "15g", "lemon", { calories: 4, protein: 0.2, carbs: 1.4, fat: 0.0 }]
     ],
     [
       t("Pat dry 180g salmon fillet with kitchen paper.", "180gの鮭の切り身をキッチンペーパーで水気を拭き取ります。", "ဆယ်လ်မွန်ငါးအသားလွှာ ၁၈၀ ဂရမ်ကို မီးဖိုချောင်စက္ကူဖြင့် ခြောက်အောင်သုတ်ပါ။"),
@@ -1394,21 +1434,32 @@ const recipes = [
       mealType: t("Breakfast/Lunch", "朝食/昼食", "မနက်စာ/နေ့လယ်စာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 779,
+        protein: 56.2,
+        carbs: 51.4,
+        fat: 37.4,
+        basis: t(
+          "Calculated using raw farmed Atlantic salmon.",
+          "生の養殖アトランティックサーモンを使用して計算しています。",
+          "မွေးမြူထားသော Atlantic salmon အစိမ်းကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("pork-shogayaki-no-onion",
     t("Pork Shogayaki (No Onion)", "豚の生姜焼き（玉ねぎなし）", "ဝက်သား ချင်းကြော် (ကြက်သွန်မပါ)"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "170g", "rice"],
-      [t("Lean pork slices", "豚薄切り肉（脂身の少ないもの）", "အဆီနည်းသော ဝက်သားပါးပါးလှီး"), "220g", "pork"],
-      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), "120g", "cabbage"],
-      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "10g", "ginger"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "20g", "soy-sauce"],
-      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
-      [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"],
-      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "170g", "rice", { calories: 221, protein: 4.0, carbs: 48.8, fat: 0.3 }],
+      [t("Lean pork slices", "豚薄切り肉（脂身の少ないもの）", "အဆီနည်းသော ဝက်သားပါးပါးလှီး"), "220g", "pork", { calories: 240, protein: 46.1, carbs: 0.0, fat: 4.8 }],
+      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), "120g", "cabbage", { calories: 30, protein: 1.5, carbs: 7.0, fat: 0.1 }],
+      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "10g", "ginger", { calories: 8, protein: 0.2, carbs: 1.8, fat: 0.1 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "20g", "soy-sauce", { calories: 11, protein: 1.6, carbs: 1.0, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin", { calories: 43, protein: 0.1, carbs: 7.8, fat: 0.0 }],
+      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Sugar", "砂糖", "သကြား"), "3g", "sugar", { calories: 12, protein: 0.0, carbs: 3.0, fat: 0.0 }],
+      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil", { calories: 44, protein: 0.0, carbs: 0.0, fat: 5.0 }]
     ],
     [
       t("Slice 120g cabbage thinly and place it on the serving plate.", "120gのキャベツを千切りにし、盛り付け用の皿に盛ります。", "ဂေါ်ဖီထုပ် ၁၂၀ ဂရမ်ကို ပါးပါးလှီးပြီး ပန်းကန်ပြားပေါ်တွင် ခင်းပါ။"),
@@ -1431,21 +1482,32 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 609,
+        protein: 53.5,
+        carbs: 69.3,
+        fat: 10.4,
+        basis: t(
+          "Calculated using raw lean pork tenderloin and water for the sake-or-water option.",
+          "脂身の少ない生の豚ヒレ肉を使用し、酒または水の選択肢は水で計算しています。",
+          "အဆီနည်းသော ဝက်သား tenderloin အစိမ်းနှင့် ဆာကေး သို့မဟုတ် ရေ ရွေးချယ်မှုတွင် ရေကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("chicken-oyakodon-no-onion",
     t("Chicken Oyakodon (No Onion)", "親子丼（玉ねぎなし）", "ကြက်သားဥဝိုင်းထမင်းသုပ် (ကြက်သွန်မပါ)"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice"],
-      [t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "200g", "chicken-thigh"],
-      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "70g", "mushroom"],
-      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "70g", "napa-cabbage"],
-      [t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"), "100g", "dashi"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
-      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sugar", "砂糖", "သကြား"), "3g", "sugar"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.7, fat: 0.3 }],
+      [t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "200g", "chicken-thigh", { calories: 224, protein: 45.0, carbs: 0.0, fat: 3.9 }],
+      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs", { calories: 143, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "70g", "mushroom", { calories: 15, protein: 2.2, carbs: 2.3, fat: 0.2 }],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "70g", "napa-cabbage", { calories: 11, protein: 0.8, carbs: 2.3, fat: 0.1 }],
+      [t("Dashi or water", "だし汁または水", "ဒါရှီ သို့မဟုတ် ရေ"), "100g", "dashi", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce", { calories: 10, protein: 1.5, carbs: 0.9, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin", { calories: 43, protein: 0.1, carbs: 7.8, fat: 0.0 }],
+      [t("Sugar", "砂糖", "သကြား"), "3g", "sugar", { calories: 12, protein: 0.0, carbs: 3.0, fat: 0.0 }]
     ],
     [
       t("Cut 200g chicken into bite-sized pieces of about 2cm.", "200gの鶏肉を約2cmの一口大に切ります。", "ကြက်သား ၂၀၀ ဂရမ်ကို ၂ စင်တီမီတာခန့် အတုံးလေးများ တုံးပါ။"),
@@ -1472,21 +1534,32 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 693,
+        protein: 66.4,
+        carbs: 68.6,
+        fat: 14.2,
+        basis: t(
+          "Calculated using skinless chicken breast, button mushrooms and water.",
+          "皮なし鶏むね肉、マッシュルーム、水を使用して計算しています。",
+          "အရေပြားမပါသော ကြက်ရင်ပုံသား၊ button mushroom နှင့် ရေကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("tuna-tofu-egg-rice",
     t("Tuna Tofu Egg Rice Bowl", "ツナ豆腐卵丼", "ငါးတူနာ ပဲပိစပ် ကြက်ဥ ထမင်းသုပ်"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "160g", "rice"],
-      [t("Canned tuna in water, drained", "ツナ缶（水煮、水切り済み）", "ရေနှင့်ထည့်ထားသော ငါးတူနာအံဘူး (ရေစစ်ပြီး)"), "120g", "tuna"],
-      [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu"],
-      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Cucumber", "きゅうり", "သခွားသီး"), "80g", "cucumber"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "12g", "soy-sauce"],
-      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "4g", "sesame-oil"],
-      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "vinegar"],
-      [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "160g", "rice", { calories: 208, protein: 3.8, carbs: 46.0, fat: 0.3 }],
+      [t("Canned tuna in water, drained", "ツナ缶（水煮、水切り済み）", "ရေနှင့်ထည့်ထားသော ငါးတူနာအံဘူး (ရေစစ်ပြီး)"), "120g", "tuna", { calories: 139, protein: 30.6, carbs: 0.0, fat: 1.0 }],
+      [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu", { calories: 110, protein: 10.5, carbs: 2.2, fat: 7.3 }],
+      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs", { calories: 143, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Cucumber", "きゅうり", "သခွားသီး"), "80g", "cucumber", { calories: 12, protein: 0.5, carbs: 2.9, fat: 0.1 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "12g", "soy-sauce", { calories: 6, protein: 1.0, carbs: 0.6, fat: 0.1 }],
+      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "4g", "sesame-oil", { calories: 35, protein: 0.0, carbs: 0.0, fat: 4.0 }],
+      [t("Rice vinegar", "米酢", "ထမင်းရည်ချဉ်"), "8g", "vinegar", { calories: 1, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("White sesame seeds", "白ごま", "နှမ်းဖြူ"), "2g", "sesame", { calories: 11, protein: 0.4, carbs: 0.5, fat: 1.0 }]
     ],
     [
       t("Drain the canned tuna until the tuna weight is 120g.", "ツナ缶の水気を切り、ツナの重さが120gになるようにします。", "ငါးတူနာအံဘူးမှ ရေကို စစ်ထုတ်ပြီး ငါးတူနာ ၁၂၀ ဂရမ်ဖြစ်အောင် ထားပါ။"),
@@ -1511,22 +1584,33 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("10 mins", "10分", "၁၀ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 666,
+        protein: 59.3,
+        carbs: 52.9,
+        fat: 23.3,
+        basis: t(
+          "Calculated using drained tuna in water and Japanese firm momen tofu.",
+          "水煮で水切りしたツナと、日本の木綿豆腐を使用して計算しています。",
+          "ရေထဲထည့်ထားပြီး ရေစစ်ထားသော tuna နှင့် ဂျပန် momen tofu ကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("chicken-soboro-don",
     t("Chicken Soboro Don", "鶏そぼろ丼", "ကြက်သား စိုဘိုရို ထမင်းသုပ်"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice"],
-      [t("Minced chicken breast", "鶏ひき肉", "ကြက်သားနုတ်နုတ်စင်း"), "220g", "chicken-minced"],
-      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs"],
-      [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce"],
-      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin"],
-      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake"],
-      [t("Sugar", "砂糖", "သကြား"), "4g", "sugar"],
-      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger"],
-      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.7, fat: 0.3 }],
+      [t("Minced chicken breast", "鶏ひき肉", "ကြက်သားနုတ်နုတ်စင်း"), "220g", "chicken-minced", { calories: 247, protein: 49.6, carbs: 0.0, fat: 4.3 }],
+      [t("Egg", "卵", "ကြက်ဥ"), "100g", "eggs", { calories: 143, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Spinach", "ほうれん草", "ဟင်းနွယ်စိမ်း"), "80g", "spinach", { calories: 18, protein: 2.3, carbs: 2.9, fat: 0.3 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce", { calories: 10, protein: 1.5, carbs: 0.9, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin", { calories: 43, protein: 0.1, carbs: 7.8, fat: 0.0 }],
+      [t("Sake or water", "酒または水", "ဆာကေး သို့မဟုတ် ရေ"), "18g", "sake", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Sugar", "砂糖", "သကြား"), "4g", "sugar", { calories: 15, protein: 0.0, carbs: 4.0, fat: 0.0 }],
+      [t("Grated ginger", "おろし生姜", "ချင်းခြစ်"), "5g", "ginger", { calories: 4, protein: 0.1, carbs: 0.9, fat: 0.0 }],
+      [t("Cooking oil", "サラダ油", "ဟင်းချက်ဆီ"), "5g", "oil", { calories: 44, protein: 0.0, carbs: 0.0, fat: 5.0 }]
     ],
     [
       t("Beat 100g egg in a bowl.", "100gの卵をボウルで溶きほぐします。", "ကြက်ဥ ၁၀၀ ဂရမ်ကို ဇလုံထဲတွင် ခေါက်ပါ။"),
@@ -1552,22 +1636,33 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 759,
+        protein: 70.3,
+        carbs: 68.9,
+        fat: 19.6,
+        basis: t(
+          "Calculated using minced skinless chicken breast and water for the sake-or-water option.",
+          "皮なし鶏むねひき肉を使用し、酒または水の選択肢は水で計算しています。",
+          "အရေပြားမပါသော ကြက်ရင်ပုံသားနုတ်နုတ်စင်းနှင့် ဆာကေး သို့မဟုတ် ရေ ရွေးချယ်မှုတွင် ရေကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("chicken-miso-nabe",
     t("Chicken Miso Nabe", "鶏肉の味噌鍋", "ကြက်သား မစ်ဆိုဟော့ပေါ့"),
     [
-      [t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "220g", "chicken-thigh"],
-      [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu"],
-      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "150g", "napa-cabbage"],
-      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "80g", "mushroom"],
-      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot"],
-      [t("Water", "水", "ရေ"), "450g", "water"],
-      [t("Miso paste", "味噌", "မစ်ဆိုအနှစ်"), "35g", "miso"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "10g", "soy-sauce"],
-      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "12g", "mirin"],
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "150g", "rice"]
+      [t("Skinless chicken thigh or breast", "鶏もも肉またはむね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"), "220g", "chicken-thigh", { calories: 247, protein: 49.6, carbs: 0.0, fat: 4.3 }],
+      [t("Firm tofu", "木綿豆腐", "တိုဖူးမာ"), "150g", "tofu", { calories: 110, protein: 10.5, carbs: 2.2, fat: 7.3 }],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "150g", "napa-cabbage", { calories: 24, protein: 1.8, carbs: 4.8, fat: 0.3 }],
+      [t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"), "80g", "mushroom", { calories: 18, protein: 2.5, carbs: 2.6, fat: 0.3 }],
+      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "50g", "carrot", { calories: 20, protein: 0.5, carbs: 4.8, fat: 0.1 }],
+      [t("Water", "水", "ရေ"), "450g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Miso paste", "味噌", "မစ်ဆိုအနှစ်"), "35g", "miso", { calories: 64, protein: 4.4, carbs: 7.7, fat: 2.1 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "10g", "soy-sauce", { calories: 5, protein: 0.8, carbs: 0.5, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "12g", "mirin", { calories: 29, protein: 0.0, carbs: 5.2, fat: 0.0 }],
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "150g", "rice", { calories: 195, protein: 3.5, carbs: 43.1, fat: 0.3 }]
     ],
     [
       t("Cut 220g chicken into bite-sized pieces, about 2cm each.", "220gの鶏肉を約2cmの一口大に切ります。", "ကြက်သား ၂၂၀ ဂရမ်ကို ၂ စင်တီမီတာခန့် အတုံးလေးများ တုံးပါ။"),
@@ -1593,7 +1688,18 @@ const recipes = [
       mealType: t("Dinner", "夕食", "ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 711,
+        protein: 73.6,
+        carbs: 70.9,
+        fat: 14.7,
+        basis: t(
+          "Calculated using skinless chicken breast, Japanese firm momen tofu, button mushrooms and light-coloured rice miso.",
+          "皮なし鶏むね肉、日本の木綿豆腐、マッシュルーム、淡色米みそを使用して計算しています。",
+          "အရေပြားမပါသော ကြက်ရင်ပုံသား၊ ဂျပန် momen tofu၊ button mushroom နှင့် အရောင်ဖျော့သော ဆန်မစ်ဆိုကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   )
 ];
