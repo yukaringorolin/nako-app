@@ -47,7 +47,7 @@ function render() {
     const dest = destination;
     setTimeout(() => {
       if (dest.type === "cooking-rule") {
-        const rulesList = document.querySelectorAll(".rule-strip li");
+        const rulesList = document.querySelectorAll("[data-household-cooking-rules] li");
         const idx = Number(dest.index);
         if (rulesList[idx]) {
           rulesList[idx].scrollIntoView({ behavior: "smooth", block: "center" });

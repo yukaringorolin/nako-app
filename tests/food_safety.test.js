@@ -29,7 +29,7 @@ const safetyIndex = homeSections.findIndex((s) => s.id === "food-safety");
 const dailyIndex = homeSections.findIndex((s) => s.id === "daily");
 
 assert.ok(foodIndex !== -1, "Food section must exist");
-assert.ok(safetyIndex !== -1, "Food Safety section must exist");
+assert.ok(safetyIndex !== -1, "Kitchen Rules & Food Safety section must exist");
 assert.ok(dailyIndex !== -1, "Daily section must exist");
 assert.equal(safetyIndex, foodIndex + 1, "Food Safety must appear immediately after Food");
 assert.equal(dailyIndex, safetyIndex + 1, "Daily must appear immediately after Food Safety");
@@ -38,6 +38,14 @@ assert.equal(dailyIndex, safetyIndex + 1, "Daily must appear immediately after F
 const foodSafetyItems = nakoData.foodSafetyItems;
 assert.ok(foodSafetyItems, "foodSafetyItems must exist");
 assert.equal(foodSafetyItems.length, 12, "There must be exactly 12 food safety items");
+assert.equal(homeSections[safetyIndex].title.en, "Kitchen Rules & Food Safety");
+
+const householdCookingRulesItem = nakoData.householdCookingRulesItem;
+assert.ok(householdCookingRulesItem, "Household cooking rules item must exist");
+assert.equal(householdCookingRulesItem.id, "household-cooking-rules");
+assert.equal(householdCookingRulesItem.instructions, nakoData.cookingRules, "Household card must reuse the cookingRules array");
+assert.equal(householdCookingRulesItem.instructions.length, 6, "Household card must show all six cooking rules");
+assert.ok(!nakoData.foodItems.some((item) => item.id === "cooking-rules"), "Cooking rules must no longer appear in the Food section");
 
 const expectedIds = [
   "refrigerate-after-buying",
@@ -68,7 +76,9 @@ expectedIds.forEach((id) => {
 
 // 3. Verify the public route contract and focused feature renderers
 assert.deepEqual(router.parseRouteHash("#food-safety/safe-thawing"), { view: "food-safety-item", itemId: "safe-thawing" });
+assert.deepEqual(router.parseRouteHash("#food-safety/household-cooking-rules"), { view: "food-safety-item", itemId: "household-cooking-rules" });
 assert.ok(pageContent.includes("function renderFoodSafetyItem"), "pages module must render a food-safety detail");
+assert.ok(pageContent.includes('if (foodId === "cooking-rules") return go("#food-safety/household-cooking-rules")'), "Legacy cooking-rules route must redirect to the combined section");
 assert.ok(pageContent.includes("function renderOfficialReferencesPanel"), "pages module must render official references");
 assert.ok(componentContent.includes("function renderFoodSafetyCard"), "components module must render food-safety cards");
 

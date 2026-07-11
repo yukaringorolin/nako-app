@@ -5,7 +5,7 @@ try {
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
-const { langs, ui, homeSections, foodItems, foodSafetyItems, officialReferences, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
+const { langs, ui, homeSections, foodItems, foodSafetyItems, householdCookingRulesItem, officialReferences, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
 const ingredientCatalog = window.nakoIngredientCatalog || {};
 const routineTracking = window.nakoRoutineTracking;
 

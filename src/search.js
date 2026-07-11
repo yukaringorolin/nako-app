@@ -180,7 +180,10 @@
 
     // 4. foodSafetyItems
     if (data.foodSafetyItems) {
-      for (const item of data.foodSafetyItems) {
+      const safetyItems = data.householdCookingRulesItem
+        ? [data.householdCookingRulesItem, ...data.foodSafetyItems]
+        : data.foodSafetyItems;
+      for (const item of safetyItems) {
         index.push({
           id: `food-safety-${item.id}`,
           type: "food-safety",
@@ -263,7 +266,7 @@
           summary: { en: "Cooking Rule", jp: "料理のルール", mm: "ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်း" },
           icon: "!",
           photo: null,
-          route: "#food/cooking-rules",
+          route: "#food-safety/household-cooking-rules",
           active: true,
           originalItem: item,
           searchable: buildSearchFields(

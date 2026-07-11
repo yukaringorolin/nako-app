@@ -389,7 +389,6 @@ function renderSection(sectionId) {
   }
 
   const pinned = !isFood && !isFoodSafety && sectionId === "daily" ? renderPinnedSafety() : "";
-  const rules = isFood ? renderRulesPanel() : "";
   const officialRefs = isFoodSafety ? renderOfficialReferencesPanel() : "";
   
   let eyebrowText;
@@ -401,17 +400,38 @@ function renderSection(sectionId) {
     eyebrowText = label("routineItems");
   }
 
+  const cards = isFoodSafety
+    ? renderFoodSafetyGroups(section)
+    : `<section class="card-list">${items.map((item) => {
+        if (isFood) return renderFoodCard(item, section);
+        return renderRoutineCard(item, section);
+      }).join("") || emptyState()}</section>`;
+
   const content = `
     ${renderHead(section.icon, tr(section.title), tr(section.description), section.iconBg, eyebrowText)}
-    ${rules}
     ${pinned}
-    <section class="card-list">${items.map((item) => {
-      if (isFood) return renderFoodCard(item, section);
-      if (isFoodSafety) return renderFoodSafetyCard(item, section);
-      return renderRoutineCard(item, section);
-    }).join("") || emptyState()}</section>
+    ${cards}
     ${officialRefs}`;
   renderShell(tr(section.title), content, true);
+}
+
+function renderFoodSafetyGroups(section) {
+  const groups = [
+    { label: "householdCookingRules", items: [householdCookingRulesItem] },
+    { label: "foodStorage", ids: ["refrigerate-after-buying", "do-not-overcrowd-fridge", "refrigerator-storage-limits"] },
+    { label: "foodPreparation", ids: ["do-not-wash-raw-meat", "safe-thawing", "egg-safety"] },
+    { label: "cookingTemperatures", ids: ["cook-meat-completely", "rice-and-noodle-safety"] },
+    { label: "leftoversRefrigeration", ids: ["leftover-safety", "when-uncertain-discard"] },
+    { label: "cleaningCrossContamination", ids: ["separate-raw-and-cooked-food", "clean-serving-utensils"] }
+  ];
+
+  return groups.map((group) => {
+    const groupItems = group.items || group.ids.map((id) => foodSafetyItems.find((item) => item.id === id)).filter(Boolean);
+    return `<section class="safety-group" aria-labelledby="safety-group-${esc(group.label)}">
+      <h2 id="safety-group-${esc(group.label)}">${esc(label(group.label))}</h2>
+      <div class="card-list">${groupItems.map((item) => renderFoodSafetyCard(item, section)).join("")}</div>
+    </section>`;
+  }).join("");
 }
 
 function renderRoutine(routineId) {
@@ -446,6 +466,7 @@ function renderRoutine(routineId) {
 
 function renderFood(foodId) {
   if (foodId === "nako-weight") return go("#routine/nako-weight-tracking");
+  if (foodId === "cooking-rules") return go("#food-safety/household-cooking-rules");
   const item = foodItems.find((entry) => entry.id === foodId);
   if (!item) return renderHome();
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
@@ -463,10 +484,13 @@ function renderFood(foodId) {
 }
 
 function renderFoodSafetyItem(itemId) {
-  const item = foodSafetyItems.find((entry) => entry.id === itemId);
+  const item = itemId === householdCookingRulesItem.id
+    ? householdCookingRulesItem
+    : foodSafetyItems.find((entry) => entry.id === itemId);
   if (!item) return renderHome();
   const hasInstructions = item.instructions && item.instructions.length > 0;
-  const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
+  const householdRulesAttr = item.id === householdCookingRulesItem.id ? " data-household-cooking-rules" : "";
+  const instructionsPanel = hasInstructions ? `<section class="panel"${householdRulesAttr}><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fdf1ee", label("safetyReferences"), primaryPhoto(item.photos))}
     ${instructionsPanel}
@@ -494,6 +518,20 @@ function renderOfficialReferencesPanel() {
 function renderRecipeIndex(item) {
   const isHuman = item.id === "human-food";
   const filteredRecipes = recipes.filter((r) => isHuman ? r.type === "human" : (!r.type || r.type === "dog"));
+  if (isHuman) {
+    const promotedRecipes = ["banana-toast", "bak-kut-teh"];
+    filteredRecipes.sort((a, b) => {
+      const aIndex = promotedRecipes.indexOf(a.id);
+      const bIndex = promotedRecipes.indexOf(b.id);
+      if (aIndex === -1 && bIndex === -1) return 0;
+      if (aIndex === -1) return 1;
+      if (bIndex === -1) return -1;
+      return aIndex - bIndex;
+    });
+  } else {
+    const toppingOrder = ["sasami", "nako-chicken-apple-vegetable-meal-prep", "whitefish", "chickenbreast"];
+    filteredRecipes.sort((a, b) => toppingOrder.indexOf(a.id) - toppingOrder.indexOf(b.id));
+  }
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
     <section class="card-list">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;

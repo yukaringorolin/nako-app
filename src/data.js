@@ -113,6 +113,12 @@ const ui = {
     memo: "Memo",
     memoPlaceholder: "Add notes, questions, or anything to confirm.",
     cookingRules: "Cooking rules",
+    householdCookingRules: "Household Cooking Rules",
+    foodStorage: "Food Storage",
+    foodPreparation: "Food Preparation",
+    cookingTemperatures: "Cooking Temperatures",
+    leftoversRefrigeration: "Leftovers and Refrigeration",
+    cleaningCrossContamination: "Cleaning and Cross-Contamination",
     futureTracking: "Coming later",
     recipes: "Nako Topping Recipes",
     recipeName: "Recipe name",
@@ -259,6 +265,12 @@ const ui = {
     memo: "メモ",
     memoPlaceholder: "メモ、質問、または確認したいことを追加してください。",
     cookingRules: "料理ルール",
+    householdCookingRules: "家庭の料理ルール",
+    foodStorage: "食品の保存",
+    foodPreparation: "食品の下ごしらえ",
+    cookingTemperatures: "調理温度",
+    leftoversRefrigeration: "残り物と冷蔵保存",
+    cleaningCrossContamination: "清掃と交差汚染防止",
     futureTracking: "後で追加",
     recipes: "ナコのトッピングレシピ",
     recipeName: "レシピ名",
@@ -405,6 +417,12 @@ const ui = {
     memo: "မှတ်စု",
     memoPlaceholder: "မှတ်စု၊ မေးခွန်း သို့မဟုတ် အတည်ပြုရန်အရာများ ထည့်ပါ။",
     cookingRules: "ချက်ပြုတ်စည်းကမ်း",
+    householdCookingRules: "အိမ်သုံး ချက်ပြုတ်စည်းကမ်းများ",
+    foodStorage: "အစားအစာ သိုလှောင်ခြင်း",
+    foodPreparation: "အစားအစာ ပြင်ဆင်ခြင်း",
+    cookingTemperatures: "ချက်ပြုတ်အပူချိန်များ",
+    leftoversRefrigeration: "ကျန်အစားအစာနှင့် ရေခဲသေတ္တာသိုလှောင်ခြင်း",
+    cleaningCrossContamination: "သန့်ရှင်းရေးနှင့် ရောဂါပိုးကူးစက်မှုကာကွယ်ခြင်း",
     futureTracking: "နောက်မှထည့်မည်",
     recipes: "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ",
     recipeName: "ဟင်းချက်နည်းအမည်",
@@ -541,11 +559,11 @@ const ui = {
 const homeSections = [
   sec("food", "F", "#f19a82", "#fff0eb", 
     t("Food, Recipes & Nako Tracking", "食事、レシピ、ナコの追跡", "အစားအသောက်၊ ဟင်းချက်နည်းနှင့် Nako ခြေရာခံခြင်း"), 
-    t("Recipes, food logs, and cooking rules.", "レシピ、食事記録、料理ルール。", "ဟင်းချက်နည်း၊ အစားမှတ်တမ်းနဲ့ ချက်ပြုတ်စည်းကမ်း။"),
+    t("Recipes, food logs, and Nako meal tracking.", "レシピ、食事記録、ナコの食事追跡。", "ဟင်းချက်နည်း၊ အစားမှတ်တမ်းနှင့် Nako အစားအစာ ခြေရာခံခြင်း။"),
     "assets/sections/food.png"),
   sec("food-safety", "🛡️", "#d97d65", "#fef0ec", 
-    t("Food Safety", "食品安全", "အစားအသောက် ဘေးကင်းလုံခြုံရေး"), 
-    t("Store, cook, and keep food safe.", "食材を安全に保存・調理します。", "အစားအစာကို လုံခြုံစွာ သိမ်းပြီး ချက်ပါ။"),
+    t("Kitchen Rules & Food Safety", "キッチンルール・食品安全", "မီးဖိုချောင်စည်းကမ်းနှင့် အစားအသောက်ဘေးကင်းရေး"), 
+    t("Household cooking rules, safe storage, preparation, cooking, leftovers, and cleaning.", "家庭の料理ルール、安全な保存、下ごしらえ、調理、残り物、清掃。", "အိမ်သုံးချက်ပြုတ်စည်းကမ်း၊ ဘေးကင်းသောသိုလှောင်မှု၊ ပြင်ဆင်မှု၊ ချက်ပြုတ်မှု၊ ကျန်အစားအစာနှင့် သန့်ရှင်းရေး။"),
     "assets/sections/food-safety.png"),
   sec("daily", "D", "#f7b7be", "#fff1f2", 
     t("Daily / Active", "毎日 / アクティブ", "နေ့စဉ် / လက်ရှိလုပ်ဆောင်ဆဲ"), 
@@ -582,6 +600,17 @@ const cookingRules = [
   t("Ask before changing the menu.", "メニューを変更する前には確認してください。", "မီနူးကို မပြောင်းလဲမီ အရင်မေးပါ။"),
   t("Clean the kitchen after cooking.", "調理後にキッチンを掃除してください。", "ချက်ပြုတ်ပြီးနောက် မီးဖိုချောင်ကို သန့်ရှင်းရေးလုပ်ပါ။"),
 ];
+
+const householdCookingRulesItem = safetyItem("household-cooking-rules", "!",
+  t("Household Cooking Rules", "家庭の料理ルール", "အိမ်သုံး ချက်ပြုတ်စည်းကမ်းများ"),
+  t("Household preferences and rules to check before cooking or changing a menu.", "調理やメニュー変更の前に確認する家庭の希望とルール。", "ချက်ပြုတ်ခြင်း သို့မဟုတ် မီနူးပြောင်းလဲခြင်းမပြုမီ စစ်ဆေးရန် အိမ်သုံးလိုလားချက်နှင့် စည်းကမ်းများ။"),
+  cookingRules,
+  t("Read all six rules before cooking. Ask before changing the menu or using unfamiliar ingredients.", "調理前に6つのルールをすべて読み、メニュー変更や見慣れない食材の使用前に確認してください。", "မချက်ပြုတ်မီ စည်းကမ်း ၆ ချက်လုံးကို ဖတ်ပြီး မီနူးပြောင်းလဲခြင်း သို့မဟုတ် မရင်းနှီးသော ပါဝင်ပစ္စည်းအသုံးပြုခြင်းမပြုမီ မေးပါ။"),
+  [
+    photo("assets/sections/cooking-rules.png",
+      t("Chef hat with warning and forbidden ingredients", "警告と禁止食材が描かれたシェフの帽子", "သတိပေးချက်နှင့် တားမြစ်ထားသော ဟင်းချက်ပါဝင်ပစ္စည်းများပါရှိသည့် စားဖိုမှူးဦးထုပ်"),
+      t("Household Cooking Rules", "家庭の料理ルール", "အိမ်သုံး ချက်ပြုတ်စည်းကမ်းများ"))
+  ]);
 
 
 const additionalResources = {
@@ -646,16 +675,6 @@ const foodItems = [
       photo("assets/sections/topping-recipes.png", 
         t("Healthy dog food bowl with chicken, broccoli, and carrots", "鶏肉、ブロッコリー、にんじんが入った健康的なドッグフードボウル", "ကြက်သား၊ ပန်းဂေါ်ဖီစိမ်းနှင့် မုန်လာဥနီတို့ပါဝင်သော ကျန်းမာရေးနှင့်ညီညွတ်သည့် ခွေးစာခွက်"),
         t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
-    ]),
-  food("cooking-rules", "rules", "!", 
-    t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"), 
-    t("Rules to check before cooking or changing any menu.", "調理を始める前やメニューを変更する前に確認すべきルール。", "ချက်ပြုတ်ခြင်း သို့မဟုတ် မီနူးပြောင်းလဲခြင်းမပြုမီ စစ်ဆေးရမည့်စည်းကမ်းများ။"), 
-    t("Read all rules before cooking.", "調理する前にすべてのルールを読んでください。", "မချက်ပြုတ်မီ စည်းကမ်းအားလုံးကို ဖတ်ပါ။"), 
-    t("Menu changes and unfamiliar ingredients must be confirmed first.", "メニューの変更や見慣れない食材については、まず確認が必要です。", "မီနူးပြောင်းလဲခြင်းနှင့် မရင်းနှီးသော ပါဝင်ပစ္စည်းများကို အရင်အတည်ပြုရမည်။"), 2,
-    [
-      photo("assets/sections/cooking-rules.png", 
-        t("Chef hat with warning and forbidden ingredients", "警告と禁止食材が描かれたシェフの帽子", "သတိပေးချက်နှင့် တားမြစ်ထားသော ဟင်းချက်ပါဝင်ပစ္စည်းများပါရှိသည့် စားဖိုမှူးဦးထုပ်"),
-        t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"))
     ]),
   food("meal-logs", "placeholder", "L", 
     t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"), 
@@ -2667,6 +2686,9 @@ const recipes = [
     ],
     t("Boil the egg for 10 minutes and air-fry at 190°C for 4 minutes. Be careful with boiling water and the hot air-fryer basket.", "卵は10分ゆで、エアフライヤーは190℃で4分。熱湯と熱いバスケットに注意する。", "ကြက်ဥကို ၁၀ မိနစ်ပြုတ်ပြီး air fryer ကို 190°C ဖြင့် 4 မိနစ်ထားပါ။ ရေနွေးပူနှင့် ပူသော air-fryer basket ကို သတိထားပါ။"),
     [
+      photo("assets/recipes/human-food/egg-toast-served.jpg",
+        t("Egg toast ready to serve", "提供準備ができた卵トースト", "ပေးရန်အဆင်သင့်ဖြစ်သော ကြက်ဥ toast"),
+        t("Serve the egg toast once it is hot and ready.", "温かいうちに、完成した卵トーストを提供する。", "ပူပူနွေးနွေးဖြစ်နေစဉ် အဆင်သင့်ဖြစ်သော ကြက်ဥ toast ကို ပေးပါ။")),
       photo("assets/recipes/human-food/egg-toast-boil-eggs.jpg",
         t("Boiling eggs on the induction hob", "IHコンロで卵をゆでる", "induction hob ပေါ်တွင် ကြက်ဥပြုတ်ခြင်း"),
         t("Boil the eggs in water for 10 minutes to make hard-boiled eggs.", "卵をお湯で10分ゆでて、ゆで卵を作る。", "ကြက်ဥပြုတ်လုပ်ရန် ကြက်ဥကို ရေနွေးထဲတွင် ၁၀ မိနစ်ပြုတ်ပါ။")),
@@ -2681,10 +2703,7 @@ const recipes = [
         t("Peel the boiled eggs, add mayonnaise and salt, then mix well.", "ゆで卵の殻をむき、マヨネーズと塩を加えてよく混ぜる。", "ကြက်ဥပြုတ်အခွံခွာပြီး mayonnaise နှင့် ဆားထည့်ကာ ကောင်းကောင်းရောပါ။")),
       photo("assets/recipes/human-food/egg-toast-air-fryer.jpg",
         t("Egg toast in the Ninja air fryer", "Ninjaエアフライヤーの卵トースト", "Ninja air fryer ထဲရှိ ကြက်ဥ toast"),
-        t("Put the egg mixture on toast, then air-fry at 190°C for 4 minutes.", "卵のミックスをトーストにのせ、190℃で4分エアフライする。", "ကြက်ဥအရောကို toast ပေါ်တင်ပြီး 190°C ဖြင့် 4 မိနစ် air fry လုပ်ပါ။")),
-      photo("assets/recipes/human-food/egg-toast-served.jpg",
-        t("Egg toast ready to serve", "提供準備ができた卵トースト", "ပေးရန်အဆင်သင့်ဖြစ်သော ကြက်ဥ toast"),
-        t("Serve the egg toast once it is hot and ready.", "温かいうちに、完成した卵トーストを提供する。", "ပူပူနွေးနွေးဖြစ်နေစဉ် အဆင်သင့်ဖြစ်သော ကြက်ဥ toast ကို ပေးပါ။"))
+        t("Put the egg mixture on toast, then air-fry at 190°C for 4 minutes.", "卵のミックスをトーストにのせ、190℃で4分エアフライする。", "ကြက်ဥအရောကို toast ပေါ်တင်ပြီး 190°C ဖြင့် 4 မိနစ် air fry လုပ်ပါ။"))
     ],
     "human",
     {
@@ -2711,15 +2730,15 @@ const recipes = [
     ],
     t("Use the packet directions: 1 sachet with 2 pork ribs, a few garlic cloves, and 8 bowls of water. Pork must be fully cooked before serving.", "パッケージの手順に従う：スパイス1袋に豚スペアリブ2本、にんにく数片、水8杯を使う。提供前に豚肉に完全に火が通っていることを確認する。", "အထုပ်ပါညွှန်ကြားချက်ကိုလိုက်နာပါ - ဟင်းခတ်အထုပ် ၁ ထုပ်အတွက် ဝက်နံရိုး ၂ ချောင်း၊ ကြက်သွန်ဖြူအနည်းငယ်နှင့် ရေ ၈ ပန်းကန်သုံးပါ။ မပေးမီ ဝက်သားလုံးဝကျက်ကြောင်း စစ်ပါ။"),
     [
+      photo("assets/recipes/human-food/bak-kut-teh-served.jpg",
+        t("Bak Kut Teh ready to serve", "提供準備ができたバクテー", "ပေးရန်အဆင်သင့်ဖြစ်သော Bak Kut Teh"),
+        t("Serve the hot soup after the pork is fully cooked; add dark soy sauce to taste.", "豚肉に完全に火が通ったら、好みで濃口醤油を加えて温かいうちに提供する。", "ဝက်သားလုံးဝကျက်ပြီးနောက် အရသာအလိုက် ပဲငံပြာရည်အမည်းထည့်ကာ ပူပူနွေးနွေးပေးပါ။")),
       photo("assets/recipes/human-food/bak-kut-teh-spice-pack.jpg",
         t("Bak Kut Teh spice packet", "バクテー用スパイスのパケット", "Bak Kut Teh ဟင်းခတ်အထုပ်"),
         t("Use one sachet of this Bak Kut Teh spice mix.", "このバクテー用スパイスミックスを1袋使う。", "ဤ Bak Kut Teh ဟင်းခတ်အရော ၁ ထုပ်ကိုသုံးပါ။")),
       photo("assets/recipes/human-food/bak-kut-teh-simmering.jpg",
         t("Pork ribs cooking in the pot", "鍋で煮込んでいる豚スペアリブ", "အိုးထဲတွင်တည်နေသော ဝက်နံရိုး"),
-        t("Bring the pork ribs, spices, garlic, and water to a boil, then cook for 45 minutes.", "豚スペアリブ、スパイス、にんにく、水を沸騰させてから45分煮る。", "ဝက်နံရိုး၊ ဟင်းခတ်၊ ကြက်သွန်ဖြူနှင့်ရေကို ဆူအောင်တည်ပြီးနောက် ၄၅ မိနစ်တည်ပါ။")),
-      photo("assets/recipes/human-food/bak-kut-teh-served.jpg",
-        t("Bak Kut Teh ready to serve", "提供準備ができたバクテー", "ပေးရန်အဆင်သင့်ဖြစ်သော Bak Kut Teh"),
-        t("Serve the hot soup after the pork is fully cooked; add dark soy sauce to taste.", "豚肉に完全に火が通ったら、好みで濃口醤油を加えて温かいうちに提供する。", "ဝက်သားလုံးဝကျက်ပြီးနောက် အရသာအလိုက် ပဲငံပြာရည်အမည်းထည့်ကာ ပူပူနွေးနွေးပေးပါ။"))
+        t("Bring the pork ribs, spices, garlic, and water to a boil, then cook for 45 minutes.", "豚スペアリブ、スパイス、にんにく、水を沸騰させてから45分煮る。", "ဝက်နံရိုး၊ ဟင်းခတ်၊ ကြက်သွန်ဖြူနှင့်ရေကို ဆူအောင်တည်ပြီးနောက် ၄၅ မိနစ်တည်ပါ။"))
     ],
     "human",
     {
@@ -2786,6 +2805,7 @@ function checkTranslations() {
 
   checkObj(window.nakoData.homeSections, "homeSections");
   checkObj(window.nakoData.cookingRules, "cookingRules");
+  checkObj(window.nakoData.householdCookingRulesItem, "householdCookingRulesItem");
   checkObj(window.nakoData.foodItems, "foodItems");
   checkObj(window.nakoData.foodSafetyItems, "foodSafetyItems");
   checkObj(window.nakoData.officialReferences, "officialReferences");
@@ -2864,6 +2884,7 @@ window.nakoData = {
   routineTasks, 
   recipes, 
   cookingRules,
+  householdCookingRulesItem,
   additionalResources,
   trainingData,
   checkTranslations

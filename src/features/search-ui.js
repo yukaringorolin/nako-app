@@ -224,7 +224,7 @@ function navigateToSearchResult(result) {
   } else if (result.type === "recipe") {
     go(`#recipe/${result.originalItem.id}`);
   } else if (result.type === "cooking-rule") {
-    navigateToDestination(`#food/cooking-rules`, { type: "cooking-rule", index: result.id.replace("cooking-rule-", "") });
+    navigateToDestination(`#food-safety/household-cooking-rules`, { type: "cooking-rule", index: result.id.replace("cooking-rule-", "") });
   } else if (result.type === "official-reference") {
     window.open(result.route, "_blank", "noopener,noreferrer");
   } else if (result.type === "resource") {

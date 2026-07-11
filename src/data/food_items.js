@@ -9,16 +9,6 @@ const foodItems = [
         t("Healthy dog food bowl with chicken, broccoli, and carrots", "鶏肉、ブロッコリー、にんじんが入った健康的なドッグフードボウル", "ကြက်သား၊ ပန်းဂေါ်ဖီစိမ်းနှင့် မုန်လာဥနီတို့ပါဝင်သော ကျန်းမာရေးနှင့်ညီညွတ်သည့် ခွေးစာခွက်"),
         t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
     ]),
-  food("cooking-rules", "rules", "!", 
-    t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"), 
-    t("Rules to check before cooking or changing any menu.", "調理を始める前やメニューを変更する前に確認すべきルール。", "ချက်ပြုတ်ခြင်း သို့မဟုတ် မီနူးပြောင်းလဲခြင်းမပြုမီ စစ်ဆေးရမည့်စည်းကမ်းများ။"), 
-    t("Read all rules before cooking.", "調理する前にすべてのルールを読んでください。", "မချက်ပြုတ်မီ စည်းကမ်းအားလုံးကို ဖတ်ပါ။"), 
-    t("Menu changes and unfamiliar ingredients must be confirmed first.", "メニューの変更や見慣れない食材については、まず確認が必要です。", "မီနူးပြောင်းလဲခြင်းနှင့် မရင်းနှီးသော ပါဝင်ပစ္စည်းများကို အရင်အတည်ပြုရမည်။"), 2,
-    [
-      photo("assets/sections/cooking-rules.png", 
-        t("Chef hat with warning and forbidden ingredients", "警告と禁止食材が描かれたシェフの帽子", "သတိပေးချက်နှင့် တားမြစ်ထားသော ဟင်းချက်ပါဝင်ပစ္စည်းများပါရှိသည့် စားဖိုမှူးဦးထုပ်"),
-        t("Cooking Rules For Humans", "人間用の料理ルール", "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ"))
-    ]),
   food("meal-logs", "placeholder", "L", 
     t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"), 
     t("Future Streamlit tracking for meals, protein target, and notes.", "食事、タンパク質目標、およびメモのための将来的なStreamlit追跡機能。", "အစားအစာ၊ ပရိုတင်းရည်မှန်းချက်နှင့် မှတ်စုများအတွက် နောင်တွင်သုံးမည့် Streamlit ခြေရာခံခြင်း။"), 

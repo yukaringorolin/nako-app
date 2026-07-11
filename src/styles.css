@@ -241,6 +241,16 @@ img {
   gap: 12px;
 }
 
+.safety-group {
+  margin-top: 24px;
+}
+
+.safety-group > h2 {
+  margin: 0 0 12px;
+  color: #68463f;
+  font-size: 1.15rem;
+}
+
 .category-card,
 .item-card,
 .recipe-card {

@@ -17,7 +17,7 @@ function renderSectionCard(section) {
     count = foodItems.length;
     labelText = label("foodItems");
   } else if (section.id === "food-safety") {
-    count = foodSafetyItems.length;
+    count = foodSafetyItems.length + 1;
     labelText = label("safetyReferences");
   } else {
     count = routineTasks.filter((task) => task.frequencyBucket === section.id).length;

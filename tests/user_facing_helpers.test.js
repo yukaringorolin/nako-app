@@ -16,7 +16,7 @@ const {
   const destinations = [
     { route: "#routine/nako-training-fun", destination: { type: "training-command", id: "sit" } },
     { route: "#routine/nako-training-fun", destination: { type: "training-activity", id: "find-it-game" } },
-    { route: "#food/cooking-rules", destination: { type: "cooking-rule", index: "2" } },
+    { route: "#food-safety/household-cooking-rules", destination: { type: "cooking-rule", index: "2" } },
     { route: "", destination: { type: "resource", id: "1" } }
   ];
 

@@ -51,6 +51,7 @@ try {
   routineTasks, 
   recipes, 
   cookingRules,
+  householdCookingRulesItem,
   additionalResources,
   trainingData,
   checkTranslations

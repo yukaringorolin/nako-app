@@ -49,6 +49,7 @@ function checkTranslations() {
 
   checkObj(window.nakoData.homeSections, "homeSections");
   checkObj(window.nakoData.cookingRules, "cookingRules");
+  checkObj(window.nakoData.householdCookingRulesItem, "householdCookingRulesItem");
   checkObj(window.nakoData.foodItems, "foodItems");
   checkObj(window.nakoData.foodSafetyItems, "foodSafetyItems");
   checkObj(window.nakoData.officialReferences, "officialReferences");
