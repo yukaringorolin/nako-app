@@ -863,8 +863,15 @@ if (nakoSupervisionRoutine) {
 const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
 if (dailyCookingRoutine) {
   dailyCookingRoutine.mustRemember.push(
-    t("**WHITE RICE:** Turn on the main power switch, press **Menu** until the white line is on **White Rice**, then press **Start**. Always check the white line before pressing Start.", "**白米:** 主電源を入れ、白いラインが**White Rice**に来るまで**メニュー**を押し、**スタート**を押す。スタートを押す前に、必ず白いラインを確認する。", "**ဆန်ဖြူ:** ပင်မ power switch ကိုဖွင့်ပါ။ အဖြူရောင်လိုင်းသည် **White Rice** နေရာသို့ရောက်အောင် **Menu** ခလုတ်ကိုနှိပ်ပြီး **Start** ကိုနှိပ်ပါ။ Start မနှိပ်မီ အဖြူရောင်လိုင်းကို အမြဲစစ်ပါ။")
+    t("**WHITE RICE — Tefal Mini:** 1) Press **Start** to turn on. 2) Press **Menu** until the white light/line is beside **White Rice**. 3) Press **Start** again. That's it.", "**白米 — Tefal Mini:** ① **Start**で電源を入れる。②白いランプ／ラインが**White Rice**の横に来るまで**Menu**を押す。③もう一度**Start**を押す。これだけ。", "**ဆန်ဖြူ — Tefal Mini:** ၁) **Start** ကိုနှိပ်၍ ဖွင့်ပါ။ ၂) အဖြူရောင်မီး/လိုင်းသည် **White Rice** ဘေးသို့ရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကို ထပ်နှိပ်ပါ။ ဒါပဲ။"),
+    t("**FYI ONLY:** Other food recipes are reference only—make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
   );
+  dailyCookingRoutine.photos = [
+    photo("assets/routines/tefal-mini-rice-cooker-white-rice.jpg",
+      t("Tefal Mini rice cooker — White Rice controls", "Tefal Mini炊飯器 — White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး — White Rice ခလုတ်များ"),
+      t("For rice only: press Start, press Menu until the white light/line is beside White Rice, then press Start again.", "ご飯だけの場合：Startを押し、白いランプ／ラインがWhite Riceの横に来るまでMenuを押して、もう一度Startを押す。", "ဆန်အတွက်သာ: Start ကိုနှိပ်ပါ၊ အဖြူရောင်မီး/လိုင်းသည် White Rice ဘေးသို့ရောက်အောင် Menu ကိုနှိပ်ပြီး Start ကိုထပ်နှိပ်ပါ။")),
+    ...dailyCookingRoutine.photos
+  ];
 }
 
 const nakoPottyPenRoutine = routineTasks.find((task) => task.id === "nako-potty-pen");
