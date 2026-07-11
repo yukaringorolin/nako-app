@@ -827,3 +827,39 @@ if (ikeaBedFrameRoutine) {
       t("Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "IKEAベッドフレームの収納部分を持ち上げる、または開けて、下にたまったほこりや毛を掃除するための隔週の参考写真です。", "IKEA အိပ်ရာဘောင် storage area ကို မထောင်ခြင်း သို့မဟုတ် ဖွင့်ခြင်းဖြင့် အောက်တွင် စုနေသောဖုန်နှင့်အမွှေးများကို သန့်ရှင်းရေးလုပ်ရန် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။"))
   ];
 }
+
+// Only the curated, easy-to-forget recurring work belongs in Routine Check-in.
+// Stable routine IDs are reused so reference pages and completion history link
+// to the same task definition. Fortnightly cycles share a fixed Monday anchor.
+const routineTrackingConfig = {
+  "high-touch-surfaces": ["checkbox", "weekly"],
+  "kitchen-sink-drain-rack-counter": ["checkbox", "weekly"],
+  "nako-weekly-play-pen-deep-clean": ["checkbox", "weekly"],
+  "nako-weight-tracking": ["metric", "weekly"],
+  "rubbish-bin-washing": ["checkbox", "weekly"],
+  "floor-mats": ["checkbox", "weekly"],
+  "bedrooms-linens": ["checkbox", "weekly"],
+  "windows-glass-mirrors": ["checkbox", "weekly"],
+  "sofa-covers-pillows": ["checkbox", "weekly"],
+  "ceiling-fan": ["checkbox", "weekly"],
+  "fridge-interior": ["checkbox", "weekly"],
+  "cleaning-tools": ["checkbox", "weekly"],
+  "blanket-washing": ["checkbox", "fortnightly", "2026-07-06"],
+  "curtain-steaming": ["checkbox", "fortnightly", "2026-07-06"],
+  "ikea-bed-frame": ["checkbox", "fortnightly", "2026-07-06"],
+  "general-surface-cleaning": ["checkbox", "monthly"],
+  "pillow-mattress-vacuuming": ["checkbox", "monthly"],
+  "aircon-filter-fan-coil": ["checkbox", "monthly"],
+  "washer-deep-clean": ["checkbox", "quarterly"],
+  "doorbell-charging": ["checkbox", "quarterly"],
+  "coffee-machine-descaling": ["checkbox", "quarterly"],
+  "fire-extinguisher-training": ["one-off", "one-off"]
+};
+
+routineTasks.forEach((task) => {
+  const config = routineTrackingConfig[task.id];
+  if (!config) return;
+  task.trackingMode = config[0];
+  task.trackingCadence = config[1];
+  task.trackingAnchor = config[2] || null;
+});

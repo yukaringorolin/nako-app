@@ -3,6 +3,7 @@ const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
 const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
 const ingredientCatalog = window.nakoIngredientCatalog || {};
+const routineTracking = window.nakoRoutineTracking;
 
 // safeStorage wraps localStorage to handle blocked access/SecurityErrors
 const safeStorage = {
@@ -17,6 +18,7 @@ const safeStorage = {
 let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
 migrateTrainingState();
+migrateRoutineTrackingState();
 let selectedArchiveYear = null;
 let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
 let diarySaveInProgress = false;
@@ -28,6 +30,16 @@ let trainingHistoryCommandId = "";
 let trainingExpandedCommandId = "";
 let trainingDraft = null;
 let trainingSuccessMessage = "";
+let routineStatusMessage = "";
+let routineUndoRecord = null;
+let routineUndoTimer = null;
+const routineTodayAtLoad = routineTracking.singaporeDateKey();
+let routineHistoryFilters = {
+  task: "all",
+  cadence: "all",
+  from: routineTracking.addDays(routineTodayAtLoad, -55),
+  to: routineTodayAtLoad
+};
 const scrollPositions = {};
 let activeRouteKey = null;
 const app = document.querySelector("#app");
@@ -91,7 +103,14 @@ function saveStateDebounced() {
 
 function saveState(options = {}) {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
-  if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(appState);
+  if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(legacyRemoteState());
+}
+
+function legacyRemoteState() {
+  const state = JSON.parse(JSON.stringify(appState || {}));
+  delete state.routineCompletions;
+  delete state.routineTrackingMigration;
+  return state;
 }
 
 window.addEventListener("pagehide", () => {
@@ -124,12 +143,18 @@ function label(key) {
   return ui[currentLang]?.[key] || ui.en[key] || key;
 }
 
+function labelWith(key, values = {}) {
+  return Object.entries(values).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, value), label(key));
+}
+
 function parseRoute() {
   const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
   if (parts[0] === "section" && parts[1]) return { view: "section", sectionId: parts[1] };
   if (parts[0] === "routine" && parts[1]) return { view: "routine", routineId: parts[1] };
   if (parts[0] === "food" && parts[1]) return { view: "food", foodId: parts[1] };
   if (parts[0] === "recipe" && parts[1]) return { view: "recipe", recipeId: parts[1] };
+  if (parts[0] === "routine-checkin") return { view: "routine-checkin" };
+  if (parts[0] === "routine-history") return { view: "routine-history" };
   return { view: "home" };
 }
 
@@ -163,6 +188,10 @@ function render() {
     renderFood(route.foodId);
   } else if (route.view === "recipe") {
     renderRecipe(route.recipeId);
+  } else if (route.view === "routine-checkin") {
+    renderRoutineCheckIn();
+  } else if (route.view === "routine-history") {
+    renderRoutineHistory();
   } else {
     renderHome();
   }
@@ -219,6 +248,7 @@ function renderHome() {
         <p class="lead">${esc(label("appSubtitle"))}</p>
       </div>
     </section>
+    ${renderRoutineHomeShortcut()}
     <p class="section-label">${esc(label("quickShortcuts"))}</p>
     <section class="shortcut-grid">
       ${renderShortcuts()}
@@ -228,6 +258,176 @@ function renderHome() {
     <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>
     ${renderAdditionalResources()}`;
   renderShell(label("appTitle"), content, false);
+}
+
+function trackedRoutineTasks() {
+  return routineTasks.filter((task) => task.active !== false && task.trackingMode && task.trackingMode !== "none");
+}
+
+function routineRecords() {
+  appState.routineCompletions ||= {};
+  return appState.routineCompletions;
+}
+
+function routineCycle(task, dateKey = routineTracking.singaporeDateKey()) {
+  return routineTracking.cycleForDate(task.trackingCadence, dateKey, task.trackingAnchor || undefined);
+}
+
+function activeRoutineRecord(task, dateKey = routineTracking.singaporeDateKey()) {
+  const cycle = routineCycle(task, dateKey);
+  if (!cycle) return null;
+  const record = routineRecords()[routineTracking.completionId(task.id, cycle.key)];
+  return record && !record.deleted ? record : null;
+}
+
+function currentChecklist() {
+  const today = routineTracking.singaporeDateKey();
+  return trackedRoutineTasks().map((task) => ({ task, cycle: routineCycle(task, today), record: activeRoutineRecord(task, today) }))
+    .filter((item) => !(item.task.trackingMode === "one-off" && item.record));
+}
+
+function localeForCurrentLanguage() {
+  return currentLang === "jp" ? "ja-JP" : currentLang === "mm" ? "my-MM" : "en-SG";
+}
+
+function formatRoutineDate(dateKey, withWeekday = false) {
+  return routineTracking.formatDate(dateKey, localeForCurrentLanguage(), withWeekday ? { weekday: "short" } : {});
+}
+
+function cadenceLabel(cadence) {
+  const keys = { weekly: "cadenceWeekly", fortnightly: "cadenceFortnightly", monthly: "cadenceMonthly", quarterly: "cadenceQuarterly", "one-off": "cadenceOneOff" };
+  return label(keys[cadence] || "dueThisPeriod");
+}
+
+function cycleRangeLabel(cycle) {
+  if (!cycle?.start || !cycle?.end) return label("oneOffLifetime");
+  return labelWith("routinePeriodRange", { start: formatRoutineDate(cycle.start), end: formatRoutineDate(cycle.end) });
+}
+
+function renderRoutineHomeShortcut() {
+  const checklist = currentChecklist();
+  const remaining = checklist.filter((item) => !item.record).length;
+  const status = remaining ? labelWith("routineHomeRemaining", { count: remaining }) : label("routineHomeComplete");
+  return `<button class="routine-home-shortcut" data-routine-checkin>
+    <span class="routine-home-icon" aria-hidden="true">✓</span>
+    <span><strong>${esc(label("routineCheckIn"))}</strong><small>${esc(status)}</small></span>
+    <span class="routine-home-arrow" aria-hidden="true">›</span>
+  </button>`;
+}
+
+function renderRoutineCheckIn() {
+  const today = routineTracking.singaporeDateKey();
+  const checklist = currentChecklist();
+  const dueItems = checklist.filter((item) => !item.record);
+  const completedItems = checklist.filter((item) => item.record);
+  const periodItems = [...new Map(checklist.map((item) => [item.task.trackingCadence, item])).values()];
+  const content = `
+    <section class="routine-checkin-hero">
+      <div>
+        <p class="eyebrow">${esc(label("currentSingaporeDate"))} · ${esc(routineTracking.TIME_ZONE)}</p>
+        <h1>${esc(label("routineCheckIn"))}</h1>
+        <p>${esc(label("routineCheckInSubtitle"))}</p>
+      </div>
+      <strong class="routine-progress">${esc(labelWith("progressSummary", { done: completedItems.length, total: checklist.length }))}</strong>
+    </section>
+    <section class="routine-periods" aria-label="${esc(label("currentPeriods"))}">
+      ${periodItems.map((item) => `<span><strong>${esc(cadenceLabel(item.task.trackingCadence))}</strong>${esc(cycleRangeLabel(item.cycle))}</span>`).join("")}
+    </section>
+    <button class="history-link-button" data-routine-history>${esc(label("routineHistory"))}<span aria-hidden="true">›</span></button>
+    ${renderRoutineStatus()}
+    <section class="routine-list-section">
+      <h2>${esc(label("due"))} <span>${dueItems.length}</span></h2>
+      <div class="routine-check-list">${dueItems.map((item) => renderRoutineCheckRow(item, false)).join("") || `<div class="empty-state">${esc(label("routineHomeComplete"))}</div>`}</div>
+    </section>
+    <section class="routine-list-section completed-section">
+      <h2>${esc(label("completed"))} <span>${completedItems.length}</span></h2>
+      <div class="routine-check-list">${completedItems.map((item) => renderRoutineCheckRow(item, true)).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}</div>
+    </section>`;
+  renderShell(label("routineCheckIn"), content, true);
+}
+
+function renderRoutineStatus() {
+  if (!routineStatusMessage && !routineUndoRecord) return "";
+  return `<div class="routine-status" role="status"><span>${esc(routineStatusMessage || label("completionSaved"))}</span>${routineUndoRecord ? `<button type="button" data-routine-undo>${esc(label("undo"))}</button>` : ""}</div>`;
+}
+
+function renderRoutineCheckRow(item, completed) {
+  const { task, cycle, record } = item;
+  const control = task.trackingMode === "metric" && !completed
+    ? `<button class="routine-metric-button" type="button" data-routine="${esc(task.id)}">${esc(label("metricOpenWeight"))}</button>`
+    : completed
+      ? `<span class="routine-check-control is-complete" aria-hidden="true">✓</span>`
+      : `<button class="routine-check-control" type="button" data-routine-complete="${esc(task.id)}" aria-label="${esc(`${label("markComplete")}: ${tr(task.title)}`)}"><span aria-hidden="true"></span></button>`;
+  return `<article class="routine-check-row ${completed ? "is-complete" : ""}">
+    <div class="routine-row-main">
+      ${control}
+      <div class="routine-row-copy">
+        <h3>${esc(tr(task.title))}</h3>
+        <p>${esc(cadenceLabel(task.trackingCadence))} · ${esc(cycleRangeLabel(cycle))}</p>
+      </div>
+      <a class="routine-instructions-link" href="#routine/${esc(task.id)}" aria-label="${esc(`${label("openInstructions")}: ${tr(task.title)}`)}">i</a>
+    </div>
+    ${completed ? `<p class="metric-complete-note">${task.trackingMode === "metric" ? esc(label("metricCompleted")) : ""}</p>${renderCompletionEditor(record)}` : ""}
+  </article>`;
+}
+
+function renderCompletionEditor(record, showRemove = false) {
+  if (!record) return "";
+  return `<details class="completion-editor">
+    <summary>${esc(label("completionDate"))}: ${esc(formatRoutineDate(record.completedDate, true))} · ${esc(label("addNote"))}</summary>
+    <div class="completion-editor-fields">
+      <label>${esc(label("completionDate"))}<input type="date" value="${esc(record.completedDate)}" data-completion-date="${esc(record.id)}"></label>
+      <label>${esc(label("addNote"))}<textarea data-completion-note="${esc(record.id)}" placeholder="${esc(label("notePlaceholder"))}">${esc(record.note || "")}</textarea></label>
+      ${showRemove ? `<button class="danger-text-button" type="button" data-completion-remove="${esc(record.id)}">${esc(label("removeCompletion"))}</button>` : ""}
+    </div>
+  </details>`;
+}
+
+function renderRoutineHistory() {
+  const tasks = trackedRoutineTasks();
+  const records = [...Object.values(routineRecords()).filter((record) => record && !record.deleted), ...missedRoutineHistoryRecords(tasks)].filter((record) => {
+    if (routineHistoryFilters.task !== "all" && record.taskId !== routineHistoryFilters.task) return false;
+    const task = tasks.find((item) => item.id === record.taskId);
+    if (!task) return false;
+    if (routineHistoryFilters.cadence !== "all" && task.trackingCadence !== routineHistoryFilters.cadence) return false;
+    if (routineHistoryFilters.from && record.completedDate < routineHistoryFilters.from) return false;
+    if (routineHistoryFilters.to && record.completedDate > routineHistoryFilters.to) return false;
+    return true;
+  }).sort((a, b) => b.completedDate.localeCompare(a.completedDate) || String(b.updatedAt).localeCompare(String(a.updatedAt)));
+
+  const content = `
+    <section class="routine-history-head"><h1>${esc(label("routineHistory"))}</h1><p>${esc(label("historyIntro"))}</p></section>
+    <section class="routine-history-filters">
+      <label>${esc(label("filterTask"))}<select data-routine-filter="task"><option value="all">${esc(label("allTasks"))}</option>${tasks.map((task) => `<option value="${esc(task.id)}" ${routineHistoryFilters.task === task.id ? "selected" : ""}>${esc(tr(task.title))}</option>`).join("")}</select></label>
+      <label>${esc(label("filterCadence"))}<select data-routine-filter="cadence"><option value="all">${esc(label("allCadences"))}</option>${["weekly", "fortnightly", "monthly", "quarterly", "one-off"].map((cadence) => `<option value="${cadence}" ${routineHistoryFilters.cadence === cadence ? "selected" : ""}>${esc(cadenceLabel(cadence))}</option>`).join("")}</select></label>
+      <label>${esc(label("filterFrom"))}<input type="date" value="${esc(routineHistoryFilters.from)}" data-routine-filter="from"></label>
+      <label>${esc(label("filterTo"))}<input type="date" value="${esc(routineHistoryFilters.to)}" data-routine-filter="to"></label>
+    </section>
+    ${renderRoutineStatus()}
+    <section class="routine-history-list">${records.map((record) => {
+      const task = tasks.find((item) => item.id === record.taskId);
+      return `<article class="routine-history-row ${record.missed ? "is-missed" : ""}"><div><h2>${esc(tr(task.title))}</h2><p>${esc(cadenceLabel(task.trackingCadence))} · ${record.missed ? esc(cycleRangeLabel(record.cycle)) : esc(formatRoutineDate(record.completedDate, true))}</p>${record.missed ? `<p class="routine-missed-label">${esc(label("notCompleted"))}</p>` : record.note ? `<p class="routine-history-note">${esc(record.note)}</p>` : ""}</div>${record.missed ? "" : renderCompletionEditor(record, true)}</article>`;
+    }).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}</section>`;
+  renderShell(label("routineHistory"), content, true);
+}
+
+function missedRoutineHistoryRecords(tasks) {
+  const today = routineTracking.singaporeDateKey();
+  const trackingStart = appState.routineTrackingStartedDate || today;
+  const rangeStart = routineHistoryFilters.from && routineHistoryFilters.from > trackingStart ? routineHistoryFilters.from : trackingStart;
+  const missed = [];
+  tasks.filter((task) => task.trackingCadence !== "one-off").forEach((task) => {
+    let cycle = routineCycle(task, rangeStart);
+    let guard = 0;
+    while (cycle?.end && cycle.end < today && guard < 600) {
+      const id = routineTracking.completionId(task.id, cycle.key);
+      const record = routineRecords()[id];
+      if (!record || record.deleted) missed.push({ id: `missed_${id}`, taskId: task.id, cycleKey: cycle.key, completedDate: cycle.end, note: "", missed: true, cycle });
+      cycle = routineCycle(task, routineTracking.addDays(cycle.end, 1));
+      guard += 1;
+    }
+  });
+  return missed;
 }
 
 function renderShortcuts() {
@@ -421,32 +621,41 @@ function renderSectionCard(section) {
 function renderAdditionalResources() {
   if (!additionalResources?.items?.length) return "";
   return `<section class="additional-resources" aria-labelledby="additional-resources-title">
-    <div class="resource-section-head">
-      <p id="additional-resources-title" class="section-label">${esc(tr(additionalResources.title))}</p>
-      <p>${esc(tr(additionalResources.subtitle))}</p>
-    </div>
-    <div class="resource-list">${additionalResources.items.map(renderResourceCard).join("")}</div>
+    <details class="resource-collection">
+      <summary class="resource-section-head">
+        <span class="resource-section-copy">
+          <span id="additional-resources-title" class="section-label">${esc(tr(additionalResources.title))}</span>
+          <span>${esc(tr(additionalResources.subtitle))}</span>
+        </span>
+        <span class="resource-count">${additionalResources.items.length}</span>
+        <span class="resource-chevron" aria-hidden="true">›</span>
+      </summary>
+      <div class="resource-list">${additionalResources.items.map(renderResourceCard).join("")}</div>
+    </details>
   </section>`;
 }
 
 function renderResourceCard(resource) {
-  const embed = resource.embedUrl ? `<div class="resource-video"><iframe src="${esc(resource.embedUrl)}" title="${esc(tr(resource.videoTitle))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>` : "";
+  const embed = resource.embedUrl ? `<button class="resource-video resource-video-trigger" type="button" data-resource-video data-embed-url="${esc(resource.embedUrl)}" data-video-title="${esc(tr(resource.videoTitle))}" aria-label="${esc(tr(resource.watchLabel))}"><span aria-hidden="true">▶</span><span>${esc(tr(resource.watchLabel))}</span></button>` : "";
   const takeaways = Array.isArray(resource.takeaways) ? resource.takeaways : [];
-  return `<article class="resource-card">
-    <div class="resource-card-head">
+  return `<details class="resource-card">
+    <summary class="resource-card-head">
       <span class="resource-icon" aria-hidden="true">${esc(resource.icon || "R")}</span>
-      <div>
+      <span class="resource-card-copy">
         <h2>${esc(tr(resource.title))}</h2>
         <p class="resource-meta">${esc(tr(resource.source))}</p>
-      </div>
+      </span>
+      <span class="resource-chevron" aria-hidden="true">›</span>
+    </summary>
+    <div class="resource-card-body">
+      <p class="resource-video-title">${esc(tr(resource.videoTitle))}</p>
+      ${embed}
+      <a class="resource-link" href="${esc(resource.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr(resource.watchLabel))} ↗</a>
+      <p class="resource-description">${esc(tr(resource.description))}</p>
+      <p class="resource-note">${esc(tr(resource.note))}</p>
+      ${takeaways.length ? `<div class="resource-takeaways"><h3>${esc(tr(resource.takeawaysTitle))}</h3><ul>${takeaways.map((item) => `<li>${esc(tr(item))}</li>`).join("")}</ul></div>` : ""}
     </div>
-    <p class="resource-video-title">${esc(tr(resource.videoTitle))}</p>
-    ${embed}
-    <a class="resource-link" href="${esc(resource.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr(resource.watchLabel))}</a>
-    <p class="resource-description">${esc(tr(resource.description))}</p>
-    <p class="resource-note">${esc(tr(resource.note))}</p>
-    ${takeaways.length ? `<div class="resource-takeaways"><h3>${esc(tr(resource.takeawaysTitle))}</h3><ul>${takeaways.map((item) => `<li>${esc(tr(item))}</li>`).join("")}</ul></div>` : ""}
-  </article>`;
+  </details>`;
 }
 
 function renderFoodCard(item) {
@@ -792,6 +1001,22 @@ function renderDiaryHistory() {
    SECTION 5: INTERACTIVE EVENT LISTENERS & CONTROLLERS
    ========================================================================== */
 function handleClick(event) {
+  const routineCheckIn = event.target.closest("[data-routine-checkin]");
+  if (routineCheckIn) return go("#routine-checkin");
+  const routineHistoryButton = event.target.closest("[data-routine-history]");
+  if (routineHistoryButton) return go("#routine-history");
+  const routineComplete = event.target.closest("[data-routine-complete]");
+  if (routineComplete) return completeRoutine(routineComplete.dataset.routineComplete);
+  if (event.target.closest("[data-routine-undo]")) return undoRoutineCompletion();
+  const completionRemove = event.target.closest("[data-completion-remove]");
+  if (completionRemove && confirm(label("confirmRemoveCompletion"))) return removeRoutineCompletion(completionRemove.dataset.completionRemove);
+  const resourceVideo = event.target.closest("[data-resource-video]");
+  if (resourceVideo) {
+    const embedUrl = resourceVideo.dataset.embedUrl;
+    const videoTitle = resourceVideo.dataset.videoTitle;
+    resourceVideo.outerHTML = `<div class="resource-video"><iframe src="${esc(embedUrl)}" title="${esc(videoTitle)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+    return;
+  }
   const back = event.target.closest("[data-back]");
   if (back) return handleBack();
   const langButton = event.target.closest("[data-lang]");
@@ -840,7 +1065,11 @@ function handleClick(event) {
 
 function handleBack() {
   const route = parseRoute();
-  if (route.view === "section") {
+  if (route.view === "routine-checkin") {
+    go("");
+  } else if (route.view === "routine-history") {
+    go("#routine-checkin");
+  } else if (route.view === "section") {
     go("");
   } else if (route.view === "routine") {
     const task = routineTasks.find((entry) => entry.id === route.routineId);
@@ -1013,6 +1242,8 @@ function buildWhatsAppNoticeUrl() {
 }
 
 function handleInput(event) {
+  const weightInput = event.target.closest("[data-weight-date]");
+  if (weightInput) return updateWeightInput(weightInput);
   const trainingField = event.target.closest("[data-training-input]");
   if (trainingField) {
     if (trainingField.dataset.trainingSetting) {
@@ -1064,6 +1295,196 @@ function handleBlur(event) {
   if (diaryTrans) saveState();
 }
 
+function migrateRoutineTrackingState() {
+  appState.routineCompletions ||= {};
+  appState.routineTrackingStartedDate ||= routineTracking.singaporeDateKey();
+  const weightTask = routineTasks.find((task) => task.id === "nako-weight-tracking");
+  if (!weightTask) return;
+  const byCycle = new Map();
+  Object.entries(appState.weightTracking || {}).forEach(([dateKey, value]) => {
+    const weight = parseFloat(getWeightValue(value));
+    const cycle = routineCycle(weightTask, dateKey);
+    if (!cycle || !Number.isFinite(weight) || weight <= 0) return;
+    const current = byCycle.get(cycle.key);
+    if (!current || dateKey > current.dateKey) byCycle.set(cycle.key, { dateKey, weight, updatedAt: value?.updatedAt || "" });
+  });
+  byCycle.forEach((entry, cycleKey) => {
+    const id = routineTracking.completionId(weightTask.id, cycleKey);
+    const existing = appState.routineCompletions[id];
+    if (existing && !existing.deleted) return;
+    const timestamp = entry.updatedAt || `${entry.dateKey}T00:00:00.000+08:00`;
+    appState.routineCompletions[id] = {
+      id,
+      taskId: weightTask.id,
+      cycleKey,
+      completedDate: entry.dateKey,
+      completedAt: timestamp,
+      note: `Weight: ${entry.weight} kg`,
+      updatedAt: timestamp,
+      source: "metric",
+      weightKg: entry.weight
+    };
+  });
+  safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
+}
+
+function updateWeightInput(weightInput) {
+  appState.weightTracking ||= {};
+  const val = weightInput.value.trim();
+  appState.weightTracking[weightInput.dataset.weightDate] = {
+    value: val !== "" ? parseFloat(val) : "",
+    updatedAt: nowIso()
+  };
+  reconcileWeightCompletion(weightInput.dataset.weightDate);
+  saveStateDebounced();
+}
+
+function completionRecordFor(task, dateKey, attrs = {}) {
+  const cycle = routineCycle(task, dateKey);
+  if (!cycle) return null;
+  const id = routineTracking.completionId(task.id, cycle.key);
+  const now = nowIso();
+  return {
+    id,
+    taskId: task.id,
+    cycleKey: cycle.key,
+    completedDate: dateKey,
+    completedAt: attrs.completedAt || now,
+    note: attrs.note || "",
+    updatedAt: now,
+    ...attrs,
+    deleted: false,
+    deletedAt: ""
+  };
+}
+
+function storeRoutineRecord(record, options = {}) {
+  if (!record?.id) return;
+  routineRecords()[record.id] = record;
+  saveState({ remote: options.remoteLegacy !== false });
+  if (options.remoteCompletion !== false) window.nakoFirebase?.saveRoutineCompletion?.(record);
+}
+
+function completeRoutine(taskId) {
+  const task = trackedRoutineTasks().find((item) => item.id === taskId);
+  if (!task || task.trackingMode === "metric") return;
+  const record = completionRecordFor(task, routineTracking.singaporeDateKey());
+  if (!record) return;
+  storeRoutineRecord(record);
+  routineUndoRecord = { ...record };
+  routineStatusMessage = label("completionSaved");
+  clearTimeout(routineUndoTimer);
+  routineUndoTimer = setTimeout(() => {
+    routineUndoRecord = null;
+    if (parseRoute().view === "routine-checkin") render();
+  }, 8000);
+  render();
+}
+
+function tombstoneRoutineRecord(record) {
+  const now = nowIso();
+  return { ...record, deleted: true, deletedAt: now, updatedAt: now };
+}
+
+function undoRoutineCompletion() {
+  if (!routineUndoRecord) return;
+  storeRoutineRecord(tombstoneRoutineRecord(routineUndoRecord));
+  routineUndoRecord = null;
+  clearTimeout(routineUndoTimer);
+  routineStatusMessage = label("completionRemoved");
+  render();
+}
+
+function removeRoutineCompletion(recordId) {
+  const record = routineRecords()[recordId];
+  if (!record) return;
+  storeRoutineRecord(tombstoneRoutineRecord(record));
+  routineStatusMessage = label("completionRemoved");
+  routineUndoRecord = null;
+  render();
+}
+
+function moveRoutineCompletion(recordId, nextDate) {
+  const oldRecord = routineRecords()[recordId];
+  const task = trackedRoutineTasks().find((item) => item.id === oldRecord?.taskId);
+  if (!oldRecord || !task || !routineTracking.parseDateKey(nextDate)) {
+    routineStatusMessage = label("routineDateInvalid");
+    return render();
+  }
+  const nextCycle = routineCycle(task, nextDate);
+  const nextId = routineTracking.completionId(task.id, nextCycle.key);
+  let recordToMove = oldRecord;
+  if (oldRecord.source === "metric" && oldRecord.completedDate !== nextDate) {
+    const oldWeight = appState.weightTracking?.[oldRecord.completedDate];
+    const oldValue = parseFloat(getWeightValue(oldWeight));
+    if (Number.isFinite(oldValue) && oldValue > 0) {
+      const targetWeight = appState.weightTracking?.[nextDate];
+      const targetValue = parseFloat(getWeightValue(targetWeight));
+      delete appState.weightTracking[oldRecord.completedDate];
+      if (!Number.isFinite(targetValue) || targetValue <= 0) {
+        appState.weightTracking[nextDate] = { value: oldValue, updatedAt: nowIso() };
+      }
+      const movedValue = Number.isFinite(targetValue) && targetValue > 0 ? targetValue : oldValue;
+      recordToMove = {
+        ...oldRecord,
+        weightKg: movedValue,
+        note: /^Weight: [\d.]+ kg$/.test(oldRecord.note || "") ? `Weight: ${movedValue} kg` : oldRecord.note
+      };
+    }
+  }
+  if (nextId === recordId) {
+    storeRoutineRecord({ ...recordToMove, completedDate: nextDate, updatedAt: nowIso() });
+  } else {
+    storeRoutineRecord(tombstoneRoutineRecord(oldRecord));
+    storeRoutineRecord({
+      ...recordToMove,
+      id: nextId,
+      cycleKey: nextCycle.key,
+      completedDate: nextDate,
+      updatedAt: nowIso(),
+      deleted: false,
+      deletedAt: ""
+    });
+    if (oldRecord.source === "metric") reconcileWeightCompletion(oldRecord.completedDate);
+  }
+  const currentCycle = routineCycle(task, routineTracking.singaporeDateKey());
+  routineStatusMessage = nextCycle.key === currentCycle.key ? label("completionSaved") : label("backdatePreviousCycle");
+  routineUndoRecord = null;
+  render();
+}
+
+function updateRoutineCompletionNote(recordId, note) {
+  const record = routineRecords()[recordId];
+  if (!record) return;
+  storeRoutineRecord({ ...record, note: String(note || "").slice(0, 2000), updatedAt: nowIso() });
+  routineStatusMessage = label("completionSaved");
+  render();
+}
+
+function reconcileWeightCompletion(dateKey) {
+  const task = trackedRoutineTasks().find((item) => item.id === "nako-weight-tracking");
+  const targetCycle = task && routineCycle(task, dateKey);
+  if (!task || !targetCycle) return;
+  const candidates = Object.entries(appState.weightTracking || {}).map(([key, value]) => ({ key, value: parseFloat(getWeightValue(value)), updatedAt: value?.updatedAt || "" }))
+    .filter((entry) => Number.isFinite(entry.value) && entry.value > 0 && routineCycle(task, entry.key)?.key === targetCycle.key)
+    .sort((a, b) => b.key.localeCompare(a.key));
+  const id = routineTracking.completionId(task.id, targetCycle.key);
+  const existing = routineRecords()[id];
+  if (!candidates.length) {
+    if (existing && !existing.deleted && existing.source === "metric") storeRoutineRecord(tombstoneRoutineRecord(existing));
+    return;
+  }
+  const latest = candidates[0];
+  const automaticNote = `Weight: ${latest.value} kg`;
+  const note = existing?.note && !/^Weight: [\d.]+ kg$/.test(existing.note) ? existing.note : automaticNote;
+  storeRoutineRecord(completionRecordFor(task, latest.key, {
+    completedAt: existing?.completedAt || latest.updatedAt || nowIso(),
+    note,
+    source: "metric",
+    weightKg: latest.value
+  }));
+}
+
 /* ==========================================================================
    SECTION 6: FIREBASE DATABASE SYNC INTEGRATION
    ========================================================================== */
@@ -1107,7 +1528,19 @@ function initFirebaseSync() {
   firebaseSync.startStateSync({
     getLocalState: () => appState,
     applyRemoteState: (nextState) => {
+      const localRoutineCompletions = routineRecords();
       appState = nextState && typeof nextState === "object" ? nextState : {};
+      appState.routineCompletions = localRoutineCompletions;
+      migrateRoutineTrackingState();
+      saveState({ remote: false });
+      renderUnlessDiaryTyping();
+    }
+  });
+
+  firebaseSync.startRoutineCompletionSync?.({
+    getLocalRecords: () => routineRecords(),
+    applyRemoteRecords: (records) => {
+      appState.routineCompletions = routineTracking.normalizeRecords(records);
       saveState({ remote: false });
       renderUnlessDiaryTyping();
     }
@@ -1128,6 +1561,15 @@ function richText(value) {
 }
 
 function handleChange(event) {
+  const routineFilter = event.target.closest("[data-routine-filter]");
+  if (routineFilter) {
+    routineHistoryFilters[routineFilter.dataset.routineFilter] = routineFilter.value;
+    return render();
+  }
+  const completionDate = event.target.closest("[data-completion-date]");
+  if (completionDate) return moveRoutineCompletion(completionDate.dataset.completionDate, completionDate.value);
+  const completionNote = event.target.closest("[data-completion-note]");
+  if (completionNote) return updateRoutineCompletionNote(completionNote.dataset.completionNote, completionNote.value);
   const trainingFilter = event.target.closest("[data-training-filter]");
   if (trainingFilter) { trainingFilters[trainingFilter.dataset.trainingFilter] = trainingFilter.value; return render(); }
   const trainingField = event.target.closest("[data-training-input]");
@@ -1137,13 +1579,7 @@ function handleChange(event) {
   }
   const weightInput = event.target.closest("[data-weight-date]");
   if (weightInput) {
-    appState.weightTracking ||= {};
-    const val = weightInput.value.trim();
-    appState.weightTracking[weightInput.dataset.weightDate] = {
-      value: val !== "" ? parseFloat(val) : "",
-      updatedAt: nowIso()
-    };
-    saveState();
+    updateWeightInput(weightInput);
     render();
     return;
   }
@@ -1195,15 +1631,9 @@ function diaryEntryStatusLabel(status) {
 }
 
 function formatWeightDate(date, lang) {
-  const options = { day: 'numeric', month: 'short', year: 'numeric' };
-  const formatted = date.toLocaleDateString(lang === 'jp' ? 'ja-JP' : lang === 'mm' ? 'my-MM' : 'en-US', options);
-  
-  const dayNames = {
-    en: "Sunday",
-    jp: "日曜日",
-    mm: "တနင်္ဂနွေ"
-  };
-  return `${formatted} (${dayNames[lang] || dayNames.en})`;
+  const key = typeof date === "string" ? date : dateToKey(date);
+  const locale = lang === "jp" ? "ja-JP" : lang === "mm" ? "my-MM" : "en-SG";
+  return routineTracking.formatDate(key, locale, { weekday: "long" });
 }
 
 function getLatestDueSunday() {
@@ -1314,8 +1744,7 @@ function renderWeightTracking(item) {
 }
 
 function renderQuickEntryPanel() {
-  const latestSunday = getLatestDueSunday();
-  const key = dateToKey(latestSunday);
+  const key = routineTracking.singaporeDateKey();
   const tracking = appState.weightTracking || {};
   const val = getWeightValue(tracking[key]) !== undefined ? getWeightValue(tracking[key]) : "";
   
@@ -1340,11 +1769,11 @@ function renderQuickEntryPanel() {
     prevHtml = `<span class="prev-weight">${esc(label("previous"))}: <strong>—</strong></span>`;
   }
 
-  const displayDate = formatWeightDate(latestSunday, currentLang);
+  const displayDate = formatWeightDate(key, currentLang);
   return `
     <div class="quick-entry-card">
       <div class="quick-entry-header">
-        <span class="label-due">${esc(label("latestDueSunday"))}</span>
+        <span class="label-due">${esc(label("currentWeightDate"))}</span>
         <span class="date">${esc(displayDate)}</span>
       </div>
       <div class="quick-entry-body">

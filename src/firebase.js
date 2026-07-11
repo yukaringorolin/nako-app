@@ -13,8 +13,11 @@
   let db = null;
   let storage = null;
   let stateDoc = null;
+  let routineCompletionCollection = null;
   let unsubscribeState = null;
+  let unsubscribeRoutineCompletions = null;
   let syncCallbacks = null;
+  let routineSyncCallbacks = null;
   let pendingState = null;
   let pendingTimer = null;
 
@@ -31,6 +34,16 @@
       syncCallbacks = callbacks || {};
       if (stateDoc) attachStateListener();
       return Boolean(stateDoc);
+    },
+    startRoutineCompletionSync(callbacks) {
+      routineSyncCallbacks = callbacks || {};
+      if (routineCompletionCollection) attachRoutineCompletionListener();
+      return Boolean(routineCompletionCollection);
+    },
+    saveRoutineCompletion(record) {
+      if (!routineCompletionCollection || !record?.id) return false;
+      saveRoutineCompletionRecord(record);
+      return true;
     },
     // saveRemoteState: Debounces state updates to avoid exceeding Firestore write rate limits
     saveRemoteState(nextState) {
@@ -111,9 +124,11 @@
   // updateStateDoc: Connects database reference path based on current local household code
   function updateStateDoc() {
     detachStateListener();
+    detachRoutineCompletionListener();
 
     if (!auth || !auth.currentUser) {
       stateDoc = null;
+      routineCompletionCollection = null;
       setStatus({ mode: "local", uid: "", error: "" });
       return;
     }
@@ -124,9 +139,11 @@
     } catch {}
 
     stateDoc = db.collection("households").doc(code.trim());
+    routineCompletionCollection = stateDoc.collection("routineCompletions");
 
     setStatus({ mode: "connecting", uid: auth.currentUser.uid, error: "" });
     if (syncCallbacks) attachStateListener();
+    if (routineSyncCallbacks) attachRoutineCompletionListener();
   }
 
   // attachStateListener: Sets up the live doc snapshot listener to merge remote and local state
@@ -168,6 +185,67 @@
     unsubscribeState = null;
   }
 
+  function attachRoutineCompletionListener() {
+    if (!routineCompletionCollection || !routineSyncCallbacks) return;
+    detachRoutineCompletionListener();
+    unsubscribeRoutineCompletions = routineCompletionCollection.onSnapshot(
+      (snapshot) => {
+        const remoteRecords = {};
+        snapshot.forEach((doc) => { remoteRecords[doc.id] = { ...doc.data(), id: doc.id }; });
+        const localRecords = cloneState(routineSyncCallbacks.getLocalRecords?.() || {});
+        const merged = mergeCompletionRecords(remoteRecords, localRecords);
+        routineSyncCallbacks.applyRemoteRecords?.(merged);
+
+        Object.entries(localRecords).forEach(([id, localRecord]) => {
+          const remoteRecord = remoteRecords[id];
+          if (!remoteRecord || recordTime(localRecord) > recordTime(remoteRecord)) {
+            saveRoutineCompletionRecord({ ...localRecord, id });
+          }
+        });
+        setStatus({ mode: "synced", error: "" });
+      },
+      (error) => setStatus({ mode: "error", error: readableError(error) })
+    );
+  }
+
+  function detachRoutineCompletionListener() {
+    if (unsubscribeRoutineCompletions) unsubscribeRoutineCompletions();
+    unsubscribeRoutineCompletions = null;
+  }
+
+  async function saveRoutineCompletionRecord(record) {
+    if (!routineCompletionCollection || !record?.id) return false;
+    const cleanRecord = cloneState(record);
+    delete cleanRecord.id;
+    const document = routineCompletionCollection.doc(record.id);
+    try {
+      await db.runTransaction(async (transaction) => {
+        const snapshot = await transaction.get(document);
+        const existing = snapshot.exists ? snapshot.data() : null;
+        if (existing && recordTime(existing) > recordTime(cleanRecord)) return;
+        transaction.set(document, cleanRecord, { merge: true });
+      });
+      setStatus({ mode: "synced", error: "" });
+      return true;
+    } catch (error) {
+      setStatus({ mode: "error", error: readableError(error) });
+      return false;
+    }
+  }
+
+  function mergeCompletionRecords(remoteRecords = {}, localRecords = {}) {
+    const merged = { ...(remoteRecords || {}) };
+    Object.entries(localRecords || {}).forEach(([id, localRecord]) => {
+      const remoteRecord = merged[id];
+      if (!remoteRecord || recordTime(localRecord) >= recordTime(remoteRecord)) merged[id] = { ...localRecord, id };
+    });
+    return merged;
+  }
+
+  function recordTime(record) {
+    return Date.parse(record?.updatedAt || record?.completedAt || record?.deletedAt || "") || 0;
+  }
+
   // flushPendingState: Flushes debounced updates by saving changes using set() with { merge: true }
   async function flushPendingState() {
     if (!stateDoc || !pendingState) return false;
@@ -202,9 +280,16 @@
       ...localState,
       food: mergeDatedRecords(remoteState.food, localState.food),
       weightTracking: mergeDatedRecords(remoteState.weightTracking, localState.weightTracking),
+      routineTrackingStartedDate: earliestDate(remoteState.routineTrackingStartedDate, localState.routineTrackingStartedDate),
       diary: mergeDiaryState(remoteState.diary, localState.diary),
       training: mergeTrainingState(remoteState.training, localState.training)
     };
+  }
+
+  function earliestDate(first, second) {
+    if (!first) return second || "";
+    if (!second) return first;
+    return first <= second ? first : second;
   }
 
   function mergeTrainingState(remoteTraining = {}, localTraining = {}) {

@@ -9,6 +9,7 @@ A lightweight, mobile-first, multi-language onboarding guide designed for househ
 - **Recipes & Cooking Guidelines**: Clear instructions for preparing approved dog-food toppings (e.g., Chicken Tender, Whitefish, and Chicken Breast) with precise ingredient proportions and general cooking restrictions (no onion, garlic, seasoning, etc.).
 - **Reference Notes**: Food and reference pages can keep text memos for questions or future tracking notes.
 - **Memo Persistence**: Uses browser `localStorage` first, then syncs notes to Firestore when Firebase Auth and Firestore are available.
+- **Routine Check-in**: Tracks only curated recurring maintenance tasks with Singapore-time cycle keys, optional notes/date edits, history, and automatic Nako-weight completion.
 - **Multi-Language Support**: Instantly toggles UI text and data descriptions between English (**EN**), Japanese (**JP**), and Burmese (**MM**).
 
 ## 🛠️ Technology Stack
@@ -52,6 +53,24 @@ Before cloud sync will work, enable these Firebase products in the Firebase cons
 - **Cloud Storage**: create the bucket, then deploy `storage.rules`.
 
 The deployed app uses Firebase Hosting reserved URLs from `index.html`, so the Firebase web config is supplied automatically by Hosting. If the SDK/init URLs are unavailable, the app stays functional in local-only mode and keeps memos in `localStorage`.
+
+Routine completions use individual records at
+`households/{householdId}/routineCompletions/{taskId}_{cycleKey}`. They are kept
+out of the legacy shared state document so history growth and concurrent task
+updates cannot overwrite diary, food, training, or weight data.
+
+### Household access security
+
+The legacy sync model uses anonymous authentication plus a shared household
+code. Anyone who learns a valid code of at least three characters can access
+that household document and its routine completions. The rules validate the
+new completion record shape and do not broaden existing access, but a code is
+not a strong membership boundary.
+
+The smallest non-breaking migration is to add a
+`households/{householdId}/members/{uid}` record for every currently connected
+device, update the rules to require that membership record, confirm all devices
+have enrolled, and only then remove the shared-code fallback.
 
 Useful commands:
 
