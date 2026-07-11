@@ -1,7 +1,7 @@
 const routineTasks = [
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
-    t("Write anything on your mind: daily thoughts, feelings, questions, feedback, worries, missing family, or anything hard to explain verbally. The app will save it and open a short WhatsApp notice.", "心にあることを何でも書いてください。日々の考え、気持ち、質問、フィードバック、心配なこと、家族が恋しい気持ち、口頭で説明しにくいことなど。アプリが保存し、短いWhatsApp通知を開きます。", "စိတ်ထဲရှိသည့်အရာများကို ဘာမဆိုရေးပါ။ နေ့စဉ်အတွေးများ၊ ခံစားချက်များ၊ မေးခွန်းများ၊ အကြံပြုချက်များ၊ စိုးရိမ်စရာများ၊ မိသားစုကိုလွမ်းနေခြင်း သို့မဟုတ် ပါးစပ်ဖြင့်ရှင်းပြရန်ခက်သည့်အရာများ။ App က သိမ်းဆည်းပြီး WhatsApp အသိပေးချက်အတိုကို ဖွင့်ပေးမည်။"),
+    t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     t("Use this as a personal diary space when speaking is difficult or unclear. Write freely first, then submit to save the entry.", "話すことが難しい、または伝わりにくいときの、個人の日記スペースとして使ってください。まず自由に書き、送信すると記録が保存されます。", "စကားပြောရန်ခက်ခဲသည့်အခါ သို့မဟုတ် မရှင်းလင်းသည့်အခါ ကိုယ်ပိုင်နေ့စဉ်မှတ်တမ်းနေရာအဖြစ် အသုံးပြုပါ။ အရင်ဆုံးလွတ်လပ်စွာရေးပြီး ပို့ပါ၊ ထို့နောက် မှတ်တမ်းကို သိမ်းထားပါမည်။")),
   routine("drinking-water-prep", "daily", 10, "W", 
@@ -29,7 +29,7 @@ const routineTasks = [
     ]),
   routine("protein-shake-creatine-prep", "daily", 18, "P",
     t("Protein Shake & Creatine Prep", "プロテインシェイクとクレアチン準備", "protein shake နှင့် creatine ပြင်ဆင်ခြင်း"),
-    t("Make Edwin's daily protein shake using 1 scoop Optimum Nutrition protein powder and 1 scoop creatine. One scoop of protein powder is about 24g protein.", "エドウィン用に毎日、Optimum Nutritionのプロテインパウダー1スクープとクレアチン1スクープでプロテインシェイクを作る。プロテイン1スクープは約24gのタンパク質。", "Edwin အတွက် နေ့စဉ် protein shake ပြင်ပါ။ Optimum Nutrition protein powder ၁ scoop နှင့် creatine ၁ scoop ကို အသုံးပြုပါ။ protein powder ၁ scoop သည် protein ၂၄g ခန့်ပါသည်။"),
+    t("Make Edwin's shake with 1 scoop Optimum Nutrition protein and 1 scoop creatine. Protein powder gives about 24 g protein.", "Edwin用にOptimum Nutritionプロテイン1杯とクレアチン1杯で作ります。プロテインは約24 gです。", "Edwin အတွက် Optimum Nutrition protein ၁ scoop နဲ့ creatine ၁ scoop ထည့်ပါ။ Protein က ၂၄ g ခန့်ရသည်။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     t("Use the correct scoop for protein and creatine. Keep the portions consistent unless Edwin gives different instructions.", "プロテインとクレアチンはそれぞれ正しいスプーンを使う。エドウィンから別の指示がない限り、量は一定にする。", "protein နှင့် creatine အတွက် မှန်ကန်သော scoop ကို အသုံးပြုပါ။ Edwin က မတူညီသော ညွှန်ကြားချက် မပေးလျှင် ပမာဏကို တည်ငြိမ်စွာ ထားပါ။"),
     [
@@ -39,7 +39,7 @@ const routineTasks = [
     ]),
   routine("clean-up-cooking-appliances", "daily", 20, "K", 
     t("Clean Up & Cooking Appliances", "片付けと調理器具の清掃", "သန့်ရှင်းရေးနှင့် ချက်ပြုတ်သည့်ပစ္စည်းများ"), 
-    t("Wash cookware and plates. Wipe kitchen down after every meal. Clean cooking appliances used, including Ninja air fryer, hob, Fujioh hood area, and removable parts if oily or dirty.", "調理器具と皿を洗います。毎食後にキッチンを拭きます。使用した調理器具（Ninjaノンフライヤー、コンロ、Fujiohレンジフード、油汚れのある取り外し可能な部品など）を掃除します。", "အိုးခွက်ပန်းကန်များ ဆေးကြောပါ။ ထမင်းစားပြီးတိုင်း မီးဖိုချောင်ကို သုတ်ပါ။ အသုံးပြုထားသော Ninja လေပူကြော်အိုး၊ မီးဖို၊ Fujioh မီးခိုးစုပ်စက်နှင့် ဆီပေနေသော ဖြုတ်၍ရသည့် အစိတ်အပိုင်းများကို သန့်ရှင်းရေးလုပ်ပါ။"), 
+    t("Wash cookware and plates. Wipe the kitchen. Clean each appliance used, including oily removable parts.", "調理器具と皿を洗います。キッチンを拭きます。使用した家電と油のついた部品を掃除します。", "အိုးခွက်ပန်းကန်ဆေးပါ။ မီးဖိုချောင်သုတ်ပါ။ သုံးထားတဲ့စက်နဲ့ ဆီပေတဲ့အပိုင်းတွေကို သန့်ရှင်းပါ။"),
     t("After every meal + as needed", "毎食後＋必要に応じて", "စားပြီးတိုင်း + လိုအပ်သလို"), 
     t("Do not leave oily cookware, food waste, or greasy appliance parts overnight.", "油のついた調理器具、生ゴミ、または脂っこい器具の部品を翌日まで放置しないでください。", "ဆီပေနေသော အိုးခွက်များ၊ စွန့်ပစ်အစားအစာများနှင့် အဆီများသော စက်ပစ္စည်းအစိတ်အပိုင်းများကို တစ်ညတာ မထားခဲ့ပါနှင့်。"),
     [
@@ -59,12 +59,12 @@ const routineTasks = [
     ]),
   routine("nako-feeding-water", "daily", 35, "N",
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
-    t("Feed Nako about 3-4 times a day: kibbles + K9 Natural. Current preferred method: feed dry unless instructed otherwise. After she finishes eating, let her drink water directly from the water bottle to increase water intake. Once her mouth is wet, wipe her mouth down. Wash and refill water bottle daily.", "ナコに1日3〜4回、キブルとK9 Naturalを与える。現在の希望方法は、特に指示がなければドライで与える。食べ終わった後、水分摂取を増やすために水ボトルから直接水を飲ませる。口元が濡れたら口周りを拭く。水ボトルは毎日洗って補充する。", "နာကိုကို တစ်နေ့ ၃-၄ ကြိမ် kibbles + K9 Natural ကျွေးပါ။ လောလောဆယ် ညွှန်ကြားချက်မရှိလျှင် dry အဖြစ်ကျွေးပါ။ စားပြီးနောက် ရေပိုသောက်စေရန် ရေဘူးမှ တိုက်ရိုက်ရေသောက်ခိုင်းပါ။ ပါးစပ်စိုလာလျှင် ပါးစပ်ပတ်ဝန်းကျင်ကို သုတ်ပါ။ ရေဘူးကို နေ့စဉ်ဆေးပြီး ပြန်ဖြည့်ပါ။"),
+    t("Feed Nako kibbles and K9 Natural 3–4 times daily. Feed dry unless told otherwise. Give water after each meal.", "NakoにキブルとK9 Naturalを1日3～4回与えます。指示がなければドライで与え、食後に水を飲ませます。", "Nako ကို kibbles နဲ့ K9 Natural တစ်နေ့ ၃–၄ ကြိမ်ကျွေးပါ။ မပြောရင် dry ကျွေးပါ။ စားပြီးရင် ရေတိုက်ပါ။"),
     t("3-4 meals/day", "1日3〜4食", "တစ်နေ့ ၃-၄ ကြိမ်"),
     [
       t("Monitor whether she eats properly. Keep meal portions consistent unless instructed otherwise. Make sure she drinks water after eating and wipe her mouth after it gets wet.", "ちゃんと食べているか確認する。特に指示がなければ食事量は一定にする。食後に水を飲ませ、口元が濡れたら拭く。", "သူမ အစာကောင်းကောင်းစားနေသလား စောင့်ကြည့်ပါ။ ညွှန်ကြားချက်မရှိလျှင် အစာပမာဏကို မပြောင်းပါနှင့်။ စားပြီးနောက် ရေသောက်စေပြီး ပါးစပ်စိုလာလျှင် သုတ်ပါ။"),
-      t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။"),
-      t("Let Nako drink water regularly from her manual water bottle. The water nozzle attached to her pen flows too slowly, which can cause dehydration. Do not use a water bowl in the pen because she will immediately put her paws in and play with the water, spilling it everywhere.", "手動の給水ボトルから定期的に水を飲ませてください。サークルに取り付けられている給水器は水の出が遅く、脱水症状になる恐れがあります。サークル内に水皿を置くと、ナコがすぐに足を入れて水遊びをしてしまい、辺り一面が濡れてしまうため、水皿は置かないでください。", "လက်ဆွဲရေဘူးမှ ရေကို ပုံမှန်တိုက်ပေးပါ။ ခြံတွင်တပ်ဆင်ထားသော ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် ရေဓာတ်ခမ်းခြောက်နိုင်ပါသည်။ ခြံထဲတွင် ရေခွက်မထားပါနှင့်၊ အဘယ်ကြောင့်ဆိုသော် သူမသည် ချက်ချင်းခြေထောက်ထည့်၍ ရေဆော့ပြီး ဖိတ်စင်စေသောကြောင့် ဖြစ်သည်။")
+      t("Watch Nako while she eats. Remove the bowl when she finishes. She may flip it or put her paws inside.", "Nakoが食べている間は見守ります。食べ終わったらボウルを片付けます。ひっくり返したり、足を入れたりすることがあります。", "Nako စားနေချိန် စောင့်ကြည့်ပါ။ စားပြီးရင် ခွက်ကိုယူပါ။ ခွက်မှောက်တာ သို့မဟုတ် ခြေထောက်ထည့်တာ လုပ်နိုင်သည်။"),
+      t("Give water often from the manual bottle. The pen nozzle is too slow. Do not leave a water bowl in the pen.", "手動ボトルでこまめに水を与えます。サークルの給水器は遅すぎます。サークル内に水皿を置きません。", "လက်ဆွဲရေဘူးနဲ့ မကြာခဏ ရေတိုက်ပါ။ ခြံကရေပိုက်ခေါင်း နှေးလွန်းသည်။ ခြံထဲ ရေခွက်မထားပါနဲ့။")
     ],
     [
       photo("assets/routines/nako-feeding-spillage.jpg",
@@ -91,7 +91,7 @@ const routineTasks = [
     ]),
   routine("nako-exercise-grooming", "daily", 50, "N", 
     t("Nako - Clean, Dry & Groomed", "ナコ - 清潔・乾燥・グルーミング", "နာကို - သန့်ရှင်း၊ ခြောက်သွေ့၊ grooming"), 
-    t("After walks, outdoor play, or beach trips, wipe Nako down, dry her fully, brush her coat, and wipe her eyes before she rests on the bed or sofa.", "散歩、外遊び、ビーチの後は、ナコの体を拭き、しっかり乾かし、毛をブラッシングし、目元を拭いてからベッドやソファで休ませる。", "လမ်းလျှောက်ပြီးနောက်၊ အပြင်ကစားပြီးနောက် သို့မဟုတ် ကမ်းခြေသွားပြီးနောက် နာကိုကို သုတ်ပါ၊ အပြည့်အဝ ခြောက်အောင်လုပ်ပါ၊ အမွေးကိုဖြီးပါ、မျက်လုံးပတ်ဝန်းကျင်ကို သုတ်ပြီးမှ အိပ်ရာ သို့မဟုတ် sofa ပေါ်မှာ နားစေပါ။"), 
+    t("After outings, wipe and fully dry Nako. Brush her coat and clean her eyes before she rests on furniture.", "外出後はNakoを拭いて完全に乾かします。家具で休む前に毛をとかし、目元を拭きます。", "အပြင်ကပြန်ရင် Nako ကို သုတ်ပြီး ခြောက်အောင်လုပ်ပါ။ အမွေးဖြီးပါ။ ပရိဘောဂပေါ်မနားခင် မျက်လုံးသုတ်ပါ။"),
     t("Daily + after outings / beach", "毎日＋外出・ビーチの後", "နေ့စဉ် + အပြင်ထွက်ပြီးနောက် / ကမ်းခြေပြီးနောက်"), 
     [
       t("Do not leave her damp after wiping; blow dry gently if needed.", "体を拭いた後、湿ったまま放置しないでください。必要に応じてドライヤーで優しく乾かします。", "သုတ်ပြီးနောက် စိုစွတ်မထားပါနှင့်၊ လိုအပ်ပါက လေမှုတ်စက်ဖြင့် ညင်သာစွာ ခြောက်သွေ့အောင် မှုတ်ပေးပါ။"),
@@ -157,7 +157,7 @@ const routineTasks = [
 
   routine("nako-emergency", "daily", 90, "!", 
     t("🚨 Nako Emergency", "ナコの緊急事態", "🚨 နာကို အရေးပေါ်အခြေအနေ"),
-    t("If she vomits, has diarrhoea, or refuses food, safely isolate her, take a photo of the mess, and notify me immediately before doing anything else.", "吐く、下痢をする、ご飯を食べない場合は、安全に隔離し、汚れた場所の写真を撮り、何かする前にすぐ連絡する。", "အန်ခြင်း၊ ဝမ်းလျှောခြင်း သို့မဟုတ် အစာမစားခြင်းရှိပါက လုံခြုံစွာ ခွဲထားပါ၊ ညစ်ပတ်နေသည့်နေရာကို ဓာတ်ပုံရိုက်ပါ၊ အခြားဘာမှမလုပ်ခင် ချက်ချင်း ဆက်သွယ်ပါ။"),
+    t("If Nako vomits, has diarrhoea, or will not eat: keep her safe, take a photo, and tell Edwin immediately.", "Nakoが吐く、下痢をする、食べない場合は、安全を確保し、写真を撮り、すぐEdwinに連絡します。", "Nako အန်ရင်၊ ဝမ်းလျှောရင် သို့မဟုတ် မစားရင် လုံခြုံအောင်ထားပါ။ ဓာတ်ပုံရိုက်ပါ။ Edwin ကို ချက်ချင်းပြောပါ။"),
     t("Immediately", "すぐに", "ချက်ချင်း"),
     t("Notify Edwin before doing anything else.", "何かする前にエドウィンへ連絡する。", "อခြားဘာမှမလုပ်ခင် Edwin ကို အသိပေးပါ။"),
     [
@@ -168,7 +168,7 @@ const routineTasks = [
 
   routine("mail-deliveries", "daily", 100, "P", 
     t("Mail & Deliveries", "郵便物と配達対応", "စာတိုက်နှင့် delivery များ"),
-    t("Check the mailbox daily, bring in packages, and answer the door for deliveries. Upon receiving items, unpack them outside, throw away the packaging, and fully wipe down the items outside the house before bringing them in.", "毎日郵便受けを確認し、荷物を持ち帰り、配達が来たら対応する。荷物を受け取ったら、家の外で開封し、梱包材を捨て、家に入れる前に外で商品をしっかり拭く。", "mailbox ကိုနေ့စဉ်စစ်ပါ၊ package များယူလာပါ၊ delivery လာပါက တံခါးဖွင့်လက်ခံပါ။ ပစ္စည်းရပါက အိမ်အပြင်မှာ unpack လုပ်၊ packaging ကိုလွှင့်ပြီး အိမ်ထဲမသွင်းခင် ပစ္စည်းကို အပြင်မှာ သေချာသုတ်ပါ။"),
+    t("Check the mailbox daily. Receive packages. Open and wipe packages outside before bringing them in.", "毎日郵便受けを確認します。荷物を受け取ります。外で開封して拭いてから家に入れます。", "mailbox ကို နေ့တိုင်းစစ်ပါ။ Package ကိုလက်ခံပါ။ အပြင်မှာဖွင့်ပြီး သုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     [
       t("Keep parcels safe and inform Edwin/Yukari if anything important arrives. Do not bring dirty packaging directly into the house.", "荷物を安全に保管し、大事な物が届いたらエドウィン／ゆかりに知らせる。汚れた梱包材をそのまま家に入れない。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။ ညစ်ပတ်သော packaging ကို အိမ်ထဲ တိုက်ရိုက်မသွင်းပါနှင့်။"),
@@ -233,7 +233,7 @@ const routineTasks = [
 
   routine("toilet-drain-hair-trap", "daily", 150, "D", 
     t("Toilet Drain & Hair Trap Cleaning", "トイレ・排水口・ヘアトラップ掃除", "အိမ်သာရေစီးပေါက်နှင့် hair trap သန့်ရှင်းရေး"),
-    t("Check the bathroom/toilet drain holes and hair traps. Remove hair or stuck debris. If water does not drain properly, use the drain pump tool after being taught.", "トイレ・浴室 de 排水口やヘアトラップを確認し、髪の毛や詰まった汚れを取る。水の流れが悪い時は、教わった後に排水ポンプを使う。", "bathroom/toilet drain holes နှင့် hair traps ကို စစ်ပါ။ ဆံပင် သို့မဟုတ် ပိတ်နေသောအညစ်အကြေးများကို ဖယ်ရှားပါ။ ရေကောင်းကောင်းမစီးပါက သင်ပေးပြီးနောက် drain pump tool ကို အသုံးပြုပါ။"),
+    t("Check bathroom drains and hair traps. Remove hair and dirt. Use the drain pump only after training.", "浴室の排水口とヘアトラップを確認します。髪と汚れを取ります。教わった後だけ排水ポンプを使います。", "bathroom drain နဲ့ hair trap ကိုစစ်ပါ။ ဆံပင်နဲ့အညစ်အကြေးဖယ်ပါ။ သင်ပေးပြီးမှ drain pump သုံးပါ။"),
     t("Daily check + as needed", "毎日確認＋必要に応じて", "နေ့စဉ်စစ်ဆေး + လိုအပ်သလို"),
     [
       t("Do not force the pump tool until taught. Tell Edwin if water remains stuck or smells bad.", "教わるまではポンプを無理に使わない。水が詰まったまま、または臭いがする場合はエドウィンに伝える。", "သင်မပေးခင် pump tool ကို အတင်းမသုံးပါနှင့်။ ရေမဆင်းသေးလျှင် သို့မဟုတ် အနံ့ဆိုးရှိလျှင် Edwin ကို ပြောပါ။"),
@@ -271,7 +271,7 @@ const routineTasks = [
 
   routine("household-supplies-online", "daily", 145, "S",
     t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 
-    t("Check all tissue boxes regularly and replace or refill any that are low. Check spare household stock weekly, then use Shopee or another agreed platform to add needed items to the cart.", "ティッシュ箱をこまめに確認し、少なくなったら交換・補充する。毎週、家庭用消耗品の予備在庫を確認し、必要な品はShopeeなど合意したオンラインサービスのカートに追加する。", "tissue box အားလုံးကို ပုံမှန်စစ်ပြီး နည်းလာပါက လဲပါ သို့မဟုတ် ဖြည့်ပါ။ အိမ်သုံးပစ္စည်းအပို stock ကို အပတ်စဉ်စစ်ပြီး လိုအပ်တာများကို Shopee သို့မဟုတ် သဘောတူထားသော online platform cart ထဲထည့်ပါ။"),
+    t("Refill low tissue boxes. Check spare supplies weekly. Add needed items to the Shopee cart, but do not order.", "少ないティッシュを補充します。予備品を毎週確認します。必要な品はShopeeカートに入れますが、注文しません。", "tissue နည်းရင် ဖြည့်ပါ။ အပိုပစ္စည်းကို အပတ်စဉ်စစ်ပါ။ လိုတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
     t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
     [
       t("When only 1-2 spare tissue packs remain, tell Edwin and add tissue packs to the shopping list or cart. Ask before placing an order.", "予備のティッシュが残り1〜2パックになったら、エドウィンに伝え、買い物リストまたはカートに追加する。注文確定前には必ず確認する。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် Edwin ကိုပြောပြီး ဈေးဝယ်စာရင်း သို့မဟုတ် cart ထဲသို့ tissue ထုပ်များကိုထည့်ပါ။ မှာယူမီ အရင်မေးပါ။"),
@@ -556,10 +556,10 @@ const routineTasks = [
     t("Monthly", "毎月", "လစဉ်"), 
     t("Only do safe, accessible parts. Do not dismantle deeper parts.", "安全で手の届く部分のみを行ってください。深い部分まで分解しないでください。", "ဘေးကင်းပြီး လက်လှမ်းမီသော အစိတ်အပိုင်းများကိုသာ လုပ်ဆောင်ပါ။ ပိုမိုနက်ရှိုင်းသော အစိတ်အပိုင်းများကို ဖြုတ်ခြင်းမပြုပါနှင့်။")),
   routine("washer-deep-clean", "quarterly", 10, "W", 
-    t("Washer Deep Clean - Drawer, Pump Filter & Seal", "洗濯機の大掃除 - 洗剤引き出し、ポンプフィルター、ゴムパッキン", "အဝတ်လျှော်စက် သန့်ရှင်းရေးအကြီးစား - ဆပ်ပြာအံဆွဲ၊ ပန့်ဇကာနှင့် ရာဘာကွင်း"), 
-    t("Quarterly guided deep clean for the LG washer: clean the detergent drawer and housing, drain and clean the pump filter, wipe the door seal and exterior, run Tub Clean, and check the inlet screens only if water fills slowly.",
-      "LG洗濯機の3ヶ月ごとのガイド付き大掃除：洗剤引き出しとハウジングの清掃、排水ポンプフィルターの排出と清掃、ドアパッキンと外装の拭き取り、槽洗浄（Tub Clean）の実行、および水がたまるのが遅い場合のみ給水フィルターの確認を行います。",
-      "LG အဝတ်လျှော်စက်အတွက် ၃ လတစ်ကြိမ် လမ်းညွှန်ချက်ဖြင့် သန့်ရှင်းရေးအကြီးစားလုပ်ရန် - ဆပ်ပြာအံဆွဲနှင့် ၎င်း၏အိမ်ကို သန့်ရှင်းရေးလုပ်ခြင်း၊ ရေထုတ်ပန့် filter ကို ရေထုတ်ပြီး သန့်ရှင်းရေးလုပ်ခြင်း၊ တံခါးရာဘာကွင်းနှင့် အပြင်ပိုင်းကို သုတ်ခြင်း၊ Tub Clean ပြုလုပ်ခြင်းနှင့် ရေဝင်နှေးမှသာ ရေဝင်ဆန်ခါများကို စစ်ဆေးခြင်း။"),
+    t("Washer Deep Clean", "洗濯機の大掃除", "အဝတ်လျှော်စက် အကြီးစားသန့်ရှင်းရေး"),
+    t("Clean the LG washer drawer, pump filter, seal, and outside. Run Tub Clean. Check inlet screens only if filling is slow.",
+      "LG洗濯機の洗剤引き出し、ポンプフィルター、パッキン、外側を掃除します。槽洗浄を実行します。給水が遅い場合のみ給水フィルターを確認します。",
+      "LG အဝတ်လျှော်စက်၏ ဆပ်ပြာအံဆွဲ၊ ပန့်ဇကာ၊ ရာဘာကွင်းနှင့် အပြင်ပိုင်းကို သန့်ရှင်းပါ။ Tub Clean လုပ်ပါ။ ရေဝင်နှေးမှသာ ရေဝင်ဆန်ခါကို စစ်ပါ။"),
     t("Quarterly / every 3 months", "3ヶ月おき / 3ヶ月ごと", "၃ လတစ်ကြိမ် / ၃ လတစ်ခါ"), 
     t("Do this task only when Edwin asks and supervises.", "この作業は、Edwinが依頼し監督する場合にのみ行ってください。", "Edwin က တောင်းဆိုပြီး ကြီးကြပ်သည့်အခါမှသာ ဤအလုပ်ကို လုပ်ပါ။")
   ),
@@ -580,7 +580,7 @@ const routineTasks = [
     t("Coordinate before buying larger or unusual items.", "大きな品物や普通でない品物を購入する前に調整してください。", "ကြီးမားသော သို့မဟုတ် ပုံမှန်မဟုတ်သော ပစ္စည်းများ မဝယ်မီ ညှိနှိုင်းပါ။")),
   routine("serve-spirit-with-ice", "as-needed", 12, "🥃",
     t("Serve a Spirit with Ice", "氷入りスピリッツの提供", "ရေခဲနှင့် spirit ဖျော်ပေးခြင်း"),
-    t("When Edwin or Yukari asks for an alcoholic drink, prepare one clean glass with ice and the requested spirit. Add mixer or water only when asked.", "エドウィンまたはゆかりからお酒を頼まれたら、きれいなグラスに氷と希望されたスピリッツを用意する。ミキサーや水は頼まれた時だけ加える。", "Edwin သို့မဟုတ် Yukari က အရက်သောက်စရာတောင်းသည့်အခါ သန့်ရှင်းသောဖန်ခွက်တစ်ခုတွင် ရေခဲနှင့် တောင်းထားသော spirit ကိုပြင်ပါ။ mixer သို့မဟုတ် ရေကို တောင်းဆိုသည့်အခါမှသာ ထည့်ပါ။"),
+    t("When asked, put ice and the requested spirit in a clean glass. Add mixer or water only when asked.", "頼まれたら、きれいなグラスに氷と希望のお酒を入れます。ミキサーや水は頼まれた時だけ加えます。", "တောင်းရင် ဖန်ခွက်သန့်ထဲ ရေခဲနဲ့ တောင်းထားတဲ့ spirit ထည့်ပါ။ တောင်းမှ mixer သို့မဟုတ် ရေထည့်ပါ။"),
     t("When requested", "頼まれた時", "တောင်းဆိုသည့်အခါ"),
     [
       t("Take a clean glass from the cabinet above the coffee machine.", "コーヒーマシンの上にある戸棚から、きれいなグラスを取る。", "ကော်ဖီစက်အပေါ်ရှိဗီရိုမှ သန့်ရှင်းသောဖန်ခွက်ကို ယူပါ။"),
@@ -652,13 +652,13 @@ const routineTasks = [
     t("Learn where the fire extinguisher is kept, how to check its pressure gauge, and how to use it safely.", "消火器の保管場所、圧力計の確認方法、安全な使い方を学びます。", "မီးသတ်ဆေးဘူးထားသည့်နေရာ၊ ဖိအားမီတာစစ်ဆေးနည်းနှင့် လုံခြုံစွာအသုံးပြုနည်းကို သင်ယူပါ။"),
     t("One-off training", "1回限りの訓練", "တစ်ကြိမ်တည်း လေ့ကျင့်မှု"),
     [
-      t("1. CHECK THE GAUGE: Green means normal working pressure. Left red means pressure is too low and needs recharging; right red means overcharged. If the needle is in either red zone, do not rely on the extinguisher—arrange servicing or replacement.", "1. 圧力計を確認：緑色は正常な使用圧力です。左の赤色は圧力不足で再充填が必要、右の赤色は過充填を意味します。針が赤色の範囲にある場合は使用せず、点検または交換を依頼してください。", "၁။ ဖိအားမီတာကို စစ်ပါ။ အစိမ်းရောင်သည် ပုံမှန်အသုံးပြုနိုင်သော ဖိအားကို ဆိုလိုသည်။ ဘယ်ဘက်အနီရောင်သည် ဖိအားနည်း၍ ပြန်ဖြည့်ရန်လိုသည်၊ ညာဘက်အနီရောင်သည် ဖိအားလွန်နေသည်ဟု ဆိုလိုသည်။ အပ်သည် အနီရောင်အပိုင်းတွင်ရှိလျှင် မသုံးဘဲ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
-      t("2. Use only on a small, contained fire. Keep a clear escape route behind you. If there is heavy smoke or the fire is spreading, leave immediately and call emergency services.", "2. まだ燃え広がっていない小さな火災にのみ使用します。出口を背にして、避難経路を確保してください。煙が多い、または火が広がっている場合は、直ちに避難して緊急通報してください。", "၂။ မပြန့်ပွားသေးသော မီးငယ်ကိုသာ ငြှိမ်းပါ။ ထွက်ပေါက်ကို မိမိနောက်ဘက်တွင်ထားပြီး လွတ်မြောက်ရာလမ်းကို ရှင်းလင်းထားပါ။ မီးခိုးများလာလျှင် သို့မဟုတ် မီးပြန့်လာလျှင် ချက်ချင်းထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
-      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. Removing the pin unlocks the lever.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜くとレバーを握れるようになります。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်ကိုထုတ်မှ လက်ကိုင်ကို ညှစ်နိုင်မည်ဖြစ်သည်။"),
-      t("4. AIM the nozzle at the base of the fire, not at the flames.", "4. 炎ではなく、火元の根元にノズルを向けます。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို နော်ဇယ်ဖြင့် ချိန်ပါ။"),
-      t("5. SQUEEZE the lever to discharge the extinguisher.", "5. レバーを握り、消火剤を噴射します。", "၅။ မီးသတ်ဆေးထွက်ရန် လက်ကိုင်ကို ညှစ်ပါ။"),
-      t("6. SWEEP from side to side across the base of the fire.", "6. 火元の根元を狙いながら、左右に掃くように動かします。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
-      t("7. If the fire does not go out quickly, the extinguisher becomes empty, or smoke and flames grow, evacuate immediately and call emergency services.", "7. すぐに消えない、消火器が空になる、煙や炎が大きくなる場合は、直ちに避難して緊急通報してください。", "၇။ မီးချက်ချင်းမငြိမ်းလျှင်၊ မီးသတ်ဆေးဘူးကုန်သွားလျှင် သို့မဟုတ် မီးခိုးနှင့်မီးတောက် ပိုများလာလျှင် ချက်ချင်းထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။")
+      t("1. CHECK THE GAUGE. Green = ready to use. Red = do not use; arrange servicing or replacement.", "1. 圧力計を確認。緑＝使用可能。赤＝使用せず、点検または交換を依頼します。", "၁။ ဖိအားမီတာ စစ်ပါ။ အစိမ်း = အသင့်သုံးနိုင်သည်။ အနီ = မသုံးပါနှင့်။ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
+      t("2. Use only on a small fire. Keep the exit behind you. If smoke is heavy or fire spreads, leave and call emergency services.", "2. 小さな火にのみ使用します。出口を背にします。煙が多い、または火が広がる場合は避難して緊急通報します。", "၂။ မီးငယ်အတွက်သာ သုံးပါ။ ထွက်ပေါက်ကို နောက်တွင်ထားပါ။ မီးခိုးများလျှင် သို့မဟုတ် မီးပျံ့လျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
+      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
+      t("4. AIM at the base of the fire, not the flames.", "4. 炎ではなく、火元の根元を狙います。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို ချိန်ပါ။"),
+      t("5. SQUEEZE the lever.", "5. レバーを握ります。", "၅။ လက်ကိုင်ကို ညှစ်ပါ။"),
+      t("6. SWEEP side to side across the base of the fire.", "6. 火元の根元を左右に掃くように噴射します。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
+      t("7. If the fire does not go out quickly, leave and call emergency services.", "7. すぐに消えない場合は避難して緊急通報します。", "၇။ မီးချက်ချင်းမငြိမ်းလျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။")
     ],
     [
       photo("assets/routines/fire-extinguisher-overview.jpg",

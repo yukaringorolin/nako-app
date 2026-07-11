@@ -1,0 +1,15 @@
+{
+  "name": "nako-home-care",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "preview": "node scripts/serve-preview.js",
+    "build:data": "node scripts/bundle.js",
+    "check:bundle": "node scripts/check-generated-data.js",
+    "check:syntax": "node scripts/check-syntax.js",
+    "check:translations": "node scripts/check_translations.js",
+    "check:content": "node scripts/validate-content.js",
+    "test": "node scripts/run-tests.js",
+    "check": "node scripts/bundle.js && node scripts/check-generated-data.js && node scripts/check-syntax.js && node scripts/check_translations.js && node scripts/validate-content.js && node scripts/validate-ingredient-catalog.js && node scripts/run-tests.js"
+  }
+}

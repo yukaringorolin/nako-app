@@ -3,7 +3,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const dataContent = fs.readFileSync(path.join(__dirname, "../src/data.js"), "utf8");
-const appContent = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8");
+const router = require("../src/core/router.js");
+const pageContent = fs.readFileSync(path.join(__dirname, "../src/features/pages.js"), "utf8");
+const componentContent = fs.readFileSync(path.join(__dirname, "../src/ui/components.js"), "utf8");
 
 // Mock environment for evaluating data.js
 const globalMock = {
@@ -64,12 +66,11 @@ expectedIds.forEach((id) => {
   assert.equal(item.photos.length, 1, `Item ${id} must have exactly 1 photo`);
 });
 
-// 3. Verify app.js routing and back-button logic
-assert.ok(appContent.includes("food-safety-item"), "app.js must define or handle the food-safety-item view");
-assert.ok(appContent.includes("#food-safety/"), "app.js must route to #food-safety/");
-assert.ok(appContent.includes("renderFoodSafetyItem"), "app.js must have renderFoodSafetyItem function");
-assert.ok(appContent.includes("renderFoodSafetyCard"), "app.js must have renderFoodSafetyCard function");
-assert.ok(appContent.includes("renderOfficialReferencesPanel"), "app.js must have renderOfficialReferencesPanel function");
+// 3. Verify the public route contract and focused feature renderers
+assert.deepEqual(router.parseRouteHash("#food-safety/safe-thawing"), { view: "food-safety-item", itemId: "safe-thawing" });
+assert.ok(pageContent.includes("function renderFoodSafetyItem"), "pages module must render a food-safety detail");
+assert.ok(pageContent.includes("function renderOfficialReferencesPanel"), "pages module must render official references");
+assert.ok(componentContent.includes("function renderFoodSafetyCard"), "components module must render food-safety cards");
 
 // 4. Verify no safety items are routine tracking tasks
 const routineTasks = nakoData.routineTasks;

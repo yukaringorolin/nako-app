@@ -1,0 +1,31 @@
+.theme-food,
+.theme-as-needed { --accent: #f19a82; --icon-bg: #fff0eb; }
+.theme-food-safety { --accent: #d97d65; --icon-bg: #fef0ec; }
+.theme-daily { --accent: #f7b7be; --icon-bg: #fff1f2; }
+.theme-weekly { --accent: #92c9ad; --icon-bg: #e7f6ee; }
+.theme-fortnightly { --accent: #f2c36f; --icon-bg: #fff6df; }
+.theme-monthly { --accent: #b7a4d8; --icon-bg: #f2eefb; }
+.theme-quarterly { --accent: #7db6a5; --icon-bg: #e7f4f0; }
+
+.search-target-highlight { background: #fef08a; }
+.detail-badges { margin: -8px 16px 16px; }
+.video-link-row { margin-top: 10px; }
+.translation-warning {
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #fecdd3;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #be123c;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.diary-translations-section { display: grid; gap: 8px; }
+.diary-translations-section > h3 { margin: 0; color: var(--ink); font-size: 14px; font-weight: 800; }
+.translation-label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 12px; font-weight: 800; }
+.diary-translation-field { min-height: 80px; }
+.graph-help { margin: 8px 0 0; font-size: 13px; }

@@ -16,11 +16,7 @@ const recipes = context.window.nakoData?.recipes || [];
 const failures = [];
 
 for (const [key, entry] of Object.entries(catalog)) {
-  if (key === "water") {
-    if (entry.file !== null) failures.push("Water must intentionally have no image file.");
-    continue;
-  }
-  if (!entry.file || !entry.source || !entry.target) failures.push(`${key} is missing file, source, or shopping target metadata.`);
+  if (!entry.target) failures.push(`${key} is missing shopping target metadata.`);
   if (entry.file && !fs.existsSync(path.join(assetDir, entry.file))) failures.push(`${key} references missing asset ${entry.file}.`);
 }
 

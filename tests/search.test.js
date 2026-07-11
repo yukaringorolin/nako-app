@@ -165,24 +165,10 @@ function trContains(transObj, term) {
 
 // 13. Highlighting safely handles HTML-like characters
 test("Highlighting safely handles HTML-like characters", () => {
-  const appContent = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8");
-  
-  // Extract highlightText from app.js content and eval it
-  const match = /function highlightText\([\s\S]*?\n\}/.exec(appContent);
-  assert.ok(match, "highlightText must be defined in app.js");
-  
-  let highlightTextFn;
-  const esc = (val) => String(val).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const window = { nakoSearch };
-  
-  // Eval it locally
-  (function() {
-    eval(match[0]);
-    highlightTextFn = highlightText;
-  })();
+  const { highlightText } = require("../src/core/search-highlight.js");
 
   const text = "Safety <script>alert(1)</script> Rules";
-  const highlighted = highlightTextFn(text, "rules");
+  const highlighted = highlightText(text, "rules", nakoSearch.normalizeSearchText);
   
   assert.ok(!highlighted.includes("<script>"), "HTML tags must be escaped");
   assert.ok(highlighted.includes("&lt;script&gt;"), "HTML tags must be properly escaped in output");

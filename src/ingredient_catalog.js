@@ -39,6 +39,16 @@
     "sesame-oil": { file: "sesame-oil.jpg", source: product("/product/lee-kum-kee-pure-sesame-oil-207ml-13160717"), target: "Sesame-oil bottle" },
     "rice-vinegar": { file: "rice-vinegar.jpg", source: product("/product/redman-rice-vinegar"), target: "Rice-vinegar bottle" },
     miso: { file: "miso-paste.jpg", source: product("/product/kirei-yamataka-omiso-ya-san-japanese-shiro-miso-paste-1-kg-90085339"), target: "Japanese miso tub or pouch" },
-    water: { file: "water.png", source: null, target: "A clean, elegant glass of fresh pure water" }
+    water: { file: "water.png", source: null, target: "A clean glass of water" },
+    apple: { file: null, source: null, target: "Fresh apple" },
+    bread: { file: null, source: null, target: "Sliced sandwich bread" },
+    "peanut-butter": { file: null, source: null, target: "Peanut butter jar" },
+    "strawberry-jam": { file: null, source: null, target: "Strawberry jam jar" },
+    banana: { file: null, source: null, target: "Fresh banana" },
+    mayonnaise: { file: null, source: null, target: "Mayonnaise bottle" },
+    "pork-ribs": { file: null, source: null, target: "Raw pork ribs" },
+    "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
+    garlic: { file: null, source: null, target: "Fresh garlic bulb" },
+    "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" }
   });
 })();

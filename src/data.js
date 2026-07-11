@@ -14,9 +14,18 @@ function sec(id, icon, accent, iconBg, title, description, image = "") {
   return { id, icon, accent, iconBg, title, description, image };
 }
 
+function sameTranslation(first, second) {
+  return ["en", "jp", "mm"].every((lang) => String(first?.[lang] || "").trim() === String(second?.[lang] || "").trim());
+}
+
+function instructionList(summary, instructions) {
+  const list = Array.isArray(instructions) ? instructions : [instructions];
+  return list.filter(Boolean).filter((item) => !sameTranslation(summary, item));
+}
+
 
 function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
 function photo(src, alt, caption) {
@@ -32,7 +41,7 @@ function ingredientOption(key, name) {
 }
 
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
 }
 
 
@@ -90,29 +99,30 @@ function safetyItem(id, icon, title, summary, instructions, mustRemember, photos
 const ui = {
   en: {
     appTitle: "Nako Home Care",
-    appSubtitle: "Food, Nako tracking, and a frequency-based household guide.",
-    homeEyebrow: "Maid onboarding guide",
+    appSubtitle: "Food, Nako care, and home tasks.",
+    homeEyebrow: "Helper guide",
+    language: "Language",
     sections: "Sections",
-    foodFirst: "Food and tracking stay at the top because they change often.",
-    frequency: "Frequency",
+    foodFirst: "Food and logs are first.",
+    frequency: "When",
     description: "Description",
-    instructions: "Instructions",
+    instructions: "Steps",
     photos: "Photos",
-    mustRemember: "Must remember",
+    mustRemember: "Remember",
     video: "Training video",
     memo: "Memo",
     memoPlaceholder: "Add notes, questions, or anything to confirm.",
-    cookingRules: "Cooking Rules For Humans",
-    futureTracking: "Tracking placeholder",
+    cookingRules: "Cooking rules",
+    futureTracking: "Coming later",
     recipes: "Nako Topping Recipes",
     recipeName: "Recipe name",
     ingredients: "Ingredients",
     amount: "Amount",
     method: "How to make",
-    routineItems: "Routine items",
-    foodItems: "Food and tracking items",
-    pinnedSafety: "Pinned safety",
-    safetyReferences: "safety references",
+    routineItems: "Tasks",
+    foodItems: "Food and logs",
+    pinnedSafety: "Safety first",
+    safetyReferences: "Safety",
     noItems: "No items yet.",
     back: "Back",
     humanRecipes: "Human recipes",
@@ -130,7 +140,7 @@ const ui = {
     syncLocal: "Local only",
     syncConnecting: "Connecting sync",
     syncOff: "Cloud sync off",
-    quickShortcuts: "Quick Shortcuts",
+    quickShortcuts: "Quick links",
     shortcutNakoWeight: "Nako Weight Tracking",
     shortcutMealLogs: "Edwin Meal Logs",
     shortcutNakoToppings: "Nako Topping Recipes",
@@ -172,7 +182,7 @@ const ui = {
     nutritionBasis: "Calculation basis",
     nutritionDisclaimer: "Estimated from the listed ingredient weights. Actual values may vary by brand, preparation, cooking and food left in the pan.",
     routineCheckIn: "Routine Check-in",
-    routineCheckInSubtitle: "Track weekly, fortnightly, monthly, quarterly and one-off household tasks here. Daily and as-needed work is not tracked.",
+    routineCheckInSubtitle: "Check tasks that are due. Daily tasks are not shown here.",
     routineHistory: "Routine History",
     routineHomeRemaining: "{count} non-daily tasks remaining",
     backToRoutineCheckIn: "Back to Routine Check-in",
@@ -194,19 +204,20 @@ const ui = {
     completionDate: "Date",
     addNote: "Add note",
     notePlaceholder: "Optional note",
-    metricOpenWeight: "Open Weight Quick Entry",
-    metricCompleted: "Completed by weight entry",
+    metricOpenWeight: "Add weight",
+    metricCompleted: "Weight saved",
+    weightNote: "Weight: {weight} kg",
     undo: "Undo",
     completionSaved: "Completion saved.",
     completionRemoved: "Completion removed.",
     backdatePreviousCycle: "Saved to the earlier cycle. The current cycle remains incomplete.",
-    historyIntro: "Newest first. Showing the most recent eight weeks by default.",
+    historyIntro: "Newest records first.",
     filterTask: "Task",
-    filterCadence: "Cadence",
+    filterCadence: "Schedule",
     filterFrom: "From",
     filterTo: "To",
     allTasks: "All tasks",
-    allCadences: "All cadences",
+    allCadences: "All schedules",
     noRoutineHistory: "No matching completion history.",
     notCompleted: "Not completed",
     removeCompletion: "Remove completion",
@@ -215,8 +226,8 @@ const ui = {
     currentWeightDate: "This week's weight date",
     routineDateInvalid: "Choose a valid date.",
     routinePeriodRange: "{start} – {end}",
-    searchPlaceholder: "Search Nako care, routines, food, recipes...",
-    searchLabel: "Global Search",
+    searchPlaceholder: "Search Nako care, food, or tasks",
+    searchLabel: "Search",
     clearSearch: "Clear search",
     quickFind: "Quick find",
     noResults: "No results found",
@@ -234,29 +245,30 @@ const ui = {
   },
   jp: {
     appTitle: "Nako Home Care",
-    appSubtitle: "食事、レシピ、追跡、および頻度別の家事ガイド。",
-    homeEyebrow: "ヘルパーお仕事ガイド",
+    appSubtitle: "食事、Nakoのお世話、家事。",
+    homeEyebrow: "ヘルパーガイド",
+    language: "言語",
     sections: "セクション",
-    foodFirst: "食事と追跡は頻繁に変更されるため、上部に表示されます。",
-    frequency: "頻度",
+    foodFirst: "食事と記録を先に表示します。",
+    frequency: "いつ",
     description: "説明",
-    instructions: "指示事項",
+    instructions: "手順",
     photos: "写真",
-    mustRemember: "重要注意事項",
+    mustRemember: "注意",
     video: "トレーニング動画",
     memo: "メモ",
     memoPlaceholder: "メモ、質問、または確認したいことを追加してください。",
-    cookingRules: "人間用の料理ルール",
-    futureTracking: "追跡用プレースホルダー",
+    cookingRules: "料理ルール",
+    futureTracking: "後で追加",
     recipes: "ナコのトッピングレシピ",
     recipeName: "レシピ名",
     ingredients: "材料",
     amount: "分量",
     method: "作り方",
-    routineItems: "ルーティン項目",
-    foodItems: "食事と追跡項目",
-    pinnedSafety: "ピン留めされた安全情報",
-    safetyReferences: "安全基準",
+    routineItems: "タスク",
+    foodItems: "食事と記録",
+    pinnedSafety: "安全第一",
+    safetyReferences: "安全",
     noItems: "項目はありません。",
     back: "戻る",
     humanRecipes: "人間のレシピ",
@@ -274,7 +286,7 @@ const ui = {
     syncLocal: "ローカルのみ",
     syncConnecting: "同期接続中",
     syncOff: "クラウド同期オフ",
-    quickShortcuts: "クイックショートカット",
+    quickShortcuts: "よく使う項目",
     shortcutNakoWeight: "ナコの体重測定",
     shortcutMealLogs: "エドウィンの食事記録",
     shortcutNakoToppings: "ナコのトッピングレシピ",
@@ -340,6 +352,7 @@ const ui = {
     notePlaceholder: "任意のメモ",
     metricOpenWeight: "体重のクイック入力を開く",
     metricCompleted: "体重入力により完了",
+    weightNote: "体重：{weight} kg",
     undo: "元に戻す",
     completionSaved: "完了を保存しました。",
     completionRemoved: "完了を削除しました。",
@@ -378,29 +391,30 @@ const ui = {
   },
   mm: {
     appTitle: "Nako Home Care",
-    appSubtitle: "အစားအသောက်၊ ဟင်းချက်နည်း၊ ခြေရာခံခြင်းနှင့် လုပ်ဆောင်ရမည့် အိမ်အလုပ်လမ်းညွှန်။",
-    homeEyebrow: "အိမ်ကူညီသူ အလုပ်သင်လမ်းညွှန်",
+    appSubtitle: "အစားအသောက်၊ Nako စောင့်ရှောက်မှုနဲ့ အိမ်အလုပ်များ။",
+    homeEyebrow: "အိမ်ကူလမ်းညွှန်",
+    language: "ဘာသာစကား",
     sections: "ကဏ္ဍများ",
-    foodFirst: "အစားအသောက်နှင့် ခြေရာခံခြင်းသည် မကြာခဏ ပြောင်းလဲသောကြောင့် ထိပ်ဆုံးတွင် ရှိနေသည်။",
-    frequency: "ကြိမ်နှုန်း",
+    foodFirst: "အစားအသောက်နဲ့ မှတ်တမ်းကို အရင်ပြထားသည်။",
+    frequency: "ဘယ်အချိန်",
     description: "ဖော်ပြချက်",
-    instructions: "ညွှန်ကြားချက်များ",
+    instructions: "လုပ်နည်း",
     photos: "ဓာတ်ပုံများ",
-    mustRemember: "မဖြစ်မနေ မှတ်သားရန်",
+    mustRemember: "သတိထားရန်",
     video: "လေ့ကျင့်ရေးဗီဒီယို",
     memo: "မှတ်စု",
     memoPlaceholder: "မှတ်စု၊ မေးခွန်း သို့မဟုတ် အတည်ပြုရန်အရာများ ထည့်ပါ။",
-    cookingRules: "လူသားများအတွက် ချက်ပြုတ်ခြင်းဆိုင်ရာ စည်းကမ်းများ",
-    futureTracking: "ခြေရာခံရန်နေရာ",
+    cookingRules: "ချက်ပြုတ်စည်းကမ်း",
+    futureTracking: "နောက်မှထည့်မည်",
     recipes: "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ",
     recipeName: "ဟင်းချက်နည်းအမည်",
     ingredients: "ပါဝင်ပစ္စည်းများ",
     amount: "ပမာဏ",
     method: "ပြုလုပ်နည်း",
-    routineItems: "ပုံမှန်လုပ်ဆောင်ချက်များ",
-    foodItems: "အစားအသောက်နှင့် ခြေရာခံစရာများ",
-    pinnedSafety: "အရေးကြီးဘေးကင်းလုံခြုံရေး",
-    safetyReferences: "ဘေးကင်းရေး လမ်းညွှန်ချက်များ",
+    routineItems: "အလုပ်များ",
+    foodItems: "အစားအသောက်နဲ့ မှတ်တမ်း",
+    pinnedSafety: "ဘေးကင်းရေး အရင်",
+    safetyReferences: "ဘေးကင်းရေး",
     noItems: "ဘာမှမရှိသေးပါ။",
     back: "နောက်သို့",
     humanRecipes: "လူသားများအတွက် ဟင်းချက်နည်းများ",
@@ -418,7 +432,7 @@ const ui = {
     syncLocal: "စက်တွင်းသာ",
     syncConnecting: "စင့်ခ်ချိတ်ဆက်နေသည်",
     syncOff: "ကလောင်ဒ်စင့်ခ် ပိတ်ထားသည်",
-    quickShortcuts: "အမြန်ဖြတ်လမ်းများ",
+    quickShortcuts: "အမြန်ဖွင့်ရန်",
     shortcutNakoWeight: "Nako ကိုယ်အလေးချိန်",
     shortcutMealLogs: "Edwin အစားမှတ်တမ်း",
     shortcutNakoToppings: "Nako topping ချက်နည်း",
@@ -484,6 +498,7 @@ const ui = {
     notePlaceholder: "ရွေးချယ်နိုင်သော မှတ်စု",
     metricOpenWeight: "ကိုယ်အလေးချိန် အမြန်ထည့်သွင်းမှု ဖွင့်ရန်",
     metricCompleted: "ကိုယ်အလေးချိန်ထည့်ပြီး ပြီးစီးသည်",
+    weightNote: "ကိုယ်အလေးချိန်: {weight} kg",
     undo: "ပြန်ဖျက်ရန်",
     completionSaved: "ပြီးစီးမှုကို သိမ်းပြီးပါပြီ။",
     completionRemoved: "ပြီးစီးမှုကို ဖယ်ရှားပြီးပါပြီ။",
@@ -526,35 +541,35 @@ const ui = {
 const homeSections = [
   sec("food", "F", "#f19a82", "#fff0eb", 
     t("Food, Recipes & Nako Tracking", "食事、レシピ、ナコの追跡", "အစားအသောက်၊ ဟင်းချက်နည်းနှင့် Nako ခြေရာခံခြင်း"), 
-    t("Recipes, cooking rules, and future daily tracking placeholders.", "レシピ、料理のルール、および将来の日々の追跡用プレースホルダー。", "ဟင်းချက်နည်းများ၊ ချက်ပြုတ်ခြင်းစည်းကမ်းများနှင့် နေ့စဉ်ခြေရာခံရန်နေရာများ။"),
+    t("Recipes, food logs, and cooking rules.", "レシピ、食事記録、料理ルール。", "ဟင်းချက်နည်း၊ အစားမှတ်တမ်းနဲ့ ချက်ပြုတ်စည်းကမ်း။"),
     "assets/sections/food.png"),
   sec("food-safety", "🛡️", "#d97d65", "#fef0ec", 
     t("Food Safety", "食品安全", "အစားအသောက် ဘေးကင်းလုံခြုံရေး"), 
-    t("Safe storage, preparation, cooking and leftover handling rules.", "安全な保存、下準備、調理、残り物の取り扱いルール。", "ဘေးကင်းစွာ သိုလှောင်ခြင်း၊ ပြင်ဆင်ခြင်း၊ ချက်ပြုတ်ခြင်းနှင့် စားကြွင်းစားကျန် ကိုင်တွယ်ခြင်း စည်းကမ်းများ။"),
+    t("Store, cook, and keep food safe.", "食材を安全に保存・調理します。", "အစားအစာကို လုံခြုံစွာ သိမ်းပြီး ချက်ပါ။"),
     "assets/sections/food-safety.png"),
   sec("daily", "D", "#f7b7be", "#fff1f2", 
     t("Daily / Active", "毎日 / アクティブ", "နေ့စဉ် / လက်ရှိလုပ်ဆောင်ဆဲ"), 
-    t("Tasks that happen every day, after use, or whenever Nako is active.", "毎日、使用後、またはナコが活動しているときに発生するタスク。", "နေ့စဉ်၊ အသုံးပြုပြီးနောက် သို့မဟုတ် Nako လှုပ်ရှားနေချိန် လုပ်ဆောင်ရမည့်အရာများ။"),
+    t("Do these each day or after use.", "毎日または使用後に行います。", "နေ့တိုင်း သို့မဟုတ် သုံးပြီးတိုင်း လုပ်ပါ။"),
     "assets/sections/daily-active.jpg"),
   sec("weekly", "W", "#92c9ad", "#e7f6ee", 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
-    t("The main weekly reset list for the home, Nako, and supplies.", "家庭、ナコ、および消耗品の主な週次リセットリスト。", "အိမ်၊ Nako နှင့် အိမ်သုံးပစ္စည်းများအတွက် အဓิက အပတ်စဉ်ရှင်းလင်းရေးစာရင်း။"),
+    t("Do these once a week.", "週に1回行います。", "တစ်ပတ် ၁ ကြိမ် လုပ်ပါ။"),
     "assets/sections/weekly-reset.jpg"),
   sec("fortnightly", "14", "#f2c36f", "#fff6df", 
     t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"), 
-    t("Bigger refresh tasks that do not need to happen weekly.", "毎週行う必要のない、より大きなリフレッシュタスク。", "အပတ်စဉ်လုပ်ရန်မလိုသော ပိုမိုကြီးမားသည့် သန့်ရှင်းရေးအလုပ်များ။"),
+    t("Do these every 2 weeks.", "2週間に1回行います。", "၂ ပတ် ၁ ကြိမ် လုပ်ပါ။"),
     "assets/sections/fortnightly-refresh.jpg"),
   sec("monthly", "M", "#b7a4d8", "#f2eefb", 
     t("Monthly", "毎月", "လစဉ်"), 
-    t("Monthly maintenance and deeper cleaning references.", "毎月のメンテナンスおよび大掃除の基準。", "လစဉ်ထိန်းသိမ်းမှုနှင့် ပိုမိုနက်ရှိုင်းသော သန့်ရှင်းရေးလုပ်ငန်းများ။"),
+    t("Do these once a month.", "月に1回行います。", "တစ်လ ၁ ကြိမ် လုပ်ပါ။"),
     "assets/sections/monthly-maintenance.jpg"),
   sec("quarterly", "Q", "#7db6a5", "#e7f4f0", 
     t("Quarterly / Long Interval", "3ヶ月おき / 長期の間隔", "၃ လတစ်ကြိမ် / ကာလရှည်လုပ်ဆောင်ချက်များ"), 
-    t("Rare maintenance tasks kept near the bottom.", "頻度の低いメンテナンス作業（下部に配置）。", "အောက်ဆုံးတွင် ဖော်ပြထားသော လုပ်ခဲသည့် ထိန်းသိမ်းရေးအလုပ်များ။"),
+    t("Do these every 3 months or later.", "3か月ごと、または必要な時期に行います。", "၃ လ ၁ ကြိမ် သို့မဟုတ် သတ်မှတ်ချိန်မှာ လုပ်ပါ။"),
     "assets/sections/quarterly-maintenance.png"),
   sec("as-needed", "?", "#f19a82", "#fff0eb", 
     t("As Needed / Event-Based", "必要に応じて / イベントベース", "လိုအပ်သလို / အခြေအနေအလိုက်"), 
-    t("Tasks triggered by shopping, travel, or unusual household needs.", "買い物、旅行、または特別な家庭の必要性によって発生するタスク。", "စျေးဝယ်ခြင်း၊ ခရီးသွားခြင်း သို့မဟုတ် ထူးခြားသောအိမ်သုံးလိုအပ်ချက်များကြောင့် လုပ်ဆောင်ရမည့်အရာများ。"),
+    t("Do these only when needed.", "必要なときだけ行います。", "လိုအပ်တဲ့အချိန်မှာပဲ လုပ်ပါ။"),
     "assets/sections/as-needed.png"),
 ];
 
@@ -936,7 +951,7 @@ const officialReferences = {
 const routineTasks = [
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
-    t("Write anything on your mind: daily thoughts, feelings, questions, feedback, worries, missing family, or anything hard to explain verbally. The app will save it and open a short WhatsApp notice.", "心にあることを何でも書いてください。日々の考え、気持ち、質問、フィードバック、心配なこと、家族が恋しい気持ち、口頭で説明しにくいことなど。アプリが保存し、短いWhatsApp通知を開きます。", "စိတ်ထဲရှိသည့်အရာများကို ဘာမဆိုရေးပါ။ နေ့စဉ်အတွေးများ၊ ခံစားချက်များ၊ မေးခွန်းများ၊ အကြံပြုချက်များ၊ စိုးရိမ်စရာများ၊ မိသားစုကိုလွမ်းနေခြင်း သို့မဟုတ် ပါးစပ်ဖြင့်ရှင်းပြရန်ခက်သည့်အရာများ။ App က သိမ်းဆည်းပြီး WhatsApp အသိပေးချက်အတိုကို ဖွင့်ပေးမည်။"),
+    t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     t("Use this as a personal diary space when speaking is difficult or unclear. Write freely first, then submit to save the entry.", "話すことが難しい、または伝わりにくいときの、個人の日記スペースとして使ってください。まず自由に書き、送信すると記録が保存されます。", "စကားပြောရန်ခက်ခဲသည့်အခါ သို့မဟုတ် မရှင်းလင်းသည့်အခါ ကိုယ်ပိုင်နေ့စဉ်မှတ်တမ်းနေရာအဖြစ် အသုံးပြုပါ။ အရင်ဆုံးလွတ်လပ်စွာရေးပြီး ပို့ပါ၊ ထို့နောက် မှတ်တမ်းကို သိမ်းထားပါမည်။")),
   routine("drinking-water-prep", "daily", 10, "W", 
@@ -964,7 +979,7 @@ const routineTasks = [
     ]),
   routine("protein-shake-creatine-prep", "daily", 18, "P",
     t("Protein Shake & Creatine Prep", "プロテインシェイクとクレアチン準備", "protein shake နှင့် creatine ပြင်ဆင်ခြင်း"),
-    t("Make Edwin's daily protein shake using 1 scoop Optimum Nutrition protein powder and 1 scoop creatine. One scoop of protein powder is about 24g protein.", "エドウィン用に毎日、Optimum Nutritionのプロテインパウダー1スクープとクレアチン1スクープでプロテインシェイクを作る。プロテイン1スクープは約24gのタンパク質。", "Edwin အတွက် နေ့စဉ် protein shake ပြင်ပါ။ Optimum Nutrition protein powder ၁ scoop နှင့် creatine ၁ scoop ကို အသုံးပြုပါ။ protein powder ၁ scoop သည် protein ၂၄g ခန့်ပါသည်။"),
+    t("Make Edwin's shake with 1 scoop Optimum Nutrition protein and 1 scoop creatine. Protein powder gives about 24 g protein.", "Edwin用にOptimum Nutritionプロテイン1杯とクレアチン1杯で作ります。プロテインは約24 gです。", "Edwin အတွက် Optimum Nutrition protein ၁ scoop နဲ့ creatine ၁ scoop ထည့်ပါ။ Protein က ၂၄ g ခန့်ရသည်။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     t("Use the correct scoop for protein and creatine. Keep the portions consistent unless Edwin gives different instructions.", "プロテインとクレアチンはそれぞれ正しいスプーンを使う。エドウィンから別の指示がない限り、量は一定にする。", "protein နှင့် creatine အတွက် မှန်ကန်သော scoop ကို အသုံးပြုပါ။ Edwin က မတူညီသော ညွှန်ကြားချက် မပေးလျှင် ပမာဏကို တည်ငြိမ်စွာ ထားပါ။"),
     [
@@ -974,7 +989,7 @@ const routineTasks = [
     ]),
   routine("clean-up-cooking-appliances", "daily", 20, "K", 
     t("Clean Up & Cooking Appliances", "片付けと調理器具の清掃", "သန့်ရှင်းရေးနှင့် ချက်ပြုတ်သည့်ပစ္စည်းများ"), 
-    t("Wash cookware and plates. Wipe kitchen down after every meal. Clean cooking appliances used, including Ninja air fryer, hob, Fujioh hood area, and removable parts if oily or dirty.", "調理器具と皿を洗います。毎食後にキッチンを拭きます。使用した調理器具（Ninjaノンフライヤー、コンロ、Fujiohレンジフード、油汚れのある取り外し可能な部品など）を掃除します。", "အိုးခွက်ပန်းကန်များ ဆေးကြောပါ။ ထမင်းစားပြီးတိုင်း မီးဖိုချောင်ကို သုတ်ပါ။ အသုံးပြုထားသော Ninja လေပူကြော်အိုး၊ မီးဖို၊ Fujioh မီးခိုးစုပ်စက်နှင့် ဆီပေနေသော ဖြုတ်၍ရသည့် အစိတ်အပိုင်းများကို သန့်ရှင်းရေးလုပ်ပါ။"), 
+    t("Wash cookware and plates. Wipe the kitchen. Clean each appliance used, including oily removable parts.", "調理器具と皿を洗います。キッチンを拭きます。使用した家電と油のついた部品を掃除します。", "အိုးခွက်ပန်းကန်ဆေးပါ။ မီးဖိုချောင်သုတ်ပါ။ သုံးထားတဲ့စက်နဲ့ ဆီပေတဲ့အပိုင်းတွေကို သန့်ရှင်းပါ။"),
     t("After every meal + as needed", "毎食後＋必要に応じて", "စားပြီးတိုင်း + လိုအပ်သလို"), 
     t("Do not leave oily cookware, food waste, or greasy appliance parts overnight.", "油のついた調理器具、生ゴミ、または脂っこい器具の部品を翌日まで放置しないでください。", "ဆီပေနေသော အိုးခွက်များ၊ စွန့်ပစ်အစားအစာများနှင့် အဆီများသော စက်ပစ္စည်းအစိတ်အပိုင်းများကို တစ်ညတာ မထားခဲ့ပါနှင့်。"),
     [
@@ -994,12 +1009,12 @@ const routineTasks = [
     ]),
   routine("nako-feeding-water", "daily", 35, "N",
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
-    t("Feed Nako about 3-4 times a day: kibbles + K9 Natural. Current preferred method: feed dry unless instructed otherwise. After she finishes eating, let her drink water directly from the water bottle to increase water intake. Once her mouth is wet, wipe her mouth down. Wash and refill water bottle daily.", "ナコに1日3〜4回、キブルとK9 Naturalを与える。現在の希望方法は、特に指示がなければドライで与える。食べ終わった後、水分摂取を増やすために水ボトルから直接水を飲ませる。口元が濡れたら口周りを拭く。水ボトルは毎日洗って補充する。", "နာကိုကို တစ်နေ့ ၃-၄ ကြိမ် kibbles + K9 Natural ကျွေးပါ။ လောလောဆယ် ညွှန်ကြားချက်မရှိလျှင် dry အဖြစ်ကျွေးပါ။ စားပြီးနောက် ရေပိုသောက်စေရန် ရေဘူးမှ တိုက်ရိုက်ရေသောက်ခိုင်းပါ။ ပါးစပ်စိုလာလျှင် ပါးစပ်ပတ်ဝန်းကျင်ကို သုတ်ပါ။ ရေဘူးကို နေ့စဉ်ဆေးပြီး ပြန်ဖြည့်ပါ။"),
+    t("Feed Nako kibbles and K9 Natural 3–4 times daily. Feed dry unless told otherwise. Give water after each meal.", "NakoにキブルとK9 Naturalを1日3～4回与えます。指示がなければドライで与え、食後に水を飲ませます。", "Nako ကို kibbles နဲ့ K9 Natural တစ်နေ့ ၃–၄ ကြိမ်ကျွေးပါ။ မပြောရင် dry ကျွေးပါ။ စားပြီးရင် ရေတိုက်ပါ။"),
     t("3-4 meals/day", "1日3〜4食", "တစ်နေ့ ၃-၄ ကြိမ်"),
     [
       t("Monitor whether she eats properly. Keep meal portions consistent unless instructed otherwise. Make sure she drinks water after eating and wipe her mouth after it gets wet.", "ちゃんと食べているか確認する。特に指示がなければ食事量は一定にする。食後に水を飲ませ、口元が濡れたら拭く。", "သူမ အစာကောင်းကောင်းစားနေသလား စောင့်ကြည့်ပါ။ ညွှန်ကြားချက်မရှိလျှင် အစာပမာဏကို မပြောင်းပါနှင့်။ စားပြီးနောက် ရေသောက်စေပြီး ပါးစပ်စိုလာလျှင် သုတ်ပါ။"),
-      t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။"),
-      t("Let Nako drink water regularly from her manual water bottle. The water nozzle attached to her pen flows too slowly, which can cause dehydration. Do not use a water bowl in the pen because she will immediately put her paws in and play with the water, spilling it everywhere.", "手動の給水ボトルから定期的に水を飲ませてください。サークルに取り付けられている給水器は水の出が遅く、脱水症状になる恐れがあります。サークル内に水皿を置くと、ナコがすぐに足を入れて水遊びをしてしまい、辺り一面が濡れてしまうため、水皿は置かないでください。", "လက်ဆွဲရေဘူးမှ ရေကို ပုံမှန်တိုက်ပေးပါ။ ခြံတွင်တပ်ဆင်ထားသော ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် ရေဓာတ်ခမ်းခြောက်နိုင်ပါသည်။ ခြံထဲတွင် ရေခွက်မထားပါနှင့်၊ အဘယ်ကြောင့်ဆိုသော် သူမသည် ချက်ချင်းခြေထောက်ထည့်၍ ရေဆော့ပြီး ဖိတ်စင်စေသောကြောင့် ဖြစ်သည်။")
+      t("Watch Nako while she eats. Remove the bowl when she finishes. She may flip it or put her paws inside.", "Nakoが食べている間は見守ります。食べ終わったらボウルを片付けます。ひっくり返したり、足を入れたりすることがあります。", "Nako စားနေချိန် စောင့်ကြည့်ပါ။ စားပြီးရင် ခွက်ကိုယူပါ။ ခွက်မှောက်တာ သို့မဟုတ် ခြေထောက်ထည့်တာ လုပ်နိုင်သည်။"),
+      t("Give water often from the manual bottle. The pen nozzle is too slow. Do not leave a water bowl in the pen.", "手動ボトルでこまめに水を与えます。サークルの給水器は遅すぎます。サークル内に水皿を置きません。", "လက်ဆွဲရေဘူးနဲ့ မကြာခဏ ရေတိုက်ပါ။ ခြံကရေပိုက်ခေါင်း နှေးလွန်းသည်။ ခြံထဲ ရေခွက်မထားပါနဲ့။")
     ],
     [
       photo("assets/routines/nako-feeding-spillage.jpg",
@@ -1026,7 +1041,7 @@ const routineTasks = [
     ]),
   routine("nako-exercise-grooming", "daily", 50, "N", 
     t("Nako - Clean, Dry & Groomed", "ナコ - 清潔・乾燥・グルーミング", "နာကို - သန့်ရှင်း၊ ခြောက်သွေ့၊ grooming"), 
-    t("After walks, outdoor play, or beach trips, wipe Nako down, dry her fully, brush her coat, and wipe her eyes before she rests on the bed or sofa.", "散歩、外遊び、ビーチの後は、ナコの体を拭き、しっかり乾かし、毛をブラッシングし、目元を拭いてからベッドやソファで休ませる。", "လမ်းလျှောက်ပြီးနောက်၊ အပြင်ကစားပြီးနောက် သို့မဟုတ် ကမ်းခြေသွားပြီးနောက် နာကိုကို သုတ်ပါ၊ အပြည့်အဝ ခြောက်အောင်လုပ်ပါ၊ အမွေးကိုဖြီးပါ、မျက်လုံးပတ်ဝန်းကျင်ကို သုတ်ပြီးမှ အိပ်ရာ သို့မဟုတ် sofa ပေါ်မှာ နားစေပါ။"), 
+    t("After outings, wipe and fully dry Nako. Brush her coat and clean her eyes before she rests on furniture.", "外出後はNakoを拭いて完全に乾かします。家具で休む前に毛をとかし、目元を拭きます。", "အပြင်ကပြန်ရင် Nako ကို သုတ်ပြီး ခြောက်အောင်လုပ်ပါ။ အမွေးဖြီးပါ။ ပရိဘောဂပေါ်မနားခင် မျက်လုံးသုတ်ပါ။"),
     t("Daily + after outings / beach", "毎日＋外出・ビーチの後", "နေ့စဉ် + အပြင်ထွက်ပြီးနောက် / ကမ်းခြေပြီးနောက်"), 
     [
       t("Do not leave her damp after wiping; blow dry gently if needed.", "体を拭いた後、湿ったまま放置しないでください。必要に応じてドライヤーで優しく乾かします。", "သုတ်ပြီးနောက် စိုစွတ်မထားပါနှင့်၊ လိုအပ်ပါက လေမှုတ်စက်ဖြင့် ညင်သာစွာ ခြောက်သွေ့အောင် မှုတ်ပေးပါ။"),
@@ -1092,7 +1107,7 @@ const routineTasks = [
 
   routine("nako-emergency", "daily", 90, "!", 
     t("🚨 Nako Emergency", "ナコの緊急事態", "🚨 နာကို အရေးပေါ်အခြေအနေ"),
-    t("If she vomits, has diarrhoea, or refuses food, safely isolate her, take a photo of the mess, and notify me immediately before doing anything else.", "吐く、下痢をする、ご飯を食べない場合は、安全に隔離し、汚れた場所の写真を撮り、何かする前にすぐ連絡する。", "အန်ခြင်း၊ ဝမ်းလျှောခြင်း သို့မဟုတ် အစာမစားခြင်းရှိပါက လုံခြုံစွာ ခွဲထားပါ၊ ညစ်ပတ်နေသည့်နေရာကို ဓာတ်ပုံရိုက်ပါ၊ အခြားဘာမှမလုပ်ခင် ချက်ချင်း ဆက်သွယ်ပါ။"),
+    t("If Nako vomits, has diarrhoea, or will not eat: keep her safe, take a photo, and tell Edwin immediately.", "Nakoが吐く、下痢をする、食べない場合は、安全を確保し、写真を撮り、すぐEdwinに連絡します。", "Nako အန်ရင်၊ ဝမ်းလျှောရင် သို့မဟုတ် မစားရင် လုံခြုံအောင်ထားပါ။ ဓာတ်ပုံရိုက်ပါ။ Edwin ကို ချက်ချင်းပြောပါ။"),
     t("Immediately", "すぐに", "ချက်ချင်း"),
     t("Notify Edwin before doing anything else.", "何かする前にエドウィンへ連絡する。", "อခြားဘာမှမလုပ်ခင် Edwin ကို အသိပေးပါ။"),
     [
@@ -1103,7 +1118,7 @@ const routineTasks = [
 
   routine("mail-deliveries", "daily", 100, "P", 
     t("Mail & Deliveries", "郵便物と配達対応", "စာတိုက်နှင့် delivery များ"),
-    t("Check the mailbox daily, bring in packages, and answer the door for deliveries. Upon receiving items, unpack them outside, throw away the packaging, and fully wipe down the items outside the house before bringing them in.", "毎日郵便受けを確認し、荷物を持ち帰り、配達が来たら対応する。荷物を受け取ったら、家の外で開封し、梱包材を捨て、家に入れる前に外で商品をしっかり拭く。", "mailbox ကိုနေ့စဉ်စစ်ပါ၊ package များယူလာပါ၊ delivery လာပါက တံခါးဖွင့်လက်ခံပါ။ ပစ္စည်းရပါက အိမ်အပြင်မှာ unpack လုပ်၊ packaging ကိုလွှင့်ပြီး အိမ်ထဲမသွင်းခင် ပစ္စည်းကို အပြင်မှာ သေချာသုတ်ပါ။"),
+    t("Check the mailbox daily. Receive packages. Open and wipe packages outside before bringing them in.", "毎日郵便受けを確認します。荷物を受け取ります。外で開封して拭いてから家に入れます。", "mailbox ကို နေ့တိုင်းစစ်ပါ။ Package ကိုလက်ခံပါ။ အပြင်မှာဖွင့်ပြီး သုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     [
       t("Keep parcels safe and inform Edwin/Yukari if anything important arrives. Do not bring dirty packaging directly into the house.", "荷物を安全に保管し、大事な物が届いたらエドウィン／ゆかりに知らせる。汚れた梱包材をそのまま家に入れない。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။ ညစ်ပတ်သော packaging ကို အိမ်ထဲ တိုက်ရိုက်မသွင်းပါနှင့်။"),
@@ -1168,7 +1183,7 @@ const routineTasks = [
 
   routine("toilet-drain-hair-trap", "daily", 150, "D", 
     t("Toilet Drain & Hair Trap Cleaning", "トイレ・排水口・ヘアトラップ掃除", "အိမ်သာရေစီးပေါက်နှင့် hair trap သန့်ရှင်းရေး"),
-    t("Check the bathroom/toilet drain holes and hair traps. Remove hair or stuck debris. If water does not drain properly, use the drain pump tool after being taught.", "トイレ・浴室 de 排水口やヘアトラップを確認し、髪の毛や詰まった汚れを取る。水の流れが悪い時は、教わった後に排水ポンプを使う。", "bathroom/toilet drain holes နှင့် hair traps ကို စစ်ပါ။ ဆံပင် သို့မဟုတ် ပိတ်နေသောအညစ်အကြေးများကို ဖယ်ရှားပါ။ ရေကောင်းကောင်းမစီးပါက သင်ပေးပြီးနောက် drain pump tool ကို အသုံးပြုပါ။"),
+    t("Check bathroom drains and hair traps. Remove hair and dirt. Use the drain pump only after training.", "浴室の排水口とヘアトラップを確認します。髪と汚れを取ります。教わった後だけ排水ポンプを使います。", "bathroom drain နဲ့ hair trap ကိုစစ်ပါ။ ဆံပင်နဲ့အညစ်အကြေးဖယ်ပါ။ သင်ပေးပြီးမှ drain pump သုံးပါ။"),
     t("Daily check + as needed", "毎日確認＋必要に応じて", "နေ့စဉ်စစ်ဆေး + လိုအပ်သလို"),
     [
       t("Do not force the pump tool until taught. Tell Edwin if water remains stuck or smells bad.", "教わるまではポンプを無理に使わない。水が詰まったまま、または臭いがする場合はエドウィンに伝える。", "သင်မပေးခင် pump tool ကို အတင်းမသုံးပါနှင့်။ ရေမဆင်းသေးလျှင် သို့မဟုတ် အနံ့ဆိုးရှိလျှင် Edwin ကို ပြောပါ။"),
@@ -1206,7 +1221,7 @@ const routineTasks = [
 
   routine("household-supplies-online", "daily", 145, "S",
     t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 
-    t("Check all tissue boxes regularly and replace or refill any that are low. Check spare household stock weekly, then use Shopee or another agreed platform to add needed items to the cart.", "ティッシュ箱をこまめに確認し、少なくなったら交換・補充する。毎週、家庭用消耗品の予備在庫を確認し、必要な品はShopeeなど合意したオンラインサービスのカートに追加する。", "tissue box အားလုံးကို ပုံမှန်စစ်ပြီး နည်းလာပါက လဲပါ သို့မဟုတ် ဖြည့်ပါ။ အိမ်သုံးပစ္စည်းအပို stock ကို အပတ်စဉ်စစ်ပြီး လိုအပ်တာများကို Shopee သို့မဟုတ် သဘောတူထားသော online platform cart ထဲထည့်ပါ။"),
+    t("Refill low tissue boxes. Check spare supplies weekly. Add needed items to the Shopee cart, but do not order.", "少ないティッシュを補充します。予備品を毎週確認します。必要な品はShopeeカートに入れますが、注文しません。", "tissue နည်းရင် ဖြည့်ပါ။ အပိုပစ္စည်းကို အပတ်စဉ်စစ်ပါ။ လိုတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
     t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
     [
       t("When only 1-2 spare tissue packs remain, tell Edwin and add tissue packs to the shopping list or cart. Ask before placing an order.", "予備のティッシュが残り1〜2パックになったら、エドウィンに伝え、買い物リストまたはカートに追加する。注文確定前には必ず確認する。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် Edwin ကိုပြောပြီး ဈေးဝယ်စာရင်း သို့မဟုတ် cart ထဲသို့ tissue ထုပ်များကိုထည့်ပါ။ မှာယူမီ အရင်မေးပါ။"),
@@ -1491,10 +1506,10 @@ const routineTasks = [
     t("Monthly", "毎月", "လစဉ်"), 
     t("Only do safe, accessible parts. Do not dismantle deeper parts.", "安全で手の届く部分のみを行ってください。深い部分まで分解しないでください。", "ဘေးကင်းပြီး လက်လှမ်းမီသော အစိတ်အပိုင်းများကိုသာ လုပ်ဆောင်ပါ။ ပိုမိုနက်ရှိုင်းသော အစိတ်အပိုင်းများကို ဖြုတ်ခြင်းမပြုပါနှင့်။")),
   routine("washer-deep-clean", "quarterly", 10, "W", 
-    t("Washer Deep Clean - Drawer, Pump Filter & Seal", "洗濯機の大掃除 - 洗剤引き出し、ポンプフィルター、ゴムパッキン", "အဝတ်လျှော်စက် သန့်ရှင်းရေးအကြီးစား - ဆပ်ပြာအံဆွဲ၊ ပန့်ဇကာနှင့် ရာဘာကွင်း"), 
-    t("Quarterly guided deep clean for the LG washer: clean the detergent drawer and housing, drain and clean the pump filter, wipe the door seal and exterior, run Tub Clean, and check the inlet screens only if water fills slowly.",
-      "LG洗濯機の3ヶ月ごとのガイド付き大掃除：洗剤引き出しとハウジングの清掃、排水ポンプフィルターの排出と清掃、ドアパッキンと外装の拭き取り、槽洗浄（Tub Clean）の実行、および水がたまるのが遅い場合のみ給水フィルターの確認を行います。",
-      "LG အဝတ်လျှော်စက်အတွက် ၃ လတစ်ကြိမ် လမ်းညွှန်ချက်ဖြင့် သန့်ရှင်းရေးအကြီးစားလုပ်ရန် - ဆပ်ပြာအံဆွဲနှင့် ၎င်း၏အိမ်ကို သန့်ရှင်းရေးလုပ်ခြင်း၊ ရေထုတ်ပန့် filter ကို ရေထုတ်ပြီး သန့်ရှင်းရေးလုပ်ခြင်း၊ တံခါးရာဘာကွင်းနှင့် အပြင်ပိုင်းကို သုတ်ခြင်း၊ Tub Clean ပြုလုပ်ခြင်းနှင့် ရေဝင်နှေးမှသာ ရေဝင်ဆန်ခါများကို စစ်ဆေးခြင်း။"),
+    t("Washer Deep Clean", "洗濯機の大掃除", "အဝတ်လျှော်စက် အကြီးစားသန့်ရှင်းရေး"),
+    t("Clean the LG washer drawer, pump filter, seal, and outside. Run Tub Clean. Check inlet screens only if filling is slow.",
+      "LG洗濯機の洗剤引き出し、ポンプフィルター、パッキン、外側を掃除します。槽洗浄を実行します。給水が遅い場合のみ給水フィルターを確認します。",
+      "LG အဝတ်လျှော်စက်၏ ဆပ်ပြာအံဆွဲ၊ ပန့်ဇကာ၊ ရာဘာကွင်းနှင့် အပြင်ပိုင်းကို သန့်ရှင်းပါ။ Tub Clean လုပ်ပါ။ ရေဝင်နှေးမှသာ ရေဝင်ဆန်ခါကို စစ်ပါ။"),
     t("Quarterly / every 3 months", "3ヶ月おき / 3ヶ月ごと", "၃ လတစ်ကြိမ် / ၃ လတစ်ခါ"), 
     t("Do this task only when Edwin asks and supervises.", "この作業は、Edwinが依頼し監督する場合にのみ行ってください。", "Edwin က တောင်းဆိုပြီး ကြီးကြပ်သည့်အခါမှသာ ဤအလုပ်ကို လုပ်ပါ။")
   ),
@@ -1515,7 +1530,7 @@ const routineTasks = [
     t("Coordinate before buying larger or unusual items.", "大きな品物や普通でない品物を購入する前に調整してください。", "ကြီးမားသော သို့မဟုတ် ပုံမှန်မဟုတ်သော ပစ္စည်းများ မဝယ်မီ ညှိနှိုင်းပါ။")),
   routine("serve-spirit-with-ice", "as-needed", 12, "🥃",
     t("Serve a Spirit with Ice", "氷入りスピリッツの提供", "ရေခဲနှင့် spirit ဖျော်ပေးခြင်း"),
-    t("When Edwin or Yukari asks for an alcoholic drink, prepare one clean glass with ice and the requested spirit. Add mixer or water only when asked.", "エドウィンまたはゆかりからお酒を頼まれたら、きれいなグラスに氷と希望されたスピリッツを用意する。ミキサーや水は頼まれた時だけ加える。", "Edwin သို့မဟုတ် Yukari က အရက်သောက်စရာတောင်းသည့်အခါ သန့်ရှင်းသောဖန်ခွက်တစ်ခုတွင် ရေခဲနှင့် တောင်းထားသော spirit ကိုပြင်ပါ။ mixer သို့မဟုတ် ရေကို တောင်းဆိုသည့်အခါမှသာ ထည့်ပါ။"),
+    t("When asked, put ice and the requested spirit in a clean glass. Add mixer or water only when asked.", "頼まれたら、きれいなグラスに氷と希望のお酒を入れます。ミキサーや水は頼まれた時だけ加えます。", "တောင်းရင် ဖန်ခွက်သန့်ထဲ ရေခဲနဲ့ တောင်းထားတဲ့ spirit ထည့်ပါ။ တောင်းမှ mixer သို့မဟုတ် ရေထည့်ပါ။"),
     t("When requested", "頼まれた時", "တောင်းဆိုသည့်အခါ"),
     [
       t("Take a clean glass from the cabinet above the coffee machine.", "コーヒーマシンの上にある戸棚から、きれいなグラスを取る。", "ကော်ဖီစက်အပေါ်ရှိဗီရိုမှ သန့်ရှင်းသောဖန်ခွက်ကို ယူပါ။"),
@@ -1587,13 +1602,13 @@ const routineTasks = [
     t("Learn where the fire extinguisher is kept, how to check its pressure gauge, and how to use it safely.", "消火器の保管場所、圧力計の確認方法、安全な使い方を学びます。", "မီးသတ်ဆေးဘူးထားသည့်နေရာ၊ ဖိအားမီတာစစ်ဆေးနည်းနှင့် လုံခြုံစွာအသုံးပြုနည်းကို သင်ယူပါ။"),
     t("One-off training", "1回限りの訓練", "တစ်ကြိမ်တည်း လေ့ကျင့်မှု"),
     [
-      t("1. CHECK THE GAUGE: Green means normal working pressure. Left red means pressure is too low and needs recharging; right red means overcharged. If the needle is in either red zone, do not rely on the extinguisher—arrange servicing or replacement.", "1. 圧力計を確認：緑色は正常な使用圧力です。左の赤色は圧力不足で再充填が必要、右の赤色は過充填を意味します。針が赤色の範囲にある場合は使用せず、点検または交換を依頼してください。", "၁။ ဖိအားမီတာကို စစ်ပါ။ အစိမ်းရောင်သည် ပုံမှန်အသုံးပြုနိုင်သော ဖိအားကို ဆိုလိုသည်။ ဘယ်ဘက်အနီရောင်သည် ဖိအားနည်း၍ ပြန်ဖြည့်ရန်လိုသည်၊ ညာဘက်အနီရောင်သည် ဖိအားလွန်နေသည်ဟု ဆိုလိုသည်။ အပ်သည် အနီရောင်အပိုင်းတွင်ရှိလျှင် မသုံးဘဲ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
-      t("2. Use only on a small, contained fire. Keep a clear escape route behind you. If there is heavy smoke or the fire is spreading, leave immediately and call emergency services.", "2. まだ燃え広がっていない小さな火災にのみ使用します。出口を背にして、避難経路を確保してください。煙が多い、または火が広がっている場合は、直ちに避難して緊急通報してください。", "၂။ မပြန့်ပွားသေးသော မီးငယ်ကိုသာ ငြှိမ်းပါ။ ထွက်ပေါက်ကို မိမိနောက်ဘက်တွင်ထားပြီး လွတ်မြောက်ရာလမ်းကို ရှင်းလင်းထားပါ။ မီးခိုးများလာလျှင် သို့မဟုတ် မီးပြန့်လာလျှင် ချက်ချင်းထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
-      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. Removing the pin unlocks the lever.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜くとレバーを握れるようになります。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်ကိုထုတ်မှ လက်ကိုင်ကို ညှစ်နိုင်မည်ဖြစ်သည်။"),
-      t("4. AIM the nozzle at the base of the fire, not at the flames.", "4. 炎ではなく、火元の根元にノズルを向けます。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို နော်ဇယ်ဖြင့် ချိန်ပါ။"),
-      t("5. SQUEEZE the lever to discharge the extinguisher.", "5. レバーを握り、消火剤を噴射します。", "၅။ မီးသတ်ဆေးထွက်ရန် လက်ကိုင်ကို ညှစ်ပါ။"),
-      t("6. SWEEP from side to side across the base of the fire.", "6. 火元の根元を狙いながら、左右に掃くように動かします。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
-      t("7. If the fire does not go out quickly, the extinguisher becomes empty, or smoke and flames grow, evacuate immediately and call emergency services.", "7. すぐに消えない、消火器が空になる、煙や炎が大きくなる場合は、直ちに避難して緊急通報してください。", "၇။ မီးချက်ချင်းမငြိမ်းလျှင်၊ မီးသတ်ဆေးဘူးကုန်သွားလျှင် သို့မဟုတ် မီးခိုးနှင့်မီးတောက် ပိုများလာလျှင် ချက်ချင်းထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။")
+      t("1. CHECK THE GAUGE. Green = ready to use. Red = do not use; arrange servicing or replacement.", "1. 圧力計を確認。緑＝使用可能。赤＝使用せず、点検または交換を依頼します。", "၁။ ဖိအားမီတာ စစ်ပါ။ အစိမ်း = အသင့်သုံးနိုင်သည်။ အနီ = မသုံးပါနှင့်။ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
+      t("2. Use only on a small fire. Keep the exit behind you. If smoke is heavy or fire spreads, leave and call emergency services.", "2. 小さな火にのみ使用します。出口を背にします。煙が多い、または火が広がる場合は避難して緊急通報します。", "၂။ မီးငယ်အတွက်သာ သုံးပါ။ ထွက်ပေါက်ကို နောက်တွင်ထားပါ။ မီးခိုးများလျှင် သို့မဟုတ် မီးပျံ့လျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
+      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
+      t("4. AIM at the base of the fire, not the flames.", "4. 炎ではなく、火元の根元を狙います。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို ချိန်ပါ။"),
+      t("5. SQUEEZE the lever.", "5. レバーを握ります。", "၅။ လက်ကိုင်ကို ညှစ်ပါ။"),
+      t("6. SWEEP side to side across the base of the fire.", "6. 火元の根元を左右に掃くように噴射します。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
+      t("7. If the fire does not go out quickly, leave and call emergency services.", "7. すぐに消えない場合は避難して緊急通報します。", "၇။ မီးချက်ချင်းမငြိမ်းလျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။")
     ],
     [
       photo("assets/routines/fire-extinguisher-overview.jpg",
@@ -2001,7 +2016,7 @@ const trainingData = (() => {
     command("ashi-middle", "handling", tx("Ashi / Middle", "足の間 / ミドル", "ခြေကြား / Middle"), 2, "Useful", tx("Enter from behind, stand facing forward between legs, and Sit with reduced luring.", "後ろから入り、足の間で前を向き、誘導を減らして座る。", "နောက်မှဝင်၍ ခြေကြားတွင် ရှေ့ကိုမျက်နှာမူကာ ဆွဲဆောင်မှုနည်းနည်းဖြင့်ထိုင်ရန်။"), "Yukari guides her behind the legs and into the middle, but success is still inconsistent.", { order: 19, jpNote: "ユカリが足の後ろからミドルへ導いているが、まだ成功は安定していない。", mmNote: "Yukari က ခြေနောက်မှ Middle သို့လမ်းညွှန်ပေးသော်လည်း အောင်မြင်မှုမတည်ငြိမ်သေးပါ။"}),
     command("paw", "handling", tx("Paw", "おて", "လက်ပေး"), 8, "Useful", tx("Allow a brief, gentle paw inspection after Paw.", "おての後に短くやさしい足の確認を受け入れる。", "လက်ပေးပြီးနောက် ခြေထောက်ကို ခဏနူးညံ့စွာစစ်ဆေးခွင့်ပြုရန်။"), "She initially responded only with visible food but can now perform without visible food.", { order: 21, jpNote: "最初は見える食べ物だけで反応したが、今は見せなくてもできる。", mmNote: "အစတွင် မြင်ရသောအစားအစာဖြင့်သာတုံ့ပြန်သော်လည်း ယခုမပြဘဲလုပ်နိုင်သည်။"}),
     command("chin-rest", "handling", tx("Chin", "あご乗せ", "မေးတင်"), 0, "High", tx("Hold chin position for two seconds while the other hand briefly approaches.", "もう一方の手が近づく間、2秒あごを乗せる。", "အခြားလက်အနီးကပ်လာစဉ် ၂ စက္ကန့် မေးတင်ထားရန်။"), "", { order: 10, purpose: tx("Rest her chin voluntarily on a hand, towel, or cushion for cooperative care.", "ケアのために、手・タオル・クッションに自発的にあごを乗せる。", "ပူးပေါင်းစောင့်ရှောက်မှုအတွက် လက်၊ တဘက် သို့မဟုတ်ခေါင်းအုံးပေါ် မေးကို စိတ်လိုလက်ရတင်ရန်။"), safety: [tx("When she lifts her chin, handling pauses.", "あごを上げたらケアを止めます。", "မေးမြှောက်လျှင် ကိုင်တွယ်ခြင်းရပ်ပါ။")]}),
-    command("lift-carry", "handling", tx("Bao Bao — Lift / Carry", "Bao Bao — 抱き上げ / 抱っこ", "Bao Bao — ချီ / ပွေ့"), 6, "High", tx("Try the full sequence without giving a food treat after every repetition; keep rewarding often enough that Nako stays positive.", "毎回おやつを与えずに一連の動作を試しつつ、ナコが楽しく続けられる頻度でごほうびを与える。", "အကြိမ်တိုင်း အစားအစာဆုမပေးဘဲ အစအဆုံးလုပ်ကြည့်ပါ။ Nako ပျော်ရွှင်စွာဆက်လုပ်နိုင်ရန် လိုအပ်သလို မကြာခဏဆုချပါ။"), "First session on 11 July 2026: about 10 repetitions. She progressed from stepping up onto the offered left hand and receiving a treat, to responding after the Bao Bao cue, accepting right-hand support under her hindquarters, being lifted with her whole body supported, and then receiving a treat. She can complete the full sequence, but a no-treat repetition has not been tested yet.", { order: 11, setting: "liftCue", defaultCue: "Bao Bao", initialRewardReliance: 2, initialEnvironment: 0, initialLastPractisedAt: "2026-07-11T00:00:00+08:00", jpNote: "2026年7月11日の初回練習：約10回。差し出した左手に前足を乗せてからおやつをもらう段階から、Bao Bao の合図で立ち上がって左手に両前足を乗せ、右手で後ろ足側を支え、全身を支えて抱き上げた後におやつをもらうところまで進んだ。一連の動作はできるが、おやつなしの反復はまだ試していない。", mmNote: "၂၀၂၆ ခုနှစ် ဇူလိုင် ၁၁ ရက် ပထမအကြိမ်လေ့ကျင့်မှုတွင် ၁၀ ကြိမ်ခန့် လုပ်ခဲ့သည်။ ကမ်းပေးထားသော ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပြီး ဆုစားရသည့်အဆင့်မှ Bao Bao အမိန့်ကြားလျှင် မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ခြင်း၊ ညာလက်ဖြင့် နောက်ပိုင်းကိုပံ့ပိုးခြင်း၊ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပြီး ချီခြင်း၊ ထို့နောက် ဆုစားရခြင်းအထိ တိုးတက်ခဲ့သည်။ အစအဆုံးလုပ်နိုင်ပြီဖြစ်သော်လည်း ဆုမပါဘဲ မစမ်းရသေးပါ။", purpose: tx("On Bao Bao, stand and place both front paws on the handler's outstretched left hand so the handler can add right-hand hindquarter support and lift her safely.", "Bao Bao の合図で立ち上がり、差し出された飼い主の左手に両前足を乗せる。飼い主は右手で後ろ足側を支え、安全に抱き上げる。", "Bao Bao အမိန့်ကြားလျှင် မတ်တပ်ရပ်ပြီး ကိုင်တွယ်သူ၏ ဆန့်ထားသော ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ရန်။ ထို့နောက် ကိုင်တွယ်သူက ညာလက်ဖြင့် နောက်ပိုင်းကိုပံ့ပိုးကာ လုံခြုံစွာချီရန်။"), instructions: [tx("Bend down and hold the left hand straight out as her platform.", "かがみ、左手をまっすぐ差し出して足場にする。", "ကိုယ်ကိုငုံ့ပြီး ဘယ်လက်ကို သူမတက်နိုင်ရန် တန်းတန်းဆန့်ထားပါ။"), tx("Say Bao Bao once. Wait for her to stand and place both front paws on the left hand.", "Bao Bao と一度だけ言い、立ち上がって左手に両前足を乗せるのを待つ。", "Bao Bao ဟု တစ်ကြိမ်သာပြောပြီး သူမ မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်သည်အထိ စောင့်ပါ။"), tx("Place the right hand securely under her hindquarters, support her whole body, and lift smoothly.", "右手を後ろ足側の下にしっかり入れ、全身を支えて滑らかに抱き上げる。", "ညာလက်ကို သူမ၏ နောက်ပိုင်းအောက်တွင် သေချာထားပြီး ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးကာ ညင်သာစွာချီပါ။"), tx("Reward after the lift. When she remains comfortable, begin mixing in an occasional repetition without a food treat.", "抱き上げた後にごほうびを与える。落ち着いてできるようになったら、時々おやつなしの反復を混ぜる。", "ချီပြီးနောက် ဆုချပါ။ သူမ သက်တောင့်သက်သာရှိနေပါက တစ်ခါတစ်ရံ အစားအစာဆုမပေးသော အကြိမ်ကို စတင်ရောထည့်ပါ။")], safety: [tx("Her left-hand paw placement is the ready position, not the lifting point; support her whole body before her feet leave the floor.", "左手への前足乗せは準備姿勢であり、そこだけで持ち上げない。足が床を離れる前に全身を支える。", "ဘယ်လက်ပေါ် ရှေ့ခြေတင်ခြင်းသည် အဆင်သင့်အနေအထားသာဖြစ်ပြီး ထိုနေရာမှမချီပါနှင့်။ ခြေထောက်များ မြေပြင်မှမလွတ်မီ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပါ။"), tx("Never lift only by the front legs or armpits.", "前足やわきの下だけで持ち上げないでください。", "ရှေ့ခြေ သို့မဟုတ် ချိုင်းအောက်မှသာ မချီပါနှင့်။"), tx("Stop if she pulls away, looks worried, struggles, or seems sore.", "離れようとする、不安そう、暴れる、痛そうな場合は中止する。", "သူမ ရှောင်ထွက်ခြင်း၊ စိုးရိမ်ပုံရခြင်း၊ ရုန်းကန်ခြင်း သို့မဟုတ် နာကျင်ပုံရပါက ရပ်ပါ။")]}),
+    command("lift-carry", "handling", tx("Bao Bao — Lift / Carry", "Bao Bao — 抱き上げ / 抱っこ", "Bao Bao — ချီ / ပွေ့"), 6, "High", tx("Try the full sequence without giving a food treat after every repetition; keep rewarding often enough that Nako stays positive.", "毎回おやつを与えずに一連の動作を試しつつ、ナコが楽しく続けられる頻度でごほうびを与える。", "အကြိမ်တိုင်း အစားအစာဆုမပေးဘဲ အစအဆုံးလုပ်ကြည့်ပါ။ Nako ပျော်ရွှင်စွာဆက်လုပ်နိုင်ရန် လိုအပ်သလို မကြာခဏဆုချပါ။"), "First session on 11 July 2026: about 10 repetitions. She progressed from stepping up onto the offered left hand and receiving a treat, to responding after the Bao Bao cue, accepting right-hand support under her hindquarters, being lifted with her whole body supported, and then receiving a treat. She can complete the full sequence, but a no-treat repetition has not been tested yet.", { order: 11, setting: "liftCue", defaultCue: "Bao Bao", initialRewardReliance: 2, initialEnvironment: 0, initialLastPractisedAt: "2026-07-11T00:00:00+08:00", jpNote: "2026年7月11日の初回練習：約10回。差し出した左手に前足を乗せてからおやつをもらう段階から、Bao Bao の合図で立ち上がって左手に両前足を乗せ、右手で後ろ足側を支え、全身を支えて抱き上げた後におやつをもらうところまで進んだ。一連の動作はできるが、おやつなしの反復はまだ試していない。", mmNote: "၂၀၂၆ ခုနှစ် ဇူလိုင် ၁၁ ရက် ပထမအကြိမ်လေ့ကျင့်မှုတွင် ၁၀ ကြိမ်ခန့် လုပ်ခဲ့သည်။ ကမ်းပေးထားသော ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပြီး ဆုစားရသည့်အဆင့်မှ Bao Bao အမိန့်ကြားလျှင် မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ခြင်း၊ ညာလက်ဖြင့် နောက်ပိုင်းကိုပံ့ပိုးခြင်း၊ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပြီး ချီခြင်း၊ ထို့နောက် ဆုစားရခြင်းအထိ တိုးတက်ခဲ့သည်။ အစအဆုံးလုပ်နိုင်ပြီဖြစ်သော်လည်း ဆုမပါဘဲ မစမ်းရသေးပါ။", purpose: tx("On Bao Bao, put both front paws on the left hand. Support her hindquarters before lifting.", "Bao Bao の合図で左手に両前足を乗せる。抱き上げる前に右手で後ろ足側を支える。", "Bao Bao အမိန့်ကြားလျှင် ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပါ။ မချီမီ ညာလက်ဖြင့် နောက်ပိုင်းကို ပံ့ပိုးပါ။"), instructions: [tx("Bend down and hold the left hand straight out as her platform.", "かがみ、左手をまっすぐ差し出して足場にする。", "ကိုယ်ကိုငုံ့ပြီး ဘယ်လက်ကို သူမတက်နိုင်ရန် တန်းတန်းဆန့်ထားပါ။"), tx("Say Bao Bao once. Wait for her to stand and place both front paws on the left hand.", "Bao Bao と一度だけ言い、立ち上がって左手に両前足を乗せるのを待つ。", "Bao Bao ဟု တစ်ကြိမ်သာပြောပြီး သူမ မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်သည်အထိ စောင့်ပါ။"), tx("Place the right hand securely under her hindquarters, support her whole body, and lift smoothly.", "右手を後ろ足側の下にしっかり入れ、全身を支えて滑らかに抱き上げる。", "ညာလက်ကို သူမ၏ နောက်ပိုင်းအောက်တွင် သေချာထားပြီး ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးကာ ညင်သာစွာချီပါ။"), tx("Reward after the lift. When she remains comfortable, begin mixing in an occasional repetition without a food treat.", "抱き上げた後にごほうびを与える。落ち着いてできるようになったら、時々おやつなしの反復を混ぜる。", "ချီပြီးနောက် ဆုချပါ။ သူမ သက်တောင့်သက်သာရှိနေပါက တစ်ခါတစ်ရံ အစားအစာဆုမပေးသော အကြိမ်ကို စတင်ရောထည့်ပါ။")], safety: [tx("Her left-hand paw placement is the ready position, not the lifting point; support her whole body before her feet leave the floor.", "左手への前足乗せは準備姿勢であり、そこだけで持ち上げない。足が床を離れる前に全身を支える。", "ဘယ်လက်ပေါ် ရှေ့ခြေတင်ခြင်းသည် အဆင်သင့်အနေအထားသာဖြစ်ပြီး ထိုနေရာမှမချီပါနှင့်။ ခြေထောက်များ မြေပြင်မှမလွတ်မီ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပါ။"), tx("Never lift only by the front legs or armpits.", "前足やわきの下だけで持ち上げないでください。", "ရှေ့ခြေ သို့မဟုတ် ချိုင်းအောက်မှသာ မချီပါနှင့်။"), tx("Stop if she pulls away, looks worried, struggles, or seems sore.", "離れようとする、不安そう、暴れる、痛そうな場合は中止する。", "သူမ ရှောင်ထွက်ခြင်း၊ စိုးရိမ်ပုံရခြင်း၊ ရုန်းကန်ခြင်း သို့မဟုတ် နာကျင်ပုံရပါက ရပ်ပါ။")]}),
     command("jump-arms", "handling", tx("Jump to Arms", "腕へ上がる", "လက်မောင်းပေါ်တက်"), 3, "Useful", tx("Confidently climb onto the handler's seated lap on cue.", "合図で飼い主の座ったひざへ自信を持って上がる。", "အမိန့်ပေးလျှင် ထိုင်နေသောကိုင်တွယ်သူ၏ ပေါင်ပေါ်ကို ယုံကြည်စွာတက်ရန်။"), "She can jump upward from approximately sitting level. Long-term aim is a safe assisted transfer into the handler's arms.", { order: 20, jpNote: "座った高さから上へ跳べます。長期目標は飼い主の腕への安全な補助移動です。", mmNote: "ထိုင်နေသည့်အမြင့်မှ အပေါ်သို့တက်နိုင်သည်။ ရေရှည်ရည်မှန်းချက်မှာ ကိုင်တွယ်သူ၏လက်မောင်းသို့ လုံခြုံစွာကူညီပြောင်းရွှေ့ခြင်းဖြစ်သည်။", safety: [tx("For a real emergency, pick her up safely; do not depend on this trick.", "本当の緊急時は安全に抱き上げ、このトリックに頼らないでください。", "အမှန်တကယ် အရေးပေါ်တွင် လုံခြုံစွာချီပါ။ ဤလှည့်ကွက်ကိုမမှီခိုပါနှင့်။"), tx("No high-impact jumps or jumping from a distance.", "高い衝撃のジャンプや離れた所からのジャンプはしません。", "ပြင်းထန်သောခုန်ခြင်းနှင့် အဝေးမှခုန်ခြင်းမလုပ်ပါနှင့်။")]}),
     command("hoop", "tricks", tx("Hoop", "フープ", "ကွင်း"), 2, "Useful", tx("Walk completely through a floor-level hoop without hesitation.", "床に置いたフープをためらわずに完全に歩いて通る。", "ကြမ်းပြင်ပေါ်ကွင်းကို မတွန့်ဆုတ်ဘဲ လုံးဝလျှောက်ဖြတ်ရန်။"), "She currently appears to climb or walk through rather than jump.", { order: 22, jpNote: "現在は跳ぶより、またいだり歩いて通ったりしているようです。", mmNote: "လက်ရှိတွင် ခုန်ခြင်းထက် ကျော်သွား သို့မဟုတ် လျှောက်ဖြတ်နေသည်။", safety: [tx("Walking through is the correct first stage; keep the hoop on the floor.", "歩いて通るのが正しい最初の段階です。フープは床に置きます。", "လျှောက်ဖြတ်ခြင်းက မှန်ကန်သောပထမအဆင့်ဖြစ်သည်။ ကွင်းကိုကြမ်းပြင်ပေါ်ထားပါ။")]}),
     command("find-it", "tricks", tx("Find It", "探して", "ရှာ"), 0, "High", tx("Find a visibly tossed kibble after hearing Find it.", "『探して』の後、見えるように投げたキブルを見つける。", "Find it ကြားပြီးနောက် မြင်သာစွာပစ်ထားသော kibble ကိုရှာရန်။"), "", { order: 23, purpose: tx("Use her nose to search for food, a person, or a toy.", "鼻を使って食べ物・人・おもちゃを探す。", "အစားအစာ၊ လူ သို့မဟုတ်ကစားစရာကို နှာခေါင်းသုံး၍ရှာရန်။")}),
@@ -2053,9 +2068,23 @@ const trainingData = (() => {
     tabs: { commands: tx("Commands", "コマンド", "အမိန့်များ"), play: tx("Play & Enrichment", "遊びと知育", "ကစားခြင်းနှင့် စိတ်ပိုင်းဆိုင်ရာလှုပ်ရှားမှု"), log: tx("Training Log", "トレーニング記録", "လေ့ကျင့်ရေးမှတ်တမ်း") },
     addLog: tx("Add log", "記録を追加", "မှတ်တမ်းထည့်ရန်"), history: tx("View history", "履歴を見る", "မှတ်တမ်းကြည့်ရန်"), save: tx("Save", "保存", "သိမ်းရန်"), cancel: tx("Cancel", "キャンセル", "ပယ်ဖျက်ရန်"), commandLog: tx("Training log", "トレーニング記録", "လေ့ကျင့်ရေးမှတ်တမ်း"), playLog: tx("Play log", "遊びの記録", "ကစားမှတ်တမ်း"), score: tx("Progress score", "進捗スコア", "တိုးတက်မှုအမှတ်"), reward: tx("Reward reliance", "ごほうびへの依存度", "ဆုလာဘ်အပေါ် မှီခိုမှု"), environment: tx("Environment", "環境", "နေရာအခြေအနေ"), successes: tx("Successful first-cue responses", "最初の合図での成功回数", "ပထမအမိန့်အောင်မြင်မှု"), attempts: tx("Total attempts", "試行回数", "စုစုပေါင်းကြိုးစားမှု"), duration: tx("Duration (minutes)", "時間（分）", "ကြာချိန် (မိနစ်)"), comment: tx("Comment", "メモ", "မှတ်ချက်"), date: tx("Date and time", "日時", "ရက်စွဲနှင့်အချိန်"), lastPractised: tx("Last practised", "最終練習", "နောက်ဆုံးလေ့ကျင့်ချိန်"), milestone: tx("Next milestone", "次の目標", "နောက်တစ်ဆင့်ရည်မှန်းချက်"), needsPractice: tx("Needs Practice", "練習が必要", "လေ့ကျင့်ရန်လို"), filters: tx("Filters", "絞り込み", "စစ်ထုတ်ရန်"), all: tx("All", "すべて", "အားလုံး"), category: tx("Category", "カテゴリー", "အမျိုးအစား"), priority: tx("Priority", "優先度", "ဦးစားပေး"), recent: tx("Recently practised", "最近練習した", "မကြာသေးမီကလေ့ကျင့်ခဲ့"), rules: tx("Training Rules", "トレーニングのルール", "လေ့ကျင့်ရေးစည်းမျဉ်းများ"), meanings: tx("Command meanings", "コマンドの意味", "အမိန့်အဓိပ္ပာယ်များ"), scoring: tx("How scoring works", "スコアの仕組み", "အမှတ်ပေးနည်း"), review: tx("Reference needs review", "参考動画の確認が必要です", "ရည်ညွှန်းဗီဒီယိုကို ပြန်လည်စစ်ဆေးရန်လိုသည်"), openYouTube: tx("Open in YouTube", "YouTubeで開く", "YouTube တွင်ဖွင့်ရန်"), engagement: tx("Engagement (1–5)", "集中度（1～5）", "ပါဝင်မှု (၁–၅)"), energyBefore: tx("Energy before (1–5)", "遊び前の元気さ（1～5）", "မကစားမီစွမ်းအင် (၁–၅)"), energyAfter: tx("Energy after (1–5)", "遊び後の元気さ（1～5）", "ကစားပြီးနောက်စွမ်းအင် (၁–၅)"), dropResponse: tx("Response to Drop", "ドロップへの反応", "Drop တုံ့ပြန်မှု"), allDoneResponse: tx("Response to All Done", "オールダンへの反応", "All Done တုံ့ပြန်မှု"), favouriteToy: tx("Favourite toy", "お気に入りのおもちゃ", "အကြိုက်ဆုံးကစားစရာ"), unusual: tx("Unusual behaviour or health note", "気になる様子・健康メモ", "ထူးခြားအပြုအမူ သို့မဟုတ် ကျန်းမာရေးမှတ်ချက်"), delete: tx("Delete", "削除", "ဖျက်ရန်"), edit: tx("Edit", "編集", "ပြင်ရန်"), saved: tx("Saved", "保存しました", "သိမ်းပြီးပါပြီ"), cueNotSelected: tx("Not selected", "未選択", "မရွေးရသေး"), cueLabel: tx("Preferred cue", "希望する合図", "နှစ်သက်သောအမိန့်"), trialResult: tx("5-trial result", "5回の結果", "၅ ကြိမ်ရလဒ်"), details: tx("Details", "詳細", "အသေးစိတ်"), hideDetails: tx("Hide details", "詳細を隠す", "အသေးစိတ်ဖျောက်ရန်"), noLogs: tx("No saved training logs yet.", "保存されたトレーニング記録はまだありません。", "သိမ်းထားသောလေ့ကျင့်ရေးမှတ်တမ်း မရှိသေးပါ။"), videoSafety: tx("Safety", "安全", "ဘေးကင်းရေး")
   };
+  Object.assign(labels, {
+    confirmDeleteTraining: tx("Delete this training log?", "このトレーニング記録を削除しますか？", "ဒီလေ့ကျင့်ရေးမှတ်တမ်းကို ဖျက်မလား။"),
+    confirmDeletePlay: tx("Delete this play log?", "この遊びの記録を削除しますか？", "ဒီကစားမှတ်တမ်းကို ဖျက်မလား။"),
+    invalidCommandLog: tx("Use a score from 0 to 10. Successes cannot be more than attempts.", "スコアは0～10にしてください。成功回数は試行回数以下にします。", "အမှတ်ကို ၀ မှ ၁၀ အတွင်းထည့်ပါ။ အောင်မြင်မှုက ကြိုးစားမှုထက် မများရပါ။"),
+    invalidPlayLog: tx("Use scores from 1 to 5.", "スコアは1～5にしてください。", "အမှတ်ကို ၁ မှ ၅ အတွင်းထည့်ပါ။")
+  });
+  const rules = [
+    tx("Reward good behaviour.", "良い行動にはごほうびを与えます。", "အပြုအမူကောင်းရင် ဆုပေးပါ။"),
+    tx("Keep training short. Make it easier after repeated failure.", "練習は短くします。失敗が続いたら簡単にします。", "လေ့ကျင့်ချိန်တိုတိုထားပါ။ မအောင်မြင်ရင် ပိုလွယ်အောင်လုပ်ပါ။"),
+    tx("Never scare, hit, pin, shout at, or force Nako.", "Nakoを怖がらせる、叩く、押さえる、怒鳴る、無理に動かすことは禁止です。", "Nako ကို မခြောက်လှန့်ပါနဲ့။ မရိုက်ပါနဲ့။ မဖိပါနဲ့။ မအော်ပါနဲ့။ အတင်းမလုပ်ပါနဲ့။"),
+    tx("Never use shock, prong, choke, or punishment tools.", "電気、プロング、チョークなどの罰を与える道具は禁止です。", "လျှပ်စစ်၊ ဆူး၊ လည်ပင်းညှစ် သို့မဟုတ် အပြစ်ပေးပစ္စည်း မသုံးပါနဲ့။"),
+    tx("Never punish Nako for coming back. Never force an item from her mouth.", "戻って来たNakoを叱りません。口から物を無理に取りません。", "Nako ပြန်လာရင် မဆူပါနဲ့။ ပါးစပ်ထဲကပစ္စည်းကို အတင်းမယူပါနဲ့။"),
+    tx("Stop if Nako is sore, afraid, tired, unwilling, or unsteady. Tell Edwin about pain, limping, coughing, injury, fear, aggression, or unusual behaviour.", "痛み、怖がる、疲れる、嫌がる、ふらつく場合は中止します。痛み、足を引きずる、咳、けが、強い恐怖、攻撃性、異常な行動はEdwinに伝えます。", "Nako နာရင်၊ ကြောက်ရင်၊ ပင်ပန်းရင်၊ မလုပ်ချင်ရင် သို့မဟုတ် မတည်ငြိမ်ရင် ရပ်ပါ။ နာကျင်မှု၊ ခြေထော့ခြင်း၊ ချောင်းဆိုးခြင်း၊ ဒဏ်ရာ၊ ကြောက်ရွံ့မှု၊ ရန်လိုမှု သို့မဟုတ် ထူးခြားမှုကို Edwin ကိုပြောပါ။")
+  ];
   const rewardOptions = [tx("Food visible", "食べ物が見える", "အစားအစာမြင်ရ"), tx("Food lure", "食べ物で誘導", "အစားအစာဖြင့်ဆွဲဆောင်"), tx("Food hidden", "食べ物を隠す", "အစားအစာဖျောက်ထား"), tx("Intermittent food", "時々食べ物", "တစ်ခါတစ်ရံအစားအစာ"), tx("Toy or play reward", "おもちゃ・遊びのごほうび", "ကစားစရာ သို့မဟုတ်ကစားခြင်းဆု"), tx("Praise only", "ほめるだけ", "ချီးမွမ်းခြင်းသာ"), tx("Not tested", "未テスト", "မစမ်းသပ်ရသေး")];
   const environmentOptions = [tx("Quiet home", "静かな家", "တိတ်ဆိတ်သောအိမ်"), tx("Home with mild distractions", "軽い気の散りがある家", "အနည်းငယ်အာရုံပျံ့စရာရှိသောအိမ်"), tx("Corridor or common area", "廊下・共用エリア", "စင်္ကြံ သို့မဟုတ်အများသုံးနေရာ"), tx("Outdoors with mild distractions", "軽い気の散りがある屋外", "အနည်းငယ်အာရုံပျံ့စရာရှိသောအပြင်"), tx("Busy environment", "にぎやかな環境", "လူရှုပ်သောနေရာ"), tx("Strong distraction or emergency simulation", "強い気の散り・緊急シミュレーション", "ပြင်းထန်သောအာရုံပျံ့စရာ သို့မဟုတ်အရေးပေါ်စမ်းသပ်မှု"), tx("Not tested", "未テスト", "မစမ်းသပ်ရသေး")];
-  return { categories, commands, activities, videos, labels, rewardOptions, environmentOptions };
+  return { categories, commands, activities, videos, labels, rules, rewardOptions, environmentOptions };
 })();
 
 
@@ -2775,7 +2804,17 @@ function checkTranslations() {
     "sesame-oil": { file: "sesame-oil.jpg", source: product("/product/lee-kum-kee-pure-sesame-oil-207ml-13160717"), target: "Sesame-oil bottle" },
     "rice-vinegar": { file: "rice-vinegar.jpg", source: product("/product/redman-rice-vinegar"), target: "Rice-vinegar bottle" },
     miso: { file: "miso-paste.jpg", source: product("/product/kirei-yamataka-omiso-ya-san-japanese-shiro-miso-paste-1-kg-90085339"), target: "Japanese miso tub or pouch" },
-    water: { file: "water.png", source: null, target: "A clean, elegant glass of fresh pure water" }
+    water: { file: "water.png", source: null, target: "A clean glass of water" },
+    apple: { file: null, source: null, target: "Fresh apple" },
+    bread: { file: null, source: null, target: "Sliced sandwich bread" },
+    "peanut-butter": { file: null, source: null, target: "Peanut butter jar" },
+    "strawberry-jam": { file: null, source: null, target: "Strawberry jam jar" },
+    banana: { file: null, source: null, target: "Fresh banana" },
+    mayonnaise: { file: null, source: null, target: "Mayonnaise bottle" },
+    "pork-ribs": { file: null, source: null, target: "Raw pork ribs" },
+    "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
+    garlic: { file: null, source: null, target: "Fresh garlic bulb" },
+    "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" }
   });
 })();
 

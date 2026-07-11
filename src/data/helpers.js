@@ -13,9 +13,18 @@ function sec(id, icon, accent, iconBg, title, description, image = "") {
   return { id, icon, accent, iconBg, title, description, image };
 }
 
+function sameTranslation(first, second) {
+  return ["en", "jp", "mm"].every((lang) => String(first?.[lang] || "").trim() === String(second?.[lang] || "").trim());
+}
+
+function instructionList(summary, instructions) {
+  const list = Array.isArray(instructions) ? instructions : [instructions];
+  return list.filter(Boolean).filter((item) => !sameTranslation(summary, item));
+}
+
 
 function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: [instructions], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
 }
 
 function photo(src, alt, caption) {
@@ -31,7 +40,7 @@ function ingredientOption(key, name) {
 }
 
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
 }
 
 

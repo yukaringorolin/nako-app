@@ -1,35 +1,45 @@
-# Adding or Changing a Household Routine
+# Nako Home Care contributor rules
 
-When adding a new routine or editing an existing one in this repository, you must follow these rules to ensure data stability and correct UI presentation:
+## Protect saved data
 
-## 1. Single Source of Truth
-- **Never maintain separate task lists manually.**
-- All routine items must be created or updated *only* in the canonical routine data in [routine_tasks.js](file:///g:/My%20Drive/Dropbox/Downloads/Academics/Python/Nako%20app/src/data/routine_tasks.js).
-- Routine Check-in, frequency views, detail pages, and task-specific history are all automatically derived from that single task definition and its stable ID.
+- Keep every existing routine, recipe, food, training, and activity ID stable.
+- Keep `STATE_KEY = "nako-care-state-v2"` and the Firebase household ID `our-dog-nako` unchanged.
+- Do not delete a routine that may have history. Set `active: false` instead.
+- Keep Singapore timezone behavior and the fortnightly anchor `2026-07-06`.
+- Keep Firestore paths and routine completion IDs compatible.
 
-## 2. Invariant Rules for Task Definitions
-1. **Preserve Stable Unique IDs**: Never change an existing task ID merely to rename the task. Changing the ID will orphan existing Firestore/local history records.
-2. **Never Delete definitions with history**: If a previously tracked task is retired, do not delete its code definition. Instead, set `active: false` to hide it from current checklists while keeping historical completions readable.
-3. **Multi-Language Support**: Always provide natural English (EN), Japanese (JP), and Burmese (MM) translations for the title, summary, and instructions using the `t(en, jp, mm)` helper.
-4. **Photos and Icons**: Provide a primary photo (`photo("assets/routines/...")`) or an icon fallback for every routine card.
-5. **Cadence Classification**:
-   - Daily and as-needed entries are reference-only.
-   - Weekly, fortnightly, monthly, quarterly, and one-off entries are tracked actionable tasks by default.
-   - If you need to deliberately exclude a non-daily actionable task from tracking, you must explicitly declare it in `routineTrackingExclusions` with a detailed reason.
-6. **Programmatic Metadata**: Do not write manual config lists in multiple places. Any new task satisfying the non-daily cadence rule will automatically:
-   - Appear in the Routine Check-in checklist when due.
-   - Receive the shared Task Completion panel and task-specific history on its detail page.
-7. **Fortnightly Anchors**: Fortnightly tasks automatically default to using the stable Monday anchor `2026-07-06`.
+## Edit the source files
 
-## 3. Validation
-After modifying the routine tasks data:
-1. Compile the bundle:
-   ```bash
-   node scripts/bundle.js
-   ```
-2. Verify all checks and unit/contract tests pass:
-   ```bash
-   node tests/routine_tracking.test.js
-   node tests/routine_tracking_contract.test.js
-   node scripts/check_translations.js
-   ```
+- Edit translated content in [`src/data/`](src/data/).
+- Edit routines only in [`src/data/routine_tasks.js`](src/data/routine_tasks.js).
+- Treat [`src/data.js`](src/data.js) as generated output. Never edit it directly.
+- Run `npm run build:data` after changing content.
+- Keep English, Japanese, and natural Burmese text for every helper-facing string.
+- Follow [`CONTENT_STYLE.md`](CONTENT_STYLE.md).
+
+## Routine rules
+
+- Preserve stable IDs when renaming a task.
+- Give each routine a primary photo or useful icon fallback.
+- Daily and as-needed routines are reference-only, except the existing one-off fire-extinguisher training contract.
+- Weekly, fortnightly, monthly, quarterly, and one-off routines are tracked unless `routineTrackingExclusions` gives a clear reason.
+- Do not maintain a second tracking list. Tracking metadata is derived from the canonical routine definition.
+
+## Architecture
+
+- Keep classic browser scripts and the existing global-module pattern.
+- Do not add a frontend framework or runtime bundler requirement.
+- Put reusable browser/Node helpers in `src/core/` using the compatible wrapper pattern.
+- Put shared rendering in `src/ui/` and page behavior in `src/features/`.
+- Keep user-facing text in translation data, not render functions.
+- Use CSS classes instead of inline style strings.
+
+## Required checks
+
+Run:
+
+```bash
+npm run check
+```
+
+This rebuilds data, verifies generated output, checks syntax and translations, validates content and ingredients, and runs every test.
