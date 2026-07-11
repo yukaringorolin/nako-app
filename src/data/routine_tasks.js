@@ -624,6 +624,20 @@ const routineTasks = [
     t("One-off training to learn where the fire extinguisher is kept and how to use it safely.", "消火器の保管場所と安全な使い方を学ぶための一回限りの訓練です。", "မီးသတ်ဆေးဘူးထားသည့်နေရာနှင့် လုံခြုံစွာအသုံးပြုနည်းကို သင်ယူရန် တစ်ကြိမ်တည်း လေ့ကျင့်မှုဖြစ်သည်။"),
     t("One-off training", "1回限りの訓練", "တစ်ကြိမ်တည်း လေ့ကျင့်မှု"),
     t("Use it only if safe. If unsure, leave the area and call for help. Remove this task after the training is completed.", "安全な場合のみ使ってください。不安ならその場を離れ、助けを呼んでください。訓練が完了したらこの項目を削除してください。", "လုံခြုံပါကသာ အသုံးပြုပါ။ မသေချာပါက နေရာမှထွက်ပြီး အကူအညီခေါ်ပါ။ လေ့ကျင့်မှုပြီးပါက ဤ task ကို ဖယ်ရှားပါ။")),
+  routine("upload-shared-album", "as-needed", 45, "📷",
+    t("Upload Photos & Videos to Shared Album", "共有アルバムへの写真・動画のアップロード", "မျှဝေထားသော အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ခြင်း"),
+    t("Upload photos and videos to the shared Google Photos album whenever you complete tasks, find something unusual, or are unsure of what to do.", "タスク完了時、異常を見つけた時、またはどうすべきか判断に迷う時に、共有のGoogleフォトアルバムに写真や動画をアップロードします。", "အလုပ်များပြီးစီးသည့်အခါ၊ ပုံမှန်မဟုတ်သောအရာများ တွေ့ရှိသည့်အခါ သို့မဟုတ် ဘာလုပ်ရမှန်း မသေချာသည့်အခါ မျှဝေထားသော Google Photos အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ပေးပါ။"),
+    t("As needed", "必要に応じて", "လိုအပ်သလို"),
+    [
+      t("1. Open Google Photos.", "1. Googleフォトを開きます。", "၁။ Google Photos ကို ဖွင့်ပါ။"),
+      t("2. Press and hold a photo, then select all photos or videos to share.", "2. 写真を長押しし、共有するすべての写真または動画を選択します。", "၂။ ဓာတ်ပုံတစ်ပုံကို ဖိထားပြီး မျှဝေလိုသော ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယိုအားလုံးကို ရွေးချယ်ပါ။"),
+      t("3. Press Add to album.", "3. 「アルバムに追加」を押します。", "၃။ 「Add to album」ကို နှိပ်ပါ။"),
+      t("4. Select the shared album named exactly CHO MDM SIR.", "4. 「CHO MDM SIR」という名前の共有アルバムを選択します。", "၄။ 「CHO MDM SIR」ဟု အတိအကျ အမည်ပေးထားသော မျှဝေထားသည့် အယ်လ်ဘမ်ကို ရွေးပါ။"),
+      t("5. Once added, Edwin and Yukari can view the photos and videos.", "5. 追加されると、エドウィンとゆかりがその写真や動画を閲覧できるようになります。", "၅။ ထည့်သွင်းပြီးပါက Edwin နှင့် Yukari တို့သည် ဓာတ်ပုံနှင့် ဗီဒီယိုများကို ကြည့်ရှုနိုင်မည် ဖြစ်သည်။"),
+      t("6. Whenever something is completed, unclear, unusual, or you are unsure what to do, take a photo or video and add it to this album.", "6. タスク完了時、不明な点や異常がある時、またはどうすべきか迷う時は、写真や動画を撮影してこのアルバムに追加してください。", "၆။ အလုပ်တစ်ခုခု ပြီးစီးသည့်အခါ၊ မရှင်းလင်းသည့်အခါ၊ ပုံမှန်မဟုတ်သည့်အခါ သို့မဟုတ် ဘာလုပ်ရမှန်း မသေချာသည့်အခါတိုင်း ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယိုရိုက်ပြီး ဤအယ်လ်ဘမ်ထဲသို့ ထည့်ပါ။"),
+      t("7. Edwin will review the album, add relevant photos to the Nako app GitHub repository, and follow up through WhatsApp if he has questions.", "7. エドウィンがアルバムを確認し、関連する写真をNakoアプリのGitHubリポジトリに追加し、質問がある場合はWhatsAppで連絡します。", "၇။ Edwin က အယ်လ်ဘမ်ကို စစ်ဆေးပြီး သက်ဆိုင်ရာဓာတ်ပုံများကို Nako app GitHub repository တွင် ထည့်သွင်းပေးမည်ဖြစ်ကာ မေးခွန်းရှိပါက WhatsApp မှတစ်ဆင့် ဆက်သွယ်မေးမြန်းပါမည်။")
+    ]
+  ),
 ];
 
 const microwaveInteriorRoutine = routineTasks.find((task) => task.id === "microwave-interior");
