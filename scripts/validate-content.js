@@ -47,12 +47,19 @@ inspectCollection(data.trainingData.activities, "training.activities");
 
 for (const [index, rule] of (data.trainingData.rules || []).entries()) inspectTranslation(rule, `training.rules.${index}`);
 if (!data.trainingData.rules?.length) failures.push("Training rules must be stored in translation data.");
+for (const [index, row] of (data.trainingData.scoringGuide || []).entries()) inspectTranslation(row.description, `training.scoringGuide.${index}`);
+for (const [index, item] of (data.trainingData.commandMeanings || []).entries()) {
+  inspectTranslation(item.name, `training.commandMeanings.${index}.name`, "title");
+  inspectTranslation(item.description, `training.commandMeanings.${index}.description`);
+}
+inspectTranslation(data.trainingData.scoringExplanation, "training.scoringExplanation");
+if (!data.trainingData.scoringGuide?.length || !data.trainingData.commandMeanings?.length || !data.trainingData.scoringExplanation) failures.push("Training reference copy must be stored in translation data.");
 
 const featureFiles = fs.readdirSync(path.join(root, "src", "features")).filter((file) => file.endsWith(".js"));
 for (const file of featureFiles) {
   const content = fs.readFileSync(path.join(root, "src", "features", file), "utf8");
   if (/\b(?:alert|confirm)\(\s*["'`][A-Za-z]/.test(content)) failures.push(`${file} contains a hardcoded English alert or confirmation.`);
-  if (/No saved training logs yet\.|aria-label="Language"/.test(content)) failures.push(`${file} contains known untranslated UI copy.`);
+  if (/No saved training logs yet\.|aria-label="Language"|Not introduced\.|Bottom down, front body upright\.|A high score means food need not be visible/.test(content)) failures.push(`${file} contains known untranslated UI copy.`);
 }
 
 if (warnings.length) {

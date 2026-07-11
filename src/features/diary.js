@@ -1,8 +1,7 @@
 function renderDiaryFeedback(item) {
   const section = item.frequencyBucket ? homeSections.find((entry) => entry.id === item.frequencyBucket) : null;
-  const todayKey = dateToKey(new Date());
   const diary = getDiaryState();
-  const entry = diary.entries[todayKey] || null;
+  const { dateKey: todayKey, entry } = window.nakoDiaryDate.diaryDay(routineTracking, diary.entries);
   const draft = getDiaryDraft(todayKey);
   const textValue = draft.text ?? entry?.originalText ?? "";
   const status = diarySaveInProgress ? "pending" : entry?.submittedAt ? "saved" : "idle";

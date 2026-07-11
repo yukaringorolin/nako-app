@@ -113,6 +113,13 @@ function highlightText(text, query) {
   return window.nakoSearchHighlight.highlightText(text, query, window.nakoSearch.normalizeSearchText);
 }
 
+function navigateToDestination(route, destination) {
+  window.nakoSearchNavigation.navigateToDestination(route, destination, {
+    setPendingDestination: (value) => { pendingDestination = value; },
+    navigate: go
+  });
+}
+
 function updateSearchResultsDropdown() {
   const container = document.getElementById("search-results-container");
   if (!container) return;
@@ -217,34 +224,28 @@ function navigateToSearchResult(result) {
   } else if (result.type === "recipe") {
     go(`#recipe/${result.originalItem.id}`);
   } else if (result.type === "cooking-rule") {
-    go(`#food/cooking-rules`);
-    pendingDestination = { type: "cooking-rule", index: result.id.replace("cooking-rule-", "") };
+    navigateToDestination(`#food/cooking-rules`, { type: "cooking-rule", index: result.id.replace("cooking-rule-", "") });
   } else if (result.type === "official-reference") {
     window.open(result.route, "_blank", "noopener,noreferrer");
   } else if (result.type === "resource") {
-    go("");
-    pendingDestination = { type: "resource", id: result.id.replace("resource-", "") };
+    navigateToDestination("", { type: "resource", id: result.id.replace("resource-", "") });
   } else if (result.type === "training-command") {
     trainingTab = "commands";
     trainingExpandedCommandId = result.originalItem.id;
-    go(`#routine/nako-training-fun`);
-    pendingDestination = { type: "training-command", id: result.originalItem.id };
+    navigateToDestination(`#routine/nako-training-fun`, { type: "training-command", id: result.originalItem.id });
   } else if (result.type === "training-activity") {
     trainingTab = "play";
-    go(`#routine/nako-training-fun`);
-    pendingDestination = { type: "training-activity", id: result.originalItem.id };
+    navigateToDestination(`#routine/nako-training-fun`, { type: "training-activity", id: result.originalItem.id });
   } else if (result.type === "training-video") {
     if (result.originalItem.commandIds && result.originalItem.commandIds.length) {
       const commandId = result.originalItem.commandIds[0];
       trainingTab = "commands";
       trainingExpandedCommandId = commandId;
-      go(`#routine/nako-training-fun`);
-      pendingDestination = { type: "training-command", id: commandId };
+      navigateToDestination(`#routine/nako-training-fun`, { type: "training-command", id: commandId });
     } else if (result.originalItem.activityIds && result.originalItem.activityIds.length) {
       const activityId = result.originalItem.activityIds[0];
       trainingTab = "play";
-      go(`#routine/nako-training-fun`);
-      pendingDestination = { type: "training-activity", id: activityId };
+      navigateToDestination(`#routine/nako-training-fun`, { type: "training-activity", id: activityId });
     } else {
       trainingTab = "commands";
       go(`#routine/nako-training-fun`);

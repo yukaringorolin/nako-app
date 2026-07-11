@@ -1986,8 +1986,14 @@ const trainingData = (() => {
     handling: tx("Positioning & Handling", "ポジションとハンドリング", "နေရာချထားခြင်းနှင့် ကိုင်တွယ်ခြင်း"),
     tricks: tx("Tricks & Confidence", "トリックと自信づくり", "လှည့်ကွက်များနှင့် ယုံကြည်မှုတိုးတက်ရေး")
   };
+  const priorities = {
+    critical: tx("Critical", "最重要", "အလွန်အရေးကြီး"),
+    high: tx("High", "高", "အရေးကြီး"),
+    useful: tx("Useful", "便利", "အသုံးဝင်")
+  };
+  const priorityIds = { Critical: "critical", High: "high", Useful: "useful" };
   const command = (id, category, title, score, priority, milestone, note = "", extra = {}) => ({
-    id, category, title, initialScore: score, priority: tx(priority, priority === "Critical" ? "最重要" : priority === "High" ? "高" : "便利", priority === "Critical" ? "အလွန်အရေးကြီး" : priority === "High" ? "အရေးကြီး" : "အသုံးဝင်"),
+    id, category, title, initialScore: score, priorityId: priorityIds[priority], priority: priorities[priorityIds[priority]],
     milestone, baselineComment: note ? tx(note, extra.jpNote || note, extra.mmNote || note) : tx("", "", ""),
     purpose: extra.purpose || tx("Practise with short, reward-based sessions.", "短く、ごほうびを使う練習をします。", "တိုတောင်းပြီး ဆုအသုံးပြုသည့် လေ့ကျင့်ခန်းလုပ်ပါ။"),
     instructions: extra.instructions || [tx("Give the cue once, mark the correct response, then reward.", "合図は一度だけ出し、正しい反応をマークしてからほめます。", "အမိန့်ကို တစ်ကြိမ်သာပေး၍ မှန်ကန်သောတုံ့ပြန်မှုကို အမှတ်အသားပြုပြီး ဆုချပါ။")],
@@ -2064,6 +2070,35 @@ const trainingData = (() => {
     ["hoop-review", ["hoop"], [], "Proofing Drop it and Get it - Dog Training by Kikopup", "Kikopup", "https://www.youtube.com/watch?v=a4X3CWS-M60", "5:30", false],
     ["find-review", ["find-it"], ["find-it-game"], "Teaching dog to settle aka mat work.", "Tailored Dog Training", "https://www.youtube.com/watch?v=Yne2oR0lUCo", "6:15", false]
   ].map(([id, commandIds, activityIds, title, channel, url, duration, verified]) => ({ id, commandIds, activityIds, title: tx(title, title, title), channel: tx(channel, channel, channel), url, duration, verified, needsReview: !verified, summary: tx("Open in YouTube for the full reward-based demonstration.", "ごほうびベースの実演はYouTubeで確認できます。", "ဆုအခြေပြုသရုပ်ပြအပြည့်အစုံကို YouTube တွင်ကြည့်နိုင်သည်။"), safety: tx("Use only force-free methods and stop if Nako is uncomfortable.", "強制のない方法だけを使い、ナコが不快そうなら止めます。", "အတင်းအကျပ်မရှိသောနည်းလမ်းများသာသုံးပြီး Nako မသက်မသာဖြစ်လျှင်ရပ်ပါ။") }));
+  const scoringGuide = [
+    { score: "0", description: tx("Not introduced.", "まだ教えていません。", "မသင်ရသေးပါ။") },
+    { score: "1–2", description: tx("Follows only a physical lure or visible food lure.", "手や見える食べ物で誘導した時だけできます。", "လက်ဖြင့် သို့မဟုတ် မြင်ရသောအစားအစာဖြင့် လမ်းညွှန်မှသာ လုပ်နိုင်သည်။") },
+    { score: "3–4", description: tx("Beginning to understand but normally needs visible food.", "理解し始めていますが、通常は見える食べ物が必要です。", "နားလည်စပြုသော်လည်း အများအားဖြင့် မြင်ရသောအစားအစာ လိုသေးသည်။") },
+    { score: "5–6", description: tx("Usually responds at home while food is hidden.", "家では、食べ物を隠していてもだいたいできます。", "အိမ်မှာ အစားအစာဖွက်ထားလည်း အများအားဖြင့် လုပ်နိုင်သည်။") },
+    { score: "7–8", description: tx("Responds to the first cue in familiar environments with intermittent rewards.", "慣れた場所で、時々のごほうびでも最初の合図に反応します。", "ရင်းနှီးသောနေရာမှာ တစ်ခါတစ်ရံသာ ဆုပေးလည်း ပထမအမိန့်ကို လုပ်နိုင်သည်။") },
+    { score: "9", description: tx("Responds reliably in multiple environments with moderate distractions.", "いくつかの場所で、少し気が散っても確実に反応します。", "နေရာအမျိုးမျိုးမှာ အာရုံအနည်းငယ်ပျံ့လည်း ယုံကြည်စိတ်ချစွာ လုပ်နိုင်သည်။") },
+    { score: "10", description: tx("Emergency-level reliability: about 9 successful first-cue responses out of 10.", "緊急時に使える信頼度です。10回中約9回、最初の合図で成功します。", "အရေးပေါ်အဆင့် ယုံကြည်စိတ်ချရသည်။ ၁၀ ကြိမ်မှာ ၉ ကြိမ်ခန့် ပထမအမိန့်ဖြင့် အောင်မြင်သည်။") }
+  ];
+  const scoringExplanation = tx(
+    "A high score means food need not be visible before Nako responds. Rewards may still follow success.",
+    "高いスコアは、食べ物を先に見せなくてもNakoが反応できるという意味です。成功後にごほうびを与えてもかまいません。",
+    "အမှတ်မြင့်လျှင် အစားအစာကို အရင်မပြဘဲ Nako က လုပ်နိုင်သည်ဟု ဆိုလိုသည်။ အောင်မြင်ပြီးနောက် ဆုပေးနိုင်သေးသည်။"
+  );
+  const commandMeanings = [
+    { name: tx("Sit", "おすわり", "ထိုင်"), description: tx("Bottom down, front body upright.", "お尻を床につけ、上半身を起こします。", "တင်ပါးကိုချပြီး ရှေ့ကိုယ်ကို မတ်ထားပါ။") },
+    { name: tx("Lie Down", "伏せ", "လှဲ"), description: tx("Body fully lying on the floor.", "体全体を床に伏せます。", "ကိုယ်တစ်ခုလုံးကို ကြမ်းပြင်ပေါ် လှဲပါ။") },
+    { name: tx("Up", "上がる", "တက်"), description: tx("Climb onto a surface.", "台や面の上に上がります。", "မျက်နှာပြင်တစ်ခုပေါ် တက်ပါ။") },
+    { name: tx("Step Down / Off", "降りる", "ဆင်း"), description: tx("Descend from a surface.", "台や面から降ります。", "မျက်နှာပြင်ပေါ်မှ ဆင်းပါ။") },
+    { name: tx("Wait", "待って", "စောင့်"), description: tx("Pause temporarily.", "一時的に動きを止めます。", "ခဏရပ်ပြီး စောင့်ပါ။") },
+    { name: tx("Stay", "ステイ", "နေ"), description: tx("Remain until formally released.", "解除の合図までその場にいます。", "လွှတ်သည့်အမိန့်မရမချင်း နေရာမှာနေပါ။") },
+    { name: tx("Break", "解除", "လွှတ်"), description: tx("Formal release from Stay or Place.", "StayやPlaceを終える正式な解除合図です。", "Stay သို့မဟုတ် Place ကို အဆုံးသတ်သည့် လွှတ်အမိန့်ဖြစ်သည်။") },
+    { name: tx("Gaman → OK", "我慢 → OK", "စောင့် → OK"), description: tx("Wait and tolerate; OK permits taking food.", "我慢して待ち、OKで食べ物を取れます。", "စောင့်ထားပါ။ OK ကြားမှ အစားအစာယူနိုင်သည်။") },
+    { name: tx("Leave It", "放って", "မယူနဲ့"), description: tx("Do not take or approach.", "取らず、近づきません。", "မယူပါနှင့်။ အနီးမသွားပါနှင့်။") },
+    { name: tx("Drop / Give", "離す", "ချ"), description: tx("Release something already in the mouth.", "口にある物を離します。", "ပါးစပ်ထဲရှိပစ္စည်းကို လွှတ်ချပါ။") },
+    { name: tx("Place", "所定の場所へ", "နေရာသွား"), description: tx("Go independently to a defined mat or bed.", "決めたマットやベッドへ自分で行きます。", "သတ်မှတ်ထားသော ဖျာ သို့မဟုတ် အိပ်ရာသို့ ကိုယ်တိုင်သွားပါ။") },
+    { name: tx("Settle", "落ち着く", "ငြိမ်"), description: tx("Relax calmly rather than wait tensely.", "緊張して待つのではなく、静かにくつろぎます。", "တင်းမာစွာစောင့်မနေဘဲ အေးအေးဆေးဆေး နားပါ။") },
+    { name: tx("All Done", "終わり", "ပြီးပြီ"), description: tx("The session has ended.", "練習は終わりです。", "လေ့ကျင့်ချိန် ပြီးပါပြီ။") }
+  ];
   const labels = {
     tabs: { commands: tx("Commands", "コマンド", "အမိန့်များ"), play: tx("Play & Enrichment", "遊びと知育", "ကစားခြင်းနှင့် စိတ်ပိုင်းဆိုင်ရာလှုပ်ရှားမှု"), log: tx("Training Log", "トレーニング記録", "လေ့ကျင့်ရေးမှတ်တမ်း") },
     addLog: tx("Add log", "記録を追加", "မှတ်တမ်းထည့်ရန်"), history: tx("View history", "履歴を見る", "မှတ်တမ်းကြည့်ရန်"), save: tx("Save", "保存", "သိမ်းရန်"), cancel: tx("Cancel", "キャンセル", "ပယ်ဖျက်ရန်"), commandLog: tx("Training log", "トレーニング記録", "လေ့ကျင့်ရေးမှတ်တမ်း"), playLog: tx("Play log", "遊びの記録", "ကစားမှတ်တမ်း"), score: tx("Progress score", "進捗スコア", "တိုးတက်မှုအမှတ်"), reward: tx("Reward reliance", "ごほうびへの依存度", "ဆုလာဘ်အပေါ် မှီခိုမှု"), environment: tx("Environment", "環境", "နေရာအခြေအနေ"), successes: tx("Successful first-cue responses", "最初の合図での成功回数", "ပထမအမိန့်အောင်မြင်မှု"), attempts: tx("Total attempts", "試行回数", "စုစုပေါင်းကြိုးစားမှု"), duration: tx("Duration (minutes)", "時間（分）", "ကြာချိန် (မိနစ်)"), comment: tx("Comment", "メモ", "မှတ်ချက်"), date: tx("Date and time", "日時", "ရက်စွဲနှင့်အချိန်"), lastPractised: tx("Last practised", "最終練習", "နောက်ဆုံးလေ့ကျင့်ချိန်"), milestone: tx("Next milestone", "次の目標", "နောက်တစ်ဆင့်ရည်မှန်းချက်"), needsPractice: tx("Needs Practice", "練習が必要", "လေ့ကျင့်ရန်လို"), filters: tx("Filters", "絞り込み", "စစ်ထုတ်ရန်"), all: tx("All", "すべて", "အားလုံး"), category: tx("Category", "カテゴリー", "အမျိုးအစား"), priority: tx("Priority", "優先度", "ဦးစားပေး"), recent: tx("Recently practised", "最近練習した", "မကြာသေးမီကလေ့ကျင့်ခဲ့"), rules: tx("Training Rules", "トレーニングのルール", "လေ့ကျင့်ရေးစည်းမျဉ်းများ"), meanings: tx("Command meanings", "コマンドの意味", "အမိန့်အဓိပ္ပာယ်များ"), scoring: tx("How scoring works", "スコアの仕組み", "အမှတ်ပေးနည်း"), review: tx("Reference needs review", "参考動画の確認が必要です", "ရည်ညွှန်းဗီဒီယိုကို ပြန်လည်စစ်ဆေးရန်လိုသည်"), openYouTube: tx("Open in YouTube", "YouTubeで開く", "YouTube တွင်ဖွင့်ရန်"), engagement: tx("Engagement (1–5)", "集中度（1～5）", "ပါဝင်မှု (၁–၅)"), energyBefore: tx("Energy before (1–5)", "遊び前の元気さ（1～5）", "မကစားမီစွမ်းအင် (၁–၅)"), energyAfter: tx("Energy after (1–5)", "遊び後の元気さ（1～5）", "ကစားပြီးနောက်စွမ်းအင် (၁–၅)"), dropResponse: tx("Response to Drop", "ドロップへの反応", "Drop တုံ့ပြန်မှု"), allDoneResponse: tx("Response to All Done", "オールダンへの反応", "All Done တုံ့ပြန်မှု"), favouriteToy: tx("Favourite toy", "お気に入りのおもちゃ", "အကြိုက်ဆုံးကစားစရာ"), unusual: tx("Unusual behaviour or health note", "気になる様子・健康メモ", "ထူးခြားအပြုအမူ သို့မဟုတ် ကျန်းမာရေးမှတ်ချက်"), delete: tx("Delete", "削除", "ဖျက်ရန်"), edit: tx("Edit", "編集", "ပြင်ရန်"), saved: tx("Saved", "保存しました", "သိမ်းပြီးပါပြီ"), cueNotSelected: tx("Not selected", "未選択", "မရွေးရသေး"), cueLabel: tx("Preferred cue", "希望する合図", "နှစ်သက်သောအမိန့်"), trialResult: tx("5-trial result", "5回の結果", "၅ ကြိမ်ရလဒ်"), details: tx("Details", "詳細", "အသေးစိတ်"), hideDetails: tx("Hide details", "詳細を隠す", "အသေးစိတ်ဖျောက်ရန်"), noLogs: tx("No saved training logs yet.", "保存されたトレーニング記録はまだありません。", "သိမ်းထားသောလေ့ကျင့်ရေးမှတ်တမ်း မရှိသေးပါ။"), videoSafety: tx("Safety", "安全", "ဘေးကင်းရေး")
@@ -2084,7 +2119,7 @@ const trainingData = (() => {
   ];
   const rewardOptions = [tx("Food visible", "食べ物が見える", "အစားအစာမြင်ရ"), tx("Food lure", "食べ物で誘導", "အစားအစာဖြင့်ဆွဲဆောင်"), tx("Food hidden", "食べ物を隠す", "အစားအစာဖျောက်ထား"), tx("Intermittent food", "時々食べ物", "တစ်ခါတစ်ရံအစားအစာ"), tx("Toy or play reward", "おもちゃ・遊びのごほうび", "ကစားစရာ သို့မဟုတ်ကစားခြင်းဆု"), tx("Praise only", "ほめるだけ", "ချီးမွမ်းခြင်းသာ"), tx("Not tested", "未テスト", "မစမ်းသပ်ရသေး")];
   const environmentOptions = [tx("Quiet home", "静かな家", "တိတ်ဆိတ်သောအိမ်"), tx("Home with mild distractions", "軽い気の散りがある家", "အနည်းငယ်အာရုံပျံ့စရာရှိသောအိမ်"), tx("Corridor or common area", "廊下・共用エリア", "စင်္ကြံ သို့မဟုတ်အများသုံးနေရာ"), tx("Outdoors with mild distractions", "軽い気の散りがある屋外", "အနည်းငယ်အာရုံပျံ့စရာရှိသောအပြင်"), tx("Busy environment", "にぎやかな環境", "လူရှုပ်သောနေရာ"), tx("Strong distraction or emergency simulation", "強い気の散り・緊急シミュレーション", "ပြင်းထန်သောအာရုံပျံ့စရာ သို့မဟုတ်အရေးပေါ်စမ်းသပ်မှု"), tx("Not tested", "未テスト", "မစမ်းသပ်ရသေး")];
-  return { categories, commands, activities, videos, labels, rules, rewardOptions, environmentOptions };
+  return { categories, priorities, commands, activities, videos, labels, rules, rewardOptions, environmentOptions, scoringGuide, scoringExplanation, commandMeanings };
 })();
 
 

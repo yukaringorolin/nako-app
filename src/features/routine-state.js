@@ -83,7 +83,7 @@ function updateRoutineCompletion(record, values = {}) {
 }
 
 function completeRoutine(taskId) {
-  const task = trackedRoutineTasks().find((item) => item.id === taskId);
+  const task = activeTrackedRoutineTasks().find((item) => item.id === taskId);
   if (!task || task.trackingMode === "metric") return;
   const record = saveRoutineCompletion(task);
   if (!record) return;
@@ -123,7 +123,7 @@ function removeRoutineCompletion(recordId) {
 
 function moveRoutineCompletion(recordId, nextDate) {
   const oldRecord = routineRecords()[recordId];
-  const task = trackedRoutineTasks().find((item) => item.id === oldRecord?.taskId);
+  const task = historicalTrackedRoutineTasks().find((item) => item.id === oldRecord?.taskId);
   if (!oldRecord || !task || !routineTracking.parseDateKey(nextDate)) {
     routineStatusMessage = label("routineDateInvalid");
     return render();
@@ -178,7 +178,7 @@ function updateRoutineCompletionNote(recordId, note) {
 }
 
 function reconcileWeightCompletion(dateKey) {
-  const task = trackedRoutineTasks().find((item) => item.id === "nako-weight-tracking");
+  const task = activeTrackedRoutineTasks().find((item) => item.id === "nako-weight-tracking");
   const targetCycle = task && routineCycle(task, dateKey);
   if (!task || !targetCycle) return;
   const candidates = Object.entries(appState.weightTracking || {}).map(([key, value]) => ({ key, value: parseFloat(getWeightValue(value)), updatedAt: value?.updatedAt || "" }))

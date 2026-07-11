@@ -39,9 +39,12 @@ function render() {
     selectedResultIndex = -1;
   }
 
-  if (pendingDestination) {
-    const dest = pendingDestination;
-    pendingDestination = null;
+  const destination = window.nakoSearchNavigation.takePendingDestination(
+    pendingDestination,
+    () => { pendingDestination = null; }
+  );
+  if (destination) {
+    const dest = destination;
     setTimeout(() => {
       if (dest.type === "cooking-rule") {
         const rulesList = document.querySelectorAll(".rule-strip li");

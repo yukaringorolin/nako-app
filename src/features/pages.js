@@ -24,8 +24,12 @@ function renderHome() {
   renderShell(label("appTitle"), content, false);
 }
 
-function trackedRoutineTasks() {
-  return routineTasks.filter((task) => task.active !== false && task.trackingMode && task.trackingMode !== "none");
+function activeTrackedRoutineTasks() {
+  return window.nakoRoutineTaskSelection.activeTrackedRoutineTasks(routineTasks);
+}
+
+function historicalTrackedRoutineTasks() {
+  return window.nakoRoutineTaskSelection.historicalTrackedRoutineTasks(routineTasks);
 }
 
 function routineRecords() {
@@ -46,7 +50,7 @@ function activeRoutineRecord(task, dateKey = routineTracking.singaporeDateKey())
 
 function currentChecklist() {
   const today = routineTracking.singaporeDateKey();
-  return trackedRoutineTasks().map((task) => ({ task, cycle: routineCycle(task, today), record: activeRoutineRecord(task, today) }))
+  return activeTrackedRoutineTasks().map((task) => ({ task, cycle: routineCycle(task, today), record: activeRoutineRecord(task, today) }))
     .filter((item) => !(item.task.trackingMode === "one-off" && item.record));
 }
 
@@ -178,8 +182,9 @@ function renderRoutineHistoryRecords(records, options = {}) {
 }
 
 function renderRoutineHistory() {
-  const tasks = trackedRoutineTasks();
-  const records = [...Object.values(routineRecords()).filter((record) => record && !record.deleted), ...missedRoutineHistoryRecords(tasks)].filter((record) => {
+  const savedRecords = Object.values(routineRecords()).filter((record) => record && !record.deleted);
+  const tasks = window.nakoRoutineTaskSelection.historyFilterTasks(routineTasks, savedRecords);
+  const records = [...savedRecords, ...missedRoutineHistoryRecords(activeTrackedRoutineTasks())].filter((record) => {
     if (routineHistoryFilters.task !== "all" && record.taskId !== routineHistoryFilters.task) return false;
     const task = tasks.find((item) => item.id === record.taskId);
     if (!task) return false;
@@ -207,7 +212,7 @@ function missedRoutineHistoryRecords(tasks) {
   const trackingStart = appState.routineTrackingStartedDate || today;
   const rangeStart = routineHistoryFilters.from && routineHistoryFilters.from > trackingStart ? routineHistoryFilters.from : trackingStart;
   const missed = [];
-  tasks.filter((task) => task.trackingCadence !== "one-off").forEach((task) => {
+  tasks.filter(window.nakoRoutineTaskSelection.shouldGenerateMissed).forEach((task) => {
     let cycle = routineCycle(task, rangeStart);
     let guard = 0;
     while (cycle?.end && cycle.end < today && guard < 600) {
@@ -228,7 +233,7 @@ function getTaskSpecificHistory(task, limit = 8) {
     (record) => record && !record.deleted && record.taskId === task.id
   );
   const missed = [];
-  if (task.trackingCadence !== "one-off") {
+  if (window.nakoRoutineTaskSelection.shouldGenerateMissed(task)) {
     let cycle = routineCycle(task, trackingStart);
     let guard = 0;
     while (cycle?.end && cycle.end < today && guard < 600) {
@@ -423,7 +428,7 @@ function renderRoutine(routineId) {
   const backLinkHtml = isTracked
     ? `<a href="#routine-checkin" class="back-checkin-link">← ${esc(label("backToRoutineCheckIn"))}</a>`
     : "";
-  const completionPanelHtml = isTracked ? renderRoutineCompletionPanel(task) : "";
+  const completionPanelHtml = isTracked && task.active !== false ? renderRoutineCompletionPanel(task) : "";
   const historyPanelHtml = isTracked ? renderTaskRoutineHistory(task.id) : "";
 
   const content = `
