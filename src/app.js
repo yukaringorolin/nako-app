@@ -236,7 +236,6 @@ function renderShortcuts() {
     { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
-    { id: "cooking-rules", type: "food", labelKey: "shortcutCookingRules" },
     { id: "nako-training-fun", type: "routine", labelKey: "shortcutDogTraining" },
     { id: "helper-diary-feedback", type: "routine", labelKey: "shortcutDiary" }
   ];
