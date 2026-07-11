@@ -19,8 +19,7 @@
   let unsubscribeRoutineCompletions = null;
   let syncCallbacks = null;
   let routineSyncCallbacks = null;
-  let pendingState = null;
-  let pendingTimer = null;
+  let stateWriteQueue = null;
 
   let stateSyncStatus = "local";
   let routineSyncStatus = "local";
@@ -64,10 +63,8 @@
     },
     // saveRemoteState: Debounces state updates to avoid exceeding Firestore write rate limits
     saveRemoteState(nextState) {
-      if (!stateDoc) return false;
-      pendingState = cloneState(nextState);
-      window.clearTimeout(pendingTimer);
-      pendingTimer = window.setTimeout(flushPendingState, 450);
+      if (!stateDoc || !stateWriteQueue) return false;
+      stateWriteQueue.enqueue(nextState);
       return true;
     },
     async getStorageDownloadURL(path) {
@@ -83,6 +80,20 @@
   };
 
   window.nakoFirebase = service;
+
+  if (window.nakoFirebaseWriteQueue?.createFirebaseWriteQueue) {
+    stateWriteQueue = window.nakoFirebaseWriteQueue.createFirebaseWriteQueue({
+      write: writeStateDocument,
+      setTimeout: window.setTimeout.bind(window),
+      clearTimeout: window.clearTimeout.bind(window),
+      clone: cloneState,
+      onStatus(mode, error) {
+        stateSyncStatus = mode;
+        stateSyncError = mode === "error" ? readableError(error) : "";
+        updateCombinedStatus();
+      }
+    });
+  }
 
   if (!window.firebase) {
     setStatus({ mode: "local", error: "Firebase SDK unavailable" });
@@ -129,6 +140,7 @@
   }
 
   window.addEventListener("pagehide", flushPendingState);
+  window.addEventListener("online", () => stateWriteQueue?.retryNow());
 
   // handleAuthState: Triggers when the Firebase Auth user changes
   function handleAuthState(user) {
@@ -142,6 +154,7 @@
     detachRoutineCompletionListener();
 
     if (!auth || !auth.currentUser) {
+      stateWriteQueue?.dispose();
       stateDoc = null;
       routineCompletionCollection = null;
       stateSyncStatus = "local";
@@ -179,22 +192,14 @@
           const localState = cloneState(syncCallbacks.getLocalState?.() || {});
           const mergedState = mergeStates(remoteState, localState);
           syncCallbacks.applyRemoteState?.(mergedState);
-          service.saveRemoteState(mergedState);
-          stateSyncStatus = "synced";
-          stateSyncError = "";
-          updateCombinedStatus();
+          queueMergedState(remoteState, mergedState);
           return;
         }
 
         const localState = cloneState(syncCallbacks.getLocalState?.() || {});
         const mergedState = mergeStates(remoteState, localState);
         syncCallbacks.applyRemoteState?.(mergedState);
-        if (hasDiaryMergeChanges(remoteState.diary, mergedState.diary)) {
-          service.saveRemoteState(mergedState);
-        }
-        stateSyncStatus = "synced";
-        stateSyncError = "";
-        updateCombinedStatus();
+        queueMergedState(remoteState, mergedState);
       },
       (error) => {
         stateSyncStatus = "error";
@@ -281,34 +286,32 @@
   }
 
   // flushPendingState: Flushes debounced updates by saving changes using set() with { merge: true }
-  async function flushPendingState() {
-    if (!stateDoc || !pendingState) return false;
+  function flushPendingState() {
+    return stateWriteQueue?.flush() || false;
+  }
 
-    const stateToSave = pendingState;
-    pendingState = null;
-    window.clearTimeout(pendingTimer);
-    pendingTimer = null;
+  function writeStateDocument(stateToSave) {
+    if (!stateDoc) return Promise.reject(new Error("Firebase state document unavailable"));
+    return stateDoc.set(
+      {
+        state: stateToSave,
+        clientUpdatedAt: new Date().toISOString(),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
+  }
 
-    try {
-      await stateDoc.set(
-        {
-          state: stateToSave,
-          clientUpdatedAt: new Date().toISOString(),
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        },
-        { merge: true }
-      );
-      stateSyncStatus = "synced";
-      stateSyncError = "";
-      updateCombinedStatus();
-      return true;
-    } catch (error) {
-      pendingState = stateToSave;
-      stateSyncStatus = "error";
-      stateSyncError = readableError(error);
-      updateCombinedStatus();
-      return false;
-    }
+  function queueMergedState(remoteState, mergedState) {
+    const queued = window.nakoFirebaseWriteQueue?.queueMergedStateIfChanged(
+      stateWriteQueue,
+      remoteState,
+      mergedState
+    );
+    if (queued || !stateWriteQueue?.inspect().isIdle) return;
+    stateSyncStatus = "synced";
+    stateSyncError = "";
+    updateCombinedStatus();
   }
 
   // mergeStates: Integrates remote and local database schemas
@@ -376,25 +379,6 @@
     const remoteTime = Date.parse(remoteValue.updatedAt || remoteValue.submittedAt || "") || 0;
     const localTime = Date.parse(localValue.updatedAt || localValue.submittedAt || "") || 0;
     return localTime >= remoteTime ? localValue : remoteValue;
-  }
-
-  function hasDiaryMergeChanges(remoteDiary = {}, mergedDiary = {}) {
-    return diaryRecordSignature(remoteDiary.entries) !== diaryRecordSignature(mergedDiary.entries)
-      || diaryRecordSignature(remoteDiary.drafts) !== diaryRecordSignature(mergedDiary.drafts);
-  }
-
-  function diaryRecordSignature(records = {}) {
-    return JSON.stringify(Object.keys(records || {}).sort().map((dateKey) => {
-      const record = records[dateKey] || {};
-      return [
-        dateKey,
-        record.updatedAt || "",
-        record.submittedAt || "",
-        record.status || "",
-        record.text || "",
-        record.originalText || ""
-      ];
-    }));
   }
 
   function cloneState(value) {

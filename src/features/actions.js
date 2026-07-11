@@ -109,7 +109,10 @@ function handleClick(event) {
   const editCommand = event.target.closest("[data-training-edit-command]");
   if (editCommand) { const log = getTrainingState().commandLogs.find((item) => item.id === editCommand.dataset.trainingEditCommand); if (log) { newCommandDraft(log.commandId, log); trainingHistoryCommandId = log.commandId; return render(); } }
   const deleteCommand = event.target.closest("[data-training-delete-command]");
-  if (deleteCommand && confirm(tl("confirmDeleteTraining"))) { const training = getTrainingState(); training.commandLogs = training.commandLogs.filter((item) => item.id !== deleteCommand.dataset.trainingDeleteCommand); refreshCommandFromLogs(); saveState(); return render(); }
+  if (deleteCommand && confirm(tl("confirmDeleteTraining"))) {
+    if (deleteCommandLog(deleteCommand.dataset.trainingDeleteCommand)) return render();
+    return;
+  }
   const editPlay = event.target.closest("[data-training-edit-play]");
   if (editPlay) { const log = getTrainingState().playLogs.find((item) => item.id === editPlay.dataset.trainingEditPlay); if (log) { newPlayDraft(log.activityId, log); trainingTab = "play"; return render(); } }
   const deletePlay = event.target.closest("[data-training-delete-play]");
@@ -237,16 +240,26 @@ function saveCommandLog() {
 }
 
 function refreshCommandFromLogs(commandId) {
-  const training = getTrainingState();
-  const command = trainingData.commands.find((item) => item.id === commandId);
-  const logs = training.commandLogs.filter((item) => item.commandId === commandId).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-  const latest = logs[0];
-  const state = getCommandState(commandId);
-  if (!latest) {
-    Object.assign(state, baselineCommandState(command));
-    return;
-  }
-  Object.assign(state, { score: latest.score, rewardReliance: latest.rewardReliance, bestEnvironment: latest.environment, successes: latest.successes, attempts: latest.attempts, latestComment: latest.comment, lastPracticedAt: latest.createdAt, updatedAt: nowIso() });
+  return window.nakoTrainingLogState.refreshCommandFromLogs({
+    training: getTrainingState(),
+    commandId,
+    commands: trainingData.commands,
+    baselineCommandState,
+    nowIso
+  });
+}
+
+function deleteCommandLog(logId) {
+  const result = window.nakoTrainingLogState.deleteCommandLog({
+    training: getTrainingState(),
+    logId,
+    commands: trainingData.commands,
+    baselineCommandState,
+    nowIso
+  });
+  if (!result.deleted) return false;
+  saveState();
+  return true;
 }
 
 function savePlayLog() {

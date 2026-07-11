@@ -6,6 +6,7 @@ const firebaseContent = fs.readFileSync(path.join(__dirname, "../src/firebase.js
 const appContent = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8");
 const rulesContent = fs.readFileSync(path.join(__dirname, "../firestore.rules"), "utf8");
 const workflowContent = fs.readFileSync(path.join(__dirname, "../.github/workflows/firebase-hosting-merge.yml"), "utf8");
+const firebaseWriteQueue = require("../src/core/firebase-write-queue.js");
 
 // 1. HOUSEHOLD_ID is fixed as "our-dog-nako"
 assert.ok(firebaseContent.includes('const HOUSEHOLD_ID = "our-dog-nako";'), "HOUSEHOLD_ID must be defined as 'our-dog-nako'");
@@ -38,6 +39,7 @@ assert.ok(!rulesContent.includes("householdId.size() >= 3"), "firestore.rules mu
 
 // 10. Test status combining logic and routine listener error overwrite behavior
 const window = {
+  nakoFirebaseWriteQueue: firebaseWriteQueue,
   addEventListener: () => {},
   clearTimeout: () => {},
   setTimeout: (cb) => cb()
@@ -115,8 +117,16 @@ statusListenerCallback = (s) => {
   currentStatus = s;
 };
 
+const canonicalEmptyState = {
+  food: {},
+  weightTracking: {},
+  routineTrackingStartedDate: "",
+  diary: { entries: {}, drafts: {} },
+  training: { commands: {}, commandLogs: [], playLogs: [] }
+};
+
 // Trigger state listener success
-stateSnapshotCallback({ exists: true, data: () => ({ state: {} }) });
+stateSnapshotCallback({ exists: true, data: () => ({ state: canonicalEmptyState }) });
 // Trigger routine listener error
 routineErrorCallback(new Error("Permission denied"));
 
@@ -124,7 +134,7 @@ assert.equal(currentStatus.mode, "error", "Indicator must show error if routine 
 assert.equal(currentStatus.error, "Routine sync unavailable", "Useful error message must be set");
 
 // Trigger state listener success again (main-state snapshot)
-stateSnapshotCallback({ exists: true, data: () => ({ state: {} }) });
+stateSnapshotCallback({ exists: true, data: () => ({ state: canonicalEmptyState }) });
 assert.equal(currentStatus.mode, "error", "Routine listener error must not be overwritten by a successful main-state snapshot");
 assert.equal(currentStatus.error, "Routine sync unavailable");
 
