@@ -672,7 +672,7 @@ function renderRoutine(routineId) {
     ${renderPhotos(task.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(task.mustRemember)}</section>
     ${historyPanelHtml}
-    ${renderVideo(task.videoUrl)}`;
+    ${renderVideo(task.videoUrl, task.videoUrlLabel)}`;
   renderShell(tr(task.title), content, true);
 }
 
@@ -689,7 +689,7 @@ function renderFood(foodId) {
     ${item.type === "rules" ? renderRulesPanel() : ""}
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
-    ${renderVideo(item.videoUrl)}
+    ${renderVideo(item.videoUrl, item.videoUrlLabel)}
     <section class="panel"><h2>${esc(label("memo"))}</h2><textarea class="memo-field" data-food-memo="${esc(item.id)}" placeholder="${esc(label("memoPlaceholder"))}">${esc(state.memo || "")}</textarea></section>`;
   renderShell(tr(item.title), content, true);
 }
@@ -981,9 +981,13 @@ function noteList(items) {
   return `<ul class="note-list">${items.map((item) => `<li><span>•</span><span>${richText(tr(item))}</span></li>`).join("")}</ul>`;
 }
 
-function renderVideo(videoUrl) {
+function renderVideo(videoUrl, videoLabel) {
   if (!videoUrl) return "";
-  return `<section class="panel"><h2>${esc(label("video"))}</h2><div class="video-shell"><iframe src="${esc(videoUrl)}" title="${esc(label("video"))}" allowfullscreen></iframe></div></section>`;
+  if (videoUrl.includes("youtube.com/") || videoUrl.includes("youtube-nocookie.com/") || videoUrl.includes("/embed/")) {
+    return `<section class="panel"><h2>${esc(label("video"))}</h2><div class="video-shell"><iframe src="${esc(videoUrl)}" title="${esc(label("video"))}" allowfullscreen></iframe></div></section>`;
+  }
+  const displayLabel = videoLabel ? tr(videoLabel) : label("video");
+  return `<section class="panel"><h2>${esc(label("video"))}</h2><div style="margin-top: 10px;"><a class="resource-link" href="${esc(videoUrl)}" target="_blank" rel="noopener noreferrer">${esc(displayLabel)} ↗</a></div></section>`;
 }
 
 /* Nako's command, play and progress dashboard. */
