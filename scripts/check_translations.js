@@ -30,6 +30,22 @@ if (!nakoData || typeof nakoData.checkTranslations !== 'function') {
 // Execute check
 const missing = nakoData.checkTranslations();
 
+// The no-JavaScript fallback cannot use the runtime language switcher, so it
+// must contain all supported languages directly in the HTML.
+const indexPath = path.join(__dirname, '../index.html');
+const indexContent = fs.readFileSync(indexPath, 'utf8');
+const noscriptContent = indexContent.match(/<noscript\b[^>]*>([\s\S]*?)<\/noscript>/i)?.[1] || '';
+for (const lang of ['en', 'ja', 'my']) {
+  if (!new RegExp(`lang=["']${lang}["']`, 'i').test(noscriptContent)) {
+    missing.push({
+      type: 'HTML fallback',
+      key: `index.html noscript lang=${lang}`,
+      english: 'This app needs JavaScript enabled.',
+      reason: `Missing no-JavaScript message for ${lang}`
+    });
+  }
+}
+
 if (missing.length > 0) {
   console.error("\x1b[31m[Translation Reconciliation Check FAILED]\x1b[0m");
   console.error(`Found ${missing.length} missing or same-as-English translation keys:`);
@@ -41,6 +57,9 @@ if (missing.length > 0) {
     sameAsEnglishJp: Boolean(item.sameAsEnglishJp),
     missingMm: Boolean(item.missingMm),
     sameAsEnglishMm: Boolean(item.sameAsEnglishMm),
+    invalidMmScript: Boolean(item.invalidMmScript),
+    plainString: Boolean(item.plainString),
+    reason: item.reason || '',
     english: item.english
   })));
   process.exit(1);

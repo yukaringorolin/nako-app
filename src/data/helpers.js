@@ -52,7 +52,7 @@ function recipe(id, title, ingredients, method, note, photos = [], type = "dog",
     title, 
     description: isHuman 
       ? t("Japanese home-cooked recipe idea.", "日本の家庭料理レシピのアイデア。", "ဂျပန်အိမ်ချက် ဟင်းချက်နည်းအိုင်ဒီယာ။")
-      : t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း。"), 
+      : t("Approved topping recipe for Nako.", "ナコ用の承認されたトッピングレシピ。", "Nako အတွက် ခွင့်ပြုထားသော အပေါ်မှတင်ရန် ဟင်းချက်နည်း။"),
     ingredients: ingredients.map((entry) => {
       if (Array.isArray(entry)) {
         const [name, amount, key, macros] = entry;

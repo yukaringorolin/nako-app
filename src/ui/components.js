@@ -171,10 +171,10 @@ function renderIngredient(item, recipeId, ingredientIndex) {
 
   if (item.macros) {
     const macrosText = `${item.macros.calories} kcal · P ${item.macros.protein}g · C ${item.macros.carbs}g · F ${item.macros.fat}g`;
-    return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-copy"><div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="ingredient-macros">${esc(macrosText)}</span></div><span class="amount">${esc(item.amount)}</span></li>`;
+    return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-copy"><div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="ingredient-macros">${esc(macrosText)}</span></div><span class="amount">${esc(tr(item.amount))}</span></li>`;
   }
 
-  return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="amount">${esc(item.amount)}</span></li>`;
+  return `<li class="ingredient-row ${image ? "" : "without-image"}">${imageHtml}<div class="ingredient-details"><span class="ingredient-name">${esc(tr(name))}</span>${choices}</div><span class="amount">${esc(tr(item.amount))}</span></li>`;
 }
 
 function orderedList(items) {

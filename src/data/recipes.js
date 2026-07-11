@@ -506,10 +506,10 @@ const recipes = [
   recipe("banana-toast",
     t("Banana Toast", "バナナトースト", "ငှက်ပျောသီးပေါင်မုန့်ကင်"),
     [
-      [t("Bread", "パン", "ပေါင်မုန့်"), "1 slice", "bread"],
-      [t("Peanut butter", "ピーナッツバター", "မြေပဲထောပတ်"), "as needed", "peanut-butter"],
-      [t("Strawberry jam", "いちごジャム", "စတော်ဘယ်ရီယို"), "as needed", "strawberry-jam"],
-      [t("Banana", "バナナ", "ငှက်ပျောသီး"), "1 banana", "banana"]
+      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice", "1枚", "၁ ချပ်"), "bread"],
+      [t("Peanut butter", "ピーナッツバター", "မြေပဲထောပတ်"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "peanut-butter"],
+      [t("Strawberry jam", "いちごジャム", "စတော်ဘယ်ရီယို"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "strawberry-jam"],
+      [t("Banana", "バナナ", "ငှက်ပျောသီး"), t("1 banana", "バナナ1本", "ငှက်ပျောသီး ၁ လုံး"), "banana"]
     ],
     [
       t("Spread peanut butter and strawberry jam on the bread.", "パンにピーナッツバターといちごジャムを塗る。", "ပေါင်မုန့်ပေါ်တွင် မြေပဲထောပတ်နှင့် စတော်ဘယ်ရီယိုကို လိမ်းပါ။"),
@@ -529,10 +529,10 @@ const recipes = [
   recipe("egg-toast",
     t("Egg Toast", "卵トースト", "ကြက်ဥပေါင်မုန့်ကင်"),
     [
-      [t("Bread", "パン", "ပေါင်မုန့်"), "1 slice", "bread"],
-      [t("Egg", "卵", "ကြက်ဥ"), "1 egg", "eggs"],
-      [t("Mayonnaise", "マヨネーズ", "မေယိုနိစ်"), "to taste", "mayonnaise"],
-      [t("Salt", "塩", "ဆား"), "to taste", "salt"]
+      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice", "1枚", "၁ ချပ်"), "bread"],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1 egg", "卵1個", "ကြက်ဥ ၁ လုံး"), "eggs"],
+      [t("Mayonnaise", "マヨネーズ", "မေယိုနိစ်"), t("to taste", "お好みで", "အရသာအလိုက်"), "mayonnaise"],
+      [t("Salt", "塩", "ဆား"), t("to taste", "お好みで", "အရသာအလိုက်"), "salt"]
     ],
     [
       t("Boil the egg in water for 10 minutes to make a hard-boiled egg, then peel it.", "卵をお湯で10分ゆでてゆで卵を作り、殻をむく。", "ကြက်ဥကို ရေနွေးထဲတွင် ၁၀ မိနစ်ပြုတ်ပြီး ကြက်ဥပြုတ်လုပ်ကာ အခွံခွာပါ။"),
@@ -572,11 +572,11 @@ const recipes = [
   recipe("bak-kut-teh",
     t("Bak Kut Teh", "バクテー", "Bak Kut Teh (ဝက်နံရိုးစွပ်ပြုတ်)"),
     [
-      [t("Pork spare ribs", "豚スペアリブ", "ဝက်နံရိုး"), "2 ribs", "pork-ribs"],
-      [t("Bak Kut Teh spice sachet", "バクテー用スパイス小袋", "Bak Kut Teh ဟင်းခတ်အထုပ်"), "1 sachet", "bak-kut-teh-spices"],
-      [t("Garlic cloves", "にんにく", "ကြက်သွန်ဖြူ"), "a few cloves", "garlic"],
-      [t("Water", "水", "ရေ"), "8 bowls", "water"],
-      [t("Dark soy sauce", "濃口醤油", "ပဲငံပြာရည်အမည်း"), "to taste", "dark-soy-sauce"]
+      [t("Pork spare ribs", "豚スペアリブ", "ဝက်နံရိုး"), t("2 ribs", "2本", "ဝက်နံရိုး ၂ ချောင်း"), "pork-ribs"],
+      [t("Bak Kut Teh spice sachet", "バクテー用スパイス小袋", "Bak Kut Teh ဟင်းခတ်အထုပ်"), t("1 sachet", "1袋", "၁ ထုပ်"), "bak-kut-teh-spices"],
+      [t("Garlic cloves", "にんにく", "ကြက်သွန်ဖြူ"), t("a few cloves", "数片", "အနည်းငယ်"), "garlic"],
+      [t("Water", "水", "ရေ"), t("8 bowls", "8杯", "၈ ပန်းကန်"), "water"],
+      [t("Dark soy sauce", "濃口醤油", "ပဲငံပြာရည်အမည်း"), t("to taste", "お好みで", "အရသာအလိုက်"), "dark-soy-sauce"]
     ],
     [
       t("Put 1 sachet of Bak Kut Teh spices, 2 pork ribs, a few garlic cloves, and 8 bowls of water into a pot.", "鍋にバクテー用スパイス1袋、豚スペアリブ2本、にんにく数片、水8杯を入れる。", "အိုးထဲသို့ Bak Kut Teh ဟင်းခတ်အထုပ် ၁ ထုပ်၊ ဝက်နံရိုး ၂ ချောင်း၊ ကြက်သွန်ဖြူအနည်းငယ်နှင့် ရေ ၈ ပန်းကန်ထည့်ပါ။"),
