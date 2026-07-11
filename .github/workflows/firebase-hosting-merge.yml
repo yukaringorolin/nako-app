@@ -22,9 +22,9 @@ jobs:
           node --check src/firebase.js
       - name: Deploy Firestore Rules
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT" > service-account.json
-          export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
-          npx firebase-tools deploy --only firestore:rules --project nako-home-care
+          node -e "const fs = require('fs'); fs.writeFileSync('service-account.json', process.env.FIREBASE_SERVICE_ACCOUNT)"
+          export GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/service-account.json
+          npx firebase-tools deploy --only firestore:rules --project nako-home-care --debug
           rm service-account.json
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NAKO_HOME_CARE }}
