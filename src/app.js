@@ -16,6 +16,7 @@ const safeStorage = {
 
 let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
 let appState = loadState();
+migrateTrainingState();
 let selectedArchiveYear = null;
 let firebaseStatus = window.nakoFirebase?.status?.() || { mode: "local" };
 let diarySaveInProgress = false;
@@ -45,6 +46,35 @@ render();
    ========================================================================== */
 function loadState() {
   try { return JSON.parse(safeStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
+}
+
+function baselineCommandState(command, updatedAt = nowIso()) {
+  return {
+    score: command?.initialScore ?? 0,
+    rewardReliance: command?.initialRewardReliance ?? 6,
+    bestEnvironment: command?.initialEnvironment ?? 6,
+    successes: command?.initialSuccesses ?? null,
+    attempts: command?.initialAttempts ?? null,
+    latestComment: tr(command?.baselineComment),
+    lastPracticedAt: command?.initialLastPractisedAt ?? null,
+    updatedAt
+  };
+}
+
+function migrateTrainingState() {
+  const training = appState.training;
+  if (!training || typeof training !== "object") return;
+  training.contentMigrations ||= {};
+  const migrationId = "lift-carry-bao-bao-2026-07-11";
+  if (training.contentMigrations[migrationId]) return;
+  const command = trainingData.commands.find((item) => item.id === "lift-carry");
+  const state = training.commands?.[command?.id];
+  const hasLogs = training.commandLogs?.some((log) => log.commandId === command?.id);
+  const isUntouchedBaseline = state && !hasLogs && Number(state.score) === 0 && !state.lastPracticedAt;
+  if (isUntouchedBaseline) Object.assign(state, baselineCommandState(command));
+  if (!training.liftCue) training.liftCue = command?.defaultCue || "Bao Bao";
+  training.contentMigrations[migrationId] = true;
+  safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
 }
 
 let translationDebounceTimer = null;
@@ -553,10 +583,9 @@ function getTrainingState() {
   }
   const now = nowIso();
   appState.training = {
-    commands: Object.fromEntries(trainingData.commands.map((command) => [command.id, {
-      score: command.initialScore, rewardReliance: 6, bestEnvironment: 6,
-      successes: null, attempts: null, latestComment: tr(command.baselineComment), lastPracticedAt: null, updatedAt: now
-    }])), commandLogs: [], playLogs: []
+    commands: Object.fromEntries(trainingData.commands.map((command) => [command.id, baselineCommandState(command, now)])),
+    commandLogs: [], playLogs: [],
+    ...Object.fromEntries(trainingData.commands.filter((command) => command.setting && command.defaultCue).map((command) => [command.setting, command.defaultCue]))
   };
   saveState({ remote: false });
   return appState.training;
@@ -565,7 +594,7 @@ function getTrainingState() {
 function getCommandState(commandId) {
   const training = getTrainingState();
   const command = trainingData.commands.find((item) => item.id === commandId);
-  training.commands[commandId] ||= { score: command?.initialScore ?? 0, rewardReliance: 6, bestEnvironment: 6, successes: null, attempts: null, latestComment: tr(command?.baselineComment), lastPracticedAt: null, updatedAt: nowIso() };
+  training.commands[commandId] ||= baselineCommandState(command);
   return training.commands[commandId];
 }
 
@@ -949,7 +978,7 @@ function refreshCommandFromLogs(commandId) {
   const latest = logs[0];
   const state = getCommandState(commandId);
   if (!latest) {
-    Object.assign(state, { score: command?.initialScore ?? 0, rewardReliance: 6, bestEnvironment: 6, successes: null, attempts: null, latestComment: tr(command?.baselineComment), lastPracticedAt: null, updatedAt: nowIso() });
+    Object.assign(state, baselineCommandState(command));
     return;
   }
   Object.assign(state, { score: latest.score, rewardReliance: latest.rewardReliance, bestEnvironment: latest.environment, successes: latest.successes, attempts: latest.attempts, latestComment: latest.comment, lastPracticedAt: latest.createdAt, updatedAt: nowIso() });
