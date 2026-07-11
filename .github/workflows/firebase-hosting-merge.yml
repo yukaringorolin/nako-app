@@ -28,15 +28,12 @@ jobs:
           rm service-account.json
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NAKO_HOME_CARE }}
-      - name: Commit Debug Logs on Failure
+      - name: Upload Debug Logs on Failure
         if: failure()
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git checkout -b debug-logs || git checkout debug-logs
-          git add firebase-deploy.log
-          git commit -m "Add firebase deploy debug logs on failure"
-          git push -f origin debug-logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: firebase-deploy-log
+          path: firebase-deploy.log
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
