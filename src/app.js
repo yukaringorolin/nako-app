@@ -19,7 +19,8 @@ const safeStorage = {
   }
 };
 
-let currentLang = langs.includes(safeStorage.getItem(LANG_KEY)) ? safeStorage.getItem(LANG_KEY) : "en";
+const savedLang = safeStorage.getItem(LANG_KEY);
+let currentLang = langs.includes(savedLang) ? savedLang : "mm";
 let appState = loadState();
 migrateTrainingState();
 migrateRoutineTrackingState();
