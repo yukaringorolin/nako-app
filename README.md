@@ -52,25 +52,20 @@ Before cloud sync will work, enable these Firebase products in the Firebase cons
 - **Cloud Firestore**: create the database, then deploy `firestore.rules`.
 - **Cloud Storage**: create the bucket, then deploy `storage.rules`.
 
-The deployed app uses Firebase Hosting reserved URLs from `index.html`, so the Firebase web config is supplied automatically by Hosting. If the SDK/init URLs are unavailable, the app stays functional in local-only mode and keeps memos in `localStorage`.
+The deployed app uses Firebase Hosting reserved URLs from `index.html`, so the Firebase web config is supplied automatically by Hosting. If the SDK/init URLs are unavailable, the app stays functional in local-only mode and keeps data in `localStorage`.
 
-Routine completions use individual records at
-`households/{householdId}/routineCompletions/{taskId}_{cycleKey}`. They are kept
-out of the legacy shared state document so history growth and concurrent task
-updates cannot overwrite diary, food, training, or weight data.
+### Shared Household Architecture
+
+The app is configured to use one fixed shared household record: `our-dog-nako`.
+* **Single Shared Record**: All devices automatically connect and sync to `households/our-dog-nako` (and `households/our-dog-nako/routineCompletions`).
+* **No Configurable Sync Code**: There is no user-configurable household code UI, prompts, or options.
+* **Storage Independence**: Clearing browser storage does not reset or create a different household, as all devices default to the same fixed shared household record.
+* **Anonymous Authentication**: The site still uses anonymous authentication to establish a secure session with Firebase, allowing direct synchronization of diary entries, food logs, training progress, weight tracking, and routine check-ins.
 
 ### Household access security
 
-The legacy sync model uses anonymous authentication plus a shared household
-code. Anyone who learns a valid code of at least three characters can access
-that household document and its routine completions. The rules validate the
-new completion record shape and do not broaden existing access, but a code is
-not a strong membership boundary.
-
-The smallest non-breaking migration is to add a
-`households/{householdId}/members/{uid}` record for every currently connected
-device, update the rules to require that membership record, confirm all devices
-have enrolled, and only then remove the shared-code fallback.
+> [!WARNING]
+> Because the app is publicly accessible and uses anonymous authentication, anyone who can open the app may technically access the same shared household data. Proper private access would require household-member authentication in a future update.
 
 ## 🏡 Adding or Changing a Household Routine
 

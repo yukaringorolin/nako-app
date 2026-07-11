@@ -1,3 +1,7 @@
+try {
+  localStorage.removeItem("nako-household-code");
+} catch {}
+
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
@@ -227,12 +231,8 @@ function renderSyncIndicator() {
   const modes = ["local", "connecting", "synced", "error"];
   const mode = modes.includes(firebaseStatus?.mode) ? firebaseStatus.mode : "local";
   const key = mode === "synced" ? "syncCloud" : mode === "connecting" ? "syncConnecting" : mode === "error" ? "syncOff" : "syncLocal";
-  let code = "";
-  try {
-    code = localStorage.getItem("nako-household-code") || "";
-  } catch {}
-  const displayLabel = code ? `${label(key)} (${code})` : label(key);
-  return `<button class="sync-indicator-btn" data-sync-settings aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></button>`;
+  const displayLabel = label(key);
+  return `<span class="sync-indicator" aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></span>`;
 }
 
 /* ==========================================================================
@@ -1163,8 +1163,6 @@ function handleClick(event) {
   if (back) return handleBack();
   const langButton = event.target.closest("[data-lang]");
   if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
-  const syncBtn = event.target.closest("[data-sync-settings]");
-  if (syncBtn) { handleSyncSettings(); return; }
   const diarySubmit = event.target.closest("[data-diary-submit]");
   if (diarySubmit) { handleDiarySubmit(diarySubmit.dataset.diarySubmit); return; }
   const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
@@ -1234,34 +1232,6 @@ function handleBack() {
   }
 }
 
-function handleSyncSettings() {
-  let currentCode = "";
-  try {
-    currentCode = localStorage.getItem("nako-household-code") || "our-dog-nako";
-  } catch {}
-
-  const code = prompt(
-    "Enter a Shared Household Sync Code to link your devices (e.g. 'our-dog-nako'):\n\nLeave blank to use default ('our-dog-nako').",
-    currentCode
-  );
-  if (code === null) return; // Cancelled by user
-
-  const trimmed = code.trim() || "our-dog-nako";
-  if (trimmed === currentCode) return;
-
-  if (trimmed.length < 3) {
-    alert("Household code must be at least 3 characters.");
-    return;
-  }
-
-  if (window.nakoFirebase?.updateHouseholdCode) {
-    window.nakoFirebase.updateHouseholdCode(trimmed);
-  } else {
-    try {
-      localStorage.setItem("nako-household-code", trimmed);
-    } catch {}
-  }
-}
 
 function handleDiarySubmit(dateKey) {
   const draft = getDiaryDraft(dateKey);

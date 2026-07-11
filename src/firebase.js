@@ -1,5 +1,6 @@
 (function () {
   const STATE_DOC_ID = "nako-care-state-v2";
+  const HOUSEHOLD_ID = "our-dog-nako";
   const listeners = new Set();
   const status = {
     mode: "local",
@@ -61,14 +62,6 @@
         setStatus({ mode: "error", error: readableError(error) });
         return "";
       }
-    },
-    updateHouseholdCode(code) {
-      if (code && code.trim() !== "") {
-        try { localStorage.setItem("nako-household-code", code.trim()); } catch {}
-      } else {
-        try { localStorage.removeItem("nako-household-code"); } catch {}
-      }
-      updateStateDoc();
     }
   };
 
@@ -121,7 +114,7 @@
     updateStateDoc();
   }
 
-  // updateStateDoc: Connects database reference path based on current local household code
+  // updateStateDoc: Connects database reference path based on the fixed household ID
   function updateStateDoc() {
     detachStateListener();
     detachRoutineCompletionListener();
@@ -133,12 +126,7 @@
       return;
     }
 
-    let code = "our-dog-nako";
-    try {
-      code = localStorage.getItem("nako-household-code") || "our-dog-nako";
-    } catch {}
-
-    stateDoc = db.collection("households").doc(code.trim());
+    stateDoc = db.collection("households").doc(HOUSEHOLD_ID);
     routineCompletionCollection = stateDoc.collection("routineCompletions");
 
     setStatus({ mode: "connecting", uid: auth.currentUser.uid, error: "" });
