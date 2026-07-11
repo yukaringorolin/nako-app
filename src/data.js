@@ -1767,12 +1767,20 @@ if (nakoPottyPenRoutine) {
     ...nakoPottyPenRoutine.instructions,
     t("When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "ペットシーツを交換するときは、シーツをピンクの横線の内側に収めてください。絶対に線を越えないようにします。", "pee pad လဲသောအခါ pad ကို ပန်းရောင်ဘေးလိုင်းအတွင်းတွင်ထားပါ။ pad သည် လိုင်းကို ဘယ်တော့မှ မကျော်ရပါ။"),
     t("If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "ペットシーツが線を越えると、トレーの上カバーで完全に隠れず、Nakoが噛んだり引っ張り出したり破いたりする可能性があります。", "pee pad သည် လိုင်းကျော်ပါက tray cover က အပြည့်မဖုံးနိုင်ဘဲ Nako က ကိုက်ခြင်း၊ ဆွဲထုတ်ခြင်း၊ ဖြဲခြင်းလုပ်နိုင်သည်။"),
-    t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "Nakoがペットシーツを引っ張り出したり荒らしたりした場合は、ペン全体をしっかり掃除してください。", "Nako က pee pad ကို ဆွဲထုတ်ခြင်း သို့မဟုတ် ဖျက်ဆီးခြင်းလုပ်ပါက pen တစ်ခုလုံးကို အပြည့်သန့်ရှင်းရေးလုပ်ပါ။")
+    t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "Nakoがペットシーツを引っ張り出したり荒らしたりした場合は、ペン全体をしっかり掃除してください。", "Nako က pee pad ကို ဆွဲထုတ်ခြင်း သို့မဟုတ် ဖျက်ဆီးခြင်းလုပ်ပါက pen တစ်ခုလုံးကို အပြည့်သန့်ရှင်းရေးလုပ်ပါ။"),
+    t("If poop lands outside the tray, it is usually not a potty accident: Nako likely pooped in the pen, but it caught in the hair around her bottom. Pick it up, then clean the entire pen floor.", "トレーの外にうんちが落ちている場合、それは通常トイレの失敗ではありません。ナコはペン内で排便したものの、お尻まわりの毛に付いて落ちた可能性があります。うんちを拾い、ペンの床全体を掃除してください。", "ချေးသည် tray အပြင်ဘက်တွင် ကျနေပါက အများအားဖြင့် အပေါ့အလေးသွားရာ မတော်တဆမှုမဟုတ်ပါ။ နာကိုသည် pen အတွင်းတွင် ချေးသွားပြီး၊ တင်ပါးပတ်ဝန်းကျင်အမွေးတွင် ကပ်နေ၍ ကျလာနိုင်သည်။ ချေးကိုကောက်ပြီး pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။"),
+    t("Use the pet urine and odour-removal spray on urine marks and the pee tray or pen floor as needed to remove urine and pee smell.", "尿の跡やトイレトレー、ペンの床には、必要に応じてペット用の尿・消臭スプレーを使い、尿やおしっこの臭いを取り除いてください。", "ဆီးကွက်များနှင့် pee tray သို့မဟုတ် pen ကြမ်းပြင်ပေါ်တွင် လိုအပ်သလို pet urine and odour-removal spray ကိုသုံးပြီး ဆီးနှင့် pee အနံ့ကို ဖယ်ရှားပါ။")
   ];
   nakoPottyPenRoutine.mustRemember.push(
-    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray.", "重要原則: おしっことうんちは見えてはいけません。トレーの外にも絶対に出ないようにしてください。", "အဓိကစည်းမျဉ်း: ဆီးနှင့်အညစ်အကြေးများကို မြင်မနေရပါ။ pee tray အပြင်ဘက်တွင်လည်း ဘယ်နေရာမှ မရှိရပါ။")
+    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray. If poop lands outside, clean the whole pen floor.", "重要原則: おしっことうんちは見えてはいけません。トレーの外にも絶対に出ないようにしてください。うんちが外に落ちた場合は、ペンの床全体を掃除します。", "အဓိကစည်းမျဉ်း: ဆီးနှင့်အညစ်အကြေးများကို မြင်မနေရပါ။ pee tray အပြင်ဘက်တွင်လည်း ဘယ်နေရာမှ မရှိရပါ။ ချေးသည် အပြင်ဘက်တွင် ကျနေပါက pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။")
   );
   nakoPottyPenRoutine.photos = [
+    photo("assets/routines/nako-potty-outside-poop-floor.jpg",
+      t("Poop outside the potty tray in Nako's pen", "ナコのペン内でトイレトレーの外にあるうんち", "နာကို၏ pen တွင် potty tray အပြင်ဘက်၌ရှိသောချေး"),
+      t("If poop lands outside the tray, pick it up and clean the entire pen floor; it may have caught in the hair around Nako's bottom after she pooped in the pen.", "うんちがトレーの外に落ちたら拾い、ペンの床全体を掃除します。ナコがペン内で排便した後、お尻まわりの毛に付いて落ちた可能性があります。", "ချေးသည် tray အပြင်ဘက်တွင် ကျနေပါက ကောက်ပြီး pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။ နာကိုက pen အတွင်းတွင် ချေးသွားပြီးနောက် တင်ပါးပတ်ဝန်းကျင်အမွေးတွင် ကပ်နေ၍ ကျလာနိုင်သည်။")),
+    photo("assets/routines/nako-potty-urine-odour-spray.jpg",
+      t("Pet urine and odour-removal spray for Nako's pen", "ナコのペン用のペット尿・消臭スプレー", "နာကို၏ pen အတွက် pet urine and odour-removal spray"),
+      t("Use this spray on urine marks and the pee tray or pen floor as needed to remove urine and pee smell.", "尿の跡やトイレトレー、ペンの床に必要に応じて使い、尿やおしっこの臭いを取り除きます。", "ဆီးကွက်များနှင့် pee tray သို့မဟုတ် pen ကြမ်းပြင်ပေါ်တွင် လိုအပ်သလိုသုံးပြီး ဆီးနှင့် pee အနံ့ကို ဖယ်ရှားပါ။")),
     photo("assets/routines/nako-potty-pee-pad-line.jpg",
       t("Correct pee pad placement inside the pink line", "ピンクの線の内側に正しく置かれたペットシーツ", "ပန်းရောင်လိုင်းအတွင်းတွင် မှန်ကန်စွာထားသော pee pad"),
       t("Keep the pee pad inside the pink side line before closing the tray cover. If it sticks out, Nako can grab and tear it.", "トレーのカバーを閉める前に、ペットシーツをピンクの横線の内側に収めてください。はみ出すと、Nakoがつかんで破ることがあります。", "tray cover မပိတ်မီ pee pad ကို ပန်းရောင်ဘေးလိုင်းအတွင်းထားပါ။ အပြင်ထွက်နေပါက Nako က ဆွဲယူပြီး ဖြဲနိုင်သည်။")),
