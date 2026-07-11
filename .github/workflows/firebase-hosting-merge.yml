@@ -24,10 +24,19 @@ jobs:
         run: |
           node -e "const fs = require('fs'); fs.writeFileSync('service-account.json', process.env.FIREBASE_SERVICE_ACCOUNT)"
           export GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/service-account.json
-          npx firebase-tools deploy --only firestore:rules --project nako-home-care --debug
+          npx firebase-tools deploy --only firestore:rules --project nako-home-care --debug > firebase-deploy.log 2>&1
           rm service-account.json
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NAKO_HOME_CARE }}
+      - name: Commit Debug Logs on Failure
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git checkout -b debug-logs || git checkout debug-logs
+          git add firebase-deploy.log
+          git commit -m "Add firebase deploy debug logs on failure"
+          git push -f origin debug-logs
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
