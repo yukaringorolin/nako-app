@@ -22,6 +22,12 @@
   let pendingState = null;
   let pendingTimer = null;
 
+  let stateSyncStatus = "local";
+  let routineSyncStatus = "local";
+  let stateSyncError = "";
+  let routineSyncError = "";
+  let globalError = "";
+
   const service = {
     status: () => ({ ...status }),
     onStatus(listener) {
@@ -33,12 +39,22 @@
     // startStateSync: Registers listener callbacks and starts Firestore doc tracking
     startStateSync(callbacks) {
       syncCallbacks = callbacks || {};
-      if (stateDoc) attachStateListener();
+      if (stateDoc) {
+        stateSyncStatus = "connecting";
+        stateSyncError = "";
+        updateCombinedStatus();
+        attachStateListener();
+      }
       return Boolean(stateDoc);
     },
     startRoutineCompletionSync(callbacks) {
       routineSyncCallbacks = callbacks || {};
-      if (routineCompletionCollection) attachRoutineCompletionListener();
+      if (routineCompletionCollection) {
+        routineSyncStatus = "connecting";
+        routineSyncError = "";
+        updateCombinedStatus();
+        attachRoutineCompletionListener();
+      }
       return Boolean(routineCompletionCollection);
     },
     saveRoutineCompletion(record) {
@@ -59,7 +75,8 @@
       try {
         return await storage.ref(path).getDownloadURL();
       } catch (error) {
-        setStatus({ mode: "error", error: readableError(error) });
+        globalError = readableError(error);
+        updateCombinedStatus();
         return "";
       }
     }
@@ -89,28 +106,33 @@
       throw new Error("Firebase Auth and Firestore SDKs are required");
     }
 
-    setStatus({
-      mode: "connecting",
+    stateSyncStatus = "connecting";
+    routineSyncStatus = "connecting";
+    globalError = "";
+    updateCombinedStatus({
       cloudEnabled: true,
-      storageEnabled: Boolean(storage),
-      error: ""
+      storageEnabled: Boolean(storage)
     });
 
     auth.onAuthStateChanged(handleAuthState, (error) => {
-      setStatus({ mode: "error", error: readableError(error) });
+      globalError = readableError(error);
+      updateCombinedStatus();
     });
 
     auth.signInAnonymously().catch((error) => {
-      setStatus({ mode: "error", error: readableError(error) });
+      globalError = readableError(error);
+      updateCombinedStatus();
     });
   } catch (error) {
-    setStatus({ mode: "local", cloudEnabled: false, error: readableError(error) });
+    globalError = readableError(error);
+    updateCombinedStatus({ cloudEnabled: false });
   }
 
   window.addEventListener("pagehide", flushPendingState);
 
   // handleAuthState: Triggers when the Firebase Auth user changes
   function handleAuthState(user) {
+    globalError = "";
     updateStateDoc();
   }
 
@@ -122,14 +144,22 @@
     if (!auth || !auth.currentUser) {
       stateDoc = null;
       routineCompletionCollection = null;
-      setStatus({ mode: "local", uid: "", error: "" });
+      stateSyncStatus = "local";
+      routineSyncStatus = "local";
+      stateSyncError = "";
+      routineSyncError = "";
+      updateCombinedStatus({ uid: "" });
       return;
     }
 
     stateDoc = db.collection("households").doc(HOUSEHOLD_ID);
     routineCompletionCollection = stateDoc.collection("routineCompletions");
 
-    setStatus({ mode: "connecting", uid: auth.currentUser.uid, error: "" });
+    stateSyncStatus = syncCallbacks ? "connecting" : "local";
+    routineSyncStatus = routineSyncCallbacks ? "connecting" : "local";
+    stateSyncError = "";
+    routineSyncError = "";
+    updateCombinedStatus({ uid: auth.currentUser.uid });
     if (syncCallbacks) attachStateListener();
     if (routineSyncCallbacks) attachRoutineCompletionListener();
   }
@@ -150,7 +180,9 @@
           const mergedState = mergeStates(remoteState, localState);
           syncCallbacks.applyRemoteState?.(mergedState);
           service.saveRemoteState(mergedState);
-          setStatus({ mode: "synced", error: "" });
+          stateSyncStatus = "synced";
+          stateSyncError = "";
+          updateCombinedStatus();
           return;
         }
 
@@ -160,10 +192,14 @@
         if (hasDiaryMergeChanges(remoteState.diary, mergedState.diary)) {
           service.saveRemoteState(mergedState);
         }
-        setStatus({ mode: "synced", error: "" });
+        stateSyncStatus = "synced";
+        stateSyncError = "";
+        updateCombinedStatus();
       },
       (error) => {
-        setStatus({ mode: "error", error: readableError(error) });
+        stateSyncStatus = "error";
+        stateSyncError = readableError(error);
+        updateCombinedStatus();
       }
     );
   }
@@ -190,9 +226,15 @@
             saveRoutineCompletionRecord({ ...localRecord, id });
           }
         });
-        setStatus({ mode: "synced", error: "" });
+        routineSyncStatus = "synced";
+        routineSyncError = "";
+        updateCombinedStatus();
       },
-      (error) => setStatus({ mode: "error", error: readableError(error) })
+      (error) => {
+        routineSyncStatus = "error";
+        routineSyncError = "Routine sync unavailable";
+        updateCombinedStatus();
+      }
     );
   }
 
@@ -213,10 +255,14 @@
         if (existing && recordTime(existing) > recordTime(cleanRecord)) return;
         transaction.set(document, cleanRecord, { merge: true });
       });
-      setStatus({ mode: "synced", error: "" });
+      routineSyncStatus = "synced";
+      routineSyncError = "";
+      updateCombinedStatus();
       return true;
     } catch (error) {
-      setStatus({ mode: "error", error: readableError(error) });
+      routineSyncStatus = "error";
+      routineSyncError = "Routine sync unavailable";
+      updateCombinedStatus();
       return false;
     }
   }
@@ -252,11 +298,15 @@
         },
         { merge: true }
       );
-      setStatus({ mode: "synced", error: "" });
+      stateSyncStatus = "synced";
+      stateSyncError = "";
+      updateCombinedStatus();
       return true;
     } catch (error) {
       pendingState = stateToSave;
-      setStatus({ mode: "error", error: readableError(error) });
+      stateSyncStatus = "error";
+      stateSyncError = readableError(error);
+      updateCombinedStatus();
       return false;
     }
   }
@@ -364,6 +414,28 @@
       } catch {
         listeners.delete(listener);
       }
+    });
+  }
+
+  function updateCombinedStatus(patch = {}) {
+    let combinedMode = "local";
+    let combinedError = globalError || "";
+
+    if (globalError) {
+      combinedMode = "error";
+    } else if (stateSyncStatus === "error" || routineSyncStatus === "error") {
+      combinedMode = "error";
+      combinedError = routineSyncError || stateSyncError;
+    } else if (stateSyncStatus === "connecting" || routineSyncStatus === "connecting") {
+      combinedMode = "connecting";
+    } else if (stateSyncStatus === "synced" && routineSyncStatus === "synced") {
+      combinedMode = "synced";
+    }
+
+    setStatus({
+      mode: combinedMode,
+      error: combinedError,
+      ...patch
     });
   }
 

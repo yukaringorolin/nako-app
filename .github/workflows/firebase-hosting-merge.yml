@@ -20,6 +20,14 @@ jobs:
           node --check src/app.js
           node --check src/data.js
           node --check src/firebase.js
+      - name: Deploy Firestore Rules
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > service-account.json
+          export GOOGLE_APPLICATION_CREDENTIALS=service-account.json
+          npx firebase-tools deploy --only firestore:rules --project nako-home-care
+          rm service-account.json
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NAKO_HOME_CARE }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
