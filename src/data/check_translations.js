@@ -50,6 +50,8 @@ function checkTranslations() {
   checkObj(window.nakoData.homeSections, "homeSections");
   checkObj(window.nakoData.cookingRules, "cookingRules");
   checkObj(window.nakoData.foodItems, "foodItems");
+  checkObj(window.nakoData.foodSafetyItems, "foodSafetyItems");
+  checkObj(window.nakoData.officialReferences, "officialReferences");
   checkObj(window.nakoData.routineTasks, "routineTasks");
   checkObj(window.nakoData.recipes, "recipes");
   checkObj(window.nakoData.additionalResources, "additionalResources");

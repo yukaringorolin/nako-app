@@ -79,3 +79,8 @@ function recipeNote(note) {
     _missingMm: note._missingMm
   };
 }
+
+function safetyItem(id, icon, title, summary, instructions, mustRemember, photos = []) {
+  return { id, icon, title, summary, instructions, mustRemember: Array.isArray(mustRemember) ? mustRemember : [mustRemember], photos };
+}
+

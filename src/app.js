@@ -5,7 +5,7 @@ try {
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
-const { langs, ui, homeSections, foodItems, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
+const { langs, ui, homeSections, foodItems, foodSafetyItems, officialReferences, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
 const ingredientCatalog = window.nakoIngredientCatalog || {};
 const routineTracking = window.nakoRoutineTracking;
 
@@ -156,6 +156,7 @@ function parseRoute() {
   if (parts[0] === "section" && parts[1]) return { view: "section", sectionId: parts[1] };
   if (parts[0] === "routine" && parts[1]) return { view: "routine", routineId: parts[1] };
   if (parts[0] === "food" && parts[1]) return { view: "food", foodId: parts[1] };
+  if (parts[0] === "food-safety" && parts[1]) return { view: "food-safety-item", itemId: parts[1] };
   if (parts[0] === "recipe" && parts[1]) return { view: "recipe", recipeId: parts[1] };
   if (parts[0] === "routine-checkin") return { view: "routine-checkin" };
   if (parts[0] === "routine-history") return { view: "routine-history" };
@@ -190,6 +191,8 @@ function render() {
     renderRoutine(route.routineId);
   } else if (route.view === "food") {
     renderFood(route.foodId);
+  } else if (route.view === "food-safety-item") {
+    renderFoodSafetyItem(route.itemId);
   } else if (route.view === "recipe") {
     renderRecipe(route.recipeId);
   } else if (route.view === "routine-checkin") {
@@ -606,14 +609,40 @@ function renderSection(sectionId) {
   const section = homeSections.find((entry) => entry.id === sectionId);
   if (!section) return renderHome();
   const isFood = sectionId === "food";
-  const items = isFood ? [...foodItems].sort(bySort) : routineTasks.filter((task) => task.frequencyBucket === sectionId).sort(bySort);
-  const pinned = !isFood && sectionId === "daily" ? renderPinnedSafety() : "";
+  const isFoodSafety = sectionId === "food-safety";
+  
+  let items;
+  if (isFood) {
+    items = [...foodItems].sort(bySort);
+  } else if (isFoodSafety) {
+    items = [...foodSafetyItems];
+  } else {
+    items = routineTasks.filter((task) => task.frequencyBucket === sectionId).sort(bySort);
+  }
+
+  const pinned = !isFood && !isFoodSafety && sectionId === "daily" ? renderPinnedSafety() : "";
   const rules = isFood ? renderRulesPanel() : "";
+  const officialRefs = isFoodSafety ? renderOfficialReferencesPanel() : "";
+  
+  let eyebrowText;
+  if (isFood) {
+    eyebrowText = label("foodItems");
+  } else if (isFoodSafety) {
+    eyebrowText = label("safetyReferences");
+  } else {
+    eyebrowText = label("routineItems");
+  }
+
   const content = `
-    ${renderHead(section.icon, tr(section.title), tr(section.description), section.iconBg, isFood ? label("foodItems") : label("routineItems"))}
+    ${renderHead(section.icon, tr(section.title), tr(section.description), section.iconBg, eyebrowText)}
     ${rules}
     ${pinned}
-    <section class="card-list">${items.map((item) => isFood ? renderFoodCard(item, section) : renderRoutineCard(item, section)).join("") || emptyState()}</section>`;
+    <section class="card-list">${items.map((item) => {
+      if (isFood) return renderFoodCard(item, section);
+      if (isFoodSafety) return renderFoodSafetyCard(item, section);
+      return renderRoutineCard(item, section);
+    }).join("") || emptyState()}</section>
+    ${officialRefs}`;
   renderShell(tr(section.title), content, true);
 }
 
@@ -663,6 +692,35 @@ function renderFood(foodId) {
     ${renderVideo(item.videoUrl)}
     <section class="panel"><h2>${esc(label("memo"))}</h2><textarea class="memo-field" data-food-memo="${esc(item.id)}" placeholder="${esc(label("memoPlaceholder"))}">${esc(state.memo || "")}</textarea></section>`;
   renderShell(tr(item.title), content, true);
+}
+
+function renderFoodSafetyItem(itemId) {
+  const item = foodSafetyItems.find((entry) => entry.id === itemId);
+  if (!item) return renderHome();
+  const hasInstructions = item.instructions && item.instructions.length > 0;
+  const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";
+  const content = `
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fdf1ee", label("safetyReferences"), primaryPhoto(item.photos))}
+    ${instructionsPanel}
+    ${renderPhotos(item.photos)}
+    <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>`;
+  renderShell(tr(item.title), content, true);
+}
+
+function renderOfficialReferencesPanel() {
+  if (!officialReferences || !officialReferences.items) return "";
+  return `
+    <section class="panel official-references">
+      <h2>${esc(tr(officialReferences.title))}</h2>
+      <ul class="note-list">
+        ${officialReferences.items.map((link) => `
+          <li>
+            <span>•</span>
+            <span><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">${esc(tr(link.title))}</a></span>
+          </li>
+        `).join("")}
+      </ul>
+    </section>`;
 }
 
 function renderRecipeIndex(item) {
@@ -750,8 +808,19 @@ function renderHead(icon, title, description, iconBg, eyebrow, photo = null) {
 }
 
 function renderSectionCard(section) {
-  const count = section.id === "food" ? foodItems.length : routineTasks.filter((task) => task.frequencyBucket === section.id).length;
-  return `<button class="category-card" data-section="${esc(section.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(section.id === "food" ? label("foodItems") : label("routineItems"))}</span></span></span><span class="chevron">›</span></button>`;
+  let count;
+  let labelText;
+  if (section.id === "food") {
+    count = foodItems.length;
+    labelText = label("foodItems");
+  } else if (section.id === "food-safety") {
+    count = foodSafetyItems.length;
+    labelText = label("safetyReferences");
+  } else {
+    count = routineTasks.filter((task) => task.frequencyBucket === section.id).length;
+    labelText = label("routineItems");
+  }
+  return `<button class="category-card" data-section="${esc(section.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(labelText)}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderAdditionalResources() {
@@ -796,6 +865,10 @@ function renderResourceCard(resource) {
 
 function renderFoodCard(item) {
   return `<button class="item-card" data-food="${esc(item.id)}" style="--accent:#f19a82;--icon-bg:#fff0eb">${renderCardIcon(item.icon, primaryPhoto(item.photos))}<span class="card-copy"><span class="card-title">${esc(tr(item.title))}</span><span class="card-description">${esc(tr(item.summary))}</span><span class="card-meta"><span class="badge">${esc(item.trackingMode === "future" ? label("futureTracking") : label("foodItems"))}</span></span></span><span class="chevron">›</span></button>`;
+}
+
+function renderFoodSafetyCard(item, section) {
+  return `<button class="item-card" data-food-safety="${esc(item.id)}" style="--accent:${section.accent};--icon-bg:${section.iconBg}">${renderCardIcon(item.icon, primaryPhoto(item.photos))}<span class="card-copy"><span class="card-title">${esc(tr(item.title))}</span><span class="card-description">${esc(tr(item.summary))}</span><span class="card-meta"><span class="badge">${esc(label("safetyReferences"))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
 function renderRoutineCard(task, section) {
@@ -1199,6 +1272,8 @@ function handleClick(event) {
   if (routine) return go(`#routine/${routine.dataset.routine}`);
   const food = event.target.closest("[data-food]");
   if (food) return go(`#food/${food.dataset.food}`);
+  const foodSafety = event.target.closest("[data-food-safety]");
+  if (foodSafety) return go(`#food-safety/${foodSafety.dataset.foodSafety}`);
   const recipe = event.target.closest("[data-recipe]");
   if (recipe) return go(`#recipe/${recipe.dataset.recipe}`);
 }
@@ -1220,6 +1295,8 @@ function handleBack() {
     }
   } else if (route.view === "food") {
     go("#section/food");
+  } else if (route.view === "food-safety-item") {
+    go("#section/food-safety");
   } else if (route.view === "recipe") {
     const r = recipes.find((entry) => entry.id === route.recipeId);
     if (r && r.type === "human") {

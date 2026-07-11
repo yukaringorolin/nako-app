@@ -10,6 +10,7 @@ A lightweight, mobile-first, multi-language onboarding guide designed for househ
 - **Reference Notes**: Food and reference pages can keep text memos for questions or future tracking notes.
 - **Memo Persistence**: Uses browser `localStorage` first, then syncs notes to Firestore when Firebase Auth and Firestore are available.
 - **Routine Check-in**: Tracks only curated recurring maintenance tasks with Singapore-time cycle keys, optional notes/date edits, history, and automatic Nako-weight completion.
+- **Food Safety Reference**: A standalone top-level reference section detailing safe storage, preparation, cooking, and leftover handling rules in three languages.
 - **Multi-Language Support**: Instantly toggles UI text and data descriptions between English (**EN**), Japanese (**JP**), and Burmese (**MM**).
 
 ## 🛠️ Technology Stack
