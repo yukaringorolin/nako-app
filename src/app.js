@@ -48,12 +48,22 @@ const scrollPositions = {};
 let activeRouteKey = null;
 const app = document.querySelector("#app");
 
+// Global search state variables
+let searchQuery = "";
+let searchResults = [];
+let searchFocused = false;
+let selectedResultIndex = -1;
+let pendingDestination = null;
+const searchIndex = window.nakoSearch.buildSearchIndex(window.nakoData);
+
 window.addEventListener("hashchange", render);
 document.addEventListener("click", handleClick);
 document.addEventListener("input", handleInput);
 document.addEventListener("change", handleChange);
 document.addEventListener("blur", handleBlur, true);
 document.addEventListener("submit", handleSubmit);
+document.addEventListener("keydown", handleKeydown);
+document.addEventListener("focusin", handleFocusIn);
 initFirebaseSync();
 render();
 
@@ -208,6 +218,54 @@ function render() {
   setTimeout(() => {
     window.scrollTo(0, targetScroll);
   }, 0);
+
+  if (oldRouteKey !== newRouteKey) {
+    searchFocused = false;
+    selectedResultIndex = -1;
+  }
+
+  if (pendingDestination) {
+    const dest = pendingDestination;
+    pendingDestination = null;
+    setTimeout(() => {
+      if (dest.type === "cooking-rule") {
+        const rulesList = document.querySelectorAll(".rule-strip li");
+        const idx = Number(dest.index);
+        if (rulesList[idx]) {
+          rulesList[idx].scrollIntoView({ behavior: "smooth", block: "center" });
+          rulesList[idx].style.background = "#fef08a";
+          setTimeout(() => { rulesList[idx].style.background = ""; }, 2000);
+        }
+      } else if (dest.type === "resource") {
+        const coll = document.querySelector(".resource-collection");
+        if (coll) {
+          coll.open = true;
+          const resCard = document.getElementById(`resource-${dest.id}`);
+          if (resCard) {
+            resCard.open = true;
+            resCard.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      } else if (dest.type === "training-command") {
+        const card = document.getElementById(`training-${dest.id}`);
+        if (card) {
+          if (trainingExpandedCommandId !== dest.id) {
+            trainingExpandedCommandId = dest.id;
+            render();
+          }
+          setTimeout(() => {
+            const el = document.getElementById(`training-${dest.id}`);
+            el?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 100);
+        }
+      } else if (dest.type === "training-activity") {
+        const card = document.getElementById(`training-activity-${dest.id}`);
+        if (card) {
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 150);
+  }
 }
 
 function renderShell(title, content, showBack = false) {
@@ -251,6 +309,7 @@ function renderHome() {
         <p class="lead">${esc(label("appSubtitle"))}</p>
       </div>
     </section>
+    ${renderSearchComponent()}
     ${renderRoutineHomeShortcut()}
     <p class="section-label">${esc(label("quickShortcuts"))}</p>
     <section class="shortcut-grid">
@@ -843,7 +902,8 @@ function renderAdditionalResources() {
 function renderResourceCard(resource) {
   const embed = resource.embedUrl ? `<button class="resource-video resource-video-trigger" type="button" data-resource-video data-embed-url="${esc(resource.embedUrl)}" data-video-title="${esc(tr(resource.videoTitle))}" aria-label="${esc(tr(resource.watchLabel))}"><span aria-hidden="true">▶</span><span>${esc(tr(resource.watchLabel))}</span></button>` : "";
   const takeaways = Array.isArray(resource.takeaways) ? resource.takeaways : [];
-  return `<details class="resource-card">
+  const slug = resource.title.en.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return `<details class="resource-card" id="resource-${slug}">
     <summary class="resource-card-head">
       <span class="resource-icon" aria-hidden="true">${esc(resource.icon || "R")}</span>
       <span class="resource-card-copy">
@@ -1089,7 +1149,7 @@ function formatTrainingDate(value) { if (!value) return "—"; const date = new 
 
 function renderTrainingRules() { const rules = ["Reward desired behaviour with food, toys, play, praise, access, or affection.", "Keep sessions short and make the exercise easier after repeated failure.", "Never frighten, intimidate, hit, pin, alpha-roll, shout at, or physically force Nako.", "Never use shock, prong, choke, or punishment tools.", "Never punish recall or forcibly release an object from her mouth.", "Stop physical training for soreness, fear, tiredness, reluctance, or instability; contact Edwin for pain, limping, coughing, injury, unusual fear, aggression, or abnormal behaviour."]; return `<details class="training-details"><summary>${esc(tl("rules"))}</summary>${noteList(rules.map((text) => ({ en: text, jp: text, mm: text })))}</details>`; }
 
-function renderTrainingPlay() { return `<section class="training-play-list">${trainingData.activities.map((activity) => `<article class="play-card"><div><h2>${esc(tr(activity.title))}</h2><p>${esc(tr(activity.purpose))}</p></div><span>${esc(`${activity.duration} min · ${tr(activity.intensity)}`)}</span>${orderedList(activity.steps)}<div class="training-safety">${noteList(activity.safety)}</div><button class="action-button primary" data-training-add-play="${esc(activity.id)}">${esc(tl("addLog"))}</button>${trainingDraft?.kind === "play" && trainingDraft.activityId === activity.id ? renderPlayForm() : ""}</article>`).join("")}${renderTrainingVideos(trainingData.videos.filter((video) => video.activityIds.length))}</section>`; }
+function renderTrainingPlay() { return `<section class="training-play-list">${trainingData.activities.map((activity) => `<article class="play-card" id="training-activity-${esc(activity.id)}"><div><h2>${esc(tr(activity.title))}</h2><p>${esc(tr(activity.purpose))}</p></div><span>${esc(`${activity.duration} min · ${tr(activity.intensity)}`)}</span>${orderedList(activity.steps)}<div class="training-safety">${noteList(activity.safety)}</div><button class="action-button primary" data-training-add-play="${esc(activity.id)}">${esc(tl("addLog"))}</button>${trainingDraft?.kind === "play" && trainingDraft.activityId === activity.id ? renderPlayForm() : ""}</article>`).join("")}${renderTrainingVideos(trainingData.videos.filter((video) => video.activityIds.length))}</section>`; }
 function newPlayDraft(activityId, log = null) { trainingDraft = { kind: "play", id: log?.id || "", activityId, date: log?.createdAt || nowIso(), durationMinutes: log?.durationMinutes ?? "", engagement: log?.engagement ?? 3, energyBefore: log?.energyBefore ?? 3, energyAfter: log?.energyAfter ?? 3, dropResponse: log?.dropResponse || "", allDoneResponse: log?.allDoneResponse || "", favouriteToy: log?.favouriteToy || "", comment: log?.comment || "", unusual: log?.unusual || "", saving: false }; }
 function renderPlayForm() { const d = trainingDraft; return `<form class="training-form" data-training-form="play"><h3>${esc(tl("playLog"))}</h3><label>${esc(tl("duration"))}<input type="number" min="0" value="${esc(d.durationMinutes)}" data-training-input data-training-field="durationMinutes" /></label><div class="training-form-grid"><label>${esc(tl("engagement"))}<input type="number" min="1" max="5" value="${esc(d.engagement)}" data-training-input data-training-field="engagement" /></label><label>${esc(tl("energyBefore"))}<input type="number" min="1" max="5" value="${esc(d.energyBefore)}" data-training-input data-training-field="energyBefore" /></label><label>${esc(tl("energyAfter"))}<input type="number" min="1" max="5" value="${esc(d.energyAfter)}" data-training-input data-training-field="energyAfter" /></label></div><label>${esc(tl("dropResponse"))}<input value="${esc(d.dropResponse)}" data-training-input data-training-field="dropResponse" /></label><label>${esc(tl("allDoneResponse"))}<input value="${esc(d.allDoneResponse)}" data-training-input data-training-field="allDoneResponse" /></label><label>${esc(tl("favouriteToy"))}<input value="${esc(d.favouriteToy)}" data-training-input data-training-field="favouriteToy" /></label><label>${esc(tl("comment"))}<textarea data-training-input data-training-field="comment">${esc(d.comment)}</textarea></label><label>${esc(tl("unusual"))}<textarea data-training-input data-training-field="unusual">${esc(d.unusual)}</textarea></label><div class="training-form-actions"><button class="action-button primary" type="submit" ${d.saving ? "disabled" : ""}>${esc(tl("save"))}</button><button class="action-button secondary" type="button" data-training-cancel>${esc(tl("cancel"))}</button></div></form>`; }
 function renderTrainingLog() { const training = getTrainingState(); const commandLogs = [...training.commandLogs].sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt))); const playLogs = [...training.playLogs].sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt))); const list = (logs, title, finder, edit, del) => `<section class="panel"><h2>${esc(title)}</h2>${logs.length ? `<div class="log-list">${logs.map((log) => { const item = finder(log); return `<article><strong>${esc(tr(item?.title || { en: log.commandId || log.activityId }))}</strong><span>${esc(formatTrainingDate(log.createdAt))}</span>${log.comment ? `<p>${esc(log.comment)}</p>` : ""}<div><button ${edit}="${esc(log.id)}">${esc(tl("edit"))}</button><button ${del}="${esc(log.id)}">${esc(tl("delete"))}</button></div></article>`; }).join("")}</div>` : "<p>—</p>"}</section>`; return `${list(commandLogs, tl("commandLog"), (log) => trainingData.commands.find((item) => item.id === log.commandId), "data-training-edit-command", "data-training-delete-command")}${list(playLogs, tl("playLog"), (log) => trainingData.activities.find((item) => item.id === log.activityId), "data-training-edit-play", "data-training-delete-play")}${trainingSuccessMessage ? `<p class="training-success" role="status">${esc(trainingSuccessMessage)}</p>` : ""}`; }
@@ -1214,6 +1274,62 @@ function renderDiaryHistory() {
    SECTION 5: INTERACTIVE EVENT LISTENERS & CONTROLLERS
    ========================================================================== */
 function handleClick(event) {
+  // Close search dropdown on click outside
+  if (!event.target.closest(".search-container")) {
+    if (searchFocused) {
+      searchFocused = false;
+      selectedResultIndex = -1;
+      updateSearchResultsDropdown();
+    }
+  }
+
+  const clearBtn = event.target.closest(".search-clear-btn");
+  if (clearBtn) {
+    searchQuery = "";
+    selectedResultIndex = -1;
+    searchResults = [];
+    const input = document.getElementById("global-search-input");
+    if (input) {
+      input.value = "";
+      input.focus();
+    }
+    updateSearchResultsDropdown();
+    return;
+  }
+
+  const quickItem = event.target.closest("[data-search-quick]");
+  if (quickItem) {
+    const id = quickItem.dataset.searchQuick;
+    const route = quickItem.dataset.searchRoute;
+    let type = "section";
+    if (id === "nako-emergency") type = "routine";
+    else if (id === "nako-weight") type = "routine";
+    else if (id === "routine-checkin") type = "routine-checkin";
+    else if (id === "dog-training") type = "training-command";
+    else if (id === "food-safety") type = "section";
+    else if (id === "nako-toppings") type = "food";
+
+    let originalItem = { id };
+    if (id === "nako-emergency") originalItem = { id: "nako-emergency" };
+    else if (id === "nako-weight") originalItem = { id: "nako-weight-tracking" };
+    else if (id === "dog-training") originalItem = { id: "nako-training-fun" };
+    else if (id === "food-safety") originalItem = { id: "food-safety" };
+    else if (id === "nako-toppings") originalItem = { id: "recipes" };
+
+    navigateToSearchResult({ type, originalItem, route });
+    return;
+  }
+
+  const resultItem = event.target.closest("[data-search-result-id]");
+  if (resultItem) {
+    const resultId = resultItem.dataset.searchResultId;
+    const result = searchIndex.find(r => r.id === resultId);
+    if (result) {
+      navigateToSearchResult(result);
+    }
+    return;
+  }
+
   const routineCheckIn = event.target.closest("[data-routine-checkin]");
   if (routineCheckIn) return go("#routine-checkin");
   const routineHistoryButton = event.target.closest("[data-routine-history]");
@@ -1435,6 +1551,13 @@ function buildWhatsAppNoticeUrl() {
 }
 
 function handleInput(event) {
+  const searchInput = event.target.closest("#global-search-input");
+  if (searchInput) {
+    searchQuery = searchInput.value;
+    selectedResultIndex = -1;
+    updateSearchResultsDropdown();
+    return;
+  }
   const weightInput = event.target.closest("[data-weight-date]");
   if (weightInput) return updateWeightInput(weightInput);
   const trainingField = event.target.closest("[data-training-input]");
@@ -2195,6 +2318,306 @@ function renderWeightGraph() {
       </svg>
     </div>
   `;
+}
+
+/* ==========================================================================
+   SECTION 7: GLOBAL SEARCH CONTROLLERS & RENDERING
+   ========================================================================== */
+function renderSearchComponent() {
+  let dropdownHtml = "";
+  if (searchFocused) {
+    dropdownHtml = getSearchDropdownHtml();
+  }
+  return `
+    <div class="search-container">
+      <div class="search-bar" role="combobox" aria-expanded="${searchFocused ? 'true' : 'false'}" aria-controls="search-results-panel" aria-haspopup="listbox">
+        <span class="search-icon-wrapper" aria-hidden="true">🔍</span>
+        <input type="search" class="search-input" id="global-search-input" placeholder="${esc(label("searchPlaceholder"))}" value="${esc(searchQuery)}" aria-label="${esc(label("searchLabel"))}" autocomplete="off" aria-autocomplete="list" />
+        ${searchQuery ? `<button type="button" class="search-clear-btn" aria-label="${esc(label("clearSearch"))}">×</button>` : ""}
+      </div>
+      <div id="search-results-container">${dropdownHtml}</div>
+    </div>
+  `;
+}
+
+function getSearchDropdownHtml() {
+  if (!searchQuery) {
+    return `
+      <div id="search-results-panel" class="search-results-panel" role="listbox" aria-label="${esc(label("quickFind"))}">
+        <div class="search-quickfind-title">${esc(label("quickFind"))}</div>
+        <div class="search-result-list">
+          ${renderQuickFindItem("nako-emergency", "🚨", "nakoEmergency", "#routine/nako-emergency", 0)}
+          ${renderQuickFindItem("nako-weight", "⚖️", "shortcutNakoWeight", "#routine/nako-weight-tracking", 1)}
+          ${renderQuickFindItem("routine-checkin", "✓", "routineCheckIn", "#routine-checkin", 2)}
+          ${renderQuickFindItem("dog-training", "T", "shortcutDogTraining", "#routine/nako-training-fun", 3)}
+          ${renderQuickFindItem("food-safety", "🛡️", "safetyReferences", "#section/food-safety", 4)}
+          ${renderQuickFindItem("nako-toppings", "R", "shortcutNakoToppings", "#food/recipes", 5)}
+        </div>
+      </div>
+    `;
+  }
+
+  const results = window.nakoSearch.searchIndex(searchIndex, searchQuery);
+  searchResults = results;
+  if (results.length > 0) {
+    return `
+      <div class="search-status-bar" role="status" aria-live="polite">
+        ${results.length === 1 ? esc(label("resultCountOne")) : esc(labelWith("resultCount", { count: results.length }))}
+      </div>
+      <div id="search-results-panel" class="search-results-panel" role="listbox" aria-label="${esc(label("searchResults"))}">
+        <div class="search-result-list">
+          ${results.map((res, index) => renderSearchResultItem(res, index)).join("")}
+        </div>
+      </div>
+    `;
+  } else {
+    return `
+      <div id="search-results-panel" class="search-results-panel">
+        <div class="search-empty-state" role="status" aria-live="polite">
+          <span class="search-empty-icon" aria-hidden="true">🔍</span>
+          <div class="search-empty-title">${esc(label("noResults"))}</div>
+          <div class="search-empty-subtitle">${esc(label("tryAnotherKeyword"))}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function renderQuickFindItem(id, icon, labelKey, route, index) {
+  const isSelected = selectedResultIndex === index;
+  const labelText = label(labelKey);
+  return `
+    <button class="search-result-item ${isSelected ? "is-selected" : ""}" 
+      type="button" 
+      data-search-quick="${esc(id)}" 
+      data-search-route="${esc(route)}"
+      role="option" 
+      id="search-option-${index}"
+      aria-selected="${isSelected ? "true" : "false"}">
+      <span class="search-item-icon" aria-hidden="true">${esc(icon)}</span>
+      <span class="search-item-content">
+        <span class="search-item-title">${esc(labelText)}</span>
+      </span>
+    </button>
+  `;
+}
+
+function renderSearchResultItem(result, index) {
+  const displayTitle = tr(result.title);
+  const displaySnippet = tr(result.summary);
+  const badgeText = label(result.badge);
+  const isSelected = selectedResultIndex === index;
+
+  const photoHtml = result.photo && result.photo.src
+    ? `<img class="search-item-photo" src="${esc(result.photo.src)}" alt="${esc(tr(result.photo.alt || result.photo.caption))}" />`
+    : `<span class="search-item-icon" aria-hidden="true">${esc(result.icon || "•")}</span>`;
+
+  return `
+    <button class="search-result-item ${isSelected ? "is-selected" : ""}" 
+      type="button" 
+      data-search-result-id="${esc(result.id)}" 
+      role="option" 
+      id="search-option-${index}"
+      aria-selected="${isSelected ? "true" : "false"}">
+      ${photoHtml}
+      <span class="search-item-content">
+        <span class="search-item-header">
+          <span class="search-item-title">${highlightText(displayTitle, searchQuery)}</span>
+          <span class="search-item-badge">${esc(badgeText)}</span>
+        </span>
+        <span class="search-item-snippet">${highlightText(displaySnippet, searchQuery)}</span>
+      </span>
+    </button>
+  `;
+}
+
+function highlightText(text, query) {
+  if (!text) return "";
+  const escaped = esc(text);
+  if (!query) return escaped;
+  const normalizedQuery = window.nakoSearch.normalizeSearchText(query);
+  if (!normalizedQuery) return escaped;
+  const tokens = normalizedQuery.split(" ").filter(Boolean);
+  if (!tokens.length) return escaped;
+
+  const lowerEscaped = escaped.toLowerCase();
+  const matches = [];
+  for (const token of tokens) {
+    let pos = 0;
+    while (true) {
+      pos = lowerEscaped.indexOf(token, pos);
+      if (pos === -1) break;
+      matches.push({ start: pos, end: pos + token.length });
+      pos += token.length;
+    }
+  }
+
+  if (!matches.length) return escaped;
+
+  matches.sort((a, b) => a.start - b.start);
+  const merged = [];
+  let current = matches[0];
+  for (let i = 1; i < matches.length; i++) {
+    const next = matches[i];
+    if (next.start <= current.end) {
+      current.end = Math.max(current.end, next.end);
+    } else {
+      merged.push(current);
+      current = next;
+    }
+  }
+  merged.push(current);
+
+  let resultHtml = "";
+  let lastIdx = 0;
+  for (const m of merged) {
+    resultHtml += escaped.slice(lastIdx, m.start);
+    resultHtml += `<mark class="search-highlight">${escaped.slice(m.start, m.end)}</mark>`;
+    lastIdx = m.end;
+  }
+  resultHtml += escaped.slice(lastIdx);
+  return resultHtml;
+}
+
+function updateSearchResultsDropdown() {
+  const container = document.getElementById("search-results-container");
+  if (!container) return;
+  
+  const searchBar = document.querySelector(".search-bar");
+  if (searchBar) {
+    searchBar.setAttribute("aria-expanded", searchFocused ? "true" : "false");
+    
+    let clearBtn = searchBar.querySelector(".search-clear-btn");
+    if (searchQuery) {
+      if (!clearBtn) {
+        const btnHtml = `<button type="button" class="search-clear-btn" aria-label="${esc(label("clearSearch"))}">×</button>`;
+        searchBar.insertAdjacentHTML("beforeend", btnHtml);
+      }
+    } else {
+      if (clearBtn) {
+        clearBtn.remove();
+      }
+    }
+  }
+
+  if (searchFocused) {
+    container.innerHTML = getSearchDropdownHtml();
+  } else {
+    container.innerHTML = "";
+  }
+}
+
+function handleKeydown(event) {
+  const activeInput = document.activeElement;
+  if (!activeInput || activeInput.id !== "global-search-input") return;
+
+  const resultsPanel = document.getElementById("search-results-panel");
+  if (!resultsPanel) return;
+
+  const items = resultsPanel.querySelectorAll(".search-result-item");
+  if (!items.length) return;
+
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    selectedResultIndex = (selectedResultIndex + 1) % items.length;
+    highlightKeyboardSelection(items);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    selectedResultIndex = (selectedResultIndex - 1 + items.length) % items.length;
+    highlightKeyboardSelection(items);
+  } else if (event.key === "Enter") {
+    event.preventDefault();
+    const activeIndex = selectedResultIndex >= 0 ? selectedResultIndex : 0;
+    const targetItem = items[activeIndex];
+    if (targetItem) {
+      targetItem.click();
+    }
+  } else if (event.key === "Escape") {
+    event.preventDefault();
+    searchFocused = false;
+    activeInput.blur();
+    updateSearchResultsDropdown();
+  }
+}
+
+function highlightKeyboardSelection(items) {
+  items.forEach((item, index) => {
+    if (index === selectedResultIndex) {
+      item.classList.add("is-selected");
+      item.setAttribute("aria-selected", "true");
+      item.scrollIntoView({ block: "nearest" });
+      
+      const input = document.getElementById("global-search-input");
+      if (input) {
+        input.setAttribute("aria-activedescendant", `search-option-${index}`);
+      }
+    } else {
+      item.classList.remove("is-selected");
+      item.setAttribute("aria-selected", "false");
+    }
+  });
+}
+
+function handleFocusIn(event) {
+  if (event.target.id === "global-search-input") {
+    searchFocused = true;
+    selectedResultIndex = -1;
+    updateSearchResultsDropdown();
+  }
+}
+
+function navigateToSearchResult(result) {
+  searchQuery = "";
+  searchFocused = false;
+  selectedResultIndex = -1;
+  searchResults = [];
+
+  if (result.type === "section") {
+    go(`#section/${result.originalItem.id}`);
+  } else if (result.type === "routine") {
+    go(`#routine/${result.originalItem.id}`);
+  } else if (result.type === "food") {
+    go(`#food/${result.originalItem.id}`);
+  } else if (result.type === "food-safety") {
+    go(`#food-safety/${result.originalItem.id}`);
+  } else if (result.type === "recipe") {
+    go(`#recipe/${result.originalItem.id}`);
+  } else if (result.type === "cooking-rule") {
+    go(`#food/cooking-rules`);
+    pendingDestination = { type: "cooking-rule", index: result.id.replace("cooking-rule-", "") };
+  } else if (result.type === "official-reference") {
+    window.open(result.route, "_blank", "noopener,noreferrer");
+  } else if (result.type === "resource") {
+    go("");
+    pendingDestination = { type: "resource", id: result.id.replace("resource-", "") };
+  } else if (result.type === "training-command") {
+    trainingTab = "commands";
+    trainingExpandedCommandId = result.originalItem.id;
+    go(`#routine/nako-training-fun`);
+    pendingDestination = { type: "training-command", id: result.originalItem.id };
+  } else if (result.type === "training-activity") {
+    trainingTab = "play";
+    go(`#routine/nako-training-fun`);
+    pendingDestination = { type: "training-activity", id: result.originalItem.id };
+  } else if (result.type === "training-video") {
+    if (result.originalItem.commandIds && result.originalItem.commandIds.length) {
+      const commandId = result.originalItem.commandIds[0];
+      trainingTab = "commands";
+      trainingExpandedCommandId = commandId;
+      go(`#routine/nako-training-fun`);
+      pendingDestination = { type: "training-command", id: commandId };
+    } else if (result.originalItem.activityIds && result.originalItem.activityIds.length) {
+      const activityId = result.originalItem.activityIds[0];
+      trainingTab = "play";
+      go(`#routine/nako-training-fun`);
+      pendingDestination = { type: "training-activity", id: activityId };
+    } else {
+      trainingTab = "commands";
+      go(`#routine/nako-training-fun`);
+    }
+  } else if (result.type === "routine-checkin") {
+    go("#routine-checkin");
+  }
 }
 
 
