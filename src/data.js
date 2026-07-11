@@ -32,7 +32,7 @@ function ingredientOption(key, name) {
 }
 
 function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder };
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [summary], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
 }
 
 
@@ -166,9 +166,10 @@ const ui = {
     nutritionBasis: "Calculation basis",
     nutritionDisclaimer: "Estimated from the listed ingredient weights. Actual values may vary by brand, preparation, cooking and food left in the pan.",
     routineCheckIn: "Routine Check-in",
-    routineCheckInSubtitle: "Only the recurring tasks worth remembering, all in one place.",
+    routineCheckInSubtitle: "Track weekly, fortnightly, monthly, quarterly and one-off household tasks here. Daily and as-needed work is not tracked.",
     routineHistory: "Routine History",
-    routineHomeRemaining: "{count} current tasks remaining",
+    routineHomeRemaining: "{count} non-daily tasks remaining",
+    backToRoutineCheckIn: "Back to Routine Check-in",
     routineHomeComplete: "All current tasks completed",
     currentSingaporeDate: "Singapore date",
     currentPeriods: "Current periods",
@@ -292,9 +293,10 @@ const ui = {
     nutritionBasis: "計算条件",
     nutritionDisclaimer: "記載された材料重量に基づく推定値です。ブランド、下処理、調理方法、鍋に残る量によって実際の値は変わる場合があります。",
     routineCheckIn: "ルーティンチェックイン",
-    routineCheckInSubtitle: "忘れやすく、記録する価値のある定期作業だけを1か所で確認します。",
+    routineCheckInSubtitle: "ここでは週次、隔週、月次、四半期、および単発の家事タスクを記録します。毎日行う作業や随時の作業は記録されません。",
     routineHistory: "ルーティン履歴",
-    routineHomeRemaining: "現在のタスクがあと{count}件",
+    routineHomeRemaining: "毎日以外のタスクがあと{count}件",
+    backToRoutineCheckIn: "ルーティンチェックインに戻る",
     routineHomeComplete: "現在のタスクはすべて完了しました",
     currentSingaporeDate: "シンガポールの日付",
     currentPeriods: "現在の期間",
@@ -418,9 +420,10 @@ const ui = {
     nutritionBasis: "တွက်ချက်မှုအခြေခံ",
     nutritionDisclaimer: "ဖော်ပြထားသော ပါဝင်ပစ္စည်းအလေးချိန်များအပေါ် အခြေခံ၍ ခန့်မှန်းထားခြင်းဖြစ်သည်။ အမှတ်တံဆိပ်၊ ပြင်ဆင်ပုံ၊ ချက်ပြုတ်ပုံနှင့် ဒယ်အိုးထဲကျန်သည့်ပမာဏအလိုက် တကယ့်တန်ဖိုး ကွာနိုင်သည်။",
     routineCheckIn: "ပုံမှန်အလုပ် Check-in",
-    routineCheckInSubtitle: "မမေ့သင့်သော ပုံမှန်အလုပ်များကို တစ်နေရာတည်းတွင် စစ်ဆေးပါ။",
+    routineCheckInSubtitle: "အပတ်စဉ်၊ နှစ်ပတ်တစ်ကြိမ်၊ လစဉ်၊ သုံးလတစ်ကြိမ်နှင့် တစ်ကြိမ်တည်းလုပ်ရမည့် အိမ်မှုကိစ္စများကို ဤနေရာတွင် မှတ်တမ်းတင်ပါ။ နေ့စဉ်နှင့် လိုအပ်သလိုလုပ်ရမည့် အလုပ်များကို မှတ်တမ်းမတင်ပါ။",
     routineHistory: "ပုံမှန်အလုပ် မှတ်တမ်း",
-    routineHomeRemaining: "လက်ရှိအလုပ် {count} ခု ကျန်သေးသည်",
+    routineHomeRemaining: "နေ့စဉ်မဟုတ်သော အလုပ် {count} ခု ကျန်သေးသည်",
+    backToRoutineCheckIn: "ပုံမှန်အလုပ် Check-in သို့ ပြန်သွားရန်",
     routineHomeComplete: "လက်ရှိအလုပ်အားလုံး ပြီးပါပြီ",
     currentSingaporeDate: "စင်ကာပူရက်စွဲ",
     currentPeriods: "လက်ရှိကာလများ",
@@ -1465,40 +1468,66 @@ if (ikeaBedFrameRoutine) {
   ];
 }
 
-// Only the curated, easy-to-forget recurring work belongs in Routine Check-in.
-// Stable routine IDs are reused so reference pages and completion history link
-// to the same task definition. Fortnightly cycles share a fixed Monday anchor.
-const routineTrackingConfig = {
-  "high-touch-surfaces": ["checkbox", "weekly"],
-  "kitchen-sink-drain-rack-counter": ["checkbox", "weekly"],
-  "nako-weekly-play-pen-deep-clean": ["checkbox", "weekly"],
-  "nako-weight-tracking": ["metric", "weekly"],
-  "rubbish-bin-washing": ["checkbox", "weekly"],
-  "floor-mats": ["checkbox", "weekly"],
-  "bedrooms-linens": ["checkbox", "weekly"],
-  "windows-glass-mirrors": ["checkbox", "weekly"],
-  "sofa-covers-pillows": ["checkbox", "weekly"],
-  "ceiling-fan": ["checkbox", "weekly"],
-  "fridge-interior": ["checkbox", "weekly"],
-  "cleaning-tools": ["checkbox", "weekly"],
-  "blanket-washing": ["checkbox", "fortnightly", "2026-07-06"],
-  "curtain-steaming": ["checkbox", "fortnightly", "2026-07-06"],
-  "ikea-bed-frame": ["checkbox", "fortnightly", "2026-07-06"],
-  "general-surface-cleaning": ["checkbox", "monthly"],
-  "pillow-mattress-vacuuming": ["checkbox", "monthly"],
-  "aircon-filter-fan-coil": ["checkbox", "monthly"],
-  "washer-deep-clean": ["checkbox", "quarterly"],
-  "doorbell-charging": ["checkbox", "quarterly"],
-  "coffee-machine-descaling": ["checkbox", "quarterly"],
-  "fire-extinguisher-training": ["one-off", "one-off"]
+// Exclusions for non-daily routine tasks that are intentionally reference-only.
+// If a non-daily actionable task is deliberately excluded, we declare a reason here.
+const routineTrackingExclusions = {
+  "toilet-cleaning": "Common/master toilet cleaning is handled during daily cleaning routines and as-needed",
+  "nako-inventory-check": "Inventory check is a reference guidelines page for stocking items",
+  "supplement-pill-boxes": "Supplement pill boxes check is a reference guidelines page for Edwin and Yukari's medications",
+  "pest-check": "Pest check is reference information for checking ants/cockroaches",
+  "outside-shoe-rack": "Shoe rack tidiness is managed daily or on-demand, not on a strict fortnightly schedule",
+  "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"
 };
 
+// Automatic single-source-of-truth metadata application
 routineTasks.forEach((task) => {
-  const config = routineTrackingConfig[task.id];
-  if (!config) return;
-  task.trackingMode = config[0];
-  task.trackingCadence = config[1];
-  task.trackingAnchor = config[2] || null;
+  const isPinnedSafety = ["nako-emergency", "nako-kind-handling", "nako-supervision"].includes(task.id);
+  const isDailyOrAsNeeded = task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed";
+  const nonDailyCadences = ["weekly", "fortnightly", "monthly", "quarterly", "one-off"];
+  const isNonDaily = nonDailyCadences.includes(task.frequencyBucket);
+
+  const isTrackedCandidate = (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
+
+  if (isTrackedCandidate) {
+    const exclusionReason = routineTrackingExclusions[task.id];
+    if (exclusionReason) {
+      task.trackingMode = "none";
+      task.trackingCadence = null;
+      task.trackingAnchor = null;
+      task.itemKind = "reference";
+      task.trackingExclusionReason = exclusionReason;
+    } else {
+      task.itemKind = "task";
+      task.trackingExclusionReason = null;
+      
+      if (task.id === "fire-extinguisher-training") {
+        task.trackingCadence = "one-off";
+        task.trackingMode = "one-off";
+      } else {
+        task.trackingCadence = task.frequencyBucket;
+        if (task.id === "nako-weight-tracking") {
+          task.trackingMode = "metric";
+        } else if (task.frequencyBucket === "one-off") {
+          task.trackingMode = "one-off";
+        } else {
+          task.trackingMode = "checkbox";
+        }
+      }
+
+      if (task.trackingCadence === "fortnightly") {
+        task.trackingAnchor = "2026-07-06";
+      } else {
+        task.trackingAnchor = null;
+      }
+    }
+  } else {
+    // Daily, as-needed, or pinned safety are reference-only by default
+    task.trackingMode = "none";
+    task.trackingCadence = null;
+    task.trackingAnchor = null;
+    task.itemKind = "reference";
+    task.trackingExclusionReason = null;
+  }
 });
 
 

@@ -72,6 +72,15 @@ The smallest non-breaking migration is to add a
 device, update the rules to require that membership record, confirm all devices
 have enrolled, and only then remove the shared-code fallback.
 
+## 🏡 Adding or Changing a Household Routine
+
+To maintain the single source of truth for the Routine Check-in and frequency pages, please refer to the detailed guidelines in [AGENTS.md](file:///g:/My%20Drive/Dropbox/Downloads/Academics/Python/Nako%20app/AGENTS.md).
+
+Briefly, when adding or changing a routine item:
+1. Define the task *only* in `src/data/routine_tasks.js`.
+2. Do not maintain separate tracking arrays; non-daily cadences are automatically tracked unless explicitly excluded in the exclusions map.
+3. Keep stable IDs and supply translations for English, Japanese, and Burmese.
+
 Useful commands:
 
 ```powershell

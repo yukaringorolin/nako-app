@@ -351,21 +351,30 @@ function renderRoutineStatus() {
   return `<div class="routine-status" role="status"><span>${esc(routineStatusMessage || label("completionSaved"))}</span>${routineUndoRecord ? `<button type="button" data-routine-undo>${esc(label("undo"))}</button>` : ""}</div>`;
 }
 
+function renderRoutineTaskVisual(task, cycle) {
+  return `
+    ${renderCardIcon(task.icon, primaryPhoto(task.photos))}
+    <span class="card-copy">
+      <span class="card-title">${esc(tr(task.title))}</span>
+      <span class="card-description">${esc(cadenceLabel(task.trackingCadence))} · ${esc(cycleRangeLabel(cycle))}</span>
+    </span>
+  `;
+}
+
 function renderRoutineCheckRow(item, completed) {
   const { task, cycle, record } = item;
   const control = task.trackingMode === "metric" && !completed
-    ? `<button class="routine-metric-button" type="button" data-routine="${esc(task.id)}">${esc(label("metricOpenWeight"))}</button>`
+    ? `<a class="routine-check-control metric-control" href="#routine/${esc(task.id)}" aria-label="${esc(label("metricOpenWeight"))}">⚖️</a>`
     : completed
       ? `<span class="routine-check-control is-complete" aria-hidden="true">✓</span>`
       : `<button class="routine-check-control" type="button" data-routine-complete="${esc(task.id)}" aria-label="${esc(`${label("markComplete")}: ${tr(task.title)}`)}"><span aria-hidden="true"></span></button>`;
   return `<article class="routine-check-row ${completed ? "is-complete" : ""}">
     <div class="routine-row-main">
       ${control}
-      <div class="routine-row-copy">
-        <h3>${esc(tr(task.title))}</h3>
-        <p>${esc(cadenceLabel(task.trackingCadence))} · ${esc(cycleRangeLabel(cycle))}</p>
-      </div>
-      <a class="routine-instructions-link" href="#routine/${esc(task.id)}" aria-label="${esc(`${label("openInstructions")}: ${tr(task.title)}`)}">i</a>
+      <a class="routine-row-content" href="#routine/${esc(task.id)}">
+        ${renderRoutineTaskVisual(task, cycle)}
+        <span class="chevron" aria-hidden="true">›</span>
+      </a>
     </div>
     ${completed ? `<p class="metric-complete-note">${task.trackingMode === "metric" ? esc(label("metricCompleted")) : ""}</p>${renderCompletionEditor(record)}` : ""}
   </article>`;
@@ -381,6 +390,27 @@ function renderCompletionEditor(record, showRemove = false) {
       ${showRemove ? `<button class="danger-text-button" type="button" data-completion-remove="${esc(record.id)}">${esc(label("removeCompletion"))}</button>` : ""}
     </div>
   </details>`;
+}
+
+function renderRoutineHistoryRow(record, task, showTaskName = true) {
+  const titleHtml = showTaskName ? `<h2>${esc(tr(task.title))}</h2>` : "";
+  return `<article class="routine-history-row ${record.missed ? "is-missed" : ""}">
+    <div>
+      ${titleHtml}
+      <p>${esc(cadenceLabel(task.trackingCadence))} · ${record.missed ? esc(cycleRangeLabel(record.cycle)) : esc(formatRoutineDate(record.completedDate, true))}</p>
+      ${record.missed ? `<p class="routine-missed-label">${esc(label("notCompleted"))}</p>` : record.note ? `<p class="routine-history-note">${esc(record.note)}</p>` : ""}
+    </div>
+    ${record.missed ? "" : renderCompletionEditor(record, true)}
+  </article>`;
+}
+
+function renderRoutineHistoryRecords(records, options = {}) {
+  const showTaskName = options.showTaskName !== false;
+  return records.map((record) => {
+    const task = routineTasks.find((item) => item.id === record.taskId);
+    if (!task) return "";
+    return renderRoutineHistoryRow(record, task, showTaskName);
+  }).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`;
 }
 
 function renderRoutineHistory() {
@@ -404,10 +434,7 @@ function renderRoutineHistory() {
       <label>${esc(label("filterTo"))}<input type="date" value="${esc(routineHistoryFilters.to)}" data-routine-filter="to"></label>
     </section>
     ${renderRoutineStatus()}
-    <section class="routine-history-list">${records.map((record) => {
-      const task = tasks.find((item) => item.id === record.taskId);
-      return `<article class="routine-history-row ${record.missed ? "is-missed" : ""}"><div><h2>${esc(tr(task.title))}</h2><p>${esc(cadenceLabel(task.trackingCadence))} · ${record.missed ? esc(cycleRangeLabel(record.cycle)) : esc(formatRoutineDate(record.completedDate, true))}</p>${record.missed ? `<p class="routine-missed-label">${esc(label("notCompleted"))}</p>` : record.note ? `<p class="routine-history-note">${esc(record.note)}</p>` : ""}</div>${record.missed ? "" : renderCompletionEditor(record, true)}</article>`;
-    }).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}</section>`;
+    <section class="routine-history-list">${renderRoutineHistoryRecords(records, { showTaskName: true })}</section>`;
   renderShell(label("routineHistory"), content, true);
 }
 
@@ -428,6 +455,104 @@ function missedRoutineHistoryRecords(tasks) {
     }
   });
   return missed;
+}
+
+function getTaskSpecificHistory(task, limit = 8) {
+  const today = routineTracking.singaporeDateKey();
+  const trackingStart = appState.routineTrackingStartedDate || today;
+  const completed = Object.values(routineRecords()).filter(
+    (record) => record && !record.deleted && record.taskId === task.id
+  );
+  const missed = [];
+  if (task.trackingCadence !== "one-off") {
+    let cycle = routineCycle(task, trackingStart);
+    let guard = 0;
+    while (cycle?.end && cycle.end < today && guard < 600) {
+      const id = routineTracking.completionId(task.id, cycle.key);
+      const record = routineRecords()[id];
+      if (!record || record.deleted) {
+        missed.push({ id: `missed_${id}`, taskId: task.id, cycleKey: cycle.key, completedDate: cycle.end, note: "", missed: true, cycle });
+      }
+      cycle = routineCycle(task, routineTracking.addDays(cycle.end, 1));
+      guard += 1;
+    }
+  }
+  const combined = [...completed, ...missed];
+  combined.sort((a, b) => b.completedDate.localeCompare(a.completedDate) || String(b.updatedAt).localeCompare(String(a.updatedAt)));
+  return combined.slice(0, limit);
+}
+
+function renderTaskRoutineHistory(taskId) {
+  const task = routineTasks.find(t => t.id === taskId);
+  if (!task || task.trackingMode === "none" || !task.trackingMode) return "";
+  const records = getTaskSpecificHistory(task, 8);
+  const recordsHtml = records.map(record => renderRoutineHistoryRow(record, task, false)).join("");
+  return `
+    <section class="panel routine-task-history">
+      <h2>${esc(label("routineHistory"))}</h2>
+      <div class="routine-history-list">
+        ${recordsHtml || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}
+      </div>
+      ${records.length > 0 ? `<button type="button" class="history-link-button" data-view-full-history="${esc(task.id)}">${esc(label("routineHistory"))} ›</button>` : ""}
+    </section>
+  `;
+}
+
+function renderRoutineCompletionPanel(task) {
+  if (!task || task.trackingMode === "none" || !task.trackingMode) return "";
+  const today = routineTracking.singaporeDateKey();
+  const cycle = routineCycle(task, today);
+  const record = activeRoutineRecord(task, today);
+  const completed = !!record;
+
+  const statusLabel = completed ? label("completed") : label("due");
+  const statusClass = completed ? "status-completed" : "status-due";
+  
+  let controlHtml = "";
+  if (task.trackingMode === "metric") {
+    controlHtml = completed
+      ? `<span class="routine-check-control is-complete">✓</span>`
+      : `<a class="routine-check-control metric-control" href="#routine/nako-weight-tracking">⚖️</a>`;
+  } else {
+    controlHtml = completed
+      ? `<button class="routine-check-control is-complete" type="button" data-completion-remove="${esc(record.id)}" aria-label="${esc(label("removeCompletion"))}">✓</button>`
+      : `<button class="routine-check-control" type="button" data-routine-complete="${esc(task.id)}" aria-label="${esc(label("markComplete"))}"><span aria-hidden="true"></span></button>`;
+  }
+
+  let editorHtml = "";
+  if (completed && task.trackingMode !== "metric") {
+    editorHtml = `
+      <div class="completion-panel-editor">
+        <label>
+          <span>${esc(label("completionDate"))}</span>
+          <input type="date" value="${esc(record.completedDate)}" data-completion-date="${esc(record.id)}">
+        </label>
+        <label>
+          <span>${esc(label("addNote"))}</span>
+          <textarea data-completion-note="${esc(record.id)}" placeholder="${esc(label("notePlaceholder"))}">${esc(record.note || "")}</textarea>
+        </label>
+        <button class="danger-text-button" type="button" data-completion-remove="${esc(record.id)}">${esc(label("removeCompletion"))}</button>
+      </div>
+    `;
+  } else if (completed && task.trackingMode === "metric") {
+    editorHtml = `<p class="metric-complete-note">${esc(record.note)}</p>`;
+  }
+
+  return `
+    <section class="panel routine-completion-panel">
+      <h2>${esc(label("routineCheckIn"))}</h2>
+      <div class="completion-panel-body">
+        <div class="completion-panel-status-row">
+          ${controlHtml}
+          <div class="completion-panel-info">
+            <span class="status-badge ${statusClass}">${esc(statusLabel)}</span>
+            <span class="cadence-info">${esc(cadenceLabel(task.trackingCadence))} · ${esc(cycleRangeLabel(cycle))}</span>
+          </div>
+        </div>
+        ${editorHtml}
+      </div>
+    </section>
+  `;
 }
 
 function renderShortcuts() {
@@ -501,12 +626,23 @@ function renderRoutine(routineId) {
   if (task.id === "nako-training-fun") return renderTrainingDashboard(task);
   const hasInstructions = task.instructions.length > 1 || (task.instructions.length === 1 && tr(task.instructions[0]) !== tr(task.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(task.instructions)}</section>` : "";
+
+  const isTracked = task.trackingMode && task.trackingMode !== "none";
+  const backLinkHtml = isTracked
+    ? `<a href="#routine-checkin" class="back-checkin-link">← ${esc(label("backToRoutineCheckIn"))}</a>`
+    : "";
+  const completionPanelHtml = isTracked ? renderRoutineCompletionPanel(task) : "";
+  const historyPanelHtml = isTracked ? renderTaskRoutineHistory(task.id) : "";
+
   const content = `
     ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), primaryPhoto(task.photos))}
+    ${backLinkHtml}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
+    ${completionPanelHtml}
     ${instructionsPanel}
     ${renderPhotos(task.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(task.mustRemember)}</section>
+    ${historyPanelHtml}
     ${renderVideo(task.videoUrl)}`;
   renderShell(tr(task.title), content, true);
 }
@@ -1010,6 +1146,12 @@ function handleClick(event) {
   if (event.target.closest("[data-routine-undo]")) return undoRoutineCompletion();
   const completionRemove = event.target.closest("[data-completion-remove]");
   if (completionRemove && confirm(label("confirmRemoveCompletion"))) return removeRoutineCompletion(completionRemove.dataset.completionRemove);
+  const viewFullHistory = event.target.closest("[data-view-full-history]");
+  if (viewFullHistory) {
+    routineHistoryFilters.task = viewFullHistory.dataset.viewFullHistory;
+    routineHistoryFilters.cadence = "all";
+    return go("#routine-history");
+  }
   const resourceVideo = event.target.closest("[data-resource-video]");
   if (resourceVideo) {
     const embedUrl = resourceVideo.dataset.embedUrl;
@@ -1365,18 +1507,32 @@ function storeRoutineRecord(record, options = {}) {
   if (options.remoteCompletion !== false) window.nakoFirebase?.saveRoutineCompletion?.(record);
 }
 
+function saveRoutineCompletion(task, values = {}) {
+  const record = completionRecordFor(task, values.completedDate || routineTracking.singaporeDateKey(), values);
+  if (!record) return null;
+  storeRoutineRecord(record);
+  return record;
+}
+
+function updateRoutineCompletion(record, values = {}) {
+  if (!record) return;
+  const updated = { ...record, ...values, updatedAt: nowIso() };
+  storeRoutineRecord(updated);
+  routineStatusMessage = label("completionSaved");
+}
+
 function completeRoutine(taskId) {
   const task = trackedRoutineTasks().find((item) => item.id === taskId);
   if (!task || task.trackingMode === "metric") return;
-  const record = completionRecordFor(task, routineTracking.singaporeDateKey());
+  const record = saveRoutineCompletion(task);
   if (!record) return;
-  storeRoutineRecord(record);
   routineUndoRecord = { ...record };
   routineStatusMessage = label("completionSaved");
   clearTimeout(routineUndoTimer);
   routineUndoTimer = setTimeout(() => {
     routineUndoRecord = null;
-    if (parseRoute().view === "routine-checkin") render();
+    const view = parseRoute().view;
+    if (view === "routine-checkin" || view === "routine") render();
   }, 8000);
   render();
 }
@@ -1456,8 +1612,7 @@ function moveRoutineCompletion(recordId, nextDate) {
 function updateRoutineCompletionNote(recordId, note) {
   const record = routineRecords()[recordId];
   if (!record) return;
-  storeRoutineRecord({ ...record, note: String(note || "").slice(0, 2000), updatedAt: nowIso() });
-  routineStatusMessage = label("completionSaved");
+  updateRoutineCompletion(record, { note: String(note || "").slice(0, 2000) });
   render();
 }
 
@@ -1717,6 +1872,7 @@ function renderWeightTracking(item) {
 
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), headerIconBg, headerLabel, primaryPhoto(item.photos))}
+    <a href="#routine-checkin" class="back-checkin-link">← ${esc(label("backToRoutineCheckIn"))}</a>
     ${instructionsPanel}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
     

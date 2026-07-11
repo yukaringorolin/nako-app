@@ -828,38 +828,64 @@ if (ikeaBedFrameRoutine) {
   ];
 }
 
-// Only the curated, easy-to-forget recurring work belongs in Routine Check-in.
-// Stable routine IDs are reused so reference pages and completion history link
-// to the same task definition. Fortnightly cycles share a fixed Monday anchor.
-const routineTrackingConfig = {
-  "high-touch-surfaces": ["checkbox", "weekly"],
-  "kitchen-sink-drain-rack-counter": ["checkbox", "weekly"],
-  "nako-weekly-play-pen-deep-clean": ["checkbox", "weekly"],
-  "nako-weight-tracking": ["metric", "weekly"],
-  "rubbish-bin-washing": ["checkbox", "weekly"],
-  "floor-mats": ["checkbox", "weekly"],
-  "bedrooms-linens": ["checkbox", "weekly"],
-  "windows-glass-mirrors": ["checkbox", "weekly"],
-  "sofa-covers-pillows": ["checkbox", "weekly"],
-  "ceiling-fan": ["checkbox", "weekly"],
-  "fridge-interior": ["checkbox", "weekly"],
-  "cleaning-tools": ["checkbox", "weekly"],
-  "blanket-washing": ["checkbox", "fortnightly", "2026-07-06"],
-  "curtain-steaming": ["checkbox", "fortnightly", "2026-07-06"],
-  "ikea-bed-frame": ["checkbox", "fortnightly", "2026-07-06"],
-  "general-surface-cleaning": ["checkbox", "monthly"],
-  "pillow-mattress-vacuuming": ["checkbox", "monthly"],
-  "aircon-filter-fan-coil": ["checkbox", "monthly"],
-  "washer-deep-clean": ["checkbox", "quarterly"],
-  "doorbell-charging": ["checkbox", "quarterly"],
-  "coffee-machine-descaling": ["checkbox", "quarterly"],
-  "fire-extinguisher-training": ["one-off", "one-off"]
+// Exclusions for non-daily routine tasks that are intentionally reference-only.
+// If a non-daily actionable task is deliberately excluded, we declare a reason here.
+const routineTrackingExclusions = {
+  "toilet-cleaning": "Common/master toilet cleaning is handled during daily cleaning routines and as-needed",
+  "nako-inventory-check": "Inventory check is a reference guidelines page for stocking items",
+  "supplement-pill-boxes": "Supplement pill boxes check is a reference guidelines page for Edwin and Yukari's medications",
+  "pest-check": "Pest check is reference information for checking ants/cockroaches",
+  "outside-shoe-rack": "Shoe rack tidiness is managed daily or on-demand, not on a strict fortnightly schedule",
+  "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"
 };
 
+// Automatic single-source-of-truth metadata application
 routineTasks.forEach((task) => {
-  const config = routineTrackingConfig[task.id];
-  if (!config) return;
-  task.trackingMode = config[0];
-  task.trackingCadence = config[1];
-  task.trackingAnchor = config[2] || null;
+  const isPinnedSafety = ["nako-emergency", "nako-kind-handling", "nako-supervision"].includes(task.id);
+  const isDailyOrAsNeeded = task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed";
+  const nonDailyCadences = ["weekly", "fortnightly", "monthly", "quarterly", "one-off"];
+  const isNonDaily = nonDailyCadences.includes(task.frequencyBucket);
+
+  const isTrackedCandidate = (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
+
+  if (isTrackedCandidate) {
+    const exclusionReason = routineTrackingExclusions[task.id];
+    if (exclusionReason) {
+      task.trackingMode = "none";
+      task.trackingCadence = null;
+      task.trackingAnchor = null;
+      task.itemKind = "reference";
+      task.trackingExclusionReason = exclusionReason;
+    } else {
+      task.itemKind = "task";
+      task.trackingExclusionReason = null;
+      
+      if (task.id === "fire-extinguisher-training") {
+        task.trackingCadence = "one-off";
+        task.trackingMode = "one-off";
+      } else {
+        task.trackingCadence = task.frequencyBucket;
+        if (task.id === "nako-weight-tracking") {
+          task.trackingMode = "metric";
+        } else if (task.frequencyBucket === "one-off") {
+          task.trackingMode = "one-off";
+        } else {
+          task.trackingMode = "checkbox";
+        }
+      }
+
+      if (task.trackingCadence === "fortnightly") {
+        task.trackingAnchor = "2026-07-06";
+      } else {
+        task.trackingAnchor = null;
+      }
+    }
+  } else {
+    // Daily, as-needed, or pinned safety are reference-only by default
+    task.trackingMode = "none";
+    task.trackingCadence = null;
+    task.trackingAnchor = null;
+    task.itemKind = "reference";
+    task.trackingExclusionReason = null;
+  }
 });
