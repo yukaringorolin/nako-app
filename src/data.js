@@ -755,11 +755,12 @@ const routineTasks = [
         t("Wipe light switches and plug adapters gently to keep them clean.", "電気スイッチやプラグのアダプターを優しく拭いて、清潔に保ってください。", "မီးခလုတ်များနှင့် ပလပ်အဒက်တာများကို သန့်ရှင်းစေရန် ညင်သာစွာ သုတ်ပေးပါ။"))
     ]),
 
-  routine("household-supplies-online", "weekly", 10, "S", 
+  routine("household-supplies-online", "daily", 145, "S",
     t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 
-    t("Learn to use online platforms such as Shopee to add or order household supplies when running low.", "消耗品が不足したときに、Shopeeなどのオンラインプラットフォームを使用して家庭用品を追加または注文する方法を学びます。", "အိမ်သုံးပစ္စည်းများ ကုန်ခါနီးတွင် Shopee ကဲ့သို့သော အွန်လိုင်းပလက်ဖောင်းများမှ မှာယူနည်းကို လေ့လာပါ။"), 
-    t("Weekly check + as needed", "毎週チェック＋必要に応じて", "အပတ်စဉ်စစ်ဆေးမှု + လိုအပ်သလို"), 
+    t("Check all tissue boxes regularly and replace or refill any that are low. Check spare household stock weekly, then use Shopee or another agreed platform to add needed items to the cart.", "ティッシュ箱をこまめに確認し、少なくなったら交換・補充する。毎週、家庭用消耗品の予備在庫を確認し、必要な品はShopeeなど合意したオンラインサービスのカートに追加する。", "tissue box အားလုံးကို ပုံမှန်စစ်ပြီး နည်းလာပါက လဲပါ သို့မဟုတ် ဖြည့်ပါ။ အိမ်သုံးပစ္စည်းအပို stock ကို အပတ်စဉ်စစ်ပြီး လိုအပ်တာများကို Shopee သို့မဟုတ် သဘောတူထားသော online platform cart ထဲထည့်ပါ။"),
+    t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
     [
+      t("When only 1-2 spare tissue packs remain, tell Edwin and add tissue packs to the shopping list or cart. Ask before placing an order.", "予備のティッシュが残り1〜2パックになったら、エドウィンに伝え、買い物リストまたはカートに追加する。注文確定前には必ず確認する。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် Edwin ကိုပြောပြီး ဈေးဝယ်စာရင်း သို့မဟုတ် cart ထဲသို့ tissue ထုပ်များကိုထည့်ပါ။ မှာယူမီ အရင်မေးပါ။"),
       t("Ask before placing orders until the process is clear.", "手順が明確になるまでは、注文する前に確認してください。", "လုပ်ငန်းစဉ်ကို ကောင်းစွာနားမလည်မချင်း မမှာယူမီ အရင်မေးပါ။"),
       t("When household supplies or dog items are running low, add them to the Shopee shopping cart. Do not place the order immediately; inform Edwin or Yukari to review and check out the cart.", "消耗品や犬用品が少なくなってきたら、Shopeeのショッピングカートに追加してください。すぐに注文を確定せず、エドウィンかゆかりに連絡してカートを確認・決済してもらってください。", "အိမ်သုံးပစ္စည်းများ သို့မဟုတ် ခွေးသုံးပစ္စည်းများ ကုန်ခါနီးပါက ၎င်းတို့ကို Shopee ဈေးဝယ်လှည်း (cart) ထဲသို့ ထည့်ပါ။ ချက်ချင်း မှာယူခြင်းမပြုပါနှင့်။ Edwin သို့မဟုတ် Yukari ကို cart ကို စစ်ဆေးပြီး check out လုပ်ရန် အကြောင်းကြားပါ။")
     ],
@@ -1238,6 +1239,7 @@ if (yukariFlightPackingRoutine) {
 const nakoSupervisionRoutine = routineTasks.find((task) => task.id === "nako-supervision");
 if (nakoSupervisionRoutine) {
   nakoSupervisionRoutine.mustRemember.unshift(
+    t("Check that exactly two fingers fit between Nako's collar and neck. It must not be too tight or too loose; check before she goes out or roams.", "ナコの首輪と首の間に指がちょうど2本入るか確認する。きつ過ぎず、緩過ぎないようにし、外出または自由に歩き回らせる前に毎回確認する。", "Nako ၏လည်ပတ်နှင့်လည်ပင်းကြား လက်ချောင်း ၂ ချောင်းတိတိ ဝင်နိုင်မဝင်နိုင် စစ်ပါ။ အရမ်းကျပ်လွန်း သို့မဟုတ် ချောင်လွန်းမနေစေရ၊ အပြင်ထွက်မီ သို့မဟုတ် လွတ်လပ်စွာသွားလာမီ စစ်ပါ။"),
     t("⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **窓の安全注意:** 現在、窓にグリルは付いていません。Chocho/ヘルパーは開いた窓から身を乗り出したり近くに立ったりしないでください。Nakoも常に窓の端から離してください。", "⚠️ **ပြတင်းပေါက် ဘေးကင်းရေး သတိပေးချက်:** လောလောဆယ် ပြတင်းပေါက်တွင် grill မရှိပါ။ Chocho/helper သည် ဖွင့်ထားသောပြတင်းပေါက်အနားတွင် မယောင်းထွက်ရ၊ မနီးကပ်စွာမရပ်ရပါ။ Nako ကိုလည်း အမြဲ ပြတင်းပေါက်အနားမှ ဝေးဝေးထားပါ။")
   );
   nakoSupervisionRoutine.photos = [
