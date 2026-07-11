@@ -1722,6 +1722,13 @@ if (nakoSupervisionRoutine) {
   ];
 }
 
+const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
+if (dailyCookingRoutine) {
+  dailyCookingRoutine.mustRemember.push(
+    t("**WHITE RICE:** Turn on the main power switch, press **Menu** until the white line is on **White Rice**, then press **Start**. Always check the white line before pressing Start.", "**白米:** 主電源を入れ、白いラインが**White Rice**に来るまで**メニュー**を押し、**スタート**を押す。スタートを押す前に、必ず白いラインを確認する。", "**ဆန်ဖြူ:** ပင်မ power switch ကိုဖွင့်ပါ။ အဖြူရောင်လိုင်းသည် **White Rice** နေရာသို့ရောက်အောင် **Menu** ခလုတ်ကိုနှိပ်ပြီး **Start** ကိုနှိပ်ပါ။ Start မနှိပ်မီ အဖြူရောင်လိုင်းကို အမြဲစစ်ပါ။")
+  );
+}
+
 const nakoPottyPenRoutine = routineTasks.find((task) => task.id === "nako-potty-pen");
 if (nakoPottyPenRoutine) {
   nakoPottyPenRoutine.instructions = [
@@ -2424,6 +2431,53 @@ const recipes = [
           "အရေပြားမပါသော ကြက်ရင်ပုံသား၊ ဂျပန် momen tofu၊ button mushroom နှင့် အရောင်ဖျော့သော ဆန်မစ်ဆိုကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
         )
       }
+    }
+  ),
+  recipe("banana-toast",
+    t("Banana Toast", "バナナトースト", "ငှက်ပျောသီးပေါင်မုန့်ကင်"),
+    [
+      [t("Bread", "パン", "ပေါင်မုန့်"), "1 slice", "bread"],
+      [t("Peanut butter", "ピーナッツバター", "မြေပဲထောပတ်"), "as needed", "peanut-butter"],
+      [t("Strawberry jam", "いちごジャム", "စတော်ဘယ်ရီယို"), "as needed", "strawberry-jam"],
+      [t("Banana", "バナナ", "ငှက်ပျောသီး"), "1 banana", "banana"]
+    ],
+    [
+      t("Spread peanut butter and strawberry jam on the bread.", "パンにピーナッツバターといちごジャムを塗る。", "ပေါင်မုန့်ပေါ်တွင် မြေပဲထောပတ်နှင့် စတော်ဘယ်ရီယိုကို လိမ်းပါ။"),
+      t("Place sliced banana on top.", "スライスしたバナナを上にのせる。", "လှီးထားသော ငှက်ပျောသီးကို အပေါ်တွင် တင်ပါ။"),
+      t("Put it in the air fryer and cook at 190°C for 4 minutes.", "エアフライヤーに入れ、190℃で4分加熱する。", "air fryer ထဲထည့်ပြီး 190°C ဖြင့် 4 မိနစ် အပူပေးပါ။")
+    ],
+    t("Air-fry at 190°C for 4 minutes. The toast and air-fryer basket will be hot when finished.", "エアフライヤーは190℃・4分。終了後はトーストとバスケットが熱いので注意する。", "air fryer ကို 190°C ဖြင့် 4 မိနစ်ထားပါ။ ပြီးသွားပါက toast နှင့် air-fryer basket ပူနေမည်ဖြစ်သောကြောင့် သတိထားပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / snack"),
+      style: t("Quick", "簡単", "လွယ်ကူသော"),
+      timeEstimate: t("4 mins", "4分", "၄ မိနစ်"),
+      highProtein: false
+    }
+  ),
+  recipe("egg-toast",
+    t("Egg Toast", "卵トースト", "ကြက်ဥပေါင်မုန့်ကင်"),
+    [
+      [t("Bread", "パン", "ပေါင်မုန့်"), "1 slice", "bread"],
+      [t("Egg", "卵", "ကြက်ဥ"), "1 egg", "eggs"],
+      [t("Mayonnaise", "マヨネーズ", "မေယိုနိစ်"), "to taste", "mayonnaise"],
+      [t("Salt", "塩", "ဆား"), "to taste", "salt"]
+    ],
+    [
+      t("Boil the egg in water for 10 minutes to make a hard-boiled egg, then peel it.", "卵をお湯で10分ゆでてゆで卵を作り、殻をむく。", "ကြက်ဥကို ရေနွေးထဲတွင် ၁၀ မိနစ်ပြုတ်ပြီး ကြက်ဥပြုတ်လုပ်ကာ အခွံခွာပါ။"),
+      t("Add mayonnaise and salt, then mix well.", "マヨネーズと塩を加えてよく混ぜる。", "mayonnaise နှင့် ဆားထည့်ပြီး ကောင်းကောင်းရောပါ။"),
+      t("Place the egg mixture on the toast.", "卵のミックスをトーストの上にのせる。", "ကြက်ဥအရောကို toast ပေါ်တွင် တင်ပါ။"),
+      t("Put it in the air fryer and cook at 190°C for 4 minutes.", "エアフライヤーに入れ、190℃で4分加熱する。", "air fryer ထဲထည့်ပြီး 190°C ဖြင့် 4 မိနစ် အပူပေးပါ。")
+    ],
+    t("Boil the egg for 10 minutes and air-fry at 190°C for 4 minutes. Be careful with boiling water and the hot air-fryer basket.", "卵は10分ゆで、エアフライヤーは190℃で4分。熱湯と熱いバスケットに注意する。", "ကြက်ဥကို ၁၀ မိနစ်ပြုတ်ပြီး air fryer ကို 190°C ဖြင့် 4 မိနစ်ထားပါ။ ရေနွေးပူနှင့် ပူသော air-fryer basket ကို သတိထားပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / snack"),
+      style: t("Quick", "簡単", "လွယ်ကူသော"),
+      timeEstimate: t("14 mins", "14分", "၁၄ မိနစ်"),
+      highProtein: false
     }
   )
 ];

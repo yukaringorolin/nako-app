@@ -835,6 +835,13 @@ if (nakoSupervisionRoutine) {
   ];
 }
 
+const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
+if (dailyCookingRoutine) {
+  dailyCookingRoutine.mustRemember.push(
+    t("**WHITE RICE:** Turn on the main power switch, press **Menu** until the white line is on **White Rice**, then press **Start**. Always check the white line before pressing Start.", "**白米:** 主電源を入れ、白いラインが**White Rice**に来るまで**メニュー**を押し、**スタート**を押す。スタートを押す前に、必ず白いラインを確認する。", "**ဆန်ဖြူ:** ပင်မ power switch ကိုဖွင့်ပါ။ အဖြူရောင်လိုင်းသည် **White Rice** နေရာသို့ရောက်အောင် **Menu** ခလုတ်ကိုနှိပ်ပြီး **Start** ကိုနှိပ်ပါ။ Start မနှိပ်မီ အဖြူရောင်လိုင်းကို အမြဲစစ်ပါ။")
+  );
+}
+
 const nakoPottyPenRoutine = routineTasks.find((task) => task.id === "nako-potty-pen");
 if (nakoPottyPenRoutine) {
   nakoPottyPenRoutine.instructions = [
