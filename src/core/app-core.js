@@ -71,12 +71,33 @@ function getWeightValue(val) {
   return val;
 }
 
-function renderUnlessDiaryTyping() {
-  if (!isDiaryTextInputActive()) render();
+let renderPendingAfterEdit = false;
+
+function appStateSignature(value) {
+  return window.nakoFirebaseWriteQueue?.stableStateSignature?.(value) || JSON.stringify(value || {});
 }
 
-function isDiaryTextInputActive() {
-  return Boolean(document.activeElement?.matches?.("[data-diary-text], [data-diary-translation-date], [data-training-input], [data-weight-date]"));
+function renderUnlessEditing() {
+  if (isEditableElementActive()) {
+    renderPendingAfterEdit = true;
+    return false;
+  }
+  renderPendingAfterEdit = false;
+  render();
+  return true;
+}
+
+function isEditableElementActive() {
+  return Boolean(document.activeElement?.matches?.("input, textarea, select, [contenteditable]:not([contenteditable='false'])"));
+}
+
+function flushPendingRenderAfterEdit() {
+  if (!renderPendingAfterEdit) return;
+  setTimeout(() => {
+    if (!renderPendingAfterEdit || isEditableElementActive()) return;
+    renderPendingAfterEdit = false;
+    render();
+  }, 0);
 }
 
 function tr(value) {

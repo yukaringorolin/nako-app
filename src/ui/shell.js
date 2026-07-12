@@ -13,6 +13,7 @@ const routeRegistry = window.nakoRouter.createRouteRegistry({
 });
 
 function render() {
+  renderPendingAfterEdit = false;
   const currentScroll = window.scrollY;
   const oldRouteKey = activeRouteKey;
 
@@ -107,9 +108,24 @@ function renderShell(title, content, showBack = false) {
 }
 
 function renderSyncIndicator() {
+  const { mode, displayLabel } = syncIndicatorState();
+  return `<span class="sync-indicator" aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></span>`;
+}
+
+function syncIndicatorState() {
   const modes = ["local", "connecting", "synced", "error"];
   const mode = modes.includes(firebaseStatus?.mode) ? firebaseStatus.mode : "local";
   const key = mode === "synced" ? "syncCloud" : mode === "connecting" ? "syncConnecting" : mode === "error" ? "syncOff" : "syncLocal";
   const displayLabel = label(key);
-  return `<span class="sync-indicator" aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></span>`;
+  return { mode, displayLabel };
+}
+
+function refreshSyncIndicator() {
+  const indicator = document.querySelector(".sync-indicator");
+  const dot = indicator?.querySelector(".sync-status");
+  if (!indicator || !dot) return;
+  const { mode, displayLabel } = syncIndicatorState();
+  indicator.setAttribute("aria-label", displayLabel);
+  indicator.setAttribute("title", displayLabel);
+  dot.className = `sync-status sync-${mode}`;
 }

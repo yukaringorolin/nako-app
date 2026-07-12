@@ -345,9 +345,10 @@ function handleInput(event) {
 }
 
 function handleBlur(event) {
-  if (event.target.closest?.("[data-training-input]")) return saveState();
+  if (event.target.closest?.("[data-training-input]")) saveState();
   const diaryText = event.target.closest?.("[data-diary-text]");
   if (diaryText) saveState();
   const diaryTrans = event.target.closest?.("[data-diary-translation-date]");
   if (diaryTrans) saveState();
+  flushPendingRenderAfterEdit();
 }

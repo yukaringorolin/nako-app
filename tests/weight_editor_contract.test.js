@@ -11,8 +11,8 @@ const routineState = fs.readFileSync(path.join(root, "src", "features", "routine
 const weight = fs.readFileSync(path.join(root, "src", "features", "weight.js"), "utf8");
 
 assert.ok(
-  appCore.includes("[data-training-input], [data-weight-date]"),
-  "Firebase snapshots must not rebuild the page while a weight field is focused"
+  appCore.includes("input, textarea, select, [contenteditable]"),
+  "Firebase snapshots must not rebuild the page while any editable control is focused"
 );
 assert.ok(
   actions.includes('updateWeightInput(weightInput, { remoteCompletion: false })'),

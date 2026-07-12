@@ -97,27 +97,30 @@ function initFirebaseSync() {
 
   firebaseSync.onStatus((status) => {
     firebaseStatus = status;
-    renderUnlessDiaryTyping();
+    refreshSyncIndicator();
   });
 
   firebaseSync.startStateSync({
     getLocalState: () => appState,
     applyRemoteState: (nextState) => {
+      const previousSignature = appStateSignature(appState);
       const localRoutineCompletions = routineRecords();
       appState = nextState && typeof nextState === "object" ? nextState : {};
       appState.routineCompletions = localRoutineCompletions;
       migrateRoutineTrackingState();
       saveState({ remote: false });
-      renderUnlessDiaryTyping();
+      if (appStateSignature(appState) !== previousSignature) renderUnlessEditing();
     }
   });
 
   firebaseSync.startRoutineCompletionSync?.({
     getLocalRecords: () => routineRecords(),
     applyRemoteRecords: (records) => {
-      appState.routineCompletions = routineTracking.normalizeRecords(records);
+      const previousSignature = appStateSignature(routineRecords());
+      const normalizedRecords = routineTracking.normalizeRecords(records);
+      appState.routineCompletions = normalizedRecords;
       saveState({ remote: false });
-      renderUnlessDiaryTyping();
+      if (appStateSignature(normalizedRecords) !== previousSignature) renderUnlessEditing();
     }
   });
 }
