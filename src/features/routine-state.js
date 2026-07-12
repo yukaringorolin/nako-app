@@ -31,15 +31,16 @@ function migrateRoutineTrackingState() {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
 }
 
-function updateWeightInput(weightInput) {
+function updateWeightInput(weightInput, options = {}) {
   appState.weightTracking ||= {};
   const val = weightInput.value.trim();
   appState.weightTracking[weightInput.dataset.weightDate] = {
     value: val !== "" ? parseFloat(val) : "",
     updatedAt: nowIso()
   };
-  reconcileWeightCompletion(weightInput.dataset.weightDate);
-  saveStateDebounced();
+  reconcileWeightCompletion(weightInput.dataset.weightDate, { remote: options.remoteCompletion !== false });
+  if (options.commit) saveState();
+  else saveStateDebounced();
 }
 
 function completionRecordFor(task, dateKey, attrs = {}) {
@@ -177,17 +178,18 @@ function updateRoutineCompletionNote(recordId, note) {
   render();
 }
 
-function reconcileWeightCompletion(dateKey) {
+function reconcileWeightCompletion(dateKey, options = {}) {
   const task = activeTrackedRoutineTasks().find((item) => item.id === "nako-weight-tracking");
   const targetCycle = task && routineCycle(task, dateKey);
   if (!task || !targetCycle) return;
+  const storeOptions = options.remote === false ? { remoteLegacy: false, remoteCompletion: false } : {};
   const candidates = Object.entries(appState.weightTracking || {}).map(([key, value]) => ({ key, value: parseFloat(getWeightValue(value)), updatedAt: value?.updatedAt || "" }))
     .filter((entry) => Number.isFinite(entry.value) && entry.value > 0 && routineCycle(task, entry.key)?.key === targetCycle.key)
     .sort((a, b) => b.key.localeCompare(a.key));
   const id = routineTracking.completionId(task.id, targetCycle.key);
   const existing = routineRecords()[id];
   if (!candidates.length) {
-    if (existing && !existing.deleted && existing.source === "metric") storeRoutineRecord(tombstoneRoutineRecord(existing));
+    if (existing && !existing.deleted && existing.source === "metric") storeRoutineRecord(tombstoneRoutineRecord(existing), storeOptions);
     return;
   }
   const latest = candidates[0];
@@ -198,5 +200,5 @@ function reconcileWeightCompletion(dateKey) {
     note,
     source: "metric",
     weightKg: latest.value
-  }));
+  }), storeOptions);
 }

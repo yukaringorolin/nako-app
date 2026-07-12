@@ -119,12 +119,12 @@ function renderWeightTracking(item) {
 
     <section class="panel">
       <h2>${esc(label("weightTrend"))}</h2>
-      ${renderWeightGraph()}
+      <div data-weight-readout="trend">${renderWeightGraph()}</div>
     </section>
     
     <section class="panel">
       <h2>${esc(label("recentEntries"))}</h2>
-      ${renderRecentEntriesPanel()}
+      <div data-weight-readout="recent">${renderRecentEntriesPanel()}</div>
     </section>
 
     <section class="panel">
@@ -133,6 +133,13 @@ function renderWeightTracking(item) {
     </section>
   `;
   renderShell(tr(item.title), content, true);
+}
+
+function refreshWeightTrackingReadouts() {
+  const trend = document.querySelector('[data-weight-readout="trend"]');
+  const recent = document.querySelector('[data-weight-readout="recent"]');
+  if (trend) trend.innerHTML = renderWeightGraph();
+  if (recent) recent.innerHTML = renderRecentEntriesPanel();
 }
 
 function renderQuickEntryPanel() {

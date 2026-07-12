@@ -154,8 +154,8 @@ function handleChange(event) {
   }
   const weightInput = event.target.closest("[data-weight-date]");
   if (weightInput) {
-    updateWeightInput(weightInput);
-    render();
+    updateWeightInput(weightInput, { commit: true });
+    refreshWeightTrackingReadouts();
     return;
   }
   const yearSelect = event.target.closest("[data-archive-year-select]");

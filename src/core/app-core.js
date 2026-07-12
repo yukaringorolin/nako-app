@@ -76,7 +76,7 @@ function renderUnlessDiaryTyping() {
 }
 
 function isDiaryTextInputActive() {
-  return Boolean(document.activeElement?.matches?.("[data-diary-text], [data-diary-translation-date], [data-training-input]"));
+  return Boolean(document.activeElement?.matches?.("[data-diary-text], [data-diary-translation-date], [data-training-input], [data-weight-date]"));
 }
 
 function tr(value) {

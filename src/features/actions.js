@@ -300,7 +300,7 @@ function handleInput(event) {
     return;
   }
   const weightInput = event.target.closest("[data-weight-date]");
-  if (weightInput) return updateWeightInput(weightInput);
+  if (weightInput) return updateWeightInput(weightInput, { remoteCompletion: false });
   const trainingField = event.target.closest("[data-training-input]");
   if (trainingField) {
     if (trainingField.dataset.trainingSetting) {
