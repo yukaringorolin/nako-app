@@ -109,7 +109,9 @@ function renderShell(title, content, showBack = false) {
 
 function renderSyncIndicator() {
   const { mode, displayLabel } = syncIndicatorState();
-  return `<span class="sync-indicator" aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></span>`;
+  const stateMode = syncChannelMode(firebaseStatus?.stateMode);
+  const routineMode = syncChannelMode(firebaseStatus?.routineMode);
+  return `<span class="sync-indicator" data-state-mode="${stateMode}" data-routine-mode="${routineMode}" data-state-diff="${esc(firebaseStatus?.stateDiffKeys || "")}" data-state-cleanup="${Boolean(firebaseStatus?.stateCleanupPending)}" aria-label="${esc(displayLabel)}" title="${esc(displayLabel)}"><span class="sync-status sync-${mode}"></span></span>`;
 }
 
 function syncIndicatorState() {
@@ -120,11 +122,19 @@ function syncIndicatorState() {
   return { mode, displayLabel };
 }
 
+function syncChannelMode(value) {
+  return ["local", "connecting", "synced", "error"].includes(value) ? value : "local";
+}
+
 function refreshSyncIndicator() {
   const indicator = document.querySelector(".sync-indicator");
   const dot = indicator?.querySelector(".sync-status");
   if (!indicator || !dot) return;
   const { mode, displayLabel } = syncIndicatorState();
+  indicator.dataset.stateMode = syncChannelMode(firebaseStatus?.stateMode);
+  indicator.dataset.routineMode = syncChannelMode(firebaseStatus?.routineMode);
+  indicator.dataset.stateDiff = firebaseStatus?.stateDiffKeys || "";
+  indicator.dataset.stateCleanup = String(Boolean(firebaseStatus?.stateCleanupPending));
   indicator.setAttribute("aria-label", displayLabel);
   indicator.setAttribute("title", displayLabel);
   dot.className = `sync-status sync-${mode}`;

@@ -44,7 +44,8 @@ const window = {
   nakoFirebaseState: firebaseState,
   addEventListener: () => {},
   clearTimeout: () => {},
-  setTimeout: (cb) => cb()
+  setTimeout: (cb) => cb(),
+  fetch: async () => ({ ok: true, status: 200, json: async () => ({ fields: {} }) })
 };
 
 let statusListenerCallback = null;
@@ -55,7 +56,7 @@ let routineErrorCallback = null;
 
 // Mock Firebase SDK
 const authMock = {
-  currentUser: { uid: "mock-uid" },
+  currentUser: { uid: "mock-uid", getIdToken: async () => "mock-token" },
   onAuthStateChanged: (cb) => {
     cb({ uid: "mock-uid" });
   },
@@ -83,19 +84,21 @@ const firestoreMock = {
             stateSnapshotCallback = onNext;
             stateErrorCallback = onError;
             return () => {};
-          }
+          },
+          update: () => Promise.resolve()
         };
       }
     };
   },
   runTransaction: async (callback) => callback({
     get: async () => ({ exists: true, data: () => ({ state: {} }) }),
-    set: () => {}
+    set: () => {},
+    update: () => {}
   })
 };
 
 const firestoreFactory = () => firestoreMock;
-firestoreFactory.FieldValue = { serverTimestamp: () => "server-time" };
+firestoreFactory.FieldValue = { serverTimestamp: () => "server-time", delete: () => "delete-field" };
 
 window.firebase = {
   apps: [{}], // Pre-initialized by Hosting
@@ -136,8 +139,10 @@ const canonicalEmptyState = {
   training: { commands: {}, commandLogs: [], playLogs: [] }
 };
 
-// Trigger state listener success
+(async () => {
+// Trigger state listener success and wait for the one-time cleanup write.
 stateSnapshotCallback({ exists: true, data: () => ({ state: canonicalEmptyState }) });
+await new Promise((resolve) => setImmediate(resolve));
 // Trigger routine listener error
 routineErrorCallback(new Error("Permission denied"));
 
@@ -159,3 +164,7 @@ assert.equal(currentStatus.stateMode, "synced");
 assert.equal(currentStatus.routineMode, "synced");
 
 console.log("Household sync contract checks passed successfully.");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

@@ -1,6 +1,7 @@
 (function () {
   const STATE_DOC_ID = "nako-care-state-v2";
   const HOUSEHOLD_ID = "our-dog-nako";
+  const PROJECT_ID = "nako-home-care";
   const listeners = new Set();
   const status = {
     mode: "local",
@@ -28,6 +29,9 @@
   let stateSyncError = "";
   let routineSyncError = "";
   let globalError = "";
+  let stateDiffKeys = "";
+  let stateCleanupPending = false;
+  let sharedStateCleanupConfirmed = false;
 
   const service = {
     status: () => ({ ...status }),
@@ -191,7 +195,8 @@
         const localState = sharedState(syncCallbacks.getLocalState?.() || {});
         const mergedState = window.nakoFirebaseState.mergeStates(remoteState, localState);
         syncCallbacks.applyRemoteState?.(mergedState);
-        queueMergedState(remoteState, mergedState, window.nakoFirebaseState.needsSharedStateCleanup(rawRemoteState));
+        const cleanupRequired = !sharedStateCleanupConfirmed;
+        queueMergedState(remoteState, mergedState, cleanupRequired);
       },
       (error) => {
         stateSyncStatus = "error";
@@ -282,37 +287,93 @@
     return stateWriteQueue?.flush() || false;
   }
 
-  function writeStateDocument(stateToSave) {
+  async function writeStateDocument(stateToSave) {
     if (!stateDoc || !db) return Promise.reject(new Error("Firebase state document unavailable"));
     const candidateState = sharedState(stateToSave);
-    return db.runTransaction(async (transaction) => {
+    let cleanupCommitted = false;
+    await db.runTransaction(async (transaction) => {
       const snapshot = await transaction.get(stateDoc);
-      const remoteState = sharedState(snapshot.exists ? snapshot.data()?.state || {} : {});
+      const rawRemoteState = snapshot.exists ? snapshot.data()?.state || {} : {};
+      const remoteState = sharedState(rawRemoteState);
       const mergedState = window.nakoFirebaseState.mergeStates(remoteState, candidateState);
-      transaction.set(
-        stateDoc,
-        {
-          state: mergedState,
-          clientUpdatedAt: new Date().toISOString(),
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        },
-        { mergeFields: ["state", "clientUpdatedAt", "updatedAt"] }
-      );
+      const signature = window.nakoFirebaseWriteQueue?.stableStateSignature || JSON.stringify;
+      const cleanupRequired = !sharedStateCleanupConfirmed;
+      cleanupCommitted ||= cleanupRequired;
+      if (signature(remoteState) === signature(mergedState)) return;
+      cleanupCommitted = true;
+      const payload = {
+        state: mergedState,
+        clientUpdatedAt: new Date().toISOString(),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+      if (snapshot.exists) {
+        // Updating the parent field replaces the full state map while preserving
+        // document siblings and the routineCompletions subcollection.
+        transaction.update(stateDoc, payload);
+      } else {
+        transaction.set(stateDoc, payload, { mergeFields: ["state", "clientUpdatedAt", "updatedAt"] });
+      }
     });
+    if (cleanupCommitted) {
+      await deleteLegacySharedStateFields();
+    }
+    sharedStateCleanupConfirmed = true;
+    stateCleanupPending = false;
+  }
+
+  async function deleteLegacySharedStateFields() {
+    const token = await auth?.currentUser?.getIdToken?.();
+    if (!token) throw new Error("Firebase authentication unavailable for state cleanup");
+    const fieldPaths = [
+      "state.routineCompletions",
+      "state.routineTrackingMigration",
+      "state.training.contentMigrations"
+    ];
+    const documentName = `projects/${PROJECT_ID}/databases/(default)/documents/households/${HOUSEHOLD_ID}`;
+    const response = await window.fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents:commit`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        writes: [{ update: { name: documentName, fields: {} }, updateMask: { fieldPaths } }]
+      })
+    });
+    if (!response.ok) throw new Error(`Legacy shared-state cleanup failed (${response.status})`);
+    const verifyResponse = await window.fetch(`https://firestore.googleapis.com/v1/${documentName}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!verifyResponse.ok) throw new Error(`Legacy shared-state verification failed (${verifyResponse.status})`);
+    const cleanedDocument = await verifyResponse.json();
+    const cleanedState = cleanedDocument?.fields?.state?.mapValue?.fields || {};
+    const cleanedTraining = cleanedState.training?.mapValue?.fields || {};
+    if (cleanedState.routineCompletions || cleanedState.routineTrackingMigration || cleanedTraining.contentMigrations) {
+      throw new Error("Legacy shared-state cleanup verification failed");
+    }
   }
 
   function queueMergedState(remoteState, mergedState, forceCleanup = false) {
+    const remoteShared = sharedState(remoteState);
+    const mergedShared = sharedState(mergedState);
+    stateDiffKeys = topLevelDiffKeys(remoteShared, mergedShared);
+    stateCleanupPending = Boolean(forceCleanup);
     const queued = forceCleanup
-      ? Boolean(stateWriteQueue?.enqueue(sharedState(mergedState)))
+      ? Boolean(stateWriteQueue?.enqueue(mergedShared))
       : window.nakoFirebaseWriteQueue?.queueMergedStateIfChanged(
           stateWriteQueue,
-          sharedState(remoteState),
-          sharedState(mergedState)
+          remoteShared,
+          mergedShared
         );
     if (queued || !stateWriteQueue?.inspect().isIdle) return;
     stateSyncStatus = "synced";
     stateSyncError = "";
     updateCombinedStatus();
+  }
+
+  function topLevelDiffKeys(first, second) {
+    const signature = window.nakoFirebaseWriteQueue?.stableStateSignature || JSON.stringify;
+    return [...new Set([...Object.keys(first || {}), ...Object.keys(second || {})])]
+      .filter((key) => signature(first?.[key]) !== signature(second?.[key]))
+      .sort()
+      .join(",");
   }
 
   function sharedState(value) {
@@ -358,6 +419,8 @@
       mode: combinedMode,
       stateMode: stateSyncStatus,
       routineMode: routineSyncStatus,
+      stateDiffKeys,
+      stateCleanupPending,
       stateError: stateSyncError,
       routineError: routineSyncError,
       error: combinedError,
