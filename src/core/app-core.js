@@ -21,17 +21,20 @@ function baselineCommandState(command, updatedAt = nowIso()) {
 function migrateTrainingState() {
   const training = appState.training;
   if (!training || typeof training !== "object") return;
+  const settingsChanged = ensureTrainingSettings(training);
   training.contentMigrations ||= {};
   const migrationId = "lift-carry-bao-bao-2026-07-11";
-  if (training.contentMigrations[migrationId]) return;
-  const command = trainingData.commands.find((item) => item.id === "lift-carry");
-  const state = training.commands?.[command?.id];
-  const hasLogs = training.commandLogs?.some((log) => log.commandId === command?.id);
-  const isUntouchedBaseline = state && !hasLogs && Number(state.score) === 0 && !state.lastPracticedAt;
-  if (isUntouchedBaseline) Object.assign(state, baselineCommandState(command));
-  if (!training.liftCue) training.liftCue = command?.defaultCue || "Bao Bao";
-  training.contentMigrations[migrationId] = true;
-  safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
+  const migrationRequired = !training.contentMigrations[migrationId];
+  if (migrationRequired) {
+    const command = trainingData.commands.find((item) => item.id === "lift-carry");
+    const state = training.commands?.[command?.id];
+    const hasLogs = training.commandLogs?.some((log) => log.commandId === command?.id);
+    const isUntouchedBaseline = state && !hasLogs && Number(state.score) === 0 && !state.lastPracticedAt;
+    if (isUntouchedBaseline) Object.assign(state, baselineCommandState(command));
+    if (!training.liftCue) training.liftCue = command?.defaultCue || "Bao Bao";
+    training.contentMigrations[migrationId] = true;
+  }
+  if (settingsChanged || migrationRequired) safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
 }
 
 let translationDebounceTimer = null;
@@ -48,14 +51,11 @@ function saveStateDebounced() {
 
 function saveState(options = {}) {
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
-  if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(legacyRemoteState());
+  if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(sharedRemoteState());
 }
 
-function legacyRemoteState() {
-  const state = JSON.parse(JSON.stringify(appState || {}));
-  delete state.routineCompletions;
-  delete state.routineTrackingMigration;
-  return state;
+function sharedRemoteState() {
+  return window.nakoFirebaseState?.projectSharedState?.(appState) || {};
 }
 
 window.addEventListener("pagehide", () => {

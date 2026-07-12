@@ -4,6 +4,8 @@
   const listeners = new Set();
   const status = {
     mode: "local",
+    stateMode: "local",
+    routineMode: "local",
     uid: "",
     cloudEnabled: false,
     storageEnabled: false,
@@ -64,7 +66,7 @@
     // saveRemoteState: Debounces state updates to avoid exceeding Firestore write rate limits
     saveRemoteState(nextState) {
       if (!stateDoc || !stateWriteQueue) return false;
-      stateWriteQueue.enqueue(nextState);
+      stateWriteQueue.enqueue(sharedState(nextState));
       return true;
     },
     async getStorageDownloadURL(path) {
@@ -182,24 +184,14 @@
     if (!stateDoc || !syncCallbacks) return;
     detachStateListener();
 
-    let firstSnapshot = true;
     unsubscribeState = stateDoc.onSnapshot(
       (snapshot) => {
-        const remoteState = snapshot.exists ? cloneState(snapshot.data()?.state || {}) : {};
-
-        if (firstSnapshot) {
-          firstSnapshot = false;
-          const localState = cloneState(syncCallbacks.getLocalState?.() || {});
-          const mergedState = mergeStates(remoteState, localState);
-          syncCallbacks.applyRemoteState?.(mergedState);
-          queueMergedState(remoteState, mergedState);
-          return;
-        }
-
-        const localState = cloneState(syncCallbacks.getLocalState?.() || {});
-        const mergedState = mergeStates(remoteState, localState);
+        const rawRemoteState = snapshot.exists ? cloneState(snapshot.data()?.state || {}) : {};
+        const remoteState = sharedState(rawRemoteState);
+        const localState = sharedState(syncCallbacks.getLocalState?.() || {});
+        const mergedState = window.nakoFirebaseState.mergeStates(remoteState, localState);
         syncCallbacks.applyRemoteState?.(mergedState);
-        queueMergedState(remoteState, mergedState);
+        queueMergedState(remoteState, mergedState, window.nakoFirebaseState.needsSharedStateCleanup(rawRemoteState));
       },
       (error) => {
         stateSyncStatus = "error";
@@ -291,94 +283,40 @@
   }
 
   function writeStateDocument(stateToSave) {
-    if (!stateDoc) return Promise.reject(new Error("Firebase state document unavailable"));
-    return stateDoc.set(
-      {
-        state: stateToSave,
-        clientUpdatedAt: new Date().toISOString(),
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      },
-      { merge: true }
-    );
+    if (!stateDoc || !db) return Promise.reject(new Error("Firebase state document unavailable"));
+    const candidateState = sharedState(stateToSave);
+    return db.runTransaction(async (transaction) => {
+      const snapshot = await transaction.get(stateDoc);
+      const remoteState = sharedState(snapshot.exists ? snapshot.data()?.state || {} : {});
+      const mergedState = window.nakoFirebaseState.mergeStates(remoteState, candidateState);
+      transaction.set(
+        stateDoc,
+        {
+          state: mergedState,
+          clientUpdatedAt: new Date().toISOString(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        },
+        { mergeFields: ["state", "clientUpdatedAt", "updatedAt"] }
+      );
+    });
   }
 
-  function queueMergedState(remoteState, mergedState) {
-    const queued = window.nakoFirebaseWriteQueue?.queueMergedStateIfChanged(
-      stateWriteQueue,
-      remoteState,
-      mergedState
-    );
+  function queueMergedState(remoteState, mergedState, forceCleanup = false) {
+    const queued = forceCleanup
+      ? Boolean(stateWriteQueue?.enqueue(sharedState(mergedState)))
+      : window.nakoFirebaseWriteQueue?.queueMergedStateIfChanged(
+          stateWriteQueue,
+          sharedState(remoteState),
+          sharedState(mergedState)
+        );
     if (queued || !stateWriteQueue?.inspect().isIdle) return;
     stateSyncStatus = "synced";
     stateSyncError = "";
     updateCombinedStatus();
   }
 
-  // mergeStates: Integrates remote and local database schemas
-  function mergeStates(remoteState, localState) {
-    return {
-      ...remoteState,
-      ...localState,
-      food: mergeDatedRecords(remoteState.food, localState.food),
-      weightTracking: mergeDatedRecords(remoteState.weightTracking, localState.weightTracking),
-      routineTrackingStartedDate: earliestDate(remoteState.routineTrackingStartedDate, localState.routineTrackingStartedDate),
-      diary: mergeDiaryState(remoteState.diary, localState.diary),
-      training: mergeTrainingState(remoteState.training, localState.training)
-    };
-  }
-
-  function earliestDate(first, second) {
-    if (!first) return second || "";
-    if (!second) return first;
-    return first <= second ? first : second;
-  }
-
-  function mergeTrainingState(remoteTraining = {}, localTraining = {}) {
-    const remote = remoteTraining || {};
-    const local = localTraining || {};
-    return {
-      ...remote,
-      ...local,
-      commands: mergeDatedRecords(remote.commands, local.commands),
-      commandLogs: mergeLogsById(remote.commandLogs, local.commandLogs),
-      playLogs: mergeLogsById(remote.playLogs, local.playLogs)
-    };
-  }
-
-  function mergeLogsById(remoteLogs = [], localLogs = []) {
-    const merged = new Map();
-    [...(remoteLogs || []), ...(localLogs || [])].forEach((log) => {
-      if (!log || !log.id) return;
-      const current = merged.get(log.id);
-      if (!current || (Date.parse(log.updatedAt || log.createdAt || "") || 0) >= (Date.parse(current.updatedAt || current.createdAt || "") || 0)) merged.set(log.id, log);
-    });
-    return [...merged.values()];
-  }
-
-  function mergeDiaryState(remoteDiary = {}, localDiary = {}) {
-    return {
-      ...remoteDiary,
-      ...localDiary,
-      entries: mergeDatedRecords(remoteDiary.entries, localDiary.entries),
-      drafts: mergeDatedRecords(remoteDiary.drafts, localDiary.drafts)
-    };
-  }
-
-  function mergeDatedRecords(remoteRecords = {}, localRecords = {}) {
-    const merged = { ...(remoteRecords || {}) };
-    Object.entries(localRecords || {}).forEach(([dateKey, localValue]) => {
-      const remoteValue = merged[dateKey];
-      merged[dateKey] = pickLatestRecord(remoteValue, localValue);
-    });
-    return merged;
-  }
-
-  function pickLatestRecord(remoteValue, localValue) {
-    if (!remoteValue) return localValue;
-    if (!localValue) return remoteValue;
-    const remoteTime = Date.parse(remoteValue.updatedAt || remoteValue.submittedAt || "") || 0;
-    const localTime = Date.parse(localValue.updatedAt || localValue.submittedAt || "") || 0;
-    return localTime >= remoteTime ? localValue : remoteValue;
+  function sharedState(value) {
+    return window.nakoFirebaseState?.projectSharedState?.(value) || cloneState(value);
   }
 
   function cloneState(value) {
@@ -418,6 +356,10 @@
 
     setStatus({
       mode: combinedMode,
+      stateMode: stateSyncStatus,
+      routineMode: routineSyncStatus,
+      stateError: stateSyncError,
+      routineError: routineSyncError,
       error: combinedError,
       ...patch
     });

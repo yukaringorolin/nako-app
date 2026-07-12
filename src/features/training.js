@@ -7,6 +7,7 @@ function getTrainingState() {
     appState.training.commands ||= {};
     appState.training.commandLogs ||= [];
     appState.training.playLogs ||= [];
+    ensureTrainingSettings(appState.training);
     return appState.training;
   }
   const now = nowIso();
@@ -15,8 +16,47 @@ function getTrainingState() {
     commandLogs: [], playLogs: [],
     ...Object.fromEntries(trainingData.commands.filter((command) => command.setting && command.defaultCue).map((command) => [command.setting, command.defaultCue]))
   };
+  ensureTrainingSettings(appState.training);
   saveState({ remote: false });
   return appState.training;
+}
+
+function ensureTrainingSettings(training) {
+  if (!training || typeof training !== "object") return false;
+  let changed = false;
+  if (!training.settings || typeof training.settings !== "object") {
+    training.settings = {};
+    changed = true;
+  }
+  trainingData.commands.filter((command) => command.setting).forEach((command) => {
+    const key = command.setting;
+    const existing = training.settings[key];
+    if (!existing || typeof existing !== "object" || !Object.prototype.hasOwnProperty.call(existing, "value")) {
+      training.settings[key] = {
+        value: typeof training[key] === "string" ? training[key] : (command.defaultCue || ""),
+        updatedAt: ""
+      };
+      changed = true;
+    } else {
+      const normalized = { value: String(existing.value ?? ""), updatedAt: String(existing.updatedAt || "") };
+      if (normalized.value !== existing.value || normalized.updatedAt !== existing.updatedAt) changed = true;
+      training.settings[key] = normalized;
+    }
+    if (training[key] !== training.settings[key].value) {
+      training[key] = training.settings[key].value;
+      changed = true;
+    }
+  });
+  return changed;
+}
+
+function updateTrainingSetting(key, value) {
+  const training = getTrainingState();
+  const nextValue = String(value ?? "");
+  training.settings ||= {};
+  training.settings[key] = { value: nextValue, updatedAt: nowIso() };
+  training[key] = nextValue;
+  saveStateDebounced();
 }
 
 function getCommandState(commandId) {

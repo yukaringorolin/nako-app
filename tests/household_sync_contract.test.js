@@ -7,6 +7,7 @@ const appContent = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8"
 const rulesContent = fs.readFileSync(path.join(__dirname, "../firestore.rules"), "utf8");
 const workflowContent = fs.readFileSync(path.join(__dirname, "../.github/workflows/firebase-hosting-merge.yml"), "utf8");
 const firebaseWriteQueue = require("../src/core/firebase-write-queue.js");
+const firebaseState = require("../src/core/firebase-state.js");
 
 // 1. HOUSEHOLD_ID is fixed as "our-dog-nako"
 assert.ok(firebaseContent.includes('const HOUSEHOLD_ID = "our-dog-nako";'), "HOUSEHOLD_ID must be defined as 'our-dog-nako'");
@@ -40,6 +41,7 @@ assert.ok(!rulesContent.includes("householdId.size() >= 3"), "firestore.rules mu
 // 10. Test status combining logic and routine listener error overwrite behavior
 const window = {
   nakoFirebaseWriteQueue: firebaseWriteQueue,
+  nakoFirebaseState: firebaseState,
   addEventListener: () => {},
   clearTimeout: () => {},
   setTimeout: (cb) => cb()
@@ -60,37 +62,46 @@ const authMock = {
   signInAnonymously: () => Promise.resolve({ user: { uid: "mock-uid" } })
 };
 
+const firestoreMock = {
+  collection: (colName) => {
+    assert.equal(colName, "households");
+    return {
+      doc: (docId) => {
+        assert.equal(docId, "our-dog-nako");
+        return {
+          collection: (subColName) => {
+            assert.equal(subColName, "routineCompletions");
+            return {
+              onSnapshot: (onNext, onError) => {
+                routineSnapshotCallback = onNext;
+                routineErrorCallback = onError;
+                return () => {};
+              }
+            };
+          },
+          onSnapshot: (onNext, onError) => {
+            stateSnapshotCallback = onNext;
+            stateErrorCallback = onError;
+            return () => {};
+          }
+        };
+      }
+    };
+  },
+  runTransaction: async (callback) => callback({
+    get: async () => ({ exists: true, data: () => ({ state: {} }) }),
+    set: () => {}
+  })
+};
+
+const firestoreFactory = () => firestoreMock;
+firestoreFactory.FieldValue = { serverTimestamp: () => "server-time" };
+
 window.firebase = {
   apps: [{}], // Pre-initialized by Hosting
   auth: () => authMock,
   storage: () => ({}),
-  firestore: () => ({
-    collection: (colName) => {
-      assert.equal(colName, "households");
-      return {
-        doc: (docId) => {
-          assert.equal(docId, "our-dog-nako");
-          return {
-            collection: (subColName) => {
-              assert.equal(subColName, "routineCompletions");
-              return {
-                onSnapshot: (onNext, onError) => {
-                  routineSnapshotCallback = onNext;
-                  routineErrorCallback = onError;
-                  return () => {};
-                }
-              };
-            },
-            onSnapshot: (onNext, onError) => {
-              stateSnapshotCallback = onNext;
-              stateErrorCallback = onError;
-              return () => {};
-            }
-          };
-        }
-      };
-    }
-  })
+  firestore: firestoreFactory
 };
 
 global.firebase = window.firebase;
@@ -132,6 +143,8 @@ routineErrorCallback(new Error("Permission denied"));
 
 assert.equal(currentStatus.mode, "error", "Indicator must show error if routine completions sync fails");
 assert.equal(currentStatus.error, "Routine sync unavailable", "Useful error message must be set");
+assert.equal(currentStatus.stateMode, "synced");
+assert.equal(currentStatus.routineMode, "error");
 
 // Trigger state listener success again (main-state snapshot)
 stateSnapshotCallback({ exists: true, data: () => ({ state: canonicalEmptyState }) });
@@ -142,5 +155,7 @@ assert.equal(currentStatus.error, "Routine sync unavailable");
 routineSnapshotCallback({ forEach: () => {} });
 assert.equal(currentStatus.mode, "synced", "Indicator must show green (synced) when both listeners are healthy");
 assert.equal(currentStatus.error, "");
+assert.equal(currentStatus.stateMode, "synced");
+assert.equal(currentStatus.routineMode, "synced");
 
 console.log("Household sync contract checks passed successfully.");

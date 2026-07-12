@@ -101,12 +101,19 @@ function initFirebaseSync() {
   });
 
   firebaseSync.startStateSync({
-    getLocalState: () => appState,
+    getLocalState: () => sharedRemoteState(),
     applyRemoteState: (nextState) => {
       const previousSignature = appStateSignature(appState);
       const localRoutineCompletions = routineRecords();
+      const localTrainingMigrations = appState.training?.contentMigrations
+        ? { ...appState.training.contentMigrations }
+        : null;
       appState = nextState && typeof nextState === "object" ? nextState : {};
       appState.routineCompletions = localRoutineCompletions;
+      if (localTrainingMigrations) {
+        appState.training ||= {};
+        appState.training.contentMigrations = localTrainingMigrations;
+      }
       migrateRoutineTrackingState();
       saveState({ remote: false });
       if (appStateSignature(appState) !== previousSignature) renderUnlessEditing();

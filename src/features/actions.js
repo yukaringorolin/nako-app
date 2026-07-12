@@ -227,7 +227,7 @@ function saveCommandLog() {
   }
   const training = getTrainingState();
   const timestamp = draft.date || nowIso();
-  const log = { id: draft.id || uniqueId(), commandId: draft.commandId, score, rewardReliance: Number(draft.rewardReliance), environment: Number(draft.environment), successes, attempts, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), comment: String(draft.comment || ""), createdAt: timestamp };
+  const log = { id: draft.id || uniqueId(), commandId: draft.commandId, score, rewardReliance: Number(draft.rewardReliance), environment: Number(draft.environment), successes, attempts, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), comment: String(draft.comment || ""), createdAt: timestamp, updatedAt: nowIso() };
   const existingIndex = training.commandLogs.findIndex((item) => item.id === log.id);
   if (existingIndex >= 0) training.commandLogs[existingIndex] = log;
   else training.commandLogs.push(log);
@@ -273,7 +273,7 @@ function savePlayLog() {
     return;
   }
   const training = getTrainingState();
-  const log = { id: draft.id || uniqueId(), activityId: draft.activityId, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), engagement, energyBefore, energyAfter, dropResponse: String(draft.dropResponse || ""), allDoneResponse: String(draft.allDoneResponse || ""), favouriteToy: String(draft.favouriteToy || ""), comment: String(draft.comment || ""), unusual: String(draft.unusual || ""), createdAt: draft.date || nowIso() };
+  const log = { id: draft.id || uniqueId(), activityId: draft.activityId, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), engagement, energyBefore, energyAfter, dropResponse: String(draft.dropResponse || ""), allDoneResponse: String(draft.allDoneResponse || ""), favouriteToy: String(draft.favouriteToy || ""), comment: String(draft.comment || ""), unusual: String(draft.unusual || ""), createdAt: draft.date || nowIso(), updatedAt: nowIso() };
   const index = training.playLogs.findIndex((item) => item.id === log.id);
   if (index >= 0) training.playLogs[index] = log;
   else training.playLogs.push(log);
@@ -304,8 +304,7 @@ function handleInput(event) {
   const trainingField = event.target.closest("[data-training-input]");
   if (trainingField) {
     if (trainingField.dataset.trainingSetting) {
-      getTrainingState()[trainingField.dataset.trainingSetting] = trainingField.value;
-      return saveStateDebounced();
+      return updateTrainingSetting(trainingField.dataset.trainingSetting, trainingField.value);
     }
     if (trainingDraft && trainingField.dataset.trainingField) {
       trainingDraft[trainingField.dataset.trainingField] = trainingField.value;
