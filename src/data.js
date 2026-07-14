@@ -3507,7 +3507,10 @@ const recipes = [
     [
       photo("assets/recipes/human-food/shogatsu-osechi.png",
         t("Shōgatsu Osechi New Year dishes", "お正月のおせち料理", "ဂျပန်နှစ်သစ်ကူး အိုဆဲချိ ဟင်းလျာများ"),
-        t("Multi-tiered Osechi boxes beautifully arranged with prawns, braised pork belly, sliced ham, rolled egg, lotus root, shiitake mushrooms, pink and white kamaboko, and black beans.", "海老、豚の角煮、ハム、伊達巻、蓮根、椎茸、かまぼこ、黒豆などが美しく並べられた多段のおせち料理。", "ပုစွန်၊ ဝက်သားချက်၊ ဟမ်းပြားများ၊ ကြက်ဥလိပ်၊ ကြာစွယ်၊ ရှီတာကေမှို၊ ပန်းရောင်နှင့် အဖြူရောင် kamaboko ငါးကိတ်နှင့် ပဲနက်ချိုတို့ဖြင့် လှပစွာ ပြင်ဆင်ထားသော Osechi ဟင်းလျာသေတ္တာများ။"))
+        t("Multi-tiered Osechi boxes beautifully arranged with prawns, braised pork belly, sliced ham, rolled egg, lotus root, shiitake mushrooms, pink and white kamaboko, and black beans.", "海老、豚の角煮、ハム、伊達巻、蓮根、椎茸、かまぼこ、黒豆などが美しく並べられた多段のおせち料理。", "ပုစွန်၊ ဝက်သားချက်၊ ဟမ်းပြားများ၊ ကြက်ဥလိပ်၊ ကြာစွယ်၊ ရှီတာကေမှို၊ ပန်းရောင်နှင့် အဖြူရောင် kamaboko ငါးကိတ်နှင့် ပဲနက်ချိုတို့ဖြင့် လှပစွာ ပြင်ဆင်ထားသော Osechi ဟင်းလျာသေတ္တာများ။")),
+      photo("assets/recipes/human-food/shogatsu-osechi-family.jpg",
+        t("Family gathering with Osechi meal", "おせち料理を囲む家族の集まり", "အိုဆဲချိ ဟင်းလျာများနှင့်အတူ မိသားစုဆုံတွေ့ပွဲ"),
+        t("A large family gathering standing around a dinner table set with Osechi dishes in a brightly lit room.", "明るい部屋で、おせち料理が並ぶ食卓を囲んで笑顔で立つ大家族の様子。", "လင်းထိန်နေသောအခန်းတွင် အိုဆဲချိဟင်းလျာများ ပြင်ဆင်ထားသည့် စားပွဲဝိုင်းကို ဝိုင်းရံလျက် ရပ်နေသော မိသားစုဝင်များ၏ ပုံရိပ်။"))
     ],
     "human",
     {
