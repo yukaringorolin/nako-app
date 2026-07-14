@@ -37,7 +37,17 @@ assert.doesNotMatch(routineById("nako-feeding-water").summary.en, /K9 Natural/);
 assert.match(englishText(routineById("general-window-safety").mustRemember), /grilles do not make the area completely safe/);
 assert.match(routineById("windows-glass-mirrors").summary.en, /interior side/);
 assert.match(englishText(routineById("floor-mats").mustRemember), /downstairs neighbour's clothes/);
-assert.match(englishText(routineById("mail-deliveries").mustRemember), /Discard the first water, drink, or food output/);
+const mailDeliveries = routineById("mail-deliveries");
+assert.equal(mailDeliveries.instructions.length, 4);
+assert.match(englishText(mailDeliveries.instructions), /Do not leave them outside where they could be stolen/);
+assert.match(englishText(mailDeliveries.instructions), /When instructed to remove packaging/);
+assert.match(englishText(mailDeliveries.instructions), /If unsure whether to keep the packaging, keep it/);
+assert.doesNotMatch(englishText(mailDeliveries.mustRemember), /Unpack everything outside/);
+assert.match(englishText(mailDeliveries.mustRemember), /Discard the first water, drink, or food output/);
+assert.deepEqual(Array.from(mailDeliveries.photos, (item) => item.src), [
+  "assets/routines/nako-delivery-unpack-when-instructed.jpg",
+  "assets/routines/nako-delivery-wipe-item.jpg"
+]);
 assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchange it for a treat/);
 assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);

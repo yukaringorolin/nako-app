@@ -1159,18 +1159,20 @@ const routineTasks = [
 
   routine("mail-deliveries", "daily", 100, "P", 
     t("Mail & Deliveries", "郵便物と配達対応", "စာတိုက်နှင့် delivery များ"),
-    t("Check the mailbox daily. Receive packages. Open and wipe packages outside before bringing them in.", "毎日郵便受けを確認します。荷物を受け取ります。外で開封して拭いてから家に入れます。", "mailbox ကို နေ့တိုင်းစစ်ပါ။ Package ကိုလက်ခံပါ။ အပြင်မှာဖွင့်ပြီး သုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"),
+    t("Collect deliveries promptly. Wipe them and bring them inside. Remove packaging outdoors only when instructed; otherwise keep and wipe it.", "配達物はすぐに回収し、拭いて家に入れます。指示がある時だけ屋外で梱包を外し、それ以外は梱包ごと拭いてください。", "delivery ပစ္စည်းများကို ချက်ချင်းယူပြီး သုတ်ကာ အိမ်ထဲသွင်းပါ။ ညွှန်ကြားထားမှသာ အပြင်တွင် packaging ကိုဖြုတ်ပါ။ မဟုတ်လျှင် packaging အတိုင်း သုတ်ပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     [
-      t("Keep parcels safe and inform Edwin/Yukari if anything important arrives. Do not bring dirty packaging directly into the house.", "荷物を安全に保管し、大事な物が届いたらエドウィン／ゆかりに知らせる。汚れた梱包材をそのまま家に入れない。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။ ညစ်ပတ်သော packaging ကို အိမ်ထဲ တိုက်ရိုက်မသွင်းပါနှင့်။"),
-      t("Unpack everything outside of the house. All unnecessary packaging stays outside and never enters the house; strip the items to bare.", "すべての開封作業は屋外で行ってください。不要な梱包材は屋外に留め、家の中に持ち込まないようにし、中身だけにしてください。", "အိမ်အပြင်ဘက်မှာ အရာအားလုံးကို ထုပ်ပိုးမှုဖြုတ်ပါ။ မလိုအပ်သောအကာအကွယ်ထုပ်ပိုးမှုများအားလုံးကို အပြင်မှာထားခဲ့ပါ၊ အိမ်ထဲကို ဘယ်တော့မှမသွင်းပါနှင့်၊ ပစ္စည်းသက်သက်သာဖြစ်အောင် အခွံခွာပါ။"),
-      t("Wipe down the items using disinfectant spray (or wash with water if the item is water-washable, e.g. not electronics) before bringing them in.", "家に入れる前に、消毒スプレーで商品を拭いてください（電化製品以外など、水洗い可能なものは水洗いします）。", "ပစ္စည်းများကို အိမ်ထဲသို့မသွင်းမီ ပိုးသတ်ဆေးစပရေးဖြင့် သုတ်ပါ (အကယ်၍ ပစ္စည်းမှာ ရေဆေးနိုင်သောပစ္စည်းဖြစ်လျှင် ရေဖြင့်ဆေးပါ၊ ဥပမာ- လျှပ်စစ်ပစ္စည်းများ မဟုတ်လျှင်)။"),
+      t("Generally, wipe every item or outer package before it enters the house.", "原則として、家に入れる前に商品または外装全体を拭いてください。", "ယေဘုယျအားဖြင့် ပစ္စည်း သို့မဟုတ် အပြင် packaging တစ်ခုလုံးကို အိမ်ထဲမသွင်းမီ သုတ်ပါ။"),
+      t("Keep parcels safe and tell Edwin/Yukari if anything important arrives.", "荷物を安全に保管し、大切な物が届いたらエドウィン／ゆかりに知らせてください。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။"),
       t("For a new appliance, follow its manual and run the first cycle normally. Discard the first water, drink, or food output where applicable. Ask Edwin if unsure.", "新しい家電は説明書に従い、最初の運転を通常どおり行ってください。該当する場合、最初の水、飲み物、または食べ物は捨てます。不明な場合はEdwinに確認してください。", "စက်အသစ်အတွက် manual ကိုလိုက်နာပြီး ပထမ cycle ကို ပုံမှန် run ပါ။ သက်ဆိုင်ပါက ပထမဆုံးရေ၊ သောက်စရာ သို့မဟုတ် အစားအစာကို လွှင့်ပစ်ပါ။ မသေချာပါက Edwin ကိုမေးပါ။")
     ],
     [
-      photo("assets/routines/nako-delivery-unpack-outside.jpg",
-        t("Package left outside the door", "ドアの外に置かれた荷物", "တံခါးအပြင်ဘက်တွင် ထားရှိသော ပါဆယ်လ်"),
-        t("Unpack all mail and packages outside. Disinfect or wash items before bringing them in.", "郵便物や荷物はすべて屋外で開封してください。家に入れる前に消毒または洗浄します。", "စာတိုက်ပစ္စည်းများနှင့် ပါဆယ်လ်အားလုံးကို အပြင်တွင် ထုပ်ပိုးမှုဖြုတ်ပါ။ အိမ်ထဲမသွင်းမီ ပိုးသတ်ဆေးဖျန်းပါ သို့မဟုတ် ဆေးကြောပါ။"))
+      photo("assets/routines/nako-delivery-unpack-when-instructed.jpg",
+        t("Item unpacked outside with packaging left by the door", "玄関外で梱包を外し、包装材を外に置いた商品", "တံခါးအပြင်တွင် packaging ဖြုတ်ပြီး packaging ကို အပြင်တွင်ထားသော ပစ္စည်း"),
+        t("When instructed to remove packaging, unpack outside, leave the packaging outside, clean the item, and bring it in promptly.", "梱包を外すよう指示された場合は、屋外で開封し、包装材は外に置き、商品をきれいにしてすぐ家に入れます。", "packaging ဖြုတ်ရန် ညွှန်ကြားထားပါက အပြင်တွင်ဖြုတ်၊ packaging ကို အပြင်တွင်ထား၊ ပစ္စည်းကို သန့်ရှင်းပြီး ချက်ချင်း အိမ်ထဲသွင်းပါ။")),
+      photo("assets/routines/nako-delivery-wipe-item.jpg",
+        t("Delivered appliance being wiped before going inside", "家に入れる前に拭いている配達された家電", "အိမ်ထဲမသွင်းမီ သုတ်နေသော delivery စက်ပစ္စည်း"),
+        t("Wipe the item—or the whole package if keeping it—then bring it inside so it is not left outside.", "商品、または梱包を残す場合は外装全体を拭き、外に放置せず家に入れます。", "ပစ္စည်းကို သုတ်ပါ။ packaging ကိုထားမည်ဆိုလျှင် packaging တစ်ခုလုံးကို သုတ်ပြီး အပြင်တွင် မထားဘဲ အိမ်ထဲသွင်းပါ။"))
     ]),
 
   routine("general-tidiness", "daily", 110, "T", 
@@ -2003,6 +2005,16 @@ if (nakoWeightTrackingRoutine) {
     t("Step off, pick up Nako, and weigh together.", "体重計から降り、ナコを抱いて一緒に測ります。", "စက်ပေါ်မှဆင်းပြီး Nako ကိုချီကာ အတူတူ ချိန်ပါ။"),
     t("Subtract your weight from the total. The difference is Nako's weight.", "合計から自分の体重を引きます。その差がナコの体重です。", "စုစုပေါင်းအလေးချိန်မှ မိမိအလေးချိန်ကို နုတ်ပါ။ ကွာခြားချက်သည် Nako ၏အလေးချိန်ဖြစ်သည်။"),
     t("Enter Nako's weight in the app and save it.", "ナコの体重をアプリに入力して保存します。", "Nako ၏အလေးချိန်ကို app တွင် ထည့်ပြီး သိမ်းပါ။")
+  ];
+}
+
+const mailDeliveriesRoutine = routineTasks.find((task) => task.id === "mail-deliveries");
+if (mailDeliveriesRoutine) {
+  mailDeliveriesRoutine.instructions = [
+    t("Collect deliveries promptly. Do not leave them outside where they could be stolen.", "配達物はすぐに回収し、盗難のおそれがあるため外に放置しないでください。", "delivery ပစ္စည်းများကို ချက်ချင်းယူပါ။ ခိုးယူခံရနိုင်သောကြောင့် အပြင်တွင် မထားပါနှင့်။"),
+    t("Normally, wipe the item or outer package and bring it inside.", "通常は、商品または外装を拭いて家に入れます。", "ပုံမှန်အားဖြင့် ပစ္စည်း သို့မဟုတ် အပြင် packaging ကို သုတ်ပြီး အိမ်ထဲသွင်းပါ။"),
+    t("When instructed to remove packaging, unpack outside, leave the packaging outside, clean the item, and bring it in.", "梱包を外すよう指示された場合は、屋外で開封し、包装材は外に置き、商品をきれいにして家に入れます。", "packaging ဖြုတ်ရန် ညွှန်ကြားထားပါက အပြင်တွင်ဖြုတ်၊ packaging ကို အပြင်တွင်ထား၊ ပစ္စည်းကို သန့်ရှင်းပြီး အိမ်ထဲသွင်းပါ။"),
+    t("If unsure whether to keep the packaging, keep it. Wipe the whole package and bring it inside.", "梱包を残すべきか迷う場合は捨てず、外装全体を拭いて家に入れてください。", "packaging ကိုထားရမည်လား မသေချာပါက မပစ်ပါနှင့်။ packaging တစ်ခုလုံးကို သုတ်ပြီး အိမ်ထဲသွင်းပါ။")
   ];
 }
 
