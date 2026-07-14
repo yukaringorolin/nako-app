@@ -25,4 +25,31 @@ assert.match(appSource, /const STATE_KEY = "nako-care-state-v2"/);
 const firebaseSource = fs.readFileSync(path.join(root, "src", "firebase.js"), "utf8");
 assert.match(firebaseSource, /const HOUSEHOLD_ID = "our-dog-nako"/);
 
+const routineById = (id) => data.routineTasks.find((task) => task.id === id);
+const recipeById = (id) => data.recipes.find((recipe) => recipe.id === id);
+const englishText = (items) => items.map((item) => item.en).join("\n");
+
+assert.equal(routineById("essential-food-stock").title.en, "Essential Food Stock");
+assert.equal(routineById("sofa-hair-room-corner-cleaning").title.en, "Sofa Hair & Room-Corner Spot Cleaning");
+assert.match(routineById("nako-feeding-water").summary.en, /60 g Royal Canin/);
+assert.match(routineById("nako-feeding-water").summary.en, /1 chicken-and-vegetable topping cube per meal/);
+assert.doesNotMatch(routineById("nako-feeding-water").summary.en, /K9 Natural/);
+assert.match(englishText(routineById("general-window-safety").mustRemember), /grilles do not make the area completely safe/);
+assert.match(routineById("windows-glass-mirrors").summary.en, /interior side/);
+assert.match(englishText(routineById("floor-mats").mustRemember), /downstairs neighbour's clothes/);
+assert.match(englishText(routineById("mail-deliveries").mustRemember), /Discard the first water, drink, or food output/);
+assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchange it for a treat/);
+assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
+assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);
+
+const oyakodon = recipeById("chicken-oyakodon-no-onion");
+assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
+assert.ok(oyakodon.ingredients.some((item) => item.key === "honey"));
+assert.match(englishText(oyakodon.method), /hot water/);
+
+const chickenWings = recipeById("air-fryer-chicken-wings");
+assert.equal(chickenWings.title.en, "Air-Fryer Chicken Wings");
+assert.ok(chickenWings.ingredients.some((item) => item.key === "chicken-wings"));
+assert.match(englishText(chickenWings.method), /200.*20 minutes/);
+
 console.log("Copy source and compatibility checks passed.");

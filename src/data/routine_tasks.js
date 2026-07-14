@@ -17,6 +17,14 @@ const routineTasks = [
         t("Upright reused glass bottles in the fridge", "冷蔵庫内で立てて保管する再利用ガラス瓶", "ရေခဲသေတ္တာထဲတွင် မတ်မတ်ထားသော ပြန်သုံးဖန်ပုလင်းများ"),
         t("After the boiled water cools, store it upright in the reused glass bottles in the fridge.", "沸かした水が冷めたら、再利用しているガラス瓶に入れて、冷蔵庫で立てて保管します。", "ကျိုထားသောရေ အေးသွားပြီးနောက် ပြန်သုံးသော ဖန်ပုလင်းများထဲထည့်ပြီး ရေခဲသေတ္တာတွင် မတ်မတ်ထား၍ သိမ်းပါ။")),
     ]),
+  routine("essential-food-stock", "daily", 12, "F",
+    t("Essential Food Stock", "常に家に置く食品", "အိမ်တွင် အမြဲထားရမည့် အစားအစာ"),
+    t("Keep milk, eggs, bread, Japanese rice, mushrooms, tofu, frozen sliced pork, tomatoes, and bananas in stock.", "牛乳、卵、パン、日本米、きのこ、豆腐、冷凍豚肉スライス、トマト、バナナを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီးနှင့် ငှက်ပျောသီးကို အမြဲထားပါ။"),
+    t("Daily check / restock as needed", "毎日確認／必要に応じて補充", "နေ့စဉ်စစ်ဆေး / လိုအပ်သလို ပြန်ဖြည့်"),
+    [
+      t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။"),
+      t("Check expiry dates. Keep frozen sliced pork in the freezer.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫で保管してください。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင် သိမ်းပါ။")
+    ]),
   routine("daily-cooking", "daily", 15, "C",
     t("Daily Cooking", "毎日の料理", "နေ့စဉ်ချက်ပြုတ်ခြင်း"),
     t("Cook 3 meals a day, focusing on high-protein, lower-fat dishes to hit the 180g daily target, plus ad hoc snacks.", "高タンパク・低脂質を意識して、1日3食と必要に応じた軽食を作る。", "တစ်နေ့ ၃ နပ် ချက်ပါ။ နေ့စဉ် protein 180g ရောက်ရန် protein များပြီး အဆီနည်းသော ဟင်းများကို အဓိကထားပါ။ လိုအပ်လျှင် snack များလည်းပြင်ပါ။"),
@@ -59,10 +67,14 @@ const routineTasks = [
     ]),
   routine("nako-feeding-water", "daily", 35, "N",
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
-    t("Feed Nako kibbles and K9 Natural 3–4 times daily. Feed dry unless told otherwise. Give water after each meal.", "NakoにキブルとK9 Naturalを1日3～4回与えます。指示がなければドライで与え、食後に水を飲ませます。", "Nako ကို kibbles နဲ့ K9 Natural တစ်နေ့ ၃–၄ ကြိမ်ကျွေးပါ။ မပြောရင် dry ကျွေးပါ။ စားပြီးရင် ရေတိုက်ပါ။"),
-    t("3-4 meals/day", "1日3〜4食", "တစ်နေ့ ၃-၄ ကြိမ်"),
+    t("Feed Nako 3 measured meals daily: 60 g Royal Canin kibble total, plus 1 chicken-and-vegetable topping cube per meal.", "ナコに1日3食与えます。Royal Caninは1日合計60 gで、毎食チキンと野菜のトッピングキューブを1個加えます。", "Nako ကို တစ်နေ့ ၃ နပ်ကျွေးပါ။ Royal Canin တစ်နေ့စုစုပေါင်း ၆၀ g နှင့် တစ်နပ်လျှင် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးထည့်ပါ။"),
+    t("3 meals daily — Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食 — 朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ် — မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
     [
-      t("Monitor whether she eats properly. Keep meal portions consistent unless instructed otherwise. Make sure she drinks water after eating and wipe her mouth after it gets wet.", "ちゃんと食べているか確認する。特に指示がなければ食事量は一定にする。食後に水を飲ませ、口元が濡れたら拭く。", "သူမ အစာကောင်းကောင်းစားနေသလား စောင့်ကြည့်ပါ။ ညွှန်ကြားချက်မရှိလျှင် အစာပမာဏကို မပြောင်းပါနှင့်။ စားပြီးနောက် ရေသောက်စေပြီး ပါးစပ်စိုလာလျှင် သုတ်ပါ။"),
+      t("Each morning, weigh 60 g of Royal Canin kibble for the full day.", "毎朝、1日分のRoyal Canin 60 gを量ってください。", "မနက်တိုင်း တစ်နေ့စာ Royal Canin ၆၀ g ကို ချိန်ပါ။"),
+      t("Divide the kibble into 3 portions of about 20 g each.", "キブルを約20 gずつ3回分に分けてください。", "kibble ကို ၂၀ g ခန့်စီ ၃ ပုံခွဲပါ။"),
+      t("Add exactly 1 chicken-and-vegetable topping cube to every meal.", "毎食、チキンと野菜のトッピングキューブを必ず1個加えてください。", "တစ်နပ်တိုင်း ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးတိတိ ထည့်ပါ။"),
+      t("After each meal, give water from the bottle and wipe Nako's wet mouth. Wash and refill the bottle daily.", "毎食後、ボトルから水を飲ませ、濡れた口元を拭いてください。ボトルは毎日洗って補充します。", "စားပြီးတိုင်း ရေဘူးမှ ရေတိုက်ပြီး Nako ၏ စိုနေသော ပါးစပ်ကို သုတ်ပါ။ ရေဘူးကို နေ့စဉ်ဆေးပြီး ရေပြန်ဖြည့်ပါ။"),
+      t("The kibble amount may change as Nako grows. Follow the latest instruction and do not change it yourself.", "成長によりキブル量が変わる場合があります。最新の指示に従い、自分で量を変えないでください。", "Nako ကြီးလာသည့်အခါ kibble ပမာဏ ပြောင်းနိုင်သည်။ နောက်ဆုံးညွှန်ကြားချက်ကို လိုက်နာပြီး ကိုယ်တိုင် မပြောင်းပါနှင့်။"),
       t("Watch Nako while she eats. Remove the bowl when she finishes. She may flip it or put her paws inside.", "Nakoが食べている間は見守ります。食べ終わったらボウルを片付けます。ひっくり返したり、足を入れたりすることがあります。", "Nako စားနေချိန် စောင့်ကြည့်ပါ။ စားပြီးရင် ခွက်ကိုယူပါ။ ခွက်မှောက်တာ သို့မဟုတ် ခြေထောက်ထည့်တာ လုပ်နိုင်သည်။"),
       t("Give water often from the manual bottle. The pen nozzle is too slow. Do not leave a water bowl in the pen.", "手動ボトルでこまめに水を与えます。サークルの給水器は遅すぎます。サークル内に水皿を置きません。", "လက်ဆွဲရေဘူးနဲ့ မကြာခဏ ရေတိုက်ပါ။ ခြံကရေပိုက်ခေါင်း နှေးလွန်းသည်။ ခြံထဲ ရေခွက်မထားပါနဲ့။")
     ],
@@ -72,7 +84,7 @@ const routineTasks = [
         t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။")),
       photo("assets/routines/nako-meal-prep-bowl.jpg",
         t("Nako's meal bowl with kibble and chicken mixture", "キブルとチキンが混ざったナコのエサ皿", "kibbles နှင့် ကြက်သားရောထားသော နာကို၏ အစာခွက်"),
-        t("Portion kibbles mixed with K9 Natural chicken toppings as instructed.", "指示通りにキブルとK9 Naturalのチキントッピングを混ぜ合わせて与えます。", "ညွှန်ကြားထားသည့်အတိုင်း K9 Natural ကြက်သားတပတ်နှင့် kibbles ကို ရောစပ်ကျွေးပါ။")),
+        t("Use 1 measured Royal Canin portion and exactly 1 chicken-and-vegetable topping cube for each meal.", "毎食、量ったRoyal Canin 1回分とチキンと野菜のトッピングキューブ1個を使います。", "တစ်နပ်စီအတွက် ချိန်ထားသော Royal Canin ၁ ပုံနှင့် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးတိတိ သုံးပါ။")),
       photo("assets/routines/nako-manual-water-bottle.jpg",
         t("Offering water from the manual squeeze travel bottle", "手動のスクイーズボトルから水を飲ませる様子", "လက်ဆွဲရေဘူးဖြင့် ရေတိုက်ကျွေးခြင်း"),
         t("Squeeze the manual water bottle to let her drink regularly, as the pen's nozzle flows too slowly.", "サークルの給水器は水の出が遅いため、手動ボトルを少し押して定期的に水を飲ませてください。", "ခြံ၏ ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် လက်ဆွဲရေဘူးကို ညှစ်၍ ပုံမှန်ရေတိုက်ပေးပါ။"))
@@ -118,6 +130,7 @@ const routineTasks = [
       t("When out of the pen, use house leash / house line and 100% active supervision.", "ケージの外に出すときは、ハウスリードを使用し、100%注意を怠らないでください。", "ခြံပြင်ပသို့ ရောက်ရှိနေစဉ်၊ အိမ်သုံးကြိုးကို အသုံးပြုပြီး ၁၀၀% အပြည့်အဝ စောင့်ကြည့်ပါ။"),
       t("When Nako starts jumping in her cage or raising her toys, try to play with her a bit because it is fun for her.", "ナコがケージの中で飛び跳ねたり、おもちゃを持ち上げたりし始めたら、本人は楽しんでいるので少し遊んであげてください。", "နာကိုသည် ခြံထဲတွင် ခုန်ပေါက်နေစဉ် သို့မဟုတ် ကစားစရာများကို မြှောက်ပြစဉ် သူမနှင့် အနည်းငယ် ကစားပေးပါ (၎င်းသည် သူမအတွက် ပျော်စရာဖြစ်သောကြောင့်ဖြစ်သည်)။"),
       t("Use treats for training and positive reinforcement. Keep training sessions short and fun.", "トレーニングやポジティブな行動の強化には、おやつを使用してください。トレーニング時間は短く、楽しいものに保ちます。", "လေ့ကျင့်ပေးရန်နှင့် အပြုသဘောဆောင်သောအပြုအမူများအတွက် မုန့်များကို အသုံးပြုပါ။ လေ့ကျင့်ချိန်ကို တိုတောင်းပြီး ပျော်စရာကောင်းအောင် ထားပါ။"),
+      t("If Nako bites something and will not drop it, calmly exchange it for a treat, then guide her away.", "ナコが物をくわえて離さない場合は、落ち着いておやつと交換し、その場所から離れるよう誘導してください。", "Nako က ပစ္စည်းတစ်ခုကို ကိုက်ထားပြီး မလွှတ်လျှင် အေးဆေးစွာ မုန့်နှင့် လဲယူပြီး အဝေးသို့ လမ်းညွှန်ပါ။"),
       t("If she gets very angsty (e.g. jumping on the playpen), carry her and sit together with her on the sofa for a while. You can do your own stuff on your phone and sayang/cuddle her; she will be very happy.", "ナコがサークルを飛び跳ねるなどして興奮している（イライラしている）時は、抱っこしてしばらくソファで一緒に座ってあげてください。スマホをいじりながら彼女をかわいがって（サヤンして）あげると、とても喜びます。", "သူမ အရမ်းဆိုးနွဲ့ပြီး ခြံတံခါးကို ခုန်လှုပ်နေပါက (ဥပမာ ခြံပေါ်သို့ ခုန်တက်ခြင်း)၊ သူမကို ချီပြီး ဆိုဖာပေါ်တွင် အတူတူ ခဏထိုင်ပေးပါ။ ဖုန်းသုံးရင်း သူမကို ပွတ်သပ် ချော့မြူပေးပါက သူမ အလွန်ပျော်ရွှင်ပါလိမ့်မည်။")
     ],
     [
@@ -144,6 +157,15 @@ const routineTasks = [
     t("Whenever Nako is out of the pen, she must wear her collar and house leash / house line and be monitored actively.", "ナコがケージの外に出ているときは、常に首輪とハウスリードを着用させ、積極的に監視する必要があります。", "Nako သည် ခြံပြင်ပတွင် ရှိနေသည့်အချိန်တိုင်း လည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ဆင်ထားရမည်ဖြစ်ပြီး တက်ကြွစွာ စောင့်ကြည့်ရမည်။"), 
     t("Whenever out of pen / roaming", "ケージの外に出ているとき / 自由に歩き回っているとき", "ခြံပြင်ပသို့ ရောက်နေစဉ် / လွတ်လပ်စွာသွားလာနေစဉ်"), 
     t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။")),
+  routine("general-window-safety", "as-needed", 13, "W",
+    t("General Window Safety", "窓の安全", "ပြတင်းပေါက် ဘေးကင်းရေး"),
+    t("Keep Nako and every household helper safe around windows and window grilles.", "窓や窓グリルの周りでは、ナコとヘルパー全員の安全を守ってください。", "ပြတင်းပေါက်နှင့် window grille အနီးတွင် Nako နှင့် အိမ်အကူအားလုံး ဘေးကင်းအောင်ထားပါ။"),
+    t("Whenever near windows", "窓の近くにいる時", "ပြတင်းပေါက်အနီး ရှိသည့်အခါ"),
+    [
+      t("Do not climb, lean out, jump, play, or put weight near a window.", "窓の近くで登る、身を乗り出す、跳ぶ、遊ぶ、体重をかける行為は禁止です。", "ပြတင်းပေါက်အနီးတွင် မတက်၊ ကိုယ်မယောင်း၊ မခုန်၊ မကစား၊ ကိုယ်အလေးချိန် မတင်ပါနှင့်။"),
+      t("Window grilles do not make the area completely safe. Take care when cleaning, closing, or walking near windows.", "窓グリルがあっても完全に安全ではありません。窓の掃除、開閉、近くを歩く時は注意してください。", "window grille ရှိသော်လည်း လုံးဝဘေးကင်းသည် မဟုတ်ပါ။ ပြတင်းပေါက် သန့်ရှင်းခြင်း၊ ပိတ်ခြင်း သို့မဟုတ် အနီးတွင် လမ်းလျှောက်ခြင်းအခါ သတိထားပါ။"),
+      t("Always supervise Nako near windows.", "窓の近くでは常にナコを見守ってください。", "ပြတင်းပေါက်အနီးတွင် Nako ကို အမြဲစောင့်ကြည့်ပါ။")
+    ]),
   routine("nako-kind-handling", "daily", 80, "!", 
     t("Nako - Kind Handling Reminder", "ナコ - 優しい扱いの注意", "နာကို - နူးညံ့စွာကိုင်တွယ်ရန် သတိပြုချက်"),
     t("Always treat Nako gently, kindly, and humanely. Follow Singapore animal welfare law, including Animals and Birds Act 1965 section 42.", "ナコは常に優しく、人道的に扱う。Animals and Birds Act 1965第42条を含むシンガポールの動物福祉法に従う。", "နာကိုကို အမြဲ နူးညံ့၊ ကြင်နာစွာနှင့် လူသားဆန်စွာ ဆက်ဆံပါ။ Singapore animal welfare law၊ Animals and Birds Act 1965 section 42 အပါအဝင် လိုက်နာပါ။"),
@@ -173,7 +195,8 @@ const routineTasks = [
     [
       t("Keep parcels safe and inform Edwin/Yukari if anything important arrives. Do not bring dirty packaging directly into the house.", "荷物を安全に保管し、大事な物が届いたらエドウィン／ゆかりに知らせる。汚れた梱包材をそのまま家に入れない。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။ ညစ်ပတ်သော packaging ကို အိမ်ထဲ တိုက်ရိုက်မသွင်းပါနှင့်။"),
       t("Unpack everything outside of the house. All unnecessary packaging stays outside and never enters the house; strip the items to bare.", "すべての開封作業は屋外で行ってください。不要な梱包材は屋外に留め、家の中に持ち込まないようにし、中身だけにしてください。", "အိမ်အပြင်ဘက်မှာ အရာအားလုံးကို ထုပ်ပိုးမှုဖြုတ်ပါ။ မလိုအပ်သောအကာအကွယ်ထုပ်ပိုးမှုများအားလုံးကို အပြင်မှာထားခဲ့ပါ၊ အိမ်ထဲကို ဘယ်တော့မှမသွင်းပါနှင့်၊ ပစ္စည်းသက်သက်သာဖြစ်အောင် အခွံခွာပါ။"),
-      t("Wipe down the items using disinfectant spray (or wash with water if the item is water-washable, e.g. not electronics) before bringing them in.", "家に入れる前に、消毒スプレーで商品を拭いてください（電化製品以外など、水洗い可能なものは水洗いします）。", "ပစ္စည်းများကို အိမ်ထဲသို့မသွင်းမီ ပိုးသတ်ဆေးစပရေးဖြင့် သုတ်ပါ (အကယ်၍ ပစ္စည်းမှာ ရေဆေးနိုင်သောပစ္စည်းဖြစ်လျှင် ရေဖြင့်ဆေးပါ၊ ဥပမာ- လျှပ်စစ်ပစ္စည်းများ မဟုတ်လျှင်)။")
+      t("Wipe down the items using disinfectant spray (or wash with water if the item is water-washable, e.g. not electronics) before bringing them in.", "家に入れる前に、消毒スプレーで商品を拭いてください（電化製品以外など、水洗い可能なものは水洗いします）。", "ပစ္စည်းများကို အိမ်ထဲသို့မသွင်းမီ ပိုးသတ်ဆေးစပရေးဖြင့် သုတ်ပါ (အကယ်၍ ပစ္စည်းမှာ ရေဆေးနိုင်သောပစ္စည်းဖြစ်လျှင် ရေဖြင့်ဆေးပါ၊ ဥပမာ- လျှပ်စစ်ပစ္စည်းများ မဟုတ်လျှင်)။"),
+      t("For a new appliance, follow its manual and run the first cycle normally. Discard the first water, drink, or food output where applicable. Ask Edwin if unsure.", "新しい家電は説明書に従い、最初の運転を通常どおり行ってください。該当する場合、最初の水、飲み物、または食べ物は捨てます。不明な場合はEdwinに確認してください。", "စက်အသစ်အတွက် manual ကိုလိုက်နာပြီး ပထမ cycle ကို ပုံမှန် run ပါ။ သက်ဆိုင်ပါက ပထမဆုံးရေ၊ သောက်စရာ သို့မဟုတ် အစားအစာကို လွှင့်ပစ်ပါ။ မသေချာပါက Edwin ကိုမေးပါ။")
     ],
     [
       photo("assets/routines/nako-delivery-unpack-outside.jpg",
@@ -186,6 +209,14 @@ const routineTasks = [
     t("Wipe down items left outside and keep them properly back in place so things are not left lying around.", "出しっぱなしになっている物を拭き取り、適切に元の場所に戻して、散らかったままにしないようにします。", "အပြင်တွင် ကျန်ခဲ့သော ပစ္စည်းများကို သုတ်ပြီး ပစ္စည်းများ ရှုပ်ပွမနေစေရန် သင့်တော်သောနေရာတွင် ပြန်သိမ်းပါ။"), 
     t("Daily + as needed", "毎日＋必要に応じて", "နေ့စဉ် + လိုအပ်သလို"), 
     t("Do not leave items lying around. Edwin is sensitive to dust and dirt, so clean visible dust promptly instead of waiting for the next scheduled task.", "物を出しっぱなしにしないでください。エドウィンはほこりや汚れに敏感なので、次の予定日まで待たず、見つけたほこりはすぐに掃除してください。", "ပစ္စည်းများကို ဟိုဟိုဒီဒီ ပြန့်ကြဲမထားပါနှင့်။ Edwin သည် ဖုန်နှင့် အညစ်အကြေးကို အာရုံခံလွယ်သောကြောင့် နောက်သန့်ရှင်းရေးအချိန်ကို မစောင့်ဘဲ မြင်ရသောဖုန်ကို ချက်ချင်းသန့်ရှင်းပါ။")),
+  routine("sofa-hair-room-corner-cleaning", "daily", 115, "S",
+    t("Sofa Hair & Room-Corner Spot Cleaning", "ソファの毛と部屋の隅の部分掃除", "ဆိုဖာအမွေးနှင့် အခန်းထောင့် နေရာကွက် သန့်ရှင်းရေး"),
+    t("During free time, remove hair or fur from the sofa and wipe dusty room corners.", "時間がある時に、ソファの髪や毛を取り、ほこりのたまった部屋の隅を拭いてください。", "အားလပ်ချိန်တွင် ဆိုဖာပေါ်ရှိ ဆံပင် သို့မဟုတ် အမွေးကိုဖယ်ပြီး ဖုန်ရှိသော အခန်းထောင့်များကို သုတ်ပါ။"),
+    t("During free time / as needed", "時間がある時／必要に応じて", "အားလပ်ချိန်တွင် / လိုအပ်သလို"),
+    [
+      t("Put removed hair or fur straight into the bin.", "取った髪や毛はすぐゴミ箱に捨ててください。", "ဖယ်ထားသော ဆံပင် သို့မဟုတ် အမွေးကို အမှိုက်ပုံးထဲ ချက်ချင်းပစ်ပါ။"),
+      t("Wipe dust or dirt from room corners with a tissue or wet wipe.", "部屋の隅のほこりや汚れは、ティッシュまたはウェットティッシュで拭いてください。", "အခန်းထောင့်ရှိ ဖုန် သို့မဟုတ် အညစ်အကြေးကို tissue သို့မဟုတ် wet tissue ဖြင့် သုတ်ပါ။")
+    ]),
   routine("floor-cleaning", "daily", 120, "F", 
     t("Floor Cleaning", "床掃除", "ကြမ်းပြင်သန့်ရှင်းရေး"),
     t("Sweep and mop daily. Include normal reachable areas under the sofa/cabinets as part of floor cleaning.", "毎日掃き掃除とモップがけをする。ソファやキャビネット下など、通常手が届く範囲も床掃除に含める。", "နေ့စဉ် တံမြက်စည်းလှည်းပြီး mop လုပ်ပါ။ sofa/cabinet အောက်မှ ပုံမှန်လက်လှမ်းမီသည့်နေရာများကိုလည်း ကြမ်းပြင်သန့်ရှင်းရေးတွင် ထည့်ပါ။"),
@@ -415,7 +446,7 @@ const routineTasks = [
     t("Wash the 4 floor mats outside the rooms and toilet.", "部屋とトイレの外にある4枚の床マットを洗います。", "အခန်းများနှင့် အိမ်သာအပြင်ဘက်ရှိ ခြေသုတ်ကော်ဇော ၄ ခုကို လျှော်ဖွပ်ပါ။"), 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
-      t("Dry completely before placing back to prevent smell, mould, or dampness.", "臭い、カビ、または湿気を防ぐため、元に戻す前に完全に乾かしてください。", "အနံ့ဆိုး၊ မှို သို့မဟုတ် စိုစွတ်မှုမဖြစ်စေရန် ပြန်မချမီ လုံးဝခြောက်သွေ့အောင်ထားပါ။"),
+      t("Dry completely before placing back. Wring or spin-dry mats before hanging them outside. They must not drip onto the downstairs neighbour's clothes.", "完全に乾かしてから戻してください。外に干す前に、しっかり絞るか脱水してください。下の階の洗濯物に水が落ちるため、水が滴る状態で干さないでください。", "ပြန်မထားခင် အပြည့်အဝခြောက်အောင်လုပ်ပါ။ အပြင်တွင် မလှန်းမီ သေချာညှစ်ပါ သို့မဟုတ် spin-dry လုပ်ပါ။ အောက်ထပ်အိမ်နီးချင်း၏ အဝတ်ပေါ် ရေမကျစေရပါ။"),
       t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time—wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့် — တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
     ],
     [
@@ -440,16 +471,17 @@ const routineTasks = [
 
   routine("windows-glass-mirrors", "weekly", 120, "G", 
     t("Windows, Glass Panels & Mirrors", "窓、ガラス窓、鏡", "ပြတင်းပေါက်များ၊ မှန်ချပ်များနှင့် မှန်များ"), 
-    t("Clean all windows, glass panels, mirrors, window sills, frames, and tracks.", "すべての窓、ガラスパネル、鏡、窓枠、フレーム、およびサッシの溝を掃除します。", "ပြတင်းပေါက်များ၊ မှန်ချပ်များ၊ မှန်များ၊ ပြတင်းပေါက်ခုံများ၊ ဘောင်များနှင့် လမ်းကြောင်းများကို သန့်ရှင်းရေးလုပ်ပါ။"), 
+    t("Clean only the safe interior side of windows, glass panels, mirrors, window sills, frames, and tracks.", "窓、ガラスパネル、鏡、窓枠、サッシ、レールは安全な室内側だけ掃除します。", "ပြတင်းပေါက်၊ glass panel၊ မှန်၊ window sill၊ frame နှင့် track များကို လုံခြုံသော အတွင်းဘက်သာ သန့်ရှင်းပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
-      t("Wipe streak-free where possible. Be careful around window tracks and edges.", "可能な限り跡が残らないように拭き取ってください。窓の溝や端の周りは注意してください。", "ဖြစ်နိုင်လျှင် အစွန်းအထင်းမရှိအောင် သုတ်ပါ။ ပြတင်းပေါက်လမ်းကြောင်းများနှင့် အနားသတ်များအနီးတွင် သတိထားပါ။"),
+      t("Never clean exterior or outside-facing windows.", "外側・屋外側の窓は絶対に掃除しないでください。", "အပြင်ဘက် သို့မဟုတ် exterior window ကို လုံးဝမသန့်ရှင်းပါနှင့်။"),
+      t("Do not reach outside, lean out, climb, stand on stools or chairs, or unlock or remove grilles to clean windows. Ask Edwin if unsure.", "窓掃除のために、外へ手を伸ばす、身を乗り出す、登る、椅子や踏み台に立つ、窓グリルを開ける・外すことは禁止です。不明な場合はEdwinに確認してください。", "ပြတင်းပေါက်သန့်ရှင်းရန် အပြင်သို့ လက်မလှမ်း၊ ကိုယ်မယောင်း၊ မတက်၊ ခုံပေါ်မတက်၊ grille ကို မဖွင့် သို့မဟုတ် မဖြုတ်ပါနှင့်။ မသေချာပါက Edwin ကိုမေးပါ။"),
       t("Keep window tracks and edges clear of dust and grime. Clean all mirrors and glass surfaces regularly.", "窓の溝や端にほこりや汚れが溜まらないようにしてください。すべての鏡やガラス面を定期的に掃除してください。", "ပြတင်းပေါက်လမ်းကြောင်းများနှင့် အနားသတ်များတွင် ဖုန်မှုန့်နှင့် ဂျီးများကင်းစင်အောင် ထားပါ။ မှန်များနှင့် ဖန်သားပြင်အားလုံးကို ပုံမှန်သန့်ရှင်းရေးလုပ်ပါ။")
     ],
     [
       photo("assets/routines/nako-windows-glass-mirrors.jpg",
         t("Windows and frames placeholder", "窓と窓枠のプレースホルダー", "ပြတင်းပေါက်များနှင့် ဘောင်များ နေရာယူပစ္စည်း"),
-        t("Wipe the frames, tracks, and glass panes weekly.", "毎週窓枠、溝、ガラス板を拭いてください。", "ဘောင်များ၊ လမ်းကြောင်းများနှင့် ဖန်ချပ်များကို အပတ်စဉ် သုတ်ပေးပါ။"))
+        t("Wipe only the safe interior frames, tracks, and glass panes each week.", "毎週、安全な室内側の窓枠、溝、ガラス板だけを拭いてください。", "အပတ်စဉ် လုံခြုံသော အတွင်းဘက် frame၊ track နှင့် glass pane များကိုသာ သုတ်ပါ။"))
     ]),
 
   routine("sofa-covers-pillows", "weekly", 130, "S", 
@@ -516,7 +548,7 @@ const routineTasks = [
     t("Outside Shoe Rack & Shoes", "屋外のシューズラックと靴", "အပြင်ဘက် ဖိနပ်စင်နှင့် ဖိနပ်များ"), 
     t("Clean the outside shoe rack and surrounding area. Wipe down the shoes.", "屋外のシューズラックとその周辺エリアを掃除します。靴を拭きます。", "အပြင်ဘက် ဖိနပ်စင်နှင့် ပတ်ဝန်းကျင်နေရာကို သန့်ရှင်းရေးလုပ်ပါ။ ဖိနပ်များကို သုတ်ပါ။"), 
     t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"), 
-    t("Keep the area neat and avoid blocking the corridor.", "エリアを整然と保地、廊下をふさがないようにしてください。", "နေရာကို သပ်သပ်ရပ်ရပ် ထားရှိပြီး လူသွားလမ်းပိတ်ဆို့ခြင်းကို ရှောင်ကြဉ်ပါ။")),
+    t("Keep the area neat, avoid blocking the corridor, and let shoes dry fully before putting them back.", "周辺をきれいに保ち、廊下を塞がず、靴は完全に乾かしてから戻してください。", "နေရာကို သပ်ရပ်စွာထားပြီး corridor မပိတ်ပါနှင့်။ ဖိနပ်များကို ပြန်မထားခင် အပြည့်အဝခြောက်အောင်ထားပါ။")),
   routine("curtain-steaming", "fortnightly", 30, "C", 
     t("Curtain Steaming", "カーテンのスチーム掛け", "လိုက်ကာများကို မီးပူတိုက်ခြင်း"), 
     t("Use the standing garment steamer / steam iron to steam-clean and freshen the curtains.", "立位式の衣類スチーマー/スチームアイロンを使用して、カーテンをスチームクリーニングし、リフレッシュします。", "လိုက်ကာများကို သန့်ရှင်းလတ်ဆတ်စေရန် မီးပူရပ်တိုင် / ရေနွေးငွေ့မီးပူကို အသုံးပြု၍ သန့်ရှင်းရေးလုပ်ပါ။"), 
@@ -869,26 +901,20 @@ const nakoSupervisionRoutine = routineTasks.find((task) => task.id === "nako-sup
 if (nakoSupervisionRoutine) {
   nakoSupervisionRoutine.mustRemember.unshift(
     t("Check that exactly two fingers fit between Nako's collar and neck. It must not be too tight or too loose; check before she goes out or roams.", "ナコの首輪と首の間に指がちょうど2本入るか確認する。きつ過ぎず、緩過ぎないようにし、外出または自由に歩き回らせる前に毎回確認する。", "Nako ၏လည်ပတ်နှင့်လည်ပင်းကြား လက်ချောင်း ၂ ချောင်းတိတိ ဝင်နိုင်မဝင်နိုင် စစ်ပါ။ အရမ်းကျပ်လွန်း သို့မဟုတ် ချောင်လွန်းမနေစေရ၊ အပြင်ထွက်မီ သို့မဟုတ် လွတ်လပ်စွာသွားလာမီ စစ်ပါ။"),
-    t("⚠️ **WINDOW SAFETY ALERT:** There are no window grills right now. Chocho/helper must not lean out or stand close to open windows, and Nako must be kept away from window edges at all times.", "⚠️ **窓の安全注意:** 現在、窓にグリルは付いていません。Chocho/ヘルパーは開いた窓から身を乗り出したり近くに立ったりしないでください。Nakoも常に窓の端から離してください。", "⚠️ **ပြတင်းပေါက် ဘေးကင်းရေး သတိပေးချက်:** လောလောဆယ် ပြတင်းပေါက်တွင် grill မရှိပါ။ Chocho/helper သည် ဖွင့်ထားသောပြတင်းပေါက်အနားတွင် မယောင်းထွက်ရ၊ မနီးကပ်စွာမရပ်ရပါ။ Nako ကိုလည်း အမြဲ ပြတင်းပေါက်အနားမှ ဝေးဝေးထားပါ။")
+    t("⚠️ **WINDOW SAFETY ALERT:** Window grilles do not make the area completely safe. Keep Nako away from window edges and do not lean out, climb, or put weight near windows.", "⚠️ **窓の安全注意:** 窓グリルがあっても完全に安全ではありません。ナコを窓の端から離し、身を乗り出す、登る、窓の近くに体重をかける行為は禁止です。", "⚠️ **ပြတင်းပေါက် ဘေးကင်းရေး:** window grille ရှိသော်လည်း လုံးဝဘေးကင်းသည် မဟုတ်ပါ။ Nako ကို ပြတင်းပေါက်အနားမှ ဝေးဝေးထားပြီး ကိုယ်မယောင်း၊ မတက်၊ ပြတင်းပေါက်အနီး ကိုယ်အလေးချိန် မတင်ပါနှင့်။")
   );
-  nakoSupervisionRoutine.photos = [
-    photo("assets/routines/nako-window-no-grills-alert.jpg",
-      t("Open window with no grills", "グリルのない開いた窓", "grill မရှိသော ဖွင့်ထားသည့် ပြတင်းပေါက်"),
-      t("Window safety reminder: no grills are installed right now, so both Chocho/helper and Nako must stay safely away from open window edges.", "窓の安全リマインダーです。現在グリルがないため、Chocho/ヘルパーもNakoも開いた窓の端から安全に離れてください。", "ပြတင်းပေါက် ဘေးကင်းရေး သတိပေးချက်ဖြစ်သည်။ လောလောဆယ် grill မတပ်ထားသောကြောင့် Chocho/helper နှင့် Nako နှစ်ဦးလုံး ဖွင့်ထားသောပြတင်းပေါက်အနားမှ လုံခြုံစွာဝေးဝေးနေပါ။")),
-    ...nakoSupervisionRoutine.photos
-  ];
 }
 
 const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
 if (dailyCookingRoutine) {
   dailyCookingRoutine.mustRemember.push(
-    t("**WHITE RICE — Tefal Mini:** 1) Press **Start** to turn on. 2) Press **Menu** until the white light/line is beside **White Rice**. 3) Press **Start** again. That's it.", "**白米 — Tefal Mini:** ① **Start**で電源を入れる。②白いランプ／ラインが**White Rice**の横に来るまで**Menu**を押す。③もう一度**Start**を押す。これだけ。", "**ဆန်ဖြူ — Tefal Mini:** ၁) **Start** ကိုနှိပ်၍ ဖွင့်ပါ။ ၂) အဖြူရောင်မီး/လိုင်းသည် **White Rice** ဘေးသို့ရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကို ထပ်နှိပ်ပါ။ ဒါပဲ။"),
+    t("**WHITE RICE — Tefal Mini:** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米 — Tefal Mini:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ — Tefal Mini:** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
     t("**FYI ONLY:** Other food recipes are reference only—make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
   );
   dailyCookingRoutine.photos = [
     photo("assets/routines/tefal-mini-rice-cooker-white-rice.jpg",
       t("Tefal Mini rice cooker — White Rice controls", "Tefal Mini炊飯器 — White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး — White Rice ခလုတ်များ"),
-      t("For rice only: press Start, press Menu until the white light/line is beside White Rice, then press Start again.", "ご飯だけの場合：Startを押し、白いランプ／ラインがWhite Riceの横に来るまでMenuを押して、もう一度Startを押す。", "ဆန်အတွက်သာ: Start ကိုနှိပ်ပါ၊ အဖြူရောင်မီး/လိုင်းသည် White Rice ဘေးသို့ရောက်အောင် Menu ကိုနှိပ်ပြီး Start ကိုထပ်နှိပ်ပါ။")),
+      t("For white rice: turn on the main power switch, press Menu until the white line is on White Rice, then press Start.", "白米の場合：元の電源スイッチを入れ、白いラインがWhite Riceに来るまでMenuを押し、Startを押します。", "ဆန်ဖြူအတွက် ပင်မ power switch ကိုဖွင့်ပါ၊ အဖြူရောင်လိုင်း White Rice နေရာရောက်အောင် Menu ကိုနှိပ်ပြီး Start ကိုနှိပ်ပါ။")),
     ...dailyCookingRoutine.photos
   ];
 }
