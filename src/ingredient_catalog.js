@@ -87,6 +87,8 @@
     "japanese-curry-blocks": { file: null, source: null, target: "Japanese curry roux block packet" },
     "king-oyster-mushroom": { file: null, source: null, target: "Fresh king oyster mushroom pack" },
     "cherry-tomatoes": { file: null, source: null, target: "Fresh cherry tomatoes punnet" },
-    "chilli-powder": { file: null, source: null, target: "Chilli powder bottle or shaker" }
+    "chilli-powder": { file: null, source: null, target: "Chilli powder bottle or shaker" },
+    "cooked-protein": { file: null, source: null, target: "Cooked meat, fish, or other protein flakes/pieces" },
+    "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" }
   });
 })();

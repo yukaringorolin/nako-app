@@ -1008,6 +1008,32 @@ const recipes = [
       highProtein: true,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("onigiri-rice-balls",
+    t("Onigiri Rice Balls", "おにぎり", "အိုနီဂီရိ ထမင်းဆုပ်"),
+    [
+      [t("Cooked Japanese rice", "ご飯（日本米）", "ဂျပန်ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
+      [t("Cooked protein (meat, fish, etc.)", "具材（肉、魚など）", "ချက်ပြုတ်ထားသော ပရိုတင်း (အသား၊ ငါး စသည်)"), t("as needed", "適量", "လိုအပ်သလို"), "cooked-protein"],
+      [t("Rice seasoning (Furikake)", "ふりかけ・味付け", "ထမင်းဖြူးမွှေး (Furikake)"), t("as needed", "適量", "လိုအပ်သလို"), "rice-seasoning"]
+    ],
+    [
+      t("Mix the rice, cooked protein and seasoning.", "ご飯、具材、ふりかけを混ぜ合わせます。", "ထမင်း၊ ချက်ပြုတ်ထားသော ပရိုတင်းနှင့် ထမင်းဖြူးမွှေးတို့ကို ရောမွှေပါ။"),
+      t("Shape into rice balls with wet hands or plastic wrap.", "濡らした手やラップを使って、おにぎりの形に整えます。", "စိုစွတ်သောလက် သို့မဟုတ် ပလတ်စတစ်စဖြင့် ထမင်းဆုပ်ပုံဖော်ပါ။")
+    ],
+    t("Avoid using seasonings containing onion, garlic, or excessive salt if sharing with pets.", "ペットと共有する場合は、玉ねぎ、にんにく、または過度な塩分を含むふりかけ・調味料は使用しないでください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် ဆားအလွန်အကျွံပါဝင်သော အမွှေးအကြိုင်များ သုံးစွဲခြင်းမှ ရှောင်ကြဉ်ပါ။"),
+    [
+      photo("assets/recipes/human-food/onigiri-rice-balls.png",
+        t("Onigiri rice balls wrapped in plastic wrap", "ラップに包まれたおにぎり", "ပလတ်စတစ်စဖြင့် ထုပ်ထားသော အိုနီဂီရိ ထမင်းဆုပ်"),
+        t("Two triangular-shaped onigiri rice balls wrapped in plastic wrap, showing flecks of seaweed and seasoning.", "ラップに包まれた、海苔やふりかけが混ざった2つの三角形のおにぎり。", "ရေညှိနှင့် ထမင်းဖြူးမွှေးများ ရောနှောနေပြီး ပလတ်စတစ်စဖြင့် ထုပ်ပိုးထားသော တြိဂံပုံစံ အိုနီဂီရိ ထမင်းဆုပ် နှစ်ခု။"))
+    ],
+    "human",
+    {
+      mealType: t("Snack/Light Meal", "軽食・スナック", "သရေစာ/အပေါ့စား အစားအစာ"),
+      style: t("Onigiri/Rice", "おにぎり・米", "ထမင်းဆုပ်"),
+      timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
+      highProtein: false,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
