@@ -98,6 +98,8 @@
     "lotus-root": { file: null, source: null, target: "Fresh lotus root" },
     "fish-cake": { file: null, source: null, target: "Japanese kamaboko fish cake log" },
     "black-beans": { file: null, source: null, target: "Sweetened black soybeans (kuromame)" },
-    "osechi-sides": { file: null, source: null, target: "Other Osechi dishes (konjac, sweet potato mash, herring roe, etc.)" }
+    "osechi-sides": { file: null, source: null, target: "Other Osechi dishes (konjac, sweet potato mash, herring roe, etc.)" },
+    "bamboo-shoots": { file: null, source: null, target: "Fresh or canned bamboo shoots" },
+    "osechi-vegetables": { file: null, source: null, target: "Fresh lotus root, carrots, bamboo shoots, and mushrooms mix" }
   });
 })();

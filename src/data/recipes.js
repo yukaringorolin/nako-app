@@ -1106,18 +1106,17 @@ const recipes = [
     t("Shōgatsu Osechi", "おせち料理", "ဂျပန်နှစ်သစ်ကူး အိုဆဲချိ ဟင်းလျာ"),
     [
       [t("Prawns", "海老", "ပုစွန်"), t("as needed", "適量", "လိုအပ်သလို"), "prawns"],
-      [t("Pork belly or ham", "豚バラ肉またはハム", "ဝက်သုံးထပ်သား သို့မဟုတ် ဝက်ပေါင်ခြောက်/ဟမ်း"), t("as needed", "適量", "လိုအပ်သလို"), "pork-belly"],
-      [t("Rolled egg (Datemaki)", "伊達巻・卵", "ကြက်ဥလိပ်"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
-      [t("Lotus root", "蓮根", "ကြာစွယ်"), t("as needed", "適量", "လိုအပ်သလို"), "lotus-root"],
-      [t("Mushrooms (Shiitake, etc.)", "椎茸・キノコ", "မှို"), t("as needed", "適量", "လိုအပ်သလို"), "mushrooms"],
-      [t("Fish cake (Kamaboko)", "かまぼこ", "ငါးဆုပ်/ငါးကိတ် (Kamaboko)"), t("as needed", "適量", "လိုအပ်သလို"), "fish-cake"],
-      [t("Sweet black beans", "黒豆", "ပဲနက်ချို"), t("as needed", "適量", "လိုအပ်သလို"), "black-beans"],
-      [t("Other Osechi dishes (konjac, herring roe, kurikinton, etc.)", "その他のおせち料理（こんにゃく、数の子、栗きんとんなど）", "အခြား အိုဆဲချိ ဟင်းလျာများ (ဝက်ဂျယ်လီ၊ kazunoko၊ kurikinton စသည်)"), t("as needed", "適量", "လိုအပ်သလို"), "osechi-sides"]
+      [t("Pork belly and ham", "豚バラ肉とハム", "ဝက်သုံးထပ်သားနှင့် ဟမ်း"), t("as needed", "適量", "လိုအပ်သလို"), "pork-belly"],
+      [t("Datemaki rolled egg", "伊達巻", "ဒါတဲမာကိ ကြက်ဥလိပ်"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
+      [t("Kamaboko fish cake", "かまぼこ", "ခါမာဘိုကို ငါးကိတ်"), t("as needed", "適量", "လိုအပ်သလို"), "fish-cake"],
+      [t("Kuromame black beans", "黒豆", "ခူရိုမာမဲ ပဲနက်ချို"), t("as needed", "適量", "လိုအပ်သလို"), "black-beans"],
+      [t("Kuri-kinton (sweet potato mash with chestnuts)", "栗きんとん", "ကူရီကင်တွန် ကန်စွန်းဥအနှစ်"), t("as needed", "適量", "လိုအပ်သလို"), "sweet-potato"],
+      [t("Lotus root, carrots, bamboo shoots and mushrooms", "蓮根、人参、筍、椎茸", "ကြာစွယ်၊ မုန်လာဥနီ၊ မျှစ်နှင့် မှို"), t("as needed", "適量", "လိုအပ်သလို"), "osechi-vegetables"],
+      [t("Other Osechi dishes (konjac, herring roe, etc.)", "その他のおせち料理（こんにゃく、数の子など）", "အခြား အိုဆဲချိ ဟင်းလျာများ (ဝက်ဂျယ်လီ၊ kazunoko စသည်)"), t("as needed", "適量", "လိုအပ်သလို"), "osechi-sides"]
     ],
     [
-      t("Cook each item separately.", "それぞれの料理を個別に調理します。", "ဟင်းလျာတစ်ခုချင်းစီကို သီးခြားစီချက်ပြုတ်ပါ။"),
-      t("Let everything cool.", "すべての具材を完全に冷まします。", "အားလုံးကို အေးအောင်ထားပါ။"),
-      t("Arrange neatly inside bento boxes.", "重箱や弁当箱にきれいに盛り付けます。", "ဘင်တိုဗူးများ သို့မဟုတ် Osechi သေတ္တာများထဲတွင် သပ်သပ်ရပ်ရပ် ပြင်ဆင်ပါ။")
+      t("Cook each dish separately with Japanese seasoning.", "それぞれの料理を和風の味付けで個別に調理します。", "ဟင်းလျာတစ်ခုချင်းစီကို ဂျပန်အရသာဖြင့် သီးခြားစီချက်ပြုတ်ပါ။"),
+      t("Cool everything and arrange neatly in osechi boxes.", "すべての具材を冷まし、重箱にきれいに盛り付けます。", "အားလုံးကို အေးအောင်ထားပြီး Osechi သေတ္တာများထဲတွင် သပ်သပ်ရပ်ရပ် ပြင်ဆင်ပါ။")
     ],
     t("Osechi dishes contain high sugar, salt, soy sauce, and potential toxic ingredients (onions/garlic in meats). Do not share Osechi dishes with pets.", "おせち料理は糖分、塩分、醤油が多く含まれ、肉類には玉ねぎやにんにく等の有害物質が入っている可能性があります。ペットには絶対に与えないでください。", "အိုဆဲချိ ဟင်းလျာများတွင် သကြား၊ ဆား၊ ပဲငပိရည် အလွန်များပြားပြီး အဆိပ်သင့်စေသော ပါဝင်ပစ္စည်းများ (အသားထဲရှိ ကြက်သွန်နီ/ကြက်သွန်ဖြူ) ပါဝင်နိုင်ပါသည်။ အိုဆဲချိ ဟင်းလျာများကို အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေခြင်းမပြုပါနှင့်။"),
     [
