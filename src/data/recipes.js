@@ -945,6 +945,40 @@ const recipes = [
       highProtein: false,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("beef-mushroom-egg-bowl",
+    t("Beef, Mushroom and Egg Rice Bowl", "牛肉とエリンギと卵の丼", "အမဲသား၊ မှိုနှင့် ကြက်ဥ ထမင်းသုပ်ပန်းကန်"),
+    [
+      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
+      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
+      [t("King oyster mushroom", "エリンギ", "ဘုရင်မှိုခြောက် / King oyster မှို"), t("as needed", "適量", "လိုအပ်သလို"), "king-oyster-mushroom"],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1", "1個", "၁ လုံး"), "eggs"],
+      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), t("as needed", "適量", "လိုအပ်သလို"), "cherry-tomatoes"],
+      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), t("a little", "少々", "အနည်းငယ်"), "salt"],
+      [t("Chilli powder", "チリパウダー", "ငရုတ်သီးမှုန့်"), t("a little", "少々", "အနည်းငယ်"), "chilli-powder"]
+    ],
+    [
+      t("Cook the egg until soft-boiled.", "卵を半熟（温泉卵）にゆでます。", "ကြက်ဥကို အကျက်ပျော့ပျော့ ပြုတ်ပါ။"),
+      t("Slice and cook the mushroom.", "エリンギをスライスして炒めます。", "မှိုကို ပါးပါးလှီးပြီး ချက်ပါ။"),
+      t("Add the beef, salt and pepper, then cook together.", "牛肉、塩コショウを加え、一緒に炒めます。", "အမဲသား၊ ဆားနှင့် ငရုတ်ကောင်းတို့ကို ထည့်ပြီး အတူတူချက်ပါ။"),
+      t("Put everything on top of hot rice.", "温かいご飯の上にすべてをのせます。", "ပူပူနွေးနွေး ထမင်းပေါ်တွင် အားလုံးကို တင်ပါ။"),
+      t("Add the egg and cherry tomatoes.", "卵とミニトマトをのせます。", "ကြက်ဥနှင့် ခရမ်းချဉ်သီးချိုတို့ကို ထည့်ပါ။"),
+      t("Sprinkle chilli powder on top.", "上からチリパウダーを振ります。", "အပေါ်မှ ငရုတ်သီးမှုန့် ဖြန်းပေးပါ။")
+    ],
+    t("Do not add onion, garlic or other toxic ingredients if sharing with pets, and keep Nako away from chilli powder.", "ペットと共有する場合は、玉ねぎやにんにくなどの有害な食材を加えないでください。また、チリパウダーは犬に与えないでください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် အခြားအဆိပ်သင့်စေသော ပါဝင်ပစ္စည်းများကို မထည့်ပါနှင့်။ Nako ကို ငရုတ်သီးမှုန့်နှင့် ဝေးဝေးတွင် ထားပါ။"),
+    [
+      photo("assets/recipes/human-food/beef-mushroom-egg-bowl.jpg",
+        t("Beef, mushroom and egg rice bowl", "牛肉、エリンギ、卵の丼", "အမဲသား၊ မှိုနှင့် ကြက်ဥ ထမင်းသုပ်ပန်းကန်"),
+        t("Wagyu beef strips and sliced king oyster mushrooms over rice, topped with a soft-boiled egg, red chilli powder, and cherry tomatoes on the side.", "ご飯の上にのせた牛肉とエリンギ、温泉卵、チリパウダー、そしてミニトマト。", "ထမင်းပေါ်တွင် အမဲသားဖတ်များ၊ မှိုလွှာများ၊ ကြက်ဥပျော့၊ ငရုတ်သီးမှုန့်နှင့် ခရမ်းချဉ်သီးချိုများ။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Gyudon/Bowl", "丼もの", "ထမင်းသုပ်ပန်းကန်"),
+      timeEstimate: t("20 mins", "20分", "မိနစ် ၂၀"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 

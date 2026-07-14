@@ -84,6 +84,9 @@
     "wagyu-steak": { file: null, source: null, target: "Wagyu steak package (chilled/frozen)" },
     "black-pepper": { file: null, source: null, target: "Black pepper grinder or shaker bottle" },
     potato: { file: null, source: null, target: "Fresh whole potatoes" },
-    "japanese-curry-blocks": { file: null, source: null, target: "Japanese curry roux block packet" }
+    "japanese-curry-blocks": { file: null, source: null, target: "Japanese curry roux block packet" },
+    "king-oyster-mushroom": { file: null, source: null, target: "Fresh king oyster mushroom pack" },
+    "cherry-tomatoes": { file: null, source: null, target: "Fresh cherry tomatoes punnet" },
+    "chilli-powder": { file: null, source: null, target: "Chilli powder bottle or shaker" }
   });
 })();
