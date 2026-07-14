@@ -514,6 +514,9 @@ const routineTasks = [
       )
     ],
     [
+      photo("assets/routines/toilet-cleaning-products.jpg",
+        t("Magiclean toilet cleaning products", "マジックリンのトイレ掃除用品", "Magiclean အိမ်သာသန့်ရှင်းရေးသုံးပစ္စည်းများ"),
+        t("White bathroom spray, green toilet bowl cleaner, and blue stain/mold remover.", "浴室用の白いスプレー、便器用の緑の洗剤、カビ取り用の青い洗剤。", "ရေချိုးခန်းသုံး အဖြူရောင်စပရေး၊ အိမ်သာခွက်သုံး အစိမ်းရောင် cleaner နှင့် မှိုသတ်ဆေး အပြာရောင်ဘူး။")),
       photo("assets/routines/toilet-kitchen-main.jpg",
         t("Main toilet setup (kitchen)", "メインのトイレのセットアップ（キッチン横）", "အဓိကအိမ်သာ တင်ဆက်မှု (မီးဖိုချောင်)"),
         t("The main common toilet located adjacent to the kitchen area.", "キッチンエリアに隣接するメインの共有トイレ。", "မီးဖိုချောင်နေရာနှင့် ကပ်လျက်ရှိသော အဓိကဘုံအိမ်သာ။")),
