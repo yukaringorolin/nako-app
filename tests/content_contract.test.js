@@ -74,6 +74,7 @@ assert.equal(routineById("pillow-mattress-vacuuming").active, false);
 const vimleSofaBed = routineById("vimle-sofa-bed");
 assert.equal(vimleSofaBed.frequencyBucket, "as-needed");
 assert.equal(vimleSofaBed.trackingMode, "none");
+assert.match(vimleSofaBed.summary.en, /Gunnared beige IKEA VIMLE 2-seat/);
 assert.equal(vimleSofaBed.instructions.length, 16);
 assert.match(englishText(vimleSofaBed.instructions), /241 cm from the back of the sofa/);
 assert.match(englishText(vimleSofaBed.instructions), /Pull the orange loop straight UP first/);

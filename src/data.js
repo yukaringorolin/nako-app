@@ -1190,7 +1190,7 @@ const routineTasks = [
     ]),
   routine("vimle-sofa-bed", "as-needed", 117, "B",
     t("IKEA VIMLE Sofa-Bed", "IKEA VIMLE ソファベッド", "IKEA VIMLE ဆိုဖာအိပ်ရာ"),
-    t("Open or close the IKEA VIMLE 2-seat sofa-bed safely. Pull UP first, then pull OUT.", "IKEA VIMLE 2人掛けソファベッドを安全に開閉します。最初に上へ引き、その後手前へ引きます。", "IKEA VIMLE ၂ ယောက်ထိုင် ဆိုဖာအိပ်ရာကို လုံခြုံစွာ ဖွင့်ပိတ်ပါ။ အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။"),
+    t("Open or close the Gunnared beige IKEA VIMLE 2-seat sofa-bed safely. Pull UP first, then pull OUT.", "グンナレッド ベージュのIKEA VIMLE 2人掛けソファベッドを安全に開閉します。最初に上へ引き、その後手前へ引きます。", "Gunnared beige IKEA VIMLE ၂ ယောက်ထိုင် ဆိုဖာအိပ်ရာကို လုံခြုံစွာ ဖွင့်ပိတ်ပါ။ အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။"),
     t("As needed", "必要な時", "လိုအပ်သည့်အခါ"),
     [
       t("Important: pull the orange loop UP first, then pull OUT. Do not pull it horizontally while the frame is flat.", "重要：オレンジ色のループは最初に上へ引き、その後手前へ引いてください。フレームが平らな状態で水平方向に引かないでください。", "အရေးကြီးသည် - လိမ္မော်ရောင်ကြိုးကို အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။ frame ပြားနေစဉ် ဘေးတန်းမဆွဲပါနှင့်။"),
