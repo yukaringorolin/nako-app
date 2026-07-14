@@ -91,6 +91,7 @@
     "cooked-protein": { file: null, source: null, target: "Cooked meat, fish, or other protein flakes/pieces" },
     "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" },
     kale: { file: null, source: null, target: "Fresh kale leaves pack" },
-    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" }
+    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" },
+    "salmon-or-meat": { file: null, source: null, target: "Raw salmon fillet or sliced beef/pork packet" }
   });
 })();

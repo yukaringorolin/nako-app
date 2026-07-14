@@ -3449,6 +3449,38 @@ const recipes = [
       highProtein: true,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("love-bentos-by-yukari",
+    t("Love Bentos by Yukari", "ゆかり特製愛妻弁当", "ယူကာရီ၏ မေတ္တာကမ္ဘာ ဘင်တိုဗူး"),
+    [
+      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
+      [t("Salmon or sliced meat", "鮭または薄切り肉", "ဆော်လမွန်ငါး သို့မဟုတ် အသားလွှာ"), t("as needed", "適量", "လိုအပ်သလို"), "salmon-or-meat"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("2–3", "2〜3個", "၂ သို့မဟုတ် ၃ လုံး"), "eggs"],
+      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), t("as needed", "適量", "လိုအပ်သလို"), "cherry-tomatoes"],
+      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), t("a little", "少々", "အနည်းငယ်"), "salt"]
+    ],
+    [
+      t("Cook the salmon or meat with salt and pepper.", "鮭またはお肉を塩コショウで焼きます。", "ဆော်လမွန်ငါး သို့မဟုတ် အသားကို ဆား၊ ငရုတ်ကောင်းတို့ဖြင့် ချက်ပါ။"),
+      t("Cook and roll or fold the eggs.", "卵焼き（または折りたたんだ卵）を作ります。", "ကြက်ဥကို ကြော်ပြီး လိပ်ပါ သို့မဟုတ် ခေါက်ပါ။"),
+      t("Pack everything with rice and cherry tomatoes.", "ご飯、ミニトマトと一緒に弁当箱に詰めます。", "ထမင်း၊ ခရမ်းချဉ်သီးချိုတို့နှင့်အတူ အားလုံးကို ဘင်တိုဗူးထဲသို့ ထည့်ပါ။")
+    ],
+    t("Do not add onion or garlic if choosing sliced meat. Ensure salmon has all bones removed before cooking, and keep seasonings plain for pet consumption.", "薄切り肉を選ぶ場合は玉ねぎやにんにくを加えないでください。また、鮭は調理前にすべての骨を取り除き、ペットが食べる分は味付けを避けてください。", "အသားလွှာကို ရွေးချယ်ပါက ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မထည့်ပါနှင့်။ မချက်ပြုတ်မီ ဆော်လမွန်ငါးရှိ အရိုးအားလုံးကို ဖယ်ရှားပြီး အိမ်မွေးတိရစ္ဆာန်များစားရန်အတွက် အမွှေးအကြိုင်များကို ရှောင်ကြဉ်ပါ။"),
+    [
+      photo("assets/recipes/human-food/love-bentos-salmon.jpg",
+        t("Love bento with grilled salmon and rolled egg", "焼き鮭と卵焼きの愛妻弁当", "ဆော်လမွန်ကင်နှင့် ကြက်ဥလိပ်ပါဝင်သော မေတ္တာဘင်တိုဗူး"),
+        t("A bento box filled with seasoned brown rice, topped with a cooked salmon fillet and two slices of rolled egg omelette.", "味付けご飯の上に焼き鮭と2切れの卵焼きがのったお弁当。", "နယ်ထားသော ထမင်းညိုပေါ်တွင် ဆော်လမွန်ကင်တစ်ဖတ်နှင့် ကြက်ဥလိပ် နှစ်ခု တင်ထားသော ဘင်တိုဗူး။")),
+      photo("assets/recipes/human-food/love-bentos-meat.png",
+        t("Love bento with meat rolls and rolled egg", "肉巻きと卵焼きの愛妻弁当", "အသားလိပ်နှင့် ကြက်ဥလိပ်ပါဝင်သော မေတ္တာဘင်တိုဗူး"),
+        t("A bento box containing seasoned rice with diced potatoes/scallops, rolled egg omelette slices, meat rolls, and cherry tomatoes.", "ご飯、卵焼き、肉巻き、そしてミニトマトが入ったお弁当。", "ထမင်း၊ ကြက်ဥလိပ်၊ အသားလိပ်နှင့် ခရမ်းချဉ်သီးချိုများ ပါဝင်သော ဘင်တိုဗူး။"))
+    ],
+    "human",
+    {
+      mealType: t("Main/Bento", "お弁当・主食", "ဘင်တိုဗူး/အစားအစာ"),
+      style: t("Bento", "お弁当", "ဘင်တိုဗူး"),
+      timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
@@ -3658,7 +3690,8 @@ function checkTranslations() {
     "cooked-protein": { file: null, source: null, target: "Cooked meat, fish, or other protein flakes/pieces" },
     "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" },
     kale: { file: null, source: null, target: "Fresh kale leaves pack" },
-    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" }
+    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" },
+    "salmon-or-meat": { file: null, source: null, target: "Raw salmon fillet or sliced beef/pork packet" }
   });
 })();
 

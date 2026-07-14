@@ -170,7 +170,8 @@ const pendingDemoRecipeIds = [
   "beef-mushroom-egg-bowl",
   "soy-braised-beef-egg",
   "onigiri-rice-balls",
-  "clean-yukari-style-salad"
+  "clean-yukari-style-salad",
+  "love-bentos-by-yukari"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);
