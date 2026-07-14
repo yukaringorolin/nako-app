@@ -72,8 +72,8 @@ assert.equal(bedroomsLinens.photos.length, 6);
 assert.equal(routineById("pillow-mattress-vacuuming").active, false);
 
 const groceryShopping = routineById("grocery-shopping");
-assert.match(englishText(groceryShopping.mustRemember), /At NTUC, present the points QR code before payment/);
-assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/nako-ntuc-points-qr.png"));
+assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
+assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
