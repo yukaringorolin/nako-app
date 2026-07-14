@@ -445,12 +445,73 @@ const routineTasks = [
     ]),
 
   routine("toilet-cleaning", "weekly", 70, "T", 
-    t("Toilet Cleaning", "トイレの掃除", "အိမ်သာသန့်ရှင်းရေး"), 
-    t("Scrub and wash toilets regularly.", "定期的に便器をこすり洗いし、掃除します。", "အိမ်သာများကို ပုံမှန်တိုက်ချွတ်ဆေးကြောပါ။"), 
-    t("Weekly", "毎週", "အပတ်စဉ်"), 
+    t("Toilet Cleaning", "トイレの掃除", "အိမ်သာသန့်ရှင်းရေး"),
+    t(
+      "Wash both toilets every week. Use the white spray for bathroom surfaces, the green cleaner inside the toilet bowl, and the mold remover only when black mold appears.",
+      "毎週2つのトイレを洗います。白いスプレーは浴室の表面、緑の洗剤は便器の中、カビ取り剤は黒カビがある時だけ使います。",
+      "အိမ်သာ ၂ ခုလုံးကို အပတ်စဉ်ဆေးပါ။ အဖြူရောင် spray ကို ရေချိုးခန်းမျက်နှာပြင်များအတွက်သုံးပါ။ အစိမ်းရောင် cleaner ကို အိမ်သာခွက်အတွင်းသုံးပါ။ မှိုသတ်ဆေးကို အမည်းမှိုရှိမှသာ သုံးပါ။"
+    ),
+    t("Weekly", "毎週", "အပတ်စဉ်"),
     [
-      t("Keep toilet areas dry and hygienic.", "トイレのエリアは乾燥させ、衛生的に保ってください。", "အိမ်သာနေရာများကို ခြောက်သွေ့ပြီး သန့်ရှင်းအောင် ထားပါ။"),
-      t("The main toilet is located next to the kitchen. The other toilet is in the master bedroom.", "メインのトイレはキッチンの隣にあります。もう一方のトイレは主寝室にあります。", "အဓိကအိမ်သာမှာ မီးဖိုချောင်ဘေးတွင် ရှိသည်။ အခြားအိမ်သာတစ်ခုမှာ မာစတာအိပ်ခန်းထဲတွင် ရှိသည်။")
+      t(
+        "Clean both toilets: the main toilet beside the kitchen and the toilet inside the master bedroom.",
+        "キッチン横のメイントイレと、主寝室内のトイレの両方を掃除します。",
+        "မီးဖိုချောင်ဘေးရှိ အဓိကအိမ်သာနှင့် master bedroom ထဲရှိ အိမ်သာ ၂ ခုလုံးကို ဆေးပါ။"
+      ),
+
+      t(
+        "Open the door, turn on the ventilation fan, wear gloves, and keep Nako outside.",
+        "ドアを開け、換気扇をつけ、手袋を着けます。Nakoはトイレの外に出します。",
+        "တံခါးဖွင့်၊ လေထုတ်ပန်ကာဖွင့်ပြီး လက်အိတ်ဝတ်ပါ။ Nako ကို အိမ်သာအပြင်မှာထားပါ။"
+      ),
+
+      t(
+        "Spray the white Magiclean Bathroom & Toilet Cleaner on the sink, taps, wall tiles, shower area, and outside of the toilet bowl.",
+        "白いMagiclean Bathroom & Toilet Cleanerを、洗面台、蛇口、壁タイル、シャワー周り、便器の外側にスプレーします。",
+        "အဖြူရောင် Magiclean Bathroom & Toilet Cleaner ကို လက်ဆေးကန်၊ ရေပိုက်ခေါင်း၊ နံရံကြွေပြား၊ ရေချိုးနေရာနှင့် အိမ်သာခွက်အပြင်ဘက်တွင် ဖြန်းပါ။"
+      ),
+
+      t(
+        "Scrub with a sponge, then rinse everything thoroughly with water.",
+        "スポンジでこすり、その後すべてを水で十分に流します。",
+        "ရေမြှုပ်နှင့်တိုက်ပြီး အားလုံးကို ရေနှင့် သေချာဆေးချပါ။"
+      ),
+
+      t(
+        "Squeeze the green Magiclean Dual Power Toilet Cleaner under the toilet rim and around the inside of the bowl.",
+        "緑のMagiclean Dual Power Toilet Cleanerを、便器のふち裏と便器の内側にかけます。",
+        "အစိမ်းရောင် Magiclean Dual Power Toilet Cleaner ကို အိမ်သာခွက်အနားအောက်နှင့် ခွက်အတွင်းဘက်တွင် ညှစ်ထည့်ပါ။"
+      ),
+
+      t(
+        "Scrub the inside with the toilet brush, then flush.",
+        "便器の中をトイレブラシでこすり、その後流します。",
+        "အိမ်သာခွက်အတွင်းကို အိမ်သာတိုက်တံနှင့်တိုက်ပြီး ရေဆွဲချပါ။"
+      ),
+
+      t(
+        "Use Magiclean Stain & Mold only when there is black mold. First rinse away every other cleaner completely.",
+        "Magiclean Stain & Moldは黒カビがある時だけ使います。先に他の洗剤をすべて完全に水で流します。",
+        "Magiclean Stain & Mold ကို အမည်းမှိုရှိမှသာ သုံးပါ။ အရင်သုံးထားသော cleaner အားလုံးကို ရေနှင့် လုံးဝဆေးချပါ။"
+      ),
+
+      t(
+        "Spray it on the mold, wait 5 minutes, then rinse thoroughly with water.",
+        "カビにスプレーし、5分待ってから、水で十分に流します。",
+        "မှိုပေါ်တွင် ဖြန်းပါ။ ၅ မိနစ်စောင့်ပြီး ရေနှင့် သေချာဆေးချပါ။"
+      ),
+
+      t(
+        "Never mix cleaning products or use different cleaners at the same time.",
+        "洗剤は絶対に混ぜないでください。違う洗剤を同時に使わないでください。",
+        "cleaner များကို လုံးဝမရောပါနှင့်။ မတူသော cleaner များကို တစ်ချိန်တည်း မသုံးပါနှင့်။"
+      ),
+
+      t(
+        "Rinse the floor and all surfaces, then leave the toilets dry. Let Nako enter only after everything is rinsed and dry.",
+        "床とすべての表面を水で流し、トイレを乾かします。完全に洗い流して乾くまでNakoを入れません。",
+        "ကြမ်းပြင်နှင့် မျက်နှာပြင်အားလုံးကို ရေဆေးပြီး အိမ်သာကို ခြောက်အောင်ထားပါ။ အားလုံးဆေးပြီး ခြောက်မှသာ Nako ကို ဝင်ခွင့်ပေးပါ။"
+      )
     ],
     [
       photo("assets/routines/toilet-kitchen-main.jpg",
