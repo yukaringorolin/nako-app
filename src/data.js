@@ -1741,7 +1741,7 @@ const routineTasks = [
         t("Fire-extinguisher pressure gauge", "消火器の圧力計", "မီးသတ်ဆေးဘူး ဖိအားမီတာ"),
         t("The needle should be in the green working-pressure zone. Either red zone means the extinguisher needs professional attention.", "針が緑色の使用圧力範囲にあることを確認します。左右どちらの赤色範囲でも、専門業者による対応が必要です。", "အပ်သည် အစိမ်းရောင် အသုံးပြုနိုင်သောဖိအားအပိုင်းတွင် ရှိရမည်။ အနီရောင်အပိုင်းတစ်ဖက်ဖက်တွင်ရှိလျှင် ကျွမ်းကျင်သူဖြင့် စစ်ဆေးရန်လိုသည်။"))
     ]),
-  routine("upload-shared-album", "as-needed", 45, "📷",
+  routine("upload-shared-album", "as-needed", 0, "📷",
     t("Upload Photos & Videos to Shared Album", "共有アルバムへの写真・動画のアップロード", "မျှဝေထားသော အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ခြင်း"),
     t("Upload photos and videos to the shared Google Photos album whenever you complete tasks, find something unusual, or are unsure of what to do.", "タスク完了時、異常を見つけた時、またはどうすべきか判断に迷う時に、共有のGoogleフォトアルバムに写真や動画をアップロードします。", "အလုပ်များပြီးစီးသည့်အခါ၊ ပုံမှန်မဟုတ်သောအရာများ တွေ့ရှိသည့်အခါ သို့မဟုတ် ဘာလုပ်ရမှန်း မသေချာသည့်အခါ မျှဝေထားသော Google Photos အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ပေးပါ။"),
     t("As needed", "必要に応じて", "လိုအပ်သလို"),

@@ -105,6 +105,12 @@ assert.deepEqual(Array.from(laundromat.photos, (item) => item.src), [
   "assets/routines/laundromat-coin-change-machine.jpg"
 ]);
 
+const uploadSharedAlbum = routineById("upload-shared-album");
+const asNeededTasks = data.routineTasks
+  .filter((task) => task.frequencyBucket === "as-needed")
+  .sort((a, b) => a.sortOrder - b.sortOrder);
+assert.equal(asNeededTasks[0].id, uploadSharedAlbum.id, "Shared-album uploads must stay first on the As Needed page");
+
 const essentialFoodStock = routineById("essential-food-stock");
 assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines/essential-food-stock-bananas.jpg"));
 
