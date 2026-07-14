@@ -873,6 +873,41 @@ const recipes = [
       highProtein: false,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("simple-wagyu-steak",
+    t("Simple Wagyu Steak", "シンプルな和牛ステーキ", "ရိုးရှင်းသော ဝါးဂယူ အမဲသားကင်"),
+    [
+      [t("Wagyu steak", "和牛ステーキ", "ဝါးဂယူ အမဲသား"), t("1 piece", "1枚", "၁ ပြား"), "wagyu-steak"],
+      [t("Salt", "塩", "ဆား"), t("a little", "少々", "အနည်းငယ်"), "salt"],
+      [t("Black pepper", "黒コショウ", "ငရုတ်ကောင်းမှုန့်"), t("a little", "少々", "အနည်းငယ်"), "black-pepper"]
+    ],
+    [
+      t("Defrost the steak.", "ステーキを解凍します。", "အမဲသားကို ရေခဲအရည်ပျော်အောင်ထားပါ။"),
+      t("Add salt and pepper on both sides.", "両面に塩とコショウを振ります。", "နှစ်ဖက်လုံးကို ဆားနှင့် ငရုတ်ကောင်း ဖြန်းပါ။"),
+      t("Heat the pan.", "フライパンを温めます。", "ဒယ်အိုးကို အပူပေးပါ။"),
+      t("Cook for 1–2 minutes on each side.", "片面ずつ1〜2分ずつ焼きます。", "တစ်ဖက်လျှင် ၁ မိနစ်မှ ၂ မိနစ်ခန့် ကင်ပါ။"),
+      t("Rest for 3 minutes, then cut and serve.", "3分休ませてから、切って盛り付けます。", "၃ မိနစ်ခန့် အနားပေးပြီးနောက် လှီးပြီး သုံးဆောင်ပါ။")
+    ],
+    t("Choose the doneness to your liking. Wagyu is best served medium-rare to appreciate its fat quality.", "焼き加減はお好みに調整してください。和牛は脂の甘みを味わうためにミディアムレアがおすすめです。", "အကျက်နှုန်းကို စိတ်ကြိုက်ပြင်ဆင်ပါ။ ဝါးဂယူ၏ အဆီအရသာကို ကောင်းစွာရရှိရန် အလယ်အလတ်အကျက် (medium-rare) ကင်ရန် အကြံပြုပါသည်။"),
+    [
+      photo("assets/recipes/human-food/wagyu-steak-sliced.png",
+        t("Wagyu steak sliced and served", "切り分けて盛り付けた和牛ステーキ", "လှီးပြီး ပြင်ဆင်ထားသော ဝါးဂယူ အမဲသားကင်"),
+        t("Steak sliced showing the pink medium-rare center.", "断面がきれいなピンク色のミディアムレアのステーキ。", "အလယ်အလတ်အကျက် ပန်းရောင်သန်းနေသော လှီးထားသော အမဲသားကင်။")),
+      photo("assets/recipes/human-food/wagyu-steak-raw.jpg",
+        t("Raw marbled Wagyu steak", "綺麗なサシの入った生の和牛", "အဆီအစင်းများပါဝင်သော ဝါးဂယူ အမဲသားစိမ်း"),
+        t("Raw marbled Wagyu steak package showing the fat veins.", "美しい霜降りの入ったパッケージ入りの生の和牛ステーキ肉。", "အဆီအစင်းလှလှလေးများပါသော ထုပ်ပိုးထားသည့် ဝါးဂယူ အမဲသားစိမ်း။")),
+      photo("assets/recipes/human-food/wagyu-steak-cooked.png",
+        t("Cooked Wagyu steak on a plate", "お皿にのせた和牛ステーキ", "ပန်းကန်ထဲတွင် ကင်ထားသော ဝါးဂယူ အမဲသား"),
+        t("Cooked whole Wagyu steak resting on a white plate.", "お皿に盛り付けて休ませている状態の和牛ステーキ。", "ပန်းကန်လုံးထဲတွင် အနားပေးထားသော ဝါးဂယူ အမဲသားကင် တစ်ပြားလုံး။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Steak", "ステーキ", "အမဲသားကင်"),
+      timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 

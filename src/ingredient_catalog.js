@@ -80,6 +80,8 @@
     "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" },
     nori: { file: null, source: null, target: "Nori seaweed sheets packet" },
     beef: { file: null, source: null, target: "Minced beef or sliced beef packet" },
-    "crab-stick": { file: null, source: null, target: "Crab sticks / surimi package" }
+    "crab-stick": { file: null, source: null, target: "Crab sticks / surimi package" },
+    "wagyu-steak": { file: null, source: null, target: "Wagyu steak package (chilled/frozen)" },
+    "black-pepper": { file: null, source: null, target: "Black pepper grinder or shaker bottle" }
   });
 })();
