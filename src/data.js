@@ -2573,7 +2573,8 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食/夕食", "နေ့လယ်စာ/ညစာ"),
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
   ),
   recipe("tuna-tofu-egg-rice",

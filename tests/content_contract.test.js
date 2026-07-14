@@ -106,6 +106,7 @@ const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
 assert.ok(oyakodon.ingredients.some((item) => item.key === "honey"));
 assert.match(englishText(oyakodon.method), /hot water/);
+assert.equal(oyakodon.demoStatus.en, "Pending demo");
 
 const chickenWings = recipeById("air-fryer-chicken-wings");
 assert.equal(chickenWings.title.en, "Air-Fryer Chicken Wings");
@@ -121,11 +122,13 @@ const pendingDemoRecipeIds = [
   "chicken-teriyaki-rice",
   "salmon-shioyaki-set",
   "pork-shogayaki-no-onion",
+  "chicken-oyakodon-no-onion",
   "tuna-tofu-egg-rice",
   "chicken-soboro-don",
   "chicken-miso-nabe"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
+assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);
 assert.deepEqual(Array.from(humanRecipes.slice(-pendingDemoRecipeIds.length), (recipe) => recipe.id), pendingDemoRecipeIds);
 for (const id of pendingDemoRecipeIds) {
   const demoStatus = recipeById(id).demoStatus;
