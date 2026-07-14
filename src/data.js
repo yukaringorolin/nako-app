@@ -2881,7 +2881,11 @@ const recipes = [
       t("Put it in the air fryer and cook at 190°C for 4 minutes.", "エアフライヤーに入れ、190℃で4分加熱する。", "air fryer ထဲထည့်ပြီး 190°C ဖြင့် 4 မိနစ် အပူပေးပါ။")
     ],
     t("Air-fry at 190°C for 4 minutes. The toast and air-fryer basket will be hot when finished.", "エアフライヤーは190℃・4分。終了後はトーストとバスケットが熱いので注意する。", "air fryer ကို 190°C ဖြင့် 4 မိနစ်ထားပါ။ ပြီးသွားပါက toast နှင့် air-fryer basket ပူနေမည်ဖြစ်သောကြောင့် သတိထားပါ။"),
-    [],
+    [
+      photo("assets/recipes/human-food/banana-toast.jpg",
+        t("Banana toast", "バナナトースト", "ငှက်ပျောသီးပေါင်မုန့်ကင်"),
+        t("A slice of air-fried toast spread with peanut butter and strawberry jam, covered with overlapping slices of banana.", "ピーナッツバターといちごジャムを塗り、スライスしたバナナをきれいに並べて焼いたトースト。", "မြေပဲထောပတ်နှင့် စတော်ဘယ်ရီယိုများ လိမ်းကျံထားပြီး အပေါ်မှ ငှက်ပျောသီးလွှာများ စီထပ်တင်ကာ air fryer ဖြင့် ကင်ထားသော ပေါင်မုန့်ကင်တစ်ချပ်။"))
+    ],
     "human",
     {
       mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / snack"),
