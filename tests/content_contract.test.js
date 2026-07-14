@@ -59,6 +59,13 @@ assert.deepEqual(Array.from(mailDeliveries.photos, (item) => item.src), [
   "assets/routines/nako-delivery-unpack-when-instructed.jpg",
   "assets/routines/nako-delivery-wipe-item.jpg"
 ]);
+const rubbish = routineById("rubbish");
+assert.match(englishText(rubbish.mustRemember), /normal bagged household rubbish down the rubbish chute/);
+assert.match(englishText(rubbish.mustRemember), /Do not force large or bulky rubbish.*delivery packaging.*into the chute/);
+assert.deepEqual(Array.from(rubbish.photos, (item) => item.src), [
+  "assets/routines/nako-rubbish-bin-daily.jpg",
+  "assets/routines/nako-rubbish-downstairs-large-items.jpg"
+]);
 assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchange it for a treat/);
 assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);
