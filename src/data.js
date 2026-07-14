@@ -132,6 +132,8 @@ const ui = {
     noItems: "No items yet.",
     back: "Back",
     humanRecipes: "Human recipes",
+    foodMemoryTitle: "Food Memories 2024",
+    foodMemoryDescription: "Meals Yukari cooked for Edwin during their first 3–4 months together.",
     weightTrend: "Weight Trend",
     weightLog: "Weekly Log",
     weightGraphPlaceholder: "Enter at least 2 weight logs to show the trend graph.",
@@ -284,6 +286,8 @@ const ui = {
     noItems: "項目はありません。",
     back: "戻る",
     humanRecipes: "人間のレシピ",
+    foodMemoryTitle: "2024年の食の思い出",
+    foodMemoryDescription: "付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。",
     weightTrend: "体重推移",
     weightLog: "週次ログ",
     weightGraphPlaceholder: "推移グラフを表示するには、体重を2件以上入力してください。",
@@ -436,6 +440,8 @@ const ui = {
     noItems: "ဘာမှမရှိသေးပါ။",
     back: "နောက်သို့",
     humanRecipes: "လူသားများအတွက် ဟင်းချက်နည်းများ",
+    foodMemoryTitle: "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ",
+    foodMemoryDescription: "အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။",
     weightTrend: "ကိုယ်အလေးချိန်ပြောင်းလဲမှု ဇယား",
     weightLog: "အပတ်စဉ် ကိုယ်အလေးချိန်မှတ်တမ်း",
     weightGraphPlaceholder: "ကိုယ်အလေးချိန်ပြောင်းလဲမှု ဇယားကြည့်ရန် အနည်းဆုံး ၂ ကြိမ် ကိုယ်အလေးချိန်ထည့်သွင်းပေးပါ။",
@@ -725,9 +731,9 @@ const foodItems = [
     t("Ideas and recipes for human meals.", "人間用の食事のアイデアとレシピ。", "လူသားများအတွက် စားစရာအိုင်ဒီယာများနှင့် ဟင်းချက်နည်းများ။"), 
     t("Select a recipe to view details.", "詳細を表示するレシピを選択してください。", "အသေးစိတ်ကြည့်ရန် ဟင်းချက်နည်းတစ်ခုကို ရွေးချယ်ပါ။"), 
     t("Double-check ingredients at home before starting to cook.", "料理を始める前に、家にある食材を再確認してください。", "ဟင်းမချက်မီ အိမ်ရှိပါဝင်ပစ္စည်းများကို ထပ်မံစစ်ဆေးပါ။"), 0, [
-      photo("assets/sections/human-food.png", 
-        t("Healthy breakfast tray with salmon, egg, rice, and miso soup", "鮭、卵、ご飯、味噌汁が入った健康的な朝食トレイ", "ဆယ်လ်မွန်ငါး၊ ကြက်ဥ၊ ထမင်းနှင့် မစ်ဆိုစွပ်ပြုတ်တို့ပါဝင်သည့် ကျန်းမာရေးနှင့်ညီညွတ်သော နံနက်စာလင်ပန်း"),
-        t("Human Food", "人間の食事", "လူသားများအတွက် အစားအစာ"))
+      photo("assets/sections/human-food-memories-2024.jpg",
+        t("Yukari surrounded by a collage of meals she cooked for Edwin in 2024", "ゆかりと、2024年にエドウィンのために作った料理のコラージュ", "Yukari နဲ့ ၂၀၂၄ ခုနှစ်မှာ Edwin အတွက် သူချက်ပေးခဲ့တဲ့ အစားအစာများကို စုစည်းထားတဲ့ပုံ"),
+        t("Food Memories 2024 — meals Yukari cooked for Edwin during their first 3–4 months together.", "2024年の食の思い出 — 付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。", "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ — အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။"))
     ]),
 ];
 

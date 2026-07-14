@@ -350,6 +350,103 @@ img {
   transform: scale(1.03);
 }
 
+.food-memory {
+  margin: 0 0 16px;
+  overflow: hidden;
+  border: 1px solid #efb8c1;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fff7f8 0%, #fffdf8 100%);
+  box-shadow: 0 8px 20px rgba(48, 62, 55, 0.06);
+}
+
+.food-memory-summary {
+  min-height: 80px;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.food-memory-summary::-webkit-details-marker {
+  display: none;
+}
+
+.food-memory-summary:focus-visible {
+  outline: 3px solid #2f7352;
+  outline-offset: -3px;
+}
+
+.food-memory-thumbnail {
+  width: 58px;
+  height: 58px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f2f6f4;
+}
+
+.food-memory-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.food-memory-copy {
+  min-width: 0;
+}
+
+.food-memory-title,
+.food-memory-description {
+  display: block;
+}
+
+.food-memory-title {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.food-memory-description {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.food-memory-chevron {
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.food-memory[open] > .food-memory-summary .food-memory-chevron {
+  transform: rotate(90deg);
+}
+
+.food-memory-figure {
+  margin: 0;
+  padding: 0 12px 12px;
+}
+
+.food-memory-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #f2f6f4;
+}
+
+.food-memory-figure figcaption {
+  padding: 10px 2px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .recipe-card-content {
   padding: 14px;
   display: flex;
@@ -1447,6 +1544,21 @@ img {
   .card-icon {
     width: 46px;
     height: 46px;
+  }
+
+  .food-memory-summary {
+    grid-template-columns: 50px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .food-memory-thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+
+  .food-memory-title {
+    font-size: 16px;
   }
 
   .shopping-grid {

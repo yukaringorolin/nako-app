@@ -91,6 +91,26 @@ function renderRecipeCard(recipe) {
   return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, mainPhoto)}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
 }
 
+function renderFoodMemory(item) {
+  const memoryPhoto = primaryPhoto(item.photos);
+  if (!memoryPhoto?.src) return "";
+  const imageAlt = tr(memoryPhoto.alt || memoryPhoto.caption);
+  return `<details class="food-memory">
+    <summary class="food-memory-summary">
+      <span class="food-memory-thumbnail"><img src="${esc(memoryPhoto.src)}" alt="" loading="lazy" /></span>
+      <span class="food-memory-copy">
+        <span class="food-memory-title">${esc(label("foodMemoryTitle"))}</span>
+        <span class="food-memory-description">${esc(label("foodMemoryDescription"))}</span>
+      </span>
+      <span class="food-memory-chevron" aria-hidden="true">›</span>
+    </summary>
+    <figure class="food-memory-figure">
+      <img src="${esc(memoryPhoto.src)}" alt="${esc(imageAlt)}" loading="lazy" />
+      <figcaption>${esc(tr(memoryPhoto.caption))}</figcaption>
+    </figure>
+  </details>`;
+}
+
 function renderRecipeBadges(recipe) {
   let html = "";
   if (recipe.demoStatus) {

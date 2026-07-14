@@ -29,6 +29,16 @@ const routineById = (id) => data.routineTasks.find((task) => task.id === id);
 const recipeById = (id) => data.recipes.find((recipe) => recipe.id === id);
 const englishText = (items) => items.map((item) => item.en).join("\n");
 
+const humanFood = data.foodItems.find((item) => item.id === "human-food");
+assert.equal(humanFood.id, "human-food");
+assert.equal(humanFood.photos[0].src, "assets/sections/human-food-memories-2024.jpg");
+assert.match(humanFood.photos[0].alt.en, /Yukari.*meals.*2024/);
+assert.ok(humanFood.photos[0].alt.jp && humanFood.photos[0].alt.mm);
+assert.ok(humanFood.photos[0].caption.en && humanFood.photos[0].caption.jp && humanFood.photos[0].caption.mm);
+assert.equal(data.ui.en.foodMemoryTitle, "Food Memories 2024");
+assert.ok(data.ui.jp.foodMemoryTitle && data.ui.mm.foodMemoryTitle);
+assert.ok(data.ui.en.foodMemoryDescription && data.ui.jp.foodMemoryDescription && data.ui.mm.foodMemoryDescription);
+
 const drinkingWaterPrep = routineById("drinking-water-prep");
 assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
 assert.match(englishText(drinkingWaterPrep.mustRemember), /74°C or above after 10 hours.*59°C or above after 24 hours/);
