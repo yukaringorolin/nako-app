@@ -94,6 +94,17 @@ assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
 
+const laundromat = routineById("laundromat-heavy-items");
+assert.equal(laundromat.frequencyBucket, "as-needed");
+assert.equal(laundromat.trackingMode, "none");
+assert.match(laundromat.summary.en, /bulky.*curtains/i);
+assert.match(englishText(laundromat.mustRemember), /Edwin.*exact washer setting|exact washer setting.*Edwin/i);
+assert.match(englishText(laundromat.mustRemember), /\$2.*\$5.*\$10.*\$1 coins/);
+assert.deepEqual(Array.from(laundromat.photos, (item) => item.src), [
+  "assets/routines/laundromat-washer-price-list.jpg",
+  "assets/routines/laundromat-coin-change-machine.jpg"
+]);
+
 const essentialFoodStock = routineById("essential-food-stock");
 assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines/essential-food-stock-bananas.jpg"));
 

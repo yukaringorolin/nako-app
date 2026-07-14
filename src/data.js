@@ -1653,6 +1653,26 @@ const routineTasks = [
         t("Spirit ready to pour over ice", "氷に注ぐ準備ができたスピリッツ", "ရေခဲပေါ်လောင်းရန် အဆင်သင့်ဖြစ်သော spirit"),
         t("Pour a moderate serving over the ice, then add mixer or water only if requested.", "氷に適量を注ぎ、ミキサーや水は頼まれた時だけ加える。", "ရေခဲပေါ်သို့ ပမာဏသင့်တင့်အောင်လောင်းပြီး mixer သို့မဟုတ် ရေကို တောင်းဆိုသည့်အခါမှသာ ထည့်ပါ။"))
     ]),
+  routine("laundromat-heavy-items", "as-needed", 14, "L",
+    t("Laundromat for Heavy Items", "大型品のコインランドリー洗濯", "အလေးချိန်များသောပစ္စည်းများ Laundromat တွင်လျှော်ခြင်း"),
+    t("When Edwin asks, take bulky washable items such as curtains downstairs to the laundromat and use the exact washer setting he gives.", "Edwinに頼まれた時、カーテンなどの大型洗濯物を階下のコインランドリーへ運び、指定された洗濯設定を使います。", "Edwin က တောင်းဆိုသည့်အခါ ကာတန်ကဲ့သို့ လျှော်ရမည့် ပစ္စည်းကြီးများကို အောက်ထပ် laundromat သို့ ယူသွားပြီး Edwin ပြောသည့် washer setting အတိအကျကို သုံးပါ။"),
+    t("Only when Edwin asks", "Edwinに頼まれた時のみ", "Edwin က တောင်းဆိုသည့်အခါမှသာ"),
+    [
+      t("Confirm which items to wash and the exact washer setting with Edwin before going downstairs. Do not choose the setting yourself.", "階下へ行く前に、洗う物と正確な洗濯設定をEdwinに確認します。自分で設定を選ばないでください。", "အောက်ထပ်မဆင်းမီ လျှော်ရမည့်ပစ္စည်းများနှင့် washer setting အတိအကျကို Edwin ထံ အတည်ပြုပါ။ setting ကို ကိုယ်တိုင်မရွေးပါနှင့်။"),
+      t("Put curtains or other bulky laundry into manageable bags or baskets and carry them downstairs. Make another trip or ask for help if the load is too heavy.", "カーテンなどの大型洗濯物を運びやすい袋やかごに入れて階下へ運びます。重すぎる場合は分けて運ぶか、助けを求めてください。", "ကာတန် သို့မဟုတ် အခြားပစ္စည်းကြီးများကို သယ်ရလွယ်သောအိတ် သို့မဟုတ် ခြင်းထဲထည့်ပြီး အောက်ထပ်သို့ ယူသွားပါ။ အရမ်းလေးပါက ခွဲသယ်ပါ သို့မဟုတ် အကူအညီတောင်းပါ။"),
+      t("Bring Singapore cash notes. The change machine accepts unfolded $2, $5, and $10 notes and pays out $1 coins.", "シンガポールドル紙幣を持参します。両替機は折っていない2ドル、5ドル、10ドル札を受け付け、1ドル硬貨を払い出します。", "စင်္ကာပူဒေါ်လာ ငွေစက္ကူများ ယူသွားပါ။ coin change machine သည် မခေါက်ထားသော $2၊ $5 နှင့် $10 ငွေစက္ကူများကို လက်ခံပြီး $1 အကြွေစေ့များ ထုတ်ပေးသည်။"),
+      t("Check the current price board and change enough notes into coins for the instructed washer and programme.", "現在の料金表を確認し、指定された洗濯機とコースに必要な分だけ硬貨へ両替します。", "လက်ရှိဈေးနှုန်းဘုတ်ကို စစ်ပြီး ညွှန်ကြားထားသော washer နှင့် programme အတွက် လုံလောက်သော အကြွေစေ့များ လဲပါ။"),
+      t("Load the machine without overfilling it, then use only the setting Edwin specified.", "洗濯機に詰め込みすぎないように入れ、Edwinが指定した設定だけを使います。", "စက်ထဲကို အလွန်ပြည့်ကျပ်အောင်မထည့်ဘဲ Edwin ပြောထားသော setting ကိုသာ သုံးပါ။"),
+      t("When finished, collect all laundry and belongings and bring them back upstairs.", "終了したら、洗濯物と持ち物をすべて回収して上階へ戻します。", "ပြီးဆုံးပါက အဝတ်လျှော်ပစ္စည်းများနှင့် ကိုယ်ပိုင်ပစ္စည်းအားလုံးကို ယူပြီး အပေါ်ထပ်သို့ ပြန်ယူလာပါ။")
+    ],
+    [
+      photo("assets/routines/laundromat-washer-price-list.jpg",
+        t("Laundromat washer programmes and price list", "コインランドリーの洗濯コースと料金表", "Laundromat washer programme များနှင့် ဈေးနှုန်းစာရင်း"),
+        t("Check the current board for the washer size, programme, time, and price, but follow Edwin's exact setting.", "洗濯機の容量、コース、時間、料金は現在の表で確認しますが、設定はEdwinの指示に正確に従ってください。", "washer အရွယ်အစား၊ programme၊ အချိန်နှင့် ဈေးနှုန်းကို လက်ရှိဘုတ်တွင် စစ်ပါ။ သို့သော် Edwin ပြောသည့် setting အတိအကျကို လိုက်နာပါ။")),
+      photo("assets/routines/laundromat-coin-change-machine.jpg",
+        t("Change machine for one-dollar coins", "1ドル硬貨用の両替機", "$1 အကြွေစေ့အတွက် coin change machine"),
+        t("Insert an unfolded $2, $5, or $10 note and collect the $1 coins from the payout tray.", "折っていない2ドル、5ドル、10ドル札のいずれかを入れ、払出口から1ドル硬貨を受け取ります。", "မခေါက်ထားသော $2၊ $5 သို့မဟုတ် $10 ငွေစက္ကူကို ထည့်ပြီး payout tray မှ $1 အကြွေစေ့များကို ယူပါ။"))
+    ]),
   routine("rain-window-closing", "as-needed", 15, "R",
     t("Rain - Window Closing", "雨の日の窓閉め", "မိုးရွာချိန် ပြတင်းပေါက်ပိတ်ခြင်း"),
     t("When raining, adjust the windows to prevent rain from splashing in.", "雨の日は、雨が吹き込まないように窓を調整してください。", "မိုးရွာချိန်တွင် မိုးရေများဝင်မလာစေရန် ပြတင်းပေါက်များကို ချိန်ညှိပါ။"),
