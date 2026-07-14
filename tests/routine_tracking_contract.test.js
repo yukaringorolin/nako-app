@@ -81,7 +81,6 @@ const baselineIds = new Set([
   "curtain-steaming",
   "ikea-bed-frame",
   "general-surface-cleaning",
-  "pillow-mattress-vacuuming",
   "aircon-filter-fan-coil",
   "washer-deep-clean",
   "doorbell-charging",
@@ -92,6 +91,9 @@ for (const id of baselineIds) {
   const task = tracked.find((t) => t.id === id);
   assert.ok(task, `Required baseline task ${id} is missing or not tracked`);
 }
+const retiredPillowMattressVacuuming = allTasks.find((task) => task.id === "pillow-mattress-vacuuming");
+assert.ok(retiredPillowMattressVacuuming, "Retired pillow/mattress vacuuming routine must retain its stable ID and history");
+assert.equal(retiredPillowMattressVacuuming.active, false, "Vacuuming is now part of weekly bedrooms and linens, so the monthly duplicate must stay inactive");
 
 // 10. A newly added mock tracked task would automatically be selected by trackedRoutineTasks predicate logic
 const mockTask = {

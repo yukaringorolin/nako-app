@@ -1432,16 +1432,32 @@ const routineTasks = [
 
   routine("bedrooms-linens", "weekly", 110, "B", 
     t("Bedrooms & Linens", "寝室とシーツ類", "အိပ်ခန်းများနှင့် အိပ်ရာခင်းများ"), 
-    t("Tidy bedrooms and change bedsheets regularly.", "寝室を片付け、定期的にベッドシーツを交換します。", "အိပ်ခန်းများကို သပ်ရပ်အောင်ထားပြီး bedsheets များကို ပုံမှန်လဲလှယ်ပါ။"), 
+    t("Change sheets, protector, pillowcases, and bolster covers weekly. Vacuum the mattress and pillows with the dedicated bedding vacuum.", "毎週、シーツ、プロテクター、枕カバー、抱き枕カバーを交換し、寝具専用掃除機でマットレスと枕を掃除します。", "အပတ်စဉ် အိပ်ရာခင်း၊ mattress protector၊ ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်များကို လဲပါ။ အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့် မွေ့ရာနှင့် ခေါင်းအုံးများကို ဖုန်စုပ်ပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
-      t("Keep bedsheets and linens fresh.", "ベッドシーツとリネン類を清潔に保ちます。", "အိပ်ရာခင်းများနှင့် အဝတ်အထည်များကို လတ်ဆတ်သန့်ရှင်းအောင် ထားပါ။"),
-      t("Change the bed sheets and pillowcases weekly on a regular basis. Keep the bedrooms neat and tidy.", "ベッドシーツと枕カバーを毎週定期的に交換してください。寝室をきれいに整理整頓しておいてください。", "အိပ်ရာခင်းများနှင့် ခေါင်းအုံးစွပ်များကို အပတ်စဉ် ပုံမှန်လဲလှယ်ပေးပါ။ အိပ်ခန်းများကို သပ်ရပ်သန့်ရှင်းအောင် ထားပါ။")
+      t("Always keep at least one protector on the mattress.", "マットレスには必ず少なくとも1枚のプロテクターを付けておいてください。", "မွေ့ရာပေါ်တွင် protector အနည်းဆုံး ၁ ထည် အမြဲထားပါ။"),
+      t("Use the dedicated bedding vacuum only on mattresses and pillows.", "寝具専用掃除機はマットレスと枕だけに使用してください。", "အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ကို မွေ့ရာနှင့် ခေါင်းအုံးများအတွက်သာ သုံးပါ။"),
+      t("After fitting the sheet, the mattress must not remain on the white bed-frame handlebar. Tuck the headrest cover in securely.", "シーツを付けた後、マットレスを白いベッドフレームのハンドルバーに載せたままにしないでください。ヘッドレストカバーもしっかり差し込みます。", "အိပ်ရာခင်းတပ်ပြီးနောက် မွေ့ရာကို အဖြူရောင် bed-frame handlebar ပေါ်တွင် မကျန်စေရပါ။ headrest cover ကိုလည်း ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။")
     ],
     [
-      photo("assets/routines/nako-bedroom-bedsheet.jpg",
-        t("Bedroom bedsheets setup", "寝室のベッドシーツのセットアップ", "အိပ်ခန်း အိပ်ရာခင်းများ တင်ဆက်မှု"),
-        t("Weekly change of bedsheets, bolsters, and pillowcases.", "ベッドシーツ、抱き枕カバー、枕カバーの毎週の交換。", "အိပ်ရာခင်းများ၊ ဖက်လုံးစွပ်များနှင့် ခေါင်းအုံးစွပ်များကို အပတ်စဉ် လဲလှယ်ခြင်း။"))
+      photo("assets/routines/nako-bedsheets-items-on-chair.jpg",
+        t("Pillows, bolsters, and blankets placed on a chair", "枕、抱き枕、毛布を椅子に置いた状態", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကုလားထိုင်ပေါ် တင်ထားခြင်း"),
+        t("1. Put pillows, bolsters, and blankets on a chair—never on the floor.", "1. 枕、抱き枕、毛布は床ではなく椅子に置きます。", "၁။ ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။")),
+      photo("assets/routines/nako-bedsheets-mattress-protector.jpg",
+        t("Mattress protector being changed", "交換中のマットレスプロテクター", "လဲလှယ်နေသော mattress protector"),
+        t("2. Wash the used protector, but keep another protector on the mattress.", "2. 使用済みプロテクターを洗い、別のプロテクターをマットレスに付けておきます。", "၂။ အသုံးပြုပြီးသော protector ကိုလျှော်ပြီး အခြား protector တစ်ထည်ကို မွေ့ရာပေါ်တွင် ထားပါ။")),
+      photo("assets/routines/nako-bedsheets-dedicated-vacuum.jpg",
+        t("Dedicated bedding vacuum on the bare mattress", "むき出しのマットレス上の寝具専用掃除機", "အဖုံးမပါသော မွေ့ရာပေါ်ရှိ အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်"),
+        t("3. Vacuum the mattress and pillows. This vacuum is for mattresses and pillows only.", "3. マットレスと枕に掃除機を掛けます。この掃除機はマットレスと枕専用です。", "၃။ မွေ့ရာနှင့် ခေါင်းအုံးများကို ဖုန်စုပ်ပါ။ ဤဖုန်စုပ်စက်သည် မွေ့ရာနှင့် ခေါင်းအုံးများအတွက်သာ ဖြစ်သည်။")),
+      photo("assets/routines/nako-bedsheets-sheet-fitted.jpg",
+        t("Fresh fitted sheet placed over the mattress", "マットレスに新しいボックスシーツを付けた状態", "မွေ့ရာပေါ်တွင် အိပ်ရာခင်းအသစ် တပ်ထားခြင်း"),
+        t("4. Fit the clean sheet and change all pillowcases and bolster covers.", "4. 清潔なシーツを付け、枕カバーと抱き枕カバーをすべて交換します。", "၄။ သန့်ရှင်းသော အိပ်ရာခင်းကိုတပ်ပြီး ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်အားလုံးကို လဲပါ။")),
+      photo("assets/routines/nako-bedsheets-mattress-tilted.jpg",
+        t("Heavy King Koil mattress tilted onto the white bed-frame handlebar", "重いKing Koilマットレスを白いベッドフレームのハンドルバーに傾けた状態", "လေးသော King Koil မွေ့ရာကို အဖြူရောင် bed-frame handlebar ပေါ် စောင်းတင်ထားခြင်း"),
+        t("5. For The Knight Super King mattress (183 × 198 cm), tilt it onto the handlebar to fit the hard-to-reach corner.", "5. The Knightスーパーキング（183 × 198 cm）は、届きにくい角にシーツを付けるためハンドルバーに傾けます。", "၅။ The Knight Super King မွေ့ရာ (183 × 198 cm) ၏ လက်လှမ်းမမီသောထောင့်ကို ခင်းရန် handlebar ပေါ်သို့ စောင်းတင်ပါ။")),
+      photo("assets/routines/nako-bedsheets-headrest-cover.jpg",
+        t("Finished bed with the headrest cover tucked in", "ヘッドレストカバーを差し込んだ完成後のベッド", "headrest cover ကို ထိုးထည့်ပြီး ပြီးစီးသော အိပ်ရာ"),
+        t("6. Push the mattress fully back off the handlebar and tuck the headrest cover in so it cannot flop down.", "6. マットレスをハンドルバーから完全に戻し、ヘッドレストカバーが垂れないようしっかり差し込みます。", "၆။ မွေ့ရာကို handlebar ပေါ်မှ အပြည့်ပြန်တွန်းပြီး headrest cover ပြုတ်ကျမလာစေရန် ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။"))
     ]),
 
   routine("windows-glass-mirrors", "weekly", 120, "G", 
@@ -1713,8 +1729,22 @@ if (generalSurfaceCleaningRoutine) {
   ];
 }
 
+const bedroomsLinensRoutine = routineTasks.find((task) => task.id === "bedrooms-linens");
+if (bedroomsLinensRoutine) {
+  bedroomsLinensRoutine.instructions = [
+    t("Put pillows, bolsters, and blankets on a chair—not on the floor.", "枕、抱き枕、毛布は床ではなく椅子に置きます。", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။"),
+    t("Wash the used mattress protector, but always keep another protector on the mattress.", "使用済みのマットレスプロテクターを洗いますが、マットレスには必ず別のプロテクターを付けておきます。", "အသုံးပြုပြီးသော mattress protector ကိုလျှော်ပါ။ သို့သော် မွေ့ရာပေါ်တွင် အခြား protector တစ်ထည် အမြဲထားပါ။"),
+    t("Vacuum the mattress and pillows with the dedicated bedding vacuum only.", "寝具専用掃除機だけを使って、マットレスと枕に掃除機を掛けます。", "အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့်သာ မွေ့ရာနှင့် ခေါင်းအုံးများကို ဖုန်စုပ်ပါ။"),
+    t("Change all pillowcases and bolster covers.", "枕カバーと抱き枕カバーをすべて交換します。", "ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်အားလုံးကို လဲပါ။"),
+    t("Fit the clean sheet. For the heavy King Koil The Knight Super King mattress (183 × 198 cm), tilt it onto the white bed-frame handlebar to reach the far corner.", "清潔なシーツを付けます。重いKing Koil The Knightスーパーキングマットレス（183 × 198 cm）は、奥の角に届くよう白いベッドフレームのハンドルバーに傾けます。", "သန့်ရှင်းသော အိပ်ရာခင်းကို တပ်ပါ။ လေးသော King Koil The Knight Super King မွေ့ရာ (183 × 198 cm) ၏ အဝေးထောင့်ကို လက်လှမ်းမီရန် အဖြူရောင် bed-frame handlebar ပေါ်သို့ စောင်းတင်ပါ။"),
+    t("When finished, push the mattress fully back. Make sure it is no longer sitting on the white handlebar.", "終わったらマットレスを完全に元へ戻し、白いハンドルバーに載っていないことを確認します。", "ပြီးလျှင် မွေ့ရာကို မူလနေရာသို့ အပြည့်ပြန်တွန်းပါ။ အဖြူရောင် handlebar ပေါ်တွင် မကျန်ကြောင်း သေချာစစ်ပါ။"),
+    t("Tuck the headrest cover in securely so it does not flop down.", "ヘッドレストカバーが垂れないよう、しっかり差し込みます。", "headrest cover ပြုတ်ကျမလာစေရန် ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။")
+  ];
+}
+
 const pillowMattressVacuumingRoutine = routineTasks.find((task) => task.id === "pillow-mattress-vacuuming");
 if (pillowMattressVacuumingRoutine) {
+  pillowMattressVacuumingRoutine.active = false;
   pillowMattressVacuumingRoutine.photos = [
     photo("assets/routines/nako-pillow-mattress-vacuuming.jpg",
       t("Small vacuum cleaner on the bed", "ベッド上の小型掃除機", "အိပ်ရာပေါ်ရှိ သေးငယ်သော ဖုန်စုပ်စက်"),

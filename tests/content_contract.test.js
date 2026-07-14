@@ -52,6 +52,15 @@ assert.deepEqual(Array.from(weightTracking.photos, (item) => item.src), [
   "assets/routines/nako-weight-carrying-nako.jpg"
 ]);
 
+const bedroomsLinens = routineById("bedrooms-linens");
+assert.equal(bedroomsLinens.instructions.length, 7);
+assert.match(englishText(bedroomsLinens.instructions), /chair—not on the floor/);
+assert.match(englishText(bedroomsLinens.instructions), /dedicated bedding vacuum only/);
+assert.match(englishText(bedroomsLinens.instructions), /The Knight Super King mattress \(183 × 198 cm\)/);
+assert.match(englishText(bedroomsLinens.mustRemember), /must not remain on the white bed-frame handlebar/);
+assert.equal(bedroomsLinens.photos.length, 6);
+assert.equal(routineById("pillow-mattress-vacuuming").active, false);
+
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
 assert.ok(oyakodon.ingredients.some((item) => item.key === "honey"));
