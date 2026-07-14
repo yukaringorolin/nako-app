@@ -171,7 +171,8 @@ const pendingDemoRecipeIds = [
   "soy-braised-beef-egg",
   "onigiri-rice-balls",
   "clean-yukari-style-salad",
-  "love-bentos-by-yukari"
+  "love-bentos-by-yukari",
+  "shogatsu-osechi"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);

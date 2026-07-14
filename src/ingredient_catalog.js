@@ -92,6 +92,12 @@
     "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" },
     kale: { file: null, source: null, target: "Fresh kale leaves pack" },
     mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" },
-    "salmon-or-meat": { file: null, source: null, target: "Raw salmon fillet or sliced beef/pork packet" }
+    "salmon-or-meat": { file: null, source: null, target: "Raw salmon fillet or sliced beef/pork packet" },
+    prawns: { file: null, source: null, target: "Fresh whole prawns/shrimps packet" },
+    "pork-belly": { file: null, source: null, target: "Raw pork belly block or slices" },
+    "lotus-root": { file: null, source: null, target: "Fresh lotus root" },
+    "fish-cake": { file: null, source: null, target: "Japanese kamaboko fish cake log" },
+    "black-beans": { file: null, source: null, target: "Sweetened black soybeans (kuromame)" },
+    "osechi-sides": { file: null, source: null, target: "Other Osechi dishes (konjac, sweet potato mash, herring roe, etc.)" }
   });
 })();
