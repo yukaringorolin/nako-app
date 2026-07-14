@@ -35,6 +35,10 @@ assert.ok(
   weight.includes('data-weight-readout="trend"') && weight.includes('data-weight-readout="recent"'),
   "Weight trend and recent entries need stable partial-refresh targets"
 );
+assert.ok(
+  weight.includes("renderPhotos(item.photos)"),
+  "Weight instructions must show their step-by-step photos"
+);
 
 const appState = { weightTracking: {}, routineCompletions: {} };
 const saveCalls = [];

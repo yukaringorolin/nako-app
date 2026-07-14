@@ -42,6 +42,16 @@ assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchan
 assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);
 
+const weightTracking = routineById("nako-weight-tracking");
+assert.match(weightTracking.summary.en, /Only weigh her when awake/);
+assert.match(englishText(weightTracking.mustRemember), /Do not wake Nako/);
+assert.equal(weightTracking.instructions.length, 4);
+assert.match(englishText(weightTracking.instructions), /Subtract your weight from the total/);
+assert.deepEqual(Array.from(weightTracking.photos, (item) => item.src), [
+  "assets/routines/nako-weight-person-only.jpg",
+  "assets/routines/nako-weight-carrying-nako.jpg"
+]);
+
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
 assert.ok(oyakodon.ingredients.some((item) => item.key === "honey"));

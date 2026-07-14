@@ -354,13 +354,19 @@ const routineTasks = [
 
   routine("nako-weight-tracking", "weekly", 40, "KG", 
     t("Nako - Weight Tracking", "ナコ - 体重測定", "Nako - ကိုယ်အလေးချိန် ခြေရာခံခြင်း"), 
-    t("Weigh Nako first thing Sunday morning before breakfast and record the date and weight clearly.", "日曜日の朝一番、朝食前にナコの体重を測り、日付と体重を明確に記録します。", "တနင်္ဂနွေနေ့ နံနက်ပိုင်း အစာမစားမီ Nako ကို ကိုယ်အလေးချိန်ချိန်ပြီး နေ့စွဲနှင့် ကိုယ်အလေးချိန်ကို ရှင်းလင်းစွာ မှတ်တမ်းတင်ပါ။"), 
+    t("On Sunday before breakfast, weigh yourself, then weigh again holding Nako. Subtract your weight and save Nako's result. Only weigh her when awake.", "日曜日の朝食前、自分だけで測り、次にナコを抱いて測ります。自分の体重を引いてナコの体重を保存します。ナコが起きている時だけ測ってください。", "တနင်္ဂနွေနေ့ မနက်စာမစားမီ မိမိတစ်ယောက်တည်း အရင်ချိန်ပြီး Nako ကိုချီကာ ထပ်ချိန်ပါ။ မိမိအလေးချိန်ကို နုတ်ပြီး Nako ၏အလေးချိန်ကို သိမ်းပါ။ Nako နိုးနေမှသာ ချိန်ပါ။"),
     t("Every Sunday morning before breakfast", "毎週日曜日の朝食前", "တနင်္ဂနွေနေ့ နံနက်တိုင်း အစာမစားမီ"), 
-    t("Use the same scale each time where possible.", "可能な限り毎回同じ体重計を使用してください。", "ဖြစ်နိုင်လျှင် အချိန်တိုင်း တူညီသော ကိုယ်အလေးချိန်စက်ကို အသုံးပြုပါ။"),
     [
-      photo("assets/sections/nako-weight.png",
-        t("Pink weight scale with paw prints and dog tail", "肉球のプリントと犬の尻尾が付いたピンクの体重計", "ခြေရာများနှင့် ခွေးအမြီးပါဝင်သော ပန်းရောင်ကိုယ်အလေးချိန်စက်"),
-        t("Nako Weight Tracking", "ナコの体重測定", "Nako ၏ကိုယ်အလေးချိန် ခြေရာခံခြင်း"))
+      t("Do not wake Nako just to weigh her. Wait until she is awake and it is nearly breakfast, before she eats.", "体重測定のためだけにナコを起こさないでください。ナコが起きて朝食の時間が近づいたら、食べる前に測ります。", "ကိုယ်အလေးချိန်ချိန်ရန်အတွက် Nako ကို မနှိုးပါနှင့်။ သူနိုးလာပြီး မနက်စာစားချိန်နီးလျှင် အစာမစားမီ ချိန်ပါ။"),
+      t("Use the same scale each time.", "毎回同じ体重計を使ってください。", "အကြိမ်တိုင်း တူညီသော ကိုယ်အလေးချိန်စက်ကို သုံးပါ။")
+    ],
+    [
+      photo("assets/routines/nako-weight-person-only.jpg",
+        t("Person standing alone on the weighing scale", "一人で体重計に乗っている人", "ကိုယ်အလေးချိန်စက်ပေါ်တွင် တစ်ယောက်တည်း ရပ်နေသူ"),
+        t("1. Weigh yourself alone and note the number.", "1. 一人で体重を測り、数字をメモします。", "၁။ မိမိတစ်ယောက်တည်း ချိန်ပြီး ကိန်းဂဏန်းကို မှတ်ထားပါ။")),
+      photo("assets/routines/nako-weight-carrying-nako.jpg",
+        t("Person holding Nako while standing on the weighing scale", "ナコを抱いて体重計に乗っている人", "Nako ကိုချီ၍ ကိုယ်အလေးချိန်စက်ပေါ်တွင် ရပ်နေသူ"),
+        t("2. Hold Nako and weigh again. Subtract your weight, then save Nako's weight in the app.", "2. ナコを抱いてもう一度測ります。自分の体重を引き、ナコの体重をアプリに保存します。", "၂။ Nako ကိုချီပြီး ထပ်ချိန်ပါ။ မိမိအလေးချိန်ကို နုတ်ပြီး Nako ၏အလေးချိန်ကို app တွင် သိမ်းပါ။"))
     ]),
   routine("nako-inventory-check", "weekly", 50, "I", 
     t("Nako - Inventory Check", "ナコ - 在庫チェック", "Nako - ပစ္စည်းစစ်ဆေးခြင်း"), 
@@ -988,6 +994,16 @@ if (ikeaBedFrameRoutine) {
     photo("assets/routines/nako-ikea-bed-frame-under-compartment.jpg",
       t("IKEA bed frame under-compartment", "IKEAベッドフレーム下の収納部分", "IKEA အိပ်ရာဘောင်အောက် သိုလှောင်ခန်း"),
       t("Fortnightly reference for lifting or opening the IKEA bed frame storage area and cleaning dust and hair collected underneath.", "IKEAベッドフレームの収納部分を持ち上げる、または開けて、下にたまったほこりや毛を掃除するための隔週の参考写真です。", "IKEA အိပ်ရာဘောင် storage area ကို မထောင်ခြင်း သို့မဟုတ် ဖွင့်ခြင်းဖြင့် အောက်တွင် စုနေသောဖုန်နှင့်အမွှေးများကို သန့်ရှင်းရေးလုပ်ရန် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။"))
+  ];
+}
+
+const nakoWeightTrackingRoutine = routineTasks.find((task) => task.id === "nako-weight-tracking");
+if (nakoWeightTrackingRoutine) {
+  nakoWeightTrackingRoutine.instructions = [
+    t("Take out the scale. Weigh yourself alone and note the number.", "体重計を出し、一人で測って数字をメモします。", "ကိုယ်အလေးချိန်စက်ကို ထုတ်ပါ။ မိမိတစ်ယောက်တည်း ချိန်ပြီး ကိန်းဂဏန်းကို မှတ်ပါ။"),
+    t("Step off, pick up Nako, and weigh together.", "体重計から降り、ナコを抱いて一緒に測ります。", "စက်ပေါ်မှဆင်းပြီး Nako ကိုချီကာ အတူတူ ချိန်ပါ။"),
+    t("Subtract your weight from the total. The difference is Nako's weight.", "合計から自分の体重を引きます。その差がナコの体重です。", "စုစုပေါင်းအလေးချိန်မှ မိမိအလေးချိန်ကို နုတ်ပါ။ ကွာခြားချက်သည် Nako ၏အလေးချိန်ဖြစ်သည်။"),
+    t("Enter Nako's weight in the app and save it.", "ナコの体重をアプリに入力して保存します。", "Nako ၏အလေးချိန်ကို app တွင် ထည့်ပြီး သိမ်းပါ။")
   ];
 }
 

@@ -107,9 +107,10 @@ function renderWeightTracking(item) {
   }
 
   const content = `
-    ${renderHead(item.icon, tr(item.title), tr(item.summary), headerIconBg, headerLabel, primaryPhoto(item.photos))}
+    ${renderHead(item.icon, tr(item.title), tr(item.summary), headerIconBg, headerLabel, null)}
     <a href="#routine-checkin" class="back-checkin-link">← ${esc(label("backToRoutineCheckIn"))}</a>
     ${instructionsPanel}
+    ${renderPhotos(item.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(item.mustRemember)}</section>
     
     <section class="panel">
