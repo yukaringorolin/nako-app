@@ -103,4 +103,15 @@ for (const id of pendingDemoRecipeIds) {
 assert.equal(recipeById("egg-toast").demoStatus, undefined);
 assert.equal(recipeById("air-fryer-chicken-wings").demoStatus, undefined);
 
+const porkShoulder = recipeById("salt-garlic-pepper-pork-shoulder");
+assert.equal(porkShoulder.title.en, "Salt and Garlic Pepper Pork Shoulders");
+assert.equal(porkShoulder.demoStatus, undefined);
+assert.ok(porkShoulder.ingredients.some((item) => item.key === "pork-shoulder" && item.amount.en === "2 slices"));
+assert.ok(porkShoulder.ingredients.some((item) => item.key === "garlic-pepper"));
+assert.match(englishText(porkShoulder.method), /Cut Butchery.*Bukit Timah Plaza/);
+assert.equal(englishText(porkShoulder.method).match(/200°C for (?:another )?6 min/g)?.length, 2);
+assert.match(englishText(porkShoulder.method), /at least 71°C/);
+assert.match(englishText(porkShoulder.method), /Rest for 5 min/);
+assert.equal(porkShoulder.photos.length, 6);
+
 console.log("Copy source and compatibility checks passed.");

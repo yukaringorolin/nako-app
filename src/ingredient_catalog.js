@@ -31,6 +31,7 @@
     spinach: { file: "spinach.jpg", source: product("/product/kok-fah-baby-spinach-200g-13032623"), target: "Fresh spinach pack" },
     lemon: { file: "lemon.jpg", source: product("/product/freshco-lemons-fresh"), target: "Fresh lemons" },
     pork: { file: "pork.jpg", source: product("/product/simply-yumme-pork-lean-slice"), target: "Lean raw pork slices in a labelled pack" },
+    "pork-shoulder": { file: null, source: null, target: "Pork shoulder butt slices" },
     cabbage: { file: "cabbage.jpg", source: product("/product/orgo-fresh-cabbage-whole-1-pc-90150967"), target: "Ordinary whole green cabbage" },
     "shimeji-mushroom": { file: "shimeji-mushroom.jpg", source: product("/product/hokto-mushroom-white-shimeiji-100g-11017131"), target: "Shimeji mushroom retail pack" },
     "button-mushroom": { file: "button-mushroom.jpg", source: product("/product/pasar-white-button-mushroom-200g-13101275"), target: "White button mushroom retail pack" },
@@ -51,6 +52,7 @@
     "pork-ribs": { file: null, source: null, target: "Raw pork ribs" },
     "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
     garlic: { file: null, source: null, target: "Fresh garlic bulb" },
+    "garlic-pepper": { file: null, source: null, target: "Garlic pepper seasoning bottle" },
     "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" }
   });
 })();
