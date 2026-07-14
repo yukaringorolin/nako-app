@@ -756,6 +756,41 @@ const recipes = [
       timeEstimate: t("45 mins", "45分", "၄၅ မိနစ်"),
       highProtein: false
     }
+  ),
+  recipe("soy-marinated-eggs-chilli",
+    t("Soy-Marinated Eggs with Chilli (10 Eggs)", "唐辛子入り醤油漬け卵（卵10個）", "ငရုတ်သီးပါ ပဲငံပြာရည်နှပ်ကြက်ဥ (ကြက်ဥ ၁၀ လုံး)"),
+    [
+      [t("Eggs", "卵", "ကြက်ဥ"), t("10", "10個", "၁၀ လုံး"), "eggs"],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("8 tbsp", "大さじ8", "စားပွဲတင်ဇွန်း ၈ ဇွန်း"), "soy-sauce"],
+      [t("Water", "水", "ရေ"), t("8 tbsp", "大さじ8", "စားပွဲတင်ဇွန်း ၈ ဇွန်း"), "water"],
+      [t("Mirin", "みりん", "mirin"), t("1½ tbsp", "大さじ1½", "စားပွဲတင်ဇွန်း ၁½ ဇွန်း"), "mirin"],
+      [t("Honey", "はちみつ", "ပျားရည်"), t("1½ tbsp", "大さじ1½", "စားပွဲတင်ဇွန်း ၁½ ဇွန်း"), "honey"],
+      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), t("1½ tsp", "小さじ1½", "လက်ဖက်ရည်ဇွန်း ၁½ ဇွန်း"), "sesame-oil"],
+      [t("Fresh chillies, thinly sliced", "生唐辛子（薄切り）", "ပါးပါးလှီးထားသော ငရုတ်သီးလတ်လတ်"), t("1-2", "1〜2本", "၁-၂ တောင့်"), "fresh-chilli"],
+      [t("Spring onion, finely chopped", "青ねぎ（小口切り）", "နုပ်နုပ်လှီးထားသော ကြက်သွန်မြိတ်"), t("2-3 stalks", "2〜3本", "၂-၃ ပင်"), "spring-onion"]
+    ],
+    [
+      t("Boil the eggs for 6½-7 minutes for soft centres, or 9 minutes for firm centres.", "半熟なら6分30秒〜7分、固ゆでなら9分、卵をゆでます。", "အနှစ်ပျော့အတွက် ကြက်ဥကို ၆½-၇ မိနစ်၊ အနှစ်မာအတွက် ၉ မိနစ် ပြုတ်ပါ။"),
+      t("Transfer immediately to cold water, then peel.", "すぐに冷水へ移し、殻をむきます。", "ချက်ချင်း ရေအေးထဲသို့ပြောင်းထည့်ပြီး အခွံခွာပါ။"),
+      t("Mix the soy sauce, water, mirin, honey, sesame oil, chilli, and spring onion.", "醤油、水、みりん、はちみつ、ごま油、唐辛子、青ねぎを混ぜます。", "ပဲငံပြာရည်၊ ရေ၊ mirin၊ ပျားရည်၊ နှမ်းဆီ၊ ငရုတ်သီးနှင့် ကြက်သွန်မြိတ်ကို ရောပါ။"),
+      t("Put the peeled eggs in a container with the marinade.", "殻をむいた卵を容器に入れ、漬け汁を加えます。", "အခွံခွာထားသော ကြက်ဥများကို ဗူးထဲထည့်ပြီး နှပ်ရည်ထည့်ပါ။"),
+      t("Refrigerate for at least 6 hours, ideally overnight. Turn the eggs occasionally if they are not fully submerged.", "冷蔵庫で最低6時間、できれば一晩漬けます。卵が完全に浸からない場合は、時々返します。", "ရေခဲသေတ္တာထဲတွင် အနည်းဆုံး ၆ နာရီ၊ ဖြစ်နိုင်လျှင် တစ်ညလုံး နှပ်ထားပါ။ ကြက်ဥများ နှပ်ရည်ထဲ လုံးဝမမြုပ်ပါက တစ်ခါတစ်ရံ လှန်ပေးပါ။"),
+      t("Serve with warm rice and a little marinade.", "温かいご飯に、漬け汁を少量添えて提供します。", "နွေးသောထမင်းနှင့် နှပ်ရည်အနည်းငယ်ဖြင့် စားပါ။")
+    ],
+    t("Keep refrigerated and finish within 3 days. Do not add garlic or sesame seeds; sesame oil is included.", "冷蔵保存し、3日以内に食べ切ります。にんにくやごま粒は加えません。ごま油は使用します。", "ရေခဲသေတ္တာထဲတွင် သိမ်းပြီး ၃ ရက်အတွင်း စားပြီးပါ။ ကြက်သွန်ဖြူ သို့မဟုတ် နှမ်းစေ့ မထည့်ပါနှင့်။ နှမ်းဆီကိုတော့ သုံးပါ။"),
+    [
+      photo("assets/recipes/human-food/soy-marinated-eggs-chilli.png",
+        t("Ten soy-marinated eggs with chilli and spring onion", "唐辛子と青ねぎを入れた醤油漬け卵10個", "ငရုတ်သီးနှင့် ကြက်သွန်မြိတ်ပါသော ပဲငံပြာရည်နှပ်ကြက်ဥ ၁၀ လုံး"),
+        t("Marinate for at least 6 hours, ideally overnight, and finish within 3 days.", "最低6時間、できれば一晩漬け、3日以内に食べ切ります。", "အနည်းဆုံး ၆ နာရီ၊ ဖြစ်နိုင်လျှင် တစ်ညလုံး နှပ်ပြီး ၃ ရက်အတွင်း စားပြီးပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Side/Meal Prep", "副菜／作り置き", "အရံဟင်း / ကြိုတင်ပြင်ဆင်ထားသောအစားအစာ"),
+      style: t("Soy-Marinated", "醤油漬け", "ပဲငံပြာရည်နှပ်"),
+      timeEstimate: t("20 mins + 6 hrs marinating", "20分＋漬け込み6時間", "မိနစ် ၂၀ + နှပ်ချိန် ၆ နာရီ"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 

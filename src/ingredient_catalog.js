@@ -30,6 +30,8 @@
     "salmon-fillet": { file: "salmon.jpg", source: product("/product/catch-seafood-atlantic-salmon-fillet-1-3-kg-90122048"), target: "Raw salmon fillet package" },
     salt: { file: "salt.jpg", source: product("/product/fairprice-premium-fine-salt-500g-432823"), target: "Ordinary table-salt packet" },
     eggs: { file: "egg.jpg", source: product("/product/pasar-fresh-eggs-30-per-pack-13197730"), target: "Fresh egg carton" },
+    "fresh-chilli": { file: null, source: null, target: "Fresh red or green chillies" },
+    "spring-onion": { file: null, source: null, target: "Fresh spring onion stalks" },
     spinach: { file: "spinach.jpg", source: product("/product/kok-fah-baby-spinach-200g-13032623"), target: "Fresh spinach pack" },
     lemon: { file: "lemon.jpg", source: product("/product/freshco-lemons-fresh"), target: "Fresh lemons" },
     pork: { file: "pork.jpg", source: product("/product/simply-yumme-pork-lean-slice"), target: "Lean raw pork slices in a labelled pack" },

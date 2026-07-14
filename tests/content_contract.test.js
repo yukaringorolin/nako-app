@@ -143,7 +143,8 @@ const pendingDemoRecipeIds = [
   "chicken-oyakodon-no-onion",
   "tuna-tofu-egg-rice",
   "chicken-soboro-don",
-  "chicken-miso-nabe"
+  "chicken-miso-nabe",
+  "soy-marinated-eggs-chilli"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);
@@ -155,6 +156,20 @@ for (const id of pendingDemoRecipeIds) {
 }
 assert.equal(recipeById("egg-toast").demoStatus, undefined);
 assert.equal(recipeById("air-fryer-chicken-wings").demoStatus, undefined);
+
+const soyMarinatedEggs = recipeById("soy-marinated-eggs-chilli");
+assert.equal(soyMarinatedEggs.title.en, "Soy-Marinated Eggs with Chilli (10 Eggs)");
+assert.equal(soyMarinatedEggs.demoStatus.en, "Pending demo");
+assert.ok(soyMarinatedEggs.ingredients.some((item) => item.key === "eggs" && item.amount.en === "10"));
+assert.deepEqual(Array.from(soyMarinatedEggs.ingredients, (item) => item.key), [
+  "eggs", "soy-sauce", "water", "mirin", "honey", "sesame-oil", "fresh-chilli", "spring-onion"
+]);
+assert.ok(!soyMarinatedEggs.ingredients.some((item) => item.key === "garlic" || item.key === "sesame"));
+assert.match(soyMarinatedEggs.note.en, /finish within 3 days/);
+assert.match(soyMarinatedEggs.note.en, /Do not add garlic or sesame seeds/);
+assert.deepEqual(Array.from(soyMarinatedEggs.photos, (item) => item.src), [
+  "assets/recipes/human-food/soy-marinated-eggs-chilli.png"
+]);
 
 const porkShoulder = recipeById("salt-garlic-pepper-pork-shoulder");
 assert.equal(porkShoulder.title.en, "Salt and Garlic Pepper Pork Shoulders");
