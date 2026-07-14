@@ -22,6 +22,8 @@
     "cooking-sake": { file: "cooking-sake.jpg", source: product("/product/kirei-premium-hinode-japan-ryorishu-cooking-sake-400-ml-90121995"), target: "Japanese cooking-sake bottle" },
     sugar: { file: "sugar.jpg", source: product("/product/fairprice-pure-cane-sugar-fine-grain-3kg-13179180"), target: "White-sugar packet" },
     honey: { file: null, source: null, target: "Honey bottle or jar" },
+    matcha: { file: null, source: null, target: "Matcha powder tin" },
+    milk: { file: null, source: null, target: "Fresh milk bottle" },
     ginger: { file: "ginger.jpg", source: product("/product/orgo-fresh-ginger-210-g-90160216"), target: "Fresh ginger root" },
     oil: { file: "oil.png", source: null, target: "Premium bottle of extra virgin olive oil" },
     sesame: { file: "sesame.jpg", source: product("/product/pasar-white-sesame-seed-150g-13218883"), target: "White sesame seed packet" },

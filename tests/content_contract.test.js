@@ -114,4 +114,15 @@ assert.match(englishText(porkShoulder.method), /at least 71°C/);
 assert.match(englishText(porkShoulder.method), /Rest for 5 min/);
 assert.equal(porkShoulder.photos.length, 6);
 
+const matchaMilk = recipeById("matcha-milk-manuka-honey");
+assert.equal(matchaMilk.title.en, "Matcha Milk with Manuka Honey");
+assert.equal(matchaMilk.demoStatus, undefined);
+assert.deepEqual(Array.from(matchaMilk.ingredients, (item) => item.key), ["matcha", "milk", "honey"]);
+assert.equal(matchaMilk.ingredients[0].amount.en, "2 g");
+assert.equal(matchaMilk.ingredients[1].amount.en, "200 ml");
+assert.match(englishText(matchaMilk.method), /Manuka honey to taste/);
+assert.deepEqual(Array.from(matchaMilk.photos, (item) => item.src), [
+  "assets/recipes/human-food/matcha-milk-manuka-honey.jpg"
+]);
+
 console.log("Copy source and compatibility checks passed.");
