@@ -219,6 +219,26 @@ const routineTasks = [
       t("Put removed hair or fur straight into the bin.", "取った髪や毛はすぐゴミ箱に捨ててください。", "ဖယ်ထားသော ဆံပင် သို့မဟုတ် အမွေးကို အမှိုက်ပုံးထဲ ချက်ချင်းပစ်ပါ။"),
       t("Wipe dust or dirt from room corners with a tissue or wet wipe.", "部屋の隅のほこりや汚れは、ティッシュまたはウェットティッシュで拭いてください。", "အခန်းထောင့်ရှိ ဖုန် သို့မဟုတ် အညစ်အကြေးကို tissue သို့မဟုတ် wet tissue ဖြင့် သုတ်ပါ။")
     ]),
+  routine("vimle-sofa-bed", "as-needed", 117, "B",
+    t("IKEA VIMLE Sofa-Bed", "IKEA VIMLE ソファベッド", "IKEA VIMLE ဆိုဖာအိပ်ရာ"),
+    t("Open or close the IKEA VIMLE 2-seat sofa-bed safely. Pull UP first, then pull OUT.", "IKEA VIMLE 2人掛けソファベッドを安全に開閉します。最初に上へ引き、その後手前へ引きます。", "IKEA VIMLE ၂ ယောက်ထိုင် ဆိုဖာအိပ်ရာကို လုံခြုံစွာ ဖွင့်ပိတ်ပါ။ အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။"),
+    t("As needed", "必要な時", "လိုအပ်သည့်အခါ"),
+    [
+      t("Important: pull the orange loop UP first, then pull OUT. Do not pull it horizontally while the frame is flat.", "重要：オレンジ色のループは最初に上へ引き、その後手前へ引いてください。フレームが平らな状態で水平方向に引かないでください。", "အရေးကြီးသည် - လိမ္မော်ရောင်ကြိုးကို အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။ frame ပြားနေစဉ် ဘေးတန်းမဆွဲပါနှင့်။"),
+      t("Keep fingers away from the side hinges and folding joints.", "指を側面のヒンジや折りたたみ部分に近づけないでください。", "လက်ချောင်းများကို ဘေး hinge နဲ့ ခေါက်ဆက်နေရာများမှ ဝေးဝေးထားပါ။"),
+      t("For the first attempt, 2 people—one on each side—can control the heavy frame more safely.", "初回は左右に1人ずつ、2人で行うと重いフレームをより安全に扱えます。", "ပထမဆုံးဖွင့်ပိတ်ချိန်တွင် ဘေးတစ်ဖက်စီမှာ လူ ၁ ယောက်စီ၊ စုစုပေါင်း ၂ ယောက်လုပ်ပါက လေးသော frame ကို ပိုလုံခြုံစွာ ထိန်းနိုင်သည်။")
+    ],
+    [
+      photo("assets/routines/vimle-sofa-bed-closed.jpg",
+        t("IKEA VIMLE sofa-bed in sofa position", "ソファ状態のIKEA VIMLEソファベッド", "ဆိုဖာပုံစံရှိ IKEA VIMLE ဆိုဖာအိပ်ရာ"),
+        t("Clear the front area, remove everything, then put both back cushions and both seat cushions aside.", "前のスペースを空け、すべての物を取り、背もたれクッション2個と座面クッション2個を横に置きます。", "ရှေ့နေရာကို ရှင်းပြီး ပစ္စည်းအားလုံးဖယ်ပါ။ နောက်မှီ cushion ၂ ခုနဲ့ ထိုင်ခုံ cushion ၂ ခုကို ဘေးတွင်ထားပါ။")),
+      photo("assets/routines/vimle-sofa-bed-orange-loop.jpg",
+        t("Orange loop on the folded sofa-bed frame", "折りたたまれたソファベッドフレームのオレンジ色ループ", "ခေါက်ထားသော ဆိုဖာအိပ်ရာ frame ပေါ်ရှိ လိမ္မော်ရောင်ကြိုး"),
+        t("Stand in the centre. Pull the orange loop straight UP first; when the frame rises, pull it OUT toward yourself.", "中央に立ちます。オレンジ色のループを最初に真上へ引き、フレームが上がったら手前へ引き出します。", "အလယ်တွင်ရပ်ပါ။ လိမ္မော်ရောင်ကြိုးကို အရင် တည့်တည့်အပေါ်ဆွဲပါ။ frame မြင့်လာမှ ကိုယ့်ဘက်သို့ အပြင်ဆွဲပါ။")),
+      photo("assets/routines/vimle-sofa-bed-open.jpg",
+        t("IKEA VIMLE sofa-bed fully opened with a bedsheet", "ベッドシーツを敷いて完全に開いたIKEA VIMLEソファベッド", "အိပ်ရာခင်းခင်းပြီး အပြည့်ဖွင့်ထားသော IKEA VIMLE ဆိုဖာအိပ်ရာ"),
+        t("Check the legs are steady, vacuum once, fit the bedsheet, and place the 2 back cushions at the head.", "脚が安定していることを確認し、1回掃除機をかけ、シーツを敷き、背もたれクッション2個を頭側に置きます。", "ခြေထောက်များ ငြိမ်ကြောင်းစစ်၊ တစ်ကြိမ်ဖုန်စုပ်၊ အိပ်ရာခင်းခင်းပြီး နောက်မှီ cushion ၂ ခုကို ခေါင်းရင်းတွင်ထားပါ။"))
+    ]),
   routine("floor-cleaning", "daily", 120, "F", 
     t("Floor Cleaning", "床掃除", "ကြမ်းပြင်သန့်ရှင်းရေး"),
     t("Sweep and mop daily. Include normal reachable areas under the sofa/cabinets as part of floor cleaning.", "毎日掃き掃除とモップがけをする。ソファやキャビネット下など、通常手が届く範囲も床掃除に含める。", "နေ့စဉ် တံမြက်စည်းလှည်းပြီး mop လုပ်ပါ။ sofa/cabinet အောက်မှ ပုံမှန်လက်လှမ်းမီသည့်နေရာများကိုလည်း ကြမ်းပြင်သန့်ရှင်းရေးတွင် ထည့်ပါ။"),
@@ -898,6 +918,28 @@ if (coffeeMachineDescalingRoutine) {
       t("When the machine needs descaling, the descale button/light will flash red.", "マシンに除石灰が必要なとき、除石灰ボタンまたはランプが赤く点滅します。", "စက်သည် descaling လိုအပ်သောအခါ descale ခလုတ်/မီးနီ တောက်မည်။"))
   ];
   coffeeMachineDescalingRoutine.videoUrl = "https://www.youtube.com/embed/30EVN-fIM3I";
+}
+
+const vimleSofaBedRoutine = routineTasks.find((task) => task.id === "vimle-sofa-bed");
+if (vimleSofaBedRoutine) {
+  vimleSofaBedRoutine.instructions = [
+    t("Opening: Clear the area in front. The bed extends about 241 cm from the back of the sofa.", "開く時：前のスペースを空けます。ベッドはソファの背面から約241 cmまで伸びます。", "ဖွင့်ရန် - ရှေ့နေရာကို ရှင်းပါ။ အိပ်ရာသည် ဆိုဖာနောက်ဘက်မှ 241 cm ခန့်အထိ ရှည်ထွက်သည်။"),
+    t("Remove everything from the sofa.", "ソファの上にある物をすべて取ります。", "ဆိုဖာပေါ်ရှိ ပစ္စည်းအားလုံးကို ဖယ်ပါ။"),
+    t("Remove both back cushions and both seat cushions, then put them aside.", "背もたれクッション2個と座面クッション2個を外し、横に置きます。", "နောက်မှီ cushion ၂ ခုနဲ့ ထိုင်ခုံ cushion ၂ ခုကို ဖယ်ပြီး ဘေးတွင်ထားပါ။"),
+    t("Stand in the centre and hold the orange loop firmly.", "ソファの中央に立ち、オレンジ色のループをしっかり持ちます。", "ဆိုဖာအလယ်တွင်ရပ်ပြီး လိမ္မော်ရောင်ကြိုးကို ခိုင်ခိုင်ကိုင်ပါ။"),
+    t("Pull the orange loop straight UP first.", "オレンジ色のループを最初に真上へ引きます。", "လိမ္မော်ရောင်ကြိုးကို အရင် တည့်တည့်အပေါ်ဆွဲပါ။"),
+    t("When the frame rises, pull it OUT toward yourself while stepping backwards.", "フレームが上がったら、後ろへ下がりながら手前へ引き出します。", "frame မြင့်လာသောအခါ နောက်သို့ခြေလှမ်းဆုတ်ရင်း ကိုယ့်ဘက်သို့ အပြင်ဆွဲပါ။"),
+    t("Guide the frame down gently until the mattress is flat.", "マットレスが平らになるまで、フレームをゆっくり下ろします。", "မွေ့ရာပြားသည်အထိ frame ကို ဖြည်းဖြည်းချပါ။"),
+    t("Check every bottom leg rests steadily on the floor.", "下の脚がすべて床にしっかり着いていることを確認します。", "အောက်ခြေထောက်အားလုံး ကြမ်းပြင်ပေါ်တွင် ငြိမ်ငြိမ်ထောက်ထားကြောင်း စစ်ပါ။"),
+    t("Vacuum the mattress once with the dedicated mattress vacuum cleaner.", "マットレス専用の掃除機でマットレスを1回掃除します。", "မွေ့ရာသီးသန့် ဖုန်စုပ်စက်ဖြင့် မွေ့ရာကို တစ်ကြိမ်ဖုန်စုပ်ပါ။"),
+    t("Put on the bedsheet.", "ベッドシーツを掛けます。", "အိပ်ရာခင်းကို ခင်းပါ။"),
+    t("Put the 2 back cushions at the head of the bed. Store the 2 seat cushions elsewhere.", "背もたれクッション2個をベッドの頭側に置き、座面クッション2個は別の場所に保管します。", "နောက်မှီ cushion ၂ ခုကို အိပ်ရာခေါင်းရင်းတွင်ထားပြီး ထိုင်ခုံ cushion ၂ ခုကို အခြားနေရာတွင် သိမ်းပါ။"),
+    t("Closing: Remove the sheet, pillows, and all loose bedding.", "閉じる時：シーツ、枕、寝具をすべて外します。", "ပိတ်ရန် - အိပ်ရာခင်း၊ ခေါင်းအုံးနဲ့ အိပ်ရာပစ္စည်းအားလုံးကို ဖယ်ပါ။"),
+    t("Lift the front edge of the metal frame UP, then push it toward the sofa.", "金属フレームの前端を上へ持ち上げてから、ソファ側へ押します。", "သတ္တု frame ရှေ့အစွန်းကို အပေါ်မြှောက်ပြီးမှ ဆိုဖာဘက်သို့ တွန်းပါ။"),
+    t("Guide the frame as it folds in stages, then lower it fully into the sofa.", "段階的に折りたたまれるフレームを支え、ソファの中へ完全に下ろします。", "frame အဆင့်ဆင့်ခေါက်သွားချိန်တွင် ထိန်းပေးပြီး ဆိုဖာထဲသို့ လုံးဝချပါ။"),
+    t("Leave the orange loop visible on top.", "次回見つけやすいよう、オレンジ色のループを上に見える状態で残します。", "နောက်တစ်ကြိမ် လွယ်လွယ်ရှာနိုင်ရန် လိမ္မော်ရောင်ကြိုးကို အပေါ်တွင် မြင်ရအောင်ထားပါ။"),
+    t("Replace the 2 seat cushions first, then the 2 back cushions.", "座面クッション2個を先に戻し、その後、背もたれクッション2個を戻します。", "ထိုင်ခုံ cushion ၂ ခုကို အရင်ပြန်ထားပြီး နောက်မှီ cushion ၂ ခုကို နောက်မှပြန်ထားပါ။")
+  ];
 }
 
 const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-shopping");

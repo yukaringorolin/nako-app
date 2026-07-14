@@ -71,6 +71,23 @@ assert.match(englishText(bedroomsLinens.mustRemember), /must not remain on the w
 assert.equal(bedroomsLinens.photos.length, 6);
 assert.equal(routineById("pillow-mattress-vacuuming").active, false);
 
+const vimleSofaBed = routineById("vimle-sofa-bed");
+assert.equal(vimleSofaBed.frequencyBucket, "as-needed");
+assert.equal(vimleSofaBed.trackingMode, "none");
+assert.equal(vimleSofaBed.instructions.length, 16);
+assert.match(englishText(vimleSofaBed.instructions), /241 cm from the back of the sofa/);
+assert.match(englishText(vimleSofaBed.instructions), /Pull the orange loop straight UP first/);
+assert.match(englishText(vimleSofaBed.instructions), /bottom leg rests steadily on the floor/);
+assert.match(englishText(vimleSofaBed.instructions), /dedicated mattress vacuum cleaner/);
+assert.match(englishText(vimleSofaBed.instructions), /Put on the bedsheet/);
+assert.match(englishText(vimleSofaBed.instructions), /Leave the orange loop visible on top/);
+assert.match(englishText(vimleSofaBed.mustRemember), /side hinges and folding joints/);
+assert.deepEqual(Array.from(vimleSofaBed.photos, (item) => item.src), [
+  "assets/routines/vimle-sofa-bed-closed.jpg",
+  "assets/routines/vimle-sofa-bed-orange-loop.jpg",
+  "assets/routines/vimle-sofa-bed-open.jpg"
+]);
+
 const groceryShopping = routineById("grocery-shopping");
 assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
