@@ -155,12 +155,8 @@ assert.deepEqual(Array.from(chickenWings.photos, (item) => item.src), [
 ]);
 
 const pendingDemoRecipeIds = [
-  "chicken-teriyaki-rice",
-  "salmon-shioyaki-set",
   "pork-shogayaki-no-onion",
   "chicken-oyakodon-no-onion",
-  "tuna-tofu-egg-rice",
-  "chicken-soboro-don",
   "chicken-miso-nabe",
   "soy-marinated-eggs-chilli",
   "knorr-chicken-quick-serve-macaroni",
