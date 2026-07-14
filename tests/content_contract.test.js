@@ -92,6 +92,13 @@ assert.deepEqual(Array.from(vimleSofaBed.photos, (item) => item.src), [
 const groceryShopping = routineById("grocery-shopping");
 assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
+
+const essentialFoodStock = routineById("essential-food-stock");
+assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines/essential-food-stock-bananas.jpg"));
+
+const bakKutTeh = recipeById("bak-kut-teh");
+assert.ok(bakKutTeh.photos.some((item) => item.src === "assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg"));
 
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
