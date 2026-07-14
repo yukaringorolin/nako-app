@@ -1875,12 +1875,16 @@ if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
   groceryShoppingRoutine.sortOrder = 32;
   groceryShoppingRoutine.mustRemember.push(
-    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။")
+    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။"),
+    t("At NTUC, present the points QR code before payment so the purchase earns points.", "NTUCでは、ポイントを付けるため支払い前にポイントQRコードを提示してください。", "NTUC တွင် points ရရှိရန် ငွေမရှင်းမီ points QR code ကို ပြပါ။")
   );
   groceryShoppingRoutine.photos = [
     photo("assets/routines/nako-grocery-shopping.png",
       t("Daily grocery shopping items", "毎日の食料品の買い物品", "နေ့စဉ် ကုန်စုံဝယ်သော ပစ္စည်းများ"),
       t("Buy daily groceries based on what is running low and what is needed for meals.", "少なくなっているものと食事に必要なものを確認して、毎日の食料品を買ってください。", "ကုန်သွားခါနီးသောအရာများနှင့် အစားအစာအတွက် လိုအပ်သောအရာများအပေါ်မူတည်၍ နေ့စဉ်ကုန်စုံဝယ်ပါ။")),
+    photo("assets/routines/nako-ntuc-points-qr.png",
+      t("NTUC points QR code", "NTUCポイントQRコード", "NTUC points QR ကုဒ်"),
+      t("Show this QR code at NTUC before payment to collect points.", "NTUCでポイントを貯めるため、支払い前にこのQRコードを提示してください。", "NTUC တွင် points ရရှိရန် ငွေမရှင်းမီ ဤ QR code ကို ပြပါ။")),
     ...groceryShoppingRoutine.photos
   ];
 }

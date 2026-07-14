@@ -71,6 +71,10 @@ assert.match(englishText(bedroomsLinens.mustRemember), /must not remain on the w
 assert.equal(bedroomsLinens.photos.length, 6);
 assert.equal(routineById("pillow-mattress-vacuuming").active, false);
 
+const groceryShopping = routineById("grocery-shopping");
+assert.match(englishText(groceryShopping.mustRemember), /At NTUC, present the points QR code before payment/);
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/nako-ntuc-points-qr.png"));
+
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");
 assert.ok(oyakodon.ingredients.some((item) => item.key === "honey"));
