@@ -201,7 +201,29 @@ function renderIngredient(item, recipeId, ingredientIndex) {
 }
 
 function orderedList(items) {
-  return `<ol class="method-list">${items.map((item, index) => `<li><span>${index + 1}.</span><span>${richText(tr(item))}</span></li>`).join("")}</ol>`;
+  const burmeseDigits = ["၀", "၁", "၂", "၃", "၄", "၅", "၆", "၇", "၈", "၉"];
+  return `<ol class="method-list">${items.map((item, index) => {
+    let text = tr(item);
+    const stepNum = index + 1;
+    const stepNumBurmese = String(stepNum).split("").map(d => burmeseDigits[Number(d)] || d).join("");
+    
+    const enPrefix1 = stepNum + ". ";
+    const enPrefix2 = stepNum + ".";
+    const mmPrefix1 = stepNumBurmese + "။ ";
+    const mmPrefix2 = stepNumBurmese + "။";
+    
+    if (text.startsWith(enPrefix1)) {
+      text = text.substring(enPrefix1.length);
+    } else if (text.startsWith(enPrefix2)) {
+      text = text.substring(enPrefix2.length);
+    } else if (text.startsWith(mmPrefix1)) {
+      text = text.substring(mmPrefix1.length);
+    } else if (text.startsWith(mmPrefix2)) {
+      text = text.substring(mmPrefix2.length);
+    }
+    
+    return `<li><span>${stepNum}.</span><span>${richText(text)}</span></li>`;
+  }).join("")}</ol>`;
 }
 
 function noteList(items) {
