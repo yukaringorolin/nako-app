@@ -564,7 +564,17 @@ const recipes = [
       t("Check frequently and make sure the chicken is fully cooked.", "こまめに確認し、チキンの中まで火が通っていることを確かめます。", "မကြာခဏ စစ်ပြီး ကြက်သားလုံးဝကျက်ကြောင်း သေချာပါစေ။")
     ],
     t("Soy sauce can make the wings brown quickly. Turn them after 10 minutes, check often, and take care with the hot air-fryer basket.", "醤油で焦げ色が早く付くことがあります。10分後に裏返し、こまめに確認し、熱いバスケットに注意してください。", "ပဲငံပြာရည်ကြောင့် အရောင်မြန်မြန်ညိုနိုင်သည်။ ၁၀ မိနစ်တွင် လှန်ပြီး မကြာခဏစစ်ပါ။ ပူသော air-fryer basket ကို သတိထားပါ။"),
-    [],
+    [
+      photo("assets/recipes/human-food/air-fryer-chicken-wings-served.jpg",
+        t("Air-fryer chicken wings ready to serve", "提供準備ができたエアフライヤー手羽先", "ပေးရန်အဆင်သင့်ဖြစ်သော air-fryer ကြက်တောင်ပံများ"),
+        t("Air-fry at 200°C for 20 minutes, turning after 10 minutes. Serve only when fully cooked.", "200℃で20分加熱し、10分後に裏返します。中まで完全に火が通ってから提供してください。", "200°C ဖြင့် မိနစ် ၂၀ air fry လုပ်ပြီး ၁၀ မိနစ်တွင် လှန်ပါ။ အတွင်းထိ လုံးဝကျက်မှ ပေးပါ။")),
+      photo("assets/recipes/human-food/air-fryer-chicken-wings-wet-market-stall.jpg",
+        t("Chicken wings at the marked wet-market stall", "印を付けた市場の売り場にある手羽先", "အမှတ်အသားပြထားသော စျေးဆိုင်ရှိ ကြက်တောင်ပံများ"),
+        t("Buy chicken wings from the marked trays. Ask the vendor if unsure.", "印を付けたトレーから手羽先を買います。不明な場合は店員に確認してください。", "အမှတ်အသားပြထားသော ခြင်းများမှ ကြက်တောင်ပံ ဝယ်ပါ။ မသေချာပါက ဆိုင်ရှင်ကို မေးပါ။")),
+      photo("assets/recipes/human-food/air-fryer-chicken-wings-marinating-pot.jpg",
+        t("Raw chicken wings in the marinating pot", "漬け込み用の鍋に入れた生の手羽先", "နှပ်ရန်အိုးထဲရှိ ကြက်တောင်ပံအစိမ်းများ"),
+        t("Mix the wings with soy sauce, salt, and sesame oil, then marinate in the fridge for 30 minutes to 1 hour.", "手羽先に醤油、塩、ごま油を混ぜ、冷蔵庫で30分〜1時間漬け込みます。", "ကြက်တောင်ပံများကို ပဲငံပြာရည်၊ ဆား၊ နှမ်းဆီနှင့်ရောပြီး ရေခဲသေတ္တာထဲတွင် မိနစ် ၃၀ မှ ၁ နာရီအထိ နှပ်ထားပါ။"))
+    ],
     "human",
     {
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),

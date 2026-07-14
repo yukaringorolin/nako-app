@@ -111,6 +111,11 @@ const chickenWings = recipeById("air-fryer-chicken-wings");
 assert.equal(chickenWings.title.en, "Air-Fryer Chicken Wings");
 assert.ok(chickenWings.ingredients.some((item) => item.key === "chicken-wings"));
 assert.match(englishText(chickenWings.method), /200.*20 minutes/);
+assert.deepEqual(Array.from(chickenWings.photos, (item) => item.src), [
+  "assets/recipes/human-food/air-fryer-chicken-wings-served.jpg",
+  "assets/recipes/human-food/air-fryer-chicken-wings-wet-market-stall.jpg",
+  "assets/recipes/human-food/air-fryer-chicken-wings-marinating-pot.jpg"
+]);
 
 const pendingDemoRecipeIds = [
   "chicken-teriyaki-rice",
