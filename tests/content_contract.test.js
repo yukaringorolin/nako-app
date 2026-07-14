@@ -144,7 +144,8 @@ const pendingDemoRecipeIds = [
   "tuna-tofu-egg-rice",
   "chicken-soboro-don",
   "chicken-miso-nabe",
-  "soy-marinated-eggs-chilli"
+  "soy-marinated-eggs-chilli",
+  "knorr-chicken-quick-serve-macaroni"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);
@@ -169,6 +170,23 @@ assert.match(soyMarinatedEggs.note.en, /finish within 3 days/);
 assert.match(soyMarinatedEggs.note.en, /Do not add garlic or sesame seeds/);
 assert.deepEqual(Array.from(soyMarinatedEggs.photos, (item) => item.src), [
   "assets/recipes/human-food/soy-marinated-eggs-chilli.png"
+]);
+
+const knorrMacaroni = recipeById("knorr-chicken-quick-serve-macaroni");
+assert.equal(knorrMacaroni.title.en, "Knorr Chicken Quick Serve Macaroni Breakfast");
+assert.equal(knorrMacaroni.demoStatus.en, "Pending demo");
+assert.deepEqual(Array.from(knorrMacaroni.ingredients, (item) => item.key), [
+  "knorr-quick-serve-macaroni", "ham", "water"
+]);
+assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "knorr-quick-serve-macaroni" && item.amount.en === "2 packets"));
+assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "water" && item.amount.en === "1 litre"));
+assert.match(englishText(knorrMacaroni.method), /about 3 minutes/);
+assert.match(englishText(knorrMacaroni.method), /last 30 seconds/);
+assert.match(englishText(knorrMacaroni.method), /both seasoning packets/);
+assert.match(knorrMacaroni.note.en, /FairPrice link is for the Japanese Pork Bone variant/);
+assert.deepEqual(Array.from(knorrMacaroni.photos, (item) => item.src), [
+  "assets/recipes/human-food/knorr-chicken-quick-serve-macaroni-served.png",
+  "assets/recipes/human-food/knorr-quick-serve-macaroni-packets.png"
 ]);
 
 const porkShoulder = recipeById("salt-garlic-pepper-pork-shoulder");

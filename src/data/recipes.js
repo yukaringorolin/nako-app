@@ -791,6 +791,39 @@ const recipes = [
       highProtein: true,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("knorr-chicken-quick-serve-macaroni",
+    t("Knorr Chicken Quick Serve Macaroni Breakfast", "クノール チキン・クイックサーブ・マカロニ朝食", "Knorr ကြက်သားအရသာ Quick Serve Macaroni မနက်စာ"),
+    [
+      [t("Knorr Chicken Quick Serve Macaroni", "クノール チキン味クイックサーブ・マカロニ", "Knorr ကြက်သားအရသာ Quick Serve Macaroni"), t("2 packets", "2袋", "၂ ထုပ်"), "knorr-quick-serve-macaroni"],
+      [t("Ham", "ハム", "ဟမ်"), t("as needed", "適量", "လိုအပ်သလို"), "ham"],
+      [t("Water", "水", "ရေ"), t("1 litre", "1リットル", "၁ လီတာ"), "water"]
+    ],
+    [
+      t("Cut the ham into small squares.", "ハムを小さな四角に切ります。", "ဟမ်ကို လေးထောင့်ကွက်သေးသေးလေးများ လှီးပါ။"),
+      t("Boil 1 litre of water.", "水1リットルを沸騰させます。", "ရေ ၁ လီတာကို ဆူအောင်တည်ပါ။"),
+      t("Add 2 packets of Knorr macaroni and cook for about 3 minutes.", "クノールのマカロニ2袋を入れ、約3分ゆでます。", "Knorr macaroni ၂ ထုပ်ကို ထည့်ပြီး ၃ မိနစ်ခန့် ပြုတ်ပါ။"),
+      t("Add the ham during the last 30 seconds.", "最後の30秒でハムを加えます。", "နောက်ဆုံး စက္ကန့် ၃၀ တွင် ဟမ်ကို ထည့်ပါ။"),
+      t("Turn off the heat and mix in both seasoning packets.", "火を止め、付属の粉末スープ2袋を混ぜます。", "မီးပိတ်ပြီး ဟင်းခတ်အထုပ် ၂ ထုပ်လုံးကို ထည့်မွှေပါ။"),
+      t("Pour into 2 bowls and serve.", "2つのボウルに分けて提供します。", "ပန်းကန်လုံး ၂ လုံးထဲ ခွဲထည့်ပြီး ပေးပါ။")
+    ],
+    t("Use the chicken-flavour packets. The supplied FairPrice link is for the Japanese Pork Bone variant, so check the packet label before buying.", "チキン味の袋を使います。記載のFairPriceリンクは和風豚骨味の商品ページなので、購入前に袋の表示を確認してください。", "ကြက်သားအရသာအထုပ်ကို သုံးပါ။ ပေးထားသော FairPrice လင့်ခ်သည် Japanese Pork Bone အရသာစာမျက်နှာဖြစ်သောကြောင့် မဝယ်မီ အထုပ်တံဆိပ်ကို စစ်ပါ။"),
+    [
+      photo("assets/recipes/human-food/knorr-chicken-quick-serve-macaroni-served.png",
+        t("Chicken Quick Serve Macaroni with small ham squares", "小さく切ったハム入りチキン味クイックサーブ・マカロニ", "ဟမ်လေးထောင့်ကွက်သေးသေးများပါသော ကြက်သားအရသာ Quick Serve Macaroni"),
+        t("Divide the cooked macaroni, soup, and ham evenly between 2 bowls.", "調理したマカロニ、スープ、ハムを2つのボウルに均等に分けます。", "ချက်ပြီးသော macaroni၊ စွပ်ပြုတ်နှင့် ဟမ်ကို ပန်းကန်လုံး ၂ လုံးထဲ ညီညီမျှမျှ ခွဲထည့်ပါ။")),
+      photo("assets/recipes/human-food/knorr-quick-serve-macaroni-packets.png",
+        t("Knorr Quick Serve Macaroni flavour packets", "クノール クイックサーブ・マカロニの各種味", "Knorr Quick Serve Macaroni အရသာအထုပ်များ"),
+        t("Choose the chicken-flavour packet and check the label carefully because several flavours look similar.", "似た外観の味が複数あるため、表示をよく確認してチキン味を選びます。", "အရသာအမျိုးမျိုး၏ အထုပ်များ ဆင်တူသောကြောင့် တံဆိပ်ကို သေချာစစ်ပြီး ကြက်သားအရသာကို ရွေးပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Breakfast", "朝食", "မနက်စာ"),
+      style: t("Quick", "簡単", "အမြန်"),
+      timeEstimate: t("10 mins", "10分", "၁၀ မိနစ်"),
+      highProtein: false,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
