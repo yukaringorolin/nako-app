@@ -82,6 +82,8 @@
     beef: { file: null, source: null, target: "Minced beef or sliced beef packet" },
     "crab-stick": { file: null, source: null, target: "Crab sticks / surimi package" },
     "wagyu-steak": { file: null, source: null, target: "Wagyu steak package (chilled/frozen)" },
-    "black-pepper": { file: null, source: null, target: "Black pepper grinder or shaker bottle" }
+    "black-pepper": { file: null, source: null, target: "Black pepper grinder or shaker bottle" },
+    potato: { file: null, source: null, target: "Fresh whole potatoes" },
+    "japanese-curry-blocks": { file: null, source: null, target: "Japanese curry roux block packet" }
   });
 })();

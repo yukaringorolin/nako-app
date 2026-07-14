@@ -908,6 +908,43 @@ const recipes = [
       highProtein: true,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("japanese-curry-rice",
+    t("Japanese Curry Rice", "カレーライス", "ဂျပန်ဟင်းချက်နည်း ကာရီထမင်း"),
+    [
+      [t("Japanese curry blocks", "カレールー", "ဂျပန်ကာရီတုံး"), t("1 package", "1箱", "၁ ဘူး"), "japanese-curry-blocks"],
+      [t("Beef", "牛肉", "အမဲသား"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
+      [t("Potatoes", "じゃがいも", "အာလူး"), t("as needed", "適量", "လိုအပ်သလို"), "potato"],
+      [t("Carrots", "人参", "မုန်လာဥနီ"), t("as needed", "適量", "လိုအပ်သလို"), "carrot"],
+      [t("Water", "水", "ရေ"), t("as needed", "適量", "လိုအပ်သလို"), "water"],
+      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"]
+    ],
+    [
+      t("Cut the beef and vegetables.", "牛肉と野菜を切ります。", "အမဲသားနှင့် ဟင်းသီးဟင်းရွက်များကို လှီးပါ။"),
+      t("Cook the beef in a pot.", "鍋で牛肉を炒めます。", "ဒယ်အိုးထဲတွင် အမဲသားကို ချက်ပါ။"),
+      t("Add the potatoes, carrots and water.", "じゃがいも、人参、水を加えます。", "အာလူး၊ မုန်လာဥနီနှင့် ရေတို့ကို ထည့်ပါ။"),
+      t("Boil until everything is soft.", "具材が柔らかくなるまで煮込みます。", "အရာအားလုံး နူးညံ့သွားသည်အထိ ပြုတ်ပါ။"),
+      t("Turn off the heat and add the curry blocks.", "火を止め、カレールーを加えます。", "မီးပိတ်ပြီး ကာရီတုံးများကို ထည့်ပါ။"),
+      t("Stir until melted, then cook for a few more minutes.", "ルーが溶けるまで混ぜ、さらに数分間煮込みます。", "အရည်ပျော်သည်အထိ မွှေပေးပါ၊ ထို့နောက် မိနစ်အနည်းငယ် ထပ်ချက်ပါ။"),
+      t("Serve with rice.", "ご飯と一緒に盛り付けます。", "ထမင်းနှင့်အတူ တွဲဖက်သုံးဆောင်ပါ။")
+    ],
+    t("Keep Nako away from any onion or chocolate. Japanese curry blocks contain onion and other spices which are highly toxic to dogs.", "玉ねぎやチョコレートなどはナコに与えないでください。カレールーには玉ねぎや香辛料が含まれており、犬には非常に有害です。", "Nako ကို ကြက်သွန်နီ သို့မဟုတ် ချောကလက်နှင့် ဝေးဝေးတွင် ထားပါ။ ဂျပန်ကာရီတုံးများတွင် ခွေးများအတွက် အလွန်အဆိပ်သင့်စေသော ကြက်သွန်နီနှင့် အခြားဟင်းခတ်အမွှေးအကြိုင်များ ပါဝင်သည်။"),
+    [
+      photo("assets/recipes/human-food/japanese-curry-served.png",
+        t("Japanese curry rice served on a plate", "お皿に盛ったカレーライス", "ပန်းကန်ထဲတွင် ပြင်ဆင်ထားသော ဂျပန်ကာရီထမင်း"),
+        t("A close-up view of Japanese curry with beef, potato, and carrots served with rice.", "お皿に盛り付けた、牛肉、じゃがいも、人参が入った温かいカレーライス。", "အမဲသား၊ အာလူး၊ မုန်လာဥနီတို့ပါဝင်သော ဂျပန်ကာရီထမင်း ပူပူနွေးနွေးကို ပန်းကန်ထဲတွင် ပြင်ဆင်ထားပုံ။")),
+      photo("assets/recipes/human-food/japanese-curry-table.jpg",
+        t("Dinner table with Japanese curry and sides", "カレーと副菜が並んだ夕食の食卓", "ဂျပန်ကာရီနှင့် အရံဟင်းများပါဝင်သော ညစာစားပွဲ"),
+        t("A dinner table showing plates of Japanese curry rice alongside salad, fried chicken, and cake.", "カレーライス、サラダ、唐揚げ、ケーキなどが並んだ賑やかな食卓の様子。", "ကာရီထမင်း၊ သုပ်၊ ကြက်ကြော်နှင့် ကိတ်မုန့်တို့ဖြင့် စည်ကားလှပသော ညစာစားပွဲရှုခင်း။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Curry", "カレー", "ကာရီ"),
+      timeEstimate: t("45 mins", "45分", "၄၅ မိနစ်"),
+      highProtein: false,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
