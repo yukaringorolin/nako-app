@@ -99,6 +99,8 @@ assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines
 
 const bakKutTeh = recipeById("bak-kut-teh");
 assert.ok(bakKutTeh.photos.some((item) => item.src === "assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg"));
+assert.ok(bakKutTeh.photos.some((item) => item.src === "assets/recipes/human-food/bak-kut-teh-market-stall-landmark.jpg"));
+assert.ok(bakKutTeh.photos.some((item) => item.src === "assets/recipes/human-food/bak-kut-teh-spice-sachet-vendor.jpg"));
 
 const oyakodon = recipeById("chicken-oyakodon-no-onion");
 assert.equal(oyakodon.title.en, "Oyakodon (Chicken & Egg Rice Bowl)");

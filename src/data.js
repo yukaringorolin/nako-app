@@ -3008,7 +3008,13 @@ const recipes = [
         t("Bring the pork ribs, spices, garlic, and water to a boil, then cook for 45 minutes.", "豚スペアリブ、スパイス、にんにく、水を沸騰させてから45分煮る。", "ဝက်နံရိုး၊ ဟင်းခတ်၊ ကြက်သွန်ဖြူနှင့်ရေကို ဆူအောင်တည်ပြီးနောက် ၄၅ မိနစ်တည်ပါ။")),
       photo("assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg",
         t("Wet-market pork cuts marked for Pai Gu and Bak Kut Teh", "排骨用とバクテー用に印を付けた市場の豚肉", "Pai Gu နှင့် Bak Kut Teh အတွက် အမှတ်အသားပြထားသော စျေးမှ ဝက်သားအပိုင်းများ"),
-        t("Use the section marked ‘Bak Kut Teh’ when buying pork ribs for this recipe. Ask the butcher if unsure.", "このレシピの豚スペアリブを買う時は「Bak Kut Teh」と印を付けた部分を選び、不明な場合は肉屋に確認します。", "ဤဟင်းအတွက် ဝက်နံရိုးဝယ်သည့်အခါ ‘Bak Kut Teh’ ဟု အမှတ်အသားပြထားသော အပိုင်းကို ရွေးပါ။ မသေချာပါက အသားဆိုင်ကို မေးပါ။"))
+        t("Use the section marked ‘Bak Kut Teh’ when buying pork ribs for this recipe. Ask the butcher if unsure.", "このレシピの豚スペアリブを買う時は「Bak Kut Teh」と印を付けた部分を選び、不明な場合は肉屋に確認します。", "ဤဟင်းအတွက် ဝက်နံရိုးဝယ်သည့်အခါ ‘Bak Kut Teh’ ဟု အမှတ်အသားပြထားသော အပိုင်းကို ရွေးပါ။ မသေချာပါက အသားဆိုင်ကို မေးပါ။")),
+      photo("assets/recipes/human-food/bak-kut-teh-market-stall-landmark.jpg",
+        t("Marked wet-market stall landmark", "印を付けた市場の売り場の目印", "အမှတ်အသားပြထားသော စျေးဆိုင်နေရာအညွှန်း"),
+        t("Use the marked stall as a landmark when looking for the Bak Kut Teh ingredients.", "バクテーの材料を探す時は、印を付けた売り場を目印にします。", "Bak Kut Teh ပါဝင်ပစ္စည်းများ ရှာသည့်အခါ အမှတ်အသားပြထားသော ဆိုင်ကို နေရာအညွှန်းအဖြစ် သုံးပါ။")),
+      photo("assets/recipes/human-food/bak-kut-teh-spice-sachet-vendor.jpg",
+        t("Red Bak Kut Teh spice sachet at the wet-market counter", "市場の売り場にある赤いバクテー用スパイス袋", "စျေးဆိုင်ကောင်တာရှိ အနီရောင် Bak Kut Teh ဟင်းခတ်အထုပ်"),
+        t("Buy one sachet matching this red packet. Show the photo to the vendor if unsure.", "この赤い袋と同じスパイスを1袋買います。不明な場合は店員に写真を見せてください。", "ဤအနီရောင်အထုပ်နှင့်တူသော ဟင်းခတ် ၁ ထုပ်ဝယ်ပါ။ မသေချာပါက ဆိုင်ရှင်ကို ပုံပြပါ။"))
     ],
     "human",
     {
