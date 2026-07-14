@@ -29,6 +29,17 @@ const routineById = (id) => data.routineTasks.find((task) => task.id === id);
 const recipeById = (id) => data.recipes.find((recipe) => recipe.id === id);
 const englishText = (items) => items.map((item) => item.en).join("\n");
 
+const drinkingWaterPrep = routineById("drinking-water-prep");
+assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
+assert.match(englishText(drinkingWaterPrep.mustRemember), /74°C or above after 10 hours.*59°C or above after 24 hours/);
+assert.match(englishText(drinkingWaterPrep.mustRemember), /after 2 days, pour it away/);
+assert.deepEqual(Array.from(drinkingWaterPrep.photos, (item) => item.src), [
+  "assets/routines/drinking-water-prep-tiger-maa-a302.jpg",
+  "assets/routines/drinking-water-prep-tiger-refill.jpg",
+  "assets/routines/drinking-water-prep-kettle.jpg",
+  "assets/routines/drinking-water-prep-fridge-bottles.jpg"
+]);
+
 assert.equal(routineById("essential-food-stock").title.en, "Essential Food Stock");
 assert.equal(routineById("sofa-hair-room-corner-cleaning").title.en, "Sofa Hair & Room-Corner Spot Cleaning");
 assert.match(routineById("nako-feeding-water").summary.en, /60 g Royal Canin/);
