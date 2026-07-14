@@ -2293,6 +2293,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 657,
         protein: 58.5,
@@ -2343,6 +2344,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 779,
         protein: 56.2,
@@ -2400,6 +2402,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 609,
         protein: 53.5,
@@ -2502,6 +2505,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("10 mins", "10分", "၁၀ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 666,
         protein: 59.3,
@@ -2563,6 +2567,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 759,
         protein: 70.3,
@@ -2633,6 +2638,7 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
       highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
       nutrition: {
         calories: 711,
         protein: 73.6,
@@ -2773,6 +2779,8 @@ const recipes = [
     }
   )
 ];
+
+recipes.sort((a, b) => Number(Boolean(a.demoStatus)) - Number(Boolean(b.demoStatus)));
 
 
 // Global Translation Reconciliation Check Function

@@ -93,6 +93,9 @@ function renderRecipeCard(recipe) {
 
 function renderRecipeBadges(recipe) {
   let html = "";
+  if (recipe.demoStatus) {
+    html += `<span class="badge demo-status">${esc(tr(recipe.demoStatus))}</span>`;
+  }
   if (recipe.mealType) {
     html += `<span class="badge meal-type">${esc(tr(recipe.mealType))}</span>`;
   }

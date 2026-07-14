@@ -52,4 +52,22 @@ assert.equal(chickenWings.title.en, "Air-Fryer Chicken Wings");
 assert.ok(chickenWings.ingredients.some((item) => item.key === "chicken-wings"));
 assert.match(englishText(chickenWings.method), /200.*20 minutes/);
 
+const pendingDemoRecipeIds = [
+  "chicken-teriyaki-rice",
+  "salmon-shioyaki-set",
+  "pork-shogayaki-no-onion",
+  "tuna-tofu-egg-rice",
+  "chicken-soboro-don",
+  "chicken-miso-nabe"
+];
+const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
+assert.deepEqual(Array.from(humanRecipes.slice(-pendingDemoRecipeIds.length), (recipe) => recipe.id), pendingDemoRecipeIds);
+for (const id of pendingDemoRecipeIds) {
+  const demoStatus = recipeById(id).demoStatus;
+  assert.equal(demoStatus.en, "Pending demo");
+  assert.ok(demoStatus.jp && demoStatus.mm);
+}
+assert.equal(recipeById("egg-toast").demoStatus, undefined);
+assert.equal(recipeById("air-fryer-chicken-wings").demoStatus, undefined);
+
 console.log("Copy source and compatibility checks passed.");

@@ -396,6 +396,11 @@ img {
   color: #2b708e;
 }
 
+.recipe-badges .badge.demo-status {
+  background: #fff0c7;
+  color: #835b00;
+}
+
 /* Large Hero Image for Recipe Details */
 .recipe-hero-image {
   width: 100%;
