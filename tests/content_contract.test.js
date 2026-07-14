@@ -163,7 +163,8 @@ const pendingDemoRecipeIds = [
   "chicken-soboro-don",
   "chicken-miso-nabe",
   "soy-marinated-eggs-chilli",
-  "knorr-chicken-quick-serve-macaroni"
+  "knorr-chicken-quick-serve-macaroni",
+  "sushiroll"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);

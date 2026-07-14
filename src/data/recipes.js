@@ -824,6 +824,55 @@ const recipes = [
       highProtein: false,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("sushiroll",
+    t("Sushi Roll", "巻き寿司", "ဆူရှီလိပ်"),
+    [
+      [t("Nori seaweed", "のり", "ရေညှိခြောက်"), t("as needed", "適量", "လိုအပ်သလို"), "nori"],
+      [t("Cooked Japanese rice", "炊いた日本米", "ချက်ပြီးသား ဂျပန်ဆန်"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
+      [t("Oil", "油", "ဆီ"), t("a little", "少々", "အနည်းငယ်"), "oil"],
+      [t("Salt", "塩", "ဆား"), t("a little", "少々", "အနည်းငယ်"), "salt"],
+      {
+        key: "tuna",
+        name: t("Optional protein (tuna, salmon, chicken, beef, pork, crab stick)", "好みの具材（ツナ、サーモン、鶏肉、牛肉、豚肉、カニカマなど）", "ရွေးချယ်နိုင်သော ပရိုတင်း (တူနာ၊ ဆယ်လ်မွန်၊ ကြက်သား၊ အမဲသား၊ ဝက်သား၊ ကဏန်းချောင်း)"),
+        amount: t("as needed", "適量", "လိုအပ်သလို"),
+        alternatives: [
+          ingredientOption("tuna", t("Tuna", "ツナ", "တူနာ")),
+          ingredientOption("salmon-fillet", t("Salmon", "サーモン", "ဆယ်လ်မွန်")),
+          ingredientOption("chicken-breast", t("Chicken", "鶏肉", "ကြက်သား")),
+          ingredientOption("beef", t("Beef", "牛肉", "အမဲသား")),
+          ingredientOption("pork", t("Pork", "豚肉", "ဝက်သား")),
+          ingredientOption("crab-stick", t("Crab stick", "カニカマ", "ကဏန်းချောင်း"))
+        ]
+      }
+    ],
+    [
+      t("Cook the rice and let it cool slightly.", "ご飯を炊いて、少し冷まします。", "ထမင်းချက်ပြီး အနည်းငယ် အအေးခံပါ။"),
+      t("Cook the eggs as an omelette and cut into long strips.", "卵を薄焼き卵（卵焼き）にして、細長く切ります。", "ကြက်ဥကို အကြော်ကြော်ပြီး အမြှောင်းရှည်များ လှီးပါ။"),
+      t("Put nori on the sushi mat.", "巻きすの上にのりを置きます。", "လိပ်သည့် ဖျာပေါ်တွင် ရေညှိချပ်ကို တင်ပါ။"),
+      t("Spread a thin layer of rice on the nori.", "のりの上にご飯を薄く広げます。", "ရေညှိချပ်ပေါ်တွင် ထမင်းကို ပါးပါးဖြန့်ခင်းပါ။"),
+      t("Put the egg and optional protein in the middle.", "真ん中に卵と好みの具材（プロテイン）をのせます。", "အလယ်တွင် ကြက်ဥနှင့် ရွေးချယ်နိုင်သော ပရိုတင်းတို့ကို တင်ပါ။"),
+      t("Roll tightly using the mat.", "巻きすを使ってきつく巻きます。", "ဖျာကိုသုံးပြီး တင်းတင်းလိပ်ပါ။"),
+      t("Cut into pieces with a wet knife.", "濡らした包丁で食べやすい大きさに切ります。", "ဓားစိုဖြင့် အပိုင်းပိုင်း လှီးပါ။")
+    ],
+    t("**Important:** Do not put too much rice or filling, otherwise the roll may be difficult to close.", "**重要:** ご飯や具材をのせすぎると、巻きにくくなる（閉じられなくなる）ので注意してください。", "**အရေးကြီးပါသည် -** ထမင်း သို့မဟုတ် အစာများကို အလွန်အကျွံ မထည့်ပါနှင့်၊ မဟုတ်ပါက လိပ်ရန် ခက်ခဲနိုင်ပါသည်။"),
+    [
+      photo("assets/recipes/human-food/sushiroll-sliced.png",
+        t("Sushi roll slices on a plate", "お皿に盛った巻き寿司", "ပန်းကန်ထဲရှိ လှီးထားသော ဆူရှီလိပ်များ"),
+        t("Sushi sliced into pieces with a wet knife and served on a plate.", "濡らした包丁で切り、お皿に並べた巻き寿司。", "ဓားစိုဖြင့် ညီညီညာညာလှီးပြီး ပန်းကန်ထဲတွင် ပြင်ဆင်ထားသော ဆူရှီ။")),
+      photo("assets/recipes/human-food/sushiroll-prep.jpg",
+        t("Preparing sushi on a bamboo mat", "巻きすでのりを巻く準備", "ဝါးဖျာပေါ်တွင် ဆူရှီပြင်ဆင်ခြင်း"),
+        t("Nori seaweed on a mat with rice, egg omelette strips, and fillings before rolling.", "巻く前にのり、ご飯、細長い卵焼き、具材をのせた状態。", "မလိပ်မီ ရေညှိချပ်၊ ထမင်း၊ ကြက်ဥအမြှောင်းများနှင့် အစာများ ထည့်ထားပုံ။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Sushi", "寿司", "ဆူရှီ"),
+      timeEstimate: t("30 mins", "30分", "မိနစ် ၃၀"),
+      highProtein: false,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 

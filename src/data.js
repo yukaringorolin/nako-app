@@ -3205,6 +3205,55 @@ const recipes = [
       highProtein: false,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("sushiroll",
+    t("Sushi Roll", "巻き寿司", "ဆူရှီလိပ်"),
+    [
+      [t("Nori seaweed", "のり", "ရေညှိခြောက်"), t("as needed", "適量", "လိုအပ်သလို"), "nori"],
+      [t("Cooked Japanese rice", "炊いた日本米", "ချက်ပြီးသား ဂျပန်ဆန်"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
+      [t("Oil", "油", "ဆီ"), t("a little", "少々", "အနည်းငယ်"), "oil"],
+      [t("Salt", "塩", "ဆား"), t("a little", "少々", "အနည်းငယ်"), "salt"],
+      {
+        key: "tuna",
+        name: t("Optional protein (tuna, salmon, chicken, beef, pork, crab stick)", "好みの具材（ツナ、サーモン、鶏肉、牛肉、豚肉、カニカマなど）", "ရွေးချယ်နိုင်သော ပရိုတင်း (တူနာ၊ ဆယ်လ်မွန်၊ ကြက်သား၊ အမဲသား၊ ဝက်သား၊ ကဏန်းချောင်း)"),
+        amount: t("as needed", "適量", "လိုအပ်သလို"),
+        alternatives: [
+          ingredientOption("tuna", t("Tuna", "ツナ", "တူနာ")),
+          ingredientOption("salmon-fillet", t("Salmon", "サーモン", "ဆယ်လ်မွန်")),
+          ingredientOption("chicken-breast", t("Chicken", "鶏肉", "ကြက်သား")),
+          ingredientOption("beef", t("Beef", "牛肉", "အမဲသား")),
+          ingredientOption("pork", t("Pork", "豚肉", "ဝက်သား")),
+          ingredientOption("crab-stick", t("Crab stick", "カニカマ", "ကဏန်းချောင်း"))
+        ]
+      }
+    ],
+    [
+      t("Cook the rice and let it cool slightly.", "ご飯を炊いて、少し冷まします。", "ထမင်းချက်ပြီး အနည်းငယ် အအေးခံပါ။"),
+      t("Cook the eggs as an omelette and cut into long strips.", "卵を薄焼き卵（卵焼き）にして、細長く切ります。", "ကြက်ဥကို အကြော်ကြော်ပြီး အမြှောင်းရှည်များ လှီးပါ။"),
+      t("Put nori on the sushi mat.", "巻きすの上にのりを置きます。", "လိပ်သည့် ဖျာပေါ်တွင် ရေညှိချပ်ကို တင်ပါ။"),
+      t("Spread a thin layer of rice on the nori.", "のりの上にご飯を薄く広げます。", "ရေညှိချပ်ပေါ်တွင် ထမင်းကို ပါးပါးဖြန့်ခင်းပါ။"),
+      t("Put the egg and optional protein in the middle.", "真ん中に卵と好みの具材（プロテイン）をのせます。", "အလယ်တွင် ကြက်ဥနှင့် ရွေးချယ်နိုင်သော ပရိုတင်းတို့ကို တင်ပါ။"),
+      t("Roll tightly using the mat.", "巻きすを使ってきつく巻きます。", "ဖျာကိုသုံးပြီး တင်းတင်းလိပ်ပါ။"),
+      t("Cut into pieces with a wet knife.", "濡らした包丁で食べやすい大きさに切ります。", "ဓားစိုဖြင့် အပိုင်းပိုင်း လှီးပါ။")
+    ],
+    t("**Important:** Do not put too much rice or filling, otherwise the roll may be difficult to close.", "**重要:** ご飯や具材をのせすぎると、巻きにくくなる（閉じられなくなる）ので注意してください。", "**အရေးကြီးပါသည် -** ထမင်း သို့မဟုတ် အစာများကို အလွန်အကျွံ မထည့်ပါနှင့်၊ မဟုတ်ပါက လိပ်ရန် ခက်ခဲနိုင်ပါသည်။"),
+    [
+      photo("assets/recipes/human-food/sushiroll-sliced.png",
+        t("Sushi roll slices on a plate", "お皿に盛った巻き寿司", "ပန်းကန်ထဲရှိ လှီးထားသော ဆူရှီလိပ်များ"),
+        t("Sushi sliced into pieces with a wet knife and served on a plate.", "濡らした包丁で切り、お皿に並べた巻き寿司。", "ဓားစိုဖြင့် ညီညီညာညာလှီးပြီး ပန်းကန်ထဲတွင် ပြင်ဆင်ထားသော ဆူရှီ။")),
+      photo("assets/recipes/human-food/sushiroll-prep.jpg",
+        t("Preparing sushi on a bamboo mat", "巻きすでのりを巻く準備", "ဝါးဖျာပေါ်တွင် ဆူရှီပြင်ဆင်ခြင်း"),
+        t("Nori seaweed on a mat with rice, egg omelette strips, and fillings before rolling.", "巻く前にのり、ご飯、細長い卵焼き、具材をのせた状態。", "မလိပ်မီ ရေညှိချပ်၊ ထမင်း၊ ကြက်ဥအမြှောင်းများနှင့် အစာများ ထည့်ထားပုံ။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Sushi", "寿司", "ဆူရှီ"),
+      timeEstimate: t("30 mins", "30分", "မိနစ် ၃၀"),
+      highProtein: false,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
@@ -3380,13 +3429,30 @@ function checkTranslations() {
     "strawberry-jam": { file: null, source: null, target: "Strawberry jam jar" },
     banana: { file: null, source: null, target: "Fresh banana" },
     mayonnaise: { file: null, source: null, target: "Mayonnaise bottle" },
+    dashi: { file: "dashi.jpg", source: product("/product/ajinomoto-hon-dashi-kirei-1-kg-90155858"), target: "Japanese dashi stock packet" },
+    tuna: { file: "tuna.jpg", source: product("/product/fairprice-tuna-flakes-in-water-160g-13256630"), target: "Canned tuna in water" },
+    tofu: { file: "firm-tofu.jpg", source: product("/product/fairprice-tau-kwa-2s-400g-13233989"), target: "Firm tofu in refrigerated retail packaging" },
+    cucumber: { file: "cucumber.jpg", source: product("/product/malaysia-naturally-fresh-japanese-cucumber-400g-13097478"), target: "Fresh Japanese cucumber" },
+    "sesame-oil": { file: "sesame-oil.jpg", source: product("/product/lee-kum-kee-pure-sesame-oil-207ml-13160717"), target: "Sesame-oil bottle" },
+    "rice-vinegar": { file: "rice-vinegar.jpg", source: product("/product/redman-rice-vinegar"), target: "Rice-vinegar bottle" },
+    miso: { file: "miso-paste.jpg", source: product("/product/kirei-yamataka-omiso-ya-san-japanese-shiro-miso-paste-1-kg-90085339"), target: "Japanese miso tub or pouch" },
+    water: { file: "water.png", source: null, target: "A clean glass of water" },
+    apple: { file: null, source: null, target: "Fresh apple" },
+    bread: { file: null, source: null, target: "Sliced sandwich bread" },
+    "peanut-butter": { file: null, source: null, target: "Peanut butter jar" },
+    "strawberry-jam": { file: null, source: null, target: "Strawberry jam jar" },
+    banana: { file: null, source: null, target: "Fresh banana" },
+    mayonnaise: { file: null, source: null, target: "Mayonnaise bottle" },
     "pork-ribs": { file: null, source: null, target: "Raw pork ribs" },
     "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
     garlic: { file: null, source: null, target: "Fresh garlic bulb" },
     "garlic-pepper": { file: null, source: null, target: "Garlic pepper seasoning bottle" },
     "potato-starch": { file: null, source: null, target: "Potato starch packet" },
     "dashi-soy-sauce": { file: null, source: null, target: "Japanese dashi soy sauce bottle" },
-    "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" }
+    "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" },
+    nori: { file: null, source: null, target: "Nori seaweed sheets packet" },
+    beef: { file: null, source: null, target: "Minced beef or sliced beef packet" },
+    "crab-stick": { file: null, source: null, target: "Crab sticks / surimi package" }
   });
 })();
 
