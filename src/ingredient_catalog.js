@@ -34,9 +34,11 @@
     lemon: { file: "lemon.jpg", source: product("/product/freshco-lemons-fresh"), target: "Fresh lemons" },
     pork: { file: "pork.jpg", source: product("/product/simply-yumme-pork-lean-slice"), target: "Lean raw pork slices in a labelled pack" },
     "pork-shoulder": { file: null, source: null, target: "Pork shoulder butt slices" },
+    "pork-loin": { file: null, source: null, target: "Thick-cut pork loin chops" },
     cabbage: { file: "cabbage.jpg", source: product("/product/orgo-fresh-cabbage-whole-1-pc-90150967"), target: "Ordinary whole green cabbage" },
     "shimeji-mushroom": { file: "shimeji-mushroom.jpg", source: product("/product/hokto-mushroom-white-shimeiji-100g-11017131"), target: "Shimeji mushroom retail pack" },
     "button-mushroom": { file: "button-mushroom.jpg", source: product("/product/pasar-white-button-mushroom-200g-13101275"), target: "White button mushroom retail pack" },
+    "enoki-mushroom": { file: null, source: null, target: "Fresh enoki mushroom pack" },
     dashi: { file: "dashi.jpg", source: product("/product/ajinomoto-hon-dashi-kirei-1-kg-90155858"), target: "Japanese dashi stock packet" },
     tuna: { file: "tuna.jpg", source: product("/product/fairprice-tuna-flakes-in-water-160g-13256630"), target: "Canned tuna in water" },
     tofu: { file: "firm-tofu.jpg", source: product("/product/fairprice-tau-kwa-2s-400g-13233989"), target: "Firm tofu in refrigerated retail packaging" },
@@ -55,6 +57,8 @@
     "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
     garlic: { file: null, source: null, target: "Fresh garlic bulb" },
     "garlic-pepper": { file: null, source: null, target: "Garlic pepper seasoning bottle" },
+    "potato-starch": { file: null, source: null, target: "Potato starch packet" },
+    "dashi-soy-sauce": { file: null, source: null, target: "Japanese dashi soy sauce bottle" },
     "dark-soy-sauce": { file: null, source: null, target: "Dark soy sauce bottle" }
   });
 })();

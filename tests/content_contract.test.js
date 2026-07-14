@@ -125,4 +125,17 @@ assert.deepEqual(Array.from(matchaMilk.photos, (item) => item.src), [
   "assets/recipes/human-food/matcha-milk-manuka-honey.jpg"
 ]);
 
+const appleGingerPork = recipeById("apple-ginger-pork-loin-enoki");
+assert.equal(appleGingerPork.title.en, "Apple-Ginger Pork Loin with Enoki");
+assert.equal(appleGingerPork.demoStatus, undefined);
+assert.deepEqual(Array.from(appleGingerPork.ingredients, (item) => item.key), [
+  "pork-loin", "apple", "enoki-mushroom", "ginger", "garlic", "potato-starch",
+  "dashi-soy-sauce", "cooking-sake", "honey", "sesame-oil", "water", "oil"
+]);
+assert.match(englishText(appleGingerPork.method), /Grate 1\/4 apple/);
+assert.match(englishText(appleGingerPork.method), /sauce, apple wedges, and enoki/);
+assert.match(englishText(appleGingerPork.method), /at least 71°C/);
+assert.match(appleGingerPork.note.en, /Do not add onion/);
+assert.equal(appleGingerPork.photos.length, 6);
+
 console.log("Copy source and compatibility checks passed.");
