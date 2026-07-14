@@ -89,6 +89,8 @@
     "cherry-tomatoes": { file: null, source: null, target: "Fresh cherry tomatoes punnet" },
     "chilli-powder": { file: null, source: null, target: "Chilli powder bottle or shaker" },
     "cooked-protein": { file: null, source: null, target: "Cooked meat, fish, or other protein flakes/pieces" },
-    "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" }
+    "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" },
+    kale: { file: null, source: null, target: "Fresh kale leaves pack" },
+    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" }
   });
 })();

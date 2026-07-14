@@ -3418,6 +3418,37 @@ const recipes = [
       highProtein: false,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("clean-yukari-style-salad",
+    t("Clean Yukari-Style Salad", "ゆかり風クリーンサラダ", "ယူကာရီစတိုင် သန့်ရှင်းလတ်ဆတ်သော သုပ်"),
+    [
+      [t("Chicken breast", "鶏胸肉", "ကြက်ရင်အုံသား"), t("as needed", "適量", "လိုအပ်သလို"), "chicken-breast"],
+      [t("Kale", "ケール", "ကိုက်လန်/Kale"), t("as needed", "適量", "လိုအပ်သလို"), "kale"],
+      [t("Pumpkin", "かぼちゃ", "ရွှေဖရုံသီး"), t("as needed", "適量", "လိုအပ်သလို"), "pumpkin"],
+      [t("Mushrooms", "キノコ", "မှို"), t("as needed", "適量", "လိုအပ်သလို"), "mushrooms"],
+      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), t("as needed", "適量", "လိုအပ်သလို"), "cherry-tomatoes"],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1", "1個", "၁ လုံး"), "eggs"],
+      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), t("a little", "少々", "အနည်းငယ်"), "salt"]
+    ],
+    [
+      t("Boil the egg and pumpkin.", "卵とかぼちゃをゆでます。", "ကြက်ဥနှင့် ရွှေဖရုံသီးတို့ကို ပြုတ်ပါ။"),
+      t("Cook the chicken and mushrooms with salt and pepper.", "鶏肉とキノコを塩コショウで炒めます。", "ကြက်သားနှင့် မှိုတို့ကို ဆား၊ ငရုတ်ကောင်းတို့ဖြင့် ချက်ပါ။"),
+      t("Put everything together on a plate.", "すべての具材をお皿に盛り付けます。", "အားလုံးကို ပန်းကန်တစ်ခုတည်းတွင် အတူတူပြင်ဆင်ပါ။")
+    ],
+    t("Do not add onion, garlic or toxic herbs. Keep seasonings minimal if sharing any clean chicken or pumpkin with pets.", "ペットと共有する場合は、玉ねぎ、にんにく、または有害なハーブを加えないでください。鶏肉やかぼちゃをペットに与える場合は味付けを避けてください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် အဆိပ်သင့်စေသော ဆေးဖက်ဝင်အပင်များ မထည့်ပါနှင့်။ ကြက်သား သို့မဟုတ် ရွှေဖရုံသီးကို ကျွေးမည်ဆိုပါက အမွှေးအကြိုင်များကို အနည်းဆုံးသာ သုံးပါ။"),
+    [
+      photo("assets/recipes/human-food/clean-yukari-style-salad.jpg",
+        t("Clean Yukari-style salad", "ゆかり風クリーンサラダ", "ယူကာရီစတိုင် သန့်ရှင်းလတ်ဆတ်သော သုပ်"),
+        t("A clean salad plate with pan-fried chicken and mushrooms, fresh kale, boiled pumpkin chunks, a sliced boiled egg, and halved cherry tomatoes.", "炒めた鶏肉とキノコ、ケール、ゆでたかぼちゃ、ゆで卵、そしてミニトマトが盛られたクリーンサラダのプレート。", "ကြော်ထားသော ကြက်သားနှင့် မှို၊ လတ်ဆတ်သော ကိုက်လန်၊ ပြုတ်ထားသော ရွှေဖရုံသီးတုံးများ၊ ကြက်ဥပြုတ်နှင့် ခရမ်းချဉ်သီးချိုများ ပါဝင်သည့် သန့်ရှင်းလတ်ဆတ်သော သုပ်ပန်းကန်။"))
+    ],
+    "human",
+    {
+      mealType: t("Salad/Meal", "サラダ・主食", "သုပ်/အစားအစာ"),
+      style: t("Clean/Healthy", "クリーン・健康食", "သန့်ရှင်း/ကျန်းမာရေးနှင့်ညီညွတ်သော"),
+      timeEstimate: t("20 mins", "20分", "မိနစ် ၂၀"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 
@@ -3625,7 +3656,9 @@ function checkTranslations() {
     "cherry-tomatoes": { file: null, source: null, target: "Fresh cherry tomatoes punnet" },
     "chilli-powder": { file: null, source: null, target: "Chilli powder bottle or shaker" },
     "cooked-protein": { file: null, source: null, target: "Cooked meat, fish, or other protein flakes/pieces" },
-    "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" }
+    "rice-seasoning": { file: null, source: null, target: "Furikake rice seasoning packet" },
+    kale: { file: null, source: null, target: "Fresh kale leaves pack" },
+    mushrooms: { file: null, source: null, target: "Fresh mushrooms (e.g., shimeji, button, or enoki)" }
   });
 })();
 
