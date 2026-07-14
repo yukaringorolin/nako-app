@@ -979,6 +979,35 @@ const recipes = [
       highProtein: true,
       demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
     }
+  ),
+  recipe("soy-braised-beef-egg",
+    t("Soy-Braised Beef and Egg with Rice", "牛肉と煮卵の醤油煮込みご飯", "အမဲသားနှင့် ပဲငပိရည်ပြုတ်ကြက်ဥ ထမင်း"),
+    [
+      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
+      [t("Boiled eggs", "ゆで卵", "ပြုတ်ကြက်ဥ"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
+      [t("Soy sauce", "醤油", "ပဲငပိရည်/ပဲငါးပိရည်"), t("as needed", "適量", "လိုအပ်သလို"), "soy-sauce"],
+      [t("Water", "水", "ရေ"), t("a little", "少々", "အနည်းငယ်"), "water"],
+      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"]
+    ],
+    [
+      t("Boil the eggs and remove the shells.", "卵をゆでて殻をむきます。", "ကြက်ဥကို ပြုတ်ပြီး အခွံနွှာပါ။"),
+      t("Cook beef, eggs, soy sauce and a little water together.", "牛肉、ゆで卵、醤油、少量の水を一緒に煮込みます。", "အမဲသား၊ ကြက်ဥ၊ ပဲငပိရည်နှင့် ရေအနည်းငယ်တို့ကို အတူတူချက်ပါ။"),
+      t("Serve with rice.", "ご飯と一緒に盛り付けます。", "ထမင်းနှင့်အတူ တည်ခင်းပါ။")
+    ],
+    t("Do not add onion or garlic if sharing with pets, and keep soy sauce quantities minimal/diluted if pets taste any part of the food.", "ペットと共有する場合は玉ねぎやにんにくを加えないでください。また、ペットが味見をする場合は醤油の量を最小限にし、薄めてください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မထည့်ပါနှင့်၊ တိရစ္ဆာန်များ အနည်းငယ် မြည်းစမ်းမည်ဆိုပါက ပဲငပိရည်ပမာဏကို အနည်းဆုံး/ရေရောပြီး သုံးပါ။"),
+    [
+      photo("assets/recipes/human-food/soy-braised-beef-egg.jpg",
+        t("Soy-braised beef and egg", "牛肉と煮卵の醤油煮込み", "ပဲငပိရည်ပြုတ် အမဲသားနှင့် ကြက်ဥ"),
+        t("A bowl of soy-braised sliced beef with a whole braised egg next to a plate of white rice with chopsticks.", "丸ごとの煮卵と牛肉の醤油煮込み、そしてお箸を添えた白いご飯。", "ပဲငပိရည်ပြုတ် အမဲသား၊ ကြက်ဥပြုတ်တစ်လုံးနှင့် ထမင်းဖြူ၊ တူတစ်စုံ။"))
+    ],
+    "human",
+    {
+      mealType: t("Main", "主食", "အဓိကအစားအစာ"),
+      style: t("Braised/Rice", "煮込み・ご飯", "ပြုတ်/ထမင်း"),
+      timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
+      highProtein: true,
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+    }
   )
 ];
 

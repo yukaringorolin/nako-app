@@ -167,7 +167,8 @@ const pendingDemoRecipeIds = [
   "sushiroll",
   "simple-wagyu-steak",
   "japanese-curry-rice",
-  "beef-mushroom-egg-bowl"
+  "beef-mushroom-egg-bowl",
+  "soy-braised-beef-egg"
 ];
 const humanRecipes = data.recipes.filter((recipe) => recipe.type === "human");
 assert.equal(humanRecipes.filter((recipe) => Boolean(recipe.demoStatus)).length, pendingDemoRecipeIds.length);
