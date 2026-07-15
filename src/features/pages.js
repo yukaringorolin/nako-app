@@ -73,21 +73,39 @@ function cycleRangeLabel(cycle) {
 }
 
 function renderRoutineHomeShortcut() {
-  const checklist = currentChecklist();
-  const remaining = checklist.filter((item) => !item.record).length;
-  const status = remaining ? labelWith("routineHomeRemaining", { count: remaining }) : label("routineHomeComplete");
+  const summary = window.nakoRoutineTaskSelection.summarizeChecklist(currentChecklist());
+  const recurringCadences = window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.slice(0, 4);
+  const visibleCadences = summary.remainingByCadence["one-off"] > 0
+    ? [...recurringCadences, "one-off"]
+    : recurringCadences;
+  const counts = visibleCadences.map((cadence) => {
+    const count = summary.remainingByCadence[cadence];
+    const accessibleLabel = labelWith("routineCadenceRemaining", { cadence: cadenceLabel(cadence), count });
+    return `<span class="routine-home-cadence-count theme-${cadence}" aria-label="${esc(accessibleLabel)}"><span>${esc(cadenceLabel(cadence))}</span><b aria-hidden="true">${count}</b></span>`;
+  }).join("");
+  const status = summary.dueTotal ? label("routineTasksRemaining") : label("routineHomeComplete");
   return `<button class="routine-home-shortcut" data-routine-checkin>
     <span class="routine-home-icon" aria-hidden="true">✓</span>
-    <span><strong>${esc(label("routineCheckIn"))}</strong><small>${esc(status)}</small></span>
+    <span class="routine-home-copy"><strong>${esc(label("routineCheckIn"))}</strong><small>${esc(status)}</small><span class="routine-home-cadence-counts">${counts}</span></span>
     <span class="routine-home-arrow" aria-hidden="true">›</span>
   </button>`;
+}
+
+function renderRoutineCadenceGroups(groups, completed) {
+  return window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.map((cadence) => {
+    const items = groups[cadence] || [];
+    if (!items.length) return "";
+    return `<section class="routine-cadence-group theme-${cadence}">
+      <h3><span>${esc(cadenceLabel(cadence))}</span><b>${items.length}</b></h3>
+      <div class="routine-check-list">${items.map((item) => renderRoutineCheckRow(item, completed)).join("")}</div>
+    </section>`;
+  }).join("");
 }
 
 function renderRoutineCheckIn() {
   const today = routineTracking.singaporeDateKey();
   const checklist = currentChecklist();
-  const dueItems = checklist.filter((item) => !item.record);
-  const completedItems = checklist.filter((item) => item.record);
+  const summary = window.nakoRoutineTaskSelection.summarizeChecklist(checklist);
   const periodItems = [...new Map(checklist.map((item) => [item.task.trackingCadence, item])).values()];
   const content = `
     <section class="routine-checkin-hero">
@@ -96,7 +114,7 @@ function renderRoutineCheckIn() {
         <h1>${esc(label("routineCheckIn"))}</h1>
         <p>${esc(label("routineCheckInSubtitle"))}</p>
       </div>
-      <strong class="routine-progress">${esc(labelWith("progressSummary", { done: completedItems.length, total: checklist.length }))}</strong>
+      <strong class="routine-progress">${esc(labelWith("progressSummary", { done: summary.completedTotal, total: checklist.length }))}</strong>
     </section>
     <section class="routine-periods" aria-label="${esc(label("currentPeriods"))}">
       ${periodItems.map((item) => `<span><strong>${esc(cadenceLabel(item.task.trackingCadence))}</strong>${esc(cycleRangeLabel(item.cycle))}</span>`).join("")}
@@ -104,12 +122,12 @@ function renderRoutineCheckIn() {
     <button class="history-link-button" data-routine-history>${esc(label("routineHistory"))}<span aria-hidden="true">›</span></button>
     ${renderRoutineStatus()}
     <section class="routine-list-section">
-      <h2>${esc(label("due"))} <span>${dueItems.length}</span></h2>
-      <div class="routine-check-list">${dueItems.map((item) => renderRoutineCheckRow(item, false)).join("") || `<div class="empty-state">${esc(label("routineHomeComplete"))}</div>`}</div>
+      <h2>${esc(label("due"))} <span>${summary.dueTotal}</span></h2>
+      <div class="routine-cadence-groups">${renderRoutineCadenceGroups(summary.dueByCadence, false) || `<div class="empty-state">${esc(label("routineHomeComplete"))}</div>`}</div>
     </section>
     <section class="routine-list-section completed-section">
-      <h2>${esc(label("completed"))} <span>${completedItems.length}</span></h2>
-      <div class="routine-check-list">${completedItems.map((item) => renderRoutineCheckRow(item, true)).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}</div>
+      <h2>${esc(label("completed"))} <span>${summary.completedTotal}</span></h2>
+      <div class="routine-cadence-groups">${renderRoutineCadenceGroups(summary.completedByCadence, true) || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`}</div>
     </section>`;
   renderShell(label("routineCheckIn"), content, true);
 }

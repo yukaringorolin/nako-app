@@ -5,6 +5,8 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
+  const ROUTINE_CADENCE_ORDER = Object.freeze(["weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
+
   function isTracked(task) {
     return Boolean(task?.trackingMode && task.trackingMode !== "none");
   }
@@ -26,11 +28,41 @@
     return task?.active !== false && isTracked(task) && task.trackingCadence !== "one-off";
   }
 
+  function emptyCadenceGroups() {
+    return Object.fromEntries(ROUTINE_CADENCE_ORDER.map((cadence) => [cadence, []]));
+  }
+
+  function summarizeChecklist(checklist = []) {
+    const dueByCadence = emptyCadenceGroups();
+    const completedByCadence = emptyCadenceGroups();
+
+    checklist.forEach((item) => {
+      const cadence = item?.task?.trackingCadence;
+      if (!Object.prototype.hasOwnProperty.call(dueByCadence, cadence)) return;
+      const target = item.record ? completedByCadence : dueByCadence;
+      target[cadence].push(item);
+    });
+
+    const remainingByCadence = Object.fromEntries(
+      ROUTINE_CADENCE_ORDER.map((cadence) => [cadence, dueByCadence[cadence].length])
+    );
+
+    return {
+      dueByCadence,
+      completedByCadence,
+      remainingByCadence,
+      dueTotal: Object.values(dueByCadence).reduce((total, items) => total + items.length, 0),
+      completedTotal: Object.values(completedByCadence).reduce((total, items) => total + items.length, 0)
+    };
+  }
+
   return {
+    ROUTINE_CADENCE_ORDER,
     activeTrackedRoutineTasks,
     historicalTrackedRoutineTasks,
     historyFilterTasks,
     isTracked,
-    shouldGenerateMissed
+    shouldGenerateMissed,
+    summarizeChecklist
   };
 });
