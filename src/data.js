@@ -2876,7 +2876,23 @@ const recipes = [
       t("Make sure the pork is fully cooked before serving.", "提供前に豚肉へ完全に火が通っていることを確認します。", "မပေးမီ ဝက်သား လုံးဝကျက်ကြောင်း စစ်ပါ။")
     ],
     t("Everyone's favorite recipe. Strictly no onion. Use the red-label bottle for dark soy sauce, keep the simmer gentle, and adjust the boiled eggs to the number of servings.", "みんなのお気に入りレシピです。玉ねぎは絶対に入れません。ダークソイソースは赤いラベルのボトルを使い、弱めの火で煮込み、ゆで卵は人数に合わせます。", "လူတိုင်းအကြိုက်ဆုံး ဟင်းချက်နည်းဖြစ်သည်။ ကြက်သွန်နီ လုံးဝမထည့်ပါနှင့်။ dark soy sauce အတွက် အနီရောင် label ပါသောပုလင်းကိုသုံးပြီး မီးအေးအေးဖြင့်တည်ကာ ကြက်ဥပြုတ်ကို စားမည့်လူအရေအတွက်အလိုက် ချိန်ညှိပါ။"),
-    [],
+    [
+      photo("assets/recipes/human-food/braised-pork-ingredients.jpg",
+        t("Garlic, ginger, onion, and pork in frying pan", "フライパンに入れたにんにく、生姜、玉ねぎ、豚肉", "ဒယ်အိုးထဲရှိ ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီနှင့် ဝက်သား"),
+        t("Sauté garlic, ginger, onion (if using), and pork together in the pan.", "にんにく、生姜、玉ねぎ（使用する場合）、豚肉をフライパンで一緒に炒めます。", "ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီ (သုံးပါက) နှင့် ဝက်သားတို့ကို ဒယ်အိုးထဲတွင် အတူတူလှော်ပါ။")),
+      photo("assets/recipes/human-food/braised-pork-sauting.jpg",
+        t("Sautéing cubed pork belly in the frying pan", "フライパンで角切りの豚バラ肉を炒める", "ဒယ်အိုးထဲတွင် ဝက်သုံးထပ်သားတုံးများကို လှော်ခြင်း"),
+        t("Cook the cubed pork belly until the outside is lightly browned.", "角切りの豚バラ肉の表面に軽く焼き色が付くまで炒めます。", "ဝက်သုံးထပ်သားတုံးများ အပြင်ဘက် အနည်းငယ်ညိုလာသည်အထိ ကြော်ပါ။")),
+      photo("assets/recipes/human-food/braised-pork-soy-sauce.jpg",
+        t("Adding one tablespoon of light soy sauce", "醤油を大さじ1加える", "ပဲငံပြာရည် စားပွဲတင်ဇွန်း ၁ ဇွန်းထည့်ခြင်း"),
+        t("Measure and pour one tablespoon of light soy sauce into the pork mix.", "醤油大さじ1を測って豚肉の炒め物に加えます。", "ပဲငံပြာရည် စားပွဲတင်ဇွန်း ၁ ဇွန်းကို ချိန်ပြီး ဝက်သားထဲ ထည့်ပါ။")),
+      photo("assets/recipes/human-food/braised-pork-dark-soy-sauce.jpg",
+        t("Adding dark soy sauce from the red-label bottle", "赤いラベルのボトルからダークソイソースを加える", "အနီရောင် label ပုလင်းမှ dark soy sauce ထည့်ခြင်း"),
+        t("Pour one tablespoon of dark soy sauce (using the red-label Golden Swan Brand bottle).", "赤いラベル（ゴールデンスワンブランド）のダークソイソース大さじ1を加えます。", "အနီရောင် label ပါသော Golden Swan Brand ပုလင်းမှ dark soy sauce စားပွဲတင်ဇွန်း ၁ ဇွန်းထည့်ပါ။")),
+      photo("assets/recipes/human-food/braised-pork-garlic-pepper.jpg",
+        t("Sprinkling a little garlic pepper spice blend", "ガーリックペッパーを少量振りかける", "garlic pepper အနည်းငယ် ဖြူးခြင်း"),
+        t("Sprinkle a small amount of MasterFoods Garlic Pepper Spice Blend over the meat and mix well.", "MasterFoodsのガーリックペッパーを少量振りかけ、よく混ぜ合わせます。", "MasterFoods garlic pepper အနည်းငယ်ကို အသားပေါ် ဖြူးပြီး ကောင်းကောင်းမွှေပါ။"))
+    ],
     "human",
     {
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
