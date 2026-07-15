@@ -2843,7 +2843,14 @@ const recipes = [
       t("Stir-fry until the squid is fully cooked and the vegetables are ready.", "イカに完全に火が通り、野菜が仕上がるまで炒めます。", "ပြည်ကြီးငါးအပြည့်ကျက်ပြီး ဟင်းသီးဟင်းရွက်များ အဆင်သင့်ဖြစ်သည်အထိ ကြော်ပါ။")
     ],
     t("Start with small amounts of seasoning and add more only if needed. Pat thawed squid dry before it touches hot oil to reduce splattering.", "調味料は少量から始め、必要な場合だけ足します。油はねを減らすため、解凍したイカは熱い油へ入れる前に水気をよく拭いてください。", "ဟင်းခတ်များကို အနည်းငယ်မှစပြီး လိုအပ်မှသာ ထပ်ထည့်ပါ။ ဆီမစင်အောင် အရည်ဖျော်ထားသော ပြည်ကြီးငါးကို ဆီပူထဲမထည့်မီ ခြောက်အောင်သုတ်ပါ။"),
-    [],
+    [
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-ingredients.jpg",
+        t("Stir-fry ingredients in the refrigerator drawer", "冷蔵庫の引き出しにある炒め物の材料", "ရေခဲသေတ္တာအံဆွဲထဲရှိ အကြော်အတွက် ပါဝင်ပစ္စည်းများ"),
+        t("Select suitable vegetables such as komatsuna (Xiao Pek Chye), cabbage, and shimeji mushrooms to cook with the squid.", "イカと一緒に調理する小松菜（Xiao Pek Chye）、キャベツ、しめじなどの適当な野菜を選びます。", "ပြည်ကြီးငါးနှင့်အတူချက်ရန် komatsuna (Xiao Pek Chye)၊ ဂေါ်ဖီထုပ်နှင့် shimeji မှိုကဲ့သို့သော သင့်လျော်သည့် ဟင်းသီးဟင်းရွက်များကို ရွေးချယ်ပါ။")),
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-squid.jpg",
+        t("Frozen squid (sotong) package before thawing", "解凍前の冷凍イカ（sotong）のパック", "အရည်မဖျော်မီ အေးခဲထားသော ပြည်ကြီးငါး (sotong) အထုပ်"),
+        t("If the squid is frozen, thaw it in the refrigerator or in a sealed bag submerged in cold water.", "イカが冷凍の場合は、冷蔵庫で解凍するか、密閉袋に入れて冷水に浸して解凍します。", "ပြည်ကြီးငါး အေးခဲထားပါက refrigerator ထဲတွင် သို့မဟုတ် sealed bag ထဲထည့်၍ ရေအေးတွင်စိမ်ပြီး အရည်ဖျော်ပါ။"))
+    ],
     "human",
     {
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
