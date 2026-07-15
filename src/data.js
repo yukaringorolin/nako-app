@@ -974,6 +974,14 @@ const officialReferences = {
 
 
 const routineTasks = [
+  routine("google-calendar-check", "daily", 5, "CAL",
+    t("Google Calendar Check", "Googleカレンダー確認", "Google Calendar စစ်ဆေးခြင်း"),
+    t("Check the shared Google Calendar every morning and again during the day for today's and upcoming events.", "毎朝と日中に共有Googleカレンダーを確認し、今日と今後の予定を見ます。", "မနက်တိုင်းနှင့် နေ့အတွင်း shared Google Calendar ကို စစ်ပြီး ယနေ့နှင့် လာမည့် event များကို ကြည့်ပါ။"),
+    t("Daily - morning + regularly", "毎日 - 朝＋定期的", "နေ့စဉ် - မနက် + ပုံမှန်"),
+    [
+      t("Check each event's time and location and prepare as needed. Tell Edwin or Yukari if an event affects the household schedule or anything is unclear. Do not change or delete events unless instructed.", "各予定の時間と場所を確認し、必要な準備をします。家の予定に影響する場合や不明点がある場合は、エドウィンまたはゆかりに伝えます。指示なしに予定を変更・削除しないでください。", "event တစ်ခုစီ၏ အချိန်နှင့် နေရာကို စစ်ပြီး လိုအပ်သလို ပြင်ဆင်ပါ။ အိမ်၏ schedule ကို သက်ရောက်ပါက သို့မဟုတ် မရှင်းလင်းပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။ ညွှန်ကြားချက်မရှိဘဲ event ကို မပြောင်း၊ မဖျက်ပါနှင့်။"),
+      t("Chocho's salary is paid on the 1st of every month, and her mandatory rest day is the first Sunday of every month. Use the Calendar entries for the exact schedule.", "Chochoの給料日は毎月1日、必須の休日は毎月第1日曜日です。正確な予定はカレンダーの登録内容で確認してください。", "Chocho ၏ လစာပေးရက်သည် လတိုင်း ၁ ရက်နေ့ဖြစ်ပြီး မဖြစ်မနေ နားရက်သည် လတိုင်း၏ ပထမဆုံး တနင်္ဂနွေနေ့ဖြစ်သည်။ အတိအကျ schedule ကို Calendar entry များတွင် စစ်ပါ။")
+    ]),
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
     t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
@@ -1008,11 +1016,11 @@ const routineTasks = [
     ]),
   routine("essential-food-stock", "daily", 12, "F",
     t("Essential Food Stock", "常に家に置く食品", "အိမ်တွင် အမြဲထားရမည့် အစားအစာ"),
-    t("Keep milk, eggs, bread, Japanese rice, mushrooms, tofu, frozen sliced pork, tomatoes, and bananas in stock.", "牛乳、卵、パン、日本米、きのこ、豆腐、冷凍豚肉スライス、トマト、バナナを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီးနှင့် ငှက်ပျောသီးကို အမြဲထားပါ။"),
+    t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
     t("Daily check / restock as needed", "毎日確認／必要に応じて補充", "နေ့စဉ်စစ်ဆေး / လိုအပ်သလို ပြန်ဖြည့်"),
     [
       t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။"),
-      t("Check expiry dates. Keep frozen sliced pork in the freezer.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫で保管してください。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင် သိမ်းပါ။")
+      t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။")
     ],
     [
       photo("assets/routines/essential-food-stock-bananas.jpg",
@@ -1151,6 +1159,14 @@ const routineTasks = [
     t("Whenever Nako is out of the pen, she must wear her collar and house leash / house line and be monitored actively.", "ナコがケージの外に出ているときは、常に首輪とハウスリードを着用させ、積極的に監視する必要があります。", "Nako သည် ခြံပြင်ပတွင် ရှိနေသည့်အချိန်တိုင်း လည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ဆင်ထားရမည်ဖြစ်ပြီး တက်ကြွစွာ စောင့်ကြည့်ရမည်။"), 
     t("Whenever out of pen / roaming", "ケージの外に出ているとき / 自由に歩き回っているとき", "ခြံပြင်ပသို့ ရောက်နေစဉ် / လွတ်လပ်စွာသွားလာနေစဉ်"), 
     t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။")),
+  routine("nako-walk-car-bags", "daily", 75, "B",
+    t("Nako - Walk & Car Bags", "ナコ - 散歩用・車用バッグ", "နာကို - လမ်းလျှောက်နှင့် ကားစီးအိတ်"),
+    t("Pack Nako's correct bag before every walk or car ride, with water, poop bags, and a small treat box if needed.", "散歩や車移動の前に、ナコ用の正しいバッグへ水、うんち袋、必要なら小さいおやつ箱を入れます。", "လမ်းလျှောက်ခြင်း သို့မဟုတ် ကားစီးခြင်းမပြုမီ Nako အတွက် မှန်ကန်သောအိတ်ထဲသို့ ရေ၊ ခွေးချေးအိတ်နှင့် လိုအပ်ပါက treat အဘူးအသေး ၁ ဘူး ထည့်ပါ။"),
+    t("Every walk / every car ride", "散歩・車移動のたび", "လမ်းလျှောက်တိုင်း / ကားစီးတိုင်း"),
+    [
+      t("Walks: use the blue-striped Trader Joe's bag. Car rides: use the large white bag, and keep Nako inside it while she is in the car.", "散歩ではTrader Joe'sの青いシマシマのバッグを使います。車では白い大きなバッグを使い、車内ではナコをその中に入れてください。", "လမ်းလျှောက်သည့်အခါ Trader Joe's အပြာရောင်အစင်းပါသောအိတ်ကို သုံးပါ။ ကားစီးသည့်အခါ အဖြူရောင်အိတ်အကြီးကို သုံးပြီး Nako ကို ကားထဲတွင် ထိုအိတ်အတွင်း၌ထားပါ။"),
+      t("Before leaving, check the contents. In the car, secure the large white bag so it cannot move and never block its ventilation.", "出発前に中身を確認します。車内では白い大きなバッグが動かないよう安全に置き、通気を絶対にふさがないでください。", "မထွက်ခင် အိတ်ထဲရှိပစ္စည်းများကို စစ်ပါ။ ကားထဲတွင် အဖြူရောင်အိတ်အကြီး မရွေ့နိုင်အောင် လုံခြုံစွာထားပြီး လေဝင်လေထွက်ကို မပိတ်ပါနှင့်။")
+    ]),
   routine("general-window-safety", "as-needed", 13, "W",
     t("General Window Safety", "窓の安全", "ပြတင်းပေါက် ဘေးကင်းရေး"),
     t("Keep Nako and every household helper safe around windows and window grilles.", "窓や窓グリルの周りでは、ナコとヘルパー全員の安全を守ってください。", "ပြတင်းပေါက်နှင့် window grille အနီးတွင် Nako နှင့် အိမ်အကူအားလုံး ဘေးကင်းအောင်ထားပါ။"),
@@ -1802,6 +1818,11 @@ const routineTasks = [
         t("Yukari resting", "休息するゆかり", "နားနေသော ယူကာရီ"),
         t("Reference photo of Yukari resting or experiencing a cataplexy episode.", "休息中またはカタプレキシー発作時のゆかりの参考写真。", "ယူကာရီ နားနေစဉ် သို့မဟုတ် cataplexy ဖြစ်နေစဉ် ကိုးကားပုံ။"))
     ]),
+  routine("leaving-home-house-keys", "as-needed", 10, "KEY",
+    t("Leaving Home - House Keys", "外出時 - 家の鍵", "အပြင်ထွက်ချိန် - အိမ်သော့"),
+    t("Every time Chocho leaves the house, she must take the house keys, even for a short trip nearby.", "Chochoは、近所への短い外出でも、家を出る時は必ず家の鍵を持って行きます。", "Chocho သည် အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို မဖြစ်မနေ ယူသွားရမည်။"),
+    t("Every time leaving home", "外出するたび", "အိမ်မှထွက်သည့်အခါတိုင်း"),
+    t("Check that the keys are with you before closing the door. Do not depend on someone being home to open it.", "ドアを閉める前に鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ သော့ပါရှိကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။")),
   routine("yukari-flight-packing", "as-needed", 20, "Y", 
     t("Yukari - Flight Work Packing", "ゆかり - フライト業務の荷造り", "Yukari - လေယာဉ်ခရီးစဉ်အတွက် အထုပ်ပြင်ခြင်း"), 
     t("Help pack and unpack Yukari's work items and luggage when she needs to fly.", "ゆかりがフライトする際に、仕事用アイテムやスーツケースの荷造り・荷解きを手伝います。", "Yukari လေယာဉ်စီးရန် ရှိသည့်အခါ သူမ၏ အလုပ်ပစ္စည်းများနှင့် ခရီးဆောင်အိတ်များကို ထုပ်ပိုးခြင်းနှင့် ဖွင့်ခြင်းများ ကူညီပေးပါ။"), 
@@ -2760,6 +2781,91 @@ const recipes = [
       highProtein: true
     }
   ),
+  recipe("air-fryer-broccoli",
+    t("Air-Fryer Broccoli", "ブロッコリー（エアフライヤー）", "Air Fryer ဘရိုကိုလီ"),
+    [
+      [t("Broccoli", "ブロッコリー", "ဘရိုကိုလီ"), t("1 head or as needed", "1株または必要な量", "၁ စည်း သို့မဟုတ် လိုအပ်သလောက်"), "broccoli"],
+      [t("Garlic pepper", "ガーリックペッパー", "garlic pepper"), t("a light sprinkle", "少量", "အနည်းငယ်ဖြူးရန်"), "garlic-pepper"],
+      [t("Steak pepper", "ステーキペッパー", "steak pepper"), t("a light sprinkle", "少量", "အနည်းငယ်ဖြူးရန်"), "steak-pepper"],
+      [t("Salt", "塩", "ဆား"), t("a light sprinkle", "少量", "အနည်းငယ်ဖြူးရန်"), "salt"],
+      [t("Cooking oil", "調理油", "ဟင်းချက်ဆီ"), t("a light spray or drizzle", "軽くスプレーまたは回しかける", "အနည်းငယ်ဖြန်းရန် သို့မဟုတ် လောင်းရန်"), "oil"]
+    ],
+    [
+      t("Cut the broccoli into bite-sized pieces.", "ブロッコリーを一口サイズに切ります。", "ဘရိုကိုလီကို တစ်ကိုက်စာအရွယ် လှီးပါ။"),
+      t("Put it in the air-fryer basket and lightly season with garlic pepper, steak pepper, and salt.", "エアフライヤーのバスケットに入れ、ガーリックペッパー、ステーキペッパー、塩を少量振ります。", "air-fryer basket ထဲထည့်ပြီး garlic pepper၊ steak pepper နှင့် ဆားကို အနည်းငယ်ဖြူးပါ။"),
+      t("Lightly spray or drizzle with oil.", "油を軽くスプレーするか回しかけます。", "ဆီကို အနည်းငယ်ဖြန်းပါ သို့မဟုတ် လောင်းပါ။"),
+      t("Air-fry at 180°C for up to 10 minutes. Check around halfway and stop early if the edges brown too quickly.", "180℃で最長10分エアフライします。5分前後で確認し、端が早く焦げそうなら早めに止めます。", "180°C ဖြင့် ၁၀ မိနစ်အထိ air fry လုပ်ပါ။ ချက်ချိန်တစ်ဝက်ခန့်တွင် စစ်ပြီး အစွန်းများ မြန်မြန်ညိုလာပါက စောစောရပ်ပါ။")
+    ],
+    t("Broccoli burns easily. Watch it closely, and be careful because the air-fryer basket will be hot.", "ブロッコリーは焦げやすいので、こまめに確認します。熱いエアフライヤーのバスケットにも注意してください。", "ဘရိုကိုလီသည် လွယ်ကူစွာလောင်နိုင်သဖြင့် သေချာစောင့်ကြည့်ပါ။ ပူနေသော air-fryer basket ကိုလည်း သတိထားပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Side dish", "副菜", "အရံဟင်း"),
+      style: t("Air fryer", "エアフライヤー", "လေပူကြော်စက်"),
+      timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
+      highProtein: false
+    }
+  ),
+  recipe("squid-vegetable-stir-fry",
+    t("Squid & Vegetable Stir-Fry", "イカと野菜の炒め物", "ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်ကြော်"),
+    [
+      [t("Squid", "イカ", "ပြည်ကြီးငါး"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "squid"],
+      [t("Suitable vegetables, such as mushrooms, cabbage, or komatsuna", "きのこ、キャベツ、小松菜などの野菜", "မှို၊ ဂေါ်ဖီထုပ် သို့မဟုတ် komatsuna စသည့် ဟင်းသီးဟင်းရွက်"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "mixed-vegetables"],
+      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("if available", "あれば少量", "ရှိလျှင် အနည်းငယ်"), "garlic"],
+      [t("Olive oil", "オリーブオイル", "olive oil"), t("a small amount", "少量", "အနည်းငယ်"), "oil"],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("a small amount", "少量", "အနည်းငယ်"), "soy-sauce"],
+      [t("Salt", "塩", "ဆား"), t("a small amount", "少量", "အနည်းငယ်"), "salt"]
+    ],
+    [
+      t("If the squid is frozen, thaw it in the refrigerator. If it is needed quickly, keep it in a sealed leak-proof bag and submerge the bag in cold water. Never put the squid directly in the water.", "冷凍イカは冷蔵庫で解凍します。急ぐ場合は、漏れない密閉袋に入れたまま冷水につけます。イカを水へ直接入れないでください。", "ပြည်ကြီးငါး အေးခဲထားပါက refrigerator ထဲတွင် အရည်ဖျော်ပါ။ အမြန်လိုလျှင် ရေမယိုသော sealed bag ထဲတွင်ထားပြီး အိတ်ကို ရေအေးထဲစိမ်ပါ။ ပြည်ကြီးငါးကို ရေထဲတိုက်ရိုက်မထည့်ပါနှင့်။"),
+      t("Drain the squid and pat it dry before cooking.", "調理前にイカの水気を切り、しっかり拭きます。", "မချက်မီ ပြည်ကြီးငါးကို ရေစစ်ပြီး ခြောက်အောင်သုတ်ပါ။"),
+      t("Heat a small amount of olive oil in a frying pan and add garlic if available.", "フライパンに少量のオリーブオイルを熱し、あればにんにくを加えます。", "ဒယ်အိုးထဲတွင် olive oil အနည်းငယ်ပူအောင်လုပ်ပြီး garlic ရှိလျှင် ထည့်ပါ။"),
+      t("Add the squid and vegetables. Season with a little soy sauce and salt.", "イカと野菜を加え、醤油と塩を少量入れます。", "ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်များထည့်ပြီး ပဲငံပြာရည်နှင့် ဆား အနည်းငယ်ထည့်ပါ။"),
+      t("Stir-fry until the squid is fully cooked and the vegetables are ready.", "イカに完全に火が通り、野菜が仕上がるまで炒めます。", "ပြည်ကြီးငါးအပြည့်ကျက်ပြီး ဟင်းသီးဟင်းရွက်များ အဆင်သင့်ဖြစ်သည်အထိ ကြော်ပါ။")
+    ],
+    t("Start with small amounts of seasoning and add more only if needed. Pat thawed squid dry before it touches hot oil to reduce splattering.", "調味料は少量から始め、必要な場合だけ足します。油はねを減らすため、解凍したイカは熱い油へ入れる前に水気をよく拭いてください。", "ဟင်းခတ်များကို အနည်းငယ်မှစပြီး လိုအပ်မှသာ ထပ်ထည့်ပါ။ ဆီမစင်အောင် အရည်ဖျော်ထားသော ပြည်ကြီးငါးကို ဆီပူထဲမထည့်မီ ခြောက်အောင်သုတ်ပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Stir-fry", "炒め物", "ကြော်ဟင်း"),
+      timeEstimate: t("20 mins plus thawing", "解凍時間＋20分", "အရည်ဖျော်ချိန် + မိနစ် ၂၀"),
+      highProtein: true
+    }
+  ),
+  recipe("braised-pork-tau-pok-eggs-no-onion",
+    t("Braised Pork, Tau Pok & Eggs (No Onion)", "豚肉・厚揚げ・卵の醤油煮込み（玉ねぎなし）", "ဝက်သား၊ တိုဟူးကြော်နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ် (ကြက်သွန်နီမပါ)"),
+    [
+      [t("Cubed pork", "角切り豚肉", "အတုံးလေးများလှီးထားသော ဝက်သား"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "pork"],
+      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("3-4 cloves", "3〜4片", "၃-၄ မွှာ"), "garlic"],
+      [t("Ginger", "生姜", "ဂျင်း"), t("3-4 slices", "3〜4枚", "၃-၄ ပြား"), "ginger"],
+      [t("Tau Pok", "厚揚げ（Tau Pok）", "တိုဟူးကြော် (Tau Pok)"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "tau-pok"],
+      [t("Boiled eggs", "ゆで卵", "ကြက်ဥပြုတ်"), t("about 5, adjusted to servings", "約5個、人数に合わせる", "၅ လုံးခန့်၊ စားမည့်လူအရေအတွက်အလိုက်"), "eggs"],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("1 tablespoon", "大さじ1", "စားပွဲတင်ဇွန်း ၁ ဇွန်း"), "soy-sauce"],
+      [t("Dark soy sauce, red-label bottle", "ダークソイソース（赤いラベル）", "dark soy sauce (အနီရောင် label)"), t("1 tablespoon", "大さじ1", "စားပွဲတင်ဇွန်း ၁ ဇွန်း"), "dark-soy-sauce"],
+      [t("Garlic pepper", "ガーリックペッパー", "garlic pepper"), t("a small amount", "少量", "အနည်းငယ်"), "garlic-pepper"],
+      [t("Cooking oil", "調理油", "ဟင်းချက်ဆီ"), t("a small amount", "少量", "အနည်းငယ်"), "oil"],
+      [t("Water", "水", "ရေ"), t("enough to half-cover the ingredients", "材料が半分浸かる量", "ပါဝင်ပစ္စည်းများ တစ်ဝက်ခန့်မြုပ်ရန်"), "water"]
+    ],
+    [
+      t("If the pork is frozen, thaw it safely before cooking.", "豚肉が冷凍の場合は、安全に解凍してから調理します。", "ဝက်သားအေးခဲထားပါက ဘေးကင်းစွာ အရည်ဖျော်ပြီးမှ ချက်ပါ။"),
+      t("Heat a small amount of oil in a frying pan. Sauté the garlic and ginger until fragrant. Do not add onion.", "フライパンに少量の油を熱し、にんにくと生姜を香りが出るまで炒めます。玉ねぎは入れません。", "ဒယ်အိုးထဲတွင် ဆီအနည်းငယ်ပူအောင်လုပ်ပြီး ကြက်သွန်ဖြူနှင့် ဂျင်းကို မွှေးလာသည်အထိ ကြော်ပါ။ ကြက်သွန်နီ မထည့်ပါနှင့်။"),
+      t("Add the pork and cook until the outside is lightly browned.", "豚肉を加え、表面に軽く焼き色が付くまで炒めます。", "ဝက်သားထည့်ပြီး အပြင်ဘက် အနည်းငယ်ညိုလာသည်အထိ ကြော်ပါ။"),
+      t("Add 1 tablespoon soy sauce, 1 tablespoon red-label dark soy sauce, and a little garlic pepper. Mix well.", "醤油大さじ1、赤いラベルのダークソイソース大さじ1、ガーリックペッパー少々を加えてよく混ぜます。", "ပဲငံပြာရည် ၁ ဇွန်း၊ အနီရောင် label ပါသော dark soy sauce ၁ ဇွန်းနှင့် garlic pepper အနည်းငယ်ထည့်ပြီး ကောင်းကောင်းရောပါ။"),
+      t("Add the Tau Pok and boiled eggs, then add enough water to cover about half of the ingredients.", "厚揚げとゆで卵を加え、材料が半分くらい浸かるまで水を入れます。", "Tau Pok နှင့် ကြက်ဥပြုတ်ထည့်ပြီး ပါဝင်ပစ္စည်းများ တစ်ဝက်ခန့်မြုပ်သည်အထိ ရေထည့်ပါ။"),
+      t("Transfer to a pot and simmer gently over low to medium heat for about 45 minutes. Add water before the pot dries out.", "鍋へ移し、弱火〜中火で約45分ゆっくり煮込みます。鍋が乾く前に水を足してください。", "အိုးထဲပြောင်းပြီး မီးအေးမှ မီးအလယ်အလတ်ဖြင့် ၄၅ မိနစ်ခန့် ဖြည်းဖြည်းတည်ပါ။ အိုးမခြောက်မီ ရေထပ်ထည့်ပါ။"),
+      t("Make sure the pork is fully cooked before serving.", "提供前に豚肉へ完全に火が通っていることを確認します。", "မပေးမီ ဝက်သား လုံးဝကျက်ကြောင်း စစ်ပါ။")
+    ],
+    t("Everyone's favorite recipe. Strictly no onion. Use the red-label bottle for dark soy sauce, keep the simmer gentle, and adjust the boiled eggs to the number of servings.", "みんなのお気に入りレシピです。玉ねぎは絶対に入れません。ダークソイソースは赤いラベルのボトルを使い、弱めの火で煮込み、ゆで卵は人数に合わせます。", "လူတိုင်းအကြိုက်ဆုံး ဟင်းချက်နည်းဖြစ်သည်။ ကြက်သွန်နီ လုံးဝမထည့်ပါနှင့်။ dark soy sauce အတွက် အနီရောင် label ပါသောပုလင်းကိုသုံးပြီး မီးအေးအေးဖြင့်တည်ကာ ကြက်ဥပြုတ်ကို စားမည့်လူအရေအတွက်အလိုက် ချိန်ညှိပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Braised", "煮込み", "နှပ်ဟင်း"),
+      timeEstimate: t("60 mins", "60分", "မိနစ် ၆၀"),
+      highProtein: true
+    }
+  ),
   recipe("salt-garlic-pepper-pork-shoulder",
     t("Salt and Garlic Pepper Pork Shoulders", "塩ガーリックペッパー豚肩肉", "ဆား၊ ကြက်သွန်ဖြူငရုတ်ကောင်းနဲ့ ဝက်ပခုံးသား"),
     [
@@ -3441,6 +3547,7 @@ function checkTranslations() {
     zucchini: { file: "zucchini.jpg", source: product("/product/thygrace-green-zucchini-2-per-pack-13183890"), target: "Fresh green zucchini" },
     "napa-cabbage": { file: "napa-cabbage.jpg", source: product("/product/wa-wa-chye-baby-wongbok-250g-10950392"), target: "Whole wong bok / napa cabbage" },
     broccoli: { file: "broccoli.jpg", source: product("/product/orgo-fresh-royal-broccoli-280-g-90153099"), target: "Fresh broccoli head or supermarket pack" },
+    "steak-pepper": { file: null, source: search("steak pepper seasoning"), target: "Steak-pepper seasoning bottle" },
     rice: { file: "rice.jpg", source: product("/product/fairprice-japonica-rice-premium-short-grain-25kg-13086207"), target: "Japanese-style short-grain rice bag" },
     "soy-sauce": { file: "soy-sauce.jpg", source: product("/product/12400028"), target: "Japanese-style soy sauce bottle" },
     mirin: { file: "mirin.jpg", source: product("/product/takara-mirin-japanese-sweet-cooking-rice-wine-300ml-90002289"), target: "Mirin bottle" },
@@ -3465,6 +3572,8 @@ function checkTranslations() {
     "pork-shoulder": { file: null, source: null, target: "Pork shoulder butt slices" },
     "pork-loin": { file: null, source: null, target: "Thick-cut pork loin chops" },
     cabbage: { file: "cabbage.jpg", source: product("/product/orgo-fresh-cabbage-whole-1-pc-90150967"), target: "Ordinary whole green cabbage" },
+    squid: { file: null, source: search("squid"), target: "Cleaned squid in a labelled chilled or frozen pack" },
+    "mixed-vegetables": { file: null, source: null, target: "Suitable fresh stir-fry vegetables such as mushrooms, cabbage, or komatsuna" },
     "shimeji-mushroom": { file: "shimeji-mushroom.jpg", source: product("/product/hokto-mushroom-white-shimeiji-100g-11017131"), target: "Shimeji mushroom retail pack" },
     "button-mushroom": { file: "button-mushroom.jpg", source: product("/product/pasar-white-button-mushroom-200g-13101275"), target: "White button mushroom retail pack" },
     "enoki-mushroom": { file: null, source: null, target: "Fresh enoki mushroom pack" },
@@ -3499,6 +3608,7 @@ function checkTranslations() {
     "pork-ribs": { file: null, source: null, target: "Raw pork ribs" },
     "bak-kut-teh-spices": { file: null, source: null, target: "Bak kut teh spice packet" },
     garlic: { file: null, source: null, target: "Fresh garlic bulb" },
+    "tau-pok": { file: null, source: search("tau pok"), target: "Tau Pok fried tofu puffs in a labelled pack" },
     "garlic-pepper": { file: null, source: null, target: "Garlic pepper seasoning bottle" },
     "potato-starch": { file: null, source: null, target: "Potato starch packet" },
     "dashi-soy-sauce": { file: null, source: null, target: "Japanese dashi soy sauce bottle" },

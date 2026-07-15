@@ -1,4 +1,12 @@
 const routineTasks = [
+  routine("google-calendar-check", "daily", 5, "CAL",
+    t("Google Calendar Check", "Googleカレンダー確認", "Google Calendar စစ်ဆေးခြင်း"),
+    t("Check the shared Google Calendar every morning and again during the day for today's and upcoming events.", "毎朝と日中に共有Googleカレンダーを確認し、今日と今後の予定を見ます。", "မနက်တိုင်းနှင့် နေ့အတွင်း shared Google Calendar ကို စစ်ပြီး ယနေ့နှင့် လာမည့် event များကို ကြည့်ပါ။"),
+    t("Daily - morning + regularly", "毎日 - 朝＋定期的", "နေ့စဉ် - မနက် + ပုံမှန်"),
+    [
+      t("Check each event's time and location and prepare as needed. Tell Edwin or Yukari if an event affects the household schedule or anything is unclear. Do not change or delete events unless instructed.", "各予定の時間と場所を確認し、必要な準備をします。家の予定に影響する場合や不明点がある場合は、エドウィンまたはゆかりに伝えます。指示なしに予定を変更・削除しないでください。", "event တစ်ခုစီ၏ အချိန်နှင့် နေရာကို စစ်ပြီး လိုအပ်သလို ပြင်ဆင်ပါ။ အိမ်၏ schedule ကို သက်ရောက်ပါက သို့မဟုတ် မရှင်းလင်းပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။ ညွှန်ကြားချက်မရှိဘဲ event ကို မပြောင်း၊ မဖျက်ပါနှင့်။"),
+      t("Chocho's salary is paid on the 1st of every month, and her mandatory rest day is the first Sunday of every month. Use the Calendar entries for the exact schedule.", "Chochoの給料日は毎月1日、必須の休日は毎月第1日曜日です。正確な予定はカレンダーの登録内容で確認してください。", "Chocho ၏ လစာပေးရက်သည် လတိုင်း ၁ ရက်နေ့ဖြစ်ပြီး မဖြစ်မနေ နားရက်သည် လတိုင်း၏ ပထမဆုံး တနင်္ဂနွေနေ့ဖြစ်သည်။ အတိအကျ schedule ကို Calendar entry များတွင် စစ်ပါ။")
+    ]),
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
     t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
@@ -33,11 +41,11 @@ const routineTasks = [
     ]),
   routine("essential-food-stock", "daily", 12, "F",
     t("Essential Food Stock", "常に家に置く食品", "အိမ်တွင် အမြဲထားရမည့် အစားအစာ"),
-    t("Keep milk, eggs, bread, Japanese rice, mushrooms, tofu, frozen sliced pork, tomatoes, and bananas in stock.", "牛乳、卵、パン、日本米、きのこ、豆腐、冷凍豚肉スライス、トマト、バナナを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီးနှင့် ငှက်ပျောသီးကို အမြဲထားပါ။"),
+    t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
     t("Daily check / restock as needed", "毎日確認／必要に応じて補充", "နေ့စဉ်စစ်ဆေး / လိုအပ်သလို ပြန်ဖြည့်"),
     [
       t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။"),
-      t("Check expiry dates. Keep frozen sliced pork in the freezer.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫で保管してください。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင် သိမ်းပါ။")
+      t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။")
     ],
     [
       photo("assets/routines/essential-food-stock-bananas.jpg",
@@ -176,6 +184,14 @@ const routineTasks = [
     t("Whenever Nako is out of the pen, she must wear her collar and house leash / house line and be monitored actively.", "ナコがケージの外に出ているときは、常に首輪とハウスリードを着用させ、積極的に監視する必要があります。", "Nako သည် ခြံပြင်ပတွင် ရှိနေသည့်အချိန်တိုင်း လည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ဆင်ထားရမည်ဖြစ်ပြီး တက်ကြွစွာ စောင့်ကြည့်ရမည်။"), 
     t("Whenever out of pen / roaming", "ケージの外に出ているとき / 自由に歩き回っているとき", "ခြံပြင်ပသို့ ရောက်နေစဉ် / လွတ်လပ်စွာသွားလာနေစဉ်"), 
     t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။")),
+  routine("nako-walk-car-bags", "daily", 75, "B",
+    t("Nako - Walk & Car Bags", "ナコ - 散歩用・車用バッグ", "နာကို - လမ်းလျှောက်နှင့် ကားစီးအိတ်"),
+    t("Pack Nako's correct bag before every walk or car ride, with water, poop bags, and a small treat box if needed.", "散歩や車移動の前に、ナコ用の正しいバッグへ水、うんち袋、必要なら小さいおやつ箱を入れます。", "လမ်းလျှောက်ခြင်း သို့မဟုတ် ကားစီးခြင်းမပြုမီ Nako အတွက် မှန်ကန်သောအိတ်ထဲသို့ ရေ၊ ခွေးချေးအိတ်နှင့် လိုအပ်ပါက treat အဘူးအသေး ၁ ဘူး ထည့်ပါ။"),
+    t("Every walk / every car ride", "散歩・車移動のたび", "လမ်းလျှောက်တိုင်း / ကားစီးတိုင်း"),
+    [
+      t("Walks: use the blue-striped Trader Joe's bag. Car rides: use the large white bag, and keep Nako inside it while she is in the car.", "散歩ではTrader Joe'sの青いシマシマのバッグを使います。車では白い大きなバッグを使い、車内ではナコをその中に入れてください。", "လမ်းလျှောက်သည့်အခါ Trader Joe's အပြာရောင်အစင်းပါသောအိတ်ကို သုံးပါ။ ကားစီးသည့်အခါ အဖြူရောင်အိတ်အကြီးကို သုံးပြီး Nako ကို ကားထဲတွင် ထိုအိတ်အတွင်း၌ထားပါ။"),
+      t("Before leaving, check the contents. In the car, secure the large white bag so it cannot move and never block its ventilation.", "出発前に中身を確認します。車内では白い大きなバッグが動かないよう安全に置き、通気を絶対にふさがないでください。", "မထွက်ခင် အိတ်ထဲရှိပစ္စည်းများကို စစ်ပါ။ ကားထဲတွင် အဖြူရောင်အိတ်အကြီး မရွေ့နိုင်အောင် လုံခြုံစွာထားပြီး လေဝင်လေထွက်ကို မပိတ်ပါနှင့်။")
+    ]),
   routine("general-window-safety", "as-needed", 13, "W",
     t("General Window Safety", "窓の安全", "ပြတင်းပေါက် ဘေးကင်းရေး"),
     t("Keep Nako and every household helper safe around windows and window grilles.", "窓や窓グリルの周りでは、ナコとヘルパー全員の安全を守ってください。", "ပြတင်းပေါက်နှင့် window grille အနီးတွင် Nako နှင့် အိမ်အကူအားလုံး ဘေးကင်းအောင်ထားပါ။"),
@@ -827,6 +843,11 @@ const routineTasks = [
         t("Yukari resting", "休息するゆかり", "နားနေသော ယူကာရီ"),
         t("Reference photo of Yukari resting or experiencing a cataplexy episode.", "休息中またはカタプレキシー発作時のゆかりの参考写真。", "ယူကာရီ နားနေစဉ် သို့မဟုတ် cataplexy ဖြစ်နေစဉ် ကိုးကားပုံ။"))
     ]),
+  routine("leaving-home-house-keys", "as-needed", 10, "KEY",
+    t("Leaving Home - House Keys", "外出時 - 家の鍵", "အပြင်ထွက်ချိန် - အိမ်သော့"),
+    t("Every time Chocho leaves the house, she must take the house keys, even for a short trip nearby.", "Chochoは、近所への短い外出でも、家を出る時は必ず家の鍵を持って行きます。", "Chocho သည် အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို မဖြစ်မနေ ယူသွားရမည်။"),
+    t("Every time leaving home", "外出するたび", "အိမ်မှထွက်သည့်အခါတိုင်း"),
+    t("Check that the keys are with you before closing the door. Do not depend on someone being home to open it.", "ドアを閉める前に鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ သော့ပါရှိကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။")),
   routine("yukari-flight-packing", "as-needed", 20, "Y", 
     t("Yukari - Flight Work Packing", "ゆかり - フライト業務の荷造り", "Yukari - လေယာဉ်ခရီးစဉ်အတွက် အထုပ်ပြင်ခြင်း"), 
     t("Help pack and unpack Yukari's work items and luggage when she needs to fly.", "ゆかりがフライトする際に、仕事用アイテムやスーツケースの荷造り・荷解きを手伝います。", "Yukari လေယာဉ်စီးရန် ရှိသည့်အခါ သူမ၏ အလုပ်ပစ္စည်းများနှင့် ခရီးဆောင်အိတ်များကို ထုပ်ပိုးခြင်းနှင့် ဖွင့်ခြင်းများ ကူညီပေးပါ။"), 
