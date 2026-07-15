@@ -1166,6 +1166,14 @@ const routineTasks = [
     [
       t("Walks: use the blue-striped Trader Joe's bag. Car rides: use the large white bag, and keep Nako inside it while she is in the car.", "散歩ではTrader Joe'sの青いシマシマのバッグを使います。車では白い大きなバッグを使い、車内ではナコをその中に入れてください。", "လမ်းလျှောက်သည့်အခါ Trader Joe's အပြာရောင်အစင်းပါသောအိတ်ကို သုံးပါ။ ကားစီးသည့်အခါ အဖြူရောင်အိတ်အကြီးကို သုံးပြီး Nako ကို ကားထဲတွင် ထိုအိတ်အတွင်း၌ထားပါ။"),
       t("Before leaving, check the contents. In the car, secure the large white bag so it cannot move and never block its ventilation.", "出発前に中身を確認します。車内では白い大きなバッグが動かないよう安全に置き、通気を絶対にふさがないでください。", "မထွက်ခင် အိတ်ထဲရှိပစ္စည်းများကို စစ်ပါ။ ကားထဲတွင် အဖြူရောင်အိတ်အကြီး မရွေ့နိုင်အောင် လုံခြုံစွာထားပြီး လေဝင်လေထွက်ကို မပိတ်ပါနှင့်။")
+    ],
+    [
+      photo("assets/routines/nako-bags-trader-joes.jpg",
+        t("Trader Joe's canvas tote bag and outing accessories", "Trader Joe'sのキャンバストートバッグと外出用アクセサリー", "Trader Joe's ကတ္တီပါ လမ်းလျှောက်အိတ်နှင့် အပြင်ထွက်ပစ္စည်းများ"),
+        t("Daily outing bag containing Nako's water bottle, pee pads, and food container.", "ナコの給水ボトル、ペットシーツ、フード容器を入れる日常の外出用バッグ。", "Nako ၏ ရေဘူး၊ ဆီးခံပြားနှင့် အစာဘူးတို့ ထည့်ထားသည့် နေ့စဉ် အပြင်ထွက်အိတ်။")),
+      photo("assets/routines/nako-carrier-onecute.jpg",
+        t("ONECUTE mesh carrier bag", "ONECUTE メッシュキャリーバッグ", "ONECUTE ဇကာပါ သယ်ဆောင်သည့်အိတ်"),
+        t("Mesh transport carrier bag for Nako.", "ナコ用のメッシュ製キャリーバッグ。", "Nako အတွက် ဇကာပါသော သယ်ဆောင်သည့်အိတ်။"))
     ]),
   routine("general-window-safety", "as-needed", 13, "W",
     t("General Window Safety", "窓の安全", "ပြတင်းပေါက် ဘေးကင်းရေး"),
@@ -2204,24 +2212,7 @@ if (mailDeliveriesRoutine) {
   ];
 }
 
-const nakoExerciseGroomingRoutine = routineTasks.find((task) => task.id === "nako-exercise-grooming");
-if (nakoExerciseGroomingRoutine) {
-  nakoExerciseGroomingRoutine.instructions = [
-    t("Before outings, pack Nako's walk bag (Trader Joe's canvas tote) with her water bottle, pee pads, and treat container. Use the white mesh carrier bag (ONECUTE) for safe transport when needed.",
-      "外出前に、ナコの散歩バッグ（Trader Joe'sのキャンバストート）に給水ボトル、ペットシーツ、おやつ容器を準備します。必要なときは、安全な移動のために白いメッシュのキャリーバッグ（ONECUTE）を使用してください。",
-      "အပြင်မထွက်မီ Nako ၏ လမ်းလျှောက်အိတ် (Trader Joe's ကတ္တီပါအိတ်) ထဲတွင် ရေဘူး၊ ဆီးခံပြားနှင့် မုန့်ဘူးတို့ကို ထည့်ပါ။ လိုအပ်သည့်အခါ ဘေးကင်းစွာ သယ်ဆောင်ရန် ဇကာပါသော အဖြူရောင် အိတ် (ONECUTE) ကို သုံးပါ။"),
-    ...nakoExerciseGroomingRoutine.instructions
-  ];
-  nakoExerciseGroomingRoutine.photos = [
-    photo("assets/routines/nako-bags-trader-joes.jpg",
-      t("Trader Joe's canvas tote bag and outing accessories", "Trader Joe'sのキャンバストートバッグと外出用アクセサリー", "Trader Joe's ကတ္တီပါ လမ်းလျှောက်အိတ်နှင့် အပြင်ထွက်ပစ္စည်းများ"),
-      t("Daily outing bag containing Nako's water bottle, pee pads, and food container.", "ナコの給水ボトル、ペットシーツ、フード容器を入れる日常の外出用バッグ。", "Nako ၏ ရေဘူး၊ ဆီးခံပြားနှင့် အစာဘူးတို့ ထည့်ထားသည့် နေ့စဉ် အပြင်ထွက်အိတ်။")),
-    photo("assets/routines/nako-carrier-onecute.jpg",
-      t("ONECUTE mesh carrier bag", "ONECUTE メッシュキャリーバッグ", "ONECUTE ဇကာပါ သယ်ဆောင်သည့်အိတ်"),
-      t("Mesh transport carrier bag for Nako.", "ナコ用のメッシュ製キャリーバッグ。", "Nako အတွက် ဇကာပါသော သယ်ဆောင်သည့်အိတ်။")),
-    ...nakoExerciseGroomingRoutine.photos
-  ];
-}
+
 
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
 // If a non-daily actionable task is deliberately excluded, we declare a reason here.
