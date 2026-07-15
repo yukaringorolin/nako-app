@@ -1094,7 +1094,7 @@ const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-
 if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyBucket = "daily";
   groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
-  groceryShoppingRoutine.sortOrder = 32;
+  groceryShoppingRoutine.sortOrder = 14;
   groceryShoppingRoutine.mustRemember.push(
     t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။"),
     t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
