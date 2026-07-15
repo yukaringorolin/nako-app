@@ -370,7 +370,7 @@ const routineTasks = [
         t("Wipe light switches and plug adapters gently to keep them clean.", "電気スイッチやプラグのアダプターを優しく拭いて、清潔に保ってください。", "မီးခလုတ်များနှင့် ပလပ်အဒက်တာများကို သန့်ရှင်းစေရန် ညင်သာစွာ သုတ်ပေးပါ။"))
     ]),
 
-  routine("household-supplies-online", "daily", 145, "S",
+  routine("household-supplies-online", "daily", 900, "S",
     t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 
     t("Refill low tissue boxes. Check spare supplies weekly. Add needed items to the Shopee cart, but do not order.", "少ないティッシュを補充します。予備品を毎週確認します。必要な品はShopeeカートに入れますが、注文しません。", "tissue နည်းရင် ဖြည့်ပါ။ အပိုပစ္စည်းကို အပတ်စဉ်စစ်ပါ။ လိုတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
     t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
