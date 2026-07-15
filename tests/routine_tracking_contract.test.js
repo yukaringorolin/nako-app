@@ -94,6 +94,10 @@ for (const id of baselineIds) {
 const retiredPillowMattressVacuuming = allTasks.find((task) => task.id === "pillow-mattress-vacuuming");
 assert.ok(retiredPillowMattressVacuuming, "Retired pillow/mattress vacuuming routine must retain its stable ID and history");
 assert.equal(retiredPillowMattressVacuuming.active, false, "Vacuuming is now part of weekly bedrooms and linens, so the monthly duplicate must stay inactive");
+const ikeaBedFrameCleaning = tracked.find((task) => task.id === "ikea-bed-frame");
+assert.equal(ikeaBedFrameCleaning.frequencyBucket, "quarterly", "IKEA bed-frame cleaning must appear in the quarterly section");
+assert.equal(ikeaBedFrameCleaning.trackingCadence, "quarterly", "IKEA bed-frame cleaning must use quarterly completion cycles");
+assert.equal(ikeaBedFrameCleaning.trackingAnchor, null, "Quarterly IKEA bed-frame cleaning must not retain the fortnightly anchor");
 
 // 10. A newly added mock tracked task would automatically be selected by trackedRoutineTasks predicate logic
 const mockTask = {
