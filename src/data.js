@@ -1053,7 +1053,7 @@ const routineTasks = [
         t("Protein powder and creatine stored in the kitchen cabinet", "キッチン戸棚に保管しているプロテインパウダーとクレアチン", "မီးဖိုချောင်ဗီရိုထဲတွင် သိမ်းထားသော protein powder နှင့် creatine"),
         t("Use the Optimum Nutrition protein powder and creatine stored together in this cabinet.", "この戸棚に一緒に保管しているOptimum Nutritionのプロテインパウダーとクレアチンを使います。", "ဤဗီရိုထဲတွင် အတူတကွ သိမ်းထားသော Optimum Nutrition protein powder နှင့် creatine ကို အသုံးပြုပါ။")),
     ]),
-  routine("clean-up-cooking-appliances", "daily", 20, "K", 
+  routine("clean-up-cooking-appliances", "daily", 16, "K", 
     t("Clean Up & Cooking Appliances", "片付けと調理器具の清掃", "သန့်ရှင်းရေးနှင့် ချက်ပြုတ်သည့်ပစ္စည်းများ"), 
     t("Wash cookware and plates. Wipe the kitchen. Clean each appliance used, including oily removable parts.", "調理器具と皿を洗います。キッチンを拭きます。使用した家電と油のついた部品を掃除します。", "အိုးခွက်ပန်းကန်ဆေးပါ။ မီးဖိုချောင်သုတ်ပါ။ သုံးထားတဲ့စက်နဲ့ ဆီပေတဲ့အပိုင်းတွေကို သန့်ရှင်းပါ။"),
     t("After every meal + as needed", "毎食後＋必要に応じて", "စားပြီးတိုင်း + လိုအပ်သလို"), 
@@ -2066,13 +2066,21 @@ if (vimleSofaBedRoutine) {
   ];
 }
 
+const essentialFoodStockRoutine = routineTasks.find((task) => task.id === "essential-food-stock");
+if (essentialFoodStockRoutine) {
+  essentialFoodStockRoutine.active = false;
+}
+
 const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-shopping");
 if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyBucket = "daily";
   groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
   groceryShoppingRoutine.sortOrder = 32;
   groceryShoppingRoutine.mustRemember.push(
-    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။")
+    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။"),
+    t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
+    t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။"),
+    t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။")
   );
   groceryShoppingRoutine.photos = [
     photo("assets/routines/nako-grocery-shopping.png",
@@ -2081,6 +2089,9 @@ if (groceryShoppingRoutine) {
     photo("assets/routines/grocery-shopping-wet-market-prawns.jpg",
       t("Fresh prawns at the wet-market seafood stall", "市場の鮮魚店にある新鮮なエビ", "စျေးပင်လယ်စာဆိုင်ရှိ ပုစွန်လတ်များ"),
       t("Buy fresh prawns here only when they are on the shopping list or requested. Confirm the amount if unsure.", "買い物リストにある時、または頼まれた時だけ、ここで新鮮なエビを買います。量が不明な場合は確認してください。", "shopping list ထဲတွင်ပါသည့်အခါ သို့မဟုတ် တောင်းဆိုထားသည့်အခါမှသာ ဤနေရာမှ ပုစွန်လတ်များ ဝယ်ပါ။ ပမာဏမသေချာပါက မေးပါ။")),
+    photo("assets/routines/essential-food-stock-bananas.jpg",
+      t("Banana bunches at the wet-market fruit stall", "市場の果物店に吊られたバナナ", "စျေးသစ်သီးဆိုင်တွင် ချိတ်ထားသော ငှက်ပျောသီးခိုင်များ"),
+      t("Use the marked banana bunches as the buying reference when home stock is running low.", "家の在庫が少なくなった時は、印を付けたバナナの房を購入の目安にします。", "အိမ်တွင် ငှက်ပျောသီးနည်းလာပါက အမှတ်အသားပြထားသော ငှက်ပျောသီးခိုင်များကို ဝယ်ယူရန် ကိုးကားပါ။")),
     ...groceryShoppingRoutine.photos
   ];
 }

@@ -103,6 +103,7 @@ assert.ok(weeklyLinenWashPhoto);
 assert.match(weeklyLinenWashPhoto.caption.en, /bedsheet, blankets, pillowcases, and bolster covers/);
 assert.ok(weeklyLinenWashPhoto.caption.jp && weeklyLinenWashPhoto.caption.mm);
 assert.equal(routineById("pillow-mattress-vacuuming").active, false);
+assert.equal(routineById("essential-food-stock").active, false);
 
 const vimleSofaBed = routineById("vimle-sofa-bed");
 assert.equal(vimleSofaBed.frequencyBucket, "as-needed");
