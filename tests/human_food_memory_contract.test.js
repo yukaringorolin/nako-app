@@ -15,7 +15,7 @@ assert.match(componentSource, /food-memory-figure.*loading="lazy"/s);
 
 assert.match(
   pageSource,
-  /renderHead\(item\.icon[\s\S]*?\$\{isHuman \? renderFoodMemory\(item\) : ""\}[\s\S]*?<section class="card-list">/,
+  /renderHead\(item\.icon[\s\S]*?\$\{isHuman \? renderFoodMemory\(item\) : ""\}[\s\S]*?<section class="card-list\$\{isHuman \? " human-recipe-grid" : ""\}">/,
   "The memory card must sit between the Human Food header and recipe list"
 );
 assert.equal((pageSource.match(/renderFoodMemory\(item\)/g) || []).length, 1);

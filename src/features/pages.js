@@ -553,7 +553,7 @@ function renderRecipeIndex(item) {
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
     ${isHuman ? renderFoodMemory(item) : ""}
-    <section class="card-list">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
+    <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
   renderShell(tr(item.title), content, true);
 }
 

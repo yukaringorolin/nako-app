@@ -324,9 +324,19 @@ img {
   font-size: 24px;
 }
 
-/* Recipe Card with Large Prominent Image */
-.recipe-card.has-large-image {
-  grid-template-columns: 1fr;
+/* Compact Human Food recipe index */
+.human-recipe-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+
+.recipe-card.human-recipe-card {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   padding: 0;
   overflow: hidden;
   border-left: none;
@@ -334,7 +344,7 @@ img {
 
 .recipe-card-banner {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--line);
 }
@@ -346,8 +356,31 @@ img {
   transition: transform 0.3s ease;
 }
 
-.recipe-card.has-large-image:active .recipe-card-banner img {
+.recipe-card.human-recipe-card:active .recipe-card-banner img {
   transform: scale(1.03);
+}
+
+.recipe-card.human-recipe-card:focus-visible {
+  outline: 3px solid #2f7352;
+  outline-offset: 2px;
+}
+
+.recipe-card-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #fff0eb, #e7f6ee);
+}
+
+.recipe-card-placeholder span {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--pink-strong);
+  font-size: 26px;
+  font-weight: 900;
 }
 
 .food-memory {
@@ -448,15 +481,19 @@ img {
 }
 
 .recipe-card-content {
-  padding: 14px;
+  flex: 1;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   width: 100%;
 }
 
-.recipe-card-content .card-title {
-  margin-bottom: 2px;
+.human-recipe-card .card-title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  line-height: 1.3;
 }
 
 .recipe-badges {
@@ -496,6 +533,35 @@ img {
 .recipe-badges .badge.demo-status {
   background: #fff0c7;
   color: #835b00;
+}
+
+.human-recipe-card .recipe-index-badges {
+  margin-top: auto;
+  gap: 5px;
+}
+
+.human-recipe-card .recipe-index-badges .badge {
+  padding: 4px 6px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+@media (max-width: 360px) {
+  .human-recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-card.human-recipe-card {
+    min-height: 104px;
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .human-recipe-card .recipe-card-banner {
+    height: 100%;
+    min-height: 104px;
+    aspect-ratio: auto;
+  }
 }
 
 /* Large Hero Image for Recipe Details */

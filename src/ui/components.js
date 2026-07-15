@@ -82,13 +82,31 @@ function renderRoutineCard(task, section) {
 function renderRecipeCard(recipe) {
   const isHuman = recipe.type === "human";
   const mainPhoto = primaryPhoto(recipe.photos);
-  
-  if (isHuman && mainPhoto) {
-    const badgesHtml = renderRecipeBadges(recipe);
-    return `<button class="recipe-card has-large-image" data-recipe="${esc(recipe.id)}"><div class="recipe-card-banner"><img src="${esc(mainPhoto.src)}" alt="${esc(tr(mainPhoto.alt || mainPhoto.caption))}" loading="lazy" /></div><div class="recipe-card-content"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span><div class="recipe-badges">${badgesHtml}</div></div></button>`;
-  }
+
+  if (isHuman) return renderHumanRecipeCard(recipe, mainPhoto);
   
   return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, mainPhoto)}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
+}
+
+function renderHumanRecipeCard(recipe, mainPhoto) {
+  const thumbnail = mainPhoto
+    ? `<div class="recipe-card-banner"><img src="${esc(mainPhoto.src)}" alt="${esc(tr(mainPhoto.alt || mainPhoto.caption))}" loading="lazy" /></div>`
+    : `<div class="recipe-card-banner recipe-card-placeholder" aria-hidden="true"><span>${esc(recipe.icon || "R")}</span></div>`;
+
+  return `<button class="recipe-card human-recipe-card" data-recipe="${esc(recipe.id)}">${thumbnail}<div class="recipe-card-content"><span class="card-title">${esc(tr(recipe.title))}</span><div class="recipe-badges recipe-index-badges">${renderRecipeIndexBadges(recipe)}</div></div></button>`;
+}
+
+function renderRecipeIndexBadges(recipe) {
+  let html = "";
+  if (recipe.timeEstimate) {
+    html += `<span class="badge time">${esc(tr(recipe.timeEstimate))}</span>`;
+  }
+  const secondaryBadge = recipe.demoStatus || recipe.mealType;
+  if (secondaryBadge) {
+    const secondaryClass = recipe.demoStatus ? "demo-status" : "meal-type";
+    html += `<span class="badge ${secondaryClass}">${esc(tr(secondaryBadge))}</span>`;
+  }
+  return html;
 }
 
 function renderFoodMemory(item) {
