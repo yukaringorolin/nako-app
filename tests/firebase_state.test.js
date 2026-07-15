@@ -81,10 +81,11 @@ assert.ok(firebaseSource.includes("db.runTransaction(async (transaction)"), "Mai
 assert.ok(firebaseSource.includes('{ mergeFields: ["state", "clientUpdatedAt", "updatedAt"] }'), "The canonical state map must replace the legacy parent field");
 assert.ok(firebaseSource.includes("transaction.update(stateDoc, payload)"), "Existing documents must replace the parent state field instead of recursively merging legacy metadata");
 assert.ok(firebaseSource.includes("if (signature(remoteState) === signature(mergedState)) return;"), "Stale transaction retries and cleanup-only passes must not rewrite matching canonical state");
-assert.ok(firebaseSource.includes("sharedStateCleanupConfirmed = true"), "A successful cleanup transaction must prevent stale local cache data from rearming cleanup");
-assert.ok(firebaseSource.includes("const cleanupRequired = !sharedStateCleanupConfirmed;"), "Each fresh sync session must run one idempotent cleanup even when the local Firestore cache omits legacy fields");
-assert.ok(firebaseSource.includes("await deleteLegacySharedStateFields()") && firebaseSource.includes('"state.routineCompletions"') && firebaseSource.includes('"state.training.contentMigrations"'), "Legacy embedded routine and migration data must be deleted explicitly before the queue settles");
+assert.ok(firebaseSource.includes("sharedStateCleanupAttempted = true"), "A cleanup attempt must prevent stale local cache data from rearming cleanup during the same session");
+assert.ok(firebaseSource.includes("const cleanupRequired = !sharedStateCleanupAttempted;"), "Each fresh sync session must run one idempotent cleanup attempt even when the local Firestore cache omits legacy fields");
+assert.ok(firebaseSource.includes("deleteLegacySharedStateFields().catch") && firebaseSource.includes('"state.routineCompletions"') && firebaseSource.includes('"state.training.contentMigrations"'), "Legacy embedded routine and migration data must be cleaned without controlling the normal queue result");
 assert.ok(firebaseSource.includes("cleanupCommitted = true;"), "Every committed main-state write must be followed by legacy field cleanup");
+assert.ok(firebaseSource.includes("Legacy shared-state cleanup deferred"), "Cleanup failure must be isolated from normal state synchronization");
 assert.ok(firebaseSource.includes("Legacy shared-state cleanup verification failed"), "Cleanup must verify excluded fields are absent before reporting success");
 assert.ok(firebaseSource.includes("documents:commit") && firebaseSource.includes("updateMask: { fieldPaths }"), "Cleanup must use an explicit Firestore commit update mask");
 assert.ok(firebaseSource.includes("stateMode: stateSyncStatus") && firebaseSource.includes("routineMode: routineSyncStatus"), "Public sync status must expose both channels");

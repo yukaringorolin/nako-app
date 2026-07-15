@@ -19,7 +19,7 @@
     training.commands ||= {};
     training.commandLogs ||= [];
     const latest = training.commandLogs
-      .filter((item) => item.commandId === commandId)
+      .filter((item) => !item.deleted && item.commandId === commandId)
       .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))[0];
 
     const state = training.commands[commandId] ||= baselineCommandState(command);
@@ -43,15 +43,28 @@
 
   function deleteCommandLog(options) {
     const { training, logId } = options || {};
-    if (!training || !Array.isArray(training.commandLogs)) return { deleted: false };
+    const result = tombstoneLog(training?.commandLogs, logId, options?.nowIso);
+    if (!result.deleted) return result;
 
-    const index = training.commandLogs.findIndex((item) => item.id === logId);
-    if (index < 0) return { deleted: false };
-
-    const [deletedLog] = training.commandLogs.splice(index, 1);
-    refreshCommandFromLogs({ ...options, commandId: deletedLog.commandId });
-    return { deleted: true, commandId: deletedLog.commandId, log: deletedLog };
+    refreshCommandFromLogs({ ...options, commandId: result.log.commandId });
+    return { ...result, commandId: result.log.commandId };
   }
 
-  return { deleteCommandLog, refreshCommandFromLogs };
+  function deletePlayLog(options) {
+    const { training, logId, nowIso } = options || {};
+    return tombstoneLog(training?.playLogs, logId, nowIso);
+  }
+
+  function tombstoneLog(logs, logId, nowIso) {
+    if (!Array.isArray(logs)) return { deleted: false };
+    const index = logs.findIndex((item) => item.id === logId);
+    if (index < 0) return { deleted: false };
+
+    const deletedAt = typeof nowIso === "function" ? nowIso() : new Date().toISOString();
+    const deletedLog = { ...logs[index], deleted: true, deletedAt, updatedAt: deletedAt };
+    logs[index] = deletedLog;
+    return { deleted: true, log: deletedLog };
+  }
+
+  return { deleteCommandLog, deletePlayLog, refreshCommandFromLogs };
 });

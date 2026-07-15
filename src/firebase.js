@@ -31,7 +31,7 @@
   let globalError = "";
   let stateDiffKeys = "";
   let stateCleanupPending = false;
-  let sharedStateCleanupConfirmed = false;
+  let sharedStateCleanupAttempted = false;
 
   const service = {
     status: () => ({ ...status }),
@@ -195,7 +195,7 @@
         const localState = sharedState(syncCallbacks.getLocalState?.() || {});
         const mergedState = window.nakoFirebaseState.mergeStates(remoteState, localState);
         syncCallbacks.applyRemoteState?.(mergedState);
-        const cleanupRequired = !sharedStateCleanupConfirmed;
+        const cleanupRequired = !sharedStateCleanupAttempted;
         queueMergedState(remoteState, mergedState, cleanupRequired);
       },
       (error) => {
@@ -297,7 +297,7 @@
       const remoteState = sharedState(rawRemoteState);
       const mergedState = window.nakoFirebaseState.mergeStates(remoteState, candidateState);
       const signature = window.nakoFirebaseWriteQueue?.stableStateSignature || JSON.stringify;
-      const cleanupRequired = !sharedStateCleanupConfirmed;
+      const cleanupRequired = !sharedStateCleanupAttempted;
       cleanupCommitted ||= cleanupRequired;
       if (signature(remoteState) === signature(mergedState)) return;
       cleanupCommitted = true;
@@ -315,9 +315,11 @@
       }
     });
     if (cleanupCommitted) {
-      await deleteLegacySharedStateFields();
+      sharedStateCleanupAttempted = true;
+      deleteLegacySharedStateFields().catch((error) => {
+        console.warn("Legacy shared-state cleanup deferred", error);
+      });
     }
-    sharedStateCleanupConfirmed = true;
     stateCleanupPending = false;
   }
 

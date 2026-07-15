@@ -28,7 +28,7 @@ function migrateTrainingState() {
   if (migrationRequired) {
     const command = trainingData.commands.find((item) => item.id === "lift-carry");
     const state = training.commands?.[command?.id];
-    const hasLogs = training.commandLogs?.some((log) => log.commandId === command?.id);
+    const hasLogs = training.commandLogs?.some((log) => !log.deleted && log.commandId === command?.id);
     const isUntouchedBaseline = state && !hasLogs && Number(state.score) === 0 && !state.lastPracticedAt;
     if (isUntouchedBaseline) Object.assign(state, baselineCommandState(command));
     if (!training.liftCue) training.liftCue = command?.defaultCue || "Bao Bao";

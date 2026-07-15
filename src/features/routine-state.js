@@ -138,7 +138,7 @@ function moveRoutineCompletion(recordId, nextDate) {
     if (Number.isFinite(oldValue) && oldValue > 0) {
       const targetWeight = appState.weightTracking?.[nextDate];
       const targetValue = parseFloat(getWeightValue(targetWeight));
-      delete appState.weightTracking[oldRecord.completedDate];
+      appState.weightTracking[oldRecord.completedDate] = { value: "", updatedAt: nowIso() };
       if (!Number.isFinite(targetValue) || targetValue <= 0) {
         appState.weightTracking[nextDate] = { value: oldValue, updatedAt: nowIso() };
       }

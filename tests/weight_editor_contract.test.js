@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const { mergeStates } = require("../src/core/firebase-state.js");
 
 const root = path.join(__dirname, "..");
 const app = fs.readFileSync(path.join(root, "src", "app.js"), "utf8");
@@ -46,9 +47,14 @@ let debouncedSaves = 0;
 const context = {
   appState,
   activeTrackedRoutineTasks: () => [{ id: "nako-weight-tracking" }],
+  historicalTrackedRoutineTasks: () => [{ id: "nako-weight-tracking" }],
   routineCycle: () => ({ key: "weekly:2026-07-06" }),
   routineRecords: () => appState.routineCompletions,
-  routineTracking: { completionId: (taskId, cycleKey) => `${taskId}__${cycleKey}` },
+  routineTracking: {
+    completionId: (taskId, cycleKey) => `${taskId}__${cycleKey}`,
+    parseDateKey: (value) => /^\d{4}-\d{2}-\d{2}$/.test(value),
+    singaporeDateKey: () => "2026-07-12"
+  },
   getWeightValue: (value) => value && typeof value === "object" ? value.value : value,
   nowIso: () => "2026-07-12T08:00:00.000Z",
   saveState: (options = {}) => { saveCalls.push(options); },
@@ -71,5 +77,31 @@ const completion = appState.routineCompletions["nako-weight-tracking__weekly:202
 assert.equal(appState.weightTracking["2026-07-12"].value, "", "Clearing the field should persist an empty weight tombstone");
 assert.equal(completion.deleted, true, "Clearing the final weight in a cycle should tombstone its routine completion");
 assert.ok(saveCalls.some((options) => options.remote !== false), "Finishing a weight edit should commit immediately");
+
+const completionId = "nako-weight-tracking__weekly:2026-07-06";
+const remoteWeight = { value: 8.3, updatedAt: "2026-07-12T07:00:00.000Z" };
+appState.weightTracking = { "2026-07-12": remoteWeight };
+appState.routineCompletions = {
+  [completionId]: {
+    id: completionId,
+    taskId: "nako-weight-tracking",
+    cycleKey: "weekly:2026-07-06",
+    completedDate: "2026-07-12",
+    source: "metric",
+    weightKg: 8.3,
+    note: "Weight: 8.3 kg",
+    updatedAt: remoteWeight.updatedAt
+  }
+};
+context.moveRoutineCompletion(completionId, "2026-07-13");
+assert.equal(appState.weightTracking["2026-07-12"].value, "", "Moving a weight must tombstone its old date");
+assert.equal(appState.weightTracking["2026-07-12"].updatedAt, "2026-07-12T08:00:00.000Z");
+assert.equal(appState.weightTracking["2026-07-13"].value, 8.3);
+const mergedAfterMove = mergeStates(
+  { weightTracking: { "2026-07-12": remoteWeight } },
+  { weightTracking: appState.weightTracking }
+);
+assert.equal(mergedAfterMove.weightTracking["2026-07-12"].value, "", "The old weight date must stay deleted after remote merge");
+assert.equal(mergedAfterMove.weightTracking["2026-07-13"].value, 8.3);
 
 console.log("Weight editor interaction checks passed successfully.");

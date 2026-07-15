@@ -1,5 +1,6 @@
 const assert = require("node:assert/strict");
-const { deleteCommandLog } = require("../src/core/training-log-state.js");
+const { mergeStates } = require("../src/core/firebase-state.js");
+const { deleteCommandLog, deletePlayLog } = require("../src/core/training-log-state.js");
 
 const commands = [
   { id: "sit", initialScore: 2 },
@@ -56,7 +57,11 @@ function options(training, logId) {
   const result = deleteCommandLog(options(training, "sit-new"));
   assert.equal(result.deleted, true);
   assert.equal(result.commandId, "sit");
-  assert.deepEqual(training.commandLogs, [older, stay]);
+  assert.deepEqual(training.commandLogs, [
+    older,
+    { ...latest, deleted: true, deletedAt: "refresh-time", updatedAt: "refresh-time" },
+    stay
+  ]);
   assert.deepEqual(training.commands.sit, {
     score: 5,
     rewardReliance: 5,
@@ -75,6 +80,7 @@ function options(training, logId) {
   const only = log("only", "sit", 10, "2026-07-11T10:00:00+08:00");
   const training = { commands: { sit: { score: 10 } }, commandLogs: [only] };
   assert.equal(deleteCommandLog(options(training, "only")).deleted, true);
+  assert.equal(training.commandLogs[0].deleted, true);
   assert.deepEqual(training.commands.sit, baseline(commands[0]));
   assert.equal(Object.hasOwn(training.commands, "undefined"), false);
 }
@@ -87,6 +93,32 @@ function options(training, logId) {
   assert.equal(deleteCommandLog(options(training, "missing")).deleted, false);
   assert.equal(JSON.stringify(training), before);
   assert.equal(Object.hasOwn(training.commands, "undefined"), false);
+}
+
+{
+  const original = { ...log("sync-delete", "sit", 6, "2026-07-11T10:00:00+08:00"), updatedAt: "2026-07-11T10:00:00+08:00" };
+  const localTraining = { commands: { sit: { score: 6 } }, commandLogs: [original], playLogs: [] };
+  deleteCommandLog({ ...options(localTraining, original.id), nowIso: () => "2026-07-12T12:00:00.000Z" });
+  const merged = mergeStates(
+    { training: { commands: {}, commandLogs: [original], playLogs: [] } },
+    { training: localTraining }
+  );
+  assert.equal(merged.training.commandLogs.length, 1);
+  assert.equal(merged.training.commandLogs[0].deleted, true, "A newer command-log tombstone must beat the remote live copy");
+}
+
+{
+  const play = { id: "play-delete", activityId: "tug", createdAt: "2026-07-11T10:00:00+08:00", updatedAt: "2026-07-11T10:00:00+08:00" };
+  const training = { commands: {}, commandLogs: [], playLogs: [play] };
+  const result = deletePlayLog({ training, logId: play.id, nowIso: () => "2026-07-12T12:00:00.000Z" });
+  assert.equal(result.deleted, true);
+  assert.deepEqual(training.playLogs[0], { ...play, deleted: true, deletedAt: "2026-07-12T12:00:00.000Z", updatedAt: "2026-07-12T12:00:00.000Z" });
+  const merged = mergeStates(
+    { training: { commands: {}, commandLogs: [], playLogs: [play] } },
+    { training }
+  );
+  assert.equal(merged.training.playLogs.length, 1);
+  assert.equal(merged.training.playLogs[0].deleted, true, "A newer play-log tombstone must beat the remote live copy");
 }
 
 console.log("Training command-log deletion checks passed.");

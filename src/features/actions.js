@@ -107,16 +107,24 @@ function handleClick(event) {
   if (trainingExpand) { trainingExpandedCommandId = trainingExpandedCommandId === trainingExpand.dataset.trainingExpand ? "" : trainingExpand.dataset.trainingExpand; return render(); }
   if (event.target.closest("[data-training-cancel]")) { trainingDraft = null; return render(); }
   const editCommand = event.target.closest("[data-training-edit-command]");
-  if (editCommand) { const log = getTrainingState().commandLogs.find((item) => item.id === editCommand.dataset.trainingEditCommand); if (log) { newCommandDraft(log.commandId, log); trainingHistoryCommandId = log.commandId; return render(); } }
+  if (editCommand) { const log = getTrainingState().commandLogs.find((item) => !item.deleted && item.id === editCommand.dataset.trainingEditCommand); if (log) { newCommandDraft(log.commandId, log); trainingHistoryCommandId = log.commandId; return render(); } }
   const deleteCommand = event.target.closest("[data-training-delete-command]");
   if (deleteCommand && confirm(tl("confirmDeleteTraining"))) {
     if (deleteCommandLog(deleteCommand.dataset.trainingDeleteCommand)) return render();
     return;
   }
   const editPlay = event.target.closest("[data-training-edit-play]");
-  if (editPlay) { const log = getTrainingState().playLogs.find((item) => item.id === editPlay.dataset.trainingEditPlay); if (log) { newPlayDraft(log.activityId, log); trainingTab = "play"; return render(); } }
+  if (editPlay) { const log = getTrainingState().playLogs.find((item) => !item.deleted && item.id === editPlay.dataset.trainingEditPlay); if (log) { newPlayDraft(log.activityId, log); trainingTab = "play"; return render(); } }
   const deletePlay = event.target.closest("[data-training-delete-play]");
-  if (deletePlay && confirm(tl("confirmDeletePlay"))) { const training = getTrainingState(); training.playLogs = training.playLogs.filter((item) => item.id !== deletePlay.dataset.trainingDeletePlay); saveState(); return render(); }
+  if (deletePlay && confirm(tl("confirmDeletePlay"))) {
+    const result = window.nakoTrainingLogState.deletePlayLog({
+      training: getTrainingState(),
+      logId: deletePlay.dataset.trainingDeletePlay,
+      nowIso
+    });
+    if (result.deleted) { saveState(); return render(); }
+    return;
+  }
   const section = event.target.closest("[data-section]");
   if (section) return go(`#section/${section.dataset.section}`);
   const routine = event.target.closest("[data-routine]");

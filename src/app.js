@@ -114,6 +114,7 @@ function initFirebaseSync() {
         appState.training ||= {};
         appState.training.contentMigrations = localTrainingMigrations;
       }
+      migrateTrainingState();
       migrateRoutineTrackingState();
       saveState({ remote: false });
       if (appStateSignature(appState) !== previousSignature) renderUnlessEditing();
