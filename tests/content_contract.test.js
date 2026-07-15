@@ -96,8 +96,12 @@ assert.match(englishText(bedroomsLinens.instructions), /chair—not on the floor
 assert.match(englishText(bedroomsLinens.instructions), /dedicated bedding vacuum only/);
 assert.match(englishText(bedroomsLinens.instructions), /The Knight Super King mattress \(183 × 198 cm\)/);
 assert.match(englishText(bedroomsLinens.mustRemember), /must not remain on the white bed-frame handlebar/);
-assert.equal(bedroomsLinens.photos.length, 7);
+assert.equal(bedroomsLinens.photos.length, 8);
 assert.ok(bedroomsLinens.photos.some((item) => item.src === "assets/routines/nako-bedsheets-changing-bolster-cover.jpg"));
+const weeklyLinenWashPhoto = bedroomsLinens.photos.find((item) => item.src === "assets/routines/nako-bedsheets-weekly-wash.jpg");
+assert.ok(weeklyLinenWashPhoto);
+assert.match(weeklyLinenWashPhoto.caption.en, /bedsheet, blankets, pillowcases, and bolster covers/);
+assert.ok(weeklyLinenWashPhoto.caption.jp && weeklyLinenWashPhoto.caption.mm);
 assert.equal(routineById("pillow-mattress-vacuuming").active, false);
 
 const vimleSofaBed = routineById("vimle-sofa-bed");

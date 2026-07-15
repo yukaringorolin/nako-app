@@ -1576,7 +1576,10 @@ const routineTasks = [
         t("5. For The Knight Super King mattress (183 × 198 cm), tilt it onto the handlebar to fit the hard-to-reach corner.", "5. The Knightスーパーキング（183 × 198 cm）は、届きにくい角にシーツを付けるためハンドルバーに傾けます。", "၅။ The Knight Super King မွေ့ရာ (183 × 198 cm) ၏ လက်လှမ်းမမီသောထောင့်ကို ခင်းရန် handlebar ပေါ်သို့ စောင်းတင်ပါ။")),
       photo("assets/routines/nako-bedsheets-headrest-cover.jpg",
         t("Finished bed with the headrest cover tucked in", "ヘッドレストカバーを差し込んだ完成後のベッド", "headrest cover ကို ထိုးထည့်ပြီး ပြီးစီးသော အိပ်ရာ"),
-        t("6. Push the mattress fully back off the handlebar and tuck the headrest cover in so it cannot flop down.", "6. マットレスをハンドルバーから完全に戻し、ヘッドレストカバーが垂れないようしっかり差し込みます。", "၆။ မွေ့ရာကို handlebar ပေါ်မှ အပြည့်ပြန်တွန်းပြီး headrest cover ပြုတ်ကျမလာစေရန် ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။"))
+        t("6. Push the mattress fully back off the handlebar and tuck the headrest cover in so it cannot flop down.", "6. マットレスをハンドルバーから完全に戻し、ヘッドレストカバーが垂れないようしっかり差し込みます。", "၆။ မွေ့ရာကို handlebar ပေါ်မှ အပြည့်ပြန်တွန်းပြီး headrest cover ပြုတ်ကျမလာစေရန် ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။")),
+      photo("assets/routines/nako-bedsheets-weekly-wash.jpg",
+        t("LG washing machine with used blankets and pillowcases ready for the weekly linen wash", "週1回の寝具洗濯用に、使用済みの毛布と枕カバーをLG洗濯機の前に用意した状態", "အပတ်စဉ် အိပ်ရာခင်းများလျှော်ရန် အသုံးပြုပြီးသော စောင်နှင့် ခေါင်းအုံးစွပ်များကို LG အဝတ်လျှော်စက်ရှေ့တွင် ပြင်ထားပုံ"),
+        t("Weekly linen wash: wash the used bedsheet, blankets, pillowcases, and bolster covers.", "週1回の寝具洗濯では、使用済みのシーツ、毛布、枕カバー、抱き枕カバーを洗います。", "အပတ်စဉ် အိပ်ရာခင်းလျှော်သည့်အခါ အသုံးပြုပြီးသော အိပ်ရာခင်း၊ စောင်၊ ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်များကို လျှော်ပါ။"))
     ]),
 
   routine("windows-glass-mirrors", "weekly", 120, "G", 
