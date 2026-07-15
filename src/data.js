@@ -2877,6 +2877,9 @@ const recipes = [
     ],
     t("Everyone's favorite recipe. Strictly no onion. Use the red-label bottle for dark soy sauce, keep the simmer gentle, and adjust the boiled eggs to the number of servings.", "みんなのお気に入りレシピです。玉ねぎは絶対に入れません。ダークソイソースは赤いラベルのボトルを使い、弱めの火で煮込み、ゆで卵は人数に合わせます。", "လူတိုင်းအကြိုက်ဆုံး ဟင်းချက်နည်းဖြစ်သည်။ ကြက်သွန်နီ လုံးဝမထည့်ပါနှင့်။ dark soy sauce အတွက် အနီရောင် label ပါသောပုလင်းကိုသုံးပြီး မီးအေးအေးဖြင့်တည်ကာ ကြက်ဥပြုတ်ကို စားမည့်လူအရေအတွက်အလိုက် ချိန်ညှိပါ။"),
     [
+      photo("assets/recipes/human-food/braised-pork-simmering.jpg",
+        t("Simmering braised pork with Tau Pok and eggs", "厚揚げと卵入りの豚の醤油煮込みを煮る", "တိုဟူးကြော်နှင့် ကြက်ဥပါသော ဝက်သားပဲငံပြာရည်နှပ်ကို ချက်ခြင်း"),
+        t("Simmer gently over low to medium heat for about 45 minutes, adding water as needed.", "弱火〜中火で約45分ゆっくり煮込み、必要に応じて水を足します。", "မီးအေးအေးမှ မီးအလယ်အလတ်ဖြင့် ၄၅ မိနစ်ခန့် ဖြည်းဖြည်းတည်ပြီး လိုအပ်ပါက ရေထည့်ပါ။")),
       photo("assets/recipes/human-food/braised-pork-ingredients.jpg",
         t("Garlic, ginger, onion, and pork in frying pan", "フライパンに入れたにんにく、生姜、玉ねぎ、豚肉", "ဒယ်အိုးထဲရှိ ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီနှင့် ဝက်သား"),
         t("Sauté garlic, ginger, onion (if using), and pork together in the pan.", "にんにく、生姜、玉ねぎ（使用する場合）、豚肉をフライパンで一緒に炒めます。", "ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီ (သုံးပါက) နှင့် ဝက်သားတို့ကို ဒယ်အိုးထဲတွင် အတူတူလှော်ပါ။")),
