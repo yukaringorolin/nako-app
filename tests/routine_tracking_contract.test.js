@@ -30,7 +30,7 @@ for (const task of tracked.filter((t) => t.trackingCadence === "fortnightly")) {
   assert.equal(task.trackingAnchor, "2026-07-06", `Fortnightly task ${task.id} must use Monday anchor 2026-07-06`);
 }
 
-// 5. The appetite tracker is an explicit daily input; other daily/as-needed references stay untracked
+// 5. Appetite and rubbish are explicit daily tasks; other daily/as-needed routines stay untracked
 const dailyAppetite = allTasks.find((task) => task.id === "nako-feeding-water");
 assert.equal(dailyAppetite.trackingMode, "input");
 assert.equal(dailyAppetite.trackingCadence, "daily");
@@ -38,8 +38,12 @@ assert.equal(dailyAppetite.trackingSource, "appetite");
 for (const language of ["en", "jp", "mm"]) {
   assert.ok(dailyAppetite.checkInTitle[language], `Daily appetite check-in title needs ${language}`);
 }
+const dailyRubbish = allTasks.find((task) => task.id === "rubbish");
+assert.equal(dailyRubbish.trackingMode, "checkbox");
+assert.equal(dailyRubbish.trackingCadence, "daily");
+assert.equal(dailyRubbish.trackingStartDate, "2026-07-17");
 for (const task of allTasks) {
-  if (!["nako-feeding-water", "fire-extinguisher-training"].includes(task.id) && (task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed")) {
+  if (!["nako-feeding-water", "rubbish", "fire-extinguisher-training"].includes(task.id) && (task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed")) {
     assert.equal(task.trackingMode, "none", `Daily/as-needed task ${task.id} must be reference-only (trackingMode = none)`);
   }
 }
@@ -73,6 +77,7 @@ for (const task of tracked) {
 // 9. Previously required baseline tasks still exist
 const baselineIds = new Set([
   "nako-feeding-water",
+  "rubbish",
   "high-touch-surfaces",
   "kitchen-sink-drain-rack-counter",
   "nako-weekly-play-pen-deep-clean",

@@ -253,10 +253,10 @@ function renderRoutineHistory() {
 
 function missedRoutineHistoryRecords(tasks) {
   const today = routineTracking.singaporeDateKey();
-  const trackingStart = appState.routineTrackingStartedDate || today;
-  const rangeStart = routineHistoryFilters.from && routineHistoryFilters.from > trackingStart ? routineHistoryFilters.from : trackingStart;
   const missed = [];
   tasks.filter(window.nakoRoutineTaskSelection.shouldGenerateMissed).forEach((task) => {
+    const trackingStart = window.nakoRoutineTaskSelection.effectiveTrackingStart(task, appState.routineTrackingStartedDate, today);
+    const rangeStart = routineHistoryFilters.from && routineHistoryFilters.from > trackingStart ? routineHistoryFilters.from : trackingStart;
     let cycle = routineCycle(task, rangeStart);
     let guard = 0;
     while (cycle?.end && cycle.end < today && guard < 600) {
@@ -272,7 +272,7 @@ function missedRoutineHistoryRecords(tasks) {
 
 function getTaskSpecificHistory(task, limit = 8) {
   const today = routineTracking.singaporeDateKey();
-  const trackingStart = appState.routineTrackingStartedDate || today;
+  const trackingStart = window.nakoRoutineTaskSelection.effectiveTrackingStart(task, appState.routineTrackingStartedDate, today);
   const completed = Object.values(routineRecords()).filter(
     (record) => record && !record.deleted && record.taskId === task.id
   );

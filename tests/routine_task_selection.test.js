@@ -53,4 +53,8 @@ assert.deepEqual(empty.remainingByCadence, {
 assert.equal(empty.dueTotal, 0);
 assert.equal(empty.completedTotal, 0);
 
+assert.equal(selection.effectiveTrackingStart({ trackingStartDate: "2026-07-17" }, "2026-07-06", "2026-07-20"), "2026-07-17");
+assert.equal(selection.effectiveTrackingStart({}, "2026-07-06", "2026-07-20"), "2026-07-06");
+assert.equal(selection.effectiveTrackingStart({}, "", "2026-07-20"), "2026-07-20");
+
 console.log("Routine task checklist grouping checks passed successfully.");

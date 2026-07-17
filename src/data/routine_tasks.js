@@ -126,7 +126,17 @@ const routineTasks = [
       photo("assets/routines/nako-manual-water-bottle.jpg",
         t("Offering water from the manual squeeze travel bottle", "手動のスクイーズボトルから水を飲ませる様子", "လက်ဆွဲရေဘူးဖြင့် ရေတိုက်ကျွေးခြင်း"),
         t("Squeeze the manual water bottle to let her drink regularly, as the pen's nozzle flows too slowly.", "サークルの給水器は水の出が遅いため、手動ボトルを少し押して定期的に水を飲ませてください。", "ခြံ၏ ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် လက်ဆွဲရေဘူးကို ညှစ်၍ ပုံမှန်ရေတိုက်ပေးပါ။"))
-    ]),
+    ],
+    {
+      trackingMode: "input",
+      trackingCadence: "daily",
+      trackingSource: "appetite",
+      checkInTitle: t(
+        "Nako Daily Appetite Tracker",
+        "ナコの毎日の食欲トラッカー",
+        "Nako နေ့စဉ် အစာစားချင်စိတ် မှတ်တမ်း"
+      )
+    }),
   
 
   routine("nako-potty-pen", "daily", 40, "N", 
@@ -335,22 +345,27 @@ const routineTasks = [
 
   routine("rubbish", "daily", 130, "R", 
     t("Rubbish", "ゴミ出し", "အမှိုက်ပစ်ခြင်း"),
-    t("Take out general trash and dog waste bins daily.", "一般ゴミと犬用ゴミ箱を毎日捨てる。", "အထွေထွေအမှိုက်နှင့် ခွေးအမှိုက်ပုံးကို နေ့စဉ်သွန်ပါ။"),
-    t("Daily", "毎日", "နေ့စဉ်"),
+    t("Take down general rubbish and the dog-waste bin every night.", "毎晩、一般ゴミと犬用ゴミ箱のゴミを出します。", "ညတိုင်း အထွေထွေအမှိုက်နှင့် ခွေးအမှိုက်ပုံးကို သွန်ပါ။"),
+    t("Every night", "毎晩", "ညတိုင်း"),
     [
       t("Dog waste bin should not be left to smell.", "犬用ゴミ箱は臭いが出るまで放置しない。", "ခွေးအမှိုက်ပုံးကို အနံ့ထွက်သည်အထိ မထားပါနှင့်။"),
-      t("Throw all rubbish and general trash daily. Do not let trash accumulate in the bins.", "毎日すべてのゴミや一般ゴミを捨ててください。ゴミ箱にゴミがたまらないようにしてください。", "အမှိုက်များနှင့် အထွေထွေအမှိုက်အားလုံးကို နေ့စဉ်ပစ်ပါ။ အမှိုက်ပုံးထဲတွင် အမှိုက်များ စုပုံမနေပါစေနှင့်။"),
+      t("Take down all rubbish and general trash every night. Do not let trash accumulate in the bins.", "毎晩、すべてのゴミと一般ゴミを出してください。ゴミ箱にゴミがたまらないようにしてください。", "ညတိုင်း အမှိုက်နှင့် အထွေထွေအမှိုက်အားလုံးကို သွားပစ်ပါ။ အမှိုက်ပုံးထဲတွင် အမှိုက်များ စုပုံမနေပါစေနှင့်။"),
       t("Put normal bagged household rubbish down the rubbish chute.", "通常の袋に入った家庭ゴミは、ゴミ投入口から捨てます。", "အိတ်ဖြင့်ထည့်ထားသော ပုံမှန်အိမ်သုံးအမှိုက်ကို rubbish chute ထဲ ပစ်ပါ။"),
       t("Do not force large or bulky rubbish—including large delivery packaging—into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
     ],
     [
       photo("assets/routines/nako-rubbish-bin-daily.jpg",
         t("Rubbish bin with orange plastic bag liner", "オレンジ色のゴミ袋が入ったゴミ箱", "လိမ္မော်ရောင်အမှိုက်အိတ်စွပ်ထားသော အမှိုက်ပုံး"),
-        t("Throw general trash and rubbish daily. Do not let trash build up.", "一般ゴミや生ゴミは毎日捨ててください。ゴミをためないようにします。", "အထွေထွေအမှိုက်နှင့် အမှိုက်များကို နေ့စဉ်ပစ်ပါ။ အမှိုက်များ စုမနေအောင် ထားပါ။")),
+        t("Take down general trash and rubbish every night. Do not let trash build up.", "一般ゴミや生ゴミは毎晩捨ててください。ゴミをためないようにします。", "အထွေထွေအမှိုက်နှင့် အမှိုက်များကို ညတိုင်း သွားပစ်ပါ။ အမှိုက်များ စုမနေအောင် ထားပါ။")),
       photo("assets/routines/nako-rubbish-downstairs-large-items.jpg",
         t("Route to the downstairs disposal area for oversized rubbish", "大きなゴミを運ぶ階下のゴミ置き場への経路", "အရွယ်ကြီးသောအမှိုက်အတွက် အောက်ထပ်အမှိုက်ထားရာသို့ သွားသည့်လမ်း"),
         t("If rubbish or packaging is too large for the chute, carry it downstairs to this disposal area instead.", "ゴミや梱包材が投入口に入らない大きさの場合は、代わりに階下のこのゴミ置き場まで運びます。", "အမှိုက် သို့မဟုတ် packaging သည် chute အတွက် အရမ်းကြီးပါက အောက်ထပ်ရှိ ဤအမှိုက်ထားရာနေရာသို့ ယူသွားပါ။"))
-    ]),
+    ],
+    {
+      trackingMode: "checkbox",
+      trackingCadence: "daily",
+      trackingStartDate: "2026-07-17"
+    }),
 
   routine("laundry", "daily", 140, "L", 
     t("Laundry", "洗濯", "အဝတ်လျှော်ခြင်း"),
@@ -1401,21 +1416,6 @@ if (mailDeliveriesRoutine) {
 
 
 
-// Daily and as-needed routines stay reference-only unless explicitly opted in here.
-// Input-backed routines derive completion from their canonical tracker rather than
-// writing a duplicate routine-completion record.
-const explicitDailyTracking = {
-  "nako-feeding-water": {
-    mode: "input",
-    source: "appetite",
-    checkInTitle: t(
-      "Nako Daily Appetite Tracker",
-      "ナコの毎日の食欲トラッカー",
-      "Nako နေ့စဉ် အစာစားချင်စိတ် မှတ်တမ်း"
-    )
-  }
-};
-
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
 // If a non-daily actionable task is deliberately excluded, we declare a reason here.
 const routineTrackingExclusions = {
@@ -1433,9 +1433,9 @@ routineTasks.forEach((task) => {
   const isDailyOrAsNeeded = task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed";
   const nonDailyCadences = ["weekly", "fortnightly", "monthly", "quarterly", "one-off"];
   const isNonDaily = nonDailyCadences.includes(task.frequencyBucket);
-  const dailyTracking = explicitDailyTracking[task.id];
+  const isExplicitDailyTask = task.frequencyBucket === "daily" && task.trackingCadence === "daily" && task.trackingMode !== "none";
 
-  const isTrackedCandidate = Boolean(dailyTracking) || (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
+  const isTrackedCandidate = isExplicitDailyTask || (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
 
   if (isTrackedCandidate) {
     const exclusionReason = routineTrackingExclusions[task.id];
@@ -1451,11 +1451,10 @@ routineTasks.forEach((task) => {
       task.itemKind = "task";
       task.trackingExclusionReason = null;
 
-      if (dailyTracking) {
-        task.trackingCadence = "daily";
-        task.trackingMode = dailyTracking.mode;
-        task.trackingSource = dailyTracking.source;
-        task.checkInTitle = dailyTracking.checkInTitle;
+      if (isExplicitDailyTask) {
+        task.trackingAnchor = null;
+        task.trackingSource = task.trackingSource || null;
+        task.checkInTitle = task.checkInTitle || null;
       } else if (task.id === "fire-extinguisher-training") {
         task.trackingCadence = "one-off";
         task.trackingMode = "one-off";

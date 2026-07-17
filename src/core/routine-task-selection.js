@@ -6,6 +6,7 @@
   "use strict";
 
   const ROUTINE_CADENCE_ORDER = Object.freeze(["daily", "weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
+  const DATE_KEY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
   function isTracked(task) {
     return Boolean(task?.trackingMode && task.trackingMode !== "none");
@@ -26,6 +27,11 @@
 
   function shouldGenerateMissed(task) {
     return task?.active !== false && isTracked(task) && task.trackingMode !== "input" && task.trackingCadence !== "one-off";
+  }
+
+  function effectiveTrackingStart(task, householdStart, today) {
+    const starts = [householdStart, task?.trackingStartDate].filter((value) => DATE_KEY_PATTERN.test(String(value || "")));
+    return starts.length ? starts.sort()[starts.length - 1] : today;
   }
 
   function emptyCadenceGroups() {
@@ -59,6 +65,7 @@
   return {
     ROUTINE_CADENCE_ORDER,
     activeTrackedRoutineTasks,
+    effectiveTrackingStart,
     historicalTrackedRoutineTasks,
     historyFilterTasks,
     isTracked,

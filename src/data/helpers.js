@@ -39,8 +39,8 @@ function ingredientOption(key, name) {
   return { key, name };
 }
 
-function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = []) {
-  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null };
+function routine(id, bucket, sortOrder, icon, title, summary, frequencyText, note, photos = [], attrs = {}) {
+  return { id, section: "routine", frequencyBucket: bucket, frequencyText, icon, title, summary, instructions: [], mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: "none", trackingCadence: null, trackingAnchor: null, active: true, tags: [], sortOrder, itemKind: "reference", trackingExclusionReason: null, ...attrs };
 }
 
 

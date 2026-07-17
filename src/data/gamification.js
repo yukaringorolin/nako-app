@@ -111,6 +111,7 @@ const gamificationData = (() => {
     "general-surface-cleaning": "sparkling-surfaces",
     "windows-glass-mirrors": "sparkling-surfaces",
     "kitchen-sink-drain-rack-counter": "bubbly-washing",
+    "rubbish": "bubbly-washing",
     "rubbish-bin-washing": "bubbly-washing",
     "cleaning-tools": "bubbly-washing",
     "floor-mats": "cozy-laundry",
