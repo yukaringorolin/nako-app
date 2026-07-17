@@ -112,6 +112,20 @@ assert.deepEqual(Array.from(rubbish.photos, (item) => item.src), [
 assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchange it for a treat/);
 assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);
+assert.match(englishText(routineById("daily-cooking").mustRemember), /crumbs, smells, stains, ants, cockroaches/);
+assert.match(englishText(routineById("nako-weekly-play-pen-deep-clean").mustRemember), /Dry the pen.*fully before letting Nako back in/);
+assert.match(englishText(routineById("nako-teeth-ears-nails").mustRemember), /Never use human toothpaste/);
+assert.match(englishText(routineById("supplement-pill-boxes").mustRemember), /Do not change, add, or remove supplements/);
+assert.match(englishText(routineById("ceiling-fan").mustRemember), /black stepladder/);
+assert.match(englishText(routineById("ceiling-fan").mustRemember), /Do not stand on the top step/);
+assert.match(englishText(routineById("ceiling-fan").mustRemember), /separate dirty-area cloth.*standard Magiclean disinfectant/);
+assert.ok(routineById("ceiling-fan").photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
+assert.match(englishText(routineById("cleaning-tools").mustRemember), /luggage wheels.*standard Magiclean disinfectant/);
+assert.ok(routineById("cleaning-tools").photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
+assert.match(englishText(routineById("fridge-interior").mustRemember), /small, shallow containers/);
+assert.match(englishText(routineById("general-surface-cleaning").mustRemember), /sneezing, a runny or itchy nose/);
+assert.match(englishText(routineById("coffee-machine-descaling").mustRemember), /Do not descale the machine alone yet/);
+assert.equal(routineById("coffee-machine-descaling").videoUrl, "https://www.youtube.com/embed/vcVPB1-0huA");
 
 const weightTracking = routineById("nako-weight-tracking");
 assert.match(weightTracking.summary.en, /Only weigh her when awake/);
@@ -171,6 +185,10 @@ assert.deepEqual(Array.from(laundromat.photos, (item) => item.src), [
   "assets/routines/laundromat-washer-price-list.jpg",
   "assets/routines/laundromat-coin-change-machine.jpg"
 ]);
+
+const flightPacking = routineById("yukari-flight-packing");
+assert.match(englishText(flightPacking.instructions), /luggage wheels.*separate dirty-area cloth.*standard Magiclean disinfectant/);
+assert.ok(flightPacking.photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
 
 const uploadSharedAlbum = routineById("upload-shared-album");
 const asNeededTasks = data.routineTasks

@@ -52,7 +52,7 @@ vm.runInContext(fs.readFileSync(path.join(__dirname, "../src/core/app-core.js"),
 context.migrateTrainingState();
 assert.equal(context.appState.training, undefined, "Fresh startup has no local training state to migrate");
 
-const appSource = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8");
+const appSource = fs.readFileSync(path.join(__dirname, "../src/app.js"), "utf8").replace(/\r\n/g, "\n");
 const marker = "applyRemoteState: (nextState) => {";
 const start = appSource.indexOf(marker) + marker.length;
 const end = appSource.indexOf("\n    }\n  });", start);

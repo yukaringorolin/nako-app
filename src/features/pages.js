@@ -13,6 +13,7 @@ function renderHome() {
     </section>
     ${renderSearchComponent()}
     ${renderRoutineHomeShortcut()}
+    ${renderGamificationHome()}
     <p class="section-label">${esc(label("quickShortcuts"))}</p>
     <section class="shortcut-grid">
       ${renderShortcuts()}

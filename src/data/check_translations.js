@@ -84,6 +84,7 @@ function checkTranslations() {
   checkObj(window.nakoData.recipes, "recipes");
   checkObj(window.nakoData.additionalResources, "additionalResources");
   checkObj(window.nakoData.trainingData, "trainingData");
+  checkObj(window.nakoData.gamificationData, "gamificationData");
 
   // Quantities such as "100g" are language-neutral. Any amount containing
   // user-facing words must use t(en, jp, mm) so the renderer can localize it.

@@ -37,11 +37,20 @@ function updateWeightInput(weightInput, options = {}) {
   const dateKey = weightInput.dataset.weightDate;
   if (window.nakoWeightHistory?.isPermanentDate?.(dateKey)) return;
   const val = weightInput.value.trim();
+  const previousValue = getWeightValue(appState.weightTracking[dateKey]);
+  const hadWeight = previousValue !== "" && Number.isFinite(Number(previousValue)) && Number(previousValue) > 0;
+  const hasWeight = val !== "" && Number.isFinite(Number(val)) && Number(val) > 0;
+  if (!hadWeight && hasWeight) pendingNewWeightDates.add(dateKey);
+  if (!hasWeight) pendingNewWeightDates.delete(dateKey);
   appState.weightTracking[dateKey] = {
     value: val !== "" ? parseFloat(val) : "",
     updatedAt: nowIso()
   };
   reconcileWeightCompletion(dateKey, { remote: options.remoteCompletion !== false });
+  if (options.commit && hasWeight && pendingNewWeightDates.has(dateKey)) {
+    pendingNewWeightDates.delete(dateKey);
+    celebrateCareSave("health");
+  }
   if (options.commit) saveState();
   else saveStateDebounced();
 }
@@ -91,6 +100,8 @@ function completeRoutine(taskId) {
   if (!task || task.trackingMode === "metric") return;
   const record = saveRoutineCompletion(task);
   if (!record) return;
+  celebrateCareSave("routine");
+  saveState();
   routineUndoRecord = { ...record };
   routineStatusMessage = label("completionSaved");
   clearTimeout(routineUndoTimer);

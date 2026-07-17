@@ -607,6 +607,124 @@ const ui = {
 };
 
 
+const gamificationData = (() => {
+  const tx = (en, jp, mm) => t(en, jp, mm);
+  const labels = {
+    title: tx("Nako Says Thank You", "ナコからありがとう", "Nako က ကျေးဇူးတင်ပါတယ်"),
+    thisWeek: tx("This Week with Nako", "ナコと今週", "Nako နဲ့ ဒီအပတ်"),
+    weekIntro: tx("Little moments of care recorded this week.", "今週記録された、小さなお世話の時間です。", "ဒီအပတ်မှာ မှတ်တမ်းတင်ထားတဲ့ ဂရုစိုက်မှုလေးတွေပါ။"),
+    postcards: tx("Nako Postcards", "ナコのポストカード", "Nako ပို့စကတ်များ"),
+    postcardCount: tx("{count} postcards", "ポストカード {count}枚", "ပို့စကတ် {count} ခု"),
+    albumIntro: tx("Every postcard is a permanent thank-you from Nako.", "どのカードも、ナコからのずっと残る「ありがとう」です。", "ပို့စကတ်တိုင်းက Nako ဆီက အမြဲသိမ်းထားနိုင်တဲ့ ကျေးဇူးတင်စကားပါ။"),
+    futureMemory: tx("A new Nako memory will appear here.", "ここに新しいナコの思い出が増えていきます。", "ဒီနေရာမှာ Nako ရဲ့ အမှတ်တရအသစ်တစ်ခု ပေါ်လာပါမယ်။"),
+    routines: tx("Routines", "ルーティン", "ပုံမှန်အလုပ်များ"),
+    trainingPlay: tx("Training & play", "トレーニング・遊び", "လေ့ကျင့်ရေးနှင့် ကစားချိန်"),
+    health: tx("Nako health", "ナコの健康", "Nako ကျန်းမာရေး"),
+    diary: tx("Diary", "日記", "နေ့စဉ်မှတ်တမ်း"),
+    fourPaws: tx("Four kinds of care shared this week. Thank you.", "今週は4つの形でお世話を記録できました。ありがとう。", "ဒီအပတ်မှာ ဂရုစိုက်မှု လေးမျိုးလုံးကို မှတ်တမ်းတင်ထားပါတယ်။ ကျေးဇူးတင်ပါတယ်။"),
+    close: tx("Close", "閉じる", "ပိတ်ရန်"),
+    imageFallback: tx("Nako illustration", "ナコのイラスト", "Nako ပုံလေး"),
+    albumReady: tx("Your Nako postcard album is ready.", "ナコのポストカードアルバムができました。", "Nako ပို့စကတ်အယ်လ်ဘမ် အဆင်သင့်ဖြစ်ပါပြီ။"),
+    newPostcard: tx("New Nako postcard: {title}", "新しいナコのポストカード：{title}", "Nako ပို့စကတ်အသစ် ရပါပြီ — {title}"),
+    praiseRoutine: tx("Nako says thank you for caring for our home.", "おうちを大切にしてくれて、ナコからありがとう。", "အိမ်ကို ဂရုစိုက်ပေးလို့ Nako က ကျေးဇူးတင်ပါတယ်။"),
+    praiseTraining: tx("Lovely practice with Nako today!", "今日もナコとやさしく練習できました！", "ဒီနေ့ Nako နဲ့ နူးနူးညံ့ညံ့ လေ့ကျင့်ပေးတာ ကောင်းပါတယ်။"),
+    praiseTrainingBest: tx("A new personal best for {command}. Wonderful practice!", "{command}の自己ベスト更新。すてきな練習でした！", "{command} အတွက် အကောင်းဆုံးရလဒ်အသစ် ရပါပြီ။ လေ့ကျင့်ပေးတာ အရမ်းကောင်းပါတယ်။"),
+    praisePlay: tx("Nako loved that playtime. Thank you!", "ナコとの楽しい遊び時間、ありがとう！", "Nako နဲ့ ပျော်ပျော်ရွှင်ရွှင် ကစားပေးလို့ ကျေးဇူးတင်ပါတယ်။"),
+    praiseHealth: tx("Thank you for checking in on Nako.", "ナコの様子を記録してくれて、ありがとう。", "Nako ရဲ့ အခြေအနေကို မှတ်တမ်းတင်ပေးလို့ ကျေးဇူးတင်ပါတယ်။"),
+    praiseDiary: tx("Thank you for sharing today's diary.", "今日の日記を書いてくれて、ありがとう。", "ဒီနေ့မှတ်တမ်းကို ရေးပေးလို့ ကျေးဇူးတင်ပါတယ်။")
+  };
+
+  const postcards = [
+    {
+      id: "nako-hello",
+      image: "assets/gamification/postcards/nako-hello.webp",
+      title: tx("Hello from Nako", "ナコからこんにちは", "Nako ဆီက မင်္ဂလာပါ"),
+      description: tx("A little hello and a heart just for you.", "小さなあいさつとハートをあなたへ。", "သင့်အတွက် နှုတ်ဆက်စကားလေးနဲ့ နှလုံးသားလေးပါ။"),
+      alt: tx("Watercolor Nako waving beside a heart envelope", "ハートの封筒のそばで手を振るナコの水彩画", "နှလုံးပုံစာအိတ်ဘေးမှာ လက်လှမ်းနှုတ်ဆက်နေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "routine-sparkle",
+      image: "assets/gamification/postcards/routine-sparkle.webp",
+      title: tx("A Caring Home", "大切にされるおうち", "ဂရုစိုက်ထားတဲ့ အိမ်"),
+      description: tx("Small routines help Nako feel safe and cozy.", "小さなルーティンが、ナコの安心につながります。", "ပုံမှန်အလုပ်လေးတွေက Nako ကို လုံခြုံပြီး သက်သောင့်သက်သာ ရှိစေပါတယ်။"),
+      alt: tx("Watercolor Nako beside a tidy pink care basket", "整ったピンクのお世話バスケットの横にいるナコの水彩画", "သပ်သပ်ရပ်ရပ် ပန်းရောင်ဂရုစိုက်ရေးခြင်းဘေးမှာ ရှိနေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "training-paw",
+      image: "assets/gamification/postcards/training-paw.webp",
+      title: tx("Gentle Practice", "やさしい練習", "နူးညံ့တဲ့ လေ့ကျင့်ချိန်"),
+      description: tx("Kind practice builds trust one paw at a time.", "やさしい練習が、少しずつ信頼を育てます。", "နူးညံ့စွာ လေ့ကျင့်ပေးခြင်းက ယုံကြည်မှုကို တဖြည်းဖြည်း တိုးစေပါတယ်။"),
+      alt: tx("Watercolor Nako happily offering one paw", "うれしそうに前足を差し出すナコの水彩画", "ရှေ့ခြေတစ်ဖက်ကို ပျော်ပျော်ရွှင်ရွှင် ပေးနေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "purple-playtime",
+      image: "assets/gamification/postcards/purple-playtime.webp",
+      title: tx("Purple Playtime", "むらさきのお遊びタイム", "ခရမ်းရောင် ကစားချိန်"),
+      description: tx("A playful moment makes Nako's day brighter.", "楽しいひとときで、ナコの一日がもっと明るくなります。", "ပျော်စရာကစားချိန်လေးက Nako ရဲ့နေ့ကို ပိုရွှင်လန်းစေပါတယ်။"),
+      alt: tx("Watercolor Nako playing with a small purple toy", "小さなむらさきのおもちゃで遊ぶナコの水彩画", "ခရမ်းရောင်အရုပ်လေးနဲ့ ကစားနေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "health-heart",
+      image: "assets/gamification/postcards/health-heart.webp",
+      title: tx("A Thoughtful Check-in", "やさしい健康チェック", "ဂရုတစိုက် စစ်ဆေးမှု"),
+      description: tx("Noticing and recording is a loving kind of care.", "気づいて記録することも、大切なお世話です。", "သတိထားပြီး မှတ်တမ်းတင်ပေးတာကလည်း ချစ်ခင်စွာ ဂရုစိုက်ခြင်းပါ။"),
+      alt: tx("Watercolor Nako beside a notebook marked with a heart", "ハートのついたノートの横にいるナコの水彩画", "နှလုံးပုံပါတဲ့ မှတ်စုစာအုပ်ဘေးမှာ ရှိနေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "diary-flower",
+      image: "assets/gamification/postcards/diary-flower.webp",
+      title: tx("Today's Little Memory", "今日の小さな思い出", "ဒီနေ့ရဲ့ အမှတ်တရလေး"),
+      description: tx("Every shared thought becomes part of Nako's home story.", "書いてくれた言葉も、ナコのおうちの物語になります。", "မျှဝေပေးတဲ့ အတွေးတိုင်းက Nako အိမ်ရဲ့ ဇာတ်လမ်းတစ်ပိုင်း ဖြစ်လာပါတယ်။"),
+      alt: tx("Watercolor Nako beside an open diary and a small flower", "開いた日記と小さな花の横にいるナコの水彩画", "ဖွင့်ထားတဲ့နေ့စဉ်မှတ်တမ်းနဲ့ ပန်းလေးဘေးမှာ ရှိနေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "four-care-paws",
+      image: "assets/gamification/postcards/four-care-paws.webp",
+      title: tx("Four Caring Paws", "4つのお世話の足あと", "ဂရုစိုက်မှု ခြေရာလေးခု"),
+      description: tx("Many different moments came together for Nako.", "いろいろなお世話の時間が、ナコのためにつながりました。", "ဂရုစိုက်မှုအမျိုးမျိုးက Nako အတွက် အတူတကွ ပြည့်စုံလာပါတယ်။"),
+      alt: tx("Watercolor Nako surrounded by four colorful pawprints", "4色の足あとに囲まれたナコの水彩画", "အရောင်စုံခြေရာလေးခု ဝန်းရံထားတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "cozy-three",
+      image: "assets/gamification/postcards/cozy-three.webp",
+      title: tx("Cozy Nako", "ぬくぬくナコ", "နွေးနွေးထွေးထွေး Nako"),
+      description: tx("A few caring days make home feel extra cozy.", "お世話の日々が、おうちをもっと心地よくします。", "ဂရုစိုက်ပေးတဲ့ နေ့လေးတွေက အိမ်ကို ပိုနွေးထွေးစေပါတယ်။"),
+      alt: tx("Watercolor Nako sleeping under a soft pink blanket", "やわらかなピンクの毛布で眠るナコの水彩画", "ပန်းရောင်စောင်နုနုအောက်မှာ အိပ်နေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "sunny-seven",
+      image: "assets/gamification/postcards/sunny-seven.webp",
+      title: tx("Sunny Nako Days", "ナコの晴れやかな日々", "Nako ရဲ့ နေသာတဲ့နေ့များ"),
+      description: tx("Care grows quietly, like plants in the sunshine.", "お世話は、日なたの植物のように静かに育ちます。", "ဂရုစိုက်မှုက နေရောင်အောက်က အပင်လေးတွေလို တိတ်တိတ်လေး ကြီးထွားလာပါတယ်။"),
+      alt: tx("Watercolor Nako among sunny tropical balcony plants", "明るいベランダの南国植物に囲まれたナコの水彩画", "နေရောင်လင်းတဲ့ လသာဆောင်အပင်တွေကြားက Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "rain-or-shine",
+      image: "assets/gamification/postcards/rain-or-shine.webp",
+      title: tx("Rain or Shine", "雨の日も晴れの日も", "မိုးရွာရွာ နေပူပူ"),
+      description: tx("Kind care matters on every kind of day.", "どんな日にも、やさしいお世話は大切です。", "ဘယ်လိုနေ့မျိုးမှာမဆို နူးညံ့စွာ ဂရုစိုက်ပေးတာ အရေးကြီးပါတယ်။"),
+      alt: tx("Watercolor Nako by a rainy window with a small umbrella", "小さな傘と雨の窓辺にいるナコの水彩画", "ထီးလေးနဲ့ မိုးရွာနေတဲ့ပြတင်းပေါက်ဘေးက Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "thank-you-stars",
+      image: "assets/gamification/postcards/thank-you-stars.webp",
+      title: tx("Thank-You Stars", "ありがとうの星", "ကျေးဇူးတင်ကြယ်လေးများ"),
+      description: tx("So many caring days deserve a sky full of thanks.", "たくさんのお世話の日々に、星いっぱいのありがとう。", "ဂရုစိုက်ပေးတဲ့ နေ့များစွာအတွက် ကြယ်ပြည့်ကောင်းကင်လို ကျေးဇူးတင်ပါတယ်။"),
+      alt: tx("Watercolor Nako sitting beneath a gentle star garland", "やさしい星のガーランドの下に座るナコの水彩画", "ကြယ်ပန်းကုံးနုနုအောက်မှာ ထိုင်နေတဲ့ Nako ရေဆေးပန်းချီ")
+    },
+    {
+      id: "happy-home",
+      image: "assets/gamification/postcards/happy-home.webp",
+      title: tx("Nako's Happy Home", "ナコのしあわせなおうち", "Nako ရဲ့ ပျော်ရွှင်တဲ့အိမ်"),
+      description: tx("A home filled with steady care is worth celebrating.", "いつものお世話に包まれたおうちは、お祝いしたくなる場所です。", "အမြဲဂရုစိုက်ပေးမှုနဲ့ ပြည့်နေတဲ့အိမ်က ပျော်ပွဲရွှင်ပွဲလုပ်ထိုက်တဲ့ နေရာပါ။"),
+      alt: tx("Watercolor Nako celebrating in a cozy home with soft confetti", "やわらかな紙吹雪と居心地のよい部屋でお祝いするナコの水彩画", "နူးညံ့တဲ့ စက္ကူပန်းလေးတွေနဲ့ နွေးထွေးတဲ့အိမ်မှာ ပျော်နေတဲ့ Nako ရေဆေးပန်းချီ")
+    }
+  ];
+
+  return { labels, postcards };
+})();
+
+
 const homeSections = [
   sec("food", "F", "#f19a82", "#fff0eb", 
     t("Food, Recipes", "食事、レシピ", "အစားအသောက်၊ ဟင်းချက်နည်းများ"),
@@ -833,7 +951,10 @@ const foodSafetyItems = [
       t("Soy sauce, seasoning or ordinary marinade does not extend the safe storage period.", "醤油、調味料、または通常のタレ漬け（マリネ）は、安全な保存期間を延ばしません。", "ပဲငံပြာရည်၊ ဟင်းခတ်မှုန့် သို့မဟုတ် သာမန်နှပ်ထားခြင်းသည် သိုလှောင်နိုင်သည့်ကာလကို ပိုမဆွဲဆန့်နိုင်ပါ။"),
       t("When possible, label the bag or container with the purchase or cooking date.", "可能な場合は、袋や容器に購入日または調理日を記入してください。", "ဖြစ်နိုင်လျှင် အိတ် သို့မဟုတ် ဘူးပေါ်တွင် ဝယ်သည့်ရက်စွဲ သို့မဟုတ် ချက်သည့်ရက်စွဲကို ရေးမှတ်ထားပါ။")
     ],
-    t("Raw poultry: cook or freeze within 2 days. After 2 days, throw it away.", "生の鳥肉：2日以内に調理するか冷凍してください。2日を過ぎたら廃棄してください。", "အသားစိမ်း- ၂ ရက်အတွင်း ချက်ပါ သို့မဟုတ် အေးခဲပါ။ ၂ ရက်ကျော်ပါက လွှင့်ပစ်ပါ။"),
+    [
+      t("Raw poultry: cook or freeze within 2 days. After 2 days, throw it away.", "生の鳥肉：2日以内に調理するか冷凍してください。2日を過ぎたら廃棄してください。", "ကြက်/ငှက်အသားစိမ်းကို ၂ ရက်အတွင်း ချက်ပါ သို့မဟုတ် အေးခဲပါ။ ၂ ရက်ကျော်ပါက လွှင့်ပစ်ပါ။"),
+      t("Smell is not a safety test. Follow the storage limit even when poultry smells normal. Throw it away sooner if it smells sour or unusual, or feels sticky or slimy.", "臭いだけでは安全か判断できません。鳥肉の臭いが普通でも保存期限を守ってください。酸っぱい臭いや異臭、べたつき、ぬめりがある場合は、期限前でも廃棄してください。", "အနံ့ပုံမှန်ဖြစ်တာနဲ့ ဘေးကင်းတယ်လို့ မယူဆပါနဲ့။ ကြက်/ငှက်အသားရဲ့ သိုလှောင်ရက်ကို အမြဲလိုက်နာပါ။ ချဉ်တဲ့အနံ့၊ မူမမှန်တဲ့အနံ့၊ စေးကပ်တာ သို့မဟုတ် ချွဲကျိတာရှိရင် ရက်မပြည့်ခင်ပဲ လွှင့်ပစ်ပါ။")
+    ],
     [
       photo("assets/food-safety/refrigerator-storage-limits.png",
         t("Calendar beside chicken, fish and meat icons", "鶏、魚、肉のアイコンの横にあるカレンダー", "ကြက်၊ ငါးနှင့် အသားပုံများ ဘေးရှိ ပြက္ခဒိန်"),
@@ -880,14 +1001,16 @@ const foodSafetyItems = [
 
   safetyItem("safe-thawing", "💧",
     t("Thaw frozen food safely", "冷凍食品を安全に解凍する", "အေးခဲထားသော အစားအစာများကို ဘေးကင်းစွာ ရေခဲဖျော်ပါ"),
-    t("Never leave frozen meat thawing on the kitchen counter for several hours.", "冷凍肉をキッチンのカウンターに何時間も放置して解凍させないでください。", "အေးခဲထားသော အသားများကို မီးဖိုချောင်ခုံပေါ်တွင် နာရီပေါင်းများစွာ ပစ်မထားပါနှင့်။"),
+    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave—not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
     [
-      t("Do not leave frozen meat thawing on the kitchen counter for several hours.", "冷凍肉をキッチンのカウンターに何時間も放置して解凍させないでください。", "အေးခဲထားသော အသားများကို မီးဖိုချောင်ခုံပေါ်တွင် နာရီပေါင်းများစွာ ပစ်မထားပါနှင့်။"),
-      t("Thaw it inside the refrigerator.", "冷蔵庫の中で解凍してください。", "ရေခဲသေတ္တာ၏ သာမန်အအေးခန်းထဲတွင် ရေခဲဖျော်ပါ။"),
-      t("Use the microwave defrost setting and cook it immediately.", "電子レンジの解凍機能を使用し、解凍後はすぐに調理してください。", "မိုက်ခရိုဝေ့ဖ်၏ ရေခဲဖျော်စနစ်ကို သုံးပြီး ချက်ချင်း ချက်ပြုတ်ပါ။"),
-      t("Put it in a sealed, leak-proof bag and place the bag in cold water.", "密閉された水漏れしない袋に入れ、その袋を冷水に浸してください。", "လုံခြုံသောအိတ်ထဲထည့်ပြီး ရေအေးထဲတွင် နှစ်ထားပါ။")
+      t("Preferred: put frozen meat, poultry, shrimp, squid, or seafood in a tray in the fridge. Move large portions the night before.", "基本は、冷凍の肉、鳥肉、エビ、イカ、魚介類を受け皿に入れて冷蔵庫で解凍します。大きい物は前夜に移してください。", "အကောင်းဆုံးနည်းက အေးခဲထားသော အသား၊ ကြက်သား၊ ပုစွန်၊ ပြည်ကြီးငါး သို့မဟုတ် ပင်လယ်စာကို tray ထဲထည့်ပြီး fridge ထဲမှာ အရည်ဖျော်တာပါ။ အတုံးကြီးရင် မနေ့ညကတည်းက ရွှေ့ထားပါ။"),
+      t("For a quick thaw, keep food in a sealed, leak-proof bag and submerge it in cold water. Change the water every 30 min. Cook immediately after thawing.", "急ぐ場合は、食品を漏れない密閉袋に入れたまま冷水に沈めます。水は30分ごとに替え、解凍後はすぐに調理してください。", "အမြန်လိုရင် အစားအစာကို ရေမယိုတဲ့ sealed bag ထဲမှာထားပြီး ရေအေးထဲစိမ်ပါ။ ရေကို မိနစ် ၃၀ တိုင်းလဲပါ။ အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။"),
+      t("Use the microwave only as a last resort, then cook the food immediately.", "電子レンジは最終手段として使い、解凍後はすぐに調理してください。", "microwave ကို နောက်ဆုံးနည်းအဖြစ်သာ သုံးပြီး အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။")
     ],
-    t("Never thaw meat at room temperature for a long time.", "室温で肉を長時間解凍することは絶対に避けてください。", "အသားကို အခန်းအပူချိန်တွင် အချိန်အကြာကြီး မဖျော်ပါနှင့်။"),
+    [
+      t("Never thaw food on the counter or in warm or hot water. Never put raw food directly in the water.", "室温に置いたまま、またはぬるま湯・お湯では解凍しないでください。生の食品を水へ直接入れないでください。", "အစားအစာကို အပြင်မှာထားပြီး သို့မဟုတ် ရေနွေးနွေး/ရေပူနဲ့ အရည်မဖျော်ပါနဲ့။ အသားစိမ်းကို ရေထဲတိုက်ရိုက်မထည့်ပါနဲ့။"),
+      t("Prevent drips. After handling raw food, wash your hands, the pot or sink, and nearby surfaces.", "汁漏れを防ぎ、生ものを扱った後は手、鍋またはシンク、周辺の表面を洗ってください。", "အရည်မယိုအောင် ကာကွယ်ပါ။ အသားစိမ်းကို ကိုင်ပြီးရင် လက်၊ အိုး သို့မဟုတ် sink နဲ့ အနီးကမျက်နှာပြင်တွေကို ဆေးပါ။")
+    ],
     [
       photo("assets/food-safety/safe-thawing.png",
         t("Refrigerator, microwave-defrost and sealed cold-water methods", "冷蔵庫解凍、電子レンジ解凍、冷水解凍の方法", "ရေခဲသေတ္တာ၊ မိုက်ခရိုဝေ့ဖ်နှင့် ရေအေးဖြင့် ရေခဲဖျော်နည်းများ"),
@@ -1442,7 +1565,10 @@ const routineTasks = [
     t("Nako - Weekly Play Pen Deep Clean", "ナコ - サークルの週1徹底掃除", "နာကို - pen အပတ်စဉ် deep clean"),
     t("Deep clean Nako's play pen: wipe the panels, floor or mat, pee tray area, towels, and toys.", "ナコのサークルを徹底的に掃除します。パネル、床またはマット、トイレトレー周り、タオル、おもちゃを拭いてください。", "Nako ၏ play pen ကို နက်နက်ရှိုင်းရှိုင်း သန့်ရှင်းပါ။ panels၊ ကြမ်းပြင် သို့မဟုတ် mat၊ pee tray နေရာ၊ တံဘက်များနှင့် ကစားစရာများကို သုတ်ပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"),
-    t("Use enzyme cleaner where needed, especially if there may be pee or poop smell.", "必要に応じて、特におしっこやうんちの臭いがある場合は酵素クリーナーを使ってください。", "လိုအပ်ပါက၊ အထူးသဖြင့် ဆီး သို့မဟုတ် အညစ်အကြေးအနံ့ရှိနိုင်သောနေရာတွင် enzyme cleaner ကို အသုံးပြုပါ။")),
+    [
+      t("Use enzyme cleaner where needed, especially if there may be pee or poop smell.", "必要に応じて、特におしっこやうんちの臭いがある場合は酵素クリーナーを使ってください。", "လိုအပ်ပါက၊ အထူးသဖြင့် ဆီး သို့မဟုတ် အညစ်အကြေးအနံ့ရှိနိုင်သောနေရာတွင် enzyme cleaner ကို အသုံးပြုပါ။"),
+      t("Dry the pen, bedding, toys, and nearby floor fully before letting Nako back in. Do not leave damp areas or pee or poop smell outside the pee tray.", "ナコを戻す前に、サークル、寝具、おもちゃ、周辺の床を完全に乾かしてください。濡れた場所や、おしっこ・うんちの臭いをトイレトレーの外に残さないでください。", "Nako ကို ပြန်မထည့်ခင် pen၊ အိပ်ရာ၊ ကစားစရာနဲ့ အနီးကကြမ်းပြင်ကို အပြည့်ခြောက်အောင်လုပ်ပါ။ စိုနေတဲ့နေရာ သို့မဟုတ် pee tray အပြင်မှာ ဆီး/ချေးအနံ့ မကျန်ပါစေနဲ့။")
+    ]),
 
   routine("nako-teeth-ears-nails", "daily", 75, "N",
     t("Nako - Teeth / Ears / Nails Check", "ナコ - 歯・耳・爪のチェック", "Nako - သွား / နား / ခြေသည်း စစ်ဆေးခြင်း"), 
@@ -1450,6 +1576,7 @@ const routineTasks = [
     t("Teeth daily + ears/nails weekly", "歯磨きは毎日＋耳・爪は毎週", "သွားတိုက်ခြင်း နေ့စဉ် + နား/ခြေသည်း အပတ်စဉ်"),
     [
       t("Use only Nako's dog toothbrush and toothpaste. Do not force teeth brushing or nail handling if she resists.", "ナコ用の犬用歯ブラシと歯磨き粉だけを使ってください。嫌がる場合は、歯磨きや爪の処理を無理に行わないでください。", "Nako အတွက် dog toothbrush နှင့် toothpaste ကိုသာ အသုံးပြုပါ။ သူမ ရုန်းကန်နေပါက သွားတိုက်ခြင်း သို့မဟုတ် ခြေသည်းကိုင်တွယ်ခြင်းကို အတင်းမလုပ်ပါနှင့်။"),
+      t("Never use human toothpaste. If Nako resists, pause and tell Edwin.", "人間用の歯磨き粉は絶対に使わないでください。ナコが嫌がる場合は中止して、Edwinに伝えてください。", "လူသုံး toothpaste ကို လုံးဝမသုံးပါနဲ့။ Nako ရုန်းရင် ရပ်ပြီး Edwin ကို ပြောပါ။"),
       t("Brush Nako's teeth daily using the tutorial method. Wrap her in a towel to keep her calm when checking ears, paws, or nails.", "チュートリアル動画に示されている方法で、ナコの歯を毎日磨いてください。耳、足、爪をチェックする時は、落ち着かせるためにタオルで包んでください。", "ဗီဒီယိုသင်ခန်းစာတွင် ပြသထားသည့်နည်းအတိုင်း Nako ၏ သွားကို နေ့စဉ်တိုက်ပါ။ နား၊ ခြေဖဝါး သို့မဟုတ် ခြေသည်းကို စစ်ဆေးသည့်အခါ သူမငြိမ်သက်စေရန် တံဘက်ဖြင့် ပတ်ထားပါ။")
     ],
     [
@@ -1498,7 +1625,7 @@ const routineTasks = [
     t("Check and top up daily supplement / pill boxes for Edwin and Yukari when empty or running low.", "エドウィンとゆかりの毎日のサプリメント/ピルボックスが空または少なくなっているか確認し、補充します。", "Edwin နှင့် Yukari တို့အတွက် နေ့စဉ်သောက်ရန် အားဆေး/ဆေးဗူးများ ကုန်ခါနီး သို့မဟုတ် ကုန်သွားပါက ဖြည့်ပေးပါ။"), 
     t("Weekly check + when empty", "毎週チェック＋空のとき", "အပတ်စဉ်စစ်ဆေးမှု + ကုန်သွားသောအခါ"), 
     [
-      t("Keep Edwin's and Yukari's boxes separate. Do not change supplements unless instructed.", "エドウィンとゆかりのケースは別々に保管してください。指示がない限り、サプリメントの内容を変更しないでください。", "Edwin နှင့် Yukari ၏ဆေးဗူးများကို သီးခြားစီထားပါ။ ညွှန်ကြားချက်မရှိဘဲ အားဆေးများကို မပြောင်းပါနှင့်။"),
+      t("Keep Edwin's and Yukari's boxes separate. Do not change, add, or remove supplements unless instructed. Ask Edwin if unsure.", "エドウィンとゆかりのケースは別々に保管してください。指示なしにサプリメントを変更、追加、または取り除かないでください。不明な場合はEdwinに確認してください。", "Edwin နဲ့ Yukari ရဲ့ဆေးဗူးတွေကို သီးခြားထားပါ။ ညွှန်ကြားချက်မရှိဘဲ အားဆေးကို မပြောင်း၊ မထည့်၊ မဖယ်ပါနဲ့။ မသေချာရင် Edwin ကို မေးပါ။"),
       t("The green box is for Edwin, and the white box is for Yukari. Specific pill instructions for each box will be provided later.", "緑色のケースはエドウィン用、白色のケースはゆかり用です。それぞれのケースに入れる具体的な薬の指示は後日提供されます。", "အစိမ်းရောင်ဗူးမှာ Edwin အတွက်ဖြစ်ပြီး အဖြူရောင်ဗူးမှာ Yukari အတွက်ဖြစ်သည်။ ဗူးတစ်ခုစီတွင် ထည့်ရမည့် အသေးစိတ်ဆေးညွှန်ကြားချက်များကို နောက်ပိုင်းတွင် ဖော်ပြပေးပါမည်။")
     ],
     [
@@ -1704,19 +1831,27 @@ const routineTasks = [
     t("Clean and wipe ceiling fan blades and accessible fan surfaces.", "天井扇の羽根と手の届くファン表面を掃除し、拭きます。", "မျက်နှာကျက်ပန်ကာ အတောင်ပံများနှင့် လက်လှမ်းမီသော ပန်ကာမျက်နှာပြင်များကို သန့်ရှင်းရေးလုပ်ပြီး သုတ်ပါ။"), 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
-      t("Turn off the fan first. Be careful when using a ladder or stool.", "最初にファンの電源を切ってください。はしごや踏み台を使用するときは注意してください。", "ပထမဦးစွာ ပန်ကာကို ပိတ်ပါ။ လှေကား သို့မဟုတ် ထိုင်ခုံကို အသုံးပြုသည့်အခါ သတိထားပါ။"),
+      t("Turn off the fan at the wall switch and wait until the blades stop. Wear a mask because dust may fall.", "壁のスイッチでファンを切り、羽根が止まるまで待ってください。ほこりが落ちるため、マスクを着けてください。", "နံရံ switch မှာ fan ကိုပိတ်ပြီး အတောင်တွေ ရပ်သွားတဲ့အထိ စောင့်ပါ။ ဖုန်ကျနိုင်လို့ mask တပ်ပါ။"),
+      t("Put the black stepladder on a flat, dry floor. Open it fully and check that it is stable.", "黒い脚立を平らで乾いた床に置きます。完全に開き、安定していることを確認してください。", "အနက်ရောင် stepladder ကို ညီပြီးခြောက်တဲ့ ကြမ်းပြင်ပေါ်ထားပါ။ အပြည့်ဖွင့်ပြီး တည်ငြိမ်တာကို စစ်ပါ။"),
+      t("Do not stand on the top step or reach too far. Move the ladder instead. If it feels unstable, stop and ask someone to hold it.", "一番上の段に立ったり、無理に手を伸ばしたりしないでください。脚立を移動してください。不安定なら中止し、誰かに支えてもらってください。", "အပေါ်ဆုံးအဆင့်မှာ မရပ်ပါနဲ့။ အဝေးကြီး လက်မလှမ်းပါနဲ့။ လှေကားကို ရွှေ့ပါ။ မတည်ငြိမ်ရင် ရပ်ပြီး တစ်ယောက်ယောက်ကို ကိုင်ပေးဖို့ တောင်းပါ။"),
+      t("For very dirty or dusty fan areas, use the separate dirty-area cloth with standard Magiclean disinfectant. Do not use a normal household cleaning cloth.", "天井扇周辺が非常に汚れている、またはほこりが多い場合は、汚れた場所専用の布と通常のマジックリン除菌スプレーを使ってください。普段の掃除用布は使わないでください。", "ceiling fan နေရာက အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူရင် အညစ်အကြေးနေရာသုံး သီးသန့်အဝတ်နဲ့ standard Magiclean disinfectant ကို သုံးပါ။ ပုံမှန်အိမ်သန့်ရှင်းရေးအဝတ်ကို မသုံးပါနဲ့။"),
       t("Use a damp cloth or specialized duster to clean the fan blades weekly to prevent dust buildup.", "ほこりの蓄積を防ぐため、湿らせた布や専用のダスターを使用して、毎週ファンの羽根を掃除してください。", "ဖုန်မှုန့်များ စုပုံခြင်းမှ ကာကွယ်ရန် စိုစွတ်သောအဝတ် သို့မဟုတ် သီးသန့်ဖုန်သုတ်တံကို အသုံးပြု၍ ပန်ကာအတောင်ပံများကို အပတ်စဉ် သန့်ရှင်းရေးလုပ်ပါ။")
     ],
     [
       photo("assets/routines/nako-ceiling-fan.jpg",
         t("Ceiling fan setup", "天井扇のセットアップ", "မျက်နှာကျက်ပန်ကာ တင်ဆက်မှု"),
-        t("Wipe fan blades regularly to keep them dust-free.", "ほこりが溜まらないように、定期的にファンの羽根を拭いてください。", "ဖုန်မှုန့်များကင်းစင်စေရန် ပန်ကာအတောင်ပံများကို ပုံမှန်သုတ်ပေးပါ။"))
+        t("Wipe fan blades regularly to keep them dust-free.", "ほこりが溜まらないように、定期的にファンの羽根を拭いてください。", "ဖုန်မှုန့်များကင်းစင်စေရန် ပန်ကာအတောင်ပံများကို ပုံမှန်သုတ်ပေးပါ။")),
+      photo("assets/routines/separate-cloth-magiclean-dirty-areas.jpg",
+        t("Separate dirty-area cloth and Magiclean disinfectant beside luggage wheels", "スーツケースの車輪の横にある汚れた場所専用の布とマジックリン除菌スプレー", "luggage ဘီးဘေးရှိ အညစ်အကြေးနေရာသုံး သီးသန့်အဝတ်နှင့် Magiclean disinfectant"),
+        t("Use this separate cloth with standard Magiclean disinfectant when ceiling-fan areas are very dirty or dusty. Do not use the normal household cloth.", "天井扇周辺が非常に汚れている、またはほこりが多い時は、この専用布と通常のマジックリン除菌スプレーを使います。普段の掃除用布は使いません。", "ceiling fan နေရာက အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူရင် ဒီသီးသန့်အဝတ်နဲ့ standard Magiclean disinfectant ကို သုံးပါ။ ပုံမှန်အိမ်သန့်ရှင်းရေးအဝတ်ကို မသုံးပါနဲ့။"))
     ]),
   routine("fridge-interior", "weekly", 150, "F", 
     t("Fridge Interior Cleaning", "冷蔵庫内の掃除", "ရေခဲသေတ္တာအတွင်းပိုင်း သန့်ရှင်းရေး"), 
     t("Remove items from the fridge, wipe inside surfaces and shelves, then put everything back neatly.", "冷蔵庫から品物を取り出し、内側の表面と棚を拭き、すべてをきれいに戻します。", "ရေခဲသေတ္တာထဲမှ ပစ္စည်းများကို ထုတ်ပါ၊ အတွင်းပိုင်းမျက်နှာပြင်များနှင့် စင်များကို သုတ်ပါ၊ ထို့နောက် အားလုံးကို သပ်သပ်ရပ်ရပ် ပြန်ထည့်ပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
+      t("Check for expired, leaking, or spoiled food. Keep all food covered.", "期限切れ、液漏れ、傷んだ食品がないか確認してください。食品はすべて覆って保管してください。", "သက်တမ်းကုန်၊ ယိုနေ သို့မဟုတ် ပုပ်နေတဲ့အစားအစာ ရှိမရှိ စစ်ပါ။ အစားအစာအားလုံးကို ဖုံးထားပါ။"),
+      t("Do not put a large pot or a large amount of steaming-hot food directly in the fridge. Divide it into small, shallow containers. Let heavy steam reduce briefly, then refrigerate within 2 hours; do not wait until completely cold.", "大きな鍋や大量の熱々の料理をそのまま冷蔵庫に入れないでください。小さく浅い容器に分け、強い湯気が少し落ち着いたら2時間以内に冷蔵します。完全に冷えるまで待たないでください。", "အိုးကြီး သို့မဟုတ် အငွေ့ထွက်နေတဲ့ ပူပူနွေးနွေးအစားအစာအများကြီးကို fridge ထဲ တိုက်ရိုက်မထည့်ပါနဲ့။ သေးပြီးတိမ်တဲ့ဘူးတွေထဲ ခွဲထည့်ပါ။ အငွေ့ပြင်းတာ နည်းနည်းလျော့ရင် ၂ နာရီအတွင်း fridge ထဲထည့်ပါ။ လုံးဝအေးတဲ့အထိ မစောင့်ပါနဲ့။"),
       t("Close the fridge fully, avoid keeping it open long, aim for 5-10 seconds, and close it immediately if it beeps.", "冷蔵庫を完全に閉め、長時間開けたままにしないようにしてください（5〜10秒目安）。警告音が鳴ったらすぐに閉めてください。", "ရေခဲသေတ္တာတံခါးကို လုံအောင်ပိတ်ပါ၊ အချိန်အကြာကြီး ဖွင့်မထားပါနှင့် (၅-၁၀ စက္ကန့်ခန့်သာ ဖွင့်ရန်)၊ အသံမြည်ပါက ချက်ချင်းပြန်ပိတ်ပါ။"),
       t("Keep condiments, jars, and bottles neatly arranged on the side shelves and inside compartments.", "調味料、瓶、ボトル類は、ドアポケットや庫内の仕切りにきれいに整理して保管してください。", "ဟင်းခတ်အမွှေးအကြိုင်များ၊ ဗူးများနှင့် ပုလင်းများကို ဘေးစင်များနှင့် အတွင်းအကန့်များတွင် သပ်သပ်ရပ်ရပ် စီစဉ်ထားပါ။")
     ],
@@ -1732,12 +1867,16 @@ const routineTasks = [
     t("Weekly + as needed", "毎週チェック＋必要に応じて", "အပတ်စဉ် + လိုအပ်သလို"), 
     [
       t("Dirty cleaning tools spread smell and dirt instead of cleaning properly.", "汚れた掃除用具は、適切に掃除する代わりに臭いや汚れを広げてしまいます。", "ညစ်ပတ်သော သန့်ရှင်းရေးပစ္စည်းများသည် ကောင်းမွန်စွာသန့်ရှင်းပေးမည့်အစား အနံ့ဆိုးများနှင့် ဖုန်မှုန့်များကို ပြန့်နှံ့စေသည်။"),
+      t("Reserve a separate cloth for very dirty or dusty surfaces such as ceiling-fan areas and luggage wheels. Use it with standard Magiclean disinfectant. Keep it separate from normal cloths, then wash and dry it separately after use.", "天井扇周辺やスーツケースの車輪など、非常に汚れた・ほこりの多い場所には専用の布を使ってください。通常のマジックリン除菌スプレーと一緒に使い、普段の布と分けて保管し、使用後は別に洗って乾かしてください。", "ceiling fan နေရာနဲ့ luggage ဘီးတွေလို အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူတဲ့နေရာတွေအတွက် သီးသန့်အဝတ်ထားပါ။ standard Magiclean disinfectant နဲ့အတူ သုံးပါ။ ပုံမှန်အဝတ်တွေနဲ့ ခွဲထားပြီး သုံးပြီးရင် သီးခြားလျှော်ကာ ခြောက်အောင်ထားပါ။"),
       t("Regularly check the vacuum cleaner parts and replace dirty filters using the replacement filter packs stored on the shelf.", "定期的に掃除機の部品を点検し、棚に保管されている予備のフィルターパックを使用して、汚れたフィルターを交換してください。", "ဖုန်စုပ်စက်၏ အစိတ်အပိုင်းများကို ပုံမှန်စစ်ဆေးပြီး စင်ပေါ်တွင် သိမ်းဆည်းထားသော အပို filter packs များကို အသုံးပြု၍ ညစ်ပတ်သော filter များကို လဲလှယ်ပါ။")
     ],
     [
       photo("assets/routines/nako-cleaning-tools-maintenance.jpg",
         t("Vacuum cleaner and filter parts", "掃除機とフィルター部品", "ဖုန်စုပ်စက်နှင့် filter အစိတ်အပိုင်းများ"),
-        t("Store the handheld vacuums and filter replacements neatly on this shelf.", "ハンディ掃除機と予備のフィルターはこの棚にきれいに保管してください。", "လက်ကိုင်ဖုန်စုပ်စက်နှင့် အပို filter များကို ဤစင်ပေါ်တွင် သပ်သပ်ရပ်ရပ် သိမ်းဆည်းထားပါ။"))
+        t("Store the handheld vacuums and filter replacements neatly on this shelf.", "ハンディ掃除機と予備のフィルターはこの棚にきれいに保管してください。", "လက်ကိုင်ဖုန်စုပ်စက်နှင့် အပို filter များကို ဤစင်ပေါ်တွင် သပ်သပ်ရပ်ရပ် သိမ်းဆည်းထားပါ။")),
+      photo("assets/routines/separate-cloth-magiclean-dirty-areas.jpg",
+        t("Separate cloth and Magiclean disinfectant for very dirty areas", "非常に汚れた場所専用の布とマジックリン除菌スプレー", "အရမ်းညစ်ပတ်တဲ့နေရာသုံး သီးသန့်အဝတ်နှင့် Magiclean disinfectant"),
+        t("Keep this cloth separate for very dirty or dusty surfaces. Use it with standard Magiclean disinfectant, then wash and dry it separately.", "この布は、非常に汚れた・ほこりの多い場所専用に分けておきます。通常のマジックリン除菌スプレーと一緒に使い、使用後は別に洗って乾かします。", "ဒီအဝတ်ကို အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူတဲ့နေရာတွေအတွက် သီးသန့်ထားပါ။ standard Magiclean disinfectant နဲ့ သုံးပြီး သုံးပြီးရင် သီးခြားလျှော်ကာ ခြောက်အောင်ထားပါ။"))
     ]),
 
   routine("blanket-washing", "fortnightly", 10, "B", 
@@ -1771,7 +1910,7 @@ const routineTasks = [
     t("Monthly", "毎月", "လစဉ်"), 
     [
       t("Do ad hoc cleaning sooner if dusty, sticky, oily, or after spills.", "ほこり、粘つき、油汚れがある場合、またはこぼした後は、早めに臨時掃除を行ってください。", "ဖုန်ထူခြင်း၊ စေးကပ်ခြင်း၊ ဆီပေခြင်း သို့မဟုတ် ဖိတ်စင်ပြီးနောက် လိုအပ်ပါက သန့်ရှင်းရေးကို စောစောလုပ်ပါ။"),
-      t("Edwin is very sensitive to dust and will get an itchy nose and skin. Perform dusting and surface wiping regularly to keep the home dust-free.", "エドウィンはほこりに非常に敏感で、鼻のかゆみや皮膚の荒れ（かゆみ）を引き起こします。家の中にほこりがたまらないよう、定期的にほこり取りと表面の拭き掃除を行ってください。", "Edwin သည် ဖုန်မှုန့်များနှင့် မတည့်ပါ (နှာခေါင်းယားခြင်းနှင့် အရေပြားယားယံခြင်း ဖြစ်စေသည်)။ အိမ်တွင် ဖုန်ကင်းစင်စေရန် ပုံမှန် ဖုန်သုတ်ခြင်းနှင့် မျက်နှာပြင်များကို သုတ်ခြင်းတို့ ပြုလုပ်ပါ။")
+      t("Edwin is very sensitive to dust. It can cause sneezing, a runny or itchy nose, and skin reactions. Clean visible dust promptly instead of waiting for the next scheduled task.", "エドウィンはほこりに非常に敏感です。くしゃみ、鼻水、鼻のかゆみ、皮膚の反応が出ることがあります。次の定期掃除を待たず、見えるほこりはすぐに掃除してください。", "Edwin က ဖုန်နဲ့ အရမ်းမတည့်ပါ။ နှာချေခြင်း၊ နှာရည်ယိုခြင်း၊ နှာခေါင်းယားခြင်းနဲ့ အရေပြားဓာတ်မတည့်တာ ဖြစ်နိုင်ပါတယ်။ နောက်သန့်ရှင်းရေးရက်ကို မစောင့်ဘဲ မြင်ရတဲ့ဖုန်ကို ချက်ချင်းသုတ်ပါ။")
     ],
     [
       photo("assets/routines/edwin-dust-allergy.jpg",
@@ -2088,6 +2227,7 @@ if (coffeeMachineDescalingRoutine) {
     t("Reinsert the water filter after rinsing, if one is used.", "ウォーターフィルターを使っている場合は、すすぎ後に戻します。", "ရေ filter အသုံးပြုပါက ဆေးကြောပြီးနောက် ပြန်တပ်ပါ။")
   ];
   coffeeMachineDescalingRoutine.mustRemember.push(
+    t("Do not descale the machine alone yet. Edwin must guide the first descaling while you follow the tutorial video.", "まだ一人で除石灰を行わないでください。初回はチュートリアル動画を見ながら、Edwinの指導の下で行ってください。", "လောလောဆယ် စက်ကို တစ်ယောက်တည်း descale မလုပ်ပါနဲ့။ ပထမဆုံးအကြိမ်မှာ tutorial video ကိုကြည့်ပြီး Edwin ရဲ့ လမ်းညွှန်မှုနဲ့ လုပ်ပါ။"),
     t("When descaling is needed, the descale button/light will flash red. We have not done this yet as of July 2026.", "除石灰が必要になると、除石灰ボタンまたはランプが赤く点滅します。2026年7月時点では、まだこの作業は行っていません。", "Descaling လိုအပ်လာသောအခါ descale ခလုတ်/မီးနီ တောက်မည်။ 2026 ဇူလိုင်အထိ ဤအလုပ်ကို မလုပ်ရသေးပါ။"),
     t("Use only a coffee-machine-safe descaler. Wipe any spilled descaler quickly because it can damage surfaces.", "コーヒーマシン用として安全な除石灰剤だけを使用してください。こぼれた場合は表面を傷めることがあるため、すぐに拭き取ってください。", "ကော်ဖီစက်အတွက် သင့်သော descaler ကိုသာ အသုံးပြုပါ။ ဖိတ်ကျပါက မျက်နှာပြင်များ ပျက်စီးနိုင်သောကြောင့် ချက်ချင်းသုတ်ပါ။")
   );
@@ -2099,7 +2239,7 @@ if (coffeeMachineDescalingRoutine) {
       t("Red flashing descale button", "赤く点滅する除石灰ボタン", "နီရောင်တောက်နေသော descale ခလုတ်"),
       t("When the machine needs descaling, the descale button/light will flash red.", "マシンに除石灰が必要なとき、除石灰ボタンまたはランプが赤く点滅します。", "စက်သည် descaling လိုအပ်သောအခါ descale ခလုတ်/မီးနီ တောက်မည်။"))
   ];
-  coffeeMachineDescalingRoutine.videoUrl = "https://www.youtube.com/embed/30EVN-fIM3I";
+  coffeeMachineDescalingRoutine.videoUrl = "https://www.youtube.com/embed/vcVPB1-0huA";
 }
 
 const vimleSofaBedRoutine = routineTasks.find((task) => task.id === "vimle-sofa-bed");
@@ -2160,7 +2300,8 @@ if (yukariFlightPackingRoutine) {
     t("Check the details/packing list for the specific items needed for that flight or trip.", "そのフライトまたは旅行に必要な具体的な物は、詳細または荷造りリストで確認してください。", "ထိုလေယာဉ်ခရီး သို့မဟုတ် ခရီးစဉ်အတွက် လိုအပ်သောပစ္စည်းများကို အသေးစိတ်/packing list တွင် စစ်ပါ။"),
     t("Packing depends on the trip type, destination, and length of the flight duty.", "荷造りは、旅行の種類、行き先、フライト勤務の長さによって変わります。", "အထုပ်ပြင်ခြင်းသည် ခရီးအမျိုးအစား၊ သွားမည့်နေရာနှင့် flight duty ကြာချိန်အပေါ် မူတည်သည်။"),
     t("For turnaround trips, pack much less; usually one small luggage is enough.", "日帰り往復のようなターンアラウンド便では荷物は少なめで、通常は小さいスーツケース1つで十分です。", "Turnaround ခရီးများအတွက် ပစ္စည်းအနည်းငယ်သာထည့်ပါ။ ပုံမှန်အားဖြင့် luggage အသေးတစ်လုံးလုံလောက်သည်။"),
-    t("For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "日本行きや長いフライトでは、大きなグレーのスーツケースが必要になる場合があります。荷造り前に確認してください。", "Japan ခရီး သို့မဟုတ် ပိုရှည်သော flight များအတွက် မီးခိုးရောင် luggage ကြီးလိုနိုင်သည်။ အထုပ်မပြင်မီ အတည်ပြုပါ။")
+    t("For Japan trips or longer flights, the big grey luggage may be needed. Confirm before packing.", "日本行きや長いフライトでは、大きなグレーのスーツケースが必要になる場合があります。荷造り前に確認してください。", "Japan ခရီး သို့မဟုတ် ပိုရှည်သော flight များအတွက် မီးခိုးရောင် luggage ကြီးလိုနိုင်သည်။ အထုပ်မပြင်မီ အတည်ပြုပါ။"),
+    t("When packing or unpacking, check the luggage wheels. If they are dirty or dusty, clean them with the separate dirty-area cloth and standard Magiclean disinfectant. Do not use a normal household cloth.", "荷造りまたは荷解きの時に、スーツケースの車輪を確認してください。汚れやほこりがある場合は、汚れた場所専用の布と通常のマジックリン除菌スプレーで掃除します。普段の掃除用布は使わないでください。", "luggage ထုပ်တဲ့အခါ သို့မဟုတ် ဖွင့်တဲ့အခါ ဘီးတွေကို စစ်ပါ။ ညစ်ပတ် သို့မဟုတ် ဖုန်ထူနေရင် အညစ်အကြေးနေရာသုံး သီးသန့်အဝတ်နဲ့ standard Magiclean disinfectant ကို သုံးပြီး သုတ်ပါ။ ပုံမှန်အိမ်သန့်ရှင်းရေးအဝတ်ကို မသုံးပါနဲ့။")
   ];
   yukariFlightPackingRoutine.mustRemember.push(
     t("Do not assume every flight needs the same luggage. Match the bag size and packed items to the actual trip.", "すべてのフライトで同じ荷物が必要だと思い込まないでください。実際の旅行に合わせてバッグの大きさと中身を調整してください。", "Flight တိုင်းတွင် luggage တူတူလိုသည်ဟု မယူဆပါနှင့်။ အမှန်တကယ်ခရီးနှင့်ကိုက်ညီအောင် အိတ်အရွယ်အစားနှင့် ထည့်မည့်ပစ္စည်းများကို ရွေးပါ။")
@@ -2169,6 +2310,9 @@ if (yukariFlightPackingRoutine) {
     photo("assets/routines/nako-yukari-flight-packing.jpg",
       t("Flight work packing with luggage", "フライト勤務用の荷物準備", "Flight အလုပ်အတွက် luggage ထုပ်ပိုးခြင်း"),
       t("Reference setup for packing flight work items. Use the details list and adjust luggage size by trip type.", "フライト勤務用品の荷造り参考写真です。詳細リストを使い、旅行の種類に合わせてスーツケースの大きさを調整してください。", "Flight အလုပ်ပစ္စည်းများ ထုပ်ပိုးရန် ကိုးကားပုံဖြစ်သည်။ အသေးစိတ်စာရင်းကိုသုံးပြီး ခရီးအမျိုးအစားအလိုက် luggage အရွယ်အစားကိုညှိပါ။")),
+    photo("assets/routines/separate-cloth-magiclean-dirty-areas.jpg",
+      t("Separate cloth and Magiclean disinfectant beside luggage wheels", "スーツケースの車輪の横にある専用布とマジックリン除菌スプレー", "luggage ဘီးဘေးရှိ သီးသန့်အဝတ်နှင့် Magiclean disinfectant"),
+      t("Clean dirty or dusty luggage wheels with this separate cloth and standard Magiclean disinfectant. Do not use the normal household cloth.", "汚れやほこりのあるスーツケースの車輪は、この専用布と通常のマジックリン除菌スプレーで掃除します。普段の掃除用布は使いません。", "ညစ်ပတ် သို့မဟုတ် ဖုန်ထူနေတဲ့ luggage ဘီးတွေကို ဒီသီးသန့်အဝတ်နဲ့ standard Magiclean disinfectant သုံးပြီး သုတ်ပါ။ ပုံမှန်အိမ်သန့်ရှင်းရေးအဝတ်ကို မသုံးပါနဲ့။")),
     ...yukariFlightPackingRoutine.photos
   ];
 }
@@ -2185,6 +2329,7 @@ const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooki
 if (dailyCookingRoutine) {
   dailyCookingRoutine.mustRemember.push(
     t("**WHITE RICE — Tefal Mini:** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米 — Tefal Mini:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ — Tefal Mini:** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
+    t("Keep food and snacks out of bedrooms. Use only the kitchen, dining, or living areas to prevent crumbs, smells, stains, ants, cockroaches, and other pests.", "寝室に食べ物やお菓子を持ち込まないでください。食べ物はキッチン、ダイニング、リビングだけで扱い、食べくず、臭い、汚れ、アリ、ゴキブリなどの害虫を防いでください。", "အိပ်ခန်းထဲ အစားအစာနဲ့ မုန့်တွေ မယူပါနဲ့။ အစားအစာကို မီးဖိုချောင်၊ dining သို့မဟုတ် living area မှာပဲ စား/ထားပါ။ အစအန၊ အနံ့၊ အစွန်းအထင်း၊ ပုရွက်ဆိတ်၊ ပိုးဟပ်နဲ့ အခြားပိုးမွှားတွေကို ကာကွယ်ဖို့ပါ။"),
     t("**FYI ONLY:** Other food recipes are reference only—make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
   );
   dailyCookingRoutine.photos = [
@@ -3619,6 +3764,7 @@ function checkTranslations() {
   checkObj(window.nakoData.recipes, "recipes");
   checkObj(window.nakoData.additionalResources, "additionalResources");
   checkObj(window.nakoData.trainingData, "trainingData");
+  checkObj(window.nakoData.gamificationData, "gamificationData");
 
   // Quantities such as "100g" are language-neutral. Any amount containing
   // user-facing words must use t(en, jp, mm) so the renderer can localize it.
@@ -3764,6 +3910,7 @@ window.nakoData = {
   householdCookingRulesItem,
   additionalResources,
   trainingData,
+  gamificationData,
   checkTranslations
 };
 

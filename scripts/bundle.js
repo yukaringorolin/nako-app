@@ -9,6 +9,7 @@ const OUTPUT_FILE = path.join(ROOT_DIR, 'src/data.js');
 const filesToBundle = [
   'helpers.js',
   'ui.js',
+  'gamification.js',
   'sections.js',
   'cooking_rules.js',
   'additional_resources.js',
@@ -54,6 +55,7 @@ try {
   householdCookingRulesItem,
   additionalResources,
   trainingData,
+  gamificationData,
   checkTranslations
 };
 

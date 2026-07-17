@@ -104,7 +104,8 @@ function renderShell(title, content, showBack = false) {
         </div>
       </header>
       <div class="content">${content}</div>
-    </div>`;
+    </div>
+    ${renderGamificationNotice()}`;
 }
 
 function renderSyncIndicator() {

@@ -2,6 +2,10 @@
    SECTION 5: INTERACTIVE EVENT LISTENERS & CONTROLLERS
    ========================================================================== */
 function handleClick(event) {
+  if (event.target.closest("[data-gamification-dismiss]")) {
+    dismissGamificationNotice();
+    return;
+  }
   // Close search dropdown on click outside
   if (!event.target.closest(".search-container")) {
     if (searchFocused) {
@@ -191,6 +195,7 @@ function handleDiarySubmit(dateKey) {
   const now = nowIso();
   const diary = getDiaryState();
   const previousEntry = diary.entries[dateKey] || {};
+  const isNewEntry = !previousEntry.submittedAt;
   const translations = previousEntry.translations || {};
 
   const hasTranslations = translations.jp || translations.mm;
@@ -207,6 +212,7 @@ function handleDiarySubmit(dateKey) {
     updatedAt: now
   };
   diary.drafts[dateKey] = { text, updatedAt: now };
+  if (isNewEntry) celebrateCareSave("diary");
   saveState();
   diarySaveInProgress = false;
   diaryStatusMessage = label("diarySaved");
@@ -242,13 +248,20 @@ function saveCommandLog() {
   const timestamp = draft.date || nowIso();
   const log = { id: draft.id || uniqueId(), commandId: draft.commandId, score, rewardReliance: Number(draft.rewardReliance), environment: Number(draft.environment), successes, attempts, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), comment: String(draft.comment || ""), createdAt: timestamp, updatedAt: nowIso() };
   const existingIndex = training.commandLogs.findIndex((item) => item.id === log.id);
+  const isNewLog = existingIndex < 0;
+  const previousBest = window.nakoGamification.previousBestScore(training.commandLogs, log.commandId, log.id);
+  const personalBest = isNewLog && previousBest !== null && log.score > previousBest;
+  const commandTitle = tr(trainingData.commands.find((item) => item.id === log.commandId)?.title);
   if (existingIndex >= 0) training.commandLogs[existingIndex] = log;
   else training.commandLogs.push(log);
   refreshCommandFromLogs(log.commandId);
+  if (isNewLog) celebrateCareSave("training", { personalBest, commandTitle });
   saveState();
   trainingDraft = null;
   trainingHistoryCommandId = log.commandId;
-  trainingSuccessMessage = tl("saved");
+  trainingSuccessMessage = isNewLog
+    ? noticeMessage("training", { personalBest, commandTitle })
+    : tl("saved");
   render();
 }
 
@@ -288,11 +301,13 @@ function savePlayLog() {
   const training = getTrainingState();
   const log = { id: draft.id || uniqueId(), activityId: draft.activityId, durationMinutes: draft.durationMinutes === "" ? null : Math.max(0, Number(draft.durationMinutes) || 0), engagement, energyBefore, energyAfter, dropResponse: String(draft.dropResponse || ""), allDoneResponse: String(draft.allDoneResponse || ""), favouriteToy: String(draft.favouriteToy || ""), comment: String(draft.comment || ""), unusual: String(draft.unusual || ""), createdAt: draft.date || nowIso(), updatedAt: nowIso() };
   const index = training.playLogs.findIndex((item) => item.id === log.id);
+  const isNewLog = index < 0;
   if (index >= 0) training.playLogs[index] = log;
   else training.playLogs.push(log);
+  if (isNewLog) celebrateCareSave("play");
   saveState();
   trainingDraft = null;
-  trainingSuccessMessage = tl("saved");
+  trainingSuccessMessage = isNewLog ? noticeMessage("play") : tl("saved");
   render();
 }
 

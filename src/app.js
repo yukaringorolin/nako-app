@@ -5,7 +5,7 @@ try {
 const LANG_KEY = "nako-care-language";
 const STATE_KEY = "nako-care-state-v2";
 const NAKO_LOGO_SRC = "assets/nako-logo.png";
-const { langs, ui, homeSections, foodItems, foodSafetyItems, householdCookingRulesItem, officialReferences, routineTasks, recipes, cookingRules, additionalResources, trainingData } = window.nakoData;
+const { langs, ui, homeSections, foodItems, foodSafetyItems, householdCookingRulesItem, officialReferences, routineTasks, recipes, cookingRules, additionalResources, trainingData, gamificationData } = window.nakoData;
 const ingredientCatalog = window.nakoIngredientCatalog || {};
 const routineTracking = window.nakoRoutineTracking;
 
@@ -32,6 +32,9 @@ let trainingSuccessMessage = "";
 let routineStatusMessage = "";
 let routineUndoRecord = null;
 let routineUndoTimer = null;
+let gamificationNotice = null;
+let gamificationNoticeTimer = null;
+const pendingNewWeightDates = new Set();
 const routineTodayAtLoad = routineTracking.singaporeDateKey();
 let routineHistoryFilters = {
   task: "all",
@@ -59,6 +62,9 @@ document.addEventListener("blur", handleBlur, true);
 document.addEventListener("submit", handleSubmit);
 document.addEventListener("keydown", handleKeydown);
 document.addEventListener("focusin", handleFocusIn);
+document.addEventListener("error", handleGamificationImageError, true);
+const gamificationMigration = initializeGamificationState();
+if (gamificationMigration.showAlbumReady) showGamificationNotice("albumReady");
 initFirebaseSync();
 render();
 
@@ -119,7 +125,8 @@ function initFirebaseSync() {
       }
       migrateTrainingState();
       migrateRoutineTrackingState();
-      saveState({ remote: false });
+      const gamificationResult = syncGamificationUnlocks();
+      saveState({ remote: gamificationResult.changed });
       if (appStateSignature(appState) !== previousSignature) renderUnlessEditing();
     }
   });
@@ -130,7 +137,8 @@ function initFirebaseSync() {
       const previousSignature = appStateSignature(routineRecords());
       const normalizedRecords = routineTracking.normalizeRecords(records);
       appState.routineCompletions = normalizedRecords;
-      saveState({ remote: false });
+      const gamificationResult = syncGamificationUnlocks();
+      saveState({ remote: gamificationResult.changed });
       if (appStateSignature(normalizedRecords) !== previousSignature) renderUnlessEditing();
     }
   });

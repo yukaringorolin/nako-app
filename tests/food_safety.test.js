@@ -74,6 +74,17 @@ expectedIds.forEach((id) => {
   assert.equal(item.photos.length, 1, `Item ${id} must have exactly 1 photo`);
 });
 
+const safeThawing = foodSafetyItems.find((item) => item.id === "safe-thawing");
+const safeThawingSteps = safeThawing.instructions.map((item) => item.en).join("\n");
+const safeThawingWarnings = safeThawing.mustRemember.map((item) => item.en).join("\n");
+assert.match(safeThawingSteps, /Change the water every 30 min/);
+assert.match(safeThawingSteps, /Cook immediately after thawing/);
+assert.match(safeThawingWarnings, /warm or hot water/);
+assert.match(safeThawingWarnings, /wash your hands, the pot or sink, and nearby surfaces/);
+
+const storageLimits = foodSafetyItems.find((item) => item.id === "refrigerator-storage-limits");
+assert.match(storageLimits.mustRemember.map((item) => item.en).join("\n"), /Smell is not a safety test/);
+
 // 3. Verify the public route contract and focused feature renderers
 assert.deepEqual(router.parseRouteHash("#food-safety/safe-thawing"), { view: "food-safety-item", itemId: "safe-thawing" });
 assert.deepEqual(router.parseRouteHash("#food-safety/household-cooking-rules"), { view: "food-safety-item", itemId: "household-cooking-rules" });

@@ -2,10 +2,13 @@
   const weightHistory = typeof module === "object" && module.exports
     ? require("./weight-history.js")
     : root?.nakoWeightHistory;
-  const api = factory(weightHistory);
+  const gamification = typeof module === "object" && module.exports
+    ? require("./gamification.js")
+    : root?.nakoGamification;
+  const api = factory(weightHistory, gamification);
   if (typeof module === "object" && module.exports) module.exports = api;
   if (root) root.nakoFirebaseState = api;
-})(typeof window !== "undefined" ? window : globalThis, function (weightHistory) {
+})(typeof window !== "undefined" ? window : globalThis, function (weightHistory, gamification) {
   "use strict";
 
   const TRAINING_SETTING_KEYS = Object.freeze(["emergencyCue", "liftCue"]);
@@ -76,7 +79,9 @@
       weightTracking: mergeDatedRecords(remote.weightTracking, local.weightTracking),
       routineTrackingStartedDate: earliestDate(remote.routineTrackingStartedDate, local.routineTrackingStartedDate),
       diary: mergeDiaryState(remote.diary, local.diary),
-      training: mergeTrainingState(remote.training, local.training)
+      training: mergeTrainingState(remote.training, local.training),
+      gamification: gamification?.mergeGamificationState?.(remote.gamification, local.gamification)
+        || mergeGamificationState(remote.gamification, local.gamification)
     });
     return weightHistory?.applyToState?.(merged) || merged;
   }
@@ -144,6 +149,31 @@
       ...local,
       entries: mergeDatedRecords(remote.entries, local.entries),
       drafts: mergeDatedRecords(remote.drafts, local.drafts)
+    };
+  }
+
+  function mergeGamificationState(remoteGamification = {}, localGamification = {}) {
+    const remote = remoteGamification || {};
+    const local = localGamification || {};
+    const unlockedPostcards = {};
+    const ids = new Set([
+      ...Object.keys(remote.unlockedPostcards || {}),
+      ...Object.keys(local.unlockedPostcards || {})
+    ]);
+    ids.forEach((id) => {
+      const remoteRecord = remote.unlockedPostcards?.[id] || {};
+      const localRecord = local.unlockedPostcards?.[id] || {};
+      unlockedPostcards[id] = {
+        ...remoteRecord,
+        ...localRecord,
+        unlockedAt: earliestDate(remoteRecord.unlockedAt, localRecord.unlockedAt)
+      };
+    });
+    return {
+      ...remote,
+      ...local,
+      version: Math.max(Number(remote.version) || 0, Number(local.version) || 0),
+      unlockedPostcards
     };
   }
 

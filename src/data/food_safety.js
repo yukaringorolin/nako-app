@@ -45,7 +45,10 @@ const foodSafetyItems = [
       t("Soy sauce, seasoning or ordinary marinade does not extend the safe storage period.", "醤油、調味料、または通常のタレ漬け（マリネ）は、安全な保存期間を延ばしません。", "ပဲငံပြာရည်၊ ဟင်းခတ်မှုန့် သို့မဟုတ် သာမန်နှပ်ထားခြင်းသည် သိုလှောင်နိုင်သည့်ကာလကို ပိုမဆွဲဆန့်နိုင်ပါ။"),
       t("When possible, label the bag or container with the purchase or cooking date.", "可能な場合は、袋や容器に購入日または調理日を記入してください。", "ဖြစ်နိုင်လျှင် အိတ် သို့မဟုတ် ဘူးပေါ်တွင် ဝယ်သည့်ရက်စွဲ သို့မဟုတ် ချက်သည့်ရက်စွဲကို ရေးမှတ်ထားပါ။")
     ],
-    t("Raw poultry: cook or freeze within 2 days. After 2 days, throw it away.", "生の鳥肉：2日以内に調理するか冷凍してください。2日を過ぎたら廃棄してください。", "အသားစိမ်း- ၂ ရက်အတွင်း ချက်ပါ သို့မဟုတ် အေးခဲပါ။ ၂ ရက်ကျော်ပါက လွှင့်ပစ်ပါ။"),
+    [
+      t("Raw poultry: cook or freeze within 2 days. After 2 days, throw it away.", "生の鳥肉：2日以内に調理するか冷凍してください。2日を過ぎたら廃棄してください。", "ကြက်/ငှက်အသားစိမ်းကို ၂ ရက်အတွင်း ချက်ပါ သို့မဟုတ် အေးခဲပါ။ ၂ ရက်ကျော်ပါက လွှင့်ပစ်ပါ။"),
+      t("Smell is not a safety test. Follow the storage limit even when poultry smells normal. Throw it away sooner if it smells sour or unusual, or feels sticky or slimy.", "臭いだけでは安全か判断できません。鳥肉の臭いが普通でも保存期限を守ってください。酸っぱい臭いや異臭、べたつき、ぬめりがある場合は、期限前でも廃棄してください。", "အနံ့ပုံမှန်ဖြစ်တာနဲ့ ဘေးကင်းတယ်လို့ မယူဆပါနဲ့။ ကြက်/ငှက်အသားရဲ့ သိုလှောင်ရက်ကို အမြဲလိုက်နာပါ။ ချဉ်တဲ့အနံ့၊ မူမမှန်တဲ့အနံ့၊ စေးကပ်တာ သို့မဟုတ် ချွဲကျိတာရှိရင် ရက်မပြည့်ခင်ပဲ လွှင့်ပစ်ပါ။")
+    ],
     [
       photo("assets/food-safety/refrigerator-storage-limits.png",
         t("Calendar beside chicken, fish and meat icons", "鶏、魚、肉のアイコンの横にあるカレンダー", "ကြက်၊ ငါးနှင့် အသားပုံများ ဘေးရှိ ပြက္ခဒိန်"),
@@ -92,14 +95,16 @@ const foodSafetyItems = [
 
   safetyItem("safe-thawing", "💧",
     t("Thaw frozen food safely", "冷凍食品を安全に解凍する", "အေးခဲထားသော အစားအစာများကို ဘေးကင်းစွာ ရေခဲဖျော်ပါ"),
-    t("Never leave frozen meat thawing on the kitchen counter for several hours.", "冷凍肉をキッチンのカウンターに何時間も放置して解凍させないでください。", "အေးခဲထားသော အသားများကို မီးဖိုချောင်ခုံပေါ်တွင် နာရီပေါင်းများစွာ ပစ်မထားပါနှင့်။"),
+    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave—not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
     [
-      t("Do not leave frozen meat thawing on the kitchen counter for several hours.", "冷凍肉をキッチンのカウンターに何時間も放置して解凍させないでください。", "အေးခဲထားသော အသားများကို မီးဖိုချောင်ခုံပေါ်တွင် နာရီပေါင်းများစွာ ပစ်မထားပါနှင့်။"),
-      t("Thaw it inside the refrigerator.", "冷蔵庫の中で解凍してください。", "ရေခဲသေတ္တာ၏ သာမန်အအေးခန်းထဲတွင် ရေခဲဖျော်ပါ။"),
-      t("Use the microwave defrost setting and cook it immediately.", "電子レンジの解凍機能を使用し、解凍後はすぐに調理してください。", "မိုက်ခရိုဝေ့ဖ်၏ ရေခဲဖျော်စနစ်ကို သုံးပြီး ချက်ချင်း ချက်ပြုတ်ပါ။"),
-      t("Put it in a sealed, leak-proof bag and place the bag in cold water.", "密閉された水漏れしない袋に入れ、その袋を冷水に浸してください。", "လုံခြုံသောအိတ်ထဲထည့်ပြီး ရေအေးထဲတွင် နှစ်ထားပါ။")
+      t("Preferred: put frozen meat, poultry, shrimp, squid, or seafood in a tray in the fridge. Move large portions the night before.", "基本は、冷凍の肉、鳥肉、エビ、イカ、魚介類を受け皿に入れて冷蔵庫で解凍します。大きい物は前夜に移してください。", "အကောင်းဆုံးနည်းက အေးခဲထားသော အသား၊ ကြက်သား၊ ပုစွန်၊ ပြည်ကြီးငါး သို့မဟုတ် ပင်လယ်စာကို tray ထဲထည့်ပြီး fridge ထဲမှာ အရည်ဖျော်တာပါ။ အတုံးကြီးရင် မနေ့ညကတည်းက ရွှေ့ထားပါ။"),
+      t("For a quick thaw, keep food in a sealed, leak-proof bag and submerge it in cold water. Change the water every 30 min. Cook immediately after thawing.", "急ぐ場合は、食品を漏れない密閉袋に入れたまま冷水に沈めます。水は30分ごとに替え、解凍後はすぐに調理してください。", "အမြန်လိုရင် အစားအစာကို ရေမယိုတဲ့ sealed bag ထဲမှာထားပြီး ရေအေးထဲစိမ်ပါ။ ရေကို မိနစ် ၃၀ တိုင်းလဲပါ။ အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။"),
+      t("Use the microwave only as a last resort, then cook the food immediately.", "電子レンジは最終手段として使い、解凍後はすぐに調理してください。", "microwave ကို နောက်ဆုံးနည်းအဖြစ်သာ သုံးပြီး အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။")
     ],
-    t("Never thaw meat at room temperature for a long time.", "室温で肉を長時間解凍することは絶対に避けてください。", "အသားကို အခန်းအပူချိန်တွင် အချိန်အကြာကြီး မဖျော်ပါနှင့်။"),
+    [
+      t("Never thaw food on the counter or in warm or hot water. Never put raw food directly in the water.", "室温に置いたまま、またはぬるま湯・お湯では解凍しないでください。生の食品を水へ直接入れないでください。", "အစားအစာကို အပြင်မှာထားပြီး သို့မဟုတ် ရေနွေးနွေး/ရေပူနဲ့ အရည်မဖျော်ပါနဲ့။ အသားစိမ်းကို ရေထဲတိုက်ရိုက်မထည့်ပါနဲ့။"),
+      t("Prevent drips. After handling raw food, wash your hands, the pot or sink, and nearby surfaces.", "汁漏れを防ぎ、生ものを扱った後は手、鍋またはシンク、周辺の表面を洗ってください。", "အရည်မယိုအောင် ကာကွယ်ပါ။ အသားစိမ်းကို ကိုင်ပြီးရင် လက်၊ အိုး သို့မဟုတ် sink နဲ့ အနီးကမျက်နှာပြင်တွေကို ဆေးပါ။")
+    ],
     [
       photo("assets/food-safety/safe-thawing.png",
         t("Refrigerator, microwave-defrost and sealed cold-water methods", "冷蔵庫解凍、電子レンジ解凍、冷水解凍の方法", "ရေခဲသေတ္တာ၊ မိုက်ခရိုဝေ့ဖ်နှင့် ရေအေးဖြင့် ရေခဲဖျော်နည်းများ"),

@@ -64,10 +64,12 @@ function renderNakoAppetiteTracker() {
 function saveAppetitePercentage(dateKey, value) {
   const percentage = window.nakoAppetiteTracking.validPercentage(value);
   if (percentage === null) return;
+  const existingEntry = window.nakoAppetiteTracking.normalizeEntry(getAppetiteEntries()[dateKey], dateKey);
   const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { percentage }, nowIso());
   if (!entry) return;
   selectedAppetiteDate = dateKey;
   appetiteStatusMessage = label("appetiteSaved");
+  if (!existingEntry) celebrateCareSave("health");
   saveState();
   render();
 }
