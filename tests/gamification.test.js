@@ -100,6 +100,10 @@ assert.match(appetite, /if \(!existingEntry\) celebrateCareSave\("health"\)/);
 assert.match(routineState, /dataset\.gamificationNewEntry === "true"/);
 assert.match(routineState, /celebrateCareSave\("routine"\)/);
 assert.ok(
+  pages.indexOf("renderGamificationHome()") > pages.indexOf("renderAdditionalResources()"),
+  "The weekly care recap should stay below task-focused home content"
+);
+assert.ok(
   pages.indexOf("renderGamificationAlbumHome()") > pages.indexOf("renderAdditionalResources()"),
   "The postcard album should stay below task-focused home content"
 );

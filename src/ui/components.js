@@ -20,7 +20,7 @@ function renderSectionCard(section) {
     count = foodSafetyItems.length + 1;
     labelText = label("safetyReferences");
   } else {
-    count = routineTasks.filter((task) => task.frequencyBucket === section.id).length;
+    count = routineTasks.filter((task) => task.active !== false && task.frequencyBucket === section.id).length;
     labelText = label("routineItems");
   }
   return `<button class="category-card theme-${esc(section.id)}" data-section="${esc(section.id)}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(labelText)}</span></span></span><span class="chevron">›</span></button>`;

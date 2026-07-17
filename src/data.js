@@ -1346,7 +1346,12 @@ const routineTasks = [
     t("Nako - Supervision", "ナコ - 監視", "Nako - စောင့်ကြည့်ခြင်း"), 
     t("Whenever Nako is out of the pen, she must wear her collar and house leash / house line and be monitored actively.", "ナコがケージの外に出ているときは、常に首輪とハウスリードを着用させ、積極的に監視する必要があります。", "Nako သည် ခြံပြင်ပတွင် ရှိနေသည့်အချိန်တိုင်း လည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ဆင်ထားရမည်ဖြစ်ပြီး တက်ကြွစွာ စောင့်ကြည့်ရမည်။"), 
     t("Whenever out of pen / roaming", "ケージの外に出ているとき / 自由に歩き回っているとき", "ခြံပြင်ပသို့ ရောက်နေစဉ် / လွတ်လပ်စွာသွားလာနေစဉ်"), 
-    t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။")),
+    t("Do not leave her roaming unsupervised.", "監視なしで自由に歩き回らせないでください。", "စောင့်ကြည့်မှုမရှိဘဲ လွှတ်မထားပါနှင့်။"),
+    [
+      photo("assets/routines/nako-supervision-collar-house-line.jpg",
+        t("Pink house line and white collar held in one hand", "手に持ったピンクのハウスリードと白い首輪", "လက်ထဲတွင်ကိုင်ထားသော ပန်းရောင်အိမ်သုံးကြိုးနှင့် အဖြူရောင်လည်ပတ်"),
+        t("Put this collar and house line on Nako whenever she is outside the pen.", "ナコをケージの外に出すときは、毎回この首輪とハウスリードを着用させます。", "Nako ကို ခြံပြင်ထုတ်သည့်အချိန်တိုင်း ဤလည်ပတ်နှင့် အိမ်သုံးကြိုးကို ဝတ်ပေးပါ။"))
+    ]),
   routine("nako-walk-car-bags", "daily", 75, "B",
     t("Nako - Walk & Car Bags", "ナコ - 散歩用・車用バッグ", "နာကို - လမ်းလျှောက်နှင့် ကားစီးအိတ်"),
     t("Pack Nako's correct bag before every walk or car ride, with water, poop bags, and a small treat box if needed.", "散歩や車移動の前に、ナコ用の正しいバッグへ水、うんち袋、必要なら小さいおやつ箱を入れます。", "လမ်းလျှောက်ခြင်း သို့မဟုတ် ကားစီးခြင်းမပြုမီ Nako အတွက် မှန်ကန်သောအိတ်ထဲသို့ ရေ၊ ခွေးချေးအိတ်နှင့် လိုအပ်ပါက treat အဘူးအသေး ၁ ဘူး ထည့်ပါ။"),
@@ -1371,6 +1376,11 @@ const routineTasks = [
       t("Do not climb, lean out, jump, play, or put weight near a window.", "窓の近くで登る、身を乗り出す、跳ぶ、遊ぶ、体重をかける行為は禁止です。", "ပြတင်းပေါက်အနီးတွင် မတက်၊ ကိုယ်မယောင်း၊ မခုန်၊ မကစား၊ ကိုယ်အလေးချိန် မတင်ပါနှင့်။"),
       t("Window grilles do not make the area completely safe. Take care when cleaning, closing, or walking near windows.", "窓グリルがあっても完全に安全ではありません。窓の掃除、開閉、近くを歩く時は注意してください。", "window grille ရှိသော်လည်း လုံးဝဘေးကင်းသည် မဟုတ်ပါ။ ပြတင်းပေါက် သန့်ရှင်းခြင်း၊ ပိတ်ခြင်း သို့မဟုတ် အနီးတွင် လမ်းလျှောက်ခြင်းအခါ သတိထားပါ။"),
       t("Always supervise Nako near windows.", "窓の近くでは常にナコを見守ってください。", "ပြတင်းပေါက်အနီးတွင် Nako ကို အမြဲစောင့်ကြည့်ပါ။")
+    ],
+    [
+      photo("assets/routines/nako-general-window-safety.png",
+        t("Closed window with grilles, a paw shield, and a warning symbol", "窓グリル付きの閉じた窓、肉球の盾、警告マーク", "ပိတ်ထားသော grille ပါသည့် ပြတင်းပေါက်၊ ခွေးခြေရာပါ shield နှင့် သတိပေးအမှတ်အသား"),
+        t("Keep Nako and helpers away from window edges. Grilles do not make windows completely safe.", "ナコとヘルパーは窓の端から離れてください。窓グリルがあっても完全に安全ではありません。", "Nako နှင့် အိမ်အကူများကို ပြတင်းပေါက်အနားမှ ဝေးဝေးထားပါ။ grille ရှိသော်လည်း ပြတင်းပေါက်သည် လုံးဝဘေးကင်းသည် မဟုတ်ပါ။"))
     ]),
   routine("nako-kind-handling", "daily", 1000, "!", 
     t("Nako - Kind Handling Reminder", "ナコ - 優しい扱いの注意", "နာကို - နူးညံ့စွာကိုင်တွယ်ရန် သတိပြုချက်"),
@@ -1587,8 +1597,28 @@ const routineTasks = [
     t("Deep clean Nako's play pen: wipe the panels, floor or mat, pee tray area, towels, and toys.", "ナコのサークルを徹底的に掃除します。パネル、床またはマット、トイレトレー周り、タオル、おもちゃを拭いてください。", "Nako ၏ play pen ကို နက်နက်ရှိုင်းရှိုင်း သန့်ရှင်းပါ။ panels၊ ကြမ်းပြင် သို့မဟုတ် mat၊ pee tray နေရာ၊ တံဘက်များနှင့် ကစားစရာများကို သုတ်ပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"),
     [
+      t("Move Nako safely out of the play pen. Put on her collar and house line, and supervise her actively while you clean.", "ナコを安全にサークルの外へ出します。首輪とハウスリードを着け、掃除中は常に見守ってください。", "Nako ကို play pen အပြင်သို့ လုံခြုံစွာ ထုတ်ပါ။ လည်ပတ်နှင့် house line တပ်ပြီး သန့်ရှင်းနေစဉ် အမြဲစောင့်ကြည့်ပါ။"),
+      t("Remove everything from the pen: the bed, floor mats, towels, pee tray, pee pad, and every toy.", "ベッド、床マット、タオル、トイレトレー、ペットシーツ、おもちゃをすべてサークルから出します。", "အိပ်ရာ၊ ကြမ်းခင်း mat၊ တံဘက်၊ pee tray၊ pee pad နှင့် ကစားစရာအားလုံးကို pen ထဲမှ ထုတ်ပါ။"),
+      t("Take apart the pee tray. Throw away the used pee pad, then wash the tray, grate, edges, underside, and exterior.", "トイレトレーを分解します。使用済みのペットシーツを捨て、トレー、すのこ、縁、裏面、外側を洗います。", "pee tray ကို အစိတ်အပိုင်းခွဲပါ။ သုံးပြီးသား pee pad ကို လွှင့်ပစ်ပြီး tray၊ အပေါ်ဆန်ခါ၊ အနား၊ အောက်ခြေနှင့် အပြင်ဘက်ကို ဆေးပါ။"),
+      t("Wipe every play-pen panel on both sides. Clean the rails, joints, wall sides, edges, and every corner.", "サークルの各パネルの内側と外側を拭きます。レール、接続部、壁側、縁、すべての角を掃除します。", "play pen panel တစ်ခုစီ၏ အတွင်းနှင့် အပြင်ကို သုတ်ပါ။ ဘောင်တန်း၊ အဆက်နေရာ၊ နံရံဘက်၊ အနားနှင့် ထောင့်အားလုံးကို သန့်ရှင်းပါ။"),
+      t("Clean the floor outside and around the pen. Wipe along the walls and in every corner.", "サークルの外側と周辺の床を掃除します。壁際とすべての角も拭いてください。", "pen အပြင်နှင့် ပတ်ဝန်းကျင်ကြမ်းပြင်ကို သန့်ရှင်းပါ။ နံရံဘေးနှင့် ထောင့်အားလုံးကိုလည်း သုတ်ပါ။"),
+      t("Wash the pen floor and all removable floor mats. Remove hair, dirt, pee residue, and smell.", "サークルの床と取り外せる床マットをすべて洗います。毛、汚れ、尿の残り、臭いを取り除きます。", "pen ကြမ်းပြင်နှင့် ဖြုတ်လို့ရသော ကြမ်းခင်း mat အားလုံးကို ဆေးပါ။ အမွေး၊ အညစ်အကြေး၊ ဆီးကျန်နှင့် အနံ့ကို ဖယ်ရှားပါ။"),
+      t("Wash all of Nako's towels and every washable part of her bed. Rinse well and dry them fully.", "ナコのタオル全部と、ベッドの洗える部分をすべて洗います。十分にすすぎ、完全に乾かします。", "Nako ရဲ့ တံဘက်အားလုံးနှင့် အိပ်ရာ၏ ဆေးလို့ရသော အစိတ်အပိုင်းအားလုံးကို ဆေးပါ။ ရေစင်အောင်ဆေးပြီး လုံးဝခြောက်အောင်လုပ်ပါ။"),
+      t("Separate all toys before washing: toys with a squeaker or sound unit, and toys without one.", "洗う前に、おもちゃを音が鳴る部品入りと、音が鳴る部品なしに分けます。", "ကစားစရာများကို အသံမြည်ပစ္စည်းပါတာနှင့် မပါတာဟူ၍ မဆေးမီ ခွဲထားပါ။"),
+      t("Wash squeaky or sound-making toys with water only. Do not use soap or detergent.", "音が鳴るおもちゃは水だけで洗います。石けんや洗剤は使わないでください。", "အသံမြည်သော ကစားစရာများကို ရေနှင့်သာဆေးပါ။ ဆပ်ပြာ သို့မဟုတ် detergent မသုံးပါနှင့်။"),
+      t("Wash soft toys without a squeaker with Nako's puppy shampoo. Rinse until no shampoo remains.", "音が鳴らない柔らかいおもちゃは、ナコ用の子犬用シャンプーで洗います。シャンプーが残らないよう十分にすすぎます。", "အသံမမြည်သော အပျော့စားကစားစရာများကို Nako ရဲ့ puppy shampoo နဲ့ ဆေးပါ။ shampoo မကျန်အောင် ရေစင်စင်ဆေးပါ။"),
+      t("Whenever soap is needed for Nako's things, use only Nako's puppy shampoo. Never use human soap or normal laundry detergent.", "ナコの物に石けんが必要な場合は、ナコ用の子犬用シャンプーだけを使います。人間用石けんや通常の洗濯洗剤は絶対に使わないでください。", "Nako ရဲ့ ပစ္စည်းများအတွက် ဆပ်ပြာလိုပါက Nako ရဲ့ puppy shampoo ကိုသာသုံးပါ။ လူသုံးဆပ်ပြာ သို့မဟုတ် ပုံမှန်အဝတ်လျှော် detergent ကို လုံးဝမသုံးပါနှင့်။"),
       t("Use enzyme cleaner where needed, especially if there may be pee or poop smell.", "必要に応じて、特におしっこやうんちの臭いがある場合は酵素クリーナーを使ってください。", "လိုအပ်ပါက၊ အထူးသဖြင့် ဆီး သို့မဟုတ် အညစ်အကြေးအနံ့ရှိနိုင်သောနေရာတွင် enzyme cleaner ကို အသုံးပြုပါ။"),
-      t("Dry the pen, bedding, toys, and nearby floor fully before letting Nako back in. Do not leave damp areas or pee or poop smell outside the pee tray.", "ナコを戻す前に、サークル、寝具、おもちゃ、周辺の床を完全に乾かしてください。濡れた場所や、おしっこ・うんちの臭いをトイレトレーの外に残さないでください。", "Nako ကို ပြန်မထည့်ခင် pen၊ အိပ်ရာ၊ ကစားစရာနဲ့ အနီးကကြမ်းပြင်ကို အပြည့်ခြောက်အောင်လုပ်ပါ။ စိုနေတဲ့နေရာ သို့မဟုတ် pee tray အပြင်မှာ ဆီး/ချေးအနံ့ မကျန်ပါစေနဲ့။")
+      t("Dry the pen, pee tray, mats, bed, towels, toys, and nearby floor fully before letting Nako back in. Do not leave damp areas or pee or poop smell outside the pee tray.", "ナコを戻す前に、サークル、トイレトレー、マット、ベッド、タオル、おもちゃ、周辺の床を完全に乾かします。濡れた場所や、トイレトレーの外におしっこ・うんちの臭いを残さないでください。", "Nako ကို ပြန်မထည့်ခင် pen၊ pee tray၊ mat၊ အိပ်ရာ၊ တံဘက်၊ ကစားစရာများနှင့် အနီးရှိကြမ်းပြင်ကို လုံးဝခြောက်အောင်လုပ်ပါ။ စိုနေသည့်နေရာ သို့မဟုတ် pee tray အပြင်မှာ ဆီး/ချေးအနံ့ မကျန်ပါစေနှင့်။"),
+      t("Put everything back only when it is clean and dry. Fit a fresh pee pad and return Nako's bed, mats, towels, and toys.", "全部が清潔で乾いてから戻します。新しいペットシーツを取り付け、ナコのベッド、マット、タオル、おもちゃを戻します。", "အရာအားလုံး သန့်ရှင်းခြောက်သွေ့မှ ပြန်ထားပါ။ pee pad အသစ်တပ်ပြီး Nako ရဲ့ အိပ်ရာ၊ mat၊ တံဘက်နှင့် ကစားစရာများကို ပြန်ထားပါ။")
+    ],
+    [
+      photo("assets/routines/nako-weekly-play-pen-deep-clean-setup.jpg",
+        t("Play pen emptied for a deep clean with towels and an activity mat hung outside", "タオルと遊び用マットを外に掛け、徹底掃除のため空にしたサークル", "တံဘက်နှင့် activity mat ကို အပြင်မှာလှန်းထားပြီး deep clean လုပ်ရန် ပစ္စည်းများထုတ်ထားသော play pen"),
+        t("Remove everything before cleaning the pee tray, panels, floor, bedding, and toys.", "トイレトレー、パネル、床、寝具、おもちゃを掃除する前に、すべてを外へ出します。", "pee tray၊ panel၊ ကြမ်းပြင်၊ အိပ်ရာနှင့် ကစားစရာများကို မသန့်ရှင်းမီ ပစ္စည်းအားလုံးကို အပြင်ထုတ်ပါ။")),
+      photo("assets/routines/nako-weekly-play-pen-deep-clean-pet-cleaner.jpg",
+        t("Pet-safe cleaner held beside the emptied play pen", "空にしたサークルの横で持っているペット用クリーナー", "ပစ္စည်းများထုတ်ထားသော play pen ဘေးတွင် ကိုင်ထားသည့် အိမ်မွေးတိရစ္ဆာန်သုံး cleaner"),
+        t("Use pet-safe cleaner on the pen panels, wall sides, corners, and nearby floor.", "ペット用クリーナーで、サークルのパネル、壁側、角、周辺の床を掃除します。", "pen panel၊ နံရံဘက်၊ ထောင့်နှင့် အနီးရှိကြမ်းပြင်ကို အိမ်မွေးတိရစ္ဆာန်သုံး cleaner ဖြင့် သန့်ရှင်းပါ။"))
     ]),
 
   routine("nako-teeth-ears-nails", "daily", 75, "N",
@@ -1792,9 +1822,9 @@ const routineTasks = [
       t("After fitting the sheet, the mattress must not remain on the white bed-frame handlebar. Tuck the headrest cover in securely.", "シーツを付けた後、マットレスを白いベッドフレームのハンドルバーに載せたままにしないでください。ヘッドレストカバーもしっかり差し込みます。", "အိပ်ရာခင်းတပ်ပြီးနောက် မွေ့ရာကို အဖြူရောင် bed-frame handlebar ပေါ်တွင် မကျန်စေရပါ။ headrest cover ကိုလည်း ခိုင်ခိုင်မာမာ ထိုးထည့်ပါ။")
     ],
     [
-      photo("assets/routines/nako-bedsheets-items-on-chair.jpg",
-        t("Pillows, bolsters, and blankets placed on a chair", "枕、抱き枕、毛布を椅子に置いた状態", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကုလားထိုင်ပေါ် တင်ထားခြင်း"),
-        t("1. Put pillows, bolsters, and blankets on a chair—never on the floor.", "1. 枕、抱き枕、毛布は床ではなく椅子に置きます。", "၁။ ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။")),
+      photo("assets/routines/nako-bedrooms-linens-bolster-cover.png",
+        t("Putting a clean gray cover on a bolster on the bed", "ベッドの上で抱き枕に清潔なグレーのカバーを付けているところ", "အိပ်ရာပေါ်တွင် ဖက်လုံးကို သန့်ရှင်းသော မီးခိုးရောင်အစွပ် စွပ်နေခြင်း"),
+        t("Main weekly reference for changing sheets and putting clean covers on every pillow and bolster.", "毎週、シーツを交換し、すべての枕と抱き枕に清潔なカバーを付けるための主な参考写真です。", "အပတ်စဉ် အိပ်ရာခင်းလဲပြီး ခေါင်းအုံးနှင့် ဖက်လုံးအားလုံးကို သန့်ရှင်းသောအစွပ် တပ်ရန် အဓိကကိုးကားပုံ ဖြစ်သည်။")),
       photo("assets/routines/nako-bedsheets-mattress-protector.jpg",
         t("Mattress protector being changed", "交換中のマットレスプロテクター", "လဲလှယ်နေသော mattress protector"),
         t("2. Wash the used protector, but keep another protector on the mattress.", "2. 使用済みプロテクターを洗い、別のプロテクターをマットレスに付けておきます。", "၂။ အသုံးပြုပြီးသော protector ကိုလျှော်ပြီး အခြား protector တစ်ထည်ကို မွေ့ရာပေါ်တွင် ထားပါ။")),
@@ -1835,16 +1865,20 @@ const routineTasks = [
 
   routine("sofa-covers-pillows", "weekly", 130, "S", 
     t("Sofa Covers & Pillows", "ソファカバーとクッション", "ဆိုဖာစွပ်များနှင့် ခေါင်းအုံးများ"), 
-    t("Wash the 2 sofa covers and the 2 small square sofa pillows.", "2枚のソファカバーと2個の小さな正方形のソファクッションを洗います。", "ဆိုဖာစွပ် ၂ ခုနှင့် စတုရန်းပုံစံ ဆိုဖာခေါင်းအုံးအသေး ၂ ခုကို လျှော်ပါ။"), 
+    t("Vacuum the sofa and its 2 small square pillows. Wash the 2 sofa covers and the 2 pillows.", "ソファと小さい正方形のクッション2個に掃除機を掛けます。ソファカバー2枚とクッション2個を洗います。", "ဆိုဖာနှင့် စတုရန်းပုံစံ ဆိုဖာခေါင်းအုံးအသေး ၂ ခုကို ဖုန်စုပ်ပါ။ ဆိုဖာစွပ် ၂ ခုနှင့် ခေါင်းအုံး ၂ ခုကို လျှော်ပါ။"), 
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
+      t("Before washing, use the dedicated bedding vacuum on the sofa surface, seams, gaps, and both small square sofa pillows.", "洗う前に、寝具専用掃除機でソファの表面、縫い目、隙間、小さい正方形のクッション2個を掃除します。", "မလျှော်မီ အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့် ဆိုဖာမျက်နှာပြင်၊ ချုပ်ရိုး၊ ကြားနေရာများနှင့် စတုရန်းပုံစံ ခေါင်းအုံးအသေး ၂ ခုကို ဖုန်စုပ်ပါ။"),
       t("Dry fully before putting back to prevent damp smell.", "生乾きの臭いを防ぐため、元に戻す前に完全に乾かしてください。", "စိုထိုင်းသောအနံ့ဆိုးများမထွက်စေရန် ပြန်မစွပ်မီ ခြောက်သွေ့အောင် ထားပါ။"),
       t("Wash the sofa covers and pillowcases weekly on a regular basis. If you cannot do it weekly, stretching the interval slightly longer is fine.", "ソファカバーと枕カバーを毎週定期的に洗ってください。毎週行うのが難しい場合は、間隔を少し長めに延ばしても大丈夫です。", "ဆိုဖာစွပ်များနှင့် ခေါင်းအုံးစွပ်များကို အပတ်စဉ် ပုံမှန်လျှော်ပေးပါ။ အပတ်စဉ်မလျှော်နိုင်ပါက လျှော်သည့်ရက်ခြားကာလကို အနည်းငယ် ပိုဆွဲထားနိုင်ပါသည်။")
     ],
     [
       photo("assets/routines/nako-sofa-covers.jpg",
         t("Sofa covers and square pillows", "ソファカバーとクッション", "ဆိုဖာစွပ်များနှင့် ခေါင်းအုံးများ"),
-        t("Wash these sofa covers and the small square pillows regularly.", "これらのソファカバーと小さな正方形のクッションを定期的に洗ってください。", "ဤဆိုဖာစွပ်များနှင့် ခေါင်းအုံးစတုရန်းပုံစံအသေးစားများကို ပုံမှန်လျှော်ပေးပါ။"))
+        t("Wash these sofa covers and the small square pillows regularly.", "これらのソファカバーと小さな正方形のクッションを定期的に洗ってください。", "ဤဆိုဖာစွပ်များနှင့် ခေါင်းအုံးစတုရန်းပုံစံအသေးစားများကို ပုံမှန်လျှော်ပေးပါ။")),
+      photo("assets/routines/nako-sofa-covers-pillows-vacuum.png",
+        t("Dedicated bedding vacuum for the sofa and sofa pillows", "ソファとソファクッション用の寝具専用掃除機", "ဆိုဖာနှင့် ဆိုဖာခေါင်းအုံးအတွက် အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်"),
+        t("Vacuum the sofa surface, seams, gaps, and both small square pillows before washing the covers and pillows.", "カバーとクッションを洗う前に、ソファの表面、縫い目、隙間、小さい正方形のクッション2個に掃除機を掛けます。", "ဆိုဖာစွပ်နှင့် ခေါင်းအုံးများကို မလျှော်မီ ဆိုဖာမျက်နှာပြင်၊ ချုပ်ရိုး၊ ကြားနေရာများနှင့် စတုရန်းပုံစံ ခေါင်းအုံးအသေး ၂ ခုကို ဖုန်စုပ်ပါ။"))
     ]),
 
   routine("ceiling-fan", "weekly", 140, "F", 
@@ -1925,6 +1959,35 @@ const routineTasks = [
     t("Wipe down the microwave interior, especially after food splatters. Do a complete wipe-down monthly even if it looks clean.", "特に食品が飛び散った後は、電子レンジの内部を拭き取ります。きれいに見えても毎月完全に拭き掃除を行います。", "မိုက်ခရိုဝေ့ဖ်အတွင်းပိုင်းကို သုတ်ပါ၊ အထူးသဖြင့် အစာများ စင်ပြီးနောက်။ သန့်ရှင်းသည်ဟု ထင်ရသော်လည်း လစဉ် အပြီးအပိုင် သုတ်ပေးပါ။"), 
     t("After use if dirty + monthly", "汚れた場合は使用後＋毎月", "ညစ်ပတ်ပါက အသုံးပြုပြီးနောက် + လစဉ်"), 
     t("Clean spills early so stains and smells do not set.", "シミや臭いが定着しないよう、こぼれたものは早めに掃除してください。", "အစွန်းအထင်းနှင့် အနံ့ဆိုးများ မကျန်စေရန် စောစောစီးစီး သန့်ရှင်းရေးလုပ်ပါ။")),
+  routine("ninja-af141-air-fryer-interior-deep-clean", "monthly", 15, "A",
+    t("Ninja AF141 Air Fryer Interior Deep Clean", "Ninja AF141 エアフライヤー内部の徹底掃除", "Ninja AF141 air fryer အတွင်းပိုင်း deep clean"),
+    t("Deep clean the fixed interior walls, ceiling, and heating coil of the Ninja AF141 Air Fryer without pouring or spraying water inside.", "Ninja AF141エアフライヤーの固定された内部壁、天井、ヒーターコイルを、本体内に水を注いだりスプレーしたりせずに徹底掃除します。", "Ninja AF141 air fryer ၏ အတွင်းနံရံ၊ အပေါ်မျက်နှာပြင်နှင့် အပူပေး coil ကို အထဲသို့ ရေလောင်းခြင်း သို့မဟုတ် ဖြန်းခြင်းမလုပ်ဘဲ သန့်ရှင်းရေးအကြီးစားလုပ်ပါ။"),
+    t("Monthly", "毎月", "လစဉ်"),
+    [
+      t("Switch off the Ninja AF141, unplug it, and let it cool completely.", "Ninja AF141の電源を切り、プラグを抜き、完全に冷まします。", "Ninja AF141 ကို ပိတ်၊ plug ဖြုတ်ပြီး လုံးဝအေးသွားအောင် စောင့်ပါ။"),
+      t("Use a slightly damp cleaning cloth to wipe the inside walls and ceiling.", "少し湿らせた掃除布で、内部の壁と天井を拭きます。", "အနည်းငယ်စိုသော သန့်ရှင်းရေးအဝတ်ဖြင့် အတွင်းနံရံနှင့် အပေါ်မျက်နှာပြင်ကို သုတ်ပါ။"),
+      t("Gently wipe around the heating coil. Do not pull or bend the coil.", "ヒーターコイルの周りを優しく拭きます。コイルを引っ張ったり曲げたりしないでください。", "အပူပေး coil ပတ်လည်ကို ညင်သာစွာ သုတ်ပါ။ coil ကို မဆွဲ၊ မကွေးပါနှင့်။"),
+      t("Wipe the interior again with a clean damp cloth.", "清潔な湿らせた布で、内部をもう一度拭きます。", "သန့်ရှင်းသော စိုစွတ်သည့်အဝတ်ဖြင့် အတွင်းပိုင်းကို ထပ်သုတ်ပါ။"),
+      t("Leave the air fryer open until the interior is completely dry.", "内部が完全に乾くまで、エアフライヤーを開けたままにします。", "အတွင်းပိုင်း လုံးဝခြောက်သွားသည်အထိ air fryer ကို ဖွင့်ထားပါ။"),
+      t("Do not pour or spray water inside the air fryer.", "エアフライヤーの内部に水を注いだり、直接スプレーしたりしないでください。", "air fryer အတွင်းသို့ ရေမလောင်း၊ တိုက်ရိုက်မဖြန်းပါနှင့်။"),
+      t("Do not use bleach, oven cleaner, or metal scrubbers.", "漂白剤、オーブンクリーナー、金属たわしは使わないでください。", "bleach၊ oven cleaner သို့မဟုတ် သံပွတ်တံကို မသုံးပါနှင့်။"),
+      t("This monthly task is for the fixed interior and heating coil. Continue cleaning removable oily parts after use under Clean Up & Cooking Appliances.", "この毎月の作業は、固定された内部とヒーターコイル用です。取り外せる油汚れ部品は、使用後に「片付けと調理器具の清掃」で引き続き洗ってください。", "ဤလစဉ်အလုပ်သည် ဖြုတ်မရသောအတွင်းပိုင်းနှင့် အပူပေး coil အတွက် ဖြစ်သည်။ ဖြုတ်လို့ရသော ဆီပေပစ္စည်းများကို သုံးပြီးတိုင်း Clean Up & Cooking Appliances အလုပ်အတိုင်း ဆက်လက်သန့်ရှင်းပါ။")
+    ],
+    [
+      photo("assets/routines/ninja-af141-air-fryer-interior.jpg",
+        t("Inside of the Ninja AF141 Air Fryer showing the heating coil", "ヒーターコイルが見えるNinja AF141エアフライヤー内部", "အပူပေး coil ကို မြင်ရသော Ninja AF141 air fryer အတွင်းပိုင်း"),
+        t("Use this photo to identify the interior ceiling and heating coil. Wipe gently without pulling or bending the coil.", "この写真で内部の天井とヒーターコイルを確認します。コイルを引っ張ったり曲げたりせず、優しく拭いてください。", "ဤပုံဖြင့် အတွင်းအပေါ်မျက်နှာပြင်နှင့် အပူပေး coil ကို ကြည့်ပါ။ coil ကို မဆွဲ၊ မကွေးဘဲ ညင်သာစွာ သုတ်ပါ။"))
+    ]),
+  routine("fujioh-hood-deep-clean", "monthly", 17, "H",
+    t("Fujioh Hood FR-FS2290RP Deep Clean", "Fujioh レンジフード FR-FS2290RP 徹底掃除", "Fujioh Hood FR-FS2290RP အကြီးစားသန့်ရှင်းရေး"),
+    t("Deep clean the removable oil tray and metal filters, then wipe all safe, accessible hood surfaces.", "取り外せるオイルトレーと金属フィルターを徹底洗浄し、安全に手が届くレンジフード表面を拭きます。", "ဖြုတ်နိုင်သော ဆီခံ tray နှင့် သတ္တု filter များကို သေချာဆေးပြီး လက်လှမ်းမီသော hood မျက်နှာပြင်များကို သုတ်ပါ။"),
+    t("Monthly", "毎月", "လစဉ်"),
+    t("Do not spray directly inside, wet the motor or wiring, use strong cleaners, or remove the internal fan.", "内部へ直接スプレーしたり、モーターや配線を濡らしたり、強力な洗剤を使ったり、内部ファンを外したりしないでください。", "အတွင်းသို့ တိုက်ရိုက်မဖြန်းပါနှင့်။ motor သို့မဟုတ် wiring ကို မစိုပါနှင့်။ ပြင်းသောသန့်စင်ဆေး မသုံးပါနှင့်။ အတွင်း fan ကို မဖြုတ်ပါနှင့်။"),
+    [
+      photo("assets/routines/fujioh-fr-fs2290rp-hood-deep-clean.jpg",
+        t("Fujioh FR-FS2290RP hood with the white panel open", "白いパネルを開けたFujioh FR-FS2290RPレンジフード", "အဖြူရောင် panel ဖွင့်ထားသော Fujioh FR-FS2290RP hood"),
+        t("Open the white panel to reach the oil tray and removable metal filter. Do not remove the internal fan.", "白いパネルを開けてオイルトレーと取り外し可能な金属フィルターを確認します。内部ファンは外さないでください。", "ဆီခံ tray နှင့် ဖြုတ်နိုင်သော သတ္တု filter ကို ရောက်ရန် အဖြူရောင် panel ကို ဖွင့်ပါ။ အတွင်း fan ကို မဖြုတ်ပါနှင့်။"))
+    ]),
   routine("general-surface-cleaning", "monthly", 20, "S", 
     t("General Surface Cleaning", "一般的な表面の掃除", "ယေဘုယျမျက်နှာပြင်များ သန့်ရှင်းရေး"), 
     t("Wipe general surfaces including cabinets, cupboards, TV area, router, shelves, vases, handles, and decorative items. Organise if messy.", "キャビネット、食器棚、テレビ周辺、ルーター、棚、花瓶、取っ手、装飾品などの一般的な表面を拭きます。散らかっている場合は整理します。", "ဗီရိုများ၊ တီဗီဧရိယာ၊ ရောက်တာ၊စင်များ၊ ပန်းအိုးများ၊ လက်ကိုင်များနှင့် အလှဆင်ပစ္စည်းများ အပါအဝင် ယေဘုယျမျက်နှာပြင်များကို သုတ်ပါ။ ရှုပ်ပွနေပါက စနစ်တကျ ပြန်စီပါ။"), 
@@ -2054,7 +2117,12 @@ const routineTasks = [
     t("Leaving Home - House Keys", "外出時 - 家の鍵", "အပြင်ထွက်ချိန် - အိမ်သော့"),
     t("Every time Chocho leaves the house, she must take the house keys, even for a short trip nearby.", "Chochoは、近所への短い外出でも、家を出る時は必ず家の鍵を持って行きます。", "Chocho သည် အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို မဖြစ်မနေ ယူသွားရမည်။"),
     t("Every time leaving home", "外出するたび", "အိမ်မှထွက်သည့်အခါတိုင်း"),
-    t("Check that the keys are with you before closing the door. Do not depend on someone being home to open it.", "ドアを閉める前に鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ သော့ပါရှိကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။")),
+    t("Check that the keys are with you before closing the door. Do not depend on someone being home to open it.", "ドアを閉める前に鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ သော့ပါရှိကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။"),
+    [
+      photo("assets/routines/leaving-home-house-keys.png",
+        t("House key with a red loop", "赤いループが付いた家の鍵", "အနီရောင်ကြိုးကွင်းပါသော အိမ်သော့"),
+        t("Take the house keys every time you leave, even for a short trip nearby.", "近所への短い外出でも、家を出るたびに家の鍵を持って行きます。", "အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို ယူသွားပါ။"))
+    ]),
   routine("yukari-flight-packing", "as-needed", 20, "Y", 
     t("Yukari - Flight Work Packing", "ゆかり - フライト業務の荷造り", "Yukari - လေယာဉ်ခရီးစဉ်အတွက် အထုပ်ပြင်ခြင်း"), 
     t("Help pack and unpack Yukari's work items and luggage when she needs to fly.", "ゆかりがフライトする際に、仕事用アイテムやスーツケースの荷造り・荷解きを手伝います。", "Yukari လေယာဉ်စီးရန် ရှိသည့်အခါ သူမ၏ အလုပ်ပစ္စည်းများနှင့် ခရီးဆောင်အိတ်များကို ထုပ်ပိုးခြင်းနှင့် ဖွင့်ခြင်းများ ကူညီပေးပါ။"), 
@@ -2101,9 +2169,39 @@ const routineTasks = [
       t("5. Once added, Edwin and Yukari can view the photos and videos.", "5. 追加されると、エドウィンとゆかりがその写真や動画を閲覧できるようになります。", "၅။ ထည့်သွင်းပြီးပါက Edwin နှင့် Yukari တို့သည် ဓာတ်ပုံနှင့် ဗီဒီယိုများကို ကြည့်ရှုနိုင်မည် ဖြစ်သည်။"),
       t("6. Whenever something is completed, unclear, unusual, or you are unsure what to do, take a photo or video and add it to this album.", "6. タスク完了時、不明な点や異常がある時、またはどうすべきか迷う時は、写真や動画を撮影してこのアルバムに追加してください。", "၆။ အလုပ်တစ်ခုခု ပြီးစီးသည့်အခါ၊ မရှင်းလင်းသည့်အခါ၊ ပုံမှန်မဟုတ်သည့်အခါ သို့မဟုတ် ဘာလုပ်ရမှန်း မသေချာသည့်အခါတိုင်း ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယိုရိုက်ပြီး ဤအယ်လ်ဘမ်ထဲသို့ ထည့်ပါ။"),
       t("7. Edwin will review the album, add relevant photos to the Nako app GitHub repository, and follow up through WhatsApp if he has questions.", "7. エドウィンがアルバムを確認し、関連する写真をNakoアプリのGitHubリポジトリに追加し、質問がある場合はWhatsAppで連絡します。", "၇။ Edwin က အယ်လ်ဘမ်ကို စစ်ဆေးပြီး သက်ဆိုင်ရာဓာတ်ပုံများကို Nako app GitHub repository တွင် ထည့်သွင်းပေးမည်ဖြစ်ကာ မေးခွန်းရှိပါက WhatsApp မှတစ်ဆင့် ဆက်သွယ်မေးမြန်းပါမည်။")
+    ],
+    [
+      photo("assets/routines/google-photos-shared-album.webp",
+        t("Google Photos app icon", "Googleフォトのアプリアイコン", "Google Photos app အိုင်ကွန်"),
+        t("Use Google Photos to upload task photos and videos to the shared album.", "Googleフォトを使って、作業の写真や動画を共有アルバムにアップロードします。", "အလုပ်ဓာတ်ပုံနှင့် ဗီဒီယိုများကို မျှဝေထားသော အယ်လ်ဘမ်သို့ တင်ရန် Google Photos ကို သုံးပါ။"))
     ]
   ),
 ];
+
+const fujiohHoodDeepCleanRoutine = routineTasks.find((task) => task.id === "fujioh-hood-deep-clean");
+if (fujiohHoodDeepCleanRoutine) {
+  fujiohHoodDeepCleanRoutine.instructions = [
+    t("Switch off or unplug the hood.", "レンジフードの電源を切るか、プラグを抜きます。", "hood ကို switch ပိတ်ပါ သို့မဟုတ် plug ဖြုတ်ပါ။"),
+    t("Open the white panel. Remove and empty the oil tray.", "白いパネルを開けます。オイルトレーを取り外して中身を捨てます。", "အဖြူရောင် panel ကို ဖွင့်ပါ။ ဆီခံ tray ကို ဖြုတ်ပြီး အထဲရှိဆီကို သွန်ပါ။"),
+    t("Slide the black lock forward. Unhook and remove the metal filter.", "黒いロックを手前へスライドします。フックを外し、金属フィルターを取り外します。", "အနက်ရောင် lock ကို ရှေ့ဘက်သို့ တွန်းပါ။ ချိတ်ဖြုတ်ပြီး သတ္တု filter ကို ထုတ်ပါ။"),
+    t("Unscrew the black knob. Separate the two filter layers.", "黒いノブを回して外します。2層のフィルターを分けます。", "အနက်ရောင် knob ကို လှည့်ဖြုတ်ပါ။ filter အလွှာ ၂ ခုကို ခွဲပါ။"),
+    t("Wash the oil tray and filters with water, mild dish soap, and a soft cloth. Rinse them and dry them fully.", "オイルトレーとフィルターを水、中性食器用洗剤、柔らかい布で洗います。すすいで完全に乾かします。", "ဆီခံ tray နှင့် filter များကို ရေ၊ အပျော့စား ပန်းကန်ဆေးဆပ်ပြာနှင့် အဝတ်ပျော့ဖြင့် ဆေးပါ။ ရေဆေးချပြီး လုံးဝခြောက်အောင်ထားပါ။"),
+    t("Wipe the panel, inside, outside, and top exhaust grille with a damp soapy cloth. Wipe again with clean water, then dry.", "パネル、内側、外側、上部の排気グリルを、石けん水で湿らせた布で拭きます。きれいな水で水拭きし、乾かします。", "panel၊ အတွင်း၊ အပြင်နှင့် အပေါ်ဘက် exhaust grille ကို ဆပ်ပြာရည်စိုအဝတ်ဖြင့် သုတ်ပါ။ ရေသန့်စိုအဝတ်ဖြင့် ထပ်သုတ်ပြီး ခြောက်အောင်လုပ်ပါ။"),
+    t("Reassemble the two filter layers. Reinstall the filter and oil tray securely, then close the panel.", "2層のフィルターを組み直します。フィルターとオイルトレーを確実に戻し、パネルを閉じます。", "filter အလွှာ ၂ ခုကို ပြန်တပ်ပါ။ filter နှင့် ဆီခံ tray ကို ခိုင်ခိုင်မာမာ ပြန်တပ်ပြီး panel ကို ပိတ်ပါ။")
+  ];
+  fujiohHoodDeepCleanRoutine.mustRemember = [
+    t("Do not spray cleaner or water directly inside the hood. Put cleaner on the cloth instead.", "洗剤や水をレンジフード内部へ直接スプレーしないでください。洗剤は布に付けて使います。", "hood အတွင်းသို့ သန့်စင်ဆေး သို့မဟုတ် ရေကို တိုက်ရိုက်မဖြန်းပါနှင့်။ သန့်စင်ဆေးကို အဝတ်ပေါ်တွင် ထည့်သုံးပါ။"),
+    t("Do not wet the motor or wiring.", "モーターや配線を濡らさないでください。", "motor သို့မဟုတ် wiring ကို မစိုပါနှင့်။"),
+    t("Use only mild dish soap and a soft cloth. Do not use strong cleaners.", "中性食器用洗剤と柔らかい布だけを使います。強力な洗剤は使わないでください。", "အပျော့စား ပန်းကန်ဆေးဆပ်ပြာနှင့် အဝတ်ပျော့ကိုသာ သုံးပါ။ ပြင်းသောသန့်စင်ဆေး မသုံးပါနှင့်။"),
+    t("Do not remove the internal fan.", "内部ファンは取り外さないでください。", "အတွင်း fan ကို မဖြုတ်ပါနှင့်။")
+  ];
+  fujiohHoodDeepCleanRoutine.videoUrl = "https://youtu.be/bGK8jplSfQg?t=45";
+  fujiohHoodDeepCleanRoutine.videoUrlLabel = t(
+    "Fujioh Hood Video Tutorial — Start at 0:45",
+    "Fujiohレンジフード動画チュートリアル — 0:45から",
+    "Fujioh hood video tutorial — 0:45 မှစကြည့်ပါ"
+  );
+}
 
 const microwaveInteriorRoutine = routineTasks.find((task) => task.id === "microwave-interior");
 if (microwaveInteriorRoutine) {
@@ -3032,6 +3130,44 @@ const recipes = [
       highProtein: true
     }
   ),
+  recipe("air-fryer-marinated-boneless-chicken-leg",
+    t("Air-Fryer Marinated Boneless Chicken Leg", "味付き骨なし鶏もも肉（エアフライヤー）", "Air Fryer နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သား"),
+    [
+      [
+        t("Seara marinated boneless chicken leg, either flavour", "Seara 味付き骨なし鶏もも肉（どちらの味でも可）", "Seara နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သား (မည်သည့်အရသာမဆို)"),
+        t("1 × 300 g pack", "300g入り1パック", "၃၀၀ ဂရမ် ၁ ထုပ်"),
+        "chicken-thigh"
+      ]
+    ],
+    [
+      t("Remove the marinated chicken from the package.", "味付き鶏肉をパックから取り出します。", "နှပ်ထားသော ကြက်သားကို အထုပ်ထဲမှ ထုတ်ပါ။"),
+      t("Place the pieces in one layer in the air-fryer basket, skin side down.", "鶏肉を重ならないように、皮を下にしてエアフライヤーのバスケットへ入れます。", "ကြက်သားတုံးများ မထပ်အောင် air-fryer basket ထဲတွင် အရေပြားဘက်ကို အောက်ထားပြီး ထည့်ပါ။"),
+      t("Air-fry at 200°C for 12–15 minutes in total.", "200℃で合計12〜15分エアフライします。", "200°C ဖြင့် စုစုပေါင်း ၁၂–၁၅ မိနစ် air fry လုပ်ပါ။"),
+      t("Flip the chicken halfway through the chosen time so the skin side faces up.", "設定した時間の半分で鶏肉を裏返し、皮を上にします。", "သတ်မှတ်ထားသော အချိန်တစ်ဝက်တွင် ကြက်သားကို လှန်ပြီး အရေပြားဘက်ကို အပေါ်ထားပါ။"),
+      t("Keep the skin side up for the rest of the cooking time.", "残りの加熱時間は皮を上にしたままにします。", "ကျန်ချက်ချိန်တစ်လျှောက် အရေပြားဘက်ကို အပေါ်မှာပဲ ထားပါ။"),
+      t("Check the thickest part with a food thermometer. It must reach at least 74°C.", "食品用温度計で最も厚い部分を確認します。74℃以上になっている必要があります。", "အထူဆုံးနေရာကို အစားအသောက်သုံး အပူချိန်တိုင်းကိရိယာဖြင့် စစ်ပါ။ အနည်းဆုံး 74°C ရှိရမည်။"),
+      t("If it is below 74°C, cook for 1–2 more minutes with the skin side up, then check again.", "74℃未満の場合は、皮を上にしたままさらに1〜2分加熱し、もう一度確認します。", "74°C မရောက်သေးပါက အရေပြားဘက်ကို အပေါ်ထားပြီး နောက်ထပ် ၁–၂ မိနစ်ချက်ကာ ထပ်စစ်ပါ။")
+    ],
+    t("The 12–15 minute time is a guide. Check the thickest piece before serving, and take care with the hot basket and juices.", "12〜15分は目安です。提供前に最も厚い部分を確認し、熱いバスケットと肉汁に注意してください。", "၁၂–၁၅ မိနစ်သည် ခန့်မှန်းချက်ဖြစ်သည်။ မစားမီ အထူဆုံးတုံးကို စစ်ပြီး ပူသော basket နှင့် အသားရည်ကို သတိထားပါ။"),
+    [
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-finished.jpg",
+        t("Cooked marinated boneless chicken legs with the skin facing up", "皮を上にして焼き上げた味付き骨なし鶏もも肉", "အရေပြားဘက် အပေါ်ထားပြီး ကျက်အောင်ချက်ထားသော နှပ်ထားသည့် အရိုးမဲ့ ကြက်ပေါင်သား"),
+        t("Finish cooking with the skin side up. Serve only after the thickest part reaches at least 74°C.", "最後は皮を上にして仕上げます。最も厚い部分が74℃以上になってから提供してください。", "နောက်ဆုံးတွင် အရေပြားဘက်ကို အပေါ်ထားပါ။ အထူဆုံးနေရာ အနည်းဆုံး 74°C ရောက်မှ စားပါ။")),
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-package.jpg",
+        t("Seara marinated boneless chicken leg packages", "Seara 味付き骨なし鶏もも肉のパック", "Seara နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သားအထုပ်များ"),
+        t("Use 1 × 300 g pack. Either the Smoky Mountain or 10 Spices flavour can be used.", "300g入りを1パック使います。Smoky Mountain味または10 Spices味のどちらでも使えます。", "၃၀၀ ဂရမ် ၁ ထုပ် သုံးပါ။ Smoky Mountain သို့မဟုတ် 10 Spices အရသာ မည်သည့်တစ်မျိုးမဆို သုံးနိုင်ပါသည်။")),
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-flip.jpg",
+        t("Marinated boneless chicken legs being flipped in the air fryer", "エアフライヤーで味付き骨なし鶏もも肉を裏返しているところ", "air fryer ထဲတွင် နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သားကို လှန်နေခြင်း"),
+        t("Flip once at the halfway point. Leave every piece skin side up for the remaining time.", "加熱時間の半分で一度裏返し、残りはすべて皮を上にして焼きます。", "ချက်ချိန်တစ်ဝက်တွင် ၁ ကြိမ်လှန်ပါ။ ကျန်အချိန်တွင် အားလုံးကို အရေပြားဘက် အပေါ်ထားပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Air Fryer", "エアフライヤー", "လေပူကြော်စက်"),
+      timeEstimate: t("12–15 mins", "12〜15分", "၁၂–၁၅ မိနစ်"),
+      highProtein: true
+    }
+  ),
   recipe("air-fryer-broccoli",
     t("Air-Fryer Broccoli", "ブロッコリー（エアフライヤー）", "Air Fryer ဘရိုကိုလီ"),
     [
@@ -3062,7 +3198,8 @@ const recipes = [
     [
       [t("Squid", "イカ", "ပြည်ကြီးငါး"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "squid"],
       [t("Suitable vegetables, such as mushrooms, cabbage, or komatsuna", "きのこ、キャベツ、小松菜などの野菜", "မှို၊ ဂေါ်ဖီထုပ် သို့မဟုတ် komatsuna စသည့် ဟင်းသီးဟင်းရွက်"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "mixed-vegetables"],
-      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("if available", "あれば少量", "ရှိလျှင် အနည်းငယ်"), "garlic"],
+      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("a small amount", "少量", "အနည်းငယ်"), "garlic"],
+      [t("Spring onions", "青ねぎ", "ကြက်သွန်မြိတ်"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "spring-onion"],
       [t("Olive oil", "オリーブオイル", "olive oil"), t("a small amount", "少量", "အနည်းငယ်"), "oil"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("a small amount", "少量", "အနည်းငယ်"), "soy-sauce"],
       [t("Salt", "塩", "ဆား"), t("a small amount", "少量", "အနည်းငယ်"), "salt"]
@@ -3070,12 +3207,20 @@ const recipes = [
     [
       t("If the squid is frozen, thaw it in the refrigerator. If it is needed quickly, keep it in a sealed leak-proof bag and submerge the bag in cold water. Never put the squid directly in the water.", "冷凍イカは冷蔵庫で解凍します。急ぐ場合は、漏れない密閉袋に入れたまま冷水につけます。イカを水へ直接入れないでください。", "ပြည်ကြီးငါး အေးခဲထားပါက refrigerator ထဲတွင် အရည်ဖျော်ပါ။ အမြန်လိုလျှင် ရေမယိုသော sealed bag ထဲတွင်ထားပြီး အိတ်ကို ရေအေးထဲစိမ်ပါ။ ပြည်ကြီးငါးကို ရေထဲတိုက်ရိုက်မထည့်ပါနှင့်။"),
       t("Drain the squid and pat it dry before cooking.", "調理前にイカの水気を切り、しっかり拭きます。", "မချက်မီ ပြည်ကြီးငါးကို ရေစစ်ပြီး ခြောက်အောင်သုတ်ပါ။"),
-      t("Heat a small amount of olive oil in a frying pan and add garlic if available.", "フライパンに少量のオリーブオイルを熱し、あればにんにくを加えます。", "ဒယ်အိုးထဲတွင် olive oil အနည်းငယ်ပူအောင်လုပ်ပြီး garlic ရှိလျှင် ထည့်ပါ။"),
-      t("Add the squid and vegetables. Season with a little soy sauce and salt.", "イカと野菜を加え、醤油と塩を少量入れます。", "ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်များထည့်ပြီး ပဲငံပြာရည်နှင့် ဆား အနည်းငယ်ထည့်ပါ။"),
+      t("Heat a small amount of olive oil in a frying pan, then add the garlic.", "フライパンに少量のオリーブオイルを熱し、にんにくを加えます。", "ဒယ်အိုးထဲတွင် olive oil အနည်းငယ်ပူအောင်လုပ်ပြီး ကြက်သွန်ဖြူထည့်ပါ။"),
+      t("Add the squid and stir-fry until it starts to turn opaque.", "イカを加え、白くなり始めるまで炒めます。", "ပြည်ကြီးငါးထည့်ပြီး အဖြူရောင်ပြောင်းစပြုသည်အထိ ကြော်ပါ။"),
+      t("Add the vegetables and spring onions.", "野菜と青ねぎを加えます。", "ဟင်းသီးဟင်းရွက်များနှင့် ကြက်သွန်မြိတ်ထည့်ပါ။"),
+      t("Add a little soy sauce and salt, then mix well.", "醤油と塩を少量加え、よく混ぜます。", "ပဲငံပြာရည်နှင့် ဆား အနည်းငယ်ထည့်ပြီး ကောင်းကောင်းရောပါ။"),
       t("Stir-fry until the squid is fully cooked and the vegetables are ready.", "イカに完全に火が通り、野菜が仕上がるまで炒めます。", "ပြည်ကြီးငါးအပြည့်ကျက်ပြီး ဟင်းသီးဟင်းရွက်များ အဆင်သင့်ဖြစ်သည်အထိ ကြော်ပါ။")
     ],
     t("Start with small amounts of seasoning and add more only if needed. Pat thawed squid dry before it touches hot oil to reduce splattering.", "調味料は少量から始め、必要な場合だけ足します。油はねを減らすため、解凍したイカは熱い油へ入れる前に水気をよく拭いてください。", "ဟင်းခတ်များကို အနည်းငယ်မှစပြီး လိုအပ်မှသာ ထပ်ထည့်ပါ။ ဆီမစင်အောင် အရည်ဖျော်ထားသော ပြည်ကြီးငါးကို ဆီပူထဲမထည့်မီ ခြောက်အောင်သုတ်ပါ။"),
     [
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-cooked.jpg",
+        t("Cooked squid and vegetable stir-fry in the frying pan", "フライパンで仕上がったイカと野菜の炒め物", "ဒယ်အိုးထဲတွင် ကျက်အောင်ကြော်ထားသော ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်ကြော်"),
+        t("Finish the stir-fry with garlic, spring onions, soy sauce, and a little salt.", "にんにく、青ねぎ、醤油、少量の塩を加えて仕上げます。", "ကြက်သွန်ဖြူ၊ ကြက်သွန်မြိတ်၊ ပဲငံပြာရည်နှင့် ဆားအနည်းငယ်ထည့်ပြီး အပြီးသတ်ကြော်ပါ။")),
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-cooking-squid.jpg",
+        t("Squid cooking first in the frying pan", "フライパンで先にイカを炒めているところ", "ဒယ်အိုးထဲတွင် ပြည်ကြီးငါးကို အရင်ကြော်နေခြင်း"),
+        t("Cook the squid until it starts to turn opaque before adding the vegetables.", "イカが白くなり始めるまで炒めてから野菜を加えます。", "ပြည်ကြီးငါး အဖြူရောင်ပြောင်းစပြုသည်အထိ ကြော်ပြီးမှ ဟင်းသီးဟင်းရွက်များ ထည့်ပါ။")),
       photo("assets/recipes/human-food/squid-vegetable-stir-fry-ingredients.jpg",
         t("Stir-fry ingredients in the refrigerator drawer", "冷蔵庫の引き出しにある炒め物の材料", "ရေခဲသေတ္တာအံဆွဲထဲရှိ အကြော်အတွက် ပါဝင်ပစ္စည်းများ"),
         t("Select suitable vegetables such as komatsuna (Xiao Pek Chye), cabbage, and shimeji mushrooms to cook with the squid.", "イカと一緒に調理する小松菜（Xiao Pek Chye）、キャベツ、しめじなどの適当な野菜を選びます。", "ပြည်ကြီးငါးနှင့်အတူချက်ရန် komatsuna (Xiao Pek Chye)၊ ဂေါ်ဖီထုပ်နှင့် shimeji မှိုကဲ့သို့သော သင့်လျော်သည့် ဟင်းသီးဟင်းရွက်များကို ရွေးချယ်ပါ။")),

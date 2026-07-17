@@ -13,7 +13,6 @@ function renderHome() {
     </section>
     ${renderSearchComponent()}
     ${renderRoutineHomeShortcut()}
-    ${renderGamificationHome()}
     <p class="section-label">${esc(label("quickShortcuts"))}</p>
     <section class="shortcut-grid">
       ${renderShortcuts()}
@@ -22,6 +21,7 @@ function renderHome() {
     <p class="section-label">${esc(label("sections"))}</p>
     <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>
     ${renderAdditionalResources()}
+    ${renderGamificationHome()}
     ${renderGamificationAlbumHome()}`;
   renderShell(label("appTitle"), content, false);
 }
@@ -406,7 +406,7 @@ function renderSection(sectionId) {
   } else if (isFoodSafety) {
     items = [...foodSafetyItems];
   } else {
-    items = routineTasks.filter((task) => task.frequencyBucket === sectionId).sort(bySort);
+    items = routineTasks.filter((task) => task.active !== false && task.frequencyBucket === sectionId).sort(bySort);
   }
 
   const dailySafetyIds = ["nako-supervision", "nako-kind-handling", "nako-emergency"];

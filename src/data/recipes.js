@@ -367,6 +367,44 @@ const recipes = [
       highProtein: true
     }
   ),
+  recipe("air-fryer-marinated-boneless-chicken-leg",
+    t("Air-Fryer Marinated Boneless Chicken Leg", "味付き骨なし鶏もも肉（エアフライヤー）", "Air Fryer နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သား"),
+    [
+      [
+        t("Seara marinated boneless chicken leg, either flavour", "Seara 味付き骨なし鶏もも肉（どちらの味でも可）", "Seara နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သား (မည်သည့်အရသာမဆို)"),
+        t("1 × 300 g pack", "300g入り1パック", "၃၀၀ ဂရမ် ၁ ထုပ်"),
+        "chicken-thigh"
+      ]
+    ],
+    [
+      t("Remove the marinated chicken from the package.", "味付き鶏肉をパックから取り出します。", "နှပ်ထားသော ကြက်သားကို အထုပ်ထဲမှ ထုတ်ပါ။"),
+      t("Place the pieces in one layer in the air-fryer basket, skin side down.", "鶏肉を重ならないように、皮を下にしてエアフライヤーのバスケットへ入れます。", "ကြက်သားတုံးများ မထပ်အောင် air-fryer basket ထဲတွင် အရေပြားဘက်ကို အောက်ထားပြီး ထည့်ပါ။"),
+      t("Air-fry at 200°C for 12–15 minutes in total.", "200℃で合計12〜15分エアフライします。", "200°C ဖြင့် စုစုပေါင်း ၁၂–၁၅ မိနစ် air fry လုပ်ပါ။"),
+      t("Flip the chicken halfway through the chosen time so the skin side faces up.", "設定した時間の半分で鶏肉を裏返し、皮を上にします。", "သတ်မှတ်ထားသော အချိန်တစ်ဝက်တွင် ကြက်သားကို လှန်ပြီး အရေပြားဘက်ကို အပေါ်ထားပါ။"),
+      t("Keep the skin side up for the rest of the cooking time.", "残りの加熱時間は皮を上にしたままにします。", "ကျန်ချက်ချိန်တစ်လျှောက် အရေပြားဘက်ကို အပေါ်မှာပဲ ထားပါ။"),
+      t("Check the thickest part with a food thermometer. It must reach at least 74°C.", "食品用温度計で最も厚い部分を確認します。74℃以上になっている必要があります。", "အထူဆုံးနေရာကို အစားအသောက်သုံး အပူချိန်တိုင်းကိရိယာဖြင့် စစ်ပါ။ အနည်းဆုံး 74°C ရှိရမည်။"),
+      t("If it is below 74°C, cook for 1–2 more minutes with the skin side up, then check again.", "74℃未満の場合は、皮を上にしたままさらに1〜2分加熱し、もう一度確認します。", "74°C မရောက်သေးပါက အရေပြားဘက်ကို အပေါ်ထားပြီး နောက်ထပ် ၁–၂ မိနစ်ချက်ကာ ထပ်စစ်ပါ။")
+    ],
+    t("The 12–15 minute time is a guide. Check the thickest piece before serving, and take care with the hot basket and juices.", "12〜15分は目安です。提供前に最も厚い部分を確認し、熱いバスケットと肉汁に注意してください。", "၁၂–၁၅ မိနစ်သည် ခန့်မှန်းချက်ဖြစ်သည်။ မစားမီ အထူဆုံးတုံးကို စစ်ပြီး ပူသော basket နှင့် အသားရည်ကို သတိထားပါ။"),
+    [
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-finished.jpg",
+        t("Cooked marinated boneless chicken legs with the skin facing up", "皮を上にして焼き上げた味付き骨なし鶏もも肉", "အရေပြားဘက် အပေါ်ထားပြီး ကျက်အောင်ချက်ထားသော နှပ်ထားသည့် အရိုးမဲ့ ကြက်ပေါင်သား"),
+        t("Finish cooking with the skin side up. Serve only after the thickest part reaches at least 74°C.", "最後は皮を上にして仕上げます。最も厚い部分が74℃以上になってから提供してください。", "နောက်ဆုံးတွင် အရေပြားဘက်ကို အပေါ်ထားပါ။ အထူဆုံးနေရာ အနည်းဆုံး 74°C ရောက်မှ စားပါ။")),
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-package.jpg",
+        t("Seara marinated boneless chicken leg packages", "Seara 味付き骨なし鶏もも肉のパック", "Seara နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သားအထုပ်များ"),
+        t("Use 1 × 300 g pack. Either the Smoky Mountain or 10 Spices flavour can be used.", "300g入りを1パック使います。Smoky Mountain味または10 Spices味のどちらでも使えます。", "၃၀၀ ဂရမ် ၁ ထုပ် သုံးပါ။ Smoky Mountain သို့မဟုတ် 10 Spices အရသာ မည်သည့်တစ်မျိုးမဆို သုံးနိုင်ပါသည်။")),
+      photo("assets/recipes/human-food/air-fryer-marinated-boneless-chicken-leg-flip.jpg",
+        t("Marinated boneless chicken legs being flipped in the air fryer", "エアフライヤーで味付き骨なし鶏もも肉を裏返しているところ", "air fryer ထဲတွင် နှပ်ထားသော အရိုးမဲ့ ကြက်ပေါင်သားကို လှန်နေခြင်း"),
+        t("Flip once at the halfway point. Leave every piece skin side up for the remaining time.", "加熱時間の半分で一度裏返し、残りはすべて皮を上にして焼きます。", "ချက်ချိန်တစ်ဝက်တွင် ၁ ကြိမ်လှန်ပါ။ ကျန်အချိန်တွင် အားလုံးကို အရေပြားဘက် အပေါ်ထားပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Air Fryer", "エアフライヤー", "လေပူကြော်စက်"),
+      timeEstimate: t("12–15 mins", "12〜15分", "၁၂–၁၅ မိနစ်"),
+      highProtein: true
+    }
+  ),
   recipe("air-fryer-broccoli",
     t("Air-Fryer Broccoli", "ブロッコリー（エアフライヤー）", "Air Fryer ဘရိုကိုလီ"),
     [
@@ -397,7 +435,8 @@ const recipes = [
     [
       [t("Squid", "イカ", "ပြည်ကြီးငါး"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "squid"],
       [t("Suitable vegetables, such as mushrooms, cabbage, or komatsuna", "きのこ、キャベツ、小松菜などの野菜", "မှို၊ ဂေါ်ဖီထုပ် သို့မဟုတ် komatsuna စသည့် ဟင်းသီးဟင်းရွက်"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "mixed-vegetables"],
-      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("if available", "あれば少量", "ရှိလျှင် အနည်းငယ်"), "garlic"],
+      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("a small amount", "少量", "အနည်းငယ်"), "garlic"],
+      [t("Spring onions", "青ねぎ", "ကြက်သွန်မြိတ်"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "spring-onion"],
       [t("Olive oil", "オリーブオイル", "olive oil"), t("a small amount", "少量", "အနည်းငယ်"), "oil"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("a small amount", "少量", "အနည်းငယ်"), "soy-sauce"],
       [t("Salt", "塩", "ဆား"), t("a small amount", "少量", "အနည်းငယ်"), "salt"]
@@ -405,12 +444,20 @@ const recipes = [
     [
       t("If the squid is frozen, thaw it in the refrigerator. If it is needed quickly, keep it in a sealed leak-proof bag and submerge the bag in cold water. Never put the squid directly in the water.", "冷凍イカは冷蔵庫で解凍します。急ぐ場合は、漏れない密閉袋に入れたまま冷水につけます。イカを水へ直接入れないでください。", "ပြည်ကြီးငါး အေးခဲထားပါက refrigerator ထဲတွင် အရည်ဖျော်ပါ။ အမြန်လိုလျှင် ရေမယိုသော sealed bag ထဲတွင်ထားပြီး အိတ်ကို ရေအေးထဲစိမ်ပါ။ ပြည်ကြီးငါးကို ရေထဲတိုက်ရိုက်မထည့်ပါနှင့်။"),
       t("Drain the squid and pat it dry before cooking.", "調理前にイカの水気を切り、しっかり拭きます。", "မချက်မီ ပြည်ကြီးငါးကို ရေစစ်ပြီး ခြောက်အောင်သုတ်ပါ။"),
-      t("Heat a small amount of olive oil in a frying pan and add garlic if available.", "フライパンに少量のオリーブオイルを熱し、あればにんにくを加えます。", "ဒယ်အိုးထဲတွင် olive oil အနည်းငယ်ပူအောင်လုပ်ပြီး garlic ရှိလျှင် ထည့်ပါ။"),
-      t("Add the squid and vegetables. Season with a little soy sauce and salt.", "イカと野菜を加え、醤油と塩を少量入れます。", "ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်များထည့်ပြီး ပဲငံပြာရည်နှင့် ဆား အနည်းငယ်ထည့်ပါ။"),
+      t("Heat a small amount of olive oil in a frying pan, then add the garlic.", "フライパンに少量のオリーブオイルを熱し、にんにくを加えます。", "ဒယ်အိုးထဲတွင် olive oil အနည်းငယ်ပူအောင်လုပ်ပြီး ကြက်သွန်ဖြူထည့်ပါ။"),
+      t("Add the squid and stir-fry until it starts to turn opaque.", "イカを加え、白くなり始めるまで炒めます。", "ပြည်ကြီးငါးထည့်ပြီး အဖြူရောင်ပြောင်းစပြုသည်အထိ ကြော်ပါ။"),
+      t("Add the vegetables and spring onions.", "野菜と青ねぎを加えます。", "ဟင်းသီးဟင်းရွက်များနှင့် ကြက်သွန်မြိတ်ထည့်ပါ။"),
+      t("Add a little soy sauce and salt, then mix well.", "醤油と塩を少量加え、よく混ぜます。", "ပဲငံပြာရည်နှင့် ဆား အနည်းငယ်ထည့်ပြီး ကောင်းကောင်းရောပါ။"),
       t("Stir-fry until the squid is fully cooked and the vegetables are ready.", "イカに完全に火が通り、野菜が仕上がるまで炒めます。", "ပြည်ကြီးငါးအပြည့်ကျက်ပြီး ဟင်းသီးဟင်းရွက်များ အဆင်သင့်ဖြစ်သည်အထိ ကြော်ပါ။")
     ],
     t("Start with small amounts of seasoning and add more only if needed. Pat thawed squid dry before it touches hot oil to reduce splattering.", "調味料は少量から始め、必要な場合だけ足します。油はねを減らすため、解凍したイカは熱い油へ入れる前に水気をよく拭いてください。", "ဟင်းခတ်များကို အနည်းငယ်မှစပြီး လိုအပ်မှသာ ထပ်ထည့်ပါ။ ဆီမစင်အောင် အရည်ဖျော်ထားသော ပြည်ကြီးငါးကို ဆီပူထဲမထည့်မီ ခြောက်အောင်သုတ်ပါ။"),
     [
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-cooked.jpg",
+        t("Cooked squid and vegetable stir-fry in the frying pan", "フライパンで仕上がったイカと野菜の炒め物", "ဒယ်အိုးထဲတွင် ကျက်အောင်ကြော်ထားသော ပြည်ကြီးငါးနှင့် ဟင်းသီးဟင်းရွက်ကြော်"),
+        t("Finish the stir-fry with garlic, spring onions, soy sauce, and a little salt.", "にんにく、青ねぎ、醤油、少量の塩を加えて仕上げます。", "ကြက်သွန်ဖြူ၊ ကြက်သွန်မြိတ်၊ ပဲငံပြာရည်နှင့် ဆားအနည်းငယ်ထည့်ပြီး အပြီးသတ်ကြော်ပါ။")),
+      photo("assets/recipes/human-food/squid-vegetable-stir-fry-cooking-squid.jpg",
+        t("Squid cooking first in the frying pan", "フライパンで先にイカを炒めているところ", "ဒယ်အိုးထဲတွင် ပြည်ကြီးငါးကို အရင်ကြော်နေခြင်း"),
+        t("Cook the squid until it starts to turn opaque before adding the vegetables.", "イカが白くなり始めるまで炒めてから野菜を加えます。", "ပြည်ကြီးငါး အဖြူရောင်ပြောင်းစပြုသည်အထိ ကြော်ပြီးမှ ဟင်းသီးဟင်းရွက်များ ထည့်ပါ။")),
       photo("assets/recipes/human-food/squid-vegetable-stir-fry-ingredients.jpg",
         t("Stir-fry ingredients in the refrigerator drawer", "冷蔵庫の引き出しにある炒め物の材料", "ရေခဲသေတ္တာအံဆွဲထဲရှိ အကြော်အတွက် ပါဝင်ပစ္စည်းများ"),
         t("Select suitable vegetables such as komatsuna (Xiao Pek Chye), cabbage, and shimeji mushrooms to cook with the squid.", "イカと一緒に調理する小松菜（Xiao Pek Chye）、キャベツ、しめじなどの適当な野菜を選びます。", "ပြည်ကြီးငါးနှင့်အတူချက်ရန် komatsuna (Xiao Pek Chye)၊ ဂေါ်ဖီထုပ်နှင့် shimeji မှိုကဲ့သို့သော သင့်လျော်သည့် ဟင်းသီးဟင်းရွက်များကို ရွေးချယ်ပါ။")),
