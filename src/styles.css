@@ -1254,6 +1254,12 @@ img {
   text-decoration: none;
   box-shadow: 0 7px 18px rgba(82, 59, 38, .07);
 }
+.related-page-links {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+.related-page-links .related-page-link { margin: 0; }
 .related-page-link:hover { border-color: #e59a56; background: #fff3de; }
 .related-page-icon {
   display: grid;
@@ -1458,9 +1464,8 @@ img {
 }
 
 .grocery-stock-panel {
-  display: grid;
-  grid-template-columns: minmax(120px, 30%) minmax(0, 1fr);
-  min-height: 150px;
+  position: relative;
+  aspect-ratio: 1280 / 698;
   margin: 0 0 12px;
   overflow: hidden;
   border: 2px solid #e7a26c;
@@ -1470,62 +1475,75 @@ img {
 }
 
 .grocery-stock-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: 150px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   background: #f6f1e9;
 }
 
-.grocery-stock-content {
-  min-width: 0;
-  padding: 12px;
-}
-
-.grocery-stock-content h2 {
-  margin: 0 0 8px;
+.grocery-stock-heading {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 8px;
+  margin: 0;
+  padding: 4px 7px;
+  border-radius: 7px;
+  background: rgba(255, 250, 243, .9);
   color: #7d451f;
-  font-size: 17px;
+  font-size: 13px;
+  font-weight: 900;
   line-height: 1.2;
 }
 
-.grocery-stock-items {
-  display: flex;
-  flex-wrap: wrap;
+.grocery-stock-labels {
   gap: 5px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.grocery-stock-items li {
-  padding: 4px 7px;
-  border: 1px solid #efd3b8;
+.grocery-stock-label {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding: 3px 5px;
+  border: 1px solid rgba(129, 82, 39, .52);
   border-radius: 999px;
-  background: #fff;
+  background: rgba(255, 255, 255, .9);
   color: #4b3b30;
-  font-size: 11px;
+  font-size: clamp(8px, 2.25vw, 10px);
   font-weight: 800;
   line-height: 1.2;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
 }
 
+.grocery-stock-label-0 { top: 22%; left: 70%; }
+.grocery-stock-label-1 { top: 24%; left: 11%; }
+.grocery-stock-label-2 { top: 20%; left: 31%; }
+.grocery-stock-label-3 { top: 16%; left: 53%; }
+.grocery-stock-label-4 { top: 50%; left: 48%; }
+.grocery-stock-label-5 { top: 59%; left: 65%; }
+.grocery-stock-label-6 { top: 79%; left: 44%; }
+.grocery-stock-label-7 { top: 72%; left: 21%; }
+.grocery-stock-label-8 { top: 71%; left: 69%; }
+.grocery-stock-label-9 { top: 59%; left: 87%; }
+.grocery-stock-label-10 { top: 23%; left: 89%; }
+
 @media (max-width: 430px) {
-  .grocery-stock-panel {
-    grid-template-columns: 112px minmax(0, 1fr);
-  }
-
-  .grocery-stock-content {
-    padding: 10px;
-  }
-
-  .grocery-stock-content h2 {
-    font-size: 15px;
-  }
-
-  .grocery-stock-items li {
+  .grocery-stock-heading {
+    top: 6px;
+    left: 6px;
     padding: 3px 6px;
-    font-size: 10px;
+    font-size: 11px;
+  }
+
+  .grocery-stock-label {
+    padding: 2px 4px;
   }
 }
 

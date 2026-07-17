@@ -202,10 +202,13 @@ assert.equal(groceryShopping.stockPhoto.src, "assets/routines/grocery-essential-
 assert.equal(fs.existsSync(path.join(root, groceryShopping.stockPhoto.src)), true);
 assert.doesNotMatch(englishText(groceryShopping.mustRemember), /Keep milk, eggs, bread/);
 assert.match(pageSource, /renderHead[\s\S]*groceryStockPanelHtml[\s\S]*backLinkHtml/, "The compact grocery stock panel must appear directly below the page heading");
-assert.match(pageSource, /task\.id === "daily-cooking"[\s\S]*?#food\/human-food/, "Daily Cooking must link to Human Food Ideas");
-assert.match(pageSource, /isHuman \? renderRelatedPageLink\("#routine\/daily-cooking"/, "Human Food Ideas must link back to Daily Cooking");
+assert.match(pageSource, /grocery-stock-label-\$\{index\}/, "The grocery stock image must place each item label directly on the image");
+assert.match(pageSource, /task\.id === "daily-cooking"[\s\S]*?#food\/human-food[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Daily Cooking must link to Human Food Ideas, Grocery Shopping, and Kitchen Rules & Food Safety");
+assert.match(pageSource, /task\.id === "grocery-shopping"[\s\S]*?#routine\/daily-cooking[\s\S]*?#food\/human-food[\s\S]*?#section\/food-safety/, "Grocery Shopping must link to Daily Cooking, Human Food Ideas, and Kitchen Rules & Food Safety");
+assert.match(pageSource, /isHuman \? renderRelatedPageLinks\([\s\S]*?#routine\/daily-cooking[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Human Food Ideas must link to Daily Cooking, Grocery Shopping, and Kitchen Rules & Food Safety");
 assert.match(shellSource, /class="brand-home-link" href="#"/, "The Nako top-bar icon must link home");
 assert.match(stylesSource, /\.grocery-stock-panel\s*\{/);
+assert.match(stylesSource, /\.grocery-stock-label-10\s*\{/);
 
 const laundromat = routineById("laundromat-heavy-items");
 assert.equal(laundromat.frequencyBucket, "as-needed");

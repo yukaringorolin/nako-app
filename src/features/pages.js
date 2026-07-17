@@ -512,8 +512,18 @@ function renderRoutine(routineId) {
   const appetitePanelHtml = task.id === "nako-feeding-water" ? renderNakoAppetiteTracker() : "";
   const groceryStockPanelHtml = task.id === "grocery-shopping" ? renderGroceryStockPanel(task) : "";
   const relatedPageHtml = task.id === "daily-cooking"
-    ? renderRelatedPageLink("#food/human-food", "🍳", label("shortcutHumanFood"), label("relatedHumanFoodDescription"))
-    : "";
+    ? renderRelatedPageLinks([
+      ["#food/human-food", "🍳", label("shortcutHumanFood"), label("relatedHumanFoodDescription")],
+      ["#routine/grocery-shopping", "🛒", label("relatedGroceryShopping"), label("relatedGroceryShoppingDescription")],
+      ["#section/food-safety", "🛡️", label("relatedKitchenSafety"), label("relatedKitchenSafetyDescription")]
+    ])
+    : task.id === "grocery-shopping"
+      ? renderRelatedPageLinks([
+        ["#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")],
+        ["#food/human-food", "🍽️", label("shortcutHumanFood"), label("relatedHumanFoodDescription")],
+        ["#section/food-safety", "🛡️", label("relatedKitchenSafety"), label("relatedKitchenSafetyDescription")]
+      ])
+      : "";
   const headPhoto = task.id === "grocery-shopping" ? null : primaryPhoto(task.photos);
 
   const content = `
@@ -538,10 +548,8 @@ function renderGroceryStockPanel(task) {
   if (!photo?.src || !items.length) return "";
   return `<section class="grocery-stock-panel" aria-labelledby="grocery-stock-heading">
     <img class="grocery-stock-photo" src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" />
-    <div class="grocery-stock-content">
-      <h2 id="grocery-stock-heading">${esc(label("groceryKeepStock"))}</h2>
-      <ul class="grocery-stock-items">${items.map((item) => `<li>${esc(tr(item))}</li>`).join("")}</ul>
-    </div>
+    <h2 class="grocery-stock-heading" id="grocery-stock-heading">${esc(label("groceryKeepStock"))}</h2>
+    <ul class="grocery-stock-labels">${items.map((item, index) => `<li class="grocery-stock-label grocery-stock-label-${index}">${esc(tr(item))}</li>`).join("")}</ul>
   </section>`;
 }
 
@@ -555,6 +563,10 @@ function renderRelatedPageLink(href, icon, title, description) {
     </span>
     <span class="related-page-arrow" aria-hidden="true">→</span>
   </a>`;
+}
+
+function renderRelatedPageLinks(links) {
+  return `<div class="related-page-links">${links.map(([href, icon, title, description]) => renderRelatedPageLink(href, icon, title, description)).join("")}</div>`;
 }
 
 function renderFood(foodId) {
@@ -628,7 +640,11 @@ function renderRecipeIndex(item) {
   }
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
-    ${isHuman ? renderRelatedPageLink("#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")) : ""}
+    ${isHuman ? renderRelatedPageLinks([
+      ["#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")],
+      ["#routine/grocery-shopping", "🛒", label("relatedGroceryShopping"), label("relatedGroceryShoppingDescription")],
+      ["#section/food-safety", "🛡️", label("relatedKitchenSafety"), label("relatedKitchenSafetyDescription")]
+    ]) : ""}
     ${isHuman ? renderFoodMemory(item) : ""}
     <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
   renderShell(tr(item.title), content, true);
