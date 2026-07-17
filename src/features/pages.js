@@ -372,7 +372,7 @@ function renderShortcuts() {
   const shortcutList = [
     { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
     { id: "nako-feeding-water", type: "routine", labelKey: "shortcutAppetiteTracker" },
-    { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
+    { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs", statusKey: "futureTracking" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
     { id: "nako-training-fun", type: "routine", labelKey: "shortcutDogTraining" },
@@ -411,9 +411,16 @@ function renderShortcuts() {
 
     const dataAttr = shortcut.type === "food" ? `data-food="${esc(shortcut.id)}"` : `data-routine="${esc(shortcut.id)}"`;
 
+    const statusHtml = shortcut.statusKey
+      ? `<span class="shortcut-status">${esc(label(shortcut.statusKey))}</span>`
+      : "";
+
     return `<button class="shortcut-btn theme-${esc(theme)}" ${dataAttr}>
       ${renderShortcutIcon(icon, photo)}
-      <span class="shortcut-title">${esc(titleText)}</span>
+      <span class="shortcut-copy">
+        <span class="shortcut-title">${esc(titleText)}</span>
+        ${statusHtml}
+      </span>
     </button>`;
   }).join("");
 }

@@ -2402,6 +2402,7 @@ img {
 }
 
 .shortcut-title {
+  display: block;
   font-size: 12px;
   font-weight: 800;
   line-height: 1.25;
@@ -2409,6 +2410,19 @@ img {
   overflow: hidden;
   overflow-wrap: anywhere;
   min-width: 0;
+}
+
+.shortcut-copy {
+  min-width: 0;
+}
+
+.shortcut-status {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 html[lang="my"] .shortcut-title {
