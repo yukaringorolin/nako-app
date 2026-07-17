@@ -4,6 +4,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const firebaseState = require("../src/core/firebase-state.js");
 const firebaseWriteQueue = require("../src/core/firebase-write-queue.js");
+const weightHistory = require("../src/core/weight-history.js");
 
 const events = {};
 const timers = new Map();
@@ -14,13 +15,13 @@ let transactionWrites = 0;
 let cleanupCalls = 0;
 let latestStatus;
 
-const canonicalState = {
+const canonicalState = weightHistory.applyToState({
   food: {},
   weightTracking: {},
   routineTrackingStartedDate: "",
   diary: { entries: {}, drafts: {} },
   training: { commands: {}, commandLogs: [], playLogs: [] }
-};
+});
 
 const auth = {
   currentUser: { uid: "fresh-device", getIdToken: async () => "token" },

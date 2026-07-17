@@ -2,7 +2,8 @@
    SECTION 1: STATE MANAGEMENT & ROUTING HELPERS
    ========================================================================== */
 function loadState() {
-  return window.nakoStorage.loadJson(safeStorage, STATE_KEY, {});
+  const state = window.nakoStorage.loadJson(safeStorage, STATE_KEY, {});
+  return window.nakoWeightHistory?.applyToState?.(state) || state;
 }
 
 function baselineCommandState(command, updatedAt = nowIso()) {
@@ -50,6 +51,7 @@ function saveStateDebounced() {
 }
 
 function saveState(options = {}) {
+  window.nakoWeightHistory?.applyToState?.(appState);
   safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
   if (options.remote !== false) window.nakoFirebase?.saveRemoteState?.(sharedRemoteState());
 }

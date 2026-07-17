@@ -1,8 +1,11 @@
 (function (root, factory) {
-  const api = factory();
+  const weightHistory = typeof module === "object" && module.exports
+    ? require("./weight-history.js")
+    : root?.nakoWeightHistory;
+  const api = factory(weightHistory);
   if (typeof module === "object" && module.exports) module.exports = api;
   if (root) root.nakoFirebaseState = api;
-})(typeof window !== "undefined" ? window : globalThis, function () {
+})(typeof window !== "undefined" ? window : globalThis, function (weightHistory) {
   "use strict";
 
   const TRAINING_SETTING_KEYS = Object.freeze(["emergencyCue", "liftCue"]);
@@ -65,7 +68,7 @@
   function mergeStates(remoteState = {}, localState = {}) {
     const remote = projectSharedState(remoteState);
     const local = projectSharedState(localState);
-    return projectSharedState({
+    const merged = projectSharedState({
       ...remote,
       ...local,
       food: mergeDatedRecords(remote.food, local.food),
@@ -74,6 +77,7 @@
       diary: mergeDiaryState(remote.diary, local.diary),
       training: mergeTrainingState(remote.training, local.training)
     });
+    return weightHistory?.applyToState?.(merged) || merged;
   }
 
   function earliestDate(first, second) {

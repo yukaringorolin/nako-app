@@ -8,6 +8,7 @@ const rulesContent = fs.readFileSync(path.join(__dirname, "../firestore.rules"),
 const workflowContent = fs.readFileSync(path.join(__dirname, "../.github/workflows/firebase-hosting-merge.yml"), "utf8");
 const firebaseWriteQueue = require("../src/core/firebase-write-queue.js");
 const firebaseState = require("../src/core/firebase-state.js");
+const weightHistory = require("../src/core/weight-history.js");
 
 // 1. HOUSEHOLD_ID is fixed as "our-dog-nako"
 assert.ok(firebaseContent.includes('const HOUSEHOLD_ID = "our-dog-nako";'), "HOUSEHOLD_ID must be defined as 'our-dog-nako'");
@@ -131,13 +132,13 @@ statusListenerCallback = (s) => {
   currentStatus = s;
 };
 
-const canonicalEmptyState = {
+const canonicalEmptyState = weightHistory.applyToState({
   food: {},
   weightTracking: {},
   routineTrackingStartedDate: "",
   diary: { entries: {}, drafts: {} },
   training: { commands: {}, commandLogs: [], playLogs: [] }
-};
+});
 
 (async () => {
 // Trigger state listener success and wait for the one-time cleanup write.

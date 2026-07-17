@@ -5,6 +5,7 @@ function migrateRoutineTrackingState() {
   if (!weightTask) return;
   const byCycle = new Map();
   Object.entries(appState.weightTracking || {}).forEach(([dateKey, value]) => {
+    if (window.nakoWeightHistory?.isPermanentDate?.(dateKey)) return;
     const weight = parseFloat(getWeightValue(value));
     const cycle = routineCycle(weightTask, dateKey);
     if (!cycle || !Number.isFinite(weight) || weight <= 0) return;
@@ -33,12 +34,14 @@ function migrateRoutineTrackingState() {
 
 function updateWeightInput(weightInput, options = {}) {
   appState.weightTracking ||= {};
+  const dateKey = weightInput.dataset.weightDate;
+  if (window.nakoWeightHistory?.isPermanentDate?.(dateKey)) return;
   const val = weightInput.value.trim();
-  appState.weightTracking[weightInput.dataset.weightDate] = {
+  appState.weightTracking[dateKey] = {
     value: val !== "" ? parseFloat(val) : "",
     updatedAt: nowIso()
   };
-  reconcileWeightCompletion(weightInput.dataset.weightDate, { remote: options.remoteCompletion !== false });
+  reconcileWeightCompletion(dateKey, { remote: options.remoteCompletion !== false });
   if (options.commit) saveState();
   else saveStateDebounced();
 }

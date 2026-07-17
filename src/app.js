@@ -108,7 +108,8 @@ function initFirebaseSync() {
       const localTrainingMigrations = appState.training?.contentMigrations
         ? { ...appState.training.contentMigrations }
         : null;
-      appState = nextState && typeof nextState === "object" ? nextState : {};
+      const remoteState = nextState && typeof nextState === "object" ? nextState : {};
+      appState = window.nakoWeightHistory?.applyToState?.(remoteState) || remoteState;
       appState.routineCompletions = localRoutineCompletions;
       if (localTrainingMigrations) {
         appState.training ||= {};
