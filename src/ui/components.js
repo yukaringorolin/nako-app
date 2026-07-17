@@ -26,6 +26,27 @@ function renderSectionCard(section) {
   return `<button class="category-card theme-${esc(section.id)}" data-section="${esc(section.id)}">${renderCardIcon(section.icon, sectionPhoto(section))}<span class="card-copy"><span class="card-title">${esc(tr(section.title))}</span><span class="card-description">${esc(tr(section.description))}</span><span class="card-meta"><span class="badge">${count} ${esc(labelText)}</span></span></span><span class="chevron">›</span></button>`;
 }
 
+function renderDailyGuideShortcut() {
+  const section = homeSections.find((entry) => entry.id === "daily");
+  if (!section) return "";
+  const count = routineTasks.filter((task) => task.active !== false && task.frequencyBucket === "daily").length;
+  return `<button type="button" class="daily-guide-shortcut theme-daily" data-section="daily">
+    <span class="daily-guide-eyebrow">${esc(label("dailyGuideEyebrow"))}</span>
+    <span class="daily-guide-main">
+      ${renderCardIcon(section.icon, sectionPhoto(section))}
+      <span class="daily-guide-copy">
+        <strong>${esc(tr(section.title))}</strong>
+        <span>${esc(tr(section.description))}</span>
+        <span class="daily-guide-count">${count} ${esc(label("dailyReferenceItems"))}</span>
+      </span>
+    </span>
+    <span class="daily-guide-footer">
+      <span class="daily-guide-reference">${esc(label("dailyGuideReference"))}</span>
+      <span class="daily-guide-action">${esc(label("openDailyGuide"))}<span aria-hidden="true">›</span></span>
+    </span>
+  </button>`;
+}
+
 function renderAdditionalResources() {
   if (!additionalResources?.items?.length) return "";
   return `<section class="additional-resources" aria-labelledby="additional-resources-title">

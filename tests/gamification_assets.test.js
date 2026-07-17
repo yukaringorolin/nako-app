@@ -97,8 +97,9 @@ const canonicalRoutineIds = Array.from(bundleContext.window.nakoData.routineTask
   .map((task) => task.id)
   .sort();
 const mappedRoutineIds = Object.keys(data.routineToastFamilyByTaskId).sort();
-assert.equal(canonicalRoutineIds.length, 25, "The canonical routine data should expose 25 toast-mapped tracked routines");
+assert.equal(canonicalRoutineIds.length, 24, "The canonical routine data should expose 24 toast-mapped tracked routines");
 assert.deepEqual(mappedRoutineIds, canonicalRoutineIds, "Every toast-mapped tracked routine must have exactly one family");
+assert.equal(data.routineToastFamilyByTaskId.rubbish, undefined, "Reference-only rubbish guidance must not award a checklist sticker");
 mappedRoutineIds.forEach((id) => {
   assert.ok(TOAST_FAMILY_ORDER.includes(data.routineToastFamilyByTaskId[id]), `${id} must map to a known toast family`);
 });

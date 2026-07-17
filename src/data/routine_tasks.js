@@ -345,27 +345,22 @@ const routineTasks = [
 
   routine("rubbish", "daily", 130, "R", 
     t("Rubbish", "ゴミ出し", "အမှိုက်ပစ်ခြင်း"),
-    t("Take down general rubbish and the dog-waste bin every night.", "毎晩、一般ゴミと犬用ゴミ箱のゴミを出します。", "ညတိုင်း အထွေထွေအမှိုက်နှင့် ခွေးအမှိုက်ပုံးကို သွန်ပါ။"),
-    t("Every night", "毎晩", "ညတိုင်း"),
+    t("Clear general rubbish and the dog-waste bin whenever there is food waste, smell, or the bin is getting full.", "食べ物のゴミ、臭い、またはゴミ箱がいっぱいになりそうな時に、一般ゴミと犬用ゴミ箱を捨てます。", "အစားအစာအမှိုက်ရှိလျှင်၊ အနံ့ထွက်လျှင် သို့မဟုတ် အမှိုက်ပုံးပြည့်လာလျှင် အထွေထွေအမှိုက်နှင့် ခွေးအမှိုက်ပုံးကို သွန်ပါ။"),
+    t("Throughout the day / as needed", "日中随時／必要に応じて", "တစ်နေ့လုံး / လိုအပ်သလို"),
     [
       t("Dog waste bin should not be left to smell.", "犬用ゴミ箱は臭いが出るまで放置しない。", "ခွေးအမှိုက်ပုံးကို အနံ့ထွက်သည်အထိ မထားပါနှင့်။"),
-      t("Take down all rubbish and general trash every night. Do not let trash accumulate in the bins.", "毎晩、すべてのゴミと一般ゴミを出してください。ゴミ箱にゴミがたまらないようにしてください。", "ညတိုင်း အမှိုက်နှင့် အထွေထွေအမှိုက်အားလုံးကို သွားပစ်ပါ။ အမှိုက်ပုံးထဲတွင် အမှိုက်များ စုပုံမနေပါစေနှင့်။"),
+      t("Check and clear rubbish regularly throughout the day, especially after throwing away food or when a bin is getting full.", "日中こまめにゴミを確認し、特に食べ物を捨てた後やゴミ箱がいっぱいになりそうな時はゴミを出してください。", "တစ်နေ့တာအတွင်း အမှိုက်ကို ပုံမှန်စစ်ပြီး အထူးသဖြင့် အစားအစာပစ်ပြီးနောက် သို့မဟုတ် အမှိုက်ပုံးပြည့်လာသည့်အခါ သွားပစ်ပါ။"),
       t("Put normal bagged household rubbish down the rubbish chute.", "通常の袋に入った家庭ゴミは、ゴミ投入口から捨てます。", "အိတ်ဖြင့်ထည့်ထားသော ပုံမှန်အိမ်သုံးအမှိုက်ကို rubbish chute ထဲ ပစ်ပါ။"),
       t("Do not force large or bulky rubbish—including large delivery packaging—into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
     ],
     [
       photo("assets/routines/nako-rubbish-bin-daily.jpg",
         t("Rubbish bin with orange plastic bag liner", "オレンジ色のゴミ袋が入ったゴミ箱", "လိမ္မော်ရောင်အမှိုက်အိတ်စွပ်ထားသော အမှိုက်ပုံး"),
-        t("Take down general trash and rubbish every night. Do not let trash build up.", "一般ゴミや生ゴミは毎晩捨ててください。ゴミをためないようにします。", "အထွေထွေအမှိုက်နှင့် အမှိုက်များကို ညတိုင်း သွားပစ်ပါ။ အမှိုက်များ စုမနေအောင် ထားပါ။")),
+        t("Clear general rubbish whenever there is food waste, smell, or the bin is getting full.", "食べ物のゴミ、臭い、またはゴミ箱がいっぱいになりそうな時に一般ゴミを捨てます。", "အစားအစာအမှိုက်ရှိလျှင်၊ အနံ့ထွက်လျှင် သို့မဟုတ် အမှိုက်ပုံးပြည့်လာလျှင် အထွေထွေအမှိုက်ကို သွားပစ်ပါ။")),
       photo("assets/routines/nako-rubbish-downstairs-large-items.jpg",
         t("Route to the downstairs disposal area for oversized rubbish", "大きなゴミを運ぶ階下のゴミ置き場への経路", "အရွယ်ကြီးသောအမှိုက်အတွက် အောက်ထပ်အမှိုက်ထားရာသို့ သွားသည့်လမ်း"),
         t("If rubbish or packaging is too large for the chute, carry it downstairs to this disposal area instead.", "ゴミや梱包材が投入口に入らない大きさの場合は、代わりに階下のこのゴミ置き場まで運びます。", "အမှိုက် သို့မဟုတ် packaging သည် chute အတွက် အရမ်းကြီးပါက အောက်ထပ်ရှိ ဤအမှိုက်ထားရာနေရာသို့ ယူသွားပါ။"))
-    ],
-    {
-      trackingMode: "checkbox",
-      trackingCadence: "daily",
-      trackingStartDate: "2026-07-17"
-    }),
+    ]),
 
   routine("laundry", "daily", 140, "L", 
     t("Laundry", "洗濯", "အဝတ်လျှော်ခြင်း"),
@@ -1020,10 +1015,10 @@ const routineTasks = [
         t("Fire-extinguisher pressure gauge", "消火器の圧力計", "မီးသတ်ဆေးဘူး ဖိအားမီတာ"),
         t("The needle should be in the green working-pressure zone. Either red zone means the extinguisher needs professional attention.", "針が緑色の使用圧力範囲にあることを確認します。左右どちらの赤色範囲でも、専門業者による対応が必要です。", "အပ်သည် အစိမ်းရောင် အသုံးပြုနိုင်သောဖိအားအပိုင်းတွင် ရှိရမည်။ အနီရောင်အပိုင်းတစ်ဖက်ဖက်တွင်ရှိလျှင် ကျွမ်းကျင်သူဖြင့် စစ်ဆေးရန်လိုသည်။"))
     ]),
-  routine("upload-shared-album", "as-needed", 0, "📷",
+  routine("upload-shared-album", "daily", 6, "📷",
     t("Upload Photos & Videos to Shared Album", "共有アルバムへの写真・動画のアップロード", "မျှဝေထားသော အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ခြင်း"),
     t("Upload photos and videos to the shared Google Photos album whenever you complete tasks, find something unusual, or are unsure of what to do.", "タスク完了時、異常を見つけた時、またはどうすべきか判断に迷う時に、共有のGoogleフォトアルバムに写真や動画をアップロードします。", "အလုပ်များပြီးစီးသည့်အခါ၊ ပုံမှန်မဟုတ်သောအရာများ တွေ့ရှိသည့်အခါ သို့မဟုတ် ဘာလုပ်ရမှန်း မသေချာသည့်အခါ မျှဝေထားသော Google Photos အယ်လ်ဘမ်သို့ ဓာတ်ပုံနှင့် ဗီဒီယိုများ တင်ပေးပါ။"),
-    t("As needed", "必要に応じて", "လိုအပ်သလို"),
+    t("Daily / after tasks or when needed", "毎日／作業後または必要な時", "နေ့စဉ် / အလုပ်ပြီးနောက် သို့မဟုတ် လိုအပ်သည့်အခါ"),
     [
       t("1. Open Google Photos.", "1. Googleフォトを開きます。", "၁။ Google Photos ကို ဖွင့်ပါ။"),
       t("2. Press and hold a photo, then select all photos or videos to share.", "2. 写真を長押しし、共有するすべての写真または動画を選択します。", "၂။ ဓာတ်ပုံတစ်ပုံကို ဖိထားပြီး မျှဝေလိုသော ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယိုအားလုံးကို ရွေးချယ်ပါ။"),

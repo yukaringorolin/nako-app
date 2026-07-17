@@ -12,14 +12,18 @@ function renderHome() {
       </div>
     </section>
     ${renderSearchComponent()}
-    ${renderRoutineHomeShortcut()}
+    <p class="section-label today-label">${esc(label("today"))}</p>
+    <section class="today-priority">
+      ${renderDailyGuideShortcut()}
+      ${renderRoutineHomeShortcut()}
+    </section>
     <p class="section-label">${esc(label("quickShortcuts"))}</p>
     <section class="shortcut-grid">
       ${renderShortcuts()}
     </section>
     <section class="rule-strip compact"><h2>${esc(label("foodItems"))}</h2><p>${esc(label("foodFirst"))}</p></section>
     <p class="section-label">${esc(label("sections"))}</p>
-    <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>
+    <section class="card-list">${homeSections.filter((section) => section.id !== "daily").map(renderSectionCard).join("")}</section>
     ${renderAdditionalResources()}
     ${renderGamificationHome()}
     ${renderGamificationAlbumHome()}`;

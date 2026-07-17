@@ -16,6 +16,15 @@ assert.equal(foodSection.title.en, "Food, Recipes");
 assert.equal(foodSection.description.en, "Recipes and food logs.");
 assert.doesNotMatch(Object.values(foodSection.title).join("\n"), /Nako|ナコ/);
 assert.doesNotMatch(Object.values(foodSection.description).join("\n"), /Nako|ナコ/);
+const dailySection = data.homeSections.find((section) => section.id === "daily");
+assert.equal(dailySection.title.en, "Daily Care Guide");
+for (const lang of ["en", "jp", "mm"]) {
+  assert.ok(dailySection.title[lang] && dailySection.description[lang]);
+  assert.ok(data.ui[lang].dailyGuideEyebrow);
+  assert.ok(data.ui[lang].dailyGuideReference);
+  assert.ok(data.ui[lang].dailyReferenceItems);
+  assert.ok(data.ui[lang].openDailyGuide);
+}
 assert.ok(data.trainingData.rules.length >= 6);
 for (const rule of data.trainingData.rules) {
   assert.ok(rule.en && rule.jp && rule.mm);
@@ -69,8 +78,13 @@ assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonical
 assert.match(pageSource, /\$\{cards\}\s+\$\{dailySafety\}/);
 const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components.js"), "utf8");
 assert.match(componentSource, /const safetyIds = \["nako-supervision", "nako-kind-handling", "nako-emergency"\]/);
+assert.match(componentSource, /function renderDailyGuideShortcut\(\)/);
 const stylesSource = fs.readFileSync(path.join(root, "src", "styles.css"), "utf8");
 assert.match(stylesSource, /\.daily-safety-section\s*\{/);
+assert.match(stylesSource, /\.daily-guide-shortcut\s*\{/);
+const pagesSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
+assert.match(pagesSource, /renderDailyGuideShortcut\(\)/);
+assert.match(pagesSource, /homeSections\.filter\(\(section\) => section\.id !== "daily"\)/);
 
 const drinkingWaterPrep = routineById("drinking-water-prep");
 assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
@@ -103,6 +117,10 @@ assert.deepEqual(Array.from(mailDeliveries.photos, (item) => item.src), [
   "assets/routines/nako-delivery-wipe-item.jpg"
 ]);
 const rubbish = routineById("rubbish");
+assert.equal(rubbish.trackingMode, "none");
+assert.equal(rubbish.trackingCadence, null);
+assert.match(rubbish.summary.en, /food waste, smell, or the bin is getting full/);
+assert.equal(rubbish.frequencyText.en, "Throughout the day / as needed");
 assert.match(englishText(rubbish.mustRemember), /normal bagged household rubbish down the rubbish chute/);
 assert.match(englishText(rubbish.mustRemember), /Do not force large or bulky rubbish.*delivery packaging.*into the chute/);
 assert.deepEqual(Array.from(rubbish.photos, (item) => item.src), [
@@ -191,10 +209,14 @@ assert.match(englishText(flightPacking.instructions), /luggage wheels.*separate 
 assert.ok(flightPacking.photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
 
 const uploadSharedAlbum = routineById("upload-shared-album");
-const asNeededTasks = data.routineTasks
-  .filter((task) => task.frequencyBucket === "as-needed")
+const dailyTasks = data.routineTasks
+  .filter((task) => task.frequencyBucket === "daily")
   .sort((a, b) => a.sortOrder - b.sortOrder);
-assert.equal(asNeededTasks[0].id, uploadSharedAlbum.id, "Shared-album uploads must stay first on the As Needed page");
+const googleCalendarIndex = dailyTasks.findIndex((task) => task.id === "google-calendar-check");
+assert.equal(dailyTasks[googleCalendarIndex + 1].id, uploadSharedAlbum.id, "Shared-album uploads must appear immediately below Google Calendar Check");
+assert.equal(uploadSharedAlbum.trackingMode, "none");
+assert.equal(uploadSharedAlbum.trackingCadence, null);
+assert.equal(uploadSharedAlbum.frequencyText.en, "Daily / after tasks or when needed");
 
 const essentialFoodStock = routineById("essential-food-stock");
 assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines/essential-food-stock-bananas.jpg"));

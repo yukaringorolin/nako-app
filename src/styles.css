@@ -810,6 +810,158 @@ img {
   font-size: 28px;
 }
 
+/* Today priorities ------------------------------------------------------- */
+.today-label {
+  margin-bottom: 10px;
+  color: #a64e61;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.today-priority {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.daily-guide-shortcut {
+  width: 100%;
+  padding: 17px;
+  display: grid;
+  gap: 13px;
+  border: 2px solid #eb91a1;
+  border-left-width: 8px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #fffaf6 0%, #fff0f3 58%, #f8fff9 100%);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 0 14px 32px rgba(166, 78, 97, 0.14);
+  cursor: pointer;
+}
+
+.daily-guide-shortcut:active {
+  transform: translateY(1px);
+}
+
+.daily-guide-eyebrow {
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #e86f88;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.daily-guide-main {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.daily-guide-shortcut .card-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  box-shadow: 0 7px 18px rgba(130, 69, 82, 0.12);
+}
+
+.daily-guide-copy {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.daily-guide-copy strong {
+  font-size: clamp(21px, 5vw, 26px);
+  line-height: 1.15;
+}
+
+.daily-guide-copy > span:not(.daily-guide-count) {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.daily-guide-count {
+  width: fit-content;
+  margin-top: 3px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #7c4854;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.daily-guide-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(166, 78, 97, 0.18);
+}
+
+.daily-guide-reference {
+  color: #765b62;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.daily-guide-action {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #e86f88;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.daily-guide-action span {
+  font-size: 19px;
+  line-height: 0.7;
+}
+
+.today-priority .routine-home-shortcut {
+  margin: 0;
+}
+
+@media (max-width: 420px) {
+  .daily-guide-shortcut {
+    padding: 14px;
+  }
+
+  .daily-guide-main {
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .daily-guide-shortcut .card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+  }
+
+  .daily-guide-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .daily-guide-action {
+    justify-content: center;
+  }
+}
+
 /* Routine Check-in ------------------------------------------------------- */
 .routine-home-shortcut {
   width: 100%;
