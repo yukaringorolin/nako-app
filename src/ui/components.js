@@ -198,12 +198,19 @@ function sectionPhoto(section) {
   return section.image ? { src: section.image, alt: section.title } : null;
 }
 
-function renderDailySafetySection(section) {
-  const safetyIds = ["nako-supervision", "nako-kind-handling", "nako-emergency"];
-  const safetyTasks = safetyIds.map((id) => routineTasks.find((task) => task.id === id)).filter(Boolean);
-  return `<section class="daily-safety-section" aria-labelledby="daily-safety-title">
-    <h2 id="daily-safety-title">${esc(label("pinnedSafety"))}</h2>
-    <div class="card-list daily-safety-list">${safetyTasks.map((task) => renderRoutineCard(task, section)).join("")}</div>
+function renderDailyGuideGroup(group, tasks, section) {
+  const titleId = `daily-guide-${group.id}-title`;
+  const countLabel = `${tasks.length} ${label("routineItems")}`;
+  return `<section class="daily-guide-group daily-guide-group-${esc(group.id)}" data-daily-guide-group="${esc(group.id)}" aria-labelledby="${esc(titleId)}">
+    <header class="daily-guide-group-header">
+      <span class="daily-guide-group-icon" aria-hidden="true">${esc(group.icon)}</span>
+      <span class="daily-guide-group-copy">
+        <h2 id="${esc(titleId)}">${esc(label(group.titleKey))}</h2>
+        <p>${esc(label(group.descriptionKey))}</p>
+      </span>
+      <span class="daily-guide-group-count" aria-label="${esc(countLabel)}"><strong>${tasks.length}</strong><small>${esc(label("routineItems"))}</small></span>
+    </header>
+    <div class="card-list daily-guide-task-list">${tasks.map((task) => renderRoutineCard(task, section)).join("")}</div>
   </section>`;
 }
 

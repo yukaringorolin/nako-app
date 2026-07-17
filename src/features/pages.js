@@ -429,11 +429,30 @@ function renderShortcuts() {
   }).join("");
 }
 
+const DAILY_GUIDE_GROUPS = Object.freeze([
+  { id: "start", icon: "☀", titleKey: "dailyGuideGroupStartTitle", descriptionKey: "dailyGuideGroupStartDescription" },
+  { id: "food-kitchen", icon: "🍳", titleKey: "dailyGuideGroupFoodTitle", descriptionKey: "dailyGuideGroupFoodDescription" },
+  { id: "nako-care", icon: "🐾", titleKey: "dailyGuideGroupNakoTitle", descriptionKey: "dailyGuideGroupNakoDescription" },
+  { id: "home-care", icon: "🏠", titleKey: "dailyGuideGroupHomeTitle", descriptionKey: "dailyGuideGroupHomeDescription" },
+  { id: "admin-supplies", icon: "📦", titleKey: "dailyGuideGroupAdminTitle", descriptionKey: "dailyGuideGroupAdminDescription" },
+  { id: "safety", icon: "🛡️", titleKey: "dailyGuideGroupSafetyTitle", descriptionKey: "dailyGuideGroupSafetyDescription" }
+]);
+
+function renderDailyGuideGroups(items, section) {
+  return `<div class="daily-guide-groups">${DAILY_GUIDE_GROUPS.map((group) => {
+    const groupItems = items
+      .filter((item) => item.dailyGuideGroup === group.id)
+      .sort((a, b) => (a.dailyGuideOrder || a.sortOrder) - (b.dailyGuideOrder || b.sortOrder));
+    return renderDailyGuideGroup(group, groupItems, section);
+  }).join("")}</div>`;
+}
+
 function renderSection(sectionId) {
   const section = homeSections.find((entry) => entry.id === sectionId);
   if (!section) return renderHome();
   const isFood = sectionId === "food";
   const isFoodSafety = sectionId === "food-safety";
+  const isDailyGuide = sectionId === "daily";
   
   let items;
   if (isFood) {
@@ -444,9 +463,6 @@ function renderSection(sectionId) {
     items = routineTasks.filter((task) => task.active !== false && task.frequencyBucket === sectionId).sort(bySort);
   }
 
-  const dailySafetyIds = ["nako-supervision", "nako-kind-handling", "nako-emergency"];
-  if (sectionId === "daily") items = items.filter((item) => !dailySafetyIds.includes(item.id));
-  const dailySafety = sectionId === "daily" ? renderDailySafetySection(section) : "";
   const officialRefs = isFoodSafety ? renderOfficialReferencesPanel() : "";
   
   let eyebrowText;
@@ -458,9 +474,11 @@ function renderSection(sectionId) {
     eyebrowText = label("routineItems");
   }
 
-  const cards = isFoodSafety
-    ? renderFoodSafetyGroups(section)
-    : `<section class="card-list">${items.map((item) => {
+  const cards = isDailyGuide
+    ? renderDailyGuideGroups(items, section)
+    : isFoodSafety
+      ? renderFoodSafetyGroups(section)
+      : `<section class="card-list">${items.map((item) => {
         if (isFood) return renderFoodCard(item, section);
         return renderRoutineCard(item, section);
       }).join("") || emptyState()}</section>`;
@@ -468,7 +486,6 @@ function renderSection(sectionId) {
   const content = `
     ${renderHead(section.icon, tr(section.title), tr(section.description), section.iconBg, eyebrowText)}
     ${cards}
-    ${dailySafety}
     ${officialRefs}`;
   renderShell(tr(section.title), content, true);
 }

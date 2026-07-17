@@ -1437,6 +1437,57 @@ const routineTrackingExclusions = {
   "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"
 };
 
+// Display-only grouping for the Daily Care Guide. This does not affect routine tracking.
+const dailyGuideLayout = {
+  start: [
+    "google-calendar-check",
+    "upload-shared-album"
+  ],
+  "food-kitchen": [
+    "drinking-water-prep",
+    "grocery-shopping",
+    "daily-cooking",
+    "clean-up-cooking-appliances",
+    "coffee-machine-upkeep",
+    "protein-shake-creatine-prep"
+  ],
+  "nako-care": [
+    "nako-feeding-water",
+    "nako-potty-pen",
+    "nako-exercise-grooming",
+    "nako-walk-car-bags",
+    "nako-teeth-ears-nails",
+    "nako-training-fun"
+  ],
+  "home-care": [
+    "laundry",
+    "toilet-drain-hair-trap",
+    "sofa-hair-room-corner-cleaning",
+    "floor-cleaning",
+    "rubbish",
+    "general-tidiness"
+  ],
+  "admin-supplies": [
+    "mail-deliveries",
+    "household-supplies-online",
+    "helper-diary-feedback"
+  ],
+  safety: [
+    "nako-supervision",
+    "nako-kind-handling",
+    "nako-emergency"
+  ]
+};
+
+Object.entries(dailyGuideLayout).forEach(([groupId, taskIds]) => {
+  taskIds.forEach((taskId, index) => {
+    const task = routineTasks.find((entry) => entry.id === taskId);
+    if (!task) return;
+    task.dailyGuideGroup = groupId;
+    task.dailyGuideOrder = index + 1;
+  });
+});
+
 // Automatic single-source-of-truth metadata application
 routineTasks.forEach((task) => {
   const isPinnedSafety = ["nako-emergency", "nako-kind-handling", "nako-supervision"].includes(task.id);

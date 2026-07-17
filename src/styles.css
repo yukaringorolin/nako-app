@@ -263,34 +263,190 @@ img {
   font-size: 1.15rem;
 }
 
-.daily-safety-section {
+.daily-guide-groups {
   display: grid;
-  gap: 12px;
-  margin-top: 24px;
-  padding: 14px;
-  border: 1px solid #efb06f;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #fff8ed 0%, #fff1df 100%);
-  box-shadow: 0 10px 24px rgba(151, 83, 30, 0.1);
+  gap: 22px;
 }
 
-.daily-safety-section > h2 {
+.daily-guide-group {
+  --daily-group-accent: #4b83c3;
+  --daily-group-border: #bfd4eb;
+  --daily-group-soft: #f3f8ff;
+  display: grid;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid var(--daily-group-border);
+  border-radius: 16px;
+  background: var(--daily-group-soft);
+  box-shadow: 0 9px 22px rgba(48, 62, 55, 0.07);
+}
+
+.daily-guide-group-food-kitchen {
+  --daily-group-accent: #b86231;
+  --daily-group-border: #efc6a1;
+  --daily-group-soft: #fff8f1;
+}
+
+.daily-guide-group-nako-care {
+  --daily-group-accent: #bd6076;
+  --daily-group-border: #edbdc8;
+  --daily-group-soft: #fff5f8;
+}
+
+.daily-guide-group-home-care {
+  --daily-group-accent: #477f68;
+  --daily-group-border: #bcd8c9;
+  --daily-group-soft: #f2faf6;
+}
+
+.daily-guide-group-admin-supplies {
+  --daily-group-accent: #705b9e;
+  --daily-group-border: #d1c7e6;
+  --daily-group-soft: #f7f5fc;
+}
+
+.daily-guide-group-safety {
+  --daily-group-accent: #ad492d;
+  --daily-group-border: #eaa47d;
+  --daily-group-soft: #fff4ec;
+  border-width: 2px;
+  box-shadow: 0 11px 26px rgba(151, 83, 30, 0.12);
+}
+
+.daily-guide-group-header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.daily-guide-group-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--daily-group-accent);
+  font-size: 22px;
+  box-shadow: 0 5px 13px rgba(48, 62, 55, 0.08);
+}
+
+.daily-guide-group-copy {
+  min-width: 0;
+}
+
+.daily-guide-group-copy h2 {
   margin: 0;
-  color: #934819;
+  color: var(--daily-group-accent);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.daily-guide-group-copy p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.daily-guide-group-count {
+  display: grid;
+  min-width: 42px;
+  padding: 5px 7px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--daily-group-accent);
+  text-align: center;
+  line-height: 1;
+}
+
+.daily-guide-group-count strong {
   font-size: 17px;
 }
 
-.daily-safety-list .item-card {
-  --accent: #e57b32;
-  --icon-bg: #ffead5;
-  border-color: #efc59d;
-  background: #fffdf9;
-  box-shadow: 0 6px 16px rgba(151, 83, 30, 0.08);
+.daily-guide-group-count small {
+  margin-top: 3px;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .03em;
+  text-transform: uppercase;
 }
 
-.daily-safety-list .badge {
-  background: #ffead5;
-  color: #8b4318;
+.daily-guide-task-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.daily-guide-task-list .item-card {
+  --accent: var(--daily-group-accent);
+  --icon-bg: #fff;
+  height: 100%;
+  min-height: 98px;
+  border-color: var(--daily-group-border);
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(48, 62, 55, 0.06);
+}
+
+.daily-guide-task-list .card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.daily-guide-task-list .badge {
+  max-width: 100%;
+  background: var(--daily-group-soft);
+  color: var(--daily-group-accent);
+  line-height: 1.35;
+  white-space: normal;
+}
+
+@media (min-width: 720px) {
+  .daily-guide-group {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .daily-guide-task-list .item-card {
+    grid-template-columns: 64px minmax(0, 1fr) 24px;
+    gap: 16px;
+    min-height: 112px;
+    padding: 16px 18px;
+  }
+
+  .daily-guide-task-list .card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+
+  .daily-guide-task-list .card-title {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 370px) {
+  .daily-guide-group {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .daily-guide-group-header {
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .daily-guide-group-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .daily-guide-group-copy h2 {
+    font-size: 16px;
+  }
 }
 
 .category-card,

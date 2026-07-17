@@ -156,6 +156,18 @@ const ui = {
     routineItems: "Tasks",
     foodItems: "Food and logs",
     pinnedSafety: "Safety first",
+    dailyGuideGroupStartTitle: "Start Here",
+    dailyGuideGroupStartDescription: "Check today's plans and keep the shared album updated.",
+    dailyGuideGroupFoodTitle: "Food & Kitchen",
+    dailyGuideGroupFoodDescription: "Prepare meals, drinks, groceries, and clean-up.",
+    dailyGuideGroupNakoTitle: "Nako Daily Care",
+    dailyGuideGroupNakoDescription: "Meals, hygiene, exercise, training, and outings.",
+    dailyGuideGroupHomeTitle: "Home Care",
+    dailyGuideGroupHomeDescription: "Keep shared spaces clean, tidy, and ready to use.",
+    dailyGuideGroupAdminTitle: "Admin & Supplies",
+    dailyGuideGroupAdminDescription: "Handle deliveries, notes, and household stock.",
+    dailyGuideGroupSafetyTitle: "Safety First",
+    dailyGuideGroupSafetyDescription: "Essential supervision, kind handling, and emergency guidance.",
     safetyReferences: "Safety",
     noItems: "No items yet.",
     back: "Back",
@@ -344,6 +356,18 @@ const ui = {
     routineItems: "タスク",
     foodItems: "食事と記録",
     pinnedSafety: "安全第一",
+    dailyGuideGroupStartTitle: "最初に確認",
+    dailyGuideGroupStartDescription: "今日の予定を確認し、共有アルバムを更新します。",
+    dailyGuideGroupFoodTitle: "食事・キッチン",
+    dailyGuideGroupFoodDescription: "食事、飲み物、買い物、後片付けを行います。",
+    dailyGuideGroupNakoTitle: "ナコの日常ケア",
+    dailyGuideGroupNakoDescription: "食事、衛生、運動、トレーニング、外出のケアです。",
+    dailyGuideGroupHomeTitle: "家のケア",
+    dailyGuideGroupHomeDescription: "共有スペースを清潔に整え、すぐ使える状態に保ちます。",
+    dailyGuideGroupAdminTitle: "連絡・備品",
+    dailyGuideGroupAdminDescription: "配達物、記録、家庭用品の在庫を管理します。",
+    dailyGuideGroupSafetyTitle: "安全第一",
+    dailyGuideGroupSafetyDescription: "見守り、やさしい扱い、緊急時の大切な案内です。",
     safetyReferences: "安全",
     noItems: "項目はありません。",
     back: "戻る",
@@ -532,6 +556,18 @@ const ui = {
     routineItems: "အလုပ်များ",
     foodItems: "အစားအသောက်နဲ့ မှတ်တမ်း",
     pinnedSafety: "ဘေးကင်းရေး အရင်",
+    dailyGuideGroupStartTitle: "အရင်စစ်ရန်",
+    dailyGuideGroupStartDescription: "ယနေ့အစီအစဉ်ကို စစ်ပြီး shared album ကို update လုပ်ပါ။",
+    dailyGuideGroupFoodTitle: "အစားအသောက်နှင့် မီးဖိုချောင်",
+    dailyGuideGroupFoodDescription: "အစားအစာ၊ သောက်ရေ၊ စျေးဝယ်ခြင်းနှင့် သန့်ရှင်းရေးကို စီစဉ်ပါ။",
+    dailyGuideGroupNakoTitle: "Nako နေ့စဉ်စောင့်ရှောက်မှု",
+    dailyGuideGroupNakoDescription: "အစားအစာ၊ သန့်ရှင်းရေး၊ လေ့ကျင့်ခန်း၊ training နှင့် အပြင်ထွက်ခြင်း။",
+    dailyGuideGroupHomeTitle: "အိမ်စောင့်ရှောက်မှု",
+    dailyGuideGroupHomeDescription: "အများသုံးနေရာများကို သန့်ရှင်းသပ်ရပ်ပြီး အသင့်ဖြစ်အောင်ထားပါ။",
+    dailyGuideGroupAdminTitle: "စီမံရေးနှင့် ပစ္စည်းများ",
+    dailyGuideGroupAdminDescription: "delivery များ၊ မှတ်တမ်းများနှင့် အိမ်သုံးပစ္စည်း stock ကို စီမံပါ။",
+    dailyGuideGroupSafetyTitle: "ဘေးကင်းရေး အရင်",
+    dailyGuideGroupSafetyDescription: "Nako ကိုစောင့်ကြည့်ခြင်း၊ နူးညံ့စွာကိုင်တွယ်ခြင်းနှင့် အရေးပေါ်လမ်းညွှန်။",
     safetyReferences: "ဘေးကင်းရေး",
     noItems: "ဘာမှမရှိသေးပါ။",
     back: "နောက်သို့",
@@ -2747,6 +2783,57 @@ const routineTrackingExclusions = {
   "outside-shoe-rack": "Shoe rack tidiness is managed daily or on-demand, not on a strict fortnightly schedule",
   "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"
 };
+
+// Display-only grouping for the Daily Care Guide. This does not affect routine tracking.
+const dailyGuideLayout = {
+  start: [
+    "google-calendar-check",
+    "upload-shared-album"
+  ],
+  "food-kitchen": [
+    "drinking-water-prep",
+    "grocery-shopping",
+    "daily-cooking",
+    "clean-up-cooking-appliances",
+    "coffee-machine-upkeep",
+    "protein-shake-creatine-prep"
+  ],
+  "nako-care": [
+    "nako-feeding-water",
+    "nako-potty-pen",
+    "nako-exercise-grooming",
+    "nako-walk-car-bags",
+    "nako-teeth-ears-nails",
+    "nako-training-fun"
+  ],
+  "home-care": [
+    "laundry",
+    "toilet-drain-hair-trap",
+    "sofa-hair-room-corner-cleaning",
+    "floor-cleaning",
+    "rubbish",
+    "general-tidiness"
+  ],
+  "admin-supplies": [
+    "mail-deliveries",
+    "household-supplies-online",
+    "helper-diary-feedback"
+  ],
+  safety: [
+    "nako-supervision",
+    "nako-kind-handling",
+    "nako-emergency"
+  ]
+};
+
+Object.entries(dailyGuideLayout).forEach(([groupId, taskIds]) => {
+  taskIds.forEach((taskId, index) => {
+    const task = routineTasks.find((entry) => entry.id === taskId);
+    if (!task) return;
+    task.dailyGuideGroup = groupId;
+    task.dailyGuideOrder = index + 1;
+  });
+});
 
 // Automatic single-source-of-truth metadata application
 routineTasks.forEach((task) => {
