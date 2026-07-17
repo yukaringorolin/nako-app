@@ -345,6 +345,7 @@ function renderRoutineCompletionPanel(task) {
 function renderShortcuts() {
   const shortcutList = [
     { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
+    { id: "nako-feeding-water", type: "routine", labelKey: "shortcutAppetiteTracker" },
     { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
@@ -399,14 +400,16 @@ function renderSection(sectionId) {
   
   let items;
   if (isFood) {
-    items = [...foodItems].sort(bySort);
+    items = foodItems.filter((item) => item.active !== false).sort(bySort);
   } else if (isFoodSafety) {
     items = [...foodSafetyItems];
   } else {
     items = routineTasks.filter((task) => task.frequencyBucket === sectionId).sort(bySort);
   }
 
-  const pinned = !isFood && !isFoodSafety && sectionId === "daily" ? renderPinnedSafety() : "";
+  const dailySafetyIds = ["nako-supervision", "nako-kind-handling", "nako-emergency"];
+  if (sectionId === "daily") items = items.filter((item) => !dailySafetyIds.includes(item.id));
+  const dailySafety = sectionId === "daily" ? renderDailySafetySection(section) : "";
   const officialRefs = isFoodSafety ? renderOfficialReferencesPanel() : "";
   
   let eyebrowText;
@@ -427,8 +430,8 @@ function renderSection(sectionId) {
 
   const content = `
     ${renderHead(section.icon, tr(section.title), tr(section.description), section.iconBg, eyebrowText)}
-    ${pinned}
     ${cards}
+    ${dailySafety}
     ${officialRefs}`;
   renderShell(tr(section.title), content, true);
 }
@@ -468,11 +471,13 @@ function renderRoutine(routineId) {
     : "";
   const completionPanelHtml = isTracked && task.active !== false ? renderRoutineCompletionPanel(task) : "";
   const historyPanelHtml = isTracked ? renderTaskRoutineHistory(task.id) : "";
+  const appetitePanelHtml = task.id === "nako-feeding-water" ? renderNakoAppetiteTracker() : "";
 
   const content = `
     ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), primaryPhoto(task.photos))}
     ${backLinkHtml}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
+    ${appetitePanelHtml}
     ${completionPanelHtml}
     ${instructionsPanel}
     ${renderPhotos(task.photos)}
@@ -487,6 +492,7 @@ function renderFood(foodId) {
   if (foodId === "cooking-rules") return go("#food-safety/household-cooking-rules");
   const item = foodItems.find((entry) => entry.id === foodId);
   if (!item) return renderHome();
+  if (item.canonicalRoute) return go(item.canonicalRoute);
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
   const state = getFoodState(item.id);
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));

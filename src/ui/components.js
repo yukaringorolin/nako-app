@@ -14,7 +14,7 @@ function renderSectionCard(section) {
   let count;
   let labelText;
   if (section.id === "food") {
-    count = foodItems.length;
+    count = foodItems.filter((item) => item.active !== false).length;
     labelText = label("foodItems");
   } else if (section.id === "food-safety") {
     count = foodSafetyItems.length + 1;
@@ -177,9 +177,13 @@ function sectionPhoto(section) {
   return section.image ? { src: section.image, alt: section.title } : null;
 }
 
-function renderPinnedSafety() {
-  const pinned = routineTasks.filter((task) => ["nako-emergency", "nako-kind-handling", "nako-supervision"].includes(task.id));
-  return `<section class="rule-strip"><h2>${esc(label("pinnedSafety"))}</h2><div class="mini-list">${pinned.map((task) => `<button class="mini-link" data-routine="${esc(task.id)}">${esc(tr(task.title))}</button>`).join("")}</div></section>`;
+function renderDailySafetySection(section) {
+  const safetyIds = ["nako-supervision", "nako-kind-handling", "nako-emergency"];
+  const safetyTasks = safetyIds.map((id) => routineTasks.find((task) => task.id === id)).filter(Boolean);
+  return `<section class="daily-safety-section" aria-labelledby="daily-safety-title">
+    <h2 id="daily-safety-title">${esc(label("pinnedSafety"))}</h2>
+    <div class="card-list daily-safety-list">${safetyTasks.map((task) => renderRoutineCard(task, section)).join("")}</div>
+  </section>`;
 }
 
 function renderRulesPanel() {

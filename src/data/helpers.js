@@ -23,8 +23,8 @@ function instructionList(summary, instructions) {
 }
 
 
-function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = [], attrs = {}) {
+  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder, ...attrs };
 }
 
 function photo(src, alt, caption) {

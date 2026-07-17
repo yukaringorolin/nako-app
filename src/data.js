@@ -24,8 +24,8 @@ function instructionList(summary, instructions) {
 }
 
 
-function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = []) {
-  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder };
+function food(id, type, icon, title, summary, instructions, note, sortOrder, photos = [], attrs = {}) {
+  return { id, type, icon, title, summary, instructions: instructionList(summary, instructions), mustRemember: Array.isArray(note) ? note : [note], photos, videoUrl: "", trackingMode: type === "placeholder" ? "future" : "reference", sortOrder, ...attrs };
 }
 
 function photo(src, alt, caption) {
@@ -108,6 +108,18 @@ const ui = {
     description: "Description",
     instructions: "Steps",
     photos: "Photos",
+    appetiteTracker: "Appetite Tracker",
+    appetiteDate: "Date",
+    appetitePercentage: "How much did Nako eat?",
+    appetiteNote: "Daily note (optional)",
+    appetiteNotePlaceholder: "Add anything unusual about her appetite.",
+    appetiteHistory: "Last 30 days",
+    appetiteNoHistory: "No appetite entries yet.",
+    appetiteSaved: "Saved",
+    appetiteEdit: "Edit",
+    appetiteBackToday: "Back to today",
+    appetiteNotify: "If Nako refuses food or her appetite is unusual, tell Edwin.",
+    appetiteSelectFirst: "Choose a percentage before adding a note.",
     mustRemember: "Remember",
     video: "Training video",
     memo: "Memo",
@@ -150,6 +162,7 @@ const ui = {
     syncOff: "Cloud sync off",
     quickShortcuts: "Quick links",
     shortcutNakoWeight: "Nako Weight Tracking",
+    shortcutAppetiteTracker: "Nako Appetite Tracker",
     shortcutMealLogs: "Edwin Meal Logs",
     shortcutNakoToppings: "Nako Topping Recipes",
     shortcutHumanFood: "Human Food Ideas",
@@ -264,6 +277,18 @@ const ui = {
     description: "説明",
     instructions: "手順",
     photos: "写真",
+    appetiteTracker: "食欲トラッカー",
+    appetiteDate: "日付",
+    appetitePercentage: "ナコはどのくらい食べましたか？",
+    appetiteNote: "今日のメモ（任意）",
+    appetiteNotePlaceholder: "食欲について気になることがあれば記入してください。",
+    appetiteHistory: "過去30日",
+    appetiteNoHistory: "食欲の記録はまだありません。",
+    appetiteSaved: "保存済み",
+    appetiteEdit: "編集",
+    appetiteBackToday: "今日に戻る",
+    appetiteNotify: "ナコが食べない、または食欲がいつもと違う場合は、Edwinに伝えてください。",
+    appetiteSelectFirst: "メモを追加する前に割合を選んでください。",
     mustRemember: "注意",
     video: "トレーニング動画",
     memo: "メモ",
@@ -306,6 +331,7 @@ const ui = {
     syncOff: "クラウド同期オフ",
     quickShortcuts: "よく使う項目",
     shortcutNakoWeight: "ナコの体重測定",
+    shortcutAppetiteTracker: "ナコの食欲トラッカー",
     shortcutMealLogs: "エドウィンの食事記録",
     shortcutNakoToppings: "ナコのトッピングレシピ",
     shortcutHumanFood: "人間の食事アイデア",
@@ -420,6 +446,18 @@ const ui = {
     description: "ဖော်ပြချက်",
     instructions: "လုပ်နည်း",
     photos: "ဓာတ်ပုံများ",
+    appetiteTracker: "အစာစားချင်စိတ် မှတ်တမ်း",
+    appetiteDate: "ရက်စွဲ",
+    appetitePercentage: "Nako ဘယ်လောက်စားခဲ့သလဲ?",
+    appetiteNote: "နေ့စဉ်မှတ်စု (မဖြစ်မနေမဟုတ်)",
+    appetiteNotePlaceholder: "အစာစားချင်စိတ်နှင့်ပတ်သက်၍ ပုံမှန်မဟုတ်တာရှိပါက ရေးပါ။",
+    appetiteHistory: "လွန်ခဲ့သော ၃၀ ရက်",
+    appetiteNoHistory: "အစာစားချင်စိတ် မှတ်တမ်း မရှိသေးပါ။",
+    appetiteSaved: "သိမ်းပြီး",
+    appetiteEdit: "ပြင်ရန်",
+    appetiteBackToday: "ယနေ့သို့ ပြန်သွားရန်",
+    appetiteNotify: "Nako အစာမစားပါက သို့မဟုတ် အစာစားချင်စိတ် ပုံမှန်မဟုတ်ပါက Edwin ကို ပြောပါ။",
+    appetiteSelectFirst: "မှတ်စုမရေးမီ ရာခိုင်နှုန်းကို ရွေးပါ။",
     mustRemember: "သတိထားရန်",
     video: "လေ့ကျင့်ရေးဗီဒီယို",
     memo: "မှတ်စု",
@@ -462,6 +500,7 @@ const ui = {
     syncOff: "ကလောင်ဒ်စင့်ခ် ပိတ်ထားသည်",
     quickShortcuts: "အမြန်ဖွင့်ရန်",
     shortcutNakoWeight: "Nako ကိုယ်အလေးချိန်",
+    shortcutAppetiteTracker: "Nako အစာစားချင်စိတ် မှတ်တမ်း",
     shortcutMealLogs: "Edwin အစားမှတ်တမ်း",
     shortcutNakoToppings: "Nako topping ချက်နည်း",
     shortcutHumanFood: "လူ့အစားအစာ အိုင်ဒီယာ",
@@ -711,7 +750,8 @@ const foodItems = [
       photo("assets/sections/nako-feeding.png", 
         t("Nako's pink food bowl with kibble and white water bowl", "ナコのピンク色のフードボウルと白い水ボウル", "Nako ၏ ပန်းရောင်ခွေးစာခွက်နှင့် အဖြူရောင်ရေခွက်"),
         t("Nako Feeding", "ナコの給餌", "Nako ကိုအစာကျွေးခြင်း"))
-    ]),
+    ],
+    { active: false, canonicalRoute: "#routine/nako-feeding-water" }),
   food("nako-inventory", "placeholder", "I", 
     t("Nako Inventory", "ナコの在庫状況", "Nako ၏ပစ္စည်းစာရင်း"), 
     t("Future stock tracking for Nako food, pee pads, wipes, and bags.", "ナコのフード、おしっこシート、ウェットティッシュ、袋の将来的な在庫管理機能。", "Nako ၏အစာ၊ ဆီးခံပြား၊ စိုစွတ်သောတစ်ရှူးနှင့် အိတ်များအတွက် နောင်တွင်သုံးမည့် ပစ္စည်းခြေရာခံခြင်း။"), 
@@ -721,7 +761,8 @@ const foodItems = [
       photo("assets/sections/nako-inventory.png", 
         t("Storage basket with Nako's food bag, pee pads, wipes, and waste bags", "ナコのフードバッグ、おしっこシート、ウェットティッシュ、袋が入った収納バスケット", "Nako ၏ အစာအိတ်၊ ဆီးခံပြား၊ စိုစွတ်သောတစ်ရှူးနှင့် အိတ်များပါဝင်သော ပလတ်စတစ်ခြင်းတောင်း"),
         t("Nako Inventory", "ナコの在庫状況", "Nako ၏ပစ္စည်းစာရင်း"))
-    ]),
+    ],
+    { active: false, canonicalRoute: "#routine/household-supplies-online" }),
   food("nako-emergency", "placeholder", "!", 
     t("Nako Emergency Quick Guide", "ナコ緊急事態クイックガイド", "Nako အရေးပေါ် အမြန်လမ်းညွှန်"), 
     t("Pinned emergency reminder for vomiting, diarrhoea, refusing food, or unsafe behavior.", "嘔吐、下痢、食欲不振、または安全でない行動に対する、ピン留めされた緊急リマインダー。", "အော့အန်ခြင်း၊ ဝမ်းလျှောခြင်း၊ အစာမစားခြင်း သို့မဟုတ် မလုံခြုံသောအပြုအမူများအတွက် ချိတ်ဆွဲထားသော အရေးပေါ်သတိပေးချက်။"),
@@ -731,7 +772,8 @@ const foodItems = [
       photo("assets/sections/nako-emergency.png", 
         t("First aid kit with dog paw print, heart, and warning bell", "犬の肉球プリント、ハート、警告ベルが付いた救急箱", "ခွေးခြေရာ၊ အသည်းပုံနှင့် သတိပေးခေါင်းလောင်းပါဝင်သော ရှေးဦးသူနာပြုသေတ္တာ"),
         t("Nako Emergency Quick Guide", "ナコ緊急事態クイックガイド", "Nako အရေးပေါ် အမြန်လမ်းညွှန်"))
-    ]),
+    ],
+    { active: false, canonicalRoute: "#routine/nako-emergency" }),
   food("human-food", "recipeIndex", "H", 
     t("Human Food", "人間の食事", "လူသားများအတွက် အစားအစာ"), 
     t("Ideas and recipes for human meals.", "人間用の食事のアイデアとレシピ。", "လူသားများအတွက် စားစရာအိုင်ဒီယာများနှင့် ဟင်းချက်နည်းများ။"), 
@@ -987,6 +1029,11 @@ const routineTasks = [
     [
       t("Check each event's time and location and prepare as needed. Tell Edwin or Yukari if an event affects the household schedule or anything is unclear. Do not change or delete events unless instructed.", "各予定の時間と場所を確認し、必要な準備をします。家の予定に影響する場合や不明点がある場合は、エドウィンまたはゆかりに伝えます。指示なしに予定を変更・削除しないでください。", "event တစ်ခုစီ၏ အချိန်နှင့် နေရာကို စစ်ပြီး လိုအပ်သလို ပြင်ဆင်ပါ။ အိမ်၏ schedule ကို သက်ရောက်ပါက သို့မဟုတ် မရှင်းလင်းပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။ ညွှန်ကြားချက်မရှိဘဲ event ကို မပြောင်း၊ မဖျက်ပါနှင့်။"),
       t("Chocho's salary is paid on the 1st of every month, and her mandatory rest day is the first Sunday of every month. Use the Calendar entries for the exact schedule.", "Chochoの給料日は毎月1日、必須の休日は毎月第1日曜日です。正確な予定はカレンダーの登録内容で確認してください。", "Chocho ၏ လစာပေးရက်သည် လတိုင်း ၁ ရက်နေ့ဖြစ်ပြီး မဖြစ်မနေ နားရက်သည် လတိုင်း၏ ပထမဆုံး တနင်္ဂနွေနေ့ဖြစ်သည်။ အတိအကျ schedule ကို Calendar entry များတွင် စစ်ပါ။")
+    ],
+    [
+      photo("assets/routines/google-calendar-check.png",
+        t("Google Calendar app icon", "Googleカレンダーのアプリアイコン", "Google Calendar app အိုင်ကွန်"),
+        t("Use this icon to open the shared Google Calendar.", "このアイコンから共有Googleカレンダーを開きます。", "မျှဝေထားသော Google Calendar ကို ဖွင့်ရန် ဤအိုင်ကွန်ကို သုံးပါ။"))
     ]),
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
@@ -1078,6 +1125,7 @@ const routineTasks = [
     t("Feed Nako 3 measured meals daily: 60 g Royal Canin kibble total, plus 1 chicken-and-vegetable topping cube per meal.", "ナコに1日3食与えます。Royal Caninは1日合計60 gで、毎食チキンと野菜のトッピングキューブを1個加えます。", "Nako ကို တစ်နေ့ ၃ နပ်ကျွေးပါ။ Royal Canin တစ်နေ့စုစုပေါင်း ၆၀ g နှင့် တစ်နပ်လျှင် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးထည့်ပါ။"),
     t("3 meals daily — Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食 — 朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ် — မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
     [
+      t("Record Nako's appetite percentage once each day in the tracker below.", "下のトラッカーに、ナコが食べた割合を1日1回記録してください。", "အောက်ရှိ မှတ်တမ်းတွင် Nako စားခဲ့သည့် ရာခိုင်နှုန်းကို တစ်နေ့တစ်ကြိမ် မှတ်တမ်းတင်ပါ။"),
       t("Each morning, weigh 60 g of Royal Canin kibble for the full day.", "毎朝、1日分のRoyal Canin 60 gを量ってください。", "မနက်တိုင်း တစ်နေ့စာ Royal Canin ၆၀ g ကို ချိန်ပါ။"),
       t("Divide the kibble into 3 portions of about 20 g each.", "キブルを約20 gずつ3回分に分けてください。", "kibble ကို ၂၀ g ခန့်စီ ၃ ပုံခွဲပါ။"),
       t("Add exactly 1 chicken-and-vegetable topping cube to every meal.", "毎食、チキンと野菜のトッピングキューブを必ず1個加えてください。", "တစ်နပ်တိုင်း ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးတိတိ ထည့်ပါ။"),
@@ -1205,8 +1253,14 @@ const routineTasks = [
     t("🚨 Nako Emergency", "ナコの緊急事態", "🚨 နာကို အရေးပေါ်အခြေအနေ"),
     t("If Nako vomits, has diarrhoea, or will not eat: keep her safe, take a photo, and tell Edwin immediately.", "Nakoが吐く、下痢をする、食べない場合は、安全を確保し、写真を撮り、すぐEdwinに連絡します。", "Nako အန်ရင်၊ ဝမ်းလျှောရင် သို့မဟုတ် မစားရင် လုံခြုံအောင်ထားပါ။ ဓာတ်ပုံရိုက်ပါ။ Edwin ကို ချက်ချင်းပြောပါ။"),
     t("Immediately", "すぐに", "ချက်ချင်း"),
-    t("Notify Edwin before doing anything else.", "何かする前にエドウィンへ連絡する。", "အခြားဘာမှမလုပ်ခင် Edwin ကို အသိပေးပါ။"),
     [
+      t("Keep Nako safe and away from anything dangerous. Take a photo if useful.", "ナコの安全を確保し、危険な物から離してください。必要に応じて写真を撮ります。", "Nako ကို လုံခြုံအောင်ထားပြီး အန္တရာယ်ရှိတာတွေနဲ့ ဝေးဝေးထားပါ။ လိုအပ်ရင် ဓာတ်ပုံရိုက်ပါ။"),
+      t("Notify Edwin before doing anything else.", "何かする前にエドウィンへ連絡する。", "အခြားဘာမှမလုပ်ခင် Edwin ကို အသိပေးပါ။")
+    ],
+    [
+      photo("assets/sections/nako-emergency.png",
+        t("First aid kit with dog paw print, heart, and warning bell", "犬の肉球プリント、ハート、警告ベルが付いた救急箱", "ခွေးခြေရာ၊ အသည်းပုံနှင့် သတိပေးခေါင်းလောင်းပါဝင်သော ရှေးဦးသူနာပြုသေတ္တာ"),
+        t("Open this emergency guide if Nako vomits, has diarrhoea, refuses food, or behaves unsafely.", "ナコが吐く、下痢をする、食べない、または危険な行動をした場合は、この緊急ガイドを開いてください。", "Nako အန်ရင်၊ ဝမ်းလျှောရင်၊ အစာမစားရင် သို့မဟုတ် အန္တရာယ်ရှိတဲ့အပြုအမူလုပ်ရင် ဒီအရေးပေါ်လမ်းညွှန်ကို ဖွင့်ပါ။")),
       photo("assets/routines/nako-emergency-vomit.jpg",
         t("Nako's vomit on the tiled floor", "タイルの床の上のナコの嘔吐物", "ကြွေပြားကြမ်းပြင်ပေါ်ရှိ နာကို၏ အန်ဖတ်"),
         t("An example photo of Nako's vomit on the floor.", "床の上のナコの嘔吐物の写真例。", "ကြမ်းပြင်ပေါ်ရှိ နာကို၏ အန်ဖတ်ပုံစံ နမူနာဓာတ်ပုံ။"))
@@ -1352,18 +1406,22 @@ const routineTasks = [
     ]),
 
   routine("household-supplies-online", "daily", 900, "S",
-    t("Household Supplies & Online Orders", "家庭用消耗品のオンライン注文", "အိမ်သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှ မှာယူခြင်း"), 
-    t("Refill low tissue boxes. Check spare supplies weekly. Add needed items to the Shopee cart, but do not order.", "少ないティッシュを補充します。予備品を毎週確認します。必要な品はShopeeカートに入れますが、注文しません。", "tissue နည်းရင် ဖြည့်ပါ။ အပိုပစ္စည်းကို အပတ်စဉ်စစ်ပါ။ လိုတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
+    t("Household/Nako Supplies & Online Orders", "家庭用品・ナコ用品とオンライン注文", "အိမ်သုံး/Nako သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှာယူမှု"),
+    t("Refill low tissue boxes. Check household and Nako supplies weekly. Add low-stock items to the Shopee cart, but do not order.", "少なくなったティッシュを補充します。家庭用品とナコ用品を毎週確認します。残り少ない品はShopeeのカートに入れますが、注文はしません。", "tissue နည်းနေရင် ဖြည့်ပါ။ အိမ်သုံးနဲ့ Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
     t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
     [
       t("When only 1-2 spare tissue packs remain, tell Edwin and add tissue packs to the shopping list or cart. Ask before placing an order.", "予備のティッシュが残り1〜2パックになったら、エドウィンに伝え、買い物リストまたはカートに追加する。注文確定前には必ず確認する。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် Edwin ကိုပြောပြီး ဈေးဝယ်စာရင်း သို့မဟုတ် cart ထဲသို့ tissue ထုပ်များကိုထည့်ပါ။ မှာယူမီ အရင်မေးပါ။"),
-      t("Ask before placing orders until the process is clear.", "手順が明確になるまでは、注文する前に確認してください。", "လုပ်ငန်းစဉ်ကို ကောင်းစွာနားမလည်မချင်း မမှာယူမီ အရင်မေးပါ။"),
-      t("When household supplies or dog items are running low, add them to the Shopee shopping cart. Do not place the order immediately; inform Edwin or Yukari to review and check out the cart.", "消耗品や犬用品が少なくなってきたら、Shopeeのショッピングカートに追加してください。すぐに注文を確定せず、エドウィンかゆかりに連絡してカートを確認・決済してもらってください。", "အိမ်သုံးပစ္စည်းများ သို့မဟုတ် ခွေးသုံးပစ္စည်းများ ကုန်ခါနီးပါက ၎င်းတို့ကို Shopee ဈေးဝယ်လှည်း (cart) ထဲသို့ ထည့်ပါ။ ချက်ချင်း မှာယူခြင်းမပြုပါနှင့်။ Edwin သို့မဟုတ် Yukari ကို cart ကို စစ်ဆေးပြီး check out လုပ်ရန် အကြောင်းကြားပါ။")
+      t("Check Nako's food, pee pads, wipes, and poop bags every week. Add anything running low to the shopping list or Shopee cart.", "ナコのフード、おしっこシート、ウェットティッシュ、うんち袋を毎週確認してください。残り少ない品は買い物リストまたはShopeeのカートに追加します。", "Nako ရဲ့အစာ၊ ဆီးခံပြား၊ တစ်ရှူးစိုနဲ့ ချေးကောက်အိတ်တွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးတာကို ဈေးဝယ်စာရင်း သို့မဟုတ် Shopee cart ထဲထည့်ပါ။"),
+      t("Tell Edwin early before any household or Nako supplies fully run out.", "家庭用品やナコ用品が完全になくなる前に、早めにエドウィンに伝えてください。", "အိမ်သုံးပစ္စည်း သို့မဟုတ် Nako သုံးပစ္စည်းတွေ လုံးဝမကုန်ခင် Edwin ကို စောစောပြောပါ။"),
+      t("Do not place orders yourself. Tell Edwin or Yukari to review and check out the cart.", "自分で注文を確定しないでください。エドウィンかゆかりに、カートを確認して決済してもらうよう伝えてください。", "ကိုယ်တိုင် order မတင်ပါနဲ့။ cart ကို စစ်ပြီး check out လုပ်ပေးဖို့ Edwin သို့မဟုတ် Yukari ကို ပြောပါ။")
     ],
     [
       photo("assets/routines/nako-shopee-online-orders.jpg",
         t("Shopee shopping app", "Shopeeショッピングアプリ", "Shopee ဈေးဝယ်အက်ပ်"),
-        t("Use the Shopee app to search for and add low supplies to the cart.", "Shopeeアプリを使用して、少なくなった消耗品を検索し、カートに追加してください。", "ကုန်ခါနီးပစ္စည်းများကို ရှာဖွေပြီး cart ထဲသို့ ထည့်ရန် Shopee အက်ပ်ကို အသုံးပြုပါ။"))
+        t("Use the Shopee app to search for and add low supplies to the cart.", "Shopeeアプリを使用して、少なくなった消耗品を検索し、カートに追加してください。", "ကုန်ခါနီးပစ္စည်းများကို ရှာဖွေပြီး cart ထဲသို့ ထည့်ရန် Shopee အက်ပ်ကို အသုံးပြုပါ။")),
+      photo("assets/sections/nako-inventory.png",
+        t("Storage basket with Nako's food bag, pee pads, wipes, and waste bags", "ナコのフードバッグ、おしっこシート、ウェットティッシュ、袋が入った収納バスケット", "Nako ၏ အစာအိတ်၊ ဆီးခံပြား၊ တစ်ရှူးစိုနှင့် အမှိုက်အိတ်များပါသည့် ပလတ်စတစ်ခြင်းတောင်း"),
+        t("Check Nako's supplies every week and add low-stock items to the shopping list or Shopee cart.", "ナコ用品を毎週確認し、残り少ない品は買い物リストまたはShopeeのカートに追加してください。", "Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပြီး ကုန်ခါနီးတာကို ဈေးဝယ်စာရင်း သို့မဟုတ် Shopee cart ထဲထည့်ပါ။"))
     ]),
 
   routine("kitchen-sink-drain-rack-counter", "weekly", 20, "K", 

@@ -37,6 +37,10 @@ assert.equal(needsSharedStateCleanup(projected), false, "Canonical state should 
 const deviceA = {
   routineCompletions: { a: { updatedAt: "2026-07-12T08:00:00.000Z" } },
   food: { memo: { memo: "A", updatedAt: "2026-07-12T08:00:00.000Z" } },
+  appetiteTracking: {
+    "2026-07-11": { percentage: 75, note: "A-only day", updatedAt: "2026-07-11T08:00:00.000Z" },
+    "2026-07-12": { percentage: 25, note: "A", updatedAt: "2026-07-12T08:00:00.000Z" }
+  },
   training: {
     emergencyCue: "A cue",
     settings: { emergencyCue: { value: "A cue", updatedAt: "2026-07-12T08:00:00.000Z" } },
@@ -46,6 +50,10 @@ const deviceA = {
 const deviceB = {
   routineCompletions: { b: { updatedAt: "2026-07-12T09:00:00.000Z" } },
   food: { memo: { memo: "B", updatedAt: "2026-07-12T09:00:00.000Z" } },
+  appetiteTracking: {
+    "2026-07-10": { percentage: 50, note: "B-only day", updatedAt: "2026-07-10T09:00:00.000Z" },
+    "2026-07-12": { percentage: 100, note: "B", updatedAt: "2026-07-12T09:00:00.000Z" }
+  },
   training: {
     emergencyCue: "B cue",
     settings: { emergencyCue: { value: "B cue", updatedAt: "2026-07-12T09:00:00.000Z" } },
@@ -59,6 +67,9 @@ const convergedA = mergeStates(server, deviceA);
 const convergedB = mergeStates(server, deviceB);
 assert.equal(stableStateSignature(convergedA), stableStateSignature(convergedB), "Two devices must converge on one canonical state");
 assert.equal(convergedA.food.memo.memo, "B", "The newest dated record should win");
+assert.equal(convergedA.appetiteTracking["2026-07-12"].percentage, 100, "The newest appetite update for a date should win");
+assert.equal(convergedA.appetiteTracking["2026-07-11"].percentage, 75, "Appetite dates recorded only on device A should survive merging");
+assert.equal(convergedA.appetiteTracking["2026-07-10"].percentage, 50, "Appetite dates recorded only on device B should survive merging");
 assert.equal(convergedA.training.emergencyCue, "B cue", "The newest training setting should win");
 assert.equal(convergedA.routineCompletions, undefined, "Different local completion maps must not affect convergence");
 

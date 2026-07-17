@@ -157,6 +157,7 @@
     // 3. foodItems
     if (data.foodItems) {
       for (const item of data.foodItems) {
+        if (item.active === false) continue;
         index.push({
           id: `food-${item.id}`,
           type: "food",

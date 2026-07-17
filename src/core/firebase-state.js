@@ -72,6 +72,7 @@
       ...remote,
       ...local,
       food: mergeDatedRecords(remote.food, local.food),
+      appetiteTracking: mergeDatedRecords(remote.appetiteTracking, local.appetiteTracking),
       weightTracking: mergeDatedRecords(remote.weightTracking, local.weightTracking),
       routineTrackingStartedDate: earliestDate(remote.routineTrackingStartedDate, local.routineTrackingStartedDate),
       diary: mergeDiaryState(remote.diary, local.diary),

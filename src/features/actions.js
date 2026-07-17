@@ -88,6 +88,11 @@ function handleClick(event) {
   if (diarySubmit) { handleDiarySubmit(diarySubmit.dataset.diarySubmit); return; }
   const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
   if (diaryWhatsApp) { openWhatsAppNotice(); return; }
+  const appetitePercentage = event.target.closest("[data-appetite-percentage]");
+  if (appetitePercentage) return saveAppetitePercentage(appetitePercentage.dataset.appetiteDate, appetitePercentage.dataset.appetitePercentage);
+  const appetiteEdit = event.target.closest("[data-appetite-edit]");
+  if (appetiteEdit) return editAppetiteDate(appetiteEdit.dataset.appetiteEdit);
+  if (event.target.closest("[data-appetite-today]")) return editAppetiteDate(routineTracking.singaporeDateKey());
   const ingredientChoice = event.target.closest("[data-ingredient-choice]");
   if (ingredientChoice) {
     selectedIngredientChoices[ingredientChoice.dataset.ingredientChoiceId] = ingredientChoice.dataset.ingredientKey;
@@ -326,6 +331,8 @@ function handleInput(event) {
     foodState.updatedAt = nowIso();
     return saveState();
   }
+  const appetiteNote = event.target.closest("[data-appetite-note]");
+  if (appetiteNote) return updateAppetiteNote(appetiteNote.dataset.appetiteNote, appetiteNote.value);
   const diaryText = event.target.closest("[data-diary-text]");
   if (diaryText) {
     const draft = getDiaryDraft(diaryText.dataset.diaryText);
@@ -353,6 +360,7 @@ function handleInput(event) {
 
 function handleBlur(event) {
   if (event.target.closest?.("[data-training-input]")) saveState();
+  if (event.target.closest?.("[data-appetite-note]")) saveState();
   const diaryText = event.target.closest?.("[data-diary-text]");
   if (diaryText) saveState();
   const diaryTrans = event.target.closest?.("[data-diary-translation-date]");

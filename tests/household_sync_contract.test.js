@@ -134,6 +134,7 @@ statusListenerCallback = (s) => {
 
 const canonicalEmptyState = weightHistory.applyToState({
   food: {},
+  appetiteTracking: {},
   weightTracking: {},
   routineTrackingStartedDate: "",
   diary: { entries: {}, drafts: {} },

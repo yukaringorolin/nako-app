@@ -17,6 +17,7 @@ let latestStatus;
 
 const canonicalState = weightHistory.applyToState({
   food: {},
+  appetiteTracking: {},
   weightTracking: {},
   routineTrackingStartedDate: "",
   diary: { entries: {}, drafts: {} },

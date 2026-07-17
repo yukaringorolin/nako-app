@@ -39,6 +39,34 @@ assert.equal(data.ui.en.foodMemoryTitle, "Food Memories 2024");
 assert.ok(data.ui.jp.foodMemoryTitle && data.ui.mm.foodMemoryTitle);
 assert.ok(data.ui.en.foodMemoryDescription && data.ui.jp.foodMemoryDescription && data.ui.mm.foodMemoryDescription);
 
+const googleCalendarCheck = routineById("google-calendar-check");
+assert.equal(googleCalendarCheck.icon, "CAL");
+assert.equal(googleCalendarCheck.photos[0].src, "assets/routines/google-calendar-check.png");
+assert.ok(googleCalendarCheck.photos[0].alt.en && googleCalendarCheck.photos[0].alt.jp && googleCalendarCheck.photos[0].alt.mm);
+
+const householdNakoSupplies = routineById("household-supplies-online");
+assert.equal(householdNakoSupplies.title.en, "Household/Nako Supplies & Online Orders");
+assert.match(householdNakoSupplies.summary.en, /Check household and Nako supplies weekly/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /Nako's food, pee pads, wipes, and poop bags every week/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /Tell Edwin early before any household or Nako supplies fully run out/);
+assert.ok(householdNakoSupplies.photos.some((item) => item.src === "assets/sections/nako-inventory.png"));
+const legacyNakoInventory = data.foodItems.find((item) => item.id === "nako-inventory");
+assert.equal(legacyNakoInventory.active, false);
+assert.equal(legacyNakoInventory.canonicalRoute, "#routine/household-supplies-online");
+const legacyNakoEmergency = data.foodItems.find((item) => item.id === "nako-emergency");
+assert.equal(legacyNakoEmergency.active, false);
+assert.equal(legacyNakoEmergency.canonicalRoute, "#routine/nako-emergency");
+const nakoEmergency = routineById("nako-emergency");
+assert.equal(nakoEmergency.frequencyBucket, "daily");
+assert.equal(nakoEmergency.photos[0].src, "assets/sections/nako-emergency.png");
+const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
+assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonicalRoute\)/);
+assert.match(pageSource, /\$\{cards\}\s+\$\{dailySafety\}/);
+const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components.js"), "utf8");
+assert.match(componentSource, /const safetyIds = \["nako-supervision", "nako-kind-handling", "nako-emergency"\]/);
+const stylesSource = fs.readFileSync(path.join(root, "src", "styles.css"), "utf8");
+assert.match(stylesSource, /\.daily-safety-section\s*\{/);
+
 const drinkingWaterPrep = routineById("drinking-water-prep");
 assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
 assert.match(englishText(drinkingWaterPrep.mustRemember), /74°C or above after 10 hours.*59°C or above after 24 hours/);
