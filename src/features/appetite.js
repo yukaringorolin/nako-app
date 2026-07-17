@@ -94,7 +94,7 @@ function saveAppetitePercentage(dateKey, value) {
   if (!entry) return;
   selectedAppetiteDate = dateKey;
   appetiteStatusMessage = label("appetiteSaved");
-  if (!existingEntry) celebrateCareSave("health");
+  if (!existingEntry) celebrateCareSave("health", { source: "appetite", taskTitle: gamificationText("taskAppetite") });
   saveState();
   render();
 }

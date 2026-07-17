@@ -7,6 +7,23 @@ function gamificationPostcard(id) {
   return gamificationData.postcards.find((card) => card.id === id) || null;
 }
 
+function gamificationToastFamily(id) {
+  return gamificationData.toastFamilies.find((family) => family.id === id) || null;
+}
+
+function gamificationToastFamilyId(kind, options = {}) {
+  if (kind === "routine") {
+    return gamificationData.routineToastFamilyByTaskId[options.taskId] || "sparkling-surfaces";
+  }
+  return {
+    training: "gentle-training",
+    play: "purple-play",
+    health: "health-heart",
+    diary: "diary-flower",
+    albumReady: "sparkling-surfaces"
+  }[kind] || "sparkling-surfaces";
+}
+
 function syncGamificationUnlocks() {
   const result = window.nakoGamification.syncUnlocks(appState, new Date());
   if (result.changed) safeStorage.setItem(STATE_KEY, JSON.stringify(appState));
@@ -23,10 +40,11 @@ function initializeGamificationState() {
   };
 }
 
-function noticeMessage(kind, options = {}) {
+function noticeMessage(kind, options = {}, family = null) {
   if (kind === "training" && options.personalBest && options.commandTitle) {
     return gamificationText("praiseTrainingBest", { command: options.commandTitle });
   }
+  if (family?.praise) return tr(family.praise);
   const keys = {
     routine: "praiseRoutine",
     training: "praiseTraining",
@@ -40,14 +58,19 @@ function noticeMessage(kind, options = {}) {
 
 function showGamificationNotice(kind, options = {}) {
   const card = options.cardId ? gamificationPostcard(options.cardId) : null;
+  const familyId = gamificationToastFamilyId(kind, options);
+  const family = gamificationToastFamily(familyId);
   gamificationNotice = {
     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
     kind,
-    message: noticeMessage(kind, options),
+    familyId,
+    motion: family?.motion || "sparkle",
+    taskTitle: String(options.taskTitle || ""),
+    message: noticeMessage(kind, options, family),
+    iconImage: family?.image || NAKO_LOGO_SRC,
     cardId: card?.id || "",
     cardTitle: card ? tr(card.title) : "",
-    cardImage: card?.image || NAKO_LOGO_SRC,
-    cardAlt: card ? tr(card.alt) : "Nako"
+    personalBest: Boolean(options.personalBest)
   };
   clearTimeout(gamificationNoticeTimer);
   gamificationNoticeTimer = setTimeout(() => dismissGamificationNotice(), 6500);
@@ -77,13 +100,19 @@ function celebrateCareSave(kind, options = {}) {
 
 function renderGamificationNotice() {
   if (!gamificationNotice) return "";
+  const taskLine = gamificationNotice.taskTitle
+    ? `<span class="gamification-toast-task" title="${esc(gamificationNotice.taskTitle)}">${esc(gamificationNotice.taskTitle)}</span>`
+    : "";
   const postcardLine = gamificationNotice.cardId
     ? `<span class="gamification-toast-unlock">${esc(gamificationText("newPostcard", { title: gamificationNotice.cardTitle }))}</span>`
     : "";
-  return `<aside class="gamification-toast" data-gamification-toast role="status" aria-live="polite">
-    <span class="gamification-toast-paws" aria-hidden="true"><i>🐾</i><i>🐾</i><i>🐾</i></span>
-    <img src="${esc(gamificationNotice.cardImage)}" alt="${esc(gamificationNotice.cardAlt)}" width="72" height="72" data-gamification-image>
-    <span class="gamification-toast-copy"><strong>${esc(gamificationNotice.message)}</strong>${postcardLine}</span>
+  const bestClass = gamificationNotice.personalBest ? " is-personal-best" : "";
+  return `<aside class="gamification-toast family-${esc(gamificationNotice.familyId)} motion-${esc(gamificationNotice.motion)}${bestClass}" data-gamification-toast role="status" aria-live="polite">
+    <span class="gamification-toast-art" aria-hidden="true">
+      <img src="${esc(gamificationNotice.iconImage)}" alt="" width="72" height="72" data-gamification-image data-gamification-toast-image>
+      <span class="gamification-toast-effect"><i></i><i></i><i></i></span>
+    </span>
+    <span class="gamification-toast-copy">${taskLine}<strong>${esc(gamificationNotice.message)}</strong>${postcardLine}</span>
     <button type="button" data-gamification-dismiss aria-label="${esc(gamificationText("close"))}">×</button>
   </aside>`;
 }
@@ -160,6 +189,6 @@ function handleGamificationImageError(event) {
   if (!image || image.dataset.fallbackApplied === "true") return;
   image.dataset.fallbackApplied = "true";
   image.src = NAKO_LOGO_SRC;
-  image.alt = gamificationText("imageFallback");
+  image.alt = image.hasAttribute("data-gamification-toast-image") ? "" : gamificationText("imageFallback");
   image.classList.add("is-image-fallback");
 }

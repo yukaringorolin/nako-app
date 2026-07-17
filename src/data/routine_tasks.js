@@ -1401,6 +1401,21 @@ if (mailDeliveriesRoutine) {
 
 
 
+// Daily and as-needed routines stay reference-only unless explicitly opted in here.
+// Input-backed routines derive completion from their canonical tracker rather than
+// writing a duplicate routine-completion record.
+const explicitDailyTracking = {
+  "nako-feeding-water": {
+    mode: "input",
+    source: "appetite",
+    checkInTitle: t(
+      "Nako Daily Appetite Tracker",
+      "ナコの毎日の食欲トラッカー",
+      "Nako နေ့စဉ် အစာစားချင်စိတ် မှတ်တမ်း"
+    )
+  }
+};
+
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
 // If a non-daily actionable task is deliberately excluded, we declare a reason here.
 const routineTrackingExclusions = {
@@ -1418,8 +1433,9 @@ routineTasks.forEach((task) => {
   const isDailyOrAsNeeded = task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed";
   const nonDailyCadences = ["weekly", "fortnightly", "monthly", "quarterly", "one-off"];
   const isNonDaily = nonDailyCadences.includes(task.frequencyBucket);
+  const dailyTracking = explicitDailyTracking[task.id];
 
-  const isTrackedCandidate = (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
+  const isTrackedCandidate = Boolean(dailyTracking) || (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
 
   if (isTrackedCandidate) {
     const exclusionReason = routineTrackingExclusions[task.id];
@@ -1427,17 +1443,28 @@ routineTasks.forEach((task) => {
       task.trackingMode = "none";
       task.trackingCadence = null;
       task.trackingAnchor = null;
+      task.trackingSource = null;
+      task.checkInTitle = null;
       task.itemKind = "reference";
       task.trackingExclusionReason = exclusionReason;
     } else {
       task.itemKind = "task";
       task.trackingExclusionReason = null;
-      
-      if (task.id === "fire-extinguisher-training") {
+
+      if (dailyTracking) {
+        task.trackingCadence = "daily";
+        task.trackingMode = dailyTracking.mode;
+        task.trackingSource = dailyTracking.source;
+        task.checkInTitle = dailyTracking.checkInTitle;
+      } else if (task.id === "fire-extinguisher-training") {
         task.trackingCadence = "one-off";
         task.trackingMode = "one-off";
+        task.trackingSource = null;
+        task.checkInTitle = null;
       } else {
         task.trackingCadence = task.frequencyBucket;
+        task.trackingSource = null;
+        task.checkInTitle = null;
         if (task.id === "nako-weight-tracking") {
           task.trackingMode = "metric";
         } else if (task.frequencyBucket === "one-off") {
@@ -1458,6 +1485,8 @@ routineTasks.forEach((task) => {
     task.trackingMode = "none";
     task.trackingCadence = null;
     task.trackingAnchor = null;
+    task.trackingSource = null;
+    task.checkInTitle = null;
     task.itemKind = "reference";
     task.trackingExclusionReason = null;
   }

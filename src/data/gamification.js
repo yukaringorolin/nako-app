@@ -25,6 +25,114 @@ const gamificationData = (() => {
     praiseDiary: tx("Thank you for sharing today's diary.", "今日の日記を書いてくれて、ありがとう。", "ဒီနေ့မှတ်တမ်းကို ရေးပေးလို့ ကျေးဇူးတင်ပါတယ်။")
   };
 
+  Object.assign(labels, {
+    taskAppetite: tx("Appetite check-in", "食欲のチェック", "အစာစားချင်စိတ် စစ်ဆေးမှု"),
+    taskWeight: tx("Weight check-in", "体重のチェック", "ကိုယ်အလေးချိန် စစ်ဆေးမှု"),
+    taskDiary: tx("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်")
+  });
+
+  const toastFamilies = [
+    {
+      id: "sparkling-surfaces",
+      image: "assets/gamification/toast-icons/sparkling-surfaces.webp",
+      motion: "sparkle",
+      praise: tx("Everything feels brighter. Nako says thank you!", "すっきり明るくなりました。ナコからありがとう！", "အားလုံး ပိုတောက်ပသွားပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "bubbly-washing",
+      image: "assets/gamification/toast-icons/bubbly-washing.webp",
+      motion: "bubbles",
+      praise: tx("Fresh and clean—Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
+    },
+    {
+      id: "cozy-laundry",
+      image: "assets/gamification/toast-icons/cozy-laundry.webp",
+      motion: "cozy",
+      praise: tx("Soft, fresh, and cozy. Thank you from Nako!", "ふんわり清潔で、もっと心地よくなりました。ナコからありがとう！", "နူးညံ့၊ သန့်ရှင်းပြီး နွေးထွေးနေပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "nako-nook",
+      image: "assets/gamification/toast-icons/nako-nook.webp",
+      motion: "bounce",
+      praise: tx("Nako's little space feels fresh and comfy. Thank you!", "ナコの小さな場所が、きれいで心地よくなりました。ありがとう！", "Nako ရဲ့ နေရာလေး သန့်ရှင်းပြီး သက်သောင့်သက်သာ ဖြစ်သွားပြီ။ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "health-heart",
+      image: "assets/gamification/toast-icons/health-heart.webp",
+      motion: "heartbeat",
+      praise: labels.praiseHealth
+    },
+    {
+      id: "fresh-air",
+      image: "assets/gamification/toast-icons/fresh-air.webp",
+      motion: "sway",
+      praise: tx("The home feels fresh and comfortable. Nako says thank you!", "おうちがさわやかで心地よくなりました。ナコからありがとう！", "အိမ်က လတ်ဆတ်ပြီး သက်သောင့်သက်သာ ဖြစ်နေပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "kitchen-sparkle",
+      image: "assets/gamification/toast-icons/kitchen-sparkle.webp",
+      motion: "shine",
+      praise: tx("Clean and ready for the next little moment. Thank you!", "きれいになって、次のひとときの準備もできました。ありがとう！", "သန့်ရှင်းပြီး နောက်တစ်ကြိမ်အသုံးပြုဖို့ အဆင်သင့်ဖြစ်နေပြီ။ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "cozy-bedroom",
+      image: "assets/gamification/toast-icons/cozy-bedroom.webp",
+      motion: "breathe",
+      praise: tx("A cozy resting place is a lovely gift. Nako says thank you!", "心地よく休める場所は、すてきな贈りものです。ナコからありがとう！", "နားနေရာလေးကို သက်သောင့်သက်သာ ဖြစ်အောင်လုပ်ပေးတာ ချစ်စရာလက်ဆောင်ပါ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "safe-home",
+      image: "assets/gamification/toast-icons/safe-home.webp",
+      motion: "pop",
+      praise: tx("Thank you for helping keep our home safe.", "おうちの安全を守ってくれて、ありがとう。", "အိမ်ကို လုံခြုံအောင် ကူညီပေးလို့ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "gentle-training",
+      image: "assets/gamification/toast-icons/gentle-training.webp",
+      motion: "tilt",
+      praise: labels.praiseTraining
+    },
+    {
+      id: "purple-play",
+      image: "assets/gamification/toast-icons/purple-play.webp",
+      motion: "hop",
+      praise: labels.praisePlay
+    },
+    {
+      id: "diary-flower",
+      image: "assets/gamification/toast-icons/diary-flower.webp",
+      motion: "page",
+      praise: labels.praiseDiary
+    }
+  ];
+
+  const routineToastFamilyByTaskId = {
+    "high-touch-surfaces": "sparkling-surfaces",
+    "general-surface-cleaning": "sparkling-surfaces",
+    "windows-glass-mirrors": "sparkling-surfaces",
+    "kitchen-sink-drain-rack-counter": "bubbly-washing",
+    "rubbish-bin-washing": "bubbly-washing",
+    "cleaning-tools": "bubbly-washing",
+    "floor-mats": "cozy-laundry",
+    "bedrooms-linens": "cozy-laundry",
+    "sofa-covers-pillows": "cozy-laundry",
+    "blanket-washing": "cozy-laundry",
+    "curtain-steaming": "cozy-laundry",
+    "washer-deep-clean": "cozy-laundry",
+    "nako-weekly-play-pen-deep-clean": "nako-nook",
+    "nako-weight-tracking": "health-heart",
+    "ceiling-fan": "fresh-air",
+    "aircon-filter-fan-coil": "fresh-air",
+    "fridge-interior": "kitchen-sparkle",
+    "ninja-af141-air-fryer-interior-deep-clean": "kitchen-sparkle",
+    "fujioh-hood-deep-clean": "kitchen-sparkle",
+    "coffee-machine-descaling": "kitchen-sparkle",
+    "ikea-bed-frame": "cozy-bedroom",
+    "pillow-mattress-vacuuming": "cozy-bedroom",
+    "doorbell-charging": "safe-home",
+    "fire-extinguisher-training": "safe-home"
+  };
+
   const postcards = [
     {
       id: "nako-hello",
@@ -112,5 +220,5 @@ const gamificationData = (() => {
     }
   ];
 
-  return { labels, postcards };
+  return { labels, postcards, routineToastFamilyByTaskId, toastFamilies };
 })();

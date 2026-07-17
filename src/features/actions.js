@@ -212,7 +212,7 @@ function handleDiarySubmit(dateKey) {
     updatedAt: now
   };
   diary.drafts[dateKey] = { text, updatedAt: now };
-  if (isNewEntry) celebrateCareSave("diary");
+  if (isNewEntry) celebrateCareSave("diary", { taskTitle: gamificationText("taskDiary") });
   saveState();
   diarySaveInProgress = false;
   diaryStatusMessage = label("diarySaved");
@@ -255,7 +255,7 @@ function saveCommandLog() {
   if (existingIndex >= 0) training.commandLogs[existingIndex] = log;
   else training.commandLogs.push(log);
   refreshCommandFromLogs(log.commandId);
-  if (isNewLog) celebrateCareSave("training", { personalBest, commandTitle });
+  if (isNewLog) celebrateCareSave("training", { personalBest, commandTitle, taskTitle: commandTitle });
   saveState();
   trainingDraft = null;
   trainingHistoryCommandId = log.commandId;
@@ -304,10 +304,11 @@ function savePlayLog() {
   const isNewLog = index < 0;
   if (index >= 0) training.playLogs[index] = log;
   else training.playLogs.push(log);
-  if (isNewLog) celebrateCareSave("play");
+  const activityTitle = tr(trainingData.activities.find((item) => item.id === log.activityId)?.title);
+  if (isNewLog) celebrateCareSave("play", { taskTitle: activityTitle });
   saveState();
   trainingDraft = null;
-  trainingSuccessMessage = isNewLog ? noticeMessage("play") : tl("saved");
+  trainingSuccessMessage = isNewLog ? noticeMessage("play", {}, gamificationToastFamily("purple-play")) : tl("saved");
   render();
 }
 

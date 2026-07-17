@@ -5,7 +5,7 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  const ROUTINE_CADENCE_ORDER = Object.freeze(["weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
+  const ROUTINE_CADENCE_ORDER = Object.freeze(["daily", "weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
 
   function isTracked(task) {
     return Boolean(task?.trackingMode && task.trackingMode !== "none");
@@ -16,7 +16,7 @@
   }
 
   function historicalTrackedRoutineTasks(tasks = []) {
-    return tasks.filter(isTracked);
+    return tasks.filter((task) => isTracked(task) && task.trackingMode !== "input");
   }
 
   function historyFilterTasks(tasks = [], records = []) {
@@ -25,7 +25,7 @@
   }
 
   function shouldGenerateMissed(task) {
-    return task?.active !== false && isTracked(task) && task.trackingCadence !== "one-off";
+    return task?.active !== false && isTracked(task) && task.trackingMode !== "input" && task.trackingCadence !== "one-off";
   }
 
   function emptyCadenceGroups() {

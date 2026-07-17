@@ -93,12 +93,25 @@ const actions = fs.readFileSync(path.join(root, "src/features/actions.js"), "utf
 const appetite = fs.readFileSync(path.join(root, "src/features/appetite.js"), "utf8");
 const routineState = fs.readFileSync(path.join(root, "src/features/routine-state.js"), "utf8");
 const pages = fs.readFileSync(path.join(root, "src/features/pages.js"), "utf8");
-assert.match(actions, /if \(isNewEntry\) celebrateCareSave\("diary"\)/);
-assert.match(actions, /if \(isNewLog\) celebrateCareSave\("training"/);
-assert.match(actions, /if \(isNewLog\) celebrateCareSave\("play"\)/);
-assert.match(appetite, /if \(!existingEntry\) celebrateCareSave\("health"\)/);
+const gamificationFeature = fs.readFileSync(path.join(root, "src/features/gamification.js"), "utf8");
+const components = fs.readFileSync(path.join(root, "src/styles/components.css"), "utf8");
+assert.match(actions, /celebrateCareSave\("diary", \{ taskTitle: gamificationText\("taskDiary"\) \}\)/);
+assert.match(actions, /celebrateCareSave\("training", \{ personalBest, commandTitle, taskTitle: commandTitle \}\)/);
+assert.match(actions, /celebrateCareSave\("play", \{ taskTitle: activityTitle \}\)/);
+assert.match(appetite, /celebrateCareSave\("health", \{ source: "appetite", taskTitle: gamificationText\("taskAppetite"\) \}\)/);
 assert.match(routineState, /dataset\.gamificationNewEntry === "true"/);
-assert.match(routineState, /celebrateCareSave\("routine"\)/);
+assert.match(routineState, /celebrateCareSave\("health", \{ source: "weight", taskTitle: gamificationText\("taskWeight"\) \}\)/);
+assert.match(routineState, /celebrateCareSave\("routine", \{ taskId: task\.id, taskTitle: tr\(task\.title\) \}\)/);
+assert.match(gamificationFeature, /iconImage: family\?\.image \|\| NAKO_LOGO_SRC/);
+assert.match(gamificationFeature, /data-gamification-toast-image/);
+assert.doesNotMatch(gamificationFeature, /cardImage:/, "A postcard unlock must not replace the task-family sticker");
+assert.match(gamificationFeature, /gamification-toast-task/);
+[
+  "sparkle", "bubbles", "cozy", "bounce", "heartbeat", "sway",
+  "shine", "breathe", "pop", "tilt", "hop", "page"
+].forEach((motion) => assert.match(components, new RegExp(`motion-${motion}`), `${motion} toast motion must be styled`));
+assert.match(components, /prefers-reduced-motion: reduce/);
+assert.match(components, /\.gamification-toast-art::after/);
 assert.ok(
   pages.indexOf("renderGamificationHome()") > pages.indexOf("renderAdditionalResources()"),
   "The weekly care recap should stay below task-focused home content"

@@ -1,4 +1,4 @@
-@import url("./styles/components.css?v=20260717b");
+@import url("./styles/components.css?v=20260717c");
 @import url("./styles/search.css");
 
 /* ==========================================================================
@@ -851,7 +851,7 @@ img {
 .routine-home-copy > small { margin-top: 4px; color: var(--muted); font-size: 13px; }
 .routine-home-cadence-counts {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
   gap: 6px;
   margin-top: 9px;
 }

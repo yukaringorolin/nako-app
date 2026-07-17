@@ -39,16 +39,19 @@ const {
   const active = { id: "active", active: true, trackingMode: "check", trackingCadence: "weekly" };
   const inactive = { id: "inactive", active: false, trackingMode: "check", trackingCadence: "weekly" };
   const reference = { id: "reference", active: true, trackingMode: "none", trackingCadence: null };
-  const tasks = [active, inactive, reference];
+  const input = { id: "input", active: true, trackingMode: "input", trackingCadence: "daily" };
+  const tasks = [active, inactive, reference, input];
   const savedInactiveRecord = { id: "inactive_week", taskId: "inactive", completedDate: "2026-07-01", deleted: false };
 
-  assert.deepEqual(activeTrackedRoutineTasks(tasks).map((task) => task.id), ["active"]);
+  assert.deepEqual(activeTrackedRoutineTasks(tasks).map((task) => task.id), ["active", "input"]);
   assert.deepEqual(historicalTrackedRoutineTasks(tasks).map((task) => task.id), ["active", "inactive"]);
   assert.deepEqual(historyFilterTasks(tasks, [savedInactiveRecord]).map((task) => task.id), ["active", "inactive"]);
   assert.deepEqual(historyFilterTasks(tasks, []).map((task) => task.id), ["active"]);
   assert.equal(shouldGenerateMissed(inactive), false);
   assert.equal(shouldGenerateMissed(active), true);
   assert.equal(shouldGenerateMissed({ ...active, trackingCadence: "one-off" }), false);
+  assert.equal(shouldGenerateMissed(input), false);
+  assert.equal(historicalTrackedRoutineTasks(tasks).find((task) => task.id === "input"), undefined);
   assert.equal(historicalTrackedRoutineTasks(tasks).find((task) => task.id === "removed"), undefined);
 }
 

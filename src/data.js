@@ -205,9 +205,9 @@ const ui = {
     nutritionBasis: "Calculation basis",
     nutritionDisclaimer: "Estimated from the listed ingredient weights. Actual values may vary by brand, preparation, cooking and food left in the pan.",
     routineCheckIn: "Routine Check-in",
-    routineCheckInSubtitle: "Check tasks that are due. Daily tasks are not shown here.",
+    routineCheckInSubtitle: "Track selected daily inputs plus weekly, fortnightly, monthly, quarterly, and one-off tasks here. Other daily and as-needed references are not shown.",
     routineHistory: "Routine History",
-    routineHomeRemaining: "{count} non-daily tasks remaining",
+    routineHomeRemaining: "{count} tasks remaining",
     routineTasksRemaining: "Tasks remaining",
     routineCadenceRemaining: "{cadence}: {count} remaining",
     backToRoutineCheckIn: "Back to Routine Check-in",
@@ -217,6 +217,7 @@ const ui = {
     due: "Due",
     completed: "Completed",
     progressSummary: "{done} of {total} completed",
+    cadenceDaily: "Daily",
     cadenceWeekly: "Weekly",
     cadenceFortnightly: "Fortnightly",
     cadenceMonthly: "Monthly",
@@ -231,6 +232,8 @@ const ui = {
     notePlaceholder: "Optional note",
     metricOpenWeight: "Add weight",
     metricCompleted: "Weight saved",
+    inputOpenTracker: "Open appetite tracker",
+    appetiteCompletion: "Appetite saved: {percentage}%",
     weightNote: "Weight: {weight} kg",
     undo: "Undo",
     completionSaved: "Completion saved.",
@@ -376,9 +379,9 @@ const ui = {
     nutritionBasis: "計算条件",
     nutritionDisclaimer: "記載された材料重量に基づく推定値です。ブランド、下処理、調理方法、鍋に残る量によって実際の値は変わる場合があります。",
     routineCheckIn: "ルーティンチェックイン",
-    routineCheckInSubtitle: "ここでは週次、隔週、月次、四半期、および単発の家事タスクを記録します。毎日行う作業や随時の作業は記録されません。",
+    routineCheckInSubtitle: "選択された毎日の入力項目と、週次、隔週、月次、四半期、単発のタスクをここで記録します。その他の毎日・随時の参考項目は表示されません。",
     routineHistory: "ルーティン履歴",
-    routineHomeRemaining: "毎日以外のタスクがあと{count}件",
+    routineHomeRemaining: "タスクがあと{count}件",
     routineTasksRemaining: "残りのタスク",
     routineCadenceRemaining: "{cadence}：残り{count}件",
     backToRoutineCheckIn: "ルーティンチェックインに戻る",
@@ -388,6 +391,7 @@ const ui = {
     due: "未完了",
     completed: "完了",
     progressSummary: "{total}件中{done}件完了",
+    cadenceDaily: "毎日",
     cadenceWeekly: "毎週",
     cadenceFortnightly: "2週間ごと",
     cadenceMonthly: "毎月",
@@ -402,6 +406,8 @@ const ui = {
     notePlaceholder: "任意のメモ",
     metricOpenWeight: "体重のクイック入力を開く",
     metricCompleted: "体重入力により完了",
+    inputOpenTracker: "食欲トラッカーを開く",
+    appetiteCompletion: "食欲を保存済み：{percentage}%",
     weightNote: "体重：{weight} kg",
     undo: "元に戻す",
     completionSaved: "完了を保存しました。",
@@ -547,9 +553,9 @@ const ui = {
     nutritionBasis: "တွက်ချက်မှုအခြေခံ",
     nutritionDisclaimer: "ဖော်ပြထားသော ပါဝင်ပစ္စည်းအလေးချိန်များအပေါ် အခြေခံ၍ ခန့်မှန်းထားခြင်းဖြစ်သည်။ အမှတ်တံဆိပ်၊ ပြင်ဆင်ပုံ၊ ချက်ပြုတ်ပုံနှင့် ဒယ်အိုးထဲကျန်သည့်ပမာဏအလိုက် တကယ့်တန်ဖိုး ကွာနိုင်သည်။",
     routineCheckIn: "ပုံမှန်အလုပ် Check-in",
-    routineCheckInSubtitle: "အပတ်စဉ်၊ နှစ်ပတ်တစ်ကြိမ်၊ လစဉ်၊ သုံးလတစ်ကြိမ်နှင့် တစ်ကြိမ်တည်းလုပ်ရမည့် အိမ်မှုကိစ္စများကို ဤနေရာတွင် မှတ်တမ်းတင်ပါ။ နေ့စဉ်နှင့် လိုအပ်သလိုလုပ်ရမည့် အလုပ်များကို မှတ်တမ်းမတင်ပါ။",
+    routineCheckInSubtitle: "ရွေးချယ်ထားသော နေ့စဉ်ဖြည့်သွင်းရမည့်အလုပ်များနှင့် အပတ်စဉ်၊ နှစ်ပတ်တစ်ကြိမ်၊ လစဉ်၊ သုံးလတစ်ကြိမ်၊ တစ်ကြိမ်တည်းအလုပ်များကို ဤနေရာတွင် မှတ်တမ်းတင်ပါ။ အခြားနေ့စဉ်နှင့် လိုအပ်သလို ကိုးကားအလုပ်များကို မပြပါ။",
     routineHistory: "ပုံမှန်အလုပ် မှတ်တမ်း",
-    routineHomeRemaining: "နေ့စဉ်မဟုတ်သော အလုပ် {count} ခု ကျန်သေးသည်",
+    routineHomeRemaining: "အလုပ် {count} ခု ကျန်သေးသည်",
     routineTasksRemaining: "ကျန်သေးသော အလုပ်များ",
     routineCadenceRemaining: "{cadence}: {count} ခု ကျန်သေးသည်",
     backToRoutineCheckIn: "ပုံမှန်အလုပ် Check-in သို့ ပြန်သွားရန်",
@@ -559,6 +565,7 @@ const ui = {
     due: "လုပ်ရန်",
     completed: "ပြီးပါပြီ",
     progressSummary: "{total} ခုအနက် {done} ခု ပြီးပါပြီ",
+    cadenceDaily: "နေ့စဉ်",
     cadenceWeekly: "အပတ်စဉ်",
     cadenceFortnightly: "နှစ်ပတ်တစ်ကြိမ်",
     cadenceMonthly: "လစဉ်",
@@ -573,6 +580,8 @@ const ui = {
     notePlaceholder: "ရွေးချယ်နိုင်သော မှတ်စု",
     metricOpenWeight: "ကိုယ်အလေးချိန် အမြန်ထည့်သွင်းမှု ဖွင့်ရန်",
     metricCompleted: "ကိုယ်အလေးချိန်ထည့်ပြီး ပြီးစီးသည်",
+    inputOpenTracker: "အစာစားချင်စိတ် မှတ်တမ်းကို ဖွင့်ရန်",
+    appetiteCompletion: "အစာစားချင်စိတ် သိမ်းပြီး: {percentage}%",
     weightNote: "ကိုယ်အလေးချိန်: {weight} kg",
     undo: "ပြန်ဖျက်ရန်",
     completionSaved: "ပြီးစီးမှုကို သိမ်းပြီးပါပြီ။",
@@ -638,6 +647,114 @@ const gamificationData = (() => {
     praisePlay: tx("Nako loved that playtime. Thank you!", "ナコとの楽しい遊び時間、ありがとう！", "Nako နဲ့ ပျော်ပျော်ရွှင်ရွှင် ကစားပေးလို့ ကျေးဇူးတင်ပါတယ်။"),
     praiseHealth: tx("Thank you for checking in on Nako.", "ナコの様子を記録してくれて、ありがとう。", "Nako ရဲ့ အခြေအနေကို မှတ်တမ်းတင်ပေးလို့ ကျေးဇူးတင်ပါတယ်။"),
     praiseDiary: tx("Thank you for sharing today's diary.", "今日の日記を書いてくれて、ありがとう。", "ဒီနေ့မှတ်တမ်းကို ရေးပေးလို့ ကျေးဇူးတင်ပါတယ်။")
+  };
+
+  Object.assign(labels, {
+    taskAppetite: tx("Appetite check-in", "食欲のチェック", "အစာစားချင်စိတ် စစ်ဆေးမှု"),
+    taskWeight: tx("Weight check-in", "体重のチェック", "ကိုယ်အလေးချိန် စစ်ဆေးမှု"),
+    taskDiary: tx("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်")
+  });
+
+  const toastFamilies = [
+    {
+      id: "sparkling-surfaces",
+      image: "assets/gamification/toast-icons/sparkling-surfaces.webp",
+      motion: "sparkle",
+      praise: tx("Everything feels brighter. Nako says thank you!", "すっきり明るくなりました。ナコからありがとう！", "အားလုံး ပိုတောက်ပသွားပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "bubbly-washing",
+      image: "assets/gamification/toast-icons/bubbly-washing.webp",
+      motion: "bubbles",
+      praise: tx("Fresh and clean—Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
+    },
+    {
+      id: "cozy-laundry",
+      image: "assets/gamification/toast-icons/cozy-laundry.webp",
+      motion: "cozy",
+      praise: tx("Soft, fresh, and cozy. Thank you from Nako!", "ふんわり清潔で、もっと心地よくなりました。ナコからありがとう！", "နူးညံ့၊ သန့်ရှင်းပြီး နွေးထွေးနေပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "nako-nook",
+      image: "assets/gamification/toast-icons/nako-nook.webp",
+      motion: "bounce",
+      praise: tx("Nako's little space feels fresh and comfy. Thank you!", "ナコの小さな場所が、きれいで心地よくなりました。ありがとう！", "Nako ရဲ့ နေရာလေး သန့်ရှင်းပြီး သက်သောင့်သက်သာ ဖြစ်သွားပြီ။ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "health-heart",
+      image: "assets/gamification/toast-icons/health-heart.webp",
+      motion: "heartbeat",
+      praise: labels.praiseHealth
+    },
+    {
+      id: "fresh-air",
+      image: "assets/gamification/toast-icons/fresh-air.webp",
+      motion: "sway",
+      praise: tx("The home feels fresh and comfortable. Nako says thank you!", "おうちがさわやかで心地よくなりました。ナコからありがとう！", "အိမ်က လတ်ဆတ်ပြီး သက်သောင့်သက်သာ ဖြစ်နေပြီ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "kitchen-sparkle",
+      image: "assets/gamification/toast-icons/kitchen-sparkle.webp",
+      motion: "shine",
+      praise: tx("Clean and ready for the next little moment. Thank you!", "きれいになって、次のひとときの準備もできました。ありがとう！", "သန့်ရှင်းပြီး နောက်တစ်ကြိမ်အသုံးပြုဖို့ အဆင်သင့်ဖြစ်နေပြီ။ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "cozy-bedroom",
+      image: "assets/gamification/toast-icons/cozy-bedroom.webp",
+      motion: "breathe",
+      praise: tx("A cozy resting place is a lovely gift. Nako says thank you!", "心地よく休める場所は、すてきな贈りものです。ナコからありがとう！", "နားနေရာလေးကို သက်သောင့်သက်သာ ဖြစ်အောင်လုပ်ပေးတာ ချစ်စရာလက်ဆောင်ပါ။ Nako က ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "safe-home",
+      image: "assets/gamification/toast-icons/safe-home.webp",
+      motion: "pop",
+      praise: tx("Thank you for helping keep our home safe.", "おうちの安全を守ってくれて、ありがとう。", "အိမ်ကို လုံခြုံအောင် ကူညီပေးလို့ ကျေးဇူးတင်ပါတယ်။")
+    },
+    {
+      id: "gentle-training",
+      image: "assets/gamification/toast-icons/gentle-training.webp",
+      motion: "tilt",
+      praise: labels.praiseTraining
+    },
+    {
+      id: "purple-play",
+      image: "assets/gamification/toast-icons/purple-play.webp",
+      motion: "hop",
+      praise: labels.praisePlay
+    },
+    {
+      id: "diary-flower",
+      image: "assets/gamification/toast-icons/diary-flower.webp",
+      motion: "page",
+      praise: labels.praiseDiary
+    }
+  ];
+
+  const routineToastFamilyByTaskId = {
+    "high-touch-surfaces": "sparkling-surfaces",
+    "general-surface-cleaning": "sparkling-surfaces",
+    "windows-glass-mirrors": "sparkling-surfaces",
+    "kitchen-sink-drain-rack-counter": "bubbly-washing",
+    "rubbish-bin-washing": "bubbly-washing",
+    "cleaning-tools": "bubbly-washing",
+    "floor-mats": "cozy-laundry",
+    "bedrooms-linens": "cozy-laundry",
+    "sofa-covers-pillows": "cozy-laundry",
+    "blanket-washing": "cozy-laundry",
+    "curtain-steaming": "cozy-laundry",
+    "washer-deep-clean": "cozy-laundry",
+    "nako-weekly-play-pen-deep-clean": "nako-nook",
+    "nako-weight-tracking": "health-heart",
+    "ceiling-fan": "fresh-air",
+    "aircon-filter-fan-coil": "fresh-air",
+    "fridge-interior": "kitchen-sparkle",
+    "ninja-af141-air-fryer-interior-deep-clean": "kitchen-sparkle",
+    "fujioh-hood-deep-clean": "kitchen-sparkle",
+    "coffee-machine-descaling": "kitchen-sparkle",
+    "ikea-bed-frame": "cozy-bedroom",
+    "pillow-mattress-vacuuming": "cozy-bedroom",
+    "doorbell-charging": "safe-home",
+    "fire-extinguisher-training": "safe-home"
   };
 
   const postcards = [
@@ -727,7 +844,7 @@ const gamificationData = (() => {
     }
   ];
 
-  return { labels, postcards };
+  return { labels, postcards, routineToastFamilyByTaskId, toastFamilies };
 })();
 
 
@@ -2553,6 +2670,21 @@ if (mailDeliveriesRoutine) {
 
 
 
+// Daily and as-needed routines stay reference-only unless explicitly opted in here.
+// Input-backed routines derive completion from their canonical tracker rather than
+// writing a duplicate routine-completion record.
+const explicitDailyTracking = {
+  "nako-feeding-water": {
+    mode: "input",
+    source: "appetite",
+    checkInTitle: t(
+      "Nako Daily Appetite Tracker",
+      "ナコの毎日の食欲トラッカー",
+      "Nako နေ့စဉ် အစာစားချင်စိတ် မှတ်တမ်း"
+    )
+  }
+};
+
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
 // If a non-daily actionable task is deliberately excluded, we declare a reason here.
 const routineTrackingExclusions = {
@@ -2570,8 +2702,9 @@ routineTasks.forEach((task) => {
   const isDailyOrAsNeeded = task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed";
   const nonDailyCadences = ["weekly", "fortnightly", "monthly", "quarterly", "one-off"];
   const isNonDaily = nonDailyCadences.includes(task.frequencyBucket);
+  const dailyTracking = explicitDailyTracking[task.id];
 
-  const isTrackedCandidate = (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
+  const isTrackedCandidate = Boolean(dailyTracking) || (isNonDaily && !isPinnedSafety && !isDailyOrAsNeeded) || task.id === "fire-extinguisher-training";
 
   if (isTrackedCandidate) {
     const exclusionReason = routineTrackingExclusions[task.id];
@@ -2579,17 +2712,28 @@ routineTasks.forEach((task) => {
       task.trackingMode = "none";
       task.trackingCadence = null;
       task.trackingAnchor = null;
+      task.trackingSource = null;
+      task.checkInTitle = null;
       task.itemKind = "reference";
       task.trackingExclusionReason = exclusionReason;
     } else {
       task.itemKind = "task";
       task.trackingExclusionReason = null;
-      
-      if (task.id === "fire-extinguisher-training") {
+
+      if (dailyTracking) {
+        task.trackingCadence = "daily";
+        task.trackingMode = dailyTracking.mode;
+        task.trackingSource = dailyTracking.source;
+        task.checkInTitle = dailyTracking.checkInTitle;
+      } else if (task.id === "fire-extinguisher-training") {
         task.trackingCadence = "one-off";
         task.trackingMode = "one-off";
+        task.trackingSource = null;
+        task.checkInTitle = null;
       } else {
         task.trackingCadence = task.frequencyBucket;
+        task.trackingSource = null;
+        task.checkInTitle = null;
         if (task.id === "nako-weight-tracking") {
           task.trackingMode = "metric";
         } else if (task.frequencyBucket === "one-off") {
@@ -2610,6 +2754,8 @@ routineTasks.forEach((task) => {
     task.trackingMode = "none";
     task.trackingCadence = null;
     task.trackingAnchor = null;
+    task.trackingSource = null;
+    task.checkInTitle = null;
     task.itemKind = "reference";
     task.trackingExclusionReason = null;
   }

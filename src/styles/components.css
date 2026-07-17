@@ -94,28 +94,68 @@
 .postcard-card.is-locked p { max-width: 130px; }
 
 .gamification-toast { position: fixed; z-index: 40; left: 50%; bottom: 18px; width: min(440px, calc(100% - 24px)); min-height: 92px; padding: 10px 42px 10px 10px; display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: 11px; border: 1px solid #efcfd5; border-radius: 18px; background: rgba(255, 252, 250, 0.97); box-shadow: 0 18px 46px rgba(61, 42, 48, 0.22); transform: translateX(-50%); overflow: hidden; animation: gamification-toast-in 0.32s ease-out both; }
-.gamification-toast > img { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; background: #fff7f5; }
-.gamification-toast > img.is-image-fallback { object-fit: contain; padding: 6px; }
+.gamification-toast-art { position: relative; width: 72px; height: 72px; border-radius: 14px; overflow: hidden; background: #fff7f5; transform-origin: center; }
+.gamification-toast-art > img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.gamification-toast-art > img.is-image-fallback { object-fit: contain; padding: 6px; }
 .gamification-toast-copy { min-width: 0; display: grid; gap: 5px; }
+.gamification-toast-task { min-width: 0; overflow: hidden; color: #a64f61; font-size: 10px; font-weight: 850; line-height: 1.25; letter-spacing: 0.01em; text-overflow: ellipsis; white-space: nowrap; }
 .gamification-toast-copy strong { color: var(--ink); font-size: 13px; line-height: 1.4; }
 .gamification-toast-unlock { color: #ad5363; font-size: 11px; font-weight: 850; line-height: 1.35; }
 .gamification-toast > button { position: absolute; top: 7px; right: 7px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); font-size: 22px; line-height: 1; }
-.gamification-toast-paws { position: absolute; inset: 0; pointer-events: none; }
-.gamification-toast-paws i { position: absolute; color: #e892a0; font-style: normal; font-size: 15px; opacity: 0; animation: floating-paw 1.2s ease-out forwards; }
-.gamification-toast-paws i:nth-child(1) { left: 22%; bottom: 4px; }
-.gamification-toast-paws i:nth-child(2) { left: 52%; bottom: 0; animation-delay: 0.12s; }
-.gamification-toast-paws i:nth-child(3) { right: 13%; bottom: 5px; animation-delay: 0.24s; }
+.gamification-toast-effect { position: absolute; inset: 0; pointer-events: none; }
+.gamification-toast-effect i { position: absolute; z-index: 1; color: #e37f91; font-style: normal; font-size: 13px; line-height: 1; opacity: 0; }
+.gamification-toast-effect i:nth-child(1) { top: 8px; left: 9px; }
+.gamification-toast-effect i:nth-child(2) { top: 12px; right: 8px; animation-delay: 0.12s; }
+.gamification-toast-effect i:nth-child(3) { right: 12px; bottom: 8px; animation-delay: 0.24s; }
+.gamification-toast.motion-sparkle .gamification-toast-art { animation: toast-cozy 1.4s ease-out both; }
+.gamification-toast.motion-sparkle .gamification-toast-effect i,
+.gamification-toast.motion-shine .gamification-toast-effect i,
+.gamification-toast.motion-tilt.is-personal-best .gamification-toast-effect i,
+.gamification-toast.motion-pop .gamification-toast-effect i { animation: toast-twinkle 1.35s ease-out both; }
+.gamification-toast.motion-sparkle .gamification-toast-effect i::before,
+.gamification-toast.motion-shine .gamification-toast-effect i::before,
+.gamification-toast.motion-tilt.is-personal-best .gamification-toast-effect i::before,
+.gamification-toast.motion-pop .gamification-toast-effect i::before { content: "✦"; }
+.gamification-toast.motion-bubbles .gamification-toast-art { animation: toast-bubble-bob 1.65s ease-out both; }
+.gamification-toast.motion-bubbles .gamification-toast-effect i { width: 10px; height: 10px; border: 2px solid rgba(85, 177, 174, 0.72); border-radius: 50%; animation: toast-bubble-rise 1.6s ease-out both; }
+.gamification-toast.motion-bubbles .gamification-toast-effect i:nth-child(2) { width: 7px; height: 7px; }
+.gamification-toast.motion-bubbles .gamification-toast-effect i:nth-child(3) { width: 12px; height: 12px; }
+.gamification-toast.motion-cozy .gamification-toast-art { animation: toast-cozy 1.55s ease-in-out both; }
+.gamification-toast.motion-bounce .gamification-toast-art { animation: toast-happy-bounce 1.25s ease-out both; }
+.gamification-toast.motion-heartbeat .gamification-toast-art { animation: toast-heartbeat 1.55s ease-in-out both; }
+.gamification-toast.motion-heartbeat .gamification-toast-effect i { animation: toast-twinkle 1.4s ease-out both; color: #e16f82; }
+.gamification-toast.motion-heartbeat .gamification-toast-effect i::before { content: "♥"; }
+.gamification-toast.motion-sway .gamification-toast-art { animation: toast-sway 1.7s ease-in-out both; }
+.gamification-toast.motion-shine .gamification-toast-art { animation: toast-cozy 1.35s ease-out both; }
+.gamification-toast.motion-shine .gamification-toast-art::after { content: ""; position: absolute; inset: -20% auto -20% -55%; width: 28%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent); transform: skewX(-14deg); animation: toast-shine-sweep 1.5s ease-out both; }
+.gamification-toast.motion-breathe .gamification-toast-art { animation: toast-breathe 1.75s ease-in-out both; }
+.gamification-toast.motion-pop .gamification-toast-art { animation: toast-confident-pop 1.25s ease-out both; }
+.gamification-toast.motion-tilt .gamification-toast-art { animation: toast-friendly-tilt 1.55s ease-in-out both; }
+.gamification-toast.motion-hop .gamification-toast-art { animation: toast-playful-hop 1.45s ease-out both; }
+.gamification-toast.motion-page .gamification-toast-art { animation: toast-page-tilt 1.6s ease-in-out both; }
+.gamification-toast.motion-page .gamification-toast-effect i { animation: toast-twinkle 1.45s ease-out both; color: #cf7894; }
+.gamification-toast.motion-page .gamification-toast-effect i::before { content: "✿"; }
+.gamification-toast .gamification-toast-effect i:nth-child(2) { animation-delay: 0.12s; }
+.gamification-toast .gamification-toast-effect i:nth-child(3) { animation-delay: 0.24s; }
 
 @keyframes gamification-toast-in {
   from { opacity: 0; transform: translate(-50%, 18px) scale(0.98); }
   to { opacity: 1; transform: translate(-50%, 0) scale(1); }
 }
 
-@keyframes floating-paw {
-  0% { opacity: 0; transform: translateY(10px) rotate(-8deg) scale(0.8); }
-  35% { opacity: 0.65; }
-  100% { opacity: 0; transform: translateY(-76px) rotate(12deg) scale(1.08); }
-}
+@keyframes toast-twinkle { 0%, 100% { opacity: 0; transform: scale(0.45) rotate(-18deg); } 35%, 62% { opacity: 0.9; transform: scale(1.08) rotate(8deg); } }
+@keyframes toast-bubble-rise { 0% { opacity: 0; transform: translateY(18px) scale(0.7); } 28% { opacity: 0.85; } 100% { opacity: 0; transform: translateY(-28px) scale(1.08); } }
+@keyframes toast-bubble-bob { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-3px); } 68% { transform: translateY(1px); } }
+@keyframes toast-cozy { 0%, 100% { transform: translateY(0) scale(1); } 42% { transform: translateY(-2px) scale(1.035); } }
+@keyframes toast-happy-bounce { 0%, 100% { transform: translateY(0) scale(1); } 28% { transform: translateY(-7px) scale(1.02); } 52% { transform: translateY(0) scale(0.98); } 72% { transform: translateY(-3px) scale(1.01); } }
+@keyframes toast-heartbeat { 0%, 100% { transform: scale(1); } 26% { transform: scale(1.06); } 38% { transform: scale(1); } 52% { transform: scale(1.045); } 66% { transform: scale(1); } }
+@keyframes toast-sway { 0%, 100% { transform: rotate(0); } 27% { transform: rotate(-2.6deg); } 57% { transform: rotate(2.2deg); } 78% { transform: rotate(-0.8deg); } }
+@keyframes toast-shine-sweep { 0% { left: -55%; opacity: 0; } 28% { opacity: 0.85; } 72% { opacity: 0.65; } 100% { left: 128%; opacity: 0; } }
+@keyframes toast-breathe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-1px) scale(1.025); } }
+@keyframes toast-confident-pop { 0%, 100% { transform: scale(1); } 20% { transform: scale(0.9); } 48% { transform: scale(1.08); } 72% { transform: scale(0.985); } }
+@keyframes toast-friendly-tilt { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-4deg); } 60% { transform: rotate(3deg); } 80% { transform: rotate(-1deg); } }
+@keyframes toast-playful-hop { 0%, 100% { transform: translateY(0) rotate(0); } 22% { transform: translateY(-6px) rotate(-1deg); } 42% { transform: translateY(0) rotate(0); } 62% { transform: translateY(-5px) rotate(1deg); } 82% { transform: translateY(0) rotate(0); } }
+@keyframes toast-page-tilt { 0%, 100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-2.8deg) translateY(-2px); } 62% { transform: rotate(2deg) translateY(-1px); } 82% { transform: rotate(-0.6deg) translateY(0); } }
 
 @media (max-width: 360px) {
   .gamification-section-head { display: grid; }
@@ -127,6 +167,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .gamification-toast,
-  .gamification-toast-paws i,
+  .gamification-toast-art,
+  .gamification-toast-art::after,
+  .gamification-toast-effect i,
   .postcard-album > summary::after { animation: none; transition: none; }
+  .gamification-toast-effect { display: none; }
 }

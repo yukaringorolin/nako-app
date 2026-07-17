@@ -49,7 +49,9 @@ function updateWeightInput(weightInput, options = {}) {
   reconcileWeightCompletion(dateKey, { remote: options.remoteCompletion !== false });
   if (options.commit && hasWeight && weightInput.dataset.gamificationNewEntry === "true") {
     delete weightInput.dataset.gamificationNewEntry;
-    if (typeof celebrateCareSave === "function") celebrateCareSave("health");
+    if (typeof celebrateCareSave === "function") {
+      celebrateCareSave("health", { source: "weight", taskTitle: gamificationText("taskWeight") });
+    }
   }
   if (options.commit) saveState();
   else saveStateDebounced();
@@ -100,7 +102,7 @@ function completeRoutine(taskId) {
   if (!task || task.trackingMode === "metric") return;
   const record = saveRoutineCompletion(task);
   if (!record) return;
-  celebrateCareSave("routine");
+  celebrateCareSave("routine", { taskId: task.id, taskTitle: tr(task.title) });
   saveState();
   routineUndoRecord = { ...record };
   routineStatusMessage = label("completionSaved");

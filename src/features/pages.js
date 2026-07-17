@@ -46,6 +46,20 @@ function routineCycle(task, dateKey = routineTracking.singaporeDateKey()) {
 function activeRoutineRecord(task, dateKey = routineTracking.singaporeDateKey()) {
   const cycle = routineCycle(task, dateKey);
   if (!cycle) return null;
+  if (task.trackingMode === "input" && task.trackingSource === "appetite") {
+    const entry = window.nakoAppetiteTracking.normalizeEntry(appState.appetiteTracking?.[dateKey], dateKey);
+    if (!entry) return null;
+    return {
+      id: `appetite_${dateKey}`,
+      taskId: task.id,
+      cycleKey: cycle.key,
+      completedDate: dateKey,
+      note: `${entry.percentage}%`,
+      updatedAt: entry.updatedAt || "",
+      inputEntry: entry,
+      synthetic: true
+    };
+  }
   const record = routineRecords()[routineTracking.completionId(task.id, cycle.key)];
   return record && !record.deleted ? record : null;
 }
@@ -65,18 +79,19 @@ function formatRoutineDate(dateKey, withWeekday = false) {
 }
 
 function cadenceLabel(cadence) {
-  const keys = { weekly: "cadenceWeekly", fortnightly: "cadenceFortnightly", monthly: "cadenceMonthly", quarterly: "cadenceQuarterly", "one-off": "cadenceOneOff" };
+  const keys = { daily: "cadenceDaily", weekly: "cadenceWeekly", fortnightly: "cadenceFortnightly", monthly: "cadenceMonthly", quarterly: "cadenceQuarterly", "one-off": "cadenceOneOff" };
   return label(keys[cadence] || "dueThisPeriod");
 }
 
 function cycleRangeLabel(cycle) {
   if (!cycle?.start || !cycle?.end) return label("oneOffLifetime");
+  if (cycle.start === cycle.end) return formatRoutineDate(cycle.start, true);
   return labelWith("routinePeriodRange", { start: formatRoutineDate(cycle.start), end: formatRoutineDate(cycle.end) });
 }
 
 function renderRoutineHomeShortcut() {
   const summary = window.nakoRoutineTaskSelection.summarizeChecklist(currentChecklist());
-  const recurringCadences = window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.slice(0, 4);
+  const recurringCadences = window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.filter((cadence) => cadence !== "one-off");
   const visibleCadences = summary.remainingByCadence["one-off"] > 0
     ? [...recurringCadences, "one-off"]
     : recurringCadences;
@@ -140,10 +155,11 @@ function renderRoutineStatus() {
 }
 
 function renderRoutineTaskVisual(task, cycle) {
+  const checkInTitle = task.checkInTitle || task.title;
   return `
     ${renderCardIcon(task.icon, primaryPhoto(task.photos))}
     <span class="card-copy">
-      <span class="card-title">${esc(tr(task.title))}</span>
+      <span class="card-title">${esc(tr(checkInTitle))}</span>
       <span class="card-description">${esc(cadenceLabel(task.trackingCadence))} · ${esc(cycleRangeLabel(cycle))}</span>
     </span>
   `;
@@ -151,11 +167,19 @@ function renderRoutineTaskVisual(task, cycle) {
 
 function renderRoutineCheckRow(item, completed) {
   const { task, cycle, record } = item;
-  const control = task.trackingMode === "metric" && !completed
+  const checkInTitle = task.checkInTitle || task.title;
+  const control = task.trackingMode === "input" && !completed
+    ? `<a class="routine-check-control metric-control" href="#routine/${esc(task.id)}" aria-label="${esc(label("inputOpenTracker"))}">🍽️</a>`
+    : task.trackingMode === "metric" && !completed
     ? `<a class="routine-check-control metric-control" href="#routine/${esc(task.id)}" aria-label="${esc(label("metricOpenWeight"))}">⚖️</a>`
     : completed
       ? `<span class="routine-check-control is-complete" aria-hidden="true">✓</span>`
-      : `<button class="routine-check-control" type="button" data-routine-complete="${esc(task.id)}" aria-label="${esc(`${label("markComplete")}: ${tr(task.title)}`)}"><span aria-hidden="true"></span></button>`;
+      : `<button class="routine-check-control" type="button" data-routine-complete="${esc(task.id)}" aria-label="${esc(`${label("markComplete")}: ${tr(checkInTitle)}`)}"><span aria-hidden="true"></span></button>`;
+  const completedDetails = !completed
+    ? ""
+    : task.trackingMode === "input"
+      ? `<p class="metric-complete-note">${esc(labelWith("appetiteCompletion", { percentage: record.inputEntry.percentage }))}</p>`
+      : `<p class="metric-complete-note">${task.trackingMode === "metric" ? esc(label("metricCompleted")) : ""}</p>${renderCompletionEditor(record)}`;
   return `<article class="routine-check-row ${completed ? "is-complete" : ""}">
     <div class="routine-row-main">
       ${control}
@@ -164,7 +188,7 @@ function renderRoutineCheckRow(item, completed) {
         <span class="chevron" aria-hidden="true">›</span>
       </a>
     </div>
-    ${completed ? `<p class="metric-complete-note">${task.trackingMode === "metric" ? esc(label("metricCompleted")) : ""}</p>${renderCompletionEditor(record)}` : ""}
+    ${completedDetails}
   </article>`;
 }
 
@@ -218,7 +242,7 @@ function renderRoutineHistory() {
     <section class="routine-history-head"><h1>${esc(label("routineHistory"))}</h1><p>${esc(label("historyIntro"))}</p></section>
     <section class="routine-history-filters">
       <label>${esc(label("filterTask"))}<select data-routine-filter="task"><option value="all">${esc(label("allTasks"))}</option>${tasks.map((task) => `<option value="${esc(task.id)}" ${routineHistoryFilters.task === task.id ? "selected" : ""}>${esc(tr(task.title))}</option>`).join("")}</select></label>
-      <label>${esc(label("filterCadence"))}<select data-routine-filter="cadence"><option value="all">${esc(label("allCadences"))}</option>${["weekly", "fortnightly", "monthly", "quarterly", "one-off"].map((cadence) => `<option value="${cadence}" ${routineHistoryFilters.cadence === cadence ? "selected" : ""}>${esc(cadenceLabel(cadence))}</option>`).join("")}</select></label>
+      <label>${esc(label("filterCadence"))}<select data-routine-filter="cadence"><option value="all">${esc(label("allCadences"))}</option>${window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.map((cadence) => `<option value="${cadence}" ${routineHistoryFilters.cadence === cadence ? "selected" : ""}>${esc(cadenceLabel(cadence))}</option>`).join("")}</select></label>
       <label>${esc(label("filterFrom"))}<input type="date" value="${esc(routineHistoryFilters.from)}" data-routine-filter="from"></label>
       <label>${esc(label("filterTo"))}<input type="date" value="${esc(routineHistoryFilters.to)}" data-routine-filter="to"></label>
     </section>
@@ -471,8 +495,9 @@ function renderRoutine(routineId) {
   const backLinkHtml = isTracked
     ? `<a href="#routine-checkin" class="back-checkin-link">← ${esc(label("backToRoutineCheckIn"))}</a>`
     : "";
-  const completionPanelHtml = isTracked && task.active !== false ? renderRoutineCompletionPanel(task) : "";
-  const historyPanelHtml = isTracked ? renderTaskRoutineHistory(task.id) : "";
+  const isInputTracked = task.trackingMode === "input";
+  const completionPanelHtml = isTracked && task.active !== false && !isInputTracked ? renderRoutineCompletionPanel(task) : "";
+  const historyPanelHtml = isTracked && !isInputTracked ? renderTaskRoutineHistory(task.id) : "";
   const appetitePanelHtml = task.id === "nako-feeding-water" ? renderNakoAppetiteTracker() : "";
 
   const content = `

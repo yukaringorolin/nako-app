@@ -20,6 +20,16 @@ test("weekly cycle resets at Singapore Monday", () => {
   });
 });
 
+test("daily cycle resets each Singapore calendar day", () => {
+  assert.deepEqual(tracking.cycleForDate("daily", "2026-07-17"), {
+    key: "daily_2026-07-17", start: "2026-07-17", end: "2026-07-17"
+  });
+  assert.notEqual(
+    tracking.cycleForDate("daily", "2026-07-17").key,
+    tracking.cycleForDate("daily", "2026-07-18").key
+  );
+});
+
 test("UTC browser instant resolves to Singapore calendar date", () => {
   assert.equal(tracking.singaporeDateKey(new Date("2026-07-12T16:00:00.000Z")), "2026-07-13");
   assert.equal(tracking.singaporeDateKey(new Date("2026-07-12T15:59:59.999Z")), "2026-07-12");

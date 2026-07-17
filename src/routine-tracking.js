@@ -62,6 +62,9 @@
   function cycleForDate(cadence, dateKey, anchor = FORTNIGHT_ANCHOR) {
     const parsed = parseDateKey(dateKey);
     if (!parsed) return null;
+    if (cadence === "daily") {
+      return { key: `daily_${dateKey}`, start: dateKey, end: dateKey };
+    }
     if (cadence === "weekly") {
       const start = mondayFor(dateKey);
       return { key: `weekly_${start}`, start, end: addDays(start, 6) };

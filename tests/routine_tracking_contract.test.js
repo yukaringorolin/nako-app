@@ -14,13 +14,13 @@ const ids = new Set(allTasks.map((task) => task.id));
 assert.equal(ids.size, allTasks.length, "All routine task IDs must be unique");
 
 // 2. Every tracked task has a valid tracking mode
-const validModes = new Set(["checkbox", "metric", "one-off"]);
+const validModes = new Set(["checkbox", "metric", "one-off", "input"]);
 for (const task of tracked) {
   assert.ok(validModes.has(task.trackingMode), `Tracked task ${task.id} has invalid mode ${task.trackingMode}`);
 }
 
-// 3. Every checkbox/metric task has a valid supported non-daily cadence
-const validCadences = new Set(["weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
+// 3. Every tracked task has a valid supported cadence
+const validCadences = new Set(["daily", "weekly", "fortnightly", "monthly", "quarterly", "one-off"]);
 for (const task of tracked) {
   assert.ok(validCadences.has(task.trackingCadence), `Tracked task ${task.id} has invalid cadence ${task.trackingCadence}`);
 }
@@ -30,9 +30,16 @@ for (const task of tracked.filter((t) => t.trackingCadence === "fortnightly")) {
   assert.equal(task.trackingAnchor, "2026-07-06", `Fortnightly task ${task.id} must use Monday anchor 2026-07-06`);
 }
 
-// 5. Daily and as-needed tasks cannot accidentally become part of Routine Check-in
+// 5. The appetite tracker is an explicit daily input; other daily/as-needed references stay untracked
+const dailyAppetite = allTasks.find((task) => task.id === "nako-feeding-water");
+assert.equal(dailyAppetite.trackingMode, "input");
+assert.equal(dailyAppetite.trackingCadence, "daily");
+assert.equal(dailyAppetite.trackingSource, "appetite");
+for (const language of ["en", "jp", "mm"]) {
+  assert.ok(dailyAppetite.checkInTitle[language], `Daily appetite check-in title needs ${language}`);
+}
 for (const task of allTasks) {
-  if (task.id !== "fire-extinguisher-training" && (task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed")) {
+  if (!["nako-feeding-water", "fire-extinguisher-training"].includes(task.id) && (task.frequencyBucket === "daily" || task.frequencyBucket === "as-needed")) {
     assert.equal(task.trackingMode, "none", `Daily/as-needed task ${task.id} must be reference-only (trackingMode = none)`);
   }
 }
@@ -65,6 +72,7 @@ for (const task of tracked) {
 
 // 9. Previously required baseline tasks still exist
 const baselineIds = new Set([
+  "nako-feeding-water",
   "high-touch-surfaces",
   "kitchen-sink-drain-rack-counter",
   "nako-weekly-play-pen-deep-clean",
