@@ -1,7 +1,7 @@
 const homeSections = [
   sec("food", "F", "#f19a82", "#fff0eb", 
-    t("Food, Recipes & Nako Tracking", "食事、レシピ、ナコの追跡", "အစားအသောက်၊ ဟင်းချက်နည်းနှင့် Nako ခြေရာခံခြင်း"), 
-    t("Recipes, food logs, and Nako meal tracking.", "レシピ、食事記録、ナコの食事追跡。", "ဟင်းချက်နည်း၊ အစားမှတ်တမ်းနှင့် Nako အစားအစာ ခြေရာခံခြင်း။"),
+    t("Food, Recipes", "食事、レシピ", "အစားအသောက်၊ ဟင်းချက်နည်းများ"),
+    t("Recipes and food logs.", "レシピと食事記録。", "ဟင်းချက်နည်းများနှင့် အစားမှတ်တမ်းများ။"),
     "assets/sections/food.png"),
   sec("food-safety", "🛡️", "#d97d65", "#fef0ec", 
     t("Kitchen Rules & Food Safety", "キッチンルール・食品安全", "မီးဖိုချောင်စည်းကမ်းနှင့် အစားအသောက်ဘေးကင်းရေး"), 

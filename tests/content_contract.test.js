@@ -11,6 +11,11 @@ const data = context.window.nakoData;
 assert.deepEqual(Object.keys(data.ui.jp).sort(), Object.keys(data.ui.en).sort());
 assert.deepEqual(Object.keys(data.ui.mm).sort(), Object.keys(data.ui.en).sort());
 assert.equal(data.ui.en.homeEyebrow, "Helper guide");
+const foodSection = data.homeSections.find((section) => section.id === "food");
+assert.equal(foodSection.title.en, "Food, Recipes");
+assert.equal(foodSection.description.en, "Recipes and food logs.");
+assert.doesNotMatch(Object.values(foodSection.title).join("\n"), /Nako|ナコ/);
+assert.doesNotMatch(Object.values(foodSection.description).join("\n"), /Nako|ナコ/);
 assert.ok(data.trainingData.rules.length >= 6);
 for (const rule of data.trainingData.rules) {
   assert.ok(rule.en && rule.jp && rule.mm);
