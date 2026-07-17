@@ -40,6 +40,12 @@ assert.ok(
   weight.includes("renderPhotos(item.photos)"),
   "Weight instructions must show their step-by-step photos"
 );
+assert.ok(
+  weight.indexOf('label("quickEntry")') < weight.indexOf('label("weightTrend")') &&
+  weight.indexOf('label("weightTrend")') < weight.indexOf("${instructionsPanel}") &&
+  weight.indexOf("${instructionsPanel}") < weight.indexOf('label("recentEntries")'),
+  "Quick Entry and Weight Trend must come before the guide panels and Recent Entries"
+);
 
 const appState = { weightTracking: {}, routineCompletions: {} };
 const saveCalls = [];
