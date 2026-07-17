@@ -15,6 +15,7 @@ assert.ok(legacyFood, "The stable nako-feeding food ID must remain in canonical 
 assert.equal(legacyFood.active, false);
 assert.equal(legacyFood.canonicalRoute, "#routine/nako-feeding-water");
 assert.match(feedingRoutine.mustRemember.map((item) => item.en).join("\n"), /appetite percentage/);
+assert.equal(feedingRoutine.photos[0].src, "assets/routines/nako-meal-prep-bowl.jpg", "The meal bowl must be the Feeding & Water primary image");
 
 const search = require("../src/search.js");
 const searchIndex = search.buildSearchIndex(data);
