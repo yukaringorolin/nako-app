@@ -34,7 +34,6 @@ let routineUndoRecord = null;
 let routineUndoTimer = null;
 let gamificationNotice = null;
 let gamificationNoticeTimer = null;
-const pendingNewWeightDates = new Set();
 const routineTodayAtLoad = routineTracking.singaporeDateKey();
 let routineHistoryFilters = {
   task: "all",
@@ -125,8 +124,8 @@ function initFirebaseSync() {
       }
       migrateTrainingState();
       migrateRoutineTrackingState();
-      const gamificationResult = syncGamificationUnlocks();
-      saveState({ remote: gamificationResult.changed });
+      window.nakoGamification?.syncUnlocks?.(appState, new Date());
+      saveState({ remote: false });
       if (appStateSignature(appState) !== previousSignature) renderUnlessEditing();
     }
   });
@@ -137,8 +136,8 @@ function initFirebaseSync() {
       const previousSignature = appStateSignature(routineRecords());
       const normalizedRecords = routineTracking.normalizeRecords(records);
       appState.routineCompletions = normalizedRecords;
-      const gamificationResult = syncGamificationUnlocks();
-      saveState({ remote: gamificationResult.changed });
+      window.nakoGamification?.syncUnlocks?.(appState, new Date());
+      saveState({ remote: false });
       if (appStateSignature(normalizedRecords) !== previousSignature) renderUnlessEditing();
     }
   });

@@ -13,6 +13,12 @@
     return PERCENTAGES.includes(percentage) ? percentage : null;
   }
 
+  function validAmount(value) {
+    if (value === "" || value === null || value === undefined || typeof value === "boolean") return null;
+    const amount = Number(value);
+    return Number.isFinite(amount) && amount >= 0 ? amount : null;
+  }
+
   function normalizeEntry(value, dateKey = "") {
     if (!value || typeof value !== "object") return null;
     const percentage = validPercentage(value.percentage);
@@ -20,6 +26,8 @@
     return {
       dateKey: String(value.dateKey || dateKey),
       percentage,
+      kibbleGrams: validAmount(value.kibbleGrams),
+      frozenFoodCubes: validAmount(value.frozenFoodCubes),
       note: String(value.note || ""),
       updatedAt: String(value.updatedAt || "")
     };
@@ -32,9 +40,17 @@
       ? validPercentage(values.percentage)
       : current?.percentage ?? null;
     if (percentage === null) return null;
+    const kibbleGrams = Object.prototype.hasOwnProperty.call(values, "kibbleGrams")
+      ? validAmount(values.kibbleGrams)
+      : current?.kibbleGrams ?? null;
+    const frozenFoodCubes = Object.prototype.hasOwnProperty.call(values, "frozenFoodCubes")
+      ? validAmount(values.frozenFoodCubes)
+      : current?.frozenFoodCubes ?? null;
     const entry = {
       dateKey,
       percentage,
+      kibbleGrams,
+      frozenFoodCubes,
       note: Object.prototype.hasOwnProperty.call(values, "note") ? String(values.note || "") : String(current?.note || ""),
       updatedAt: String(updatedAt || values.updatedAt || current?.updatedAt || "")
     };
@@ -58,5 +74,5 @@
       .sort((a, b) => b.dateKey.localeCompare(a.dateKey));
   }
 
-  return { PERCENTAGES, normalizeEntry, recentEntries, upsertEntry, validPercentage };
+  return { PERCENTAGES, normalizeEntry, recentEntries, upsertEntry, validAmount, validPercentage };
 });

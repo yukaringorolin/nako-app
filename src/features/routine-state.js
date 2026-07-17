@@ -40,16 +40,16 @@ function updateWeightInput(weightInput, options = {}) {
   const previousValue = getWeightValue(appState.weightTracking[dateKey]);
   const hadWeight = previousValue !== "" && Number.isFinite(Number(previousValue)) && Number(previousValue) > 0;
   const hasWeight = val !== "" && Number.isFinite(Number(val)) && Number(val) > 0;
-  if (!hadWeight && hasWeight) pendingNewWeightDates.add(dateKey);
-  if (!hasWeight) pendingNewWeightDates.delete(dateKey);
+  if (!hadWeight && hasWeight) weightInput.dataset.gamificationNewEntry = "true";
+  if (!hasWeight) delete weightInput.dataset.gamificationNewEntry;
   appState.weightTracking[dateKey] = {
     value: val !== "" ? parseFloat(val) : "",
     updatedAt: nowIso()
   };
   reconcileWeightCompletion(dateKey, { remote: options.remoteCompletion !== false });
-  if (options.commit && hasWeight && pendingNewWeightDates.has(dateKey)) {
-    pendingNewWeightDates.delete(dateKey);
-    celebrateCareSave("health");
+  if (options.commit && hasWeight && weightInput.dataset.gamificationNewEntry === "true") {
+    delete weightInput.dataset.gamificationNewEntry;
+    if (typeof celebrateCareSave === "function") celebrateCareSave("health");
   }
   if (options.commit) saveState();
   else saveStateDebounced();

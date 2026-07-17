@@ -10,6 +10,17 @@ function currentAppetiteDate() {
   return selectedAppetiteDate;
 }
 
+function appetiteAmountValue(value) {
+  return value === null || value === undefined ? "" : String(value);
+}
+
+function renderAppetiteHistoryDetails(entry) {
+  const details = [];
+  if (entry.kibbleGrams !== null) details.push(`${esc(label("appetiteKibbleGrams"))}: ${entry.kibbleGrams} g`);
+  if (entry.frozenFoodCubes !== null) details.push(`${esc(label("appetiteFrozenFoodCubes"))}: ${entry.frozenFoodCubes}`);
+  return details.length ? `<span class="appetite-history-details">${details.join(" · ")}</span>` : "";
+}
+
 function renderNakoAppetiteTracker() {
   const today = routineTracking.singaporeDateKey();
   const dateKey = currentAppetiteDate();
@@ -28,6 +39,7 @@ function renderNakoAppetiteTracker() {
     ? `<div class="appetite-history-list">${history.map((item) => `<article class="appetite-history-row ${item.dateKey === dateKey ? "is-editing" : ""}">
         <div class="appetite-history-copy">
           <strong>${esc(formatRoutineDate(item.dateKey, true))}</strong>
+          ${renderAppetiteHistoryDetails(item)}
           ${item.note ? `<span>${esc(item.note)}</span>` : ""}
         </div>
         <div class="appetite-history-result">
@@ -50,6 +62,19 @@ function renderNakoAppetiteTracker() {
       <legend>${esc(label("appetitePercentage"))}</legend>
       <div class="appetite-percentage-options">${percentageButtons}</div>
     </fieldset>
+    <div class="appetite-amount-fields">
+      <label class="appetite-amount-label">
+        <span>${esc(label("appetiteKibbleGrams"))}</span>
+        <span class="appetite-number-control">
+          <input class="appetite-number-field" type="number" min="0" step="1" inputmode="decimal" data-appetite-measurement="kibbleGrams" data-appetite-date="${esc(dateKey)}" value="${esc(appetiteAmountValue(entry?.kibbleGrams))}" placeholder="0" ${noteDisabled}>
+          <span aria-hidden="true">g</span>
+        </span>
+      </label>
+      <label class="appetite-amount-label">
+        <span>${esc(label("appetiteFrozenFoodCubes"))}</span>
+        <input class="appetite-number-field" type="number" min="0" step="1" inputmode="decimal" data-appetite-measurement="frozenFoodCubes" data-appetite-date="${esc(dateKey)}" value="${esc(appetiteAmountValue(entry?.frozenFoodCubes))}" placeholder="0" ${noteDisabled}>
+      </label>
+    </div>
     <label class="appetite-note-label">
       <span>${esc(label("appetiteNote"))}</span>
       <textarea class="memo-field appetite-note-field" data-appetite-note="${esc(dateKey)}" placeholder="${esc(label("appetiteNotePlaceholder"))}" ${noteDisabled}>${esc(entry?.note || "")}</textarea>
@@ -76,6 +101,18 @@ function saveAppetitePercentage(dateKey, value) {
 
 function updateAppetiteNote(dateKey, note) {
   const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { note }, nowIso());
+  if (!entry) return;
+  appetiteStatusMessage = label("appetiteSaved");
+  const status = document.querySelector("[data-appetite-status]");
+  if (status) status.textContent = appetiteStatusMessage;
+  saveStateDebounced();
+}
+
+function updateAppetiteMeasurement(dateKey, field, value) {
+  if (!["kibbleGrams", "frozenFoodCubes"].includes(field)) return;
+  const amount = window.nakoAppetiteTracking.validAmount(value);
+  if (value !== "" && amount === null) return;
+  const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { [field]: amount }, nowIso());
   if (!entry) return;
   appetiteStatusMessage = label("appetiteSaved");
   const status = document.querySelector("[data-appetite-status]");

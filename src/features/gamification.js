@@ -51,6 +51,14 @@ function showGamificationNotice(kind, options = {}) {
   };
   clearTimeout(gamificationNoticeTimer);
   gamificationNoticeTimer = setTimeout(() => dismissGamificationNotice(), 6500);
+  mountGamificationNotice();
+}
+
+function mountGamificationNotice() {
+  const root = document.querySelector("#app");
+  if (!root?.firstElementChild) return;
+  root.querySelector("[data-gamification-toast]")?.remove();
+  root.insertAdjacentHTML("beforeend", renderGamificationNotice());
 }
 
 function dismissGamificationNotice() {
@@ -137,6 +145,12 @@ function renderGamificationHome() {
   return `<section class="gamification-home" aria-labelledby="gamification-home-title">
     <h2 id="gamification-home-title" class="visually-hidden">${esc(gamificationText("title"))}</h2>
     ${renderWeeklyCareSummary(summary)}
+  </section>`;
+}
+
+function renderGamificationAlbumHome() {
+  return `<section class="gamification-home gamification-album-home" aria-labelledby="gamification-album-title">
+    <h2 id="gamification-album-title" class="visually-hidden">${esc(gamificationText("postcards"))}</h2>
     ${renderPostcardAlbum()}
   </section>`;
 }

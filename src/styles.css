@@ -1,4 +1,4 @@
-@import url("./styles/components.css?v=20260716a");
+@import url("./styles/components.css?v=20260717b");
 @import url("./styles/search.css");
 
 /* ==========================================================================
@@ -1704,6 +1704,10 @@ img {
     font-size: 12px;
   }
 
+  .appetite-amount-fields {
+    grid-template-columns: 1fr;
+  }
+
   .appetite-history-row {
     grid-template-columns: 1fr;
   }
@@ -1800,12 +1804,58 @@ img {
 }
 
 .appetite-percentage-fieldset legend,
+.appetite-amount-label > span:first-child,
 .appetite-note-label > span {
   display: block;
   margin-bottom: 8px;
   color: var(--ink);
   font-size: 14px;
   font-weight: 850;
+}
+
+.appetite-amount-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.appetite-amount-label {
+  min-width: 0;
+}
+
+.appetite-number-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+}
+
+.appetite-number-control > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.appetite-number-field {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.appetite-number-field:focus {
+  border-color: #4f9c76;
+  outline: 2px solid rgba(79, 156, 118, 0.18);
+  outline-offset: 1px;
+}
+
+.appetite-number-field:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .appetite-percentage-options {
@@ -1917,6 +1967,11 @@ img {
   color: var(--muted);
   font-size: 11px;
   line-height: 1.35;
+}
+
+.appetite-history-copy .appetite-history-details {
+  color: #2e6f51;
+  font-weight: 800;
 }
 
 .appetite-history-result {

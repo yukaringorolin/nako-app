@@ -348,6 +348,12 @@ function handleInput(event) {
   }
   const appetiteNote = event.target.closest("[data-appetite-note]");
   if (appetiteNote) return updateAppetiteNote(appetiteNote.dataset.appetiteNote, appetiteNote.value);
+  const appetiteMeasurement = event.target.closest("[data-appetite-measurement]");
+  if (appetiteMeasurement) return updateAppetiteMeasurement(
+    appetiteMeasurement.dataset.appetiteDate,
+    appetiteMeasurement.dataset.appetiteMeasurement,
+    appetiteMeasurement.value
+  );
   const diaryText = event.target.closest("[data-diary-text]");
   if (diaryText) {
     const draft = getDiaryDraft(diaryText.dataset.diaryText);
@@ -376,6 +382,7 @@ function handleInput(event) {
 function handleBlur(event) {
   if (event.target.closest?.("[data-training-input]")) saveState();
   if (event.target.closest?.("[data-appetite-note]")) saveState();
+  if (event.target.closest?.("[data-appetite-measurement]")) saveState();
   const diaryText = event.target.closest?.("[data-diary-text]");
   if (diaryText) saveState();
   const diaryTrans = event.target.closest?.("[data-diary-translation-date]");

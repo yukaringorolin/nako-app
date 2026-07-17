@@ -84,7 +84,7 @@
 
 .postcard-grid { padding: 0 12px 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .postcard-card { min-width: 0; border: 1px solid var(--line); border-radius: 13px; background: #fff; overflow: hidden; }
-.postcard-card img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #fffaf5; }
+.postcard-card img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: #fffaf5; }
 .postcard-card img.is-image-fallback { object-fit: contain; padding: 18px; }
 .postcard-card.is-unlocked > div { padding: 9px; }
 .postcard-card h3 { margin: 0; font-size: 13px; line-height: 1.3; }

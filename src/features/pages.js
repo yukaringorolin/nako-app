@@ -21,7 +21,8 @@ function renderHome() {
     <section class="rule-strip compact"><h2>${esc(label("foodItems"))}</h2><p>${esc(label("foodFirst"))}</p></section>
     <p class="section-label">${esc(label("sections"))}</p>
     <section class="card-list">${homeSections.map(renderSectionCard).join("")}</section>
-    ${renderAdditionalResources()}`;
+    ${renderAdditionalResources()}
+    ${renderGamificationAlbumHome()}`;
   renderShell(label("appTitle"), content, false);
 }
 

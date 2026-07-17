@@ -16,7 +16,12 @@ const routineTasks = [
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
     t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
     t("Daily", "毎日", "နေ့စဉ်"),
-    t("Use this as a personal diary space when speaking is difficult or unclear. Write freely first, then submit to save the entry.", "話すことが難しい、または伝わりにくいときの、個人の日記スペースとして使ってください。まず自由に書き、送信すると記録が保存されます。", "စကားပြောရန်ခက်ခဲသည့်အခါ သို့မဟုတ် မရှင်းလင်းသည့်အခါ ကိုယ်ပိုင်နေ့စဉ်မှတ်တမ်းနေရာအဖြစ် အသုံးပြုပါ။ အရင်ဆုံးလွတ်လပ်စွာရေးပြီး ပို့ပါ၊ ထို့နောက် မှတ်တမ်းကို သိမ်းထားပါမည်။")),
+    t("Use this as a personal diary space when speaking is difficult or unclear. Write freely first, then submit to save the entry.", "話すことが難しい、または伝わりにくいときの、個人の日記スペースとして使ってください。まず自由に書き、送信すると記録が保存されます。", "စကားပြောရန်ခက်ခဲသည့်အခါ သို့မဟုတ် မရှင်းလင်းသည့်အခါ ကိုယ်ပိုင်နေ့စဉ်မှတ်တမ်းနေရာအဖြစ် အသုံးပြုပါ။ အရင်ဆုံးလွတ်လပ်စွာရေးပြီး ပို့ပါ၊ ထို့နောက် မှတ်တမ်းကို သိမ်းထားပါမည်။"),
+    [
+      photo("assets/routines/nako-diary-feedback.png",
+        t("Coral diary with a pencil and message bubble", "鉛筆とメッセージ吹き出しが添えられたコーラル色の日記帳", "ခဲတံနှင့် စာတိုပူဖောင်းပါသော လိမ္မော်ဖျော့ရောင် နေ့စဉ်မှတ်တမ်းစာအုပ်"),
+        t("Write and save your diary, then open the WhatsApp notice.", "日記を書いて保存し、その後WhatsApp通知を開きます。", "နေ့စဉ်မှတ်တမ်းရေးပြီး သိမ်းပါ။ ပြီးလျှင် WhatsApp အသိပေးချက်ကို ဖွင့်ပါ။"))
+    ]),
   routine("drinking-water-prep", "daily", 10, "W", 
     t("Drinking Water Prep", "飲料水の準備", "သောက်ရေပြင်ဆင်ခြင်း"), 
     t("Keep the Tiger MAA-A302 topped up with fresh boiling water. Also boil, cool, and refrigerate drinking water so enough is always ready.", "Tiger MAA-A302に新しく沸かしたお湯を補充します。また、飲料水を沸かして冷まし、冷蔵庫に保管して、いつでも十分な水を用意します。", "Tiger MAA-A302 ကို လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ပြန်ဖြည့်ထားပါ။ သောက်ရေကိုလည်း ကျို၊ အအေးခံပြီး ရေခဲသေတ္တာထဲသိမ်းကာ အမြဲလုံလောက်အောင် ပြင်ထားပါ။"),
@@ -102,7 +107,7 @@ const routineTasks = [
     t("Feed Nako 3 measured meals daily: 60 g Royal Canin kibble total, plus 1 chicken-and-vegetable topping cube per meal.", "ナコに1日3食与えます。Royal Caninは1日合計60 gで、毎食チキンと野菜のトッピングキューブを1個加えます。", "Nako ကို တစ်နေ့ ၃ နပ်ကျွေးပါ။ Royal Canin တစ်နေ့စုစုပေါင်း ၆၀ g နှင့် တစ်နပ်လျှင် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးထည့်ပါ။"),
     t("3 meals daily — Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食 — 朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ် — မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
     [
-      t("Record Nako's appetite percentage once each day in the tracker below.", "下のトラッカーに、ナコが食べた割合を1日1回記録してください。", "အောက်ရှိ မှတ်တမ်းတွင် Nako စားခဲ့သည့် ရာခိုင်နှုန်းကို တစ်နေ့တစ်ကြိမ် မှတ်တမ်းတင်ပါ။"),
+      t("Record Nako's appetite percentage, kibble grams, and frozen food cubes once each day in the tracker below.", "下のトラッカーに、ナコが食べた割合、ドライフードのグラム数、冷凍フードキューブ数を1日1回記録してください。", "အောက်ရှိ မှတ်တမ်းတွင် Nako စားခဲ့သည့် ရာခိုင်နှုန်း၊ အစာခြောက် ဂရမ်နှင့် အေးခဲအစာတုံး အရေအတွက်ကို တစ်နေ့တစ်ကြိမ် မှတ်တမ်းတင်ပါ။"),
       t("Each morning, weigh 60 g of Royal Canin kibble for the full day.", "毎朝、1日分のRoyal Canin 60 gを量ってください。", "မနက်တိုင်း တစ်နေ့စာ Royal Canin ၆၀ g ကို ချိန်ပါ။"),
       t("Divide the kibble into 3 portions of about 20 g each.", "キブルを約20 gずつ3回分に分けてください。", "kibble ကို ၂၀ g ခန့်စီ ၃ ပုံခွဲပါ။"),
       t("Add exactly 1 chicken-and-vegetable topping cube to every meal.", "毎食、チキンと野菜のトッピングキューブを必ず1個加えてください。", "တစ်နပ်တိုင်း ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးတိတိ ထည့်ပါ။"),
@@ -265,7 +270,12 @@ const routineTasks = [
     t("General Tidiness", "一般的な整理整頓", "ယေဘုယျ သန့်ရှင်းသပ်ရပ်မှု"), 
     t("Wipe down items left outside and keep them properly back in place so things are not left lying around.", "出しっぱなしになっている物を拭き取り、適切に元の場所に戻して、散らかったままにしないようにします。", "အပြင်တွင် ကျန်ခဲ့သော ပစ္စည်းများကို သုတ်ပြီး ပစ္စည်းများ ရှုပ်ပွမနေစေရန် သင့်တော်သောနေရာတွင် ပြန်သိမ်းပါ။"), 
     t("Daily + as needed", "毎日＋必要に応じて", "နေ့စဉ် + လိုအပ်သလို"), 
-    t("Do not leave items lying around. Edwin is sensitive to dust and dirt, so clean visible dust promptly instead of waiting for the next scheduled task.", "物を出しっぱなしにしないでください。エドウィンはほこりや汚れに敏感なので、次の予定日まで待たず、見つけたほこりはすぐに掃除してください。", "ပစ္စည်းများကို ဟိုဟိုဒီဒီ ပြန့်ကြဲမထားပါနှင့်။ Edwin သည် ဖုန်နှင့် အညစ်အကြေးကို အာရုံခံလွယ်သောကြောင့် နောက်သန့်ရှင်းရေးအချိန်ကို မစောင့်ဘဲ မြင်ရသောဖုန်ကို ချက်ချင်းသန့်ရှင်းပါ။")),
+    t("Do not leave items lying around. Edwin is sensitive to dust and dirt, so clean visible dust promptly instead of waiting for the next scheduled task.", "物を出しっぱなしにしないでください。エドウィンはほこりや汚れに敏感なので、次の予定日まで待たず、見つけたほこりはすぐに掃除してください。", "ပစ္စည်းများကို ဟိုဟိုဒီဒီ ပြန့်ကြဲမထားပါနှင့်။ Edwin သည် ဖုန်နှင့် အညစ်အကြေးကို အာရုံခံလွယ်သောကြောင့် နောက်သန့်ရှင်းရေးအချိန်ကို မစောင့်ဘဲ မြင်ရသောဖုန်ကို ချက်ချင်းသန့်ရှင်းပါ။"),
+    [
+      photo("assets/routines/nako-general-tidiness.png",
+        t("Neatly arranged household shelf with a cleaning cloth", "掃除布と、きちんと整理された日用品の棚", "သန့်ရှင်းရေးအဝတ်နှင့် အိမ်သုံးပစ္စည်းများ သပ်သပ်ရပ်ရပ်ထားသည့် စင်"),
+        t("Wipe dusty items and return them to their proper place.", "ほこりのついた物を拭き、決まった場所に戻します。", "ဖုန်ရှိသောပစ္စည်းများကို သုတ်ပြီး သင့်တော်သောနေရာသို့ ပြန်သိမ်းပါ။"))
+    ]),
   routine("sofa-hair-room-corner-cleaning", "daily", 115, "S",
     t("Sofa Hair & Room-Corner Spot Cleaning", "ソファの毛と部屋の隅の部分掃除", "ဆိုဖာအမွေးနှင့် အခန်းထောင့် နေရာကွက် သန့်ရှင်းရေး"),
     t("During free time, remove hair or fur from the sofa and wipe dusty room corners.", "時間がある時に、ソファの髪や毛を取り、ほこりのたまった部屋の隅を拭いてください。", "အားလပ်ချိန်တွင် ဆိုဖာပေါ်ရှိ ဆံပင် သို့မဟုတ် အမွေးကိုဖယ်ပြီး ဖုန်ရှိသော အခန်းထောင့်များကို သုတ်ပါ။"),
@@ -273,6 +283,11 @@ const routineTasks = [
     [
       t("Put removed hair or fur straight into the bin.", "取った髪や毛はすぐゴミ箱に捨ててください。", "ဖယ်ထားသော ဆံပင် သို့မဟုတ် အမွေးကို အမှိုက်ပုံးထဲ ချက်ချင်းပစ်ပါ။"),
       t("Wipe dust or dirt from room corners with a tissue or wet wipe.", "部屋の隅のほこりや汚れは、ティッシュまたはウェットティッシュで拭いてください。", "အခန်းထောင့်ရှိ ဖုန် သို့မဟုတ် အညစ်အကြေးကို tissue သို့မဟုတ် wet tissue ဖြင့် သုတ်ပါ။")
+    ],
+    [
+      photo("assets/routines/nako-sofa-hair-room-corner-cleaning.png",
+        t("Beige sofa with a lint roller and a cloth wiping a room corner", "粘着クリーナーと部屋の隅を拭く布が描かれたベージュのソファ", "ဆိုဖာအမွေးဖယ်သည့် roller နှင့် အခန်းထောင့်သုတ်သည့်အဝတ်ပါသော အဝါနုရောင်ဆိုဖာ"),
+        t("Remove hair or fur from the sofa and wipe dust from room corners.", "ソファの髪や毛を取り、部屋の隅のほこりを拭きます。", "ဆိုဖာပေါ်က ဆံပင် သို့မဟုတ် အမွေးကိုဖယ်ပြီး အခန်းထောင့်ရှိ ဖုန်ကို သုတ်ပါ။"))
     ]),
   routine("vimle-sofa-bed", "as-needed", 117, "B",
     t("IKEA VIMLE Sofa-Bed", "IKEA VIMLE ソファベッド", "IKEA VIMLE ဆိုဖာအိပ်ရာ"),

@@ -71,6 +71,10 @@
   function mergeStates(remoteState = {}, localState = {}) {
     const remote = projectSharedState(remoteState);
     const local = projectSharedState(localState);
+    const mergedGamification = remote.gamification || local.gamification
+      ? (gamification?.mergeGamificationState?.(remote.gamification, local.gamification)
+        || mergeGamificationState(remote.gamification, local.gamification))
+      : null;
     const merged = projectSharedState({
       ...remote,
       ...local,
@@ -80,8 +84,7 @@
       routineTrackingStartedDate: earliestDate(remote.routineTrackingStartedDate, local.routineTrackingStartedDate),
       diary: mergeDiaryState(remote.diary, local.diary),
       training: mergeTrainingState(remote.training, local.training),
-      gamification: gamification?.mergeGamificationState?.(remote.gamification, local.gamification)
-        || mergeGamificationState(remote.gamification, local.gamification)
+      ...(mergedGamification ? { gamification: mergedGamification } : {})
     });
     return weightHistory?.applyToState?.(merged) || merged;
   }

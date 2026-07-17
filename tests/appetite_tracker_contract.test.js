@@ -32,9 +32,15 @@ assert.match(pageSource, /id: "nako-feeding-water", type: "routine", labelKey: "
 assert.equal(data.ui.en.shortcutAppetiteTracker, "Nako Appetite Tracker");
 assert.ok(data.ui.jp.shortcutAppetiteTracker);
 assert.ok(data.ui.mm.shortcutAppetiteTracker);
+for (const lang of ["en", "jp", "mm"]) {
+  assert.ok(data.ui[lang].appetiteKibbleGrams, `Kibble amount needs a ${lang} label`);
+  assert.ok(data.ui[lang].appetiteFrozenFoodCubes, `Frozen food cubes need a ${lang} label`);
+}
 assert.match(appetiteSource, /PERCENTAGES\.map/);
 assert.match(appetiteSource, /recentEntries\(entries, today, 30/);
 assert.match(appetiteSource, /data-appetite-edit/);
+assert.match(appetiteSource, /data-appetite-measurement="kibbleGrams"/);
+assert.match(appetiteSource, /data-appetite-measurement="frozenFoodCubes"/);
 assert.doesNotMatch(appetiteSource, /data-appetite-delete/);
 
 console.log("Appetite tracker route and UI contracts passed.");

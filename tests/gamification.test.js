@@ -92,11 +92,16 @@ const root = path.join(__dirname, "..");
 const actions = fs.readFileSync(path.join(root, "src/features/actions.js"), "utf8");
 const appetite = fs.readFileSync(path.join(root, "src/features/appetite.js"), "utf8");
 const routineState = fs.readFileSync(path.join(root, "src/features/routine-state.js"), "utf8");
+const pages = fs.readFileSync(path.join(root, "src/features/pages.js"), "utf8");
 assert.match(actions, /if \(isNewEntry\) celebrateCareSave\("diary"\)/);
 assert.match(actions, /if \(isNewLog\) celebrateCareSave\("training"/);
 assert.match(actions, /if \(isNewLog\) celebrateCareSave\("play"\)/);
 assert.match(appetite, /if \(!existingEntry\) celebrateCareSave\("health"\)/);
-assert.match(routineState, /pendingNewWeightDates\.has\(dateKey\)/);
+assert.match(routineState, /dataset\.gamificationNewEntry === "true"/);
 assert.match(routineState, /celebrateCareSave\("routine"\)/);
+assert.ok(
+  pages.indexOf("renderGamificationAlbumHome()") > pages.indexOf("renderAdditionalResources()"),
+  "The postcard album should stay below task-focused home content"
+);
 
 console.log("Gamification derivation, unlock persistence, and save-trigger contracts passed.");
