@@ -640,13 +640,13 @@ function renderRecipeIndex(item) {
   }
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
+    <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>
     ${isHuman ? renderRelatedPageLinks([
       ["#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")],
       ["#routine/grocery-shopping", "🛒", label("relatedGroceryShopping"), label("relatedGroceryShoppingDescription")],
       ["#section/food-safety", "🛡️", label("relatedKitchenSafety"), label("relatedKitchenSafetyDescription")]
     ]) : ""}
-    ${isHuman ? renderFoodMemory(item) : ""}
-    <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
+    ${isHuman ? renderFoodMemory(item) : ""}`;
   renderShell(tr(item.title), content, true);
 }
 
