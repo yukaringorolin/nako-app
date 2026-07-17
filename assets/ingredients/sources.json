@@ -1,0 +1,331 @@
+{
+  "apple": {
+    "file": "apple.jpg",
+    "target": "Fresh apple",
+    "sourcePage": "https://www.fairprice.com.sg/product/china-fuji-apples-5-per-pack-13198956",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13198956_XL1_20260618.jpg",
+    "bytes": 286824
+  },
+  "bak-kut-teh-spices": {
+    "file": "bak-kut-teh-spices.jpg",
+    "target": "Singapore bak kut teh spice packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/song-fa-bak-kut-teh-spices-30g-13190511",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13190511_XL1_20201208.jpg",
+    "bytes": 124018
+  },
+  "banana": {
+    "file": "banana.jpg",
+    "target": "Fresh banana",
+    "sourcePage": "https://www.fairprice.com.sg/product/13135270",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13135270_XL1_20260601.jpg",
+    "bytes": 146978
+  },
+  "beef": {
+    "file": "beef.jpg",
+    "target": "Minced beef or sliced beef packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/tasty-food-affair-fresh-sliced-beef-grass-fed-300-g-90141684",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90141684_XL1_20260715130218_dcbb3fbfe816857bfda2579c044db71f.jpg",
+    "bytes": 128402
+  },
+  "black-beans": {
+    "file": "black-beans.jpg",
+    "target": "Sweetened black soybeans (kuromame)",
+    "sourcePage": "https://www.fulamingo.com/products/isshin-kuromame-black-beans",
+    "imageUrl": "http://www.fulamingo.com/cdn/shop/products/image_5b865364-dc50-4911-b959-3fbafc9c236f_1200x1200.jpg?v=1672105301",
+    "bytes": 70738
+  },
+  "black-pepper": {
+    "file": "black-pepper.jpg",
+    "target": "Black pepper grinder or shaker bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/nomu-black-pepper-grinder-50g-13019240",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13019240_XL1_20250205.jpg",
+    "bytes": 127820
+  },
+  "bread": {
+    "file": "bread.jpg",
+    "target": "Sliced sandwich bread",
+    "sourcePage": "https://www.fairprice.com.sg/product/fairprice-wholemeal-bread-80g-420g-12324272",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/12324272_XL1_20201231.jpg",
+    "bytes": 169632
+  },
+  "cherry-tomatoes": {
+    "file": "cherry-tomatoes.jpg",
+    "target": "Fresh cherry tomatoes punnet",
+    "sourcePage": "https://www.fairprice.com.sg/product/crunchy-fresh-cherry-tomato-grape-350g-11882491",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11882491_XL1_20250828.jpg",
+    "bytes": 448882
+  },
+  "chicken-wings": {
+    "file": "chicken-wings.jpg",
+    "target": "Raw chicken wings in a chilled supermarket pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/kee-song-fresh-chicken-mid-joint-wings-300g-13097629",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13097629_XL1_20230519.jpg",
+    "bytes": 169078
+  },
+  "chilli-powder": {
+    "file": "chilli-powder.jpg",
+    "target": "Chilli powder bottle or shaker",
+    "sourcePage": "https://www.fairprice.com.sg/product/s-b-ichimi-togarashi-japanese-chilli-powder-kirei-15-g-90056305",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90056305_XL1_20260711211223_1e47e9525261c41453543c332728569e.jpg",
+    "bytes": 72182
+  },
+  "crab-stick": {
+    "file": "crab-stick.jpg",
+    "target": "Crab sticks / surimi package",
+    "sourcePage": "https://www.fairprice.com.sg/product/seaboss-kanifumi-kamaboko-surimi-japanese-crabstick-halal-500-g-90027994",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90027994_XL1_20260702150316_2aef57d2fa0059b6c653cdda5b76c7b2.jpg",
+    "bytes": 148658
+  },
+  "dark-soy-sauce": {
+    "file": "dark-soy-sauce.jpg",
+    "target": "Dark soy sauce bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/tai-hua-standard-soy-sauce-dark-big-640ml-119075",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/119075_XL1_20230925.jpg",
+    "bytes": 70408
+  },
+  "dashi-soy-sauce": {
+    "file": "dashi-soy-sauce.jpg",
+    "target": "Japanese shiro dashi seasoning bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/yamaki-shiro-dashi-bonito-stock-seasoning-500-ml-90045774",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90045774_XL1_20260716223823_482c4719311b698d91c610789b06a357.jpg",
+    "bytes": 82296
+  },
+  "enoki-mushroom": {
+    "file": "enoki-mushroom.jpg",
+    "target": "Fresh enoki mushroom pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/simply-finest-enoki-mushroom-300g-13092651",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13092651_XL1_20230521.jpg",
+    "bytes": 93120
+  },
+  "fish-cake": {
+    "file": "fish-cake.jpg",
+    "target": "Japanese kamaboko fish cake log",
+    "sourcePage": "https://www.fairprice.com.sg/product/kirei-kikkoman-ita-kamaboko-frozen-japanese-white-fish-cake-220-g-90012399",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90012399_XL1_20260714170138_9a44b422a647e6ac0692d56c43f11696.jpg",
+    "bytes": 54704
+  },
+  "fresh-chilli": {
+    "file": "fresh-chilli.jpg",
+    "target": "Fresh red chillies",
+    "sourcePage": "https://www.fairprice.com.sg/product/simply-finest-red-chilli-150g-13093893",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13093893_XL1_20250808.jpg",
+    "bytes": 436052
+  },
+  "garlic": {
+    "file": "garlic.jpg",
+    "target": "Fresh garlic bulb",
+    "sourcePage": "https://www.fairprice.com.sg/product/defu-fresh-peeled-garlic-500g-10368386",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10368386_XL1_20221122.jpg",
+    "bytes": 120126
+  },
+  "garlic-pepper": {
+    "file": "garlic-pepper.jpg",
+    "target": "Garlic pepper seasoning bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/mccormick-seasoning-grinder-garlic-pepper-35g-11107866",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11107866_XL1_20250918.jpg",
+    "bytes": 102906
+  },
+  "ham": {
+    "file": "ham.jpg",
+    "target": "Ready-to-eat sliced ham",
+    "sourcePage": "https://www.fairprice.com.sg/product/kelly-s-sliced-ham-premium-apple-baked-200g-11113887",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11113887_XL1_20250911.jpg",
+    "bytes": 201370
+  },
+  "honey": {
+    "file": "honey.jpg",
+    "target": "Honey bottle or jar",
+    "sourcePage": "https://www.fairprice.com.sg/product/mother-earth-manuka-honey-umf-10-250g-13099701",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13099701_XL1_20260622.jpg",
+    "bytes": 159674
+  },
+  "japanese-curry-blocks": {
+    "file": "japanese-curry-blocks.jpg",
+    "target": "Japanese curry roux block packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/s-b-golden-curry-sauce-mix-mild-220g-13205704",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13205704_XL1_20250212.jpg",
+    "bytes": 192040
+  },
+  "kale": {
+    "file": "kale.jpg",
+    "target": "Fresh kale leaves pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/vegeponics-pesticide-free-curly-kale-120-g-90065989",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90065989_XL1_20260716201612_aee133ddf8aeac01a8c6333ea9a1097e.jpg",
+    "bytes": 118442
+  },
+  "king-oyster-mushroom": {
+    "file": "king-oyster-mushroom.jpg",
+    "target": "Fresh king oyster mushroom pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/eloasis-king-oyster-mushroom-300g-13243900",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13243900_XL1_20250926.jpg",
+    "bytes": 231614
+  },
+  "knorr-quick-serve-macaroni": {
+    "file": "knorr-quick-serve-macaroni.jpg",
+    "target": "Knorr Chicken Quick Serve Macaroni packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/knorr-chicken-quick-serve-macaroni-bundle-of-4",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90231905_XL1_20260715073615_f1c57473aff72eba46278ac9a50f6cbc.jpg",
+    "bytes": 221804
+  },
+  "matcha": {
+    "file": "matcha.jpg",
+    "target": "Japanese matcha powder packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/kirei-premium-100-japan-matcha-tea-powder-30-g-90091862",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90091862_XL1_20260714164213_dafd1f078fcbd1bad3d88f286dcd080f.jpg",
+    "bytes": 277524
+  },
+  "mayonnaise": {
+    "file": "mayonnaise.jpg",
+    "target": "Mayonnaise bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/kewpie-mayonnaise---japanese-style",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90223751_XL1_20260716174625_6a0ed57d3dd83712c3da2ad5f71d20eb.jpg",
+    "bytes": 71172
+  },
+  "milk": {
+    "file": "milk.jpg",
+    "target": "Fresh milk bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/meiji-fresh-milk-2lt-10238055",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10238055_XL1_20260601.jpg",
+    "bytes": 157054
+  },
+  "mixed-vegetables": {
+    "file": "mixed-vegetables.jpg",
+    "target": "Mixed vegetables pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/fairprice-mixed-vegetable-1kg-11475941",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11475941_XL1_20260601.jpg",
+    "bytes": 276704
+  },
+  "mushrooms": {
+    "file": "mushrooms.jpg",
+    "target": "Fresh mixed mushrooms",
+    "sourcePage": "https://www.fairprice.com.sg/product/eloasis-mixed-mushroom-combo-200g-13256463",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13256463_XL1_20250924.jpg",
+    "bytes": 247012
+  },
+  "nori": {
+    "file": "nori.jpg",
+    "target": "Japanese nori seaweed sheets packet",
+    "sourcePage": "https://payment.fairprice.com.sg/product/hamaotome-ariake-san-yakinori-10-pcs-sushi-seaweed-sheet-10-pc-90081194",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90081194_XL1_20260714171644_53b17264c82f295495c878f1657277e5.jpg",
+    "bytes": 140126
+  },
+  "osechi-sides": {
+    "file": "osechi-sides.jpg",
+    "target": "Japanese Osechi side-dish assortment",
+    "sourcePage": "https://www.ristorantetakada.com.sg/news-1-1/limited-to-30-sets-%E2%80%93-celebrate-2026-with-ristorante-takada%E2%80%99s-italian-osechi",
+    "imageUrl": "https://static.wixstatic.com/media/9ab8fa_19e44b93d8e84c0a9232488db50a5edc~mv2.jpg/v1/fill/w_1179,h_934,al_c,q_85/S__81182725_0.jpg",
+    "bytes": 188421
+  },
+  "osechi-vegetables": {
+    "file": "lotus-root.jpg",
+    "target": "Fresh lotus root, carrots, bamboo shoots, and mushrooms mix",
+    "sourcePage": "https://www.fairprice.com.sg/product/mr-fresh-slices-lotus-root-350g-13235036",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13235036_XL1_20230719.jpg",
+    "bytes": 72380
+  },
+  "peanut-butter": {
+    "file": "peanut-butter.jpg",
+    "target": "Peanut butter jar",
+    "sourcePage": "https://www.fairprice.com.sg/product/fairprice-peanut-butter-creamy-500g-13185255",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13185255_XL1_20260516.jpg",
+    "bytes": 149524
+  },
+  "pork-belly": {
+    "file": "pork-belly.jpg",
+    "target": "Raw pork belly block or slices",
+    "sourcePage": "https://www.fairprice.com.sg/product/pasar-fresh-pork-belly-300g-13280674",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13280674_XL1_20260117.jpg",
+    "bytes": 319132
+  },
+  "pork-loin": {
+    "file": "pork-loin.jpg",
+    "target": "Thick-cut pork loin chops",
+    "sourcePage": "https://www.fairprice.com.sg/product/tasty-food-affair-pork-loin-chop-500-g-90076868",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90076868_XL1_20260716080712_b8c07859d038d90531f0f387de45daaf.jpg",
+    "bytes": 53564
+  },
+  "pork-ribs": {
+    "file": "pork-ribs.jpg",
+    "target": "Raw pork ribs",
+    "sourcePage": "https://www.fairprice.com.sg/product/ksp-fresh-pork-prime-ribs-cuts-500-g-90065893",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90065893_XL1_20260715160329_99aba1f6f22a0b8400dc1e84d6e4b939.jpg",
+    "bytes": 149592
+  },
+  "pork-shoulder": {
+    "file": "pork-shoulder.jpg",
+    "target": "Pork shoulder butt slices",
+    "sourcePage": "https://www.fairprice.com.sg/product/pasar-fresh-pork-shoulder-butt-collar-300g-13280667",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13280667_XL1_20260117.jpg",
+    "bytes": 352004
+  },
+  "potato": {
+    "file": "potato.jpg",
+    "target": "Fresh whole potatoes",
+    "sourcePage": "https://www.fairprice.com.sg/product/holland-potato-china-1kg-13057650",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13057650_XL1_20260601.jpg",
+    "bytes": 349202
+  },
+  "potato-starch": {
+    "file": "potato-starch.jpg",
+    "target": "Potato starch packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/nissin-toromi-jyozu-katakuri-japanese-potato-starch-powder-180g-90016152",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90016152_XL1_20260714164213_8501316375c687273446134394bc7224.jpg",
+    "bytes": 100138
+  },
+  "prawns": {
+    "file": "prawns.jpg",
+    "target": "Fresh whole prawns/shrimps packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/serve-by-hai-sia-grey-vannamei-prawns-fresh-200-g-90196576",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90196576_XL1_20260716145759_5bd1e0a9172237bc3f2fe4ec1531799f.jpg",
+    "bytes": 393774
+  },
+  "rice-seasoning": {
+    "file": "rice-seasoning.jpg",
+    "target": "Furikake rice seasoning packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/hamaotome-yasai-furikake-japanese-vegetable-rice-seasoning-50-g-90077123",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90077123_XL1_20260711204658_081d75b0ef127a46fc86f8a2cabb7033.jpg",
+    "bytes": 71624
+  },
+  "spring-onion": {
+    "file": "spring-onion.jpg",
+    "target": "Fresh spring onion stalks",
+    "sourcePage": "https://www.fairprice.com.sg/product/10554146",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10554146_XL1_20250627.jpg",
+    "bytes": 307778
+  },
+  "squid": {
+    "file": "squid.jpg",
+    "target": "Cleaned squid in a labelled chilled or frozen pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/serve-by-hai-sia-squid-ring-fresh-200-g-90196579",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90196579_XL1_20260716210611_328e46c3d845da8479a2b212b4ea2d4b.jpg",
+    "bytes": 234286
+  },
+  "steak-pepper": {
+    "file": "steak-pepper.jpg",
+    "target": "Steak-pepper seasoning packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/10351373",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10351373_XL1_20211007.jpg",
+    "bytes": 174202
+  },
+  "strawberry-jam": {
+    "file": "strawberry-jam.jpg",
+    "target": "Strawberry jam jar",
+    "sourcePage": "https://www.fairprice.com.sg/product/golden-light-jam---strawberry-13144635",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13144635_XL1_20210114.jpg",
+    "bytes": 187734
+  },
+  "tau-pok": {
+    "file": "tau-pok.jpg",
+    "target": "Tau Pok fried tofu puffs in a labelled pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/mr-joys-fresh-yong-tau-foo-tao-pok",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90239443_XL1_20260714170716_1b07e9703e7f20d6d946b11bdb02948b.jpg",
+    "bytes": 162588
+  },
+  "wagyu-steak": {
+    "file": "wagyu-steak.jpg",
+    "target": "Wagyu steak package (chilled/frozen)",
+    "sourcePage": "https://www.fairprice.com.sg/product/heritage-choice-wagyu-ms4-beef-denver-steak",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90238769_XL1_20260712150342_279143af95778a8d6d967fda03dad560.jpg",
+    "bytes": 98770
+  }
+}

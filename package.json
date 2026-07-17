@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "scripts": {
     "preview": "node scripts/serve-preview.js",
-    "build:data": "node scripts/bundle.js",
+    "build:data": "node scripts/bundle.js && node scripts/refresh-ingredient-assets.mjs",
+    "sync:ingredients": "node scripts/bundle.js && node scripts/refresh-ingredient-assets.mjs",
+    "refresh:ingredients": "node scripts/bundle.js && node scripts/refresh-ingredient-assets.mjs --all",
     "check:bundle": "node scripts/check-generated-data.js",
     "check:syntax": "node scripts/check-syntax.js",
     "check:translations": "node scripts/check_translations.js",

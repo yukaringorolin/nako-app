@@ -31,6 +31,8 @@ tests/                        Unit and compatibility contracts
 
 ```bash
 npm run build:data
+npm run sync:ingredients
+npm run refresh:ingredients
 npm run check:translations
 npm test
 npm run check
@@ -39,12 +41,16 @@ npm run preview
 
 `npm run check` rebuilds `src/data.js`, confirms it is fresh, checks every JavaScript file, validates translations and content structure, validates ingredient assets, and runs every test.
 
+`npm run build:data` also finds and downloads any ingredient images missing from the current recipes. `npm run sync:ingredients` performs the same missing-image sync explicitly, while `npm run refresh:ingredients` refreshes the full ingredient image set.
+
 `npm run preview` serves the repository at `http://127.0.0.1:8765` for browser review.
 
 ## Content editing
 
 - Edit translated content only in `src/data/`.
 - Run `npm run build:data` afterward.
+- A new recipe ingredient defaults to `assets/ingredients/<ingredient-key>.jpg`. The build searches for a suitable Singapore grocery image, records its source in `assets/ingredients/sources.json`, and fails validation if no image is available.
+- For an ambiguous or Japanese-specialty ingredient, add a curated `source`, `target`, and optional `query` or `file` override in `src/ingredient_catalog.js`.
 - Keep all content IDs stable.
 - Follow [CONTENT_STYLE.md](CONTENT_STYLE.md) for short, direct helper-facing language.
 - Follow [AGENTS.md](AGENTS.md) for routine and compatibility rules.

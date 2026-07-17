@@ -15,6 +15,11 @@ const catalog = context.window.nakoIngredientCatalog;
 const recipes = context.window.nakoData?.recipes || [];
 const failures = [];
 
+function imageFile(key, entry) {
+  if (entry?.file === false) return null;
+  return entry?.file || `${key}.jpg`;
+}
+
 for (const [key, entry] of Object.entries(catalog)) {
   if (!entry.target) failures.push(`${key} is missing shopping target metadata.`);
   if (entry.file && !fs.existsSync(path.join(assetDir, entry.file))) failures.push(`${key} references missing asset ${entry.file}.`);
@@ -23,7 +28,12 @@ for (const [key, entry] of Object.entries(catalog)) {
 for (const recipe of recipes) {
   for (const item of recipe.ingredients) {
     const keys = [item.key, ...(item.alternatives || []).map((option) => option.key)];
-    for (const key of keys) if (!catalog[key]) failures.push(`${recipe.id} references unknown ingredient key ${key}.`);
+    for (const key of keys) {
+      const file = imageFile(key, catalog[key]);
+      if (!file || !fs.existsSync(path.join(assetDir, file))) {
+        failures.push(`${recipe.id} ingredient ${key} is missing ${file || "an image"}. Run npm run sync:ingredients.`);
+      }
+    }
   }
 }
 
@@ -41,4 +51,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Ingredient catalog validation passed for ${Object.keys(catalog).length} keys and ${recipes.length} recipes.`);
+console.log(`Ingredient catalog validation passed for ${Object.keys(catalog).length} catalog keys and ${recipes.length} recipes.`);

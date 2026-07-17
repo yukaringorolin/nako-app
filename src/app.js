@@ -135,8 +135,9 @@ function initFirebaseSync() {
 }
 
 function ingredientImage(key) {
-  const filename = ingredientCatalog[key]?.file;
-  return filename ? `assets/ingredients/${filename}` : null;
+  if (!key || ingredientCatalog[key]?.file === false) return null;
+  const filename = ingredientCatalog[key]?.file || `${key}.jpg`;
+  return `assets/ingredients/${filename}`;
 }
 
 function esc(value) {
