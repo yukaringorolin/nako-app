@@ -510,9 +510,16 @@ function renderRoutine(routineId) {
   const completionPanelHtml = isTracked && task.active !== false && !isInputTracked ? renderRoutineCompletionPanel(task) : "";
   const historyPanelHtml = isTracked && !isInputTracked ? renderTaskRoutineHistory(task.id) : "";
   const appetitePanelHtml = task.id === "nako-feeding-water" ? renderNakoAppetiteTracker() : "";
+  const groceryStockPanelHtml = task.id === "grocery-shopping" ? renderGroceryStockPanel(task) : "";
+  const relatedPageHtml = task.id === "daily-cooking"
+    ? renderRelatedPageLink("#food/human-food", "🍳", label("shortcutHumanFood"), label("relatedHumanFoodDescription"))
+    : "";
+  const headPhoto = task.id === "grocery-shopping" ? null : primaryPhoto(task.photos);
 
   const content = `
-    ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), primaryPhoto(task.photos))}
+    ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), headPhoto)}
+    ${groceryStockPanelHtml}
+    ${relatedPageHtml}
     ${backLinkHtml}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
     ${appetitePanelHtml}
@@ -523,6 +530,31 @@ function renderRoutine(routineId) {
     ${historyPanelHtml}
     ${renderVideo(task.videoUrl, task.videoUrlLabel)}`;
   renderShell(tr(task.title), content, true);
+}
+
+function renderGroceryStockPanel(task) {
+  const photo = task.stockPhoto;
+  const items = Array.isArray(task.stockItems) ? task.stockItems : [];
+  if (!photo?.src || !items.length) return "";
+  return `<section class="grocery-stock-panel" aria-labelledby="grocery-stock-heading">
+    <img class="grocery-stock-photo" src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" />
+    <div class="grocery-stock-content">
+      <h2 id="grocery-stock-heading">${esc(label("groceryKeepStock"))}</h2>
+      <ul class="grocery-stock-items">${items.map((item) => `<li>${esc(tr(item))}</li>`).join("")}</ul>
+    </div>
+  </section>`;
+}
+
+function renderRelatedPageLink(href, icon, title, description) {
+  return `<a class="related-page-link" href="${esc(href)}">
+    <span class="related-page-icon" aria-hidden="true">${esc(icon)}</span>
+    <span class="related-page-copy">
+      <span class="related-page-eyebrow">${esc(label("relatedPage"))}</span>
+      <strong>${esc(title)}</strong>
+      <small>${esc(description)}</small>
+    </span>
+    <span class="related-page-arrow" aria-hidden="true">→</span>
+  </a>`;
 }
 
 function renderFood(foodId) {
@@ -596,6 +628,7 @@ function renderRecipeIndex(item) {
   }
   const content = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
+    ${isHuman ? renderRelatedPageLink("#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")) : ""}
     ${isHuman ? renderFoodMemory(item) : ""}
     <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>`;
   renderShell(tr(item.title), content, true);

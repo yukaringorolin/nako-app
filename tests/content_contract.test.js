@@ -74,6 +74,7 @@ const nakoEmergency = routineById("nako-emergency");
 assert.equal(nakoEmergency.frequencyBucket, "daily");
 assert.equal(nakoEmergency.photos[0].src, "assets/sections/nako-emergency.png");
 const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
+const shellSource = fs.readFileSync(path.join(root, "src", "ui", "shell.js"), "utf8");
 assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonicalRoute\)/);
 assert.match(pageSource, /\$\{cards\}\s+\$\{dailySafety\}/);
 const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components.js"), "utf8");
@@ -192,6 +193,19 @@ const groceryShopping = routineById("grocery-shopping");
 assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
+assert.equal(groceryShopping.stockItems.length, 11);
+assert.deepEqual(Array.from(groceryShopping.stockItems, (item) => item.en), [
+  "Milk", "Eggs", "Bread", "Japanese rice", "Enoki mushrooms", "Brown shimeji mushrooms", "Tofu", "Frozen sliced pork", "Tomatoes", "Bananas", "Broccoli"
+]);
+for (const item of groceryShopping.stockItems) assert.ok(item.en && item.jp && item.mm);
+assert.equal(groceryShopping.stockPhoto.src, "assets/routines/grocery-essential-stock.jpg");
+assert.equal(fs.existsSync(path.join(root, groceryShopping.stockPhoto.src)), true);
+assert.doesNotMatch(englishText(groceryShopping.mustRemember), /Keep milk, eggs, bread/);
+assert.match(pageSource, /renderHead[\s\S]*groceryStockPanelHtml[\s\S]*backLinkHtml/, "The compact grocery stock panel must appear directly below the page heading");
+assert.match(pageSource, /task\.id === "daily-cooking"[\s\S]*?#food\/human-food/, "Daily Cooking must link to Human Food Ideas");
+assert.match(pageSource, /isHuman \? renderRelatedPageLink\("#routine\/daily-cooking"/, "Human Food Ideas must link back to Daily Cooking");
+assert.match(shellSource, /class="brand-home-link" href="#"/, "The Nako top-bar icon must link home");
+assert.match(stylesSource, /\.grocery-stock-panel\s*\{/);
 
 const laundromat = routineById("laundromat-heavy-items");
 assert.equal(laundromat.frequencyBucket, "as-needed");

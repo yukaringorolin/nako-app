@@ -93,7 +93,9 @@ function renderShell(title, content, showBack = false) {
       <header class="topbar">
         <button class="icon-button ${showBack ? "" : "is-hidden"}" data-back aria-label="${esc(label("back"))}">‹</button>
         <div class="brand-mini">
-          <img src="${NAKO_LOGO_SRC}" alt="Nako" />
+          <a class="brand-home-link" href="#" aria-label="${esc(label("appTitle"))}">
+            <img src="${NAKO_LOGO_SRC}" alt="Nako" />
+          </a>
           <span class="screen-title">${esc(title)}</span>
         </div>
         <div class="topbar-actions">

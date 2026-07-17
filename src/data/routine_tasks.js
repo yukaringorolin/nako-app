@@ -1251,9 +1251,24 @@ if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyBucket = "daily";
   groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
   groceryShoppingRoutine.sortOrder = 14;
+  groceryShoppingRoutine.stockItems = [
+    t("Milk", "牛乳", "နွားနို့"),
+    t("Eggs", "卵", "ကြက်ဥ"),
+    t("Bread", "パン", "ပေါင်မုန့်"),
+    t("Japanese rice", "日本米", "ဂျပန်ဆန်"),
+    t("Enoki mushrooms", "えのき", "enoki မှို"),
+    t("Brown shimeji mushrooms", "茶色のしめじ", "အညိုရောင် shimeji မှို"),
+    t("Tofu", "豆腐", "tofu"),
+    t("Frozen sliced pork", "冷凍豚肉スライス", "အေးခဲဝက်သားပါးပါး"),
+    t("Tomatoes", "トマト", "ခရမ်းချဉ်သီး"),
+    t("Bananas", "バナナ", "ငှက်ပျောသီး"),
+    t("Broccoli", "ブロッコリー", "ဘရိုကိုလီ")
+  ];
+  groceryShoppingRoutine.stockPhoto = photo("assets/routines/grocery-essential-stock.jpg",
+    t("Essential groceries including milk, eggs, bread, rice, mushrooms, tofu, pork, tomatoes, bananas, and broccoli", "牛乳、卵、パン、米、きのこ、豆腐、豚肉、トマト、バナナ、ブロッコリーなどの常備食品", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဆန်၊ မှို၊ tofu၊ ဝက်သား၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီ အပါအဝင် အမြဲထားရမည့် အစားအစာများ"),
+    t("Keep these essential groceries in stock.", "これらの基本食材を常備してください。", "ဤအခြေခံအစားအစာများကို အမြဲထားပါ။"));
   groceryShoppingRoutine.mustRemember.push(
     t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။"),
-    t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
     t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။"),
     t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။")
   );

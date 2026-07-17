@@ -108,6 +108,18 @@ img {
   gap: 9px;
 }
 
+.brand-home-link {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+}
+
+.brand-home-link:focus-visible {
+  outline: 3px solid #e7a26c;
+  outline-offset: 3px;
+}
+
 .brand-mini img {
   width: 36px;
   height: 36px;
@@ -1228,6 +1240,36 @@ img {
   text-decoration: underline;
 }
 
+.related-page-link {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  margin: 12px 0;
+  padding: 11px 13px;
+  border: 1px solid #f0c7a2;
+  border-radius: 14px;
+  background: #fff9f0;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 7px 18px rgba(82, 59, 38, .07);
+}
+.related-page-link:hover { border-color: #e59a56; background: #fff3de; }
+.related-page-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 23px;
+}
+.related-page-copy { min-width: 0; display: grid; gap: 1px; }
+.related-page-copy strong { font-size: 15px; }
+.related-page-copy small { color: var(--muted); font-size: 12px; line-height: 1.3; }
+.related-page-eyebrow { color: #a55a20; font-size: 10px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+.related-page-arrow { color: #a55a20; font-size: 23px; font-weight: 900; }
+
 .routine-completion-panel {
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -1413,6 +1455,78 @@ img {
   margin: 0 0 10px;
   font-size: 16px;
   line-height: 1.25;
+}
+
+.grocery-stock-panel {
+  display: grid;
+  grid-template-columns: minmax(120px, 30%) minmax(0, 1fr);
+  min-height: 150px;
+  margin: 0 0 12px;
+  overflow: hidden;
+  border: 2px solid #e7a26c;
+  border-radius: 12px;
+  background: #fffaf3;
+  box-shadow: 0 8px 22px rgba(92, 62, 35, 0.1);
+}
+
+.grocery-stock-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  object-fit: cover;
+  object-position: center;
+  background: #f6f1e9;
+}
+
+.grocery-stock-content {
+  min-width: 0;
+  padding: 12px;
+}
+
+.grocery-stock-content h2 {
+  margin: 0 0 8px;
+  color: #7d451f;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.grocery-stock-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grocery-stock-items li {
+  padding: 4px 7px;
+  border: 1px solid #efd3b8;
+  border-radius: 999px;
+  background: #fff;
+  color: #4b3b30;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 430px) {
+  .grocery-stock-panel {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .grocery-stock-content {
+    padding: 10px;
+  }
+
+  .grocery-stock-content h2 {
+    font-size: 15px;
+  }
+
+  .grocery-stock-items li {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
 }
 
 .panel p {
