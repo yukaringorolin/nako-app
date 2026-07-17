@@ -198,20 +198,29 @@ function sectionPhoto(section) {
   return section.image ? { src: section.image, alt: section.title } : null;
 }
 
-function renderDailyGuideGroup(group, tasks, section) {
-  const titleId = `daily-guide-${group.id}-title`;
+function renderRoutineGuideGroup(guideId, group, tasks, section) {
+  const titleId = `${guideId}-guide-${group.id}-title`;
+  const guideClass = `${guideId}-guide`;
   const countLabel = `${tasks.length} ${label("routineItems")}`;
-  return `<section class="daily-guide-group daily-guide-group-${esc(group.id)}" data-daily-guide-group="${esc(group.id)}" aria-labelledby="${esc(titleId)}">
-    <header class="daily-guide-group-header">
-      <span class="daily-guide-group-icon" aria-hidden="true">${esc(group.icon)}</span>
-      <span class="daily-guide-group-copy">
+  return `<section class="${guideClass}-group ${guideClass}-group-${esc(group.id)}" data-${guideClass}-group="${esc(group.id)}" aria-labelledby="${esc(titleId)}">
+    <header class="${guideClass}-group-header">
+      <span class="${guideClass}-group-icon" aria-hidden="true">${esc(group.icon)}</span>
+      <span class="${guideClass}-group-copy">
         <h2 id="${esc(titleId)}">${esc(label(group.titleKey))}</h2>
         <p>${esc(label(group.descriptionKey))}</p>
       </span>
-      <span class="daily-guide-group-count" aria-label="${esc(countLabel)}"><strong>${tasks.length}</strong><small>${esc(label("routineItems"))}</small></span>
+      <span class="${guideClass}-group-count" aria-label="${esc(countLabel)}"><strong>${tasks.length}</strong><small>${esc(label("routineItems"))}</small></span>
     </header>
-    <div class="card-list daily-guide-task-list">${tasks.map((task) => renderRoutineCard(task, section)).join("")}</div>
+    <div class="card-list ${guideClass}-task-list">${tasks.map((task) => renderRoutineCard(task, section)).join("")}</div>
   </section>`;
+}
+
+function renderDailyGuideGroup(group, tasks, section) {
+  return renderRoutineGuideGroup("daily", group, tasks, section);
+}
+
+function renderWeeklyGuideGroup(group, tasks, section) {
+  return renderRoutineGuideGroup("weekly", group, tasks, section);
 }
 
 function renderRulesPanel() {

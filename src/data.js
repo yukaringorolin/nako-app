@@ -168,6 +168,14 @@ const ui = {
     dailyGuideGroupAdminDescription: "Handle deliveries, notes, and household stock.",
     dailyGuideGroupSafetyTitle: "Safety First",
     dailyGuideGroupSafetyDescription: "Essential supervision, kind handling, and emergency guidance.",
+    weeklyGuideGroupNakoTitle: "Nako Weekly Care",
+    weeklyGuideGroupNakoDescription: "Deep-clean her space, check supplies, and record her weight.",
+    weeklyGuideGroupKitchenTitle: "Kitchen & Health",
+    weeklyGuideGroupKitchenDescription: "Deep-clean kitchen areas and keep food and supplements in order.",
+    weeklyGuideGroupHomeTitle: "Whole-Home Cleaning",
+    weeklyGuideGroupHomeDescription: "Clean the fixtures, floors, bins, glass, and fans around the home.",
+    weeklyGuideGroupLivingTitle: "Living Spaces & Maintenance",
+    weeklyGuideGroupLivingDescription: "Refresh linens and upholstery, then maintain tools and watch for pests.",
     safetyReferences: "Safety",
     noItems: "No items yet.",
     back: "Back",
@@ -368,6 +376,14 @@ const ui = {
     dailyGuideGroupAdminDescription: "配達物、記録、家庭用品の在庫を管理します。",
     dailyGuideGroupSafetyTitle: "安全第一",
     dailyGuideGroupSafetyDescription: "見守り、やさしい扱い、緊急時の大切な案内です。",
+    weeklyGuideGroupNakoTitle: "ナコの週次ケア",
+    weeklyGuideGroupNakoDescription: "ナコのスペースを徹底掃除し、用品を確認し、体重を記録します。",
+    weeklyGuideGroupKitchenTitle: "キッチン・健康管理",
+    weeklyGuideGroupKitchenDescription: "キッチンを徹底掃除し、食品とサプリメントを整えます。",
+    weeklyGuideGroupHomeTitle: "家全体の掃除",
+    weeklyGuideGroupHomeDescription: "家中のよく触る場所、トイレ、床、ゴミ箱、ガラス、扇風機を掃除します。",
+    weeklyGuideGroupLivingTitle: "居住空間・メンテナンス",
+    weeklyGuideGroupLivingDescription: "寝具とソファを整え、掃除道具を手入れし、害虫を確認します。",
     safetyReferences: "安全",
     noItems: "項目はありません。",
     back: "戻る",
@@ -568,6 +584,14 @@ const ui = {
     dailyGuideGroupAdminDescription: "delivery များ၊ မှတ်တမ်းများနှင့် အိမ်သုံးပစ္စည်း stock ကို စီမံပါ။",
     dailyGuideGroupSafetyTitle: "ဘေးကင်းရေး အရင်",
     dailyGuideGroupSafetyDescription: "Nako ကိုစောင့်ကြည့်ခြင်း၊ နူးညံ့စွာကိုင်တွယ်ခြင်းနှင့် အရေးပေါ်လမ်းညွှန်။",
+    weeklyGuideGroupNakoTitle: "Nako အပတ်စဉ်စောင့်ရှောက်မှု",
+    weeklyGuideGroupNakoDescription: "နေရာကို deep clean လုပ်ပြီး ပစ္စည်းတွေစစ်ကာ ကိုယ်အလေးချိန်မှတ်တမ်းတင်ပါ။",
+    weeklyGuideGroupKitchenTitle: "မီးဖိုချောင်နှင့် ကျန်းမာရေး",
+    weeklyGuideGroupKitchenDescription: "မီးဖိုချောင်ကို deep clean လုပ်ပြီး အစားအစာနဲ့ supplement တွေကို စနစ်တကျထားပါ။",
+    weeklyGuideGroupHomeTitle: "အိမ်တစ်လုံးလုံး သန့်ရှင်းရေး",
+    weeklyGuideGroupHomeDescription: "အိမ်တစ်လုံးလုံးရှိ မကြာခဏကိုင်တွယ်ရာနေရာများ၊ toilet၊ ကြမ်းပြင်၊ အမှိုက်ပုံး၊ မှန်နဲ့ ပန်ကာကို သန့်ရှင်းပါ။",
+    weeklyGuideGroupLivingTitle: "နေထိုင်ရာနေရာနှင့် ထိန်းသိမ်းမှု",
+    weeklyGuideGroupLivingDescription: "အိပ်ရာခင်းနဲ့ ဆိုဖာကို စီစဉ်ပြီး သန့်ရှင်းရေးပစ္စည်းတွေကို ထိန်းသိမ်းကာ ပိုးမွှားရှိမရှိစစ်ပါ။",
     safetyReferences: "ဘေးကင်းရေး",
     noItems: "ဘာမှမရှိသေးပါ။",
     back: "နောက်သို့",
@@ -2832,6 +2856,43 @@ Object.entries(dailyGuideLayout).forEach(([groupId, taskIds]) => {
     if (!task) return;
     task.dailyGuideGroup = groupId;
     task.dailyGuideOrder = index + 1;
+  });
+});
+
+// Display-only grouping for the Weekly Care Guide. This does not affect routine tracking.
+const weeklyGuideLayout = {
+  "nako-care": [
+    "nako-weekly-play-pen-deep-clean",
+    "nako-weight-tracking",
+    "nako-inventory-check"
+  ],
+  "kitchen-health": [
+    "kitchen-sink-drain-rack-counter",
+    "fridge-interior",
+    "supplement-pill-boxes"
+  ],
+  "whole-home-cleaning": [
+    "high-touch-surfaces",
+    "toilet-cleaning",
+    "rubbish-bin-washing",
+    "floor-mats",
+    "windows-glass-mirrors",
+    "ceiling-fan"
+  ],
+  "living-maintenance": [
+    "bedrooms-linens",
+    "sofa-covers-pillows",
+    "cleaning-tools",
+    "pest-check"
+  ]
+};
+
+Object.entries(weeklyGuideLayout).forEach(([groupId, taskIds]) => {
+  taskIds.forEach((taskId, index) => {
+    const task = routineTasks.find((entry) => entry.id === taskId);
+    if (!task) return;
+    task.weeklyGuideGroup = groupId;
+    task.weeklyGuideOrder = index + 1;
   });
 });
 

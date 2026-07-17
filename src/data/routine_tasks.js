@@ -1488,6 +1488,43 @@ Object.entries(dailyGuideLayout).forEach(([groupId, taskIds]) => {
   });
 });
 
+// Display-only grouping for the Weekly Care Guide. This does not affect routine tracking.
+const weeklyGuideLayout = {
+  "nako-care": [
+    "nako-weekly-play-pen-deep-clean",
+    "nako-weight-tracking",
+    "nako-inventory-check"
+  ],
+  "kitchen-health": [
+    "kitchen-sink-drain-rack-counter",
+    "fridge-interior",
+    "supplement-pill-boxes"
+  ],
+  "whole-home-cleaning": [
+    "high-touch-surfaces",
+    "toilet-cleaning",
+    "rubbish-bin-washing",
+    "floor-mats",
+    "windows-glass-mirrors",
+    "ceiling-fan"
+  ],
+  "living-maintenance": [
+    "bedrooms-linens",
+    "sofa-covers-pillows",
+    "cleaning-tools",
+    "pest-check"
+  ]
+};
+
+Object.entries(weeklyGuideLayout).forEach(([groupId, taskIds]) => {
+  taskIds.forEach((taskId, index) => {
+    const task = routineTasks.find((entry) => entry.id === taskId);
+    if (!task) return;
+    task.weeklyGuideGroup = groupId;
+    task.weeklyGuideOrder = index + 1;
+  });
+});
+
 // Automatic single-source-of-truth metadata application
 routineTasks.forEach((task) => {
   const isPinnedSafety = ["nako-emergency", "nako-kind-handling", "nako-supervision"].includes(task.id);

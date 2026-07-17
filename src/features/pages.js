@@ -438,6 +438,13 @@ const DAILY_GUIDE_GROUPS = Object.freeze([
   { id: "safety", icon: "🛡️", titleKey: "dailyGuideGroupSafetyTitle", descriptionKey: "dailyGuideGroupSafetyDescription" }
 ]);
 
+const WEEKLY_GUIDE_GROUPS = Object.freeze([
+  { id: "nako-care", icon: "🐾", titleKey: "weeklyGuideGroupNakoTitle", descriptionKey: "weeklyGuideGroupNakoDescription" },
+  { id: "kitchen-health", icon: "🍽️", titleKey: "weeklyGuideGroupKitchenTitle", descriptionKey: "weeklyGuideGroupKitchenDescription" },
+  { id: "whole-home-cleaning", icon: "🧹", titleKey: "weeklyGuideGroupHomeTitle", descriptionKey: "weeklyGuideGroupHomeDescription" },
+  { id: "living-maintenance", icon: "🛋️", titleKey: "weeklyGuideGroupLivingTitle", descriptionKey: "weeklyGuideGroupLivingDescription" }
+]);
+
 function renderDailyGuideGroups(items, section) {
   return `<div class="daily-guide-groups">${DAILY_GUIDE_GROUPS.map((group) => {
     const groupItems = items
@@ -447,12 +454,22 @@ function renderDailyGuideGroups(items, section) {
   }).join("")}</div>`;
 }
 
+function renderWeeklyGuideGroups(items, section) {
+  return `<div class="weekly-guide-groups">${WEEKLY_GUIDE_GROUPS.map((group) => {
+    const groupItems = items
+      .filter((item) => item.weeklyGuideGroup === group.id)
+      .sort((a, b) => (a.weeklyGuideOrder || a.sortOrder) - (b.weeklyGuideOrder || b.sortOrder));
+    return renderWeeklyGuideGroup(group, groupItems, section);
+  }).join("")}</div>`;
+}
+
 function renderSection(sectionId) {
   const section = homeSections.find((entry) => entry.id === sectionId);
   if (!section) return renderHome();
   const isFood = sectionId === "food";
   const isFoodSafety = sectionId === "food-safety";
   const isDailyGuide = sectionId === "daily";
+  const isWeeklyGuide = sectionId === "weekly";
   
   let items;
   if (isFood) {
@@ -476,6 +493,8 @@ function renderSection(sectionId) {
 
   const cards = isDailyGuide
     ? renderDailyGuideGroups(items, section)
+    : isWeeklyGuide
+      ? renderWeeklyGuideGroups(items, section)
     : isFoodSafety
       ? renderFoodSafetyGroups(section)
       : `<section class="card-list">${items.map((item) => {
