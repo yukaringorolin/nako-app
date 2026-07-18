@@ -209,6 +209,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90081194_XL1_20260714171644_53b17264c82f295495c878f1657277e5.jpg",
     "bytes": 140126
   },
+  "onion": {
+    "file": "onion.jpg",
+    "target": "Fresh whole onion",
+    "sourcePage": "https://www.fairprice.com.sg/product/orgo-fresh-indian-small-red-onion-200-g-90150768",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90150768_XL1_20260718204832_cff5af557f5ac3a081c4763e55b2ec3b.jpg",
+    "bytes": 75980
+  },
   "osechi-sides": {
     "file": "osechi-sides.jpg",
     "target": "Japanese Osechi side-dish assortment",

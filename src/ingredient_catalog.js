@@ -35,6 +35,7 @@
     ham: { file: null, source: search("sliced ham"), target: "Ready-to-eat sliced ham" },
     "fresh-chilli": { file: null, source: product("/product/simply-finest-red-chilli-150g-13093893"), target: "Fresh red chillies" },
     "spring-onion": { file: null, source: product("/product/10554146"), target: "Fresh spring onion stalks" },
+    onion: { file: null, source: search("fresh onion"), target: "Fresh whole onion" },
     spinach: { file: "spinach.jpg", source: product("/product/kok-fah-baby-spinach-200g-13032623"), target: "Fresh spinach pack" },
     lemon: { file: "lemon.jpg", source: product("/product/freshco-lemons-fresh"), target: "Fresh lemons" },
     pork: { file: "pork.jpg", source: product("/product/simply-yumme-pork-lean-slice"), target: "Lean raw pork slices in a labelled pack" },

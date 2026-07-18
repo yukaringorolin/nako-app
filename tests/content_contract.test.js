@@ -109,14 +109,19 @@ assert.match(englishText(routineById("floor-mats").mustRemember), /downstairs ne
 const mailDeliveries = routineById("mail-deliveries");
 assert.equal(mailDeliveries.instructions.length, 4);
 assert.match(englishText(mailDeliveries.instructions), /Do not leave them outside where they could be stolen/);
-assert.match(englishText(mailDeliveries.instructions), /When instructed to remove packaging/);
-assert.match(englishText(mailDeliveries.instructions), /If unsure whether to keep the packaging, keep it/);
-assert.doesNotMatch(englishText(mailDeliveries.mustRemember), /Unpack everything outside/);
+assert.match(englishText(mailDeliveries.instructions), /Always unpack the delivery outside/);
+assert.match(englishText(mailDeliveries.instructions), /discard all packaging outside/);
+assert.match(englishText(mailDeliveries.instructions), /Wipe every accessible surface/);
 assert.match(englishText(mailDeliveries.mustRemember), /Discard the first water, drink, or food output/);
 assert.deepEqual(Array.from(mailDeliveries.photos, (item) => item.src), [
   "assets/routines/nako-delivery-unpack-when-instructed.jpg",
   "assets/routines/nako-delivery-wipe-item.jpg"
 ]);
+const physicalMailbox = routineById("physical-mailbox-check");
+assert.equal(physicalMailbox.frequencyBucket, "daily");
+assert.equal(physicalMailbox.trackingMode, "none");
+assert.match(physicalMailbox.summary.en, /physically open the household mailbox every day/);
+assert.match(englishText(physicalMailbox.mustRemember), /important or official letter/);
 const rubbish = routineById("rubbish");
 assert.equal(rubbish.trackingMode, "none");
 assert.equal(rubbish.trackingCadence, null);
@@ -141,7 +146,13 @@ assert.match(englishText(routineById("ceiling-fan").mustRemember), /separate dir
 assert.ok(routineById("ceiling-fan").photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
 assert.match(englishText(routineById("cleaning-tools").mustRemember), /luggage wheels.*standard Magiclean disinfectant/);
 assert.ok(routineById("cleaning-tools").photos.some((item) => item.src === "assets/routines/separate-cloth-magiclean-dirty-areas.jpg"));
+assert.doesNotMatch(englishText(routineById("cleaning-tools").mustRemember), /pink/i);
+assert.doesNotMatch(englishText(routineById("cleaning-tools").photos.map((item) => [item.alt, item.caption]).flat()), /pink/i);
+assert.equal(routineById("cleaning-tools").frequencyBucket, "fortnightly");
+assert.deepEqual(Array.from(routineById("cleaning-tools").legacyTrackingCadences), ["weekly"]);
 assert.match(englishText(routineById("fridge-interior").mustRemember), /small, shallow containers/);
+assert.equal(routineById("fridge-interior").frequencyBucket, "monthly");
+assert.deepEqual(Array.from(routineById("fridge-interior").legacyTrackingCadences), ["weekly"]);
 assert.match(englishText(routineById("general-surface-cleaning").mustRemember), /sneezing, a runny or itchy nose/);
 assert.match(englishText(routineById("coffee-machine-descaling").mustRemember), /Do not descale the machine alone yet/);
 assert.equal(routineById("coffee-machine-descaling").videoUrl, "https://www.youtube.com/embed/vcVPB1-0huA");
@@ -190,7 +201,11 @@ assert.deepEqual(Array.from(vimleSofaBed.photos, (item) => item.src), [
 ]);
 
 const groceryShopping = routineById("grocery-shopping");
-assert.doesNotMatch(englishText(groceryShopping.mustRemember), /NTUC|QR code/i);
+assert.equal(groceryShopping.frequencyBucket, "daily");
+assert.equal(groceryShopping.trackingMode, "none");
+assert.match(englishText(groceryShopping.mustRemember), /Before about 9 a\.m\..*wet-market.*After about 9 a\.m\..*NTUC FairPrice/);
+assert.match(englishText(groceryShopping.mustRemember), /daily active reference check, not a completion-checklist item/);
+assert.match(englishText(groceryShopping.mustRemember), /keep the receipt.*chilled or frozen food home immediately/);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
 assert.equal(groceryShopping.stockItems.length, 11);
@@ -258,6 +273,12 @@ assert.deepEqual(Array.from(chickenWings.photos, (item) => item.src), [
   "assets/recipes/human-food/air-fryer-chicken-wings-wet-market-stall.jpg",
   "assets/recipes/human-food/air-fryer-chicken-wings-marinating-pot.jpg"
 ]);
+
+const braisedPork = recipeById("braised-pork-tau-pok-eggs-no-onion");
+assert.equal(braisedPork.title.en, "Braised Pork, Tau Pok & Eggs");
+assert.ok(braisedPork.ingredients.some((item) => item.key === "onion" && item.amount.en === "a small amount"));
+assert.match(englishText(braisedPork.method), /Sauté the garlic, ginger, and onion/);
+assert.match(braisedPork.note.en, /Onion is required.*human-only.*Never feed this dish to Nako/);
 
 const pendingDemoRecipeIds = [
   "pork-shogayaki-no-onion",

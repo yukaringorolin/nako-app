@@ -111,6 +111,39 @@ assert.equal(ikeaBedFrameCleaning.frequencyBucket, "quarterly", "IKEA bed-frame 
 assert.equal(ikeaBedFrameCleaning.trackingCadence, "quarterly", "IKEA bed-frame cleaning must use quarterly completion cycles");
 assert.equal(ikeaBedFrameCleaning.trackingAnchor, null, "Quarterly IKEA bed-frame cleaning must not retain the fortnightly anchor");
 
+const fridgeInterior = allTasks.find((task) => task.id === "fridge-interior");
+const cleaningTools = allTasks.find((task) => task.id === "cleaning-tools");
+assert.equal(fridgeInterior.trackingCadence, "monthly");
+assert.equal(cleaningTools.trackingCadence, "fortnightly");
+assert.deepEqual(Array.from(fridgeInterior.legacyTrackingCadences), ["weekly"]);
+assert.deepEqual(Array.from(cleaningTools.legacyTrackingCadences), ["weekly"]);
+
+const monthlyCycle = tracking.cycleForDate("monthly", "2026-07-18");
+const legacyWeeklyRecord = {
+  id: "fridge-interior_weekly_2026-07-13",
+  taskId: "fridge-interior",
+  cycleKey: "weekly_2026-07-13",
+  completedDate: "2026-07-15",
+  updatedAt: "2026-07-15T08:00:00Z"
+};
+assert.equal(
+  tracking.compatibleRecordForCycle({ [legacyWeeklyRecord.id]: legacyWeeklyRecord }, fridgeInterior, monthlyCycle),
+  legacyWeeklyRecord,
+  "A legacy weekly completion within the new monthly cycle must satisfy the current cycle"
+);
+const exactMonthlyRecord = {
+  id: "fridge-interior_monthly_2026-07",
+  taskId: "fridge-interior",
+  cycleKey: "monthly_2026-07",
+  completedDate: "2026-07-18",
+  updatedAt: "2026-07-18T08:00:00Z"
+};
+assert.equal(
+  tracking.compatibleRecordForCycle({ [legacyWeeklyRecord.id]: legacyWeeklyRecord, [exactMonthlyRecord.id]: exactMonthlyRecord }, fridgeInterior, monthlyCycle),
+  exactMonthlyRecord,
+  "An exact current-cadence completion must take precedence over a legacy completion"
+);
+
 // 10. A newly added mock tracked task would automatically be selected by trackedRoutineTasks predicate logic
 const mockTask = {
   id: "mock-weekly-oven-clean",

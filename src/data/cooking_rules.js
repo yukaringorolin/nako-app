@@ -1,7 +1,7 @@
 const cookingRules = [
   t("Cook up to 3 meals a day when needed.", "必要に応じて1日最大3食調理します。", "လိုအပ်ပါက တစ်နေ့လျှင် ၃ နပ်အထိ ချက်ပြုတ်ပါ။"),
   t("Focus on high protein and low fat.", "高タンパク質かつ低脂質を意識してください。", "ပရိုတင်းဓာတ်မြင့်မားပြီး အဆီဓာတ်နည်းပါးခြင်းကို အဓိကထားပါ။"),
-  t("Do not use onion, coriander, parsley, or bean sprouts.", "玉ねぎ、パクチー、パセリ、もやしは使用しないでください。", "ကြက်သွန်နီ၊ နံနံပင်၊ ပါစလီ သို့မဟုတ် ပဲပင်ပေါက် လုံးဝမသုံးပါနှင့်။"),
+  t("Do not use onion, coriander, parsley, or bean sprouts. The only onion exception is the human-only Braised Pork, Tau Pok & Eggs recipe; never give that dish to Nako.", "玉ねぎ、パクチー、パセリ、もやしは使用しないでください。玉ねぎの唯一の例外は、人用の「豚肉・厚揚げ・卵の醤油煮込み」です。その料理は絶対にナコへ与えないでください。", "ကြက်သွန်နီ၊ နံနံပင်၊ parsley သို့မဟုတ် ပဲပင်ပေါက်ကို မသုံးပါနှင့်။ ကြက်သွန်နီအတွက် တစ်ခုတည်းသော ခြွင်းချက်သည် လူစားရန်သာဖြစ်သော ဝက်သား၊ Tau Pok နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ်ဟင်းဖြစ်သည်။ ထိုဟင်းကို Nako ကို လုံးဝမကျွေးပါနှင့်။"),
   t("Ask before using unfamiliar ingredients.", "見慣れない食材を使用する前には確認してください。", "မရင်းနှီးသော ပါဝင်ပစ္စည်းများကို အသုံးမပြုမီ အရင်မေးပါ။"),
   t("Ask before changing the menu.", "メニューを変更する前には確認してください。", "မီနူးကို မပြောင်းလဲမီ အရင်မေးပါ။"),
   t("Clean the kitchen after cooking.", "調理後にキッチンを掃除してください。", "ချက်ပြုတ်ပြီးနောက် မီးဖိုချောင်ကို သန့်ရှင်းရေးလုပ်ပါ။"),

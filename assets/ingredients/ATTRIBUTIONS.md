@@ -301,6 +301,13 @@ Curated online reference images for this private household app. Every file is a 
 - **File**: `oil.png`
 - **Shopping target**: Premium bottle of extra virgin olive oil
 
+## onion
+
+- **File**: `onion.jpg`
+- **Shopping target**: Fresh whole onion
+- **Source page**: https://www.fairprice.com.sg/product/orgo-fresh-indian-small-red-onion-200-g-90150768
+- **Downloaded image**: https://media.nedigital.sg/fairprice/90150768_XL1_20260718204832_cff5af557f5ac3a081c4763e55b2ec3b.jpg
+
 ## osechi-sides
 
 - **File**: `osechi-sides.jpg`

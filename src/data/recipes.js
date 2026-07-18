@@ -474,11 +474,12 @@ const recipes = [
     }
   ),
   recipe("braised-pork-tau-pok-eggs-no-onion",
-    t("Braised Pork, Tau Pok & Eggs (No Onion)", "豚肉・厚揚げ・卵の醤油煮込み（玉ねぎなし）", "ဝက်သား၊ တိုဟူးကြော်နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ် (ကြက်သွန်နီမပါ)"),
+    t("Braised Pork, Tau Pok & Eggs", "豚肉・厚揚げ・卵の醤油煮込み", "ဝက်သား၊ တိုဟူးကြော်နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ်"),
     [
       [t("Cubed pork", "角切り豚肉", "အတုံးလေးများလှီးထားသော ဝက်သား"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "pork"],
       [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("3-4 cloves", "3〜4片", "၃-၄ မွှာ"), "garlic"],
       [t("Ginger", "生姜", "ဂျင်း"), t("3-4 slices", "3〜4枚", "၃-၄ ပြား"), "ginger"],
+      [t("Onion", "玉ねぎ", "ကြက်သွန်နီ"), t("a small amount", "少量", "အနည်းငယ်"), "onion"],
       [t("Tau Pok", "厚揚げ（Tau Pok）", "တိုဟူးကြော် (Tau Pok)"), t("as needed", "必要な量", "လိုအပ်သလောက်"), "tau-pok"],
       [t("Boiled eggs", "ゆで卵", "ကြက်ဥပြုတ်"), t("about 5, adjusted to servings", "約5個、人数に合わせる", "၅ လုံးခန့်၊ စားမည့်လူအရေအတွက်အလိုက်"), "eggs"],
       [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("1 tablespoon", "大さじ1", "စားပွဲတင်ဇွန်း ၁ ဇွန်း"), "soy-sauce"],
@@ -489,21 +490,21 @@ const recipes = [
     ],
     [
       t("If the pork is frozen, thaw it safely before cooking.", "豚肉が冷凍の場合は、安全に解凍してから調理します。", "ဝက်သားအေးခဲထားပါက ဘေးကင်းစွာ အရည်ဖျော်ပြီးမှ ချက်ပါ။"),
-      t("Heat a small amount of oil in a frying pan. Sauté the garlic and ginger until fragrant. Do not add onion.", "フライパンに少量の油を熱し、にんにくと生姜を香りが出るまで炒めます。玉ねぎは入れません。", "ဒယ်အိုးထဲတွင် ဆီအနည်းငယ်ပူအောင်လုပ်ပြီး ကြက်သွန်ဖြူနှင့် ဂျင်းကို မွှေးလာသည်အထိ ကြော်ပါ။ ကြက်သွန်နီ မထည့်ပါနှင့်။"),
+      t("Heat a small amount of oil in a frying pan. Sauté the garlic, ginger, and onion until fragrant.", "フライパンに少量の油を熱し、にんにく、生姜、玉ねぎを香りが出るまで炒めます。", "ဒယ်အိုးထဲတွင် ဆီအနည်းငယ်ပူအောင်လုပ်ပြီး ကြက်သွန်ဖြူ၊ ဂျင်းနှင့် ကြက်သွန်နီကို မွှေးလာသည်အထိ ကြော်ပါ။"),
       t("Add the pork and cook until the outside is lightly browned.", "豚肉を加え、表面に軽く焼き色が付くまで炒めます。", "ဝက်သားထည့်ပြီး အပြင်ဘက် အနည်းငယ်ညိုလာသည်အထိ ကြော်ပါ။"),
       t("Add 1 tablespoon soy sauce, 1 tablespoon red-label dark soy sauce, and a little garlic pepper. Mix well.", "醤油大さじ1、赤いラベルのダークソイソース大さじ1、ガーリックペッパー少々を加えてよく混ぜます。", "ပဲငံပြာရည် ၁ ဇွန်း၊ အနီရောင် label ပါသော dark soy sauce ၁ ဇွန်းနှင့် garlic pepper အနည်းငယ်ထည့်ပြီး ကောင်းကောင်းရောပါ။"),
       t("Add the Tau Pok and boiled eggs, then add enough water to cover about half of the ingredients.", "厚揚げとゆで卵を加え、材料が半分くらい浸かるまで水を入れます。", "Tau Pok နှင့် ကြက်ဥပြုတ်ထည့်ပြီး ပါဝင်ပစ္စည်းများ တစ်ဝက်ခန့်မြုပ်သည်အထိ ရေထည့်ပါ။"),
       t("Transfer to a pot and simmer gently over low to medium heat for about 45 minutes. Add water before the pot dries out.", "鍋へ移し、弱火〜中火で約45分ゆっくり煮込みます。鍋が乾く前に水を足してください。", "အိုးထဲပြောင်းပြီး မီးအေးမှ မီးအလယ်အလတ်ဖြင့် ၄၅ မိနစ်ခန့် ဖြည်းဖြည်းတည်ပါ။ အိုးမခြောက်မီ ရေထပ်ထည့်ပါ။"),
       t("Make sure the pork is fully cooked before serving.", "提供前に豚肉へ完全に火が通っていることを確認します。", "မပေးမီ ဝက်သား လုံးဝကျက်ကြောင်း စစ်ပါ။")
     ],
-    t("Everyone's favorite recipe. Strictly no onion. Use the red-label bottle for dark soy sauce, keep the simmer gentle, and adjust the boiled eggs to the number of servings.", "みんなのお気に入りレシピです。玉ねぎは絶対に入れません。ダークソイソースは赤いラベルのボトルを使い、弱めの火で煮込み、ゆで卵は人数に合わせます。", "လူတိုင်းအကြိုက်ဆုံး ဟင်းချက်နည်းဖြစ်သည်။ ကြက်သွန်နီ လုံးဝမထည့်ပါနှင့်။ dark soy sauce အတွက် အနီရောင် label ပါသောပုလင်းကိုသုံးပြီး မီးအေးအေးဖြင့်တည်ကာ ကြက်ဥပြုတ်ကို စားမည့်လူအရေအတွက်အလိုက် ချိန်ညှိပါ။"),
+    t("Everyone's favorite recipe. Onion is required in this human-only recipe. Never feed this dish to Nako. Use the red-label bottle for dark soy sauce, keep the simmer gentle, and adjust the boiled eggs to the number of servings.", "みんなのお気に入りレシピです。この人用レシピには玉ねぎが必要です。この料理は絶対にナコへ与えないでください。ダークソイソースは赤いラベルのボトルを使い、弱めの火で煮込み、ゆで卵は人数に合わせます。", "လူတိုင်းအကြိုက်ဆုံး ဟင်းချက်နည်းဖြစ်သည်။ လူစားရန်သာဖြစ်သော ဤဟင်းတွင် ကြက်သွန်နီ မဖြစ်မနေထည့်ရမည်။ ဤဟင်းကို Nako ကို လုံးဝမကျွေးပါနှင့်။ dark soy sauce အတွက် အနီရောင် label ပါသောပုလင်းကိုသုံးပြီး မီးအေးအေးဖြင့်တည်ကာ ကြက်ဥပြုတ်ကို စားမည့်လူအရေအတွက်အလိုက် ချိန်ညှိပါ။"),
     [
       photo("assets/recipes/human-food/braised-pork-simmering.jpg",
         t("Simmering braised pork with Tau Pok and eggs", "厚揚げと卵入りの豚の醤油煮込みを煮る", "တိုဟူးကြော်နှင့် ကြက်ဥပါသော ဝက်သားပဲငံပြာရည်နှပ်ကို ချက်ခြင်း"),
         t("Simmer gently over low to medium heat for about 45 minutes, adding water as needed.", "弱火〜中火で約45分ゆっくり煮込み、必要に応じて水を足します。", "မီးအေးအေးမှ မီးအလယ်အလတ်ဖြင့် ၄၅ မိနစ်ခန့် ဖြည်းဖြည်းတည်ပြီး လိုအပ်ပါက ရေထည့်ပါ။")),
       photo("assets/recipes/human-food/braised-pork-ingredients.jpg",
         t("Garlic, ginger, onion, and pork in frying pan", "フライパンに入れたにんにく、生姜、玉ねぎ、豚肉", "ဒယ်အိုးထဲရှိ ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီနှင့် ဝက်သား"),
-        t("Sauté garlic, ginger, onion (if using), and pork together in the pan.", "にんにく、生姜、玉ねぎ（使用する場合）、豚肉をフライパンで一緒に炒めます。", "ကြက်သွန်ဖြူ၊ ဂျင်း၊ ကြက်သွန်နီ (သုံးပါက) နှင့် ဝက်သားတို့ကို ဒယ်အိုးထဲတွင် အတူတူလှော်ပါ။")),
+        t("Sauté the required onion with the garlic, ginger, and pork in the pan.", "必要な玉ねぎを、にんにく、生姜、豚肉と一緒にフライパンで炒めます。", "မဖြစ်မနေထည့်ရသော ကြက်သွန်နီကို ကြက်သွန်ဖြူ၊ ဂျင်းနှင့် ဝက်သားတို့နှင့်အတူ ဒယ်အိုးထဲတွင် လှော်ပါ။")),
       photo("assets/recipes/human-food/braised-pork-sauting.jpg",
         t("Sautéing cubed pork belly in the frying pan", "フライパンで角切りの豚バラ肉を炒める", "ဒယ်အိုးထဲတွင် ဝက်သုံးထပ်သားတုံးများကို လှော်ခြင်း"),
         t("Cook the cubed pork belly until the outside is lightly browned.", "角切りの豚バラ肉の表面に軽く焼き色が付くまで炒めます。", "ဝက်သုံးထပ်သားတုံးများ အပြင်ဘက် အနည်းငယ်ညိုလာသည်အထိ ကြော်ပါ။")),

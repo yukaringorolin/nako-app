@@ -64,8 +64,7 @@ function activeRoutineRecord(task, dateKey = routineTracking.singaporeDateKey())
       synthetic: true
     };
   }
-  const record = routineRecords()[routineTracking.completionId(task.id, cycle.key)];
-  return record && !record.deleted ? record : null;
+  return routineTracking.compatibleRecordForCycle(routineRecords(), task, cycle);
 }
 
 function currentChecklist() {
@@ -265,7 +264,7 @@ function missedRoutineHistoryRecords(tasks) {
     let guard = 0;
     while (cycle?.end && cycle.end < today && guard < 600) {
       const id = routineTracking.completionId(task.id, cycle.key);
-      const record = routineRecords()[id];
+      const record = routineTracking.compatibleRecordForCycle(routineRecords(), task, cycle);
       if (!record || record.deleted) missed.push({ id: `missed_${id}`, taskId: task.id, cycleKey: cycle.key, completedDate: cycle.end, note: "", missed: true, cycle });
       cycle = routineCycle(task, routineTracking.addDays(cycle.end, 1));
       guard += 1;
@@ -286,7 +285,7 @@ function getTaskSpecificHistory(task, limit = 8) {
     let guard = 0;
     while (cycle?.end && cycle.end < today && guard < 600) {
       const id = routineTracking.completionId(task.id, cycle.key);
-      const record = routineRecords()[id];
+      const record = routineTracking.compatibleRecordForCycle(routineRecords(), task, cycle);
       if (!record || record.deleted) {
         missed.push({ id: `missed_${id}`, taskId: task.id, cycleKey: cycle.key, completedDate: cycle.end, note: "", missed: true, cycle });
       }

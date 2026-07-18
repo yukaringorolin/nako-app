@@ -66,7 +66,7 @@ const routineTasks = [
     t("Daily Cooking", "毎日の料理", "နေ့စဉ်ချက်ပြုတ်ခြင်း"),
     t("Cook 3 meals a day, focusing on high-protein, lower-fat dishes to hit the 180g daily target, plus ad hoc snacks.", "高タンパク・低脂質を意識して、1日3食と必要に応じた軽食を作る。", "တစ်နေ့ ၃ နပ် ချက်ပါ။ နေ့စဉ် protein 180g ရောက်ရန် protein များပြီး အဆီနည်းသော ဟင်းများကို အဓိကထားပါ။ လိုအပ်လျှင် snack များလည်းပြင်ပါ။"),
     t("3 meals/day + snacks", "1日3食＋軽食", "တစ်နေ့ ၃ နပ် + snack"),
-    t("Strictly NO onions, NO coriander, NO parsley, NO beansprouts. Do not eat or keep food or snacks in bedrooms; use only the kitchen, dining, or living areas.", "玉ねぎ、パクチー、パセリ、もやしは絶対に入れない。寝室では食べ物やお菓子を食べたり保管したりせず、キッチン、ダイニング、リビングだけで扱ってください。", "ကြက်သွန်နီ၊ နံနံပင်၊ parsley နှင့် ပဲပင်ပေါက်ကို လုံးဝမထည့်ပါနှင့်။ အိပ်ခန်းများတွင် အစားအစာ သို့မဟုတ် မုန့်များကို မစား၊ မထားပါနှင့်။ မီးဖိုချောင်၊ dining သို့မဟုတ် living area တွင်သာ စား/ထားပါ။"),
+    t("Do not use onion, coriander, parsley, or bean sprouts, except in the human-only Braised Pork, Tau Pok & Eggs recipe. Never give it to Nako. Keep food and snacks out of bedrooms; use only the kitchen, dining, or living areas.", "玉ねぎ、パクチー、パセリ、もやしは使わないでください。ただし、人用の「豚肉・厚揚げ・卵の醤油煮込み」だけは例外です。絶対にナコへ与えないでください。寝室に食べ物やお菓子を持ち込まず、キッチン、ダイニング、リビングだけで扱ってください。", "ကြက်သွန်နီ၊ နံနံပင်၊ parsley နှင့် ပဲပင်ပေါက်ကို မသုံးပါနှင့်။ လူစားရန်သာဖြစ်သော ဝက်သား၊ Tau Pok နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ်ဟင်းတစ်ခုတည်းသာ ခြွင်းချက်ဖြစ်သည်။ Nako ကို လုံးဝမကျွေးပါနှင့်။ အိပ်ခန်းများတွင် အစားအစာနှင့်မုန့်များ မထားဘဲ မီးဖိုချောင်၊ dining သို့မဟုတ် living area တွင်သာ ထားပါ။"),
     [
       photo("assets/routines/daily-cooking-induction.jpg",
         t("Pots on the induction hob for daily cooking", "日々の料理で使用するIHコンロ上の鍋", "နေ့စဉ်ချက်ပြုတ်ခြင်းအတွက် hob ပေါ်ရှိ အိုးများ"),
@@ -143,7 +143,7 @@ const routineTasks = [
     t("Nako - Potty & Pen", "ナコ - トイレとケージ", "Nako - အပေါ့အလေးသွားရာနေရာနှင့် ခြံ"), 
     t("Pick up poop immediately, change soaked pee pads, clean the tray daily, and wash towels or wipe toys regularly.", "ウンチはすぐに拾い、濡れたおしっこシートを交換し、トレイを毎日掃除し、タオルを洗うか、おもちゃを定期的に拭きます。", "ချေးများကို ချက်ချင်းကောက်ပါ၊ စိုစွတ်သော ဆီးခံပြားများကို လဲလှယ်ပါ၊ လင်ပန်းကို နေ့စဉ်ဆေးကြောပါ၊ တဘက်များကို လျှော်ပါ သို့မဟုတ် ကစားစရာများကို ပုံမှန်သုတ်ပါ။"),
     t("Throughout day", "一日中随時", "တစ်နေ့တာလုံး"), 
-    t("Clean accidents quickly and keep the pen hygienic.", "排泄物の失敗は素早く掃除し、ケージ内を衛生的に保ちます。", "မတော်တဆ ဖြစ်ပွားမှုများကို မြန်မြန်ဆန်ဆန် သန့်ရှင်းရေးလုပ်ပြီး ခြံကို သန့်ရှင်းအောင် ထားပါ။"),
+    t("Only the pee tray may smell of pee or poop. Clean anything outside it immediately, including Nako's fur and legs when needed.", "おしっこ・うんちの臭いがあってよい場所はトレーだけです。必要に応じてナコの毛や足も含め、トレーの外はすぐに掃除してください。", "ဆီး သို့မဟုတ် ချေးအနံ့ရှိနိုင်သောနေရာသည် pee tray တစ်ခုတည်းသာဖြစ်ရမည်။ လိုအပ်ပါက Nako ၏အမွေးနှင့်ခြေထောက်များအပါအဝင် tray အပြင်ဘက်ကို ချက်ချင်းသန့်ရှင်းပါ။"),
     [
       photo("assets/routines/nako-potty-pen-tray.jpg",
         t("Nako potty tray with pee pad and poop to clear", "片付けるウンチとおしっこシートがあるナコのトイレトレイ", "ရှင်းလင်းရန် ချေးနှင့် ဆီးခံပြားရှိသော Nako အပေါ့အလေးသွားရာလင်ပန်း"),
@@ -270,21 +270,26 @@ const routineTasks = [
 
   routine("mail-deliveries", "daily", 100, "P", 
     t("Mail & Deliveries", "郵便物と配達対応", "စာတိုက်နှင့် delivery များ"),
-    t("Collect deliveries promptly. Wipe them and bring them inside. Remove packaging outdoors only when instructed; otherwise keep and wipe it.", "配達物はすぐに回収し、拭いて家に入れます。指示がある時だけ屋外で梱包を外し、それ以外は梱包ごと拭いてください。", "delivery ပစ္စည်းများကို ချက်ချင်းယူပြီး သုတ်ကာ အိမ်ထဲသွင်းပါ။ ညွှန်ကြားထားမှသာ အပြင်တွင် packaging ကိုဖြုတ်ပါ။ မဟုတ်လျှင် packaging အတိုင်း သုတ်ပါ။"),
+    t("Collect deliveries promptly. Always unpack them outside, discard the packaging, and wipe each item fully outside before bringing it in.", "配達物はすぐに回収します。必ず屋外で開封し、梱包材を捨て、商品全体を屋外でしっかり拭いてから家に入れます。", "delivery ပစ္စည်းများကို ချက်ချင်းယူပါ။ အမြဲ အိမ်အပြင်မှာ unpack လုပ်၊ packaging ကို လွှင့်ပြီး ပစ္စည်းတစ်ခုလုံးကို အပြင်မှာ သေချာသုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"),
     [
-      t("Generally, wipe every item or outer package before it enters the house.", "原則として、家に入れる前に商品または外装全体を拭いてください。", "ယေဘုယျအားဖြင့် ပစ္စည်း သို့မဟုတ် အပြင် packaging တစ်ခုလုံးကို အိမ်ထဲမသွင်းမီ သုတ်ပါ။"),
+      t("Do not bring dirty packaging into the house. Discard it outside and wipe the unpacked item before bringing it in.", "汚れた梱包材を家の中へ持ち込まないでください。屋外で捨て、開封した商品を拭いてから家に入れます。", "ညစ်ပတ်သော packaging ကို အိမ်ထဲမသွင်းပါနှင့်။ အပြင်မှာလွှင့်ပြီး unpack လုပ်ထားသောပစ္စည်းကို သုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"),
       t("Keep parcels safe and tell Edwin/Yukari if anything important arrives.", "荷物を安全に保管し、大切な物が届いたらエドウィン／ゆかりに知らせてください。", "parcel များကို လုံခြုံစွာထားပြီး အရေးကြီးသောပစ္စည်းရောက်လျှင် Edwin/Yukari ကို အသိပေးပါ။"),
       t("For a new appliance, follow its manual and run the first cycle normally. Discard the first water, drink, or food output where applicable. Ask Edwin if unsure.", "新しい家電は説明書に従い、最初の運転を通常どおり行ってください。該当する場合、最初の水、飲み物、または食べ物は捨てます。不明な場合はEdwinに確認してください。", "စက်အသစ်အတွက် manual ကိုလိုက်နာပြီး ပထမ cycle ကို ပုံမှန် run ပါ။ သက်ဆိုင်ပါက ပထမဆုံးရေ၊ သောက်စရာ သို့မဟုတ် အစားအစာကို လွှင့်ပစ်ပါ။ မသေချာပါက Edwin ကိုမေးပါ။")
     ],
     [
       photo("assets/routines/nako-delivery-unpack-when-instructed.jpg",
         t("Item unpacked outside with packaging left by the door", "玄関外で梱包を外し、包装材を外に置いた商品", "တံခါးအပြင်တွင် packaging ဖြုတ်ပြီး packaging ကို အပြင်တွင်ထားသော ပစ္စည်း"),
-        t("When instructed to remove packaging, unpack outside, leave the packaging outside, clean the item, and bring it in promptly.", "梱包を外すよう指示された場合は、屋外で開封し、包装材は外に置き、商品をきれいにしてすぐ家に入れます。", "packaging ဖြုတ်ရန် ညွှန်ကြားထားပါက အပြင်တွင်ဖြုတ်၊ packaging ကို အပြင်တွင်ထား၊ ပစ္စည်းကို သန့်ရှင်းပြီး ချက်ချင်း အိမ်ထဲသွင်းပါ။")),
+        t("Always unpack outside, discard the packaging there, wipe the item fully, and bring it in promptly.", "必ず屋外で開封し、そこで梱包材を捨て、商品全体を拭いてからすぐ家に入れます。", "အမြဲ အပြင်မှာ unpack လုပ်၊ packaging ကို အဲဒီမှာလွှင့်၊ ပစ္စည်းတစ်ခုလုံးကို သုတ်ပြီး ချက်ချင်း အိမ်ထဲသွင်းပါ။")),
       photo("assets/routines/nako-delivery-wipe-item.jpg",
         t("Delivered appliance being wiped before going inside", "家に入れる前に拭いている配達された家電", "အိမ်ထဲမသွင်းမီ သုတ်နေသော delivery စက်ပစ္စည်း"),
-        t("Wipe the item—or the whole package if keeping it—then bring it inside so it is not left outside.", "商品、または梱包を残す場合は外装全体を拭き、外に放置せず家に入れます。", "ပစ္စည်းကို သုတ်ပါ။ packaging ကိုထားမည်ဆိုလျှင် packaging တစ်ခုလုံးကို သုတ်ပြီး အပြင်တွင် မထားဘဲ အိမ်ထဲသွင်းပါ။"))
+        t("After discarding the packaging outside, wipe every accessible surface of the item before bringing it inside.", "屋外で梱包材を捨てた後、商品の手が届く表面をすべて拭いてから家に入れます。", "အပြင်မှာ packaging ကို လွှင့်ပြီးနောက် ပစ္စည်း၏ လက်လှမ်းမီသောမျက်နှာပြင်အားလုံးကို သုတ်ပြီးမှ အိမ်ထဲသွင်းပါ။"))
     ]),
+  routine("physical-mailbox-check", "daily", 105, "M",
+    t("Physical Mailbox Check", "郵便受けの確認", "စာတိုက်ပုံး စစ်ဆေးခြင်း"),
+    t("Go downstairs and physically open the household mailbox every day. Collect all letters, notices, and other mail, then bring them home.", "毎日、下の階へ行き、家の郵便受けを実際に開けて確認します。手紙、通知、その他の郵便物をすべて回収して家に持ち帰ります。", "နေ့တိုင်း အောက်ထပ်သို့ဆင်းပြီး အိမ်၏ physical mailbox ကို ကိုယ်တိုင်ဖွင့်စစ်ပါ။ စာများ၊ notice များနှင့် အခြား mail များအားလုံးကို ယူပြီး အိမ်သို့ ပြန်ယူလာပါ။"),
+    t("Daily", "毎日", "နေ့စဉ်"),
+    t("Do not only look from outside. Open the mailbox properly and tell Edwin or Yukari if any important or official letter arrives.", "外から見るだけではなく、必ず郵便受けを開けて中を確認します。重要な手紙や公的な郵便物が届いたら、エドウィンまたはゆかりに知らせてください。", "အပြင်မှကြည့်ရုံမလုပ်ပါနှင့်။ mailbox ကို သေချာဖွင့်ပြီး အတွင်းကို စစ်ပါ။ အရေးကြီးသော သို့မဟုတ် official letter ရောက်ပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။")),
 
   routine("general-tidiness", "daily", 110, "T", 
     t("General Tidiness", "一般的な整理整頓", "ယေဘုယျ သန့်ရှင်းသပ်ရပ်မှု"), 
@@ -457,9 +462,12 @@ const routineTasks = [
     [
       t("Move Nako safely out of the play pen. Put on her collar and house line, and supervise her actively while you clean.", "ナコを安全にサークルの外へ出します。首輪とハウスリードを着け、掃除中は常に見守ってください。", "Nako ကို play pen အပြင်သို့ လုံခြုံစွာ ထုတ်ပါ။ လည်ပတ်နှင့် house line တပ်ပြီး သန့်ရှင်းနေစဉ် အမြဲစောင့်ကြည့်ပါ။"),
       t("Remove everything from the pen: the bed, floor mats, towels, pee tray, pee pad, and every toy.", "ベッド、床マット、タオル、トイレトレー、ペットシーツ、おもちゃをすべてサークルから出します。", "အိပ်ရာ၊ ကြမ်းခင်း mat၊ တံဘက်၊ pee tray၊ pee pad နှင့် ကစားစရာအားလုံးကို pen ထဲမှ ထုတ်ပါ။"),
+      t("Sweep or vacuum loose dirt toward the centre of the pen. Never push dirt into the gaps between the pen walls and floor.", "ほこりやごみはサークルの中央へ向けて掃くか吸い取ります。サークルの壁と床の隙間へ絶対に押し込まないでください。", "ဖုန်နှင့်အမှိုက်များကို pen ၏အလယ်ဘက်သို့ sweep သို့မဟုတ် vacuum လုပ်ပါ။ pen wall နှင့် floor ကြား gap ထဲသို့ လုံးဝမတွန်းပါနှင့်။"),
+      t("On hard flooring only, use a stone-safe pH-neutral floor cleaner as directed, then wipe or mop once with clean water to remove it.", "硬い床だけには、石材対応のpH中性床用クリーナーを表示どおりに使い、その後きれいな水で一度拭くかモップがけして落とします。", "မာသောကြမ်းပြင်ပေါ်တွင်သာ stone-safe pH-neutral floor cleaner ကို ညွှန်ကြားချက်အတိုင်းသုံးပြီးနောက် သန့်ရေဖြင့် တစ်ကြိမ် wipe သို့မဟုတ် mop လုပ်ကာ ဖယ်ရှားပါ။"),
+      t("Use pet-safe cleaner on appropriate pen panels and surfaces, and enzyme cleaner where pee or poop contact or smell is possible. Leave a product for 2-3 minutes only when Edwin has taught that step or the product label directs it.", "適切なサークルのパネルや表面にはペット用クリーナーを使い、おしっこ・うんちが触れた可能性や臭いがある場所には酵素クリーナーを使います。2〜3分置くのは、Edwinから教わった場合、または製品表示に指示がある場合だけです。", "သင့်တော်သော pen panel နှင့်မျက်နှာပြင်များတွင် pet-safe cleaner ကိုသုံးပြီး ဆီး/ချေးထိနိုင်ခြင်း သို့မဟုတ် အနံ့ရှိနိုင်သောနေရာတွင် enzyme cleaner ကိုသုံးပါ။ Edwin က သင်ပေးထားသည့်အခါ သို့မဟုတ် product label က ညွှန်ကြားသည့်အခါမှသာ ၂-၃ မိနစ်ထားပါ။"),
       t("Take apart the pee tray. Throw away the used pee pad, then wash the tray, grate, edges, underside, and exterior.", "トイレトレーを分解します。使用済みのペットシーツを捨て、トレー、すのこ、縁、裏面、外側を洗います。", "pee tray ကို အစိတ်အပိုင်းခွဲပါ။ သုံးပြီးသား pee pad ကို လွှင့်ပစ်ပြီး tray၊ အပေါ်ဆန်ခါ၊ အနား၊ အောက်ခြေနှင့် အပြင်ဘက်ကို ဆေးပါ။"),
       t("Wipe every play-pen panel on both sides. Clean the rails, joints, wall sides, edges, and every corner.", "サークルの各パネルの内側と外側を拭きます。レール、接続部、壁側、縁、すべての角を掃除します。", "play pen panel တစ်ခုစီ၏ အတွင်းနှင့် အပြင်ကို သုတ်ပါ။ ဘောင်တန်း၊ အဆက်နေရာ၊ နံရံဘက်၊ အနားနှင့် ထောင့်အားလုံးကို သန့်ရှင်းပါ။"),
-      t("Clean the floor outside and around the pen. Wipe along the walls and in every corner.", "サークルの外側と周辺の床を掃除します。壁際とすべての角も拭いてください。", "pen အပြင်နှင့် ပတ်ဝန်းကျင်ကြမ်းပြင်ကို သန့်ရှင်းပါ။ နံရံဘေးနှင့် ထောင့်အားလုံးကိုလည်း သုတ်ပါ။"),
+      t("Clean the floor outside and around the pen. Wipe along the walls and in every corner, rinse cloths or mops thoroughly, and finish with clean water so no cleaner residue remains.", "サークルの外側と周辺の床を掃除します。壁際とすべての角も拭き、布やモップを十分にすすぎ、最後はきれいな水で仕上げて洗剤を残さないでください。", "pen အပြင်နှင့် ပတ်ဝန်းကျင်ကြမ်းပြင်ကို သန့်ရှင်းပါ။ နံရံဘေးနှင့် ထောင့်အားလုံးကို သုတ်ပြီး cloth သို့မဟုတ် mop ကို သေချာ rinse လုပ်ကာ cleaner အကြွင်းအကျန်မရှိစေရန် သန့်ရေဖြင့် အဆုံးသတ်ပါ။"),
       t("Wash the pen floor and all removable floor mats. Remove hair, dirt, pee residue, and smell.", "サークルの床と取り外せる床マットをすべて洗います。毛、汚れ、尿の残り、臭いを取り除きます。", "pen ကြမ်းပြင်နှင့် ဖြုတ်လို့ရသော ကြမ်းခင်း mat အားလုံးကို ဆေးပါ။ အမွေး၊ အညစ်အကြေး၊ ဆီးကျန်နှင့် အနံ့ကို ဖယ်ရှားပါ။"),
       t("Wash all of Nako's towels and every washable part of her bed. Rinse well and dry them fully.", "ナコのタオル全部と、ベッドの洗える部分をすべて洗います。十分にすすぎ、完全に乾かします。", "Nako ရဲ့ တံဘက်အားလုံးနှင့် အိပ်ရာ၏ ဆေးလို့ရသော အစိတ်အပိုင်းအားလုံးကို ဆေးပါ။ ရေစင်အောင်ဆေးပြီး လုံးဝခြောက်အောင်လုပ်ပါ။"),
       t("Separate all toys before washing: toys with a squeaker or sound unit, and toys without one.", "洗う前に、おもちゃを音が鳴る部品入りと、音が鳴る部品なしに分けます。", "ကစားစရာများကို အသံမြည်ပစ္စည်းပါတာနှင့် မပါတာဟူ၍ မဆေးမီ ခွဲထားပါ။"),
@@ -467,6 +475,7 @@ const routineTasks = [
       t("Wash soft toys without a squeaker with Nako's puppy shampoo. Rinse until no shampoo remains.", "音が鳴らない柔らかいおもちゃは、ナコ用の子犬用シャンプーで洗います。シャンプーが残らないよう十分にすすぎます。", "အသံမမြည်သော အပျော့စားကစားစရာများကို Nako ရဲ့ puppy shampoo နဲ့ ဆေးပါ။ shampoo မကျန်အောင် ရေစင်စင်ဆေးပါ။"),
       t("Whenever soap is needed for Nako's things, use only Nako's puppy shampoo. Never use human soap or normal laundry detergent.", "ナコの物に石けんが必要な場合は、ナコ用の子犬用シャンプーだけを使います。人間用石けんや通常の洗濯洗剤は絶対に使わないでください。", "Nako ရဲ့ ပစ္စည်းများအတွက် ဆပ်ပြာလိုပါက Nako ရဲ့ puppy shampoo ကိုသာသုံးပါ။ လူသုံးဆပ်ပြာ သို့မဟုတ် ပုံမှန်အဝတ်လျှော် detergent ကို လုံးဝမသုံးပါနှင့်။"),
       t("Use enzyme cleaner where needed, especially if there may be pee or poop smell.", "必要に応じて、特におしっこやうんちの臭いがある場合は酵素クリーナーを使ってください。", "လိုအပ်ပါက၊ အထူးသဖြင့် ဆီး သို့မဟုတ် အညစ်အကြေးအနံ့ရှိနိုင်သောနေရာတွင် enzyme cleaner ကို အသုံးပြုပါ။"),
+      t("Never mix cleaning products. Use each product only on its suitable surface, rinse it away as directed, and do not leave detergent or cleaner residue.", "洗剤同士を絶対に混ぜないでください。各製品は適した表面にだけ使い、表示どおりにすすぎ、洗剤やクリーナーを残さないでください。", "cleaning product များကို လုံးဝမရောပါနှင့်။ product တစ်ခုစီကို သင့်တော်သောမျက်နှာပြင်တွင်သာသုံးပြီး ညွှန်ကြားချက်အတိုင်း rinse လုပ်ကာ detergent သို့မဟုတ် cleaner အကြွင်းအကျန် မထားပါနှင့်။"),
       t("Dry the pen, pee tray, mats, bed, towels, toys, and nearby floor fully before letting Nako back in. Do not leave damp areas or pee or poop smell outside the pee tray.", "ナコを戻す前に、サークル、トイレトレー、マット、ベッド、タオル、おもちゃ、周辺の床を完全に乾かします。濡れた場所や、トイレトレーの外におしっこ・うんちの臭いを残さないでください。", "Nako ကို ပြန်မထည့်ခင် pen၊ pee tray၊ mat၊ အိပ်ရာ၊ တံဘက်၊ ကစားစရာများနှင့် အနီးရှိကြမ်းပြင်ကို လုံးဝခြောက်အောင်လုပ်ပါ။ စိုနေသည့်နေရာ သို့မဟုတ် pee tray အပြင်မှာ ဆီး/ချေးအနံ့ မကျန်ပါစေနှင့်။"),
       t("Put everything back only when it is clean and dry. Fit a fresh pee pad and return Nako's bed, mats, towels, and toys.", "全部が清潔で乾いてから戻します。新しいペットシーツを取り付け、ナコのベッド、マット、タオル、おもちゃを戻します。", "အရာအားလုံး သန့်ရှင်းခြောက်သွေ့မှ ပြန်ထားပါ။ pee pad အသစ်တပ်ပြီး Nako ရဲ့ အိပ်ရာ၊ mat၊ တံဘက်နှင့် ကစားစရာများကို ပြန်ထားပါ။")
     ],
@@ -758,10 +767,10 @@ const routineTasks = [
         t("Separate dirty-area cloth and Magiclean disinfectant beside luggage wheels", "スーツケースの車輪の横にある汚れた場所専用の布とマジックリン除菌スプレー", "luggage ဘီးဘေးရှိ အညစ်အကြေးနေရာသုံး သီးသန့်အဝတ်နှင့် Magiclean disinfectant"),
         t("Use this separate cloth with standard Magiclean disinfectant when ceiling-fan areas are very dirty or dusty. Do not use the normal household cloth.", "天井扇周辺が非常に汚れている、またはほこりが多い時は、この専用布と通常のマジックリン除菌スプレーを使います。普段の掃除用布は使いません。", "ceiling fan နေရာက အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူရင် ဒီသီးသန့်အဝတ်နဲ့ standard Magiclean disinfectant ကို သုံးပါ။ ပုံမှန်အိမ်သန့်ရှင်းရေးအဝတ်ကို မသုံးပါနဲ့။"))
     ]),
-  routine("fridge-interior", "weekly", 150, "F", 
+  routine("fridge-interior", "monthly", 150, "F",
     t("Fridge Interior Cleaning", "冷蔵庫内の掃除", "ရေခဲသေတ္တာအတွင်းပိုင်း သန့်ရှင်းရေး"), 
     t("Remove items from the fridge, wipe inside surfaces and shelves, then put everything back neatly.", "冷蔵庫から品物を取り出し、内側の表面と棚を拭き、すべてをきれいに戻します。", "ရေခဲသေတ္တာထဲမှ ပစ္စည်းများကို ထုတ်ပါ၊ အတွင်းပိုင်းမျက်နှာပြင်များနှင့် စင်များကို သုတ်ပါ၊ ထို့နောက် အားလုံးကို သပ်သပ်ရပ်ရပ် ပြန်ထည့်ပါ။"),
-    t("Weekly", "毎週", "အပတ်စဉ်"), 
+    t("Monthly", "毎月", "လစဉ်"),
     [
       t("Check for expired, leaking, or spoiled food. Keep all food covered.", "期限切れ、液漏れ、傷んだ食品がないか確認してください。食品はすべて覆って保管してください。", "သက်တမ်းကုန်၊ ယိုနေ သို့မဟုတ် ပုပ်နေတဲ့အစားအစာ ရှိမရှိ စစ်ပါ။ အစားအစာအားလုံးကို ဖုံးထားပါ။"),
       t("Do not put a large pot or a large amount of steaming-hot food directly in the fridge. Divide it into small, shallow containers. Let heavy steam reduce briefly, then refrigerate within 2 hours; do not wait until completely cold.", "大きな鍋や大量の熱々の料理をそのまま冷蔵庫に入れないでください。小さく浅い容器に分け、強い湯気が少し落ち着いたら2時間以内に冷蔵します。完全に冷えるまで待たないでください。", "အိုးကြီး သို့မဟုတ် အငွေ့ထွက်နေတဲ့ ပူပူနွေးနွေးအစားအစာအများကြီးကို fridge ထဲ တိုက်ရိုက်မထည့်ပါနဲ့။ သေးပြီးတိမ်တဲ့ဘူးတွေထဲ ခွဲထည့်ပါ။ အငွေ့ပြင်းတာ နည်းနည်းလျော့ရင် ၂ နာရီအတွင်း fridge ထဲထည့်ပါ။ လုံးဝအေးတဲ့အထိ မစောင့်ပါနဲ့။"),
@@ -774,13 +783,13 @@ const routineTasks = [
         t("Organize jars, bottles, and storage containers neatly on shelves.", "棚の上の瓶、ボトル、保存容器をきれいに整理整頓してください。", "စင်ပေါ်ရှိ ဗူးများ၊ ပုလင်းများနှင့် သိုလှောင်ဗူးများကို သပ်သပ်ရပ်ရပ် စီစဉ်ထားပါ။"))
     ]),
 
-  routine("cleaning-tools", "weekly", 160, "C", 
+  routine("cleaning-tools", "fortnightly", 160, "C",
     t("Cleaning Tools Maintenance", "掃除用具の手入れ", "သန့်ရှင်းရေးသုံးပစ္စည်းများ ထိန်းသိမ်းခြင်း"), 
     t("Wash mop heads, rinse buckets, clean vacuum filters or parts as needed, replace dirty sponges, and dry cloths properly.", "モップの頭を洗い、バケツをすすぎ、必要に応じて掃除機のフィルターや部品を掃除し、汚れたスポンジを交換し、雑巾を適切に乾かします。", "မော်ပုခေါင်းများကို လျှော်ပါ၊ ပုံးများကို ဆေးကြောပါ၊ လိုအပ်သလို ဖုန်စုပ်စက်ဇကာများ သို့မဟုတ် အစိတ်အပိုင်းများကို သန့်ရှင်းရေးလုပ်ပါ၊ ညစ်ပတ်သော ရေမြှုပ်များကို လဲလှယ်ပါ၊ အဝတ်များကို ခြောက်အောင်ထားပါ။"),
-    t("Weekly + as needed", "毎週チェック＋必要に応じて", "အပတ်စဉ် + လိုအပ်သလို"), 
+    t("Fortnightly + as needed", "2週間に1回＋必要に応じて", "နှစ်ပတ်တစ်ကြိမ် + လိုအပ်သလို"),
     [
       t("Dirty cleaning tools spread smell and dirt instead of cleaning properly.", "汚れた掃除用具は、適切に掃除する代わりに臭いや汚れを広げてしまいます。", "ညစ်ပတ်သော သန့်ရှင်းရေးပစ္စည်းများသည် ကောင်းမွန်စွာသန့်ရှင်းပေးမည့်အစား အနံ့ဆိုးများနှင့် ဖုန်မှုန့်များကို ပြန့်နှံ့စေသည်။"),
-      t("Reserve a separate cloth for very dirty or dusty surfaces such as ceiling-fan areas and luggage wheels. Use it with standard Magiclean disinfectant. Keep it separate from normal cloths, then wash and dry it separately after use.", "天井扇周辺やスーツケースの車輪など、非常に汚れた・ほこりの多い場所には専用の布を使ってください。通常のマジックリン除菌スプレーと一緒に使い、普段の布と分けて保管し、使用後は別に洗って乾かしてください。", "ceiling fan နေရာနဲ့ luggage ဘီးတွေလို အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူတဲ့နေရာတွေအတွက် သီးသန့်အဝတ်ထားပါ။ standard Magiclean disinfectant နဲ့အတူ သုံးပါ။ ပုံမှန်အဝတ်တွေနဲ့ ခွဲထားပြီး သုံးပြီးရင် သီးခြားလျှော်ကာ ခြောက်အောင်ထားပါ။"),
+      t("Reserve a separate cloth for very dirty or dusty surfaces such as ceiling-fan areas and luggage wheels. Use it with standard Magiclean disinfectant. Keep it separate from normal cloths; after use, wash it and return it to its designated place or hanging rack.", "天井扇周辺やスーツケースの車輪など、非常に汚れた・ほこりの多い場所には専用の布を使ってください。通常のマジックリン除菌スプレーと一緒に使い、普段の布と分けて保管します。使用後は洗い、決められた場所またはラックへ戻してください。", "ceiling fan နေရာနှင့် luggage ဘီးများကဲ့သို့ အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူသောနေရာများအတွက် သီးသန့်အဝတ်ထားပါ။ standard Magiclean disinfectant နှင့်အတူသုံးပြီး ပုံမှန်အဝတ်များနှင့် ခွဲထားပါ။ သုံးပြီးပါက ဆေးပြီး သတ်မှတ်ထားသောနေရာ သို့မဟုတ် hanging rack သို့ ပြန်ထားပါ။"),
       t("Regularly check the vacuum cleaner parts and replace dirty filters using the replacement filter packs stored on the shelf.", "定期的に掃除機の部品を点検し、棚に保管されている予備のフィルターパックを使用して、汚れたフィルターを交換してください。", "ဖုန်စုပ်စက်၏ အစိတ်အပိုင်းများကို ပုံမှန်စစ်ဆေးပြီး စင်ပေါ်တွင် သိမ်းဆည်းထားသော အပို filter packs များကို အသုံးပြု၍ ညစ်ပတ်သော filter များကို လဲလှယ်ပါ။")
     ],
     [
@@ -789,7 +798,7 @@ const routineTasks = [
         t("Store the handheld vacuums and filter replacements neatly on this shelf.", "ハンディ掃除機と予備のフィルターはこの棚にきれいに保管してください。", "လက်ကိုင်ဖုန်စုပ်စက်နှင့် အပို filter များကို ဤစင်ပေါ်တွင် သပ်သပ်ရပ်ရပ် သိမ်းဆည်းထားပါ။")),
       photo("assets/routines/separate-cloth-magiclean-dirty-areas.jpg",
         t("Separate cloth and Magiclean disinfectant for very dirty areas", "非常に汚れた場所専用の布とマジックリン除菌スプレー", "အရမ်းညစ်ပတ်တဲ့နေရာသုံး သီးသန့်အဝတ်နှင့် Magiclean disinfectant"),
-        t("Keep this cloth separate for very dirty or dusty surfaces. Use it with standard Magiclean disinfectant, then wash and dry it separately.", "この布は、非常に汚れた・ほこりの多い場所専用に分けておきます。通常のマジックリン除菌スプレーと一緒に使い、使用後は別に洗って乾かします。", "ဒီအဝတ်ကို အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူတဲ့နေရာတွေအတွက် သီးသန့်ထားပါ။ standard Magiclean disinfectant နဲ့ သုံးပြီး သုံးပြီးရင် သီးခြားလျှော်ကာ ခြောက်အောင်ထားပါ။"))
+        t("Keep this cloth separate for very dirty or dusty surfaces. Use it with standard Magiclean disinfectant, then wash it and return it to its designated place or hanging rack.", "この布は、非常に汚れた・ほこりの多い場所専用に分けておきます。通常のマジックリン除菌スプレーと一緒に使い、使用後は洗って決められた場所またはラックへ戻します。", "ဒီအဝတ်ကို အရမ်းညစ်ပတ် သို့မဟုတ် ဖုန်ထူတဲ့နေရာများအတွက် သီးသန့်ထားပါ။ standard Magiclean disinfectant နဲ့ သုံးပြီး သုံးပြီးပါက ဆေးကာ သတ်မှတ်ထားသောနေရာ သို့မဟုတ် hanging rack သို့ ပြန်ထားပါ။"))
     ]),
 
   routine("blanket-washing", "fortnightly", 10, "B", 
@@ -861,7 +870,7 @@ const routineTasks = [
     ]),
   routine("pillow-mattress-vacuuming", "monthly", 30, "P", 
     t("Pillow & Mattress Vacuuming", "枕とマットレスの掃除機掛け", "ခေါင်းအုံးနှင့် မွေ့ရာများကို ဖုန်စုပ်ခြင်း"), 
-    t("Vacuum pillows and accessible mattress surfaces using a small mattress/pillow vacuum cleaner after one is bought.", "専用の小型掃除機が購入された後、それを使用して枕と手の届くマットレス表面に掃除機を掛けます。", "ခေါင်းအုံး/မွေ့ရာ ဖုန်စုပ်စက်ဝယ်ပြီးပါက ခေါင်းအုံးများနှင့် လက်လှမ်းမီသော မွေ့ရာမျက်နှာပြင်များကို ဖုန်စုပ်ပေးပါ။"), 
+    t("Vacuum pillows and accessible mattress surfaces using the dedicated bedding vacuum. This is now included in Bedrooms & Linens.", "寝具専用掃除機で枕と手の届くマットレス表面に掃除機を掛けます。現在は「寝室とリネン」に含まれています。", "အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့် ခေါင်းအုံးများနှင့် လက်လှမ်းမီသော မွေ့ရာမျက်နှာပြင်များကို ဖုန်စုပ်ပါ။ ယခု Bedrooms & Linens တွင် ထည့်သွင်းထားသည်။"),
     t("Monthly", "毎月", "လစဉ်"), 
     t("Mattress is heavy, so no full mattress airing for now.", "マットレスは重いため、当面の間はマットレス全体の天日干しなどは行いません。", "မွေ့ရာသည် လေးလံသောကြောင့် လောလောဆယ် လေထုတ်ခြင်း အပြည့်အဝမလုပ်ပါ။")),
   routine("aircon-filter-fan-coil", "monthly", 40, "A", 
@@ -973,13 +982,13 @@ const routineTasks = [
     ]),
   routine("leaving-home-house-keys", "as-needed", 10, "KEY",
     t("Leaving Home - House Keys", "外出時 - 家の鍵", "အပြင်ထွက်ချိန် - အိမ်သော့"),
-    t("Every time Chocho leaves the house, she must take the house keys, even for a short trip nearby.", "Chochoは、近所への短い外出でも、家を出る時は必ず家の鍵を持って行きます。", "Chocho သည် အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို မဖြစ်မနေ ယူသွားရမည်။"),
+    t("Whenever Chocho leaves, even briefly, take the countertop house key with the red rubber band.", "Chochoは短い外出でも、カウンタートップにある赤い輪ゴム付きの家の鍵を持って行きます。", "Chocho သည် ခဏသာအပြင်ထွက်လျှင်ပင် countertop ပေါ်ရှိ အနီရောင် rubber band ပါသော အိမ်သော့ကို ယူသွားရမည်။"),
     t("Every time leaving home", "外出するたび", "အိမ်မှထွက်သည့်အခါတိုင်း"),
-    t("Check that the keys are with you before closing the door. Do not depend on someone being home to open it.", "ドアを閉める前に鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ သော့ပါရှိကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။"),
+    t("Before closing the door, check that you have the correct key: the house key with the red rubber band from the countertop. Do not depend on someone being home to open it.", "ドアを閉める前に、正しい鍵、つまりカウンタートップにある赤い輪ゴム付きの家の鍵を持っているか確認します。家にいる誰かが開けてくれることを当てにしないでください。", "တံခါးမပိတ်မီ မှန်ကန်သောသော့ဖြစ်သည့် countertop ပေါ်ရှိ အနီရောင် rubber band ပါသော အိမ်သော့ကို ယူထားကြောင်း စစ်ပါ။ အိမ်တွင်တစ်ယောက်ယောက်ရှိပြီး တံခါးဖွင့်ပေးမည်ဟု မမှီခိုပါနှင့်။"),
     [
       photo("assets/routines/leaving-home-house-keys.png",
         t("House key with a red loop", "赤いループが付いた家の鍵", "အနီရောင်ကြိုးကွင်းပါသော အိမ်သော့"),
-        t("Take the house keys every time you leave, even for a short trip nearby.", "近所への短い外出でも、家を出るたびに家の鍵を持って行きます。", "အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အိမ်မှထွက်သည့်အခါတိုင်း အိမ်သော့ကို ယူသွားပါ။"))
+        t("Take the countertop house key with the red rubber band every time you leave, even for a short trip nearby.", "近所への短い外出でも、外出するたびにカウンタートップの赤い輪ゴム付きの家の鍵を持って行きます。", "အနီးအနားသို့ ခဏသွားခြင်းဖြစ်စေ၊ အပြင်ထွက်တိုင်း countertop ပေါ်ရှိ အနီရောင် rubber band ပါသော အိမ်သော့ကို ယူသွားပါ။"))
     ]),
   routine("yukari-flight-packing", "as-needed", 20, "Y", 
     t("Yukari - Flight Work Packing", "ゆかり - フライト業務の荷造り", "Yukari - လေယာဉ်ခရီးစဉ်အတွက် အထုပ်ပြင်ခြင်း"), 
@@ -1249,8 +1258,13 @@ if (essentialFoodStockRoutine) {
 const groceryShoppingRoutine = routineTasks.find((task) => task.id === "grocery-shopping");
 if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyBucket = "daily";
-  groceryShoppingRoutine.frequencyText = t("Daily", "毎日", "နေ့စဉ်");
+  groceryShoppingRoutine.frequencyText = t("Daily active check", "毎日の確認", "နေ့စဉ် စစ်ဆေးရန်");
   groceryShoppingRoutine.sortOrder = 14;
+  groceryShoppingRoutine.summary = t(
+    "Check what is running low, then restock the pantry and fridge using the timing and store rules below.",
+    "不足している物を確認し、下記の時間帯と店のルールに従って食品棚と冷蔵庫を補充します。",
+    "ကုန်လုနီးသောပစ္စည်းများကို စစ်ပြီး အောက်ပါအချိန်နှင့်ဆိုင် စည်းမျဉ်းများအတိုင်း pantry နှင့် fridge ကို ပြန်ဖြည့်ပါ။"
+  );
   groceryShoppingRoutine.stockItems = [
     t("Milk", "牛乳", "နွားနို့"),
     t("Eggs", "卵", "ကြက်ဥ"),
@@ -1268,7 +1282,9 @@ if (groceryShoppingRoutine) {
     t("Essential groceries including milk, eggs, bread, rice, mushrooms, tofu, pork, tomatoes, bananas, and broccoli", "牛乳、卵、パン、米、きのこ、豆腐、豚肉、トマト、バナナ、ブロッコリーなどの常備食品", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဆန်၊ မှို၊ tofu၊ ဝက်သား၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီ အပါအဝင် အမြဲထားရမည့် အစားအစာများ"),
     t("Keep these essential groceries in stock.", "これらの基本食材を常備してください。", "ဤအခြေခံအစားအစာများကို အမြဲထားပါ။"));
   groceryShoppingRoutine.mustRemember.push(
-    t("Grocery shopping is now a daily task. Check the fridge, pantry, and meal needs before buying.", "食料品の買い物は毎日の作業になりました。買う前に冷蔵庫、食品棚、食事に必要なものを確認してください。", "ကုန်စုံဝယ်ခြင်းသည် ယခု နေ့စဉ်အလုပ်ဖြစ်သည်။ မဝယ်မီ ရေခဲသေတ္တာ၊ pantry နှင့် အစားအစာအတွက်လိုအပ်ချက်များကို စစ်ပါ။"),
+    t("This is a daily active reference check, not a completion-checklist item. Check the fridge, pantry, shopping list, and meal needs before buying.", "これは毎日確認する参照ページで、完了チェックリストの項目ではありません。買う前に冷蔵庫、食品棚、買い物リスト、食事に必要なものを確認してください。", "ဤအရာသည် နေ့စဉ် active reference check ဖြစ်ပြီး completion checklist အလုပ်မဟုတ်ပါ။ မဝယ်မီ fridge၊ pantry၊ shopping list နှင့် အစားအစာလိုအပ်ချက်များကို စစ်ပါ။"),
+    t("Before about 9 a.m., buy fresh meat, fish, or vegetables from a clean, busy wet-market stall if they look fresh. After about 9 a.m., use Giant, NTUC FairPrice, Sheng Siong, Cold Storage, or another major supermarket.", "午前9時ごろより前なら、清潔で客の多いウェットマーケットの店で、新鮮に見える肉、魚、野菜を買ってよいです。午前9時ごろ以降は、Giant、NTUC FairPrice、Sheng Siong、Cold Storageなどの大手スーパーを使います。", "မနက် ၉ နာရီခန့်မတိုင်မီဆိုလျှင် သန့်ရှင်းပြီး လူဝယ်များသော wet-market ဆိုင်မှ လတ်ဆတ်ပုံရသော အသား၊ ငါး သို့မဟုတ် ဟင်းသီးဟင်းရွက်များကို ဝယ်နိုင်သည်။ မနက် ၉ နာရီခန့်နောက်ပိုင်းတွင် Giant၊ NTUC FairPrice၊ Sheng Siong၊ Cold Storage သို့မဟုတ် အခြား supermarket ကြီးများကို သုံးပါ။"),
+    t("Always keep the receipt. Bring chilled or frozen food home immediately so it stays cold. Coordinate before buying large or unusual items.", "必ずレシートを保管してください。冷蔵・冷凍食品は冷たい状態を保つため、すぐ家に持ち帰ります。大きい物や普段買わない物を買う前に確認してください。", "receipt ကို အမြဲသိမ်းထားပါ။ chilled သို့မဟုတ် frozen food ကို အေးနေစေရန် ချက်ချင်းအိမ်ပြန်ယူပါ။ ကြီးသော သို့မဟုတ် ပုံမှန်မဝယ်သော ပစ္စည်းများ မဝယ်မီ အရင်မေးပါ။"),
     t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။"),
     t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။")
   );
@@ -1339,11 +1355,11 @@ if (nakoPottyPenRoutine) {
     t("When changing the pee pad, keep the pad inside the pink side line. The pad must never cross the line.", "ペットシーツを交換するときは、シーツをピンクの横線の内側に収めてください。絶対に線を越えないようにします。", "pee pad လဲသောအခါ pad ကို ပန်းရောင်ဘေးလိုင်းအတွင်းတွင်ထားပါ။ pad သည် လိုင်းကို ဘယ်တော့မှ မကျော်ရပါ။"),
     t("If the pee pad crosses the line, the tray cover will not fully hide it and Nako may bite, pull out, and tear the pad.", "ペットシーツが線を越えると、トレーの上カバーで完全に隠れず、Nakoが噛んだり引っ張り出したり破いたりする可能性があります。", "pee pad သည် လိုင်းကျော်ပါက tray cover က အပြည့်မဖုံးနိုင်ဘဲ Nako က ကိုက်ခြင်း၊ ဆွဲထုတ်ခြင်း၊ ဖြဲခြင်းလုပ်နိုင်သည်။"),
     t("If Nako pulls out or ravages the pee pad, do a full cleaning of the entire pen.", "Nakoがペットシーツを引っ張り出したり荒らしたりした場合は、ペン全体をしっかり掃除してください。", "Nako က pee pad ကို ဆွဲထုတ်ခြင်း သို့မဟုတ် ဖျက်ဆီးခြင်းလုပ်ပါက pen တစ်ခုလုံးကို အပြည့်သန့်ရှင်းရေးလုပ်ပါ။"),
-    t("If poop lands outside the tray, it is usually not a potty accident: Nako likely pooped in the pen, but it caught in the hair around her bottom. Pick it up, then clean the entire pen floor.", "トレーの外にうんちが落ちている場合、それは通常トイレの失敗ではありません。ナコはペン内で排便したものの、お尻まわりの毛に付いて落ちた可能性があります。うんちを拾い、ペンの床全体を掃除してください。", "ချေးသည် tray အပြင်ဘက်တွင် ကျနေပါက အများအားဖြင့် အပေါ့အလေးသွားရာ မတော်တဆမှုမဟုတ်ပါ။ နာကိုသည် pen အတွင်းတွင် ချေးသွားပြီး၊ တင်ပါးပတ်ဝန်းကျင်အမွေးတွင် ကပ်နေ၍ ကျလာနိုင်သည်။ ချေးကိုကောက်ပြီး pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။"),
+    t("If poop lands outside the tray, it may have stuck to Nako's fur or legs after she used the tray. Pick it up, check and clean her fur and legs, then clean the entire pen floor.", "トレーの外にうんちが落ちている場合、トレー使用後にナコの毛や足に付いて落ちた可能性があります。うんちを拾い、毛と足を確認してきれいにし、ペンの床全体を掃除してください。", "tray အပြင်ဘက်တွင် ချေးကျနေပါက tray သုံးပြီးနောက် Nako ၏အမွေး သို့မဟုတ် ခြေထောက်တွင်ကပ်ပြီး ကျလာနိုင်သည်။ ချေးကိုကောက်၊ အမွေးနှင့်ခြေထောက်များကို စစ်ပြီးသန့်ရှင်းကာ pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။"),
     t("Use the pet urine and odour-removal spray on urine marks and the pee tray or pen floor as needed to remove urine and pee smell.", "尿の跡やトイレトレー、ペンの床には、必要に応じてペット用の尿・消臭スプレーを使い、尿やおしっこの臭いを取り除いてください。", "ဆီးကွက်များနှင့် pee tray သို့မဟုတ် pen ကြမ်းပြင်ပေါ်တွင် လိုအပ်သလို pet urine and odour-removal spray ကိုသုံးပြီး ဆီးနှင့် pee အနံ့ကို ဖယ်ရှားပါ။")
   ];
   nakoPottyPenRoutine.mustRemember.push(
-    t("Key principle: pee and poop must not be visible or anywhere outside the pee tray. If poop lands outside, clean the whole pen floor.", "重要原則: おしっことうんちは見えてはいけません。トレーの外にも絶対に出ないようにしてください。うんちが外に落ちた場合は、ペンの床全体を掃除します。", "အဓိကစည်းမျဉ်း: ဆီးနှင့်အညစ်အကြေးများကို မြင်မနေရပါ။ pee tray အပြင်ဘက်တွင်လည်း ဘယ်နေရာမှ မရှိရပါ။ ချေးသည် အပြင်ဘက်တွင် ကျနေပါက pen ကြမ်းပြင်တစ်ခုလုံးကို သန့်ရှင်းပါ။")
+    t("Key principle: only the pee tray may have pee or poop smell. If anything outside the tray may have touched pee or poop, wipe it clean and use enzyme cleaner as appropriate.", "重要原則: おしっこ・うんちの臭いがあってよい場所はトレーだけです。トレーの外で触れた可能性がある物や場所は拭き、適切に酵素クリーナーを使ってください。", "အဓိကစည်းမျဉ်း: ဆီး သို့မဟုတ် ချေးအနံ့ရှိနိုင်သောနေရာသည် pee tray တစ်ခုတည်းသာဖြစ်ရမည်။ tray အပြင်ဘက်တွင် ဆီး/ချေးထိနိုင်သော ပစ္စည်း သို့မဟုတ် နေရာကို သုတ်ပြီး သင့်တော်သလို enzyme cleaner သုံးပါ။")
   );
   nakoPottyPenRoutine.photos = [
     photo("assets/routines/nako-potty-outside-poop-floor.jpg",
@@ -1418,11 +1434,17 @@ const mailDeliveriesRoutine = routineTasks.find((task) => task.id === "mail-deli
 if (mailDeliveriesRoutine) {
   mailDeliveriesRoutine.instructions = [
     t("Collect deliveries promptly. Do not leave them outside where they could be stolen.", "配達物はすぐに回収し、盗難のおそれがあるため外に放置しないでください。", "delivery ပစ္စည်းများကို ချက်ချင်းယူပါ။ ခိုးယူခံရနိုင်သောကြောင့် အပြင်တွင် မထားပါနှင့်။"),
-    t("Normally, wipe the item or outer package and bring it inside.", "通常は、商品または外装を拭いて家に入れます。", "ပုံမှန်အားဖြင့် ပစ္စည်း သို့မဟုတ် အပြင် packaging ကို သုတ်ပြီး အိမ်ထဲသွင်းပါ။"),
-    t("When instructed to remove packaging, unpack outside, leave the packaging outside, clean the item, and bring it in.", "梱包を外すよう指示された場合は、屋外で開封し、包装材は外に置き、商品をきれいにして家に入れます。", "packaging ဖြုတ်ရန် ညွှန်ကြားထားပါက အပြင်တွင်ဖြုတ်၊ packaging ကို အပြင်တွင်ထား၊ ပစ္စည်းကို သန့်ရှင်းပြီး အိမ်ထဲသွင်းပါ။"),
-    t("If unsure whether to keep the packaging, keep it. Wipe the whole package and bring it inside.", "梱包を残すべきか迷う場合は捨てず、外装全体を拭いて家に入れてください。", "packaging ကိုထားရမည်လား မသေချာပါက မပစ်ပါနှင့်။ packaging တစ်ခုလုံးကို သုတ်ပြီး အိမ်ထဲသွင်းပါ။")
+    t("Always unpack the delivery outside and discard all packaging outside.", "配達物は必ず屋外で開封し、梱包材はすべて屋外で捨てます。", "delivery ကို အမြဲ အပြင်မှာ unpack လုပ်ပြီး packaging အားလုံးကို အပြင်မှာ လွှင့်ပါ။"),
+    t("Wipe every accessible surface of the unpacked item fully while it is still outside.", "開封した商品がまだ屋外にある間に、手が届く表面をすべてしっかり拭きます。", "unpack လုပ်ထားသောပစ္စည်း အပြင်မှာရှိနေစဉ် လက်လှမ်းမီသောမျက်နှာပြင်အားလုံးကို သေချာသုတ်ပါ။"),
+    t("Bring the clean item inside promptly and put it in the correct place.", "きれいにした商品をすぐ家に入れ、正しい場所へ置きます。", "သန့်ရှင်းထားသောပစ္စည်းကို ချက်ချင်းအိမ်ထဲသွင်းပြီး မှန်ကန်သောနေရာတွင်ထားပါ။")
   ];
 }
+
+const fridgeInteriorRoutine = routineTasks.find((task) => task.id === "fridge-interior");
+if (fridgeInteriorRoutine) fridgeInteriorRoutine.legacyTrackingCadences = ["weekly"];
+
+const cleaningToolsRoutine = routineTasks.find((task) => task.id === "cleaning-tools");
+if (cleaningToolsRoutine) cleaningToolsRoutine.legacyTrackingCadences = ["weekly"];
 
 
 
@@ -1469,6 +1491,7 @@ const dailyGuideLayout = {
   ],
   "admin-supplies": [
     "mail-deliveries",
+    "physical-mailbox-check",
     "household-supplies-online",
     "helper-diary-feedback"
   ],
@@ -1497,7 +1520,6 @@ const weeklyGuideLayout = {
   ],
   "kitchen-health": [
     "kitchen-sink-drain-rack-counter",
-    "fridge-interior",
     "supplement-pill-boxes"
   ],
   "whole-home-cleaning": [
@@ -1511,7 +1533,6 @@ const weeklyGuideLayout = {
   "living-maintenance": [
     "bedrooms-linens",
     "sofa-covers-pillows",
-    "cleaning-tools",
     "pest-check"
   ]
 };

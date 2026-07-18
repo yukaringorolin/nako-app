@@ -121,10 +121,34 @@
     return Object.fromEntries(Object.entries(records || {}).filter(([id, record]) => id && record && typeof record === "object"));
   }
 
+  function compatibleRecordForCycle(records, task, cycle) {
+    if (!task?.id || !cycle?.key) return null;
+    const normalized = normalizeRecords(records);
+    const exact = normalized[completionId(task.id, cycle.key)];
+    if (exact && !exact.deleted) return exact;
+
+    const legacyCadences = Array.isArray(task.legacyTrackingCadences)
+      ? task.legacyTrackingCadences.filter(Boolean)
+      : [];
+    if (!legacyCadences.length || !cycle.start || !cycle.end) return null;
+
+    return Object.values(normalized)
+      .filter((record) => record
+        && !record.deleted
+        && record.taskId === task.id
+        && typeof record.completedDate === "string"
+        && record.completedDate >= cycle.start
+        && record.completedDate <= cycle.end
+        && legacyCadences.some((cadence) => String(record.cycleKey || "").startsWith(`${cadence}_`)))
+      .sort((a, b) => b.completedDate.localeCompare(a.completedDate)
+        || String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")))[0] || null;
+  }
+
   return {
     TIME_ZONE,
     FORTNIGHT_ANCHOR,
     addDays,
+    compatibleRecordForCycle,
     completionId,
     cycleForDate,
     daysBetween,

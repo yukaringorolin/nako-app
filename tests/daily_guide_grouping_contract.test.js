@@ -27,12 +27,12 @@ const expectedGroups = {
     "laundry", "toilet-drain-hair-trap", "sofa-hair-room-corner-cleaning", "floor-cleaning", "rubbish",
     "general-tidiness"
   ],
-  "admin-supplies": ["mail-deliveries", "household-supplies-online", "helper-diary-feedback"],
+  "admin-supplies": ["mail-deliveries", "physical-mailbox-check", "household-supplies-online", "helper-diary-feedback"],
   safety: ["nako-supervision", "nako-kind-handling", "nako-emergency"]
 };
 const groupOrder = Object.keys(expectedGroups);
 
-assert.equal(activeDailyTasks.length, 26, "The Daily Care Guide must contain all 26 active daily references");
+assert.equal(activeDailyTasks.length, 27, "The Daily Care Guide must contain all 27 active daily references");
 assert.equal(new Set(activeDailyTasks.map((task) => task.id)).size, activeDailyTasks.length, "Daily task IDs must be unique");
 
 for (const task of activeDailyTasks) {
