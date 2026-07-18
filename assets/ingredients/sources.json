@@ -76,6 +76,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90027994_XL1_20260702150316_2aef57d2fa0059b6c653cdda5b76c7b2.jpg",
     "bytes": 148658
   },
+  "daikon-radish": {
+    "file": "daikon-radish.jpg",
+    "target": "Fresh whole daikon radish",
+    "sourcePage": "https://www.fairprice.com.sg/product/japan-daikon-white-radish-500g-13103250",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13103250_XL1_20221122.jpg",
+    "bytes": 53726
+  },
   "dark-soy-sauce": {
     "file": "dark-soy-sauce.jpg",
     "target": "Dark soy sauce bottle",
@@ -327,6 +334,13 @@
     "sourcePage": "https://www.fairprice.com.sg/product/mr-joys-fresh-yong-tau-foo-tao-pok",
     "imageUrl": "https://media.nedigital.sg/fairprice/90239443_XL1_20260714170716_1b07e9703e7f20d6d946b11bdb02948b.jpg",
     "bytes": 162588
+  },
+  "tomato": {
+    "file": "tomato.jpg",
+    "target": "Fresh whole tomatoes",
+    "sourcePage": "https://www.fairprice.com.sg/product/ping-pong-tomato-queen-red-honey-thailand-250g-10471009",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10471009_XL1_20250821.jpg",
+    "bytes": 426676
   },
   "wagyu-steak": {
     "file": "wagyu-steak.jpg",

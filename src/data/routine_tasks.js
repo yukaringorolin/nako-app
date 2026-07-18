@@ -551,17 +551,32 @@ const routineTasks = [
     ]),
   routine("supplement-pill-boxes", "weekly", 60, "P", 
     t("Supplement Pill Boxes", "サプリメントケース", "အားဆေးဗူးများ"), 
-    t("Check and top up daily supplement / pill boxes for Edwin and Yukari when empty or running low.", "エドウィンとゆかりの毎日のサプリメント/ピルボックスが空または少なくなっているか確認し、補充します。", "Edwin နှင့် Yukari တို့အတွက် နေ့စဉ်သောက်ရန် အားဆေး/ဆေးဗူးများ ကုန်ခါနီး သို့မဟုတ် ကုန်သွားပါက ဖြည့်ပေးပါ။"), 
+    t("Every week, check Edwin's green box for 5 items and Yukari's white box for 3 items, then top up when needed.", "毎週、エドウィンの緑色のケースに5種類、ゆかりの白色のケースに3種類入っているか確認し、必要に応じて補充します。", "အပတ်စဉ် Edwin ၏ အစိမ်းရောင်ဗူးတွင် ပစ္စည်း ၅ မျိုးနှင့် Yukari ၏ အဖြူရောင်ဗူးတွင် ပစ္စည်း ၃ မျိုး ရှိမရှိစစ်ပြီး လိုအပ်ပါက ဖြည့်ပါ။"), 
     t("Weekly check + when empty", "毎週チェック＋空のとき", "အပတ်စဉ်စစ်ဆေးမှု + ကုန်သွားသောအခါ"), 
     [
       t("Keep Edwin's and Yukari's boxes separate. Do not change, add, or remove supplements unless instructed. Ask Edwin if unsure.", "エドウィンとゆかりのケースは別々に保管してください。指示なしにサプリメントを変更、追加、または取り除かないでください。不明な場合はEdwinに確認してください。", "Edwin နဲ့ Yukari ရဲ့ဆေးဗူးတွေကို သီးခြားထားပါ။ ညွှန်ကြားချက်မရှိဘဲ အားဆေးကို မပြောင်း၊ မထည့်၊ မဖယ်ပါနဲ့။ မသေချာရင် Edwin ကို မေးပါ။"),
-      t("The green box is for Edwin, and the white box is for Yukari. Specific pill instructions for each box will be provided later.", "緑色のケースはエドウィン用、白色のケースはゆかり用です。それぞれのケースに入れる具体的な薬の指示は後日提供されます。", "အစိမ်းရောင်ဗူးမှာ Edwin အတွက်ဖြစ်ပြီး အဖြူရောင်ဗူးမှာ Yukari အတွက်ဖြစ်သည်။ ဗူးတစ်ခုစီတွင် ထည့်ရမည့် အသေးစိတ်ဆေးညွှန်ကြားချက်များကို နောက်ပိုင်းတွင် ဖော်ပြပေးပါမည်။")
+      t("Use only the exact products and strength shown or instructed. Do not guess, substitute, or change the amount. Ask Edwin if anything is unclear.", "表示または指示された製品と含有量だけを使います。推測、代用、量の変更はしません。不明な点があればEdwinに確認してください。", "ပြထားသော သို့မဟုတ် ညွှန်ကြားထားသော အမျိုးအစားနှင့် ဆေးပမာဏကိုသာ သုံးပါ။ မှန်းဆခြင်း၊ အစားထိုးခြင်း သို့မဟုတ် ပမာဏပြောင်းခြင်း မလုပ်ပါနှင့်။ မရှင်းလင်းပါက Edwin ကို မေးပါ။")
     ],
     [
+      photo("assets/routines/supplement-pill-boxes-edwin-five-items.jpg",
+        t("Edwin's 5 items beside the green supplement box", "エドウィン用の5種類と緑色のサプリメントケース", "Edwin အတွက် ပစ္စည်း ၅ မျိုးနှင့် အစိမ်းရောင် အားဆေးဗူး"),
+        t("Edwin needs multivitamin, Omega-3, probiotic, Vitamin D, and Metformin (Glucophage 750 mg).", "エドウィンには、マルチビタミン、オメガ3、プロバイオティクス、ビタミンD、メトホルミン（グルコファージ750 mg）が必要です。", "Edwin အတွက် multivitamin၊ Omega-3၊ probiotic၊ Vitamin D နှင့် Metformin (Glucophage 750 mg) လိုအပ်သည်။")),
+      photo("assets/routines/supplement-pill-boxes-yukari-three-items.jpg",
+        t("Yukari's supplements beside the white supplement box", "ゆかり用のサプリメントと白色のサプリメントケース", "Yukari အတွက် အားဆေးများနှင့် အဖြူရောင် အားဆေးဗူး"),
+        t("Yukari needs multivitamin, Omega-3, and probiotic. Omega-3 is required even though it is not visible in this photo.", "ゆかりには、マルチビタミン、オメガ3、プロバイオティクスが必要です。この写真に写っていませんが、オメガ3も必要です。", "Yukari အတွက် multivitamin၊ Omega-3 နှင့် probiotic လိုအပ်သည်။ ဤဓာတ်ပုံတွင် Omega-3 မပါသော်လည်း ထည့်ရန်လိုအပ်သည်။")),
       photo("assets/routines/supplement-pill-boxes.jpg",
         t("Supplement pill boxes", "サプリメントケース", "အားဆေးဆေးဗူးများ"),
         t("Green pill organizer for Edwin, white multi-compartment box for Yukari.", "エドウィン用の緑色のサプリメントケースと、ゆかり用の白色のマルチ仕切りケース。", "Edwin အတွက် အစိမ်းရောင်ဆေးဗူးနှင့် Yukari အတွက် အဖြူရောင်အကန့်ပါဆေးဗူး။"))
-    ]),
+    ],
+    {
+      instructions: [
+        t("Wash and dry your hands before handling the supplements and medicine.", "サプリメントと薬を扱う前に、手を洗って乾かします。", "အားဆေးနှင့် ဆေးကို မကိုင်မီ လက်ဆေးပြီး ခြောက်အောင်သုတ်ပါ။"),
+        t("Edwin - green box: Check for multivitamin, Omega-3, probiotic, Vitamin D, and Metformin (Glucophage 750 mg).", "エドウィン・緑色のケース：マルチビタミン、オメガ3、プロバイオティクス、ビタミンD、メトホルミン（グルコファージ750 mg）を確認します。", "Edwin - အစိမ်းရောင်ဗူး။ multivitamin၊ Omega-3၊ probiotic၊ Vitamin D နှင့် Metformin (Glucophage 750 mg) ရှိမရှိ စစ်ပါ။"),
+        t("Yukari - white box: Check for multivitamin, Omega-3, and probiotic.", "ゆかり・白色のケース：マルチビタミン、オメガ3、プロバイオティクスを確認します。", "Yukari - အဖြူရောင်ဗူး။ multivitamin၊ Omega-3 နှင့် probiotic ရှိမရှိ စစ်ပါ။"),
+        t("Check every compartment. Top up only the instructed amount of each item.", "すべての仕切りを確認し、各アイテムを指示された量だけ補充します。", "အကန့်တိုင်းကို စစ်ပါ။ ပစ္စည်းတစ်မျိုးစီကို ညွှန်ကြားထားသော ပမာဏအတိုင်းသာ ဖြည့်ပါ။"),
+        t("Close every compartment securely and put both boxes back separately.", "すべての仕切りをしっかり閉め、2つのケースを別々に元の場所へ戻します。", "အကန့်တိုင်းကို သေချာပိတ်ပြီး ဗူး ၂ ခုကို သီးခြားစီ မူလနေရာသို့ ပြန်ထားပါ။")
+      ]
+    }),
 
   routine("toilet-cleaning", "weekly", 70, "T", 
     t("Deep Toilet Cleaning", "トイレの徹底掃除", "အိမ်သာ အထူးသန့်ရှင်းရေး"),

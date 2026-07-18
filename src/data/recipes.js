@@ -76,6 +76,33 @@ const recipes = [
       photo("assets/recipes/nako-chicken-apple-vegetable-meal-prep-chopped.jpg", t("Finely chopped meal-prep ingredients", "細かく刻んだ作り置きの材料", "သေးသေးလေး လှီးထားသော အကြိုပြင်အစာ ပါဝင်ပစ္စည်းများ"), t("Keep every piece small and even for the final soft mixture.", "仕上がりがやわらかく均一になるよう、すべて小さく刻みます。", "နောက်ဆုံးအစာပျော့ပျော့ညီညီ ဖြစ်စေရန် အားလုံးကို သေးသေးလေး ညီညီလှီးပါ။")),
       photo("assets/recipes/nako-chicken-apple-vegetable-meal-prep-simmering.jpg", t("Plain chicken and vegetables simmering", "鶏肉と野菜を味付けなしで煮ているところ", "အရသာမထည့်ဘဲ ကြက်သားနှင့် ဟင်းသီးဟင်းရွက်များကို တည်နေစဉ်"), t("Simmer the cooked chicken and chopped ingredients in plain water until soft.", "加熱した鶏肉と刻んだ材料を水だけで柔らかくなるまで煮ます。", "ကျက်ပြီးသားကြက်သားနှင့် လှီးထားသော ပါဝင်ပစ္စည်းများကို ရေသန့်ဖြင့် နူးသည်အထိ တည်ပါ။"))
     ]),
+  recipe("nako-chicken-sweet-potato-daikon-vegetable-meal-prep",
+    t("Nako's Chicken, Sweet Potato & Daikon Meal Prep", "ナコの鶏肉・さつまいも・大根の作り置き", "Nako အတွက် ကြက်သား၊ ကန်စွန်းဥနှင့် မုန်လာဥဖြူ အကြိုပြင်အစာ"),
+    [
+      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), "—", "chicken-minced"],
+      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), "—", "sweet-potato"],
+      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), "—", "daikon-radish"],
+      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), "—", "tomato"],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "—", "napa-cabbage"],
+      [t("Water", "水", "ရေ"), "—", "water"]
+    ],
+    [
+      t("Wash the vegetables and peel the sweet potato and daikon.", "野菜を洗い、さつまいもと大根の皮をむきます。", "ဟင်းသီးဟင်းရွက်များကို ဆေးပြီး ကန်စွန်းဥနှင့် မုန်လာဥဖြူကို အခွံခွာပါ။"),
+      t("Chop the sweet potato, daikon, tomato, and napa cabbage into small, even pieces.", "さつまいも、大根、トマト、白菜を小さく均一に刻みます。", "ကန်စွန်းဥ၊ မုန်လာဥဖြူ၊ ခရမ်းချဉ်သီးနှင့် မုန်ညင်းဖြူကို သေးသေးလေး ညီညီလှီးပါ။"),
+      t("Cook the minced chicken completely in plain water.", "鶏ひき肉を水だけで完全に火が通るまで加熱します。", "ကြက်သားစဉ်းကောကို ရေသန့်ဖြင့် လုံးဝကျက်အောင် ချက်ပါ။"),
+      t("Add the chopped vegetables and simmer until everything is soft.", "刻んだ野菜を加え、すべて柔らかくなるまで煮ます。", "လှီးထားသော ဟင်းသီးဟင်းရွက်များကို ထည့်ပြီး အားလုံးနူးသည်အထိ တည်ပါ။"),
+      t("Cool completely and divide into clean freezer trays.", "完全に冷ましてから、清潔な冷凍トレーに小分けします。", "လုံးဝအေးသွားအောင်ထားပြီး သန့်ရှင်းသော ရေခဲသေတ္တာခွဲထည့်ပုံးများတွင် အပိုင်းခွဲထည့်ပါ။"),
+      t("Serve only the instructed amount with Nako's usual food.", "ナコの普段のフードに、指示された量だけ混ぜて与えます。", "Nako ၏ ပုံမှန်အစာနှင့် ညွှန်ကြားထားသော ပမာဏကိုသာ ရောကျွေးပါ။")
+    ],
+    t("Use no seasoning, sauce, oil, salt, onion, garlic, bones, or tomato stems and leaves. The photos do not show ingredient amounts, so follow Nako's existing portion instructions.", "調味料、ソース、油、塩、玉ねぎ、にんにく、骨、トマトのへたや葉は使いません。写真には材料の分量が写っていないため、ナコの既存の分量指示に従ってください。", "ဟင်းခတ်မှုန့်၊ ဆော့စ်၊ ဆီ၊ ဆား၊ ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ၊ အရိုး သို့မဟုတ် ခရမ်းချဉ်သီးအညှာနှင့် အရွက်များကို မသုံးပါနှင့်။ ဓာတ်ပုံများတွင် ပါဝင်ပစ္စည်းပမာဏ မပါသဖြင့် Nako အတွက် ရှိပြီးသား ပမာဏညွှန်ကြားချက်ကို လိုက်နာပါ။"),
+    [
+      photo("assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-portions.jpg",
+        t("Portioned chicken, sweet potato, daikon, tomato, and napa cabbage meal prep", "鶏肉、さつまいも、大根、トマト、白菜の作り置きを小分けしたもの", "ကြက်သား၊ ကန်စွန်းဥ၊ မုန်လာဥဖြူ၊ ခရမ်းချဉ်သီးနှင့် မုန်ညင်းဖြူ အကြိုပြင်အစာကို အပိုင်းခွဲထားပုံ"),
+        t("The finished meal prep is cooling in clean storage containers.", "完成した作り置きを清潔な保存容器に入れて冷ましています。", "ပြီးစီးသော အကြိုပြင်အစာကို သန့်ရှင်းသော သိမ်းဆည်းပုံးများတွင် အေးအောင်ထားပါ။")),
+      photo("assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-preparation.jpg",
+        t("Chopped vegetables and plain chicken mixture simmering", "刻んだ野菜と味付けなしの鶏肉を煮ているところ", "လှီးထားသော ဟင်းသီးဟင်းရွက်များနှင့် အရသာမထည့်ထားသော ကြက်သားကို တည်နေပုံ"),
+        t("Chop every ingredient small, then simmer the plain mixture until fully cooked and soft.", "すべての材料を小さく刻み、味付けせずに完全に火が通って柔らかくなるまで煮ます。", "ပါဝင်ပစ္စည်းအားလုံးကို သေးသေးလေးလှီးပြီး အရသာမထည့်ဘဲ လုံးဝကျက်ကာ နူးသည်အထိ တည်ပါ။"))
+    ]),
 
 
   recipe("pork-shogayaki-no-onion",

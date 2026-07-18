@@ -13,6 +13,8 @@
     carrot: { file: "carrot.jpg", source: product("/product/snackables-snack-fresh-carrots-250g-13280574"), target: "Fresh whole carrots" },
     whitefish: { file: "whitefish.jpg", source: product("/product/catch-seafood-pacific-dory-fillet"), target: "Plain frozen dory / white-fish fillet package" },
     "sweet-potato": { file: "sweet-potato.jpg", source: product("/product/13135134"), target: "Fresh sweet potatoes" },
+    "daikon-radish": { file: null, source: product("/product/japan-daikon-white-radish-500g-13103250"), target: "Fresh whole daikon radish" },
+    tomato: { file: null, source: search("fresh tomato"), target: "Fresh whole tomatoes" },
     zucchini: { file: "zucchini.jpg", source: product("/product/thygrace-green-zucchini-2-per-pack-13183890"), target: "Fresh green zucchini" },
     "napa-cabbage": { file: "napa-cabbage.jpg", source: product("/product/wa-wa-chye-baby-wongbok-250g-10950392"), target: "Whole wong bok / napa cabbage" },
     broccoli: { file: "broccoli.jpg", source: product("/product/orgo-fresh-royal-broccoli-280-g-90153099"), target: "Fresh broccoli head or supermarket pack" },

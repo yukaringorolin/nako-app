@@ -1972,17 +1972,32 @@ const routineTasks = [
     ]),
   routine("supplement-pill-boxes", "weekly", 60, "P", 
     t("Supplement Pill Boxes", "サプリメントケース", "အားဆေးဗူးများ"), 
-    t("Check and top up daily supplement / pill boxes for Edwin and Yukari when empty or running low.", "エドウィンとゆかりの毎日のサプリメント/ピルボックスが空または少なくなっているか確認し、補充します。", "Edwin နှင့် Yukari တို့အတွက် နေ့စဉ်သောက်ရန် အားဆေး/ဆေးဗူးများ ကုန်ခါနီး သို့မဟုတ် ကုန်သွားပါက ဖြည့်ပေးပါ။"), 
+    t("Every week, check Edwin's green box for 5 items and Yukari's white box for 3 items, then top up when needed.", "毎週、エドウィンの緑色のケースに5種類、ゆかりの白色のケースに3種類入っているか確認し、必要に応じて補充します。", "အပတ်စဉ် Edwin ၏ အစိမ်းရောင်ဗူးတွင် ပစ္စည်း ၅ မျိုးနှင့် Yukari ၏ အဖြူရောင်ဗူးတွင် ပစ္စည်း ၃ မျိုး ရှိမရှိစစ်ပြီး လိုအပ်ပါက ဖြည့်ပါ။"), 
     t("Weekly check + when empty", "毎週チェック＋空のとき", "အပတ်စဉ်စစ်ဆေးမှု + ကုန်သွားသောအခါ"), 
     [
       t("Keep Edwin's and Yukari's boxes separate. Do not change, add, or remove supplements unless instructed. Ask Edwin if unsure.", "エドウィンとゆかりのケースは別々に保管してください。指示なしにサプリメントを変更、追加、または取り除かないでください。不明な場合はEdwinに確認してください。", "Edwin နဲ့ Yukari ရဲ့ဆေးဗူးတွေကို သီးခြားထားပါ။ ညွှန်ကြားချက်မရှိဘဲ အားဆေးကို မပြောင်း၊ မထည့်၊ မဖယ်ပါနဲ့။ မသေချာရင် Edwin ကို မေးပါ။"),
-      t("The green box is for Edwin, and the white box is for Yukari. Specific pill instructions for each box will be provided later.", "緑色のケースはエドウィン用、白色のケースはゆかり用です。それぞれのケースに入れる具体的な薬の指示は後日提供されます。", "အစိမ်းရောင်ဗူးမှာ Edwin အတွက်ဖြစ်ပြီး အဖြူရောင်ဗူးမှာ Yukari အတွက်ဖြစ်သည်။ ဗူးတစ်ခုစီတွင် ထည့်ရမည့် အသေးစိတ်ဆေးညွှန်ကြားချက်များကို နောက်ပိုင်းတွင် ဖော်ပြပေးပါမည်။")
+      t("Use only the exact products and strength shown or instructed. Do not guess, substitute, or change the amount. Ask Edwin if anything is unclear.", "表示または指示された製品と含有量だけを使います。推測、代用、量の変更はしません。不明な点があればEdwinに確認してください。", "ပြထားသော သို့မဟုတ် ညွှန်ကြားထားသော အမျိုးအစားနှင့် ဆေးပမာဏကိုသာ သုံးပါ။ မှန်းဆခြင်း၊ အစားထိုးခြင်း သို့မဟုတ် ပမာဏပြောင်းခြင်း မလုပ်ပါနှင့်။ မရှင်းလင်းပါက Edwin ကို မေးပါ။")
     ],
     [
+      photo("assets/routines/supplement-pill-boxes-edwin-five-items.jpg",
+        t("Edwin's 5 items beside the green supplement box", "エドウィン用の5種類と緑色のサプリメントケース", "Edwin အတွက် ပစ္စည်း ၅ မျိုးနှင့် အစိမ်းရောင် အားဆေးဗူး"),
+        t("Edwin needs multivitamin, Omega-3, probiotic, Vitamin D, and Metformin (Glucophage 750 mg).", "エドウィンには、マルチビタミン、オメガ3、プロバイオティクス、ビタミンD、メトホルミン（グルコファージ750 mg）が必要です。", "Edwin အတွက် multivitamin၊ Omega-3၊ probiotic၊ Vitamin D နှင့် Metformin (Glucophage 750 mg) လိုအပ်သည်။")),
+      photo("assets/routines/supplement-pill-boxes-yukari-three-items.jpg",
+        t("Yukari's supplements beside the white supplement box", "ゆかり用のサプリメントと白色のサプリメントケース", "Yukari အတွက် အားဆေးများနှင့် အဖြူရောင် အားဆေးဗူး"),
+        t("Yukari needs multivitamin, Omega-3, and probiotic. Omega-3 is required even though it is not visible in this photo.", "ゆかりには、マルチビタミン、オメガ3、プロバイオティクスが必要です。この写真に写っていませんが、オメガ3も必要です。", "Yukari အတွက် multivitamin၊ Omega-3 နှင့် probiotic လိုအပ်သည်။ ဤဓာတ်ပုံတွင် Omega-3 မပါသော်လည်း ထည့်ရန်လိုအပ်သည်။")),
       photo("assets/routines/supplement-pill-boxes.jpg",
         t("Supplement pill boxes", "サプリメントケース", "အားဆေးဆေးဗူးများ"),
         t("Green pill organizer for Edwin, white multi-compartment box for Yukari.", "エドウィン用の緑色のサプリメントケースと、ゆかり用の白色のマルチ仕切りケース。", "Edwin အတွက် အစိမ်းရောင်ဆေးဗူးနှင့် Yukari အတွက် အဖြူရောင်အကန့်ပါဆေးဗူး။"))
-    ]),
+    ],
+    {
+      instructions: [
+        t("Wash and dry your hands before handling the supplements and medicine.", "サプリメントと薬を扱う前に、手を洗って乾かします。", "အားဆေးနှင့် ဆေးကို မကိုင်မီ လက်ဆေးပြီး ခြောက်အောင်သုတ်ပါ။"),
+        t("Edwin - green box: Check for multivitamin, Omega-3, probiotic, Vitamin D, and Metformin (Glucophage 750 mg).", "エドウィン・緑色のケース：マルチビタミン、オメガ3、プロバイオティクス、ビタミンD、メトホルミン（グルコファージ750 mg）を確認します。", "Edwin - အစိမ်းရောင်ဗူး။ multivitamin၊ Omega-3၊ probiotic၊ Vitamin D နှင့် Metformin (Glucophage 750 mg) ရှိမရှိ စစ်ပါ။"),
+        t("Yukari - white box: Check for multivitamin, Omega-3, and probiotic.", "ゆかり・白色のケース：マルチビタミン、オメガ3、プロバイオティクスを確認します。", "Yukari - အဖြူရောင်ဗူး။ multivitamin၊ Omega-3 နှင့် probiotic ရှိမရှိ စစ်ပါ။"),
+        t("Check every compartment. Top up only the instructed amount of each item.", "すべての仕切りを確認し、各アイテムを指示された量だけ補充します。", "အကန့်တိုင်းကို စစ်ပါ။ ပစ္စည်းတစ်မျိုးစီကို ညွှန်ကြားထားသော ပမာဏအတိုင်းသာ ဖြည့်ပါ။"),
+        t("Close every compartment securely and put both boxes back separately.", "すべての仕切りをしっかり閉め、2つのケースを別々に元の場所へ戻します。", "အကန့်တိုင်းကို သေချာပိတ်ပြီး ဗူး ၂ ခုကို သီးခြားစီ မူလနေရာသို့ ပြန်ထားပါ။")
+      ]
+    }),
 
   routine("toilet-cleaning", "weekly", 70, "T", 
     t("Deep Toilet Cleaning", "トイレの徹底掃除", "အိမ်သာ အထူးသန့်ရှင်းရေး"),
@@ -3264,6 +3279,33 @@ const recipes = [
       photo("assets/recipes/nako-chicken-apple-vegetable-meal-prep-chopped.jpg", t("Finely chopped meal-prep ingredients", "細かく刻んだ作り置きの材料", "သေးသေးလေး လှီးထားသော အကြိုပြင်အစာ ပါဝင်ပစ္စည်းများ"), t("Keep every piece small and even for the final soft mixture.", "仕上がりがやわらかく均一になるよう、すべて小さく刻みます。", "နောက်ဆုံးအစာပျော့ပျော့ညီညီ ဖြစ်စေရန် အားလုံးကို သေးသေးလေး ညီညီလှီးပါ။")),
       photo("assets/recipes/nako-chicken-apple-vegetable-meal-prep-simmering.jpg", t("Plain chicken and vegetables simmering", "鶏肉と野菜を味付けなしで煮ているところ", "အရသာမထည့်ဘဲ ကြက်သားနှင့် ဟင်းသီးဟင်းရွက်များကို တည်နေစဉ်"), t("Simmer the cooked chicken and chopped ingredients in plain water until soft.", "加熱した鶏肉と刻んだ材料を水だけで柔らかくなるまで煮ます。", "ကျက်ပြီးသားကြက်သားနှင့် လှီးထားသော ပါဝင်ပစ္စည်းများကို ရေသန့်ဖြင့် နူးသည်အထိ တည်ပါ။"))
     ]),
+  recipe("nako-chicken-sweet-potato-daikon-vegetable-meal-prep",
+    t("Nako's Chicken, Sweet Potato & Daikon Meal Prep", "ナコの鶏肉・さつまいも・大根の作り置き", "Nako အတွက် ကြက်သား၊ ကန်စွန်းဥနှင့် မုန်လာဥဖြူ အကြိုပြင်အစာ"),
+    [
+      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), "—", "chicken-minced"],
+      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), "—", "sweet-potato"],
+      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), "—", "daikon-radish"],
+      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), "—", "tomato"],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "—", "napa-cabbage"],
+      [t("Water", "水", "ရေ"), "—", "water"]
+    ],
+    [
+      t("Wash the vegetables and peel the sweet potato and daikon.", "野菜を洗い、さつまいもと大根の皮をむきます。", "ဟင်းသီးဟင်းရွက်များကို ဆေးပြီး ကန်စွန်းဥနှင့် မုန်လာဥဖြူကို အခွံခွာပါ။"),
+      t("Chop the sweet potato, daikon, tomato, and napa cabbage into small, even pieces.", "さつまいも、大根、トマト、白菜を小さく均一に刻みます。", "ကန်စွန်းဥ၊ မုန်လာဥဖြူ၊ ခရမ်းချဉ်သီးနှင့် မုန်ညင်းဖြူကို သေးသေးလေး ညီညီလှီးပါ။"),
+      t("Cook the minced chicken completely in plain water.", "鶏ひき肉を水だけで完全に火が通るまで加熱します。", "ကြက်သားစဉ်းကောကို ရေသန့်ဖြင့် လုံးဝကျက်အောင် ချက်ပါ။"),
+      t("Add the chopped vegetables and simmer until everything is soft.", "刻んだ野菜を加え、すべて柔らかくなるまで煮ます。", "လှီးထားသော ဟင်းသီးဟင်းရွက်များကို ထည့်ပြီး အားလုံးနူးသည်အထိ တည်ပါ။"),
+      t("Cool completely and divide into clean freezer trays.", "完全に冷ましてから、清潔な冷凍トレーに小分けします。", "လုံးဝအေးသွားအောင်ထားပြီး သန့်ရှင်းသော ရေခဲသေတ္တာခွဲထည့်ပုံးများတွင် အပိုင်းခွဲထည့်ပါ။"),
+      t("Serve only the instructed amount with Nako's usual food.", "ナコの普段のフードに、指示された量だけ混ぜて与えます。", "Nako ၏ ပုံမှန်အစာနှင့် ညွှန်ကြားထားသော ပမာဏကိုသာ ရောကျွေးပါ။")
+    ],
+    t("Use no seasoning, sauce, oil, salt, onion, garlic, bones, or tomato stems and leaves. The photos do not show ingredient amounts, so follow Nako's existing portion instructions.", "調味料、ソース、油、塩、玉ねぎ、にんにく、骨、トマトのへたや葉は使いません。写真には材料の分量が写っていないため、ナコの既存の分量指示に従ってください。", "ဟင်းခတ်မှုန့်၊ ဆော့စ်၊ ဆီ၊ ဆား၊ ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ၊ အရိုး သို့မဟုတ် ခရမ်းချဉ်သီးအညှာနှင့် အရွက်များကို မသုံးပါနှင့်။ ဓာတ်ပုံများတွင် ပါဝင်ပစ္စည်းပမာဏ မပါသဖြင့် Nako အတွက် ရှိပြီးသား ပမာဏညွှန်ကြားချက်ကို လိုက်နာပါ။"),
+    [
+      photo("assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-portions.jpg",
+        t("Portioned chicken, sweet potato, daikon, tomato, and napa cabbage meal prep", "鶏肉、さつまいも、大根、トマト、白菜の作り置きを小分けしたもの", "ကြက်သား၊ ကန်စွန်းဥ၊ မုန်လာဥဖြူ၊ ခရမ်းချဉ်သီးနှင့် မုန်ညင်းဖြူ အကြိုပြင်အစာကို အပိုင်းခွဲထားပုံ"),
+        t("The finished meal prep is cooling in clean storage containers.", "完成した作り置きを清潔な保存容器に入れて冷ましています。", "ပြီးစီးသော အကြိုပြင်အစာကို သန့်ရှင်းသော သိမ်းဆည်းပုံးများတွင် အေးအောင်ထားပါ။")),
+      photo("assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-preparation.jpg",
+        t("Chopped vegetables and plain chicken mixture simmering", "刻んだ野菜と味付けなしの鶏肉を煮ているところ", "လှီးထားသော ဟင်းသီးဟင်းရွက်များနှင့် အရသာမထည့်ထားသော ကြက်သားကို တည်နေပုံ"),
+        t("Chop every ingredient small, then simmer the plain mixture until fully cooked and soft.", "すべての材料を小さく刻み、味付けせずに完全に火が通って柔らかくなるまで煮ます。", "ပါဝင်ပစ္စည်းအားလုံးကို သေးသေးလေးလှီးပြီး အရသာမထည့်ဘဲ လုံးဝကျက်ကာ နူးသည်အထိ တည်ပါ။"))
+    ]),
 
 
   recipe("pork-shogayaki-no-onion",
@@ -4393,6 +4435,8 @@ function checkTranslations() {
     carrot: { file: "carrot.jpg", source: product("/product/snackables-snack-fresh-carrots-250g-13280574"), target: "Fresh whole carrots" },
     whitefish: { file: "whitefish.jpg", source: product("/product/catch-seafood-pacific-dory-fillet"), target: "Plain frozen dory / white-fish fillet package" },
     "sweet-potato": { file: "sweet-potato.jpg", source: product("/product/13135134"), target: "Fresh sweet potatoes" },
+    "daikon-radish": { file: null, source: product("/product/japan-daikon-white-radish-500g-13103250"), target: "Fresh whole daikon radish" },
+    tomato: { file: null, source: search("fresh tomato"), target: "Fresh whole tomatoes" },
     zucchini: { file: "zucchini.jpg", source: product("/product/thygrace-green-zucchini-2-per-pack-13183890"), target: "Fresh green zucchini" },
     "napa-cabbage": { file: "napa-cabbage.jpg", source: product("/product/wa-wa-chye-baby-wongbok-250g-10950392"), target: "Whole wong bok / napa cabbage" },
     broccoli: { file: "broccoli.jpg", source: product("/product/orgo-fresh-royal-broccoli-280-g-90153099"), target: "Fresh broccoli head or supermarket pack" },

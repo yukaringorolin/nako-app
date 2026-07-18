@@ -147,8 +147,16 @@ assert.match(englishText(routineById("daily-cooking").mustRemember), /main power
 assert.match(englishText(routineById("daily-cooking").mustRemember), /crumbs, smells, stains, ants, cockroaches/);
 assert.match(englishText(routineById("nako-weekly-play-pen-deep-clean").mustRemember), /Dry the pen.*fully before letting Nako back in/);
 assert.match(englishText(routineById("nako-teeth-ears-nails").mustRemember), /Never use human toothpaste/);
-assert.match(englishText(routineById("supplement-pill-boxes").mustRemember), /Do not change, add, or remove supplements/);
-assert.equal(routineById("supplement-pill-boxes").trackingMode, "checkbox");
+const supplementPillBoxes = routineById("supplement-pill-boxes");
+assert.match(englishText(supplementPillBoxes.mustRemember), /Do not change, add, or remove supplements/);
+assert.equal(supplementPillBoxes.trackingMode, "checkbox");
+assert.match(englishText(supplementPillBoxes.instructions), /Edwin.*multivitamin.*Omega-3.*probiotic.*Vitamin D.*Glucophage 750 mg/);
+assert.match(englishText(supplementPillBoxes.instructions), /Yukari.*multivitamin.*Omega-3.*probiotic/);
+assert.deepEqual(Array.from(supplementPillBoxes.photos, (item) => item.src), [
+  "assets/routines/supplement-pill-boxes-edwin-five-items.jpg",
+  "assets/routines/supplement-pill-boxes-yukari-three-items.jpg",
+  "assets/routines/supplement-pill-boxes.jpg"
+]);
 assert.equal(routineById("toilet-cleaning").title.en, "Deep Toilet Cleaning");
 assert.equal(routineById("toilet-cleaning").trackingMode, "checkbox");
 assert.match(englishText(routineById("ceiling-fan").mustRemember), /black stepladder/);
@@ -263,6 +271,17 @@ assert.equal(uploadSharedAlbum.frequencyText.en, "Daily / after tasks or when ne
 
 const essentialFoodStock = routineById("essential-food-stock");
 assert.ok(essentialFoodStock.photos.some((item) => item.src === "assets/routines/essential-food-stock-bananas.jpg"));
+
+const chickenSweetPotatoDaikonMealPrep = recipeById("nako-chicken-sweet-potato-daikon-vegetable-meal-prep");
+assert.deepEqual(Array.from(chickenSweetPotatoDaikonMealPrep.ingredients, (item) => item.key), [
+  "chicken-minced", "sweet-potato", "daikon-radish", "tomato", "napa-cabbage", "water"
+]);
+assert.deepEqual(Array.from(chickenSweetPotatoDaikonMealPrep.photos, (item) => item.src), [
+  "assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-portions.jpg",
+  "assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-preparation.jpg"
+]);
+assert.match(englishText(chickenSweetPotatoDaikonMealPrep.method), /Cool completely.*freezer trays/);
+assert.match(chickenSweetPotatoDaikonMealPrep.note.en, /photos do not show ingredient amounts/);
 
 const bakKutTeh = recipeById("bak-kut-teh");
 assert.ok(bakKutTeh.photos.some((item) => item.src === "assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg"));

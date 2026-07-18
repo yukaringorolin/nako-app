@@ -88,6 +88,12 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Raw skinless chicken breast in a chilled supermarket pack
 - **Source page**: https://www.fairprice.com.sg/product/aw-s-market-kampong-chicken-breast-fillet-cube-300-g-90125965
 
+## chicken-minced
+
+- **File**: `chicken-minced.jpg`
+- **Shopping target**: Fresh minced chicken in a labelled supermarket tray
+- **Source page**: https://www.fairprice.com.sg/product/kee-song-fresh-chicken-minced-300g-13097678
+
 ## chicken-tender
 
 - **File**: `chicken-tender.jpg`
@@ -132,6 +138,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Crab sticks / surimi package
 - **Source page**: https://www.fairprice.com.sg/product/seaboss-kanifumi-kamaboko-surimi-japanese-crabstick-halal-500-g-90027994
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90027994_XL1_20260702150316_2aef57d2fa0059b6c653cdda5b76c7b2.jpg
+
+## daikon-radish
+
+- **File**: `daikon-radish.jpg`
+- **Shopping target**: Fresh whole daikon radish
+- **Source page**: https://www.fairprice.com.sg/product/japan-daikon-white-radish-500g-13103250
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13103250_XL1_20221122.jpg
 
 ## dark-soy-sauce
 
@@ -491,6 +504,13 @@ Curated online reference images for this private household app. Every file is a 
 - **File**: `firm-tofu.jpg`
 - **Shopping target**: Firm tofu in refrigerated retail packaging
 - **Source page**: https://www.fairprice.com.sg/product/fairprice-tau-kwa-2s-400g-13233989
+
+## tomato
+
+- **File**: `tomato.jpg`
+- **Shopping target**: Fresh whole tomatoes
+- **Source page**: https://www.fairprice.com.sg/product/ping-pong-tomato-queen-red-honey-thailand-250g-10471009
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10471009_XL1_20250821.jpg
 
 ## tuna
 
