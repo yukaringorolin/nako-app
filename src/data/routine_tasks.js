@@ -553,7 +553,7 @@ const routineTasks = [
     ]),
 
   routine("toilet-cleaning", "weekly", 70, "T", 
-    t("Toilet Cleaning", "トイレの掃除", "အိမ်သာသန့်ရှင်းရေး"),
+    t("Deep Toilet Cleaning", "トイレの徹底掃除", "အိမ်သာ အထူးသန့်ရှင်းရေး"),
     t(
       "Wash both toilets every week. Use the white spray for bathroom surfaces, the green cleaner inside the toilet bowl, and the mold remover only when black mold appears.",
       "毎週2つのトイレを洗います。白いスプレーは浴室の表面、緑の洗剤は便器の中、カビ取り剤は黒カビがある時だけ使います。",
@@ -1451,9 +1451,7 @@ if (cleaningToolsRoutine) cleaningToolsRoutine.legacyTrackingCadences = ["weekly
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
 // If a non-daily actionable task is deliberately excluded, we declare a reason here.
 const routineTrackingExclusions = {
-  "toilet-cleaning": "Common/master toilet cleaning is handled during daily cleaning routines and as-needed",
   "nako-inventory-check": "Inventory check is a reference guidelines page for stocking items",
-  "supplement-pill-boxes": "Supplement pill boxes check is a reference guidelines page for Edwin and Yukari's medications",
   "pest-check": "Pest check is reference information for checking ants/cockroaches",
   "outside-shoe-rack": "Shoe rack tidiness is managed daily or on-demand, not on a strict fortnightly schedule",
   "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"

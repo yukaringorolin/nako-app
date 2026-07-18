@@ -140,6 +140,9 @@ assert.match(englishText(routineById("daily-cooking").mustRemember), /crumbs, sm
 assert.match(englishText(routineById("nako-weekly-play-pen-deep-clean").mustRemember), /Dry the pen.*fully before letting Nako back in/);
 assert.match(englishText(routineById("nako-teeth-ears-nails").mustRemember), /Never use human toothpaste/);
 assert.match(englishText(routineById("supplement-pill-boxes").mustRemember), /Do not change, add, or remove supplements/);
+assert.equal(routineById("supplement-pill-boxes").trackingMode, "checkbox");
+assert.equal(routineById("toilet-cleaning").title.en, "Deep Toilet Cleaning");
+assert.equal(routineById("toilet-cleaning").trackingMode, "checkbox");
 assert.match(englishText(routineById("ceiling-fan").mustRemember), /black stepladder/);
 assert.match(englishText(routineById("ceiling-fan").mustRemember), /Do not stand on the top step/);
 assert.match(englishText(routineById("ceiling-fan").mustRemember), /separate dirty-area cloth.*standard Magiclean disinfectant/);

@@ -81,6 +81,8 @@ const baselineIds = new Set([
   "kitchen-sink-drain-rack-counter",
   "nako-weekly-play-pen-deep-clean",
   "nako-weight-tracking",
+  "supplement-pill-boxes",
+  "toilet-cleaning",
   "rubbish-bin-washing",
   "floor-mats",
   "bedrooms-linens",

@@ -58,13 +58,20 @@ for (const [groupId, expectedIds] of Object.entries(expectedGroups)) {
 const expectedTrackingModes = {
   "nako-weight-tracking": "metric",
   "nako-inventory-check": "none",
-  "supplement-pill-boxes": "none",
-  "toilet-cleaning": "none",
   "pest-check": "none"
 };
 for (const task of activeWeeklyTasks) {
   assert.equal(task.trackingMode, expectedTrackingModes[task.id] || "checkbox", `${task.id} must preserve its tracking mode`);
 }
+
+const deepToiletCleaning = activeWeeklyTasks.find((task) => task.id === "toilet-cleaning");
+assert.equal(deepToiletCleaning.title.en, "Deep Toilet Cleaning");
+assert.equal(deepToiletCleaning.trackingMode, "checkbox");
+assert.equal(deepToiletCleaning.trackingCadence, "weekly");
+
+const supplementPillBoxes = activeWeeklyTasks.find((task) => task.id === "supplement-pill-boxes");
+assert.equal(supplementPillBoxes.trackingMode, "checkbox");
+assert.equal(supplementPillBoxes.trackingCadence, "weekly");
 
 for (const lang of ["en", "jp", "mm"]) {
   for (const key of [
