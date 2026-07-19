@@ -82,7 +82,7 @@ assert.equal(nakoEmergency.frequencyBucket, "daily");
 assert.equal(nakoEmergency.photos[0].src, "assets/sections/nako-emergency.png");
 const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
 const shellSource = fs.readFileSync(path.join(root, "src", "ui", "shell.js"), "utf8");
-assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonicalRoute\)/);
+assert.match(pageSource, /if \(item\.canonicalRoute\) return replaceRoute\(item\.canonicalRoute\)/);
 assert.match(pageSource, /isDailyGuide\s*\? renderDailyGuideGroups\(items, section\)/);
 assert.match(pageSource, /renderRoutineLegend\(task\)/);
 const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components.js"), "utf8");
@@ -180,7 +180,7 @@ assert.deepEqual(Array.from(weightTracking.photos, (item) => item.src), [
 
 const bedroomsLinens = routineById("bedrooms-linens");
 assert.equal(bedroomsLinens.instructions.length, 7);
-assert.match(englishText(bedroomsLinens.instructions), /chair—not on the floor/);
+assert.match(englishText(bedroomsLinens.instructions), /chair, not on the floor/);
 assert.match(englishText(bedroomsLinens.instructions), /dedicated bedding vacuum only/);
 assert.match(englishText(bedroomsLinens.instructions), /The Knight Super King mattress \(183 × 198 cm\)/);
 assert.match(englishText(bedroomsLinens.mustRemember), /must not remain on the white bed-frame handlebar/);

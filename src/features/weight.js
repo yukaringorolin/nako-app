@@ -166,7 +166,7 @@ function renderQuickEntryPanel() {
       }
     }
   } else {
-    prevHtml = `<span class="prev-weight">${esc(label("previous"))}: <strong>—</strong></span>`;
+    prevHtml = `<span class="prev-weight">${esc(label("previous"))}: <strong>-</strong></span>`;
   }
 
   const displayDate = formatWeightDate(key, currentLang);
@@ -216,7 +216,7 @@ function renderRecentEntriesPanel() {
   const rows = recentKeys.map(key => {
     const val = parseFloat(getWeightValue(tracking[key]));
     const diff = diffs[key];
-    let diffHtml = '<span class="diff neutral">—</span>';
+    let diffHtml = '<span class="diff neutral">-</span>';
     if (diff !== undefined) {
       if (diff > 0) {
         diffHtml = `<span class="diff plus">+${diff.toFixed(2)} kg</span>`;
@@ -257,7 +257,7 @@ function renderArchivePanel() {
     const key = dateToKey(date);
     const val = getWeightValue(tracking[key]) !== undefined ? getWeightValue(tracking[key]) : "";
     
-    let diffHtml = '<span class="diff neutral">—</span>';
+    let diffHtml = '<span class="diff neutral">-</span>';
     const numVal = parseFloat(val);
     if (!isNaN(numVal)) {
       const prevWeight = getPreviousWeight(key);

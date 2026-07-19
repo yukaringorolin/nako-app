@@ -95,7 +95,7 @@ const foodSafetyItems = [
 
   safetyItem("safe-thawing", "💧",
     t("Thaw frozen food safely", "冷凍食品を安全に解凍する", "အေးခဲထားသော အစားအစာများကို ဘေးကင်းစွာ ရေခဲဖျော်ပါ"),
-    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave—not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
+    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave, not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
     [
       t("Preferred: put frozen meat, poultry, shrimp, squid, or seafood in a tray in the fridge. Move large portions the night before.", "基本は、冷凍の肉、鳥肉、エビ、イカ、魚介類を受け皿に入れて冷蔵庫で解凍します。大きい物は前夜に移してください。", "အကောင်းဆုံးနည်းက အေးခဲထားသော အသား၊ ကြက်သား၊ ပုစွန်၊ ပြည်ကြီးငါး သို့မဟုတ် ပင်လယ်စာကို tray ထဲထည့်ပြီး fridge ထဲမှာ အရည်ဖျော်တာပါ။ အတုံးကြီးရင် မနေ့ညကတည်းက ရွှေ့ထားပါ။"),
       t("For a quick thaw, keep food in a sealed, leak-proof bag and submerge it in cold water. Change the water every 30 min. Cook immediately after thawing.", "急ぐ場合は、食品を漏れない密閉袋に入れたまま冷水に沈めます。水は30分ごとに替え、解凍後はすぐに調理してください。", "အမြန်လိုရင် အစားအစာကို ရေမယိုတဲ့ sealed bag ထဲမှာထားပြီး ရေအေးထဲစိမ်ပါ။ ရေကို မိနစ် ၃၀ တိုင်းလဲပါ။ အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။"),

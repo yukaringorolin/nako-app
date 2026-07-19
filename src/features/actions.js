@@ -153,34 +153,7 @@ function handleClick(event) {
 }
 
 function handleBack() {
-  const route = parseRoute();
-  if (route.view === "routine-checkin") {
-    go("");
-  } else if (route.view === "routine-history") {
-    go("#routine-checkin");
-  } else if (route.view === "section") {
-    go("");
-  } else if (route.view === "routine") {
-    const task = routineTasks.find((entry) => entry.id === route.routineId);
-    if (task && task.frequencyBucket) {
-      go(`#section/${task.frequencyBucket}`);
-    } else {
-      go("");
-    }
-  } else if (route.view === "food") {
-    go("#section/food");
-  } else if (route.view === "food-safety-item") {
-    go("#section/food-safety");
-  } else if (route.view === "recipe") {
-    const r = recipes.find((entry) => entry.id === route.recipeId);
-    if (r && r.type === "human") {
-      go("#food/human-food");
-    } else {
-      go("#food/recipes");
-    }
-  } else {
-    go("");
-  }
+  return window.nakoNavigation.backOrFallback(window.history, () => go(""));
 }
 
 function savedExplicitText(kind, id) {

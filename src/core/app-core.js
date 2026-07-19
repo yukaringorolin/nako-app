@@ -130,3 +130,8 @@ function go(hash) {
   if (location.hash === hash) render();
   else location.hash = hash;
 }
+
+function replaceRoute(hash) {
+  if (location.hash === hash) render();
+  else location.replace(hash);
+}

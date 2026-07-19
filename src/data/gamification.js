@@ -16,7 +16,7 @@ const gamificationData = (() => {
     close: tx("Close", "閉じる", "ပိတ်ရန်"),
     imageFallback: tx("Nako illustration", "ナコのイラスト", "Nako ပုံလေး"),
     albumReady: tx("Your Nako postcard album is ready.", "ナコのポストカードアルバムができました。", "Nako ပို့စကတ်အယ်လ်ဘမ် အဆင်သင့်ဖြစ်ပါပြီ။"),
-    newPostcard: tx("New Nako postcard: {title}", "新しいナコのポストカード：{title}", "Nako ပို့စကတ်အသစ် ရပါပြီ — {title}"),
+    newPostcard: tx("New Nako postcard: {title}", "新しいナコのポストカード：{title}", "Nako ပို့စကတ်အသစ် ရပါပြီ: {title}"),
     praiseRoutine: tx("Nako says thank you for caring for our home.", "おうちを大切にしてくれて、ナコからありがとう。", "အိမ်ကို ဂရုစိုက်ပေးလို့ Nako က ကျေးဇူးတင်ပါတယ်။"),
     praiseTraining: tx("Lovely practice with Nako today!", "今日もナコとやさしく練習できました！", "ဒီနေ့ Nako နဲ့ နူးနူးညံ့ညံ့ လေ့ကျင့်ပေးတာ ကောင်းပါတယ်။"),
     praiseTrainingBest: tx("A new personal best for {command}. Wonderful practice!", "{command}の自己ベスト更新。すてきな練習でした！", "{command} အတွက် အကောင်းဆုံးရလဒ်အသစ် ရပါပြီ။ လေ့ကျင့်ပေးတာ အရမ်းကောင်းပါတယ်။"),
@@ -42,7 +42,7 @@ const gamificationData = (() => {
       id: "bubbly-washing",
       image: "assets/gamification/toast-icons/bubbly-washing.webp",
       motion: "bubbles",
-      praise: tx("Fresh and clean—Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
+      praise: tx("Fresh and clean. Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
     },
     {
       id: "cozy-laundry",

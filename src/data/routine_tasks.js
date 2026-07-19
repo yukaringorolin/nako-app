@@ -117,7 +117,7 @@ const routineTasks = [
   routine("nako-feeding-water", "daily", 35, "N",
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
     t("Feed Nako 3 measured meals daily: 60 g Royal Canin kibble total, plus 1 chicken-and-vegetable topping cube per meal.", "ナコに1日3食与えます。Royal Caninは1日合計60 gで、毎食チキンと野菜のトッピングキューブを1個加えます。", "Nako ကို တစ်နေ့ ၃ နပ်ကျွေးပါ။ Royal Canin တစ်နေ့စုစုပေါင်း ၆၀ g နှင့် တစ်နပ်လျှင် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးထည့်ပါ။"),
-    t("3 meals daily — Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食 — 朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ် — မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
+    t("3 meals daily: Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食：朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ်: မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
     [
       t("Record Nako's appetite percentage, kibble grams, and frozen food cubes once each day in the tracker below.", "下のトラッカーに、ナコが食べた割合、ドライフードのグラム数、冷凍フードキューブ数を1日1回記録してください。", "အောက်ရှိ မှတ်တမ်းတွင် Nako စားခဲ့သည့် ရာခိုင်နှုန်း၊ အစာခြောက် ဂရမ်နှင့် အေးခဲအစာတုံး အရေအတွက်ကို တစ်နေ့တစ်ကြိမ် မှတ်တမ်းတင်ပါ။"),
       t("Each morning, weigh 60 g of Royal Canin kibble for the full day.", "毎朝、1日分のRoyal Canin 60 gを量ってください。", "မနက်တိုင်း တစ်နေ့စာ Royal Canin ၆၀ g ကို ချိန်ပါ။"),
@@ -332,7 +332,7 @@ const routineTasks = [
     [
       t("Important: pull the orange loop UP first, then pull OUT. Do not pull it horizontally while the frame is flat.", "重要：オレンジ色のループは最初に上へ引き、その後手前へ引いてください。フレームが平らな状態で水平方向に引かないでください。", "အရေးကြီးသည် - လိမ္မော်ရောင်ကြိုးကို အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။ frame ပြားနေစဉ် ဘေးတန်းမဆွဲပါနှင့်။"),
       t("Keep fingers away from the side hinges and folding joints.", "指を側面のヒンジや折りたたみ部分に近づけないでください。", "လက်ချောင်းများကို ဘေး hinge နဲ့ ခေါက်ဆက်နေရာများမှ ဝေးဝေးထားပါ။"),
-      t("For the first attempt, 2 people—one on each side—can control the heavy frame more safely.", "初回は左右に1人ずつ、2人で行うと重いフレームをより安全に扱えます。", "ပထမဆုံးဖွင့်ပိတ်ချိန်တွင် ဘေးတစ်ဖက်စီမှာ လူ ၁ ယောက်စီ၊ စုစုပေါင်း ၂ ယောက်လုပ်ပါက လေးသော frame ကို ပိုလုံခြုံစွာ ထိန်းနိုင်သည်။")
+      t("For the first attempt, 2 people (one on each side) can control the heavy frame more safely.", "初回は左右に1人ずつ、2人で行うと重いフレームをより安全に扱えます。", "ပထမဆုံးဖွင့်ပိတ်ချိန်တွင် ဘေးတစ်ဖက်စီမှာ လူ ၁ ယောက်စီ၊ စုစုပေါင်း ၂ ယောက်လုပ်ပါက လေးသော frame ကို ပိုလုံခြုံစွာ ထိန်းနိုင်သည်။")
     ],
     [
       photo("assets/routines/vimle-sofa-bed-closed.jpg",
@@ -367,7 +367,7 @@ const routineTasks = [
       t("Dog waste bin should not be left to smell.", "犬用ゴミ箱は臭いが出るまで放置しない。", "ခွေးအမှိုက်ပုံးကို အနံ့ထွက်သည်အထိ မထားပါနှင့်။"),
       t("Check and clear rubbish regularly throughout the day, especially after throwing away food or when a bin is getting full.", "日中こまめにゴミを確認し、特に食べ物を捨てた後やゴミ箱がいっぱいになりそうな時はゴミを出してください。", "တစ်နေ့တာအတွင်း အမှိုက်ကို ပုံမှန်စစ်ပြီး အထူးသဖြင့် အစားအစာပစ်ပြီးနောက် သို့မဟုတ် အမှိုက်ပုံးပြည့်လာသည့်အခါ သွားပစ်ပါ။"),
       t("Put normal bagged household rubbish down the rubbish chute.", "通常の袋に入った家庭ゴミは、ゴミ投入口から捨てます。", "အိတ်ဖြင့်ထည့်ထားသော ပုံမှန်အိမ်သုံးအမှိုက်ကို rubbish chute ထဲ ပစ်ပါ။"),
-      t("Do not force large or bulky rubbish—including large delivery packaging—into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
+      t("Do not force large or bulky rubbish, including large delivery packaging, into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
     ],
     [
       photo("assets/routines/nako-rubbish-bin-daily.jpg",
@@ -682,7 +682,7 @@ const routineTasks = [
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
       t("Dry completely before placing back. Wring or spin-dry mats before hanging them outside. They must not drip onto the downstairs neighbour's clothes.", "完全に乾かしてから戻してください。外に干す前に、しっかり絞るか脱水してください。下の階の洗濯物に水が落ちるため、水が滴る状態で干さないでください。", "ပြန်မထားခင် အပြည့်အဝခြောက်အောင်လုပ်ပါ။ အပြင်တွင် မလှန်းမီ သေချာညှစ်ပါ သို့မဟုတ် spin-dry လုပ်ပါ။ အောက်ထပ်အိမ်နီးချင်း၏ အဝတ်ပေါ် ရေမကျစေရပါ။"),
-      t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time—wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့် — တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
+      t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time. Wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့်။ တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
     ],
     [
       photo("assets/routines/nako-floor-mat.jpg",
@@ -920,7 +920,7 @@ const routineTasks = [
       t("Take a clean glass from the cabinet above the coffee machine.", "コーヒーマシンの上にある戸棚から、きれいなグラスを取る。", "ကော်ဖီစက်အပေါ်ရှိဗီရိုမှ သန့်ရှင်းသောဖန်ခွက်ကို ယူပါ။"),
       t("Spirits are on the top shelves. Use a stable ladder if needed; do not climb on a chair or stool. If the bottle cannot be reached safely, ask for help.", "スピリッツは上段の棚にある。必要なら安定した脚立を使い、椅子やスツールには乗らない。安全に取れない場合は助けを求める。", "spirit များသည် အပေါ်ဆုံးစင်များတွင်ရှိသည်။ လိုအပ်ပါက တည်ငြိမ်သော ladder ကိုသုံးပြီး ထိုင်ခုံ သို့မဟုတ် stool ပေါ်မတက်ပါနှင့်။ ဘေးကင်းစွာမယူနိုင်ပါက အကူအညီတောင်းပါ။"),
       t("Add a handful of ice to the glass.", "グラスに氷をひとつかみ入れる。", "ဖန်ခွက်ထဲသို့ ရေခဲတစ်လက်တစ်ဆုပ် ထည့်ပါ။"),
-      t("Pour a generous but moderate amount of the requested spirit—enough to enjoy, but not too much.", "希望されたスピリッツを、楽しめる十分な量だが入れすぎない適量で注ぐ。", "တောင်းထားသော spirit ကို သောက်ကောင်းလောက်အောင်ထည့်ပါ၊ သို့သော် အလွန်အကျွံမထည့်ပါနှင့်။"),
+      t("Pour a generous but moderate amount of the requested spirit, enough to enjoy but not too much.", "希望されたスピリッツを、楽しめる十分な量だが入れすぎない適量で注ぐ。", "တောင်းထားသော spirit ကို သောက်ကောင်းလောက်အောင်ထည့်ပါ၊ သို့သော် အလွန်အကျွံမထည့်ပါနှင့်။"),
       t("If Edwin or Yukari asks for a mixer or water, add the requested one. Otherwise, serve the spirit over ice.", "エドウィンまたはゆかりからミキサーや水を頼まれた場合は、希望されたものを加える。指定がなければ、氷入りのスピリッツとして提供する。", "Edwin သို့မဟုတ် Yukari က mixer သို့မဟုတ် ရေတောင်းဆိုပါက တောင်းထားသည့်အရာကိုထည့်ပါ။ မတောင်းဆိုပါက spirit ကို ရေခဲနှင့်ပဲ ပေးပါ။")
     ],
     [
@@ -1018,7 +1018,7 @@ const routineTasks = [
     [
       t("1. CHECK THE GAUGE. Green = ready to use. Red = do not use; arrange servicing or replacement.", "1. 圧力計を確認。緑＝使用可能。赤＝使用せず、点検または交換を依頼します。", "၁။ ဖိအားမီတာ စစ်ပါ။ အစိမ်း = အသင့်သုံးနိုင်သည်။ အနီ = မသုံးပါနှင့်။ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
       t("2. Use only on a small fire. Keep the exit behind you. If smoke is heavy or fire spreads, leave and call emergency services.", "2. 小さな火にのみ使用します。出口を背にします。煙が多い、または火が広がる場合は避難して緊急通報します。", "၂။ မီးငယ်အတွက်သာ သုံးပါ။ ထွက်ပေါက်ကို နောက်တွင်ထားပါ။ မီးခိုးများလျှင် သို့မဟုတ် မီးပျံ့လျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
-      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
+      t("3. MOST IMPORTANT: PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး: လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
       t("4. AIM at the base of the fire, not the flames.", "4. 炎ではなく、火元の根元を狙います。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို ချိန်ပါ။"),
       t("5. SQUEEZE the lever.", "5. レバーを握ります。", "၅။ လက်ကိုင်ကို ညှစ်ပါ။"),
       t("6. SWEEP side to side across the base of the fire.", "6. 火元の根元を左右に掃くように噴射します。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
@@ -1075,9 +1075,9 @@ if (fujiohHoodDeepCleanRoutine) {
   ];
   fujiohHoodDeepCleanRoutine.videoUrl = "https://youtu.be/bGK8jplSfQg?t=45";
   fujiohHoodDeepCleanRoutine.videoUrlLabel = t(
-    "Fujioh Hood Video Tutorial — Start at 0:45",
-    "Fujiohレンジフード動画チュートリアル — 0:45から",
-    "Fujioh hood video tutorial — 0:45 မှစကြည့်ပါ"
+    "Fujioh Hood Video Tutorial: Start at 0:45",
+    "Fujiohレンジフード動画チュートリアル：0:45から",
+    "Fujioh hood video tutorial: 0:45 မှစကြည့်ပါ"
   );
 }
 
@@ -1103,7 +1103,7 @@ if (generalSurfaceCleaningRoutine) {
 const bedroomsLinensRoutine = routineTasks.find((task) => task.id === "bedrooms-linens");
 if (bedroomsLinensRoutine) {
   bedroomsLinensRoutine.instructions = [
-    t("Put pillows, bolsters, and blankets on a chair—not on the floor.", "枕、抱き枕、毛布は床ではなく椅子に置きます。", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။"),
+    t("Put pillows, bolsters, and blankets on a chair, not on the floor.", "枕、抱き枕、毛布は床ではなく椅子に置きます。", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။"),
     t("Wash the used mattress protector, but always keep another protector on the mattress.", "使用済みのマットレスプロテクターを洗いますが、マットレスには必ず別のプロテクターを付けておきます。", "အသုံးပြုပြီးသော mattress protector ကိုလျှော်ပါ။ သို့သော် မွေ့ရာပေါ်တွင် အခြား protector တစ်ထည် အမြဲထားပါ။"),
     t("Vacuum the mattress and pillows with the dedicated bedding vacuum only.", "寝具専用掃除機だけを使って、マットレスと枕に掃除機を掛けます。", "အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့်သာ မွေ့ရာနှင့် ခေါင်းအုံးများကို ဖုန်စုပ်ပါ။"),
     t("Change all pillowcases and bolster covers.", "枕カバーと抱き枕カバーをすべて交換します。", "ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်အားလုံးကို လဲပါ။"),
@@ -1347,13 +1347,13 @@ if (nakoSupervisionRoutine) {
 const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
 if (dailyCookingRoutine) {
   dailyCookingRoutine.mustRemember.push(
-    t("**WHITE RICE — Tefal Mini:** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米 — Tefal Mini:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ — Tefal Mini:** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
+    t("**WHITE RICE (Tefal Mini):** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米（Tefal Mini）:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ (Tefal Mini):** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
     t("Keep food and snacks out of bedrooms. Use only the kitchen, dining, or living areas to prevent crumbs, smells, stains, ants, cockroaches, and other pests.", "寝室に食べ物やお菓子を持ち込まないでください。食べ物はキッチン、ダイニング、リビングだけで扱い、食べくず、臭い、汚れ、アリ、ゴキブリなどの害虫を防いでください。", "အိပ်ခန်းထဲ အစားအစာနဲ့ မုန့်တွေ မယူပါနဲ့။ အစားအစာကို မီးဖိုချောင်၊ dining သို့မဟုတ် living area မှာပဲ စား/ထားပါ။ အစအန၊ အနံ့၊ အစွန်းအထင်း၊ ပုရွက်ဆိတ်၊ ပိုးဟပ်နဲ့ အခြားပိုးမွှားတွေကို ကာကွယ်ဖို့ပါ။"),
-    t("**FYI ONLY:** Other food recipes are reference only—make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
+    t("**FYI ONLY:** Other food recipes are reference only. Make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
   );
   dailyCookingRoutine.photos = [
     photo("assets/routines/tefal-mini-rice-cooker-white-rice.jpg",
-      t("Tefal Mini rice cooker — White Rice controls", "Tefal Mini炊飯器 — White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး — White Rice ခလုတ်များ"),
+      t("Tefal Mini rice cooker: White Rice controls", "Tefal Mini炊飯器：White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး: White Rice ခလုတ်များ"),
       t("For white rice: turn on the main power switch, press Menu until the white line is on White Rice, then press Start.", "白米の場合：元の電源スイッチを入れ、白いラインがWhite Riceに来るまでMenuを押し、Startを押します。", "ဆန်ဖြူအတွက် ပင်မ power switch ကိုဖွင့်ပါ၊ အဖြူရောင်လိုင်း White Rice နေရာရောက်အောင် Menu ကိုနှိပ်ပြီး Start ကိုနှိပ်ပါ။")),
     ...dailyCookingRoutine.photos
   ];

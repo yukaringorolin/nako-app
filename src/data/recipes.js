@@ -55,12 +55,12 @@ const recipes = [
   recipe("nako-chicken-apple-vegetable-meal-prep",
     t("Nako's Chicken, Apple & Vegetable Meal Prep", "ナコの鶏肉・りんご・野菜の作り置き", "နာကိုအတွက် ကြက်သား၊ ပန်းသီးနှင့် ဟင်းသီးဟင်းရွက် အကြိုပြင်အစာ"),
     [
-      [t("Plain chicken, fully cooked", "味付けなしで十分に加熱した鶏肉", "အရသာမထည့်ဘဲ ကျက်အောင်ချက်ထားသော ကြက်သား"), "—", "chicken-breast"],
-      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "—", "carrot"],
-      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), "—", "napa-cabbage"],
-      [t("Apple, core and seeds removed", "芯と種を除いたりんご", "အူတိုင်နှင့် အစေ့များ ဖယ်ထားသော ပန်းသီး"), "—", "apple"],
-      [t("Store-bought shimeji mushroom (optional; only if approved)", "市販のしめじ（任可されている場合のみ・任意）", "ဆိုင်မှဝယ်သော ရှိမေဂျီမှို (ခွင့်ပြုထားမှသာ၊ မထည့်လည်းရသည်)"), "—", "shimeji-mushroom"],
-      [t("Water", "水", "ရေ"), "—", "water"]
+      [t("Plain chicken, fully cooked", "味付けなしで十分に加熱した鶏肉", "အရသာမထည့်ဘဲ ကျက်အောင်ချက်ထားသော ကြက်သား"), t("As needed", "適量", "လိုအပ်သလို"), "chicken-breast"],
+      [t("Carrot", "にんじん", "မုန်လာဥနီ"), t("As needed", "適量", "လိုအပ်သလို"), "carrot"],
+      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), t("As needed", "適量", "လိုအပ်သလို"), "napa-cabbage"],
+      [t("Apple, core and seeds removed", "芯と種を除いたりんご", "အူတိုင်နှင့် အစေ့များ ဖယ်ထားသော ပန်းသီး"), t("As needed", "適量", "လိုအပ်သလို"), "apple"],
+      [t("Store-bought shimeji mushroom (optional; only if approved)", "市販のしめじ（任可されている場合のみ・任意）", "ဆိုင်မှဝယ်သော ရှိမေဂျီမှို (ခွင့်ပြုထားမှသာ၊ မထည့်လည်းရသည်)"), t("As needed", "適量", "လိုအပ်သလို"), "shimeji-mushroom"],
+      [t("Water", "水", "ရေ"), t("As needed", "適量", "လိုအပ်သလို"), "water"]
     ],
     [
       t("Wash the produce. Remove the apple core, seeds, and stem; omit the mushroom unless it is already approved for Nako.", "野菜と果物を洗います。りんごの芯、種、軸を除き、しめじはナコに与えてよいと確認済みの場合のみ使います。", "ဟင်းသီးဟင်းရွက်နှင့် သစ်သီးကို ဆေးပါ။ ပန်းသီး၏ အူတိုင်၊ အစေ့နှင့် အညှာကို ဖယ်ပါ။ ရှိမေဂျီမှိုကို နာကိုအတွက် ခွင့်ပြုထားပြီးသားဖြစ်မှသာ သုံးပါ။"),

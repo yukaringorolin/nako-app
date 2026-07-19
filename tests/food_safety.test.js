@@ -89,7 +89,7 @@ assert.match(storageLimits.mustRemember.map((item) => item.en).join("\n"), /Smel
 assert.deepEqual(router.parseRouteHash("#food-safety/safe-thawing"), { view: "food-safety-item", itemId: "safe-thawing" });
 assert.deepEqual(router.parseRouteHash("#food-safety/household-cooking-rules"), { view: "food-safety-item", itemId: "household-cooking-rules" });
 assert.ok(pageContent.includes("function renderFoodSafetyItem"), "pages module must render a food-safety detail");
-assert.ok(pageContent.includes('if (foodId === "cooking-rules") return go("#food-safety/household-cooking-rules")'), "Legacy cooking-rules route must redirect to the combined section");
+assert.ok(pageContent.includes('if (foodId === "cooking-rules") return replaceRoute("#food-safety/household-cooking-rules")'), "Legacy cooking-rules route must replace history with the combined section");
 assert.ok(pageContent.includes("function renderOfficialReferencesPanel"), "pages module must render official references");
 assert.ok(componentContent.includes("function renderFoodSafetyCard"), "components module must render food-safety cards");
 

@@ -105,7 +105,7 @@ const ui = {
     sections: "Sections",
     today: "Today",
     dailyGuideEyebrow: "Review every day",
-    dailyGuideReference: "Reference guide — no check-off",
+    dailyGuideReference: "Reference guide: no check-off",
     dailyReferenceItems: "reference items",
     openDailyGuide: "Open guide",
     foodFirst: "Food and logs are first.",
@@ -329,7 +329,7 @@ const ui = {
     sections: "セクション",
     today: "今日",
     dailyGuideEyebrow: "毎日確認",
-    dailyGuideReference: "参考ガイド — チェック不要",
+    dailyGuideReference: "参考ガイド：チェック不要",
     dailyReferenceItems: "参考項目",
     openDailyGuide: "ガイドを開く",
     foodFirst: "食事と記録を先に表示します。",
@@ -553,7 +553,7 @@ const ui = {
     sections: "ကဏ္ဍများ",
     today: "ယနေ့",
     dailyGuideEyebrow: "နေ့တိုင်း ကြည့်ပါ",
-    dailyGuideReference: "ရည်ညွှန်းရန်သာ — အမှန်ခြစ်ရန် မလိုပါ",
+    dailyGuideReference: "ရည်ညွှန်းရန်သာ: အမှန်ခြစ်ရန် မလိုပါ",
     dailyReferenceItems: "ရည်ညွှန်းအချက်များ",
     openDailyGuide: "လမ်းညွှန်ဖွင့်ရန်",
     foodFirst: "အစားအသောက်နဲ့ မှတ်တမ်းကို အရင်ပြထားသည်။",
@@ -790,7 +790,7 @@ const gamificationData = (() => {
     close: tx("Close", "閉じる", "ပိတ်ရန်"),
     imageFallback: tx("Nako illustration", "ナコのイラスト", "Nako ပုံလေး"),
     albumReady: tx("Your Nako postcard album is ready.", "ナコのポストカードアルバムができました。", "Nako ပို့စကတ်အယ်လ်ဘမ် အဆင်သင့်ဖြစ်ပါပြီ။"),
-    newPostcard: tx("New Nako postcard: {title}", "新しいナコのポストカード：{title}", "Nako ပို့စကတ်အသစ် ရပါပြီ — {title}"),
+    newPostcard: tx("New Nako postcard: {title}", "新しいナコのポストカード：{title}", "Nako ပို့စကတ်အသစ် ရပါပြီ: {title}"),
     praiseRoutine: tx("Nako says thank you for caring for our home.", "おうちを大切にしてくれて、ナコからありがとう。", "အိမ်ကို ဂရုစိုက်ပေးလို့ Nako က ကျေးဇူးတင်ပါတယ်။"),
     praiseTraining: tx("Lovely practice with Nako today!", "今日もナコとやさしく練習できました！", "ဒီနေ့ Nako နဲ့ နူးနူးညံ့ညံ့ လေ့ကျင့်ပေးတာ ကောင်းပါတယ်။"),
     praiseTrainingBest: tx("A new personal best for {command}. Wonderful practice!", "{command}の自己ベスト更新。すてきな練習でした！", "{command} အတွက် အကောင်းဆုံးရလဒ်အသစ် ရပါပြီ။ လေ့ကျင့်ပေးတာ အရမ်းကောင်းပါတယ်။"),
@@ -816,7 +816,7 @@ const gamificationData = (() => {
       id: "bubbly-washing",
       image: "assets/gamification/toast-icons/bubbly-washing.webp",
       motion: "bubbles",
-      praise: tx("Fresh and clean—Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
+      praise: tx("Fresh and clean. Nako noticed your lovely care!", "さっぱりきれいになりました。やさしいお手入れを、ナコからありがとう！", "သန့်ရှင်းလတ်ဆတ်သွားပြီ။ ဂရုစိုက်ပေးတာကို Nako သတိထားမိပါတယ်။")
     },
     {
       id: "cozy-laundry",
@@ -1097,12 +1097,12 @@ const additionalResources = {
       takeaways: [
         t("The Ancient Steps (30,000 Years Ago): Humans and wolves lived as rival apex predators, hunting the same prey on the Eurasian steps.", "古代の草原（3万年前）：人間とオオカミはユーラシアの草原で、同じ獲物を狩る競合する頂点捕食者として暮らしていました。", "ရှေးခေတ် မြက်ခင်းပြင်များ (လွန်ခဲ့သော နှစ် ၃၀,၀၀၀) - လူသားများနှင့် ဝံပုလွေများသည် ယူရေးရှားမြက်ခင်းပြင်များတွင် တူညီသော သားကောင်ကို လိုက်လံဖမ်းဆီးသည့် ပြိုင်ဘက် ထိပ်တန်းသားရဲများအဖြစ် နေထိုင်ခဲ့ကြသည်။"),
         t("A Self-Domestication Choice: The partnership began not by humans capturing wolves, but by wolves choosing to approach human camps for survival. Over generations, the tamest offspring evolved into a new, friendly species.", "自己家畜化という選択：協力関係は、人間がオオカミを捕らえたことではなく、オオカミが生き残るために人間の野営地へ近づくことを選んだことから始まりました。世代を重ねるうちに、最もおとなしい子孫が新しい友好的な種へと進化しました。", "မိမိဘာသာ အိမ်မွေးတိရစ္ဆာန်ဖြစ်လာရန် ရွေးချယ်မှု - ပူးပေါင်းမှုသည် လူသားများက ဝံပုလွေများကို ဖမ်းဆီးခြင်းမှ မစတင်ဘဲ အသက်ရှင်ရန်အတွက် ဝံပုလွေများက လူသားစခန်းများအနီးသို့ ချဉ်းကပ်ရန် ရွေးချယ်ခြင်းမှ စတင်ခဲ့သည်။ မျိုးဆက်များစွာကြာလာသည့်အခါ အယဉ်ဆုံးသားမြေးများသည် ဖော်ရွေသော မျိုးစိတ်အသစ်တစ်ခုအဖြစ် ဆင့်ကဲပြောင်းလဲလာခဲ့သည်။"),
-        t("Global Expansion (10,000 Years Ago): As dogs accompanied humans across the planet, their physical appearance naturally adapted to new environments—developing shorter fur in hot climates and changing tail and ear shapes.", "世界への拡大（1万年前）：犬が人間とともに世界中へ広がるにつれ、その外見は新しい環境に自然に適応しました。暑い地域では毛が短くなり、尾や耳の形も変化しました。", "ကမ္ဘာတစ်ဝန်း ပျံ့နှံ့ခြင်း (လွန်ခဲ့သော နှစ် ၁၀,၀၀၀) - ခွေးများသည် လူသားများနှင့်အတူ ကမ္ဘာတစ်ဝန်း သွားလာလာသည့်အခါ ၎င်းတို့၏ ရုပ်သွင်သည် ပတ်ဝန်းကျင်အသစ်များနှင့် သဘာဝအလျောက် လိုက်လျောညီထွေ ဖြစ်လာခဲ့သည်။ ပူပြင်းသော ရာသီဥတုတွင် အမွေးတိုလာပြီး အမြီးနှင့် နားပုံသဏ္ဌာန်များလည်း ပြောင်းလဲလာခဲ့သည်။"),
+        t("Global Expansion (10,000 Years Ago): As dogs accompanied humans across the planet, their physical appearance naturally adapted to new environments, developing shorter fur in hot climates and changing tail and ear shapes.", "世界への拡大（1万年前）：犬が人間とともに世界中へ広がるにつれ、その外見は新しい環境に自然に適応しました。暑い地域では毛が短くなり、尾や耳の形も変化しました。", "ကမ္ဘာတစ်ဝန်း ပျံ့နှံ့ခြင်း (လွန်ခဲ့သော နှစ် ၁၀,၀၀၀) - ခွေးများသည် လူသားများနှင့်အတူ ကမ္ဘာတစ်ဝန်း သွားလာလာသည့်အခါ ၎င်းတို့၏ ရုပ်သွင်သည် ပတ်ဝန်းကျင်အသစ်များနှင့် သဘာဝအလျောက် လိုက်လျောညီထွေ ဖြစ်လာခဲ့သည်။ ပူပြင်းသော ရာသီဥတုတွင် အမွေးတိုလာပြီး အမြီးနှင့် နားပုံသဏ္ဌာန်များလည်း ပြောင်းလဲလာခဲ့သည်။"),
         t("Birth of Civilizations (12,000 Years Ago): When humans settled in Mesopotamia to grow the first crops, heavy Mastiff-like dogs protected the harvest from wild animals. This crucial defense allowed humans to build food reserves and transition from nomads to farmers.", "文明の誕生（1万2000年前）：人間がメソポタミアに定住して最初の作物を育て始めたとき、大型のマスティフ系の犬が収穫物を野生動物から守りました。この重要な防衛によって食料を蓄えられるようになり、人間は遊牧生活から農耕生活へ移行できました。", "ယဉ်ကျေးမှုများ ပေါ်ပေါက်ခြင်း (လွန်ခဲ့သော နှစ် ၁၂,၀၀၀) - လူသားများသည် ပထမဆုံးသီးနှံများ စိုက်ပျိုးရန် မက်ဆိုပိုတေးမီးယားတွင် အခြေချသည့်အခါ ကိုယ်ထည်ကြီးသော Mastiff ကဲ့သို့ ခွေးများက သီးနှံရိတ်သိမ်းမှုကို တောရိုင်းတိရစ္ဆာန်များမှ ကာကွယ်ပေးခဲ့သည်။ ဤအရေးကြီးသော ကာကွယ်မှုကြောင့် လူသားများသည် အစားအစာ သိုလှောင်နိုင်ပြီး လှည့်လည်နေထိုင်သူများမှ လယ်သမားများအဖြစ် ပြောင်းလဲနိုင်ခဲ့သည်။"),
         t("Evolution of the Shepherd: As humans became herdsmen, dogs adapted their predatory instincts into a protective role. By raised alongside livestock from birth, they accepted other species as family.", "牧羊犬の進化：人間が牧畜を始めると、犬は捕食本能を守る役割へと適応させました。生まれたときから家畜と一緒に育てられることで、ほかの種を家族として受け入れました。", "သိုးထိန်းခွေး၏ ဆင့်ကဲပြောင်းလဲမှု - လူသားများ မွေးမြူရေးသမားများ ဖြစ်လာသည့်အခါ ခွေးများသည် ၎င်းတို့၏ အမဲလိုက်ဗီဇကို ကာကွယ်စောင့်ရှောက်သည့် အခန်းကဏ္ဍအဖြစ် ပြောင်းလဲအသုံးချလာခဲ့သည်။ မွေးကတည်းက မွေးမြူရေးတိရစ္ဆာန်များနှင့်အတူ ကြီးပြင်းလာခြင်းကြောင့် အခြားမျိုးစိတ်များကို မိသားစုအဖြစ် လက်ခံလာခဲ့သည်။"),
         t("Masters of Human Psychology: Over millennia, dogs developed a brilliant capability to decode human facial expressions, moods, and emotions to survive alongside us.", "人間心理の達人：数千年にわたり、犬は人間とともに生きるために、表情、気分、感情を読み取る優れた能力を発達させました。", "လူသားစိတ်ပညာကို ကျွမ်းကျင်သူများ - နှစ်ထောင်ပေါင်းများစွာအတွင်း ခွေးများသည် ကျွန်ုပ်တို့နှင့်အတူ အသက်ရှင်နိုင်ရန် လူသားတို့၏ မျက်နှာအမူအရာ၊ စိတ်နေစိတ်ထားနှင့် ခံစားချက်များကို ဖတ်ရှုနိုင်သည့် ထူးချွန်သော စွမ်းရည်ကို ဖွံ့ဖြိုးစေခဲ့သည်။"),
         t("The Chemistry of the Bond: Interacting with a dog triggers a mutual release of oxytocin in both human and animal, creating a virtuous circle that lowers heart rates and eases anxiety.", "絆を生む化学：犬と触れ合うと、人間と犬の双方でオキシトシンが放出されます。心拍数を下げ、不安を和らげる好循環が生まれます。", "သံယောဇဉ်၏ ဓာတုဖြစ်စဉ် - ခွေးနှင့် ထိတွေ့ဆက်ဆံခြင်းသည် လူနှင့်တိရစ္ဆာန် နှစ်ဖက်စလုံးတွင် oxytocin ထွက်ရှိစေပြီး နှလုံးခုန်နှုန်းကို လျော့ကျစေကာ စိုးရိမ်ပူပန်မှုကို သက်သာစေသည့် ကောင်းမွန်သော စက်ဝန်းတစ်ခု ဖန်တီးပေးသည်။"),
-        t("The Emotional Foundation: A dog's loyalty is driven by reciprocity. Keeping them focused and fulfilled requires active bonding—sharing affection, playing, and simply resting by each other's side.", "感情的な基盤：犬の忠誠心は相互の関係によって育まれます。犬の集中力と充足感を保つには、愛情を分かち合う、一緒に遊ぶ、そばで静かに休むといった積極的な絆づくりが必要です。", "စိတ်ခံစားမှုဆိုင်ရာ အခြေခံ - ခွေး၏ သစ္စာရှိမှုသည် အပြန်အလှန် တုံ့ပြန်မှုအပေါ် အခြေခံသည်။ ၎င်းတို့ကို အာရုံစိုက်ပြီး စိတ်ကျေနပ်မှုရှိစေရန် ချစ်ခင်မှု မျှဝေခြင်း၊ အတူကစားခြင်းနှင့် တစ်ဦးဘေးတစ်ဦး ရိုးရိုးအနားယူခြင်းတို့ဖြင့် တက်ကြွစွာ သံယောဇဉ်တည်ဆောက်ရန် လိုအပ်သည်။")
+        t("The Emotional Foundation: A dog's loyalty is driven by reciprocity. Keeping them focused and fulfilled requires active bonding: sharing affection, playing, and simply resting by each other's side.", "感情的な基盤：犬の忠誠心は相互の関係によって育まれます。犬の集中力と充足感を保つには、愛情を分かち合う、一緒に遊ぶ、そばで静かに休むといった積極的な絆づくりが必要です。", "စိတ်ခံစားမှုဆိုင်ရာ အခြေခံ - ခွေး၏ သစ္စာရှိမှုသည် အပြန်အလှန် တုံ့ပြန်မှုအပေါ် အခြေခံသည်။ ၎င်းတို့ကို အာရုံစိုက်ပြီး စိတ်ကျေနပ်မှုရှိစေရန် ချစ်ခင်မှု မျှဝေခြင်း၊ အတူကစားခြင်းနှင့် တစ်ဦးဘေးတစ်ဦး ရိုးရိုးအနားယူခြင်းတို့ဖြင့် တက်ကြွစွာ သံယောဇဉ်တည်ဆောက်ရန် လိုအပ်သည်။")
       ]
     }
   ]
@@ -1174,7 +1174,7 @@ const foodItems = [
     t("Double-check ingredients at home before starting to cook.", "料理を始める前に、家にある食材を再確認してください。", "ဟင်းမချက်မီ အိမ်ရှိပါဝင်ပစ္စည်းများကို ထပ်မံစစ်ဆေးပါ။"), 0, [
       photo("assets/sections/human-food-memories-2024.jpg",
         t("Yukari surrounded by a collage of meals she cooked for Edwin in 2024", "ゆかりと、2024年にエドウィンのために作った料理のコラージュ", "Yukari နဲ့ ၂၀၂၄ ခုနှစ်မှာ Edwin အတွက် သူချက်ပေးခဲ့တဲ့ အစားအစာများကို စုစည်းထားတဲ့ပုံ"),
-        t("Food Memories 2024 — meals Yukari cooked for Edwin during their first 3–4 months together.", "2024年の食の思い出 — 付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。", "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ — အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။"))
+        t("Food Memories 2024: meals Yukari cooked for Edwin during their first 3–4 months together.", "2024年の食の思い出：付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。", "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ: အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။"))
     ]),
 ];
 
@@ -1276,7 +1276,7 @@ const foodSafetyItems = [
 
   safetyItem("safe-thawing", "💧",
     t("Thaw frozen food safely", "冷凍食品を安全に解凍する", "အေးခဲထားသော အစားအစာများကို ဘေးကင်းစွာ ရေခဲဖျော်ပါ"),
-    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave—not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
+    t("Thaw frozen meat and seafood in the fridge, cold water, or microwave, not on the counter.", "冷凍の肉や魚介類は、室温ではなく、冷蔵庫、冷水、または電子レンジで解凍します。", "အေးခဲထားသော အသားနှင့် ပင်လယ်စာကို အပြင်မှာမထားဘဲ fridge၊ ရေအေး သို့မဟုတ် microwave ဖြင့် အရည်ဖျော်ပါ။"),
     [
       t("Preferred: put frozen meat, poultry, shrimp, squid, or seafood in a tray in the fridge. Move large portions the night before.", "基本は、冷凍の肉、鳥肉、エビ、イカ、魚介類を受け皿に入れて冷蔵庫で解凍します。大きい物は前夜に移してください。", "အကောင်းဆုံးနည်းက အေးခဲထားသော အသား၊ ကြက်သား၊ ပုစွန်၊ ပြည်ကြီးငါး သို့မဟုတ် ပင်လယ်စာကို tray ထဲထည့်ပြီး fridge ထဲမှာ အရည်ဖျော်တာပါ။ အတုံးကြီးရင် မနေ့ညကတည်းက ရွှေ့ထားပါ။"),
       t("For a quick thaw, keep food in a sealed, leak-proof bag and submerge it in cold water. Change the water every 30 min. Cook immediately after thawing.", "急ぐ場合は、食品を漏れない密閉袋に入れたまま冷水に沈めます。水は30分ごとに替え、解凍後はすぐに調理してください。", "အမြန်လိုရင် အစားအစာကို ရေမယိုတဲ့ sealed bag ထဲမှာထားပြီး ရေအေးထဲစိမ်ပါ။ ရေကို မိနစ် ၃၀ တိုင်းလဲပါ။ အရည်ပျော်တာနဲ့ ချက်ချင်းချက်ပါ။"),
@@ -1538,7 +1538,7 @@ const routineTasks = [
   routine("nako-feeding-water", "daily", 35, "N",
     t("Nako - Feeding & Water", "ナコ - エサと水", "နာကို - အစာနှင့်ရေ"),
     t("Feed Nako 3 measured meals daily: 60 g Royal Canin kibble total, plus 1 chicken-and-vegetable topping cube per meal.", "ナコに1日3食与えます。Royal Caninは1日合計60 gで、毎食チキンと野菜のトッピングキューブを1個加えます。", "Nako ကို တစ်နေ့ ၃ နပ်ကျွေးပါ။ Royal Canin တစ်နေ့စုစုပေါင်း ၆၀ g နှင့် တစ်နပ်လျှင် ကြက်သားနှင့် ဟင်းသီးဟင်းရွက် topping cube ၁ တုံးထည့်ပါ။"),
-    t("3 meals daily — Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食 — 朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ် — မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
+    t("3 meals daily: Breakfast 7:30-8:00 / Lunch 13:00-13:30 / Dinner 19:00-19:30", "1日3食：朝食7:30〜8:00／昼食13:00〜13:30／夕食19:00〜19:30", "တစ်နေ့ ၃ နပ်: မနက်စာ 7:30-8:00 / နေ့လယ်စာ 13:00-13:30 / ညစာ 19:00-19:30"),
     [
       t("Record Nako's appetite percentage, kibble grams, and frozen food cubes once each day in the tracker below.", "下のトラッカーに、ナコが食べた割合、ドライフードのグラム数、冷凍フードキューブ数を1日1回記録してください。", "အောက်ရှိ မှတ်တမ်းတွင် Nako စားခဲ့သည့် ရာခိုင်နှုန်း၊ အစာခြောက် ဂရမ်နှင့် အေးခဲအစာတုံး အရေအတွက်ကို တစ်နေ့တစ်ကြိမ် မှတ်တမ်းတင်ပါ။"),
       t("Each morning, weigh 60 g of Royal Canin kibble for the full day.", "毎朝、1日分のRoyal Canin 60 gを量ってください。", "မနက်တိုင်း တစ်နေ့စာ Royal Canin ၆၀ g ကို ချိန်ပါ။"),
@@ -1753,7 +1753,7 @@ const routineTasks = [
     [
       t("Important: pull the orange loop UP first, then pull OUT. Do not pull it horizontally while the frame is flat.", "重要：オレンジ色のループは最初に上へ引き、その後手前へ引いてください。フレームが平らな状態で水平方向に引かないでください。", "အရေးကြီးသည် - လိမ္မော်ရောင်ကြိုးကို အရင် အပေါ်ဆွဲပြီးမှ အပြင်ဆွဲပါ။ frame ပြားနေစဉ် ဘေးတန်းမဆွဲပါနှင့်။"),
       t("Keep fingers away from the side hinges and folding joints.", "指を側面のヒンジや折りたたみ部分に近づけないでください。", "လက်ချောင်းများကို ဘေး hinge နဲ့ ခေါက်ဆက်နေရာများမှ ဝေးဝေးထားပါ။"),
-      t("For the first attempt, 2 people—one on each side—can control the heavy frame more safely.", "初回は左右に1人ずつ、2人で行うと重いフレームをより安全に扱えます。", "ပထမဆုံးဖွင့်ပိတ်ချိန်တွင် ဘေးတစ်ဖက်စီမှာ လူ ၁ ယောက်စီ၊ စုစုပေါင်း ၂ ယောက်လုပ်ပါက လေးသော frame ကို ပိုလုံခြုံစွာ ထိန်းနိုင်သည်။")
+      t("For the first attempt, 2 people (one on each side) can control the heavy frame more safely.", "初回は左右に1人ずつ、2人で行うと重いフレームをより安全に扱えます。", "ပထမဆုံးဖွင့်ပိတ်ချိန်တွင် ဘေးတစ်ဖက်စီမှာ လူ ၁ ယောက်စီ၊ စုစုပေါင်း ၂ ယောက်လုပ်ပါက လေးသော frame ကို ပိုလုံခြုံစွာ ထိန်းနိုင်သည်။")
     ],
     [
       photo("assets/routines/vimle-sofa-bed-closed.jpg",
@@ -1788,7 +1788,7 @@ const routineTasks = [
       t("Dog waste bin should not be left to smell.", "犬用ゴミ箱は臭いが出るまで放置しない。", "ခွေးအမှိုက်ပုံးကို အနံ့ထွက်သည်အထိ မထားပါနှင့်။"),
       t("Check and clear rubbish regularly throughout the day, especially after throwing away food or when a bin is getting full.", "日中こまめにゴミを確認し、特に食べ物を捨てた後やゴミ箱がいっぱいになりそうな時はゴミを出してください。", "တစ်နေ့တာအတွင်း အမှိုက်ကို ပုံမှန်စစ်ပြီး အထူးသဖြင့် အစားအစာပစ်ပြီးနောက် သို့မဟုတ် အမှိုက်ပုံးပြည့်လာသည့်အခါ သွားပစ်ပါ။"),
       t("Put normal bagged household rubbish down the rubbish chute.", "通常の袋に入った家庭ゴミは、ゴミ投入口から捨てます。", "အိတ်ဖြင့်ထည့်ထားသော ပုံမှန်အိမ်သုံးအမှိုက်ကို rubbish chute ထဲ ပစ်ပါ။"),
-      t("Do not force large or bulky rubbish—including large delivery packaging—into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
+      t("Do not force large or bulky rubbish, including large delivery packaging, into the chute. Carry it downstairs to the disposal area shown in the photo.", "大きすぎるゴミや大型の配送梱包材をゴミ投入口へ無理に押し込まないでください。写真にある階下のゴミ置き場まで運びます。", "အရွယ်ကြီးသောအမှိုက် သို့မဟုတ် delivery packaging ကြီးများကို chute ထဲ အတင်းမထည့်ပါနှင့်။ ပုံတွင်ပြထားသော အောက်ထပ်အမှိုက်ထားရာနေရာသို့ ယူသွားပါ။")
     ],
     [
       photo("assets/routines/nako-rubbish-bin-daily.jpg",
@@ -2103,7 +2103,7 @@ const routineTasks = [
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
       t("Dry completely before placing back. Wring or spin-dry mats before hanging them outside. They must not drip onto the downstairs neighbour's clothes.", "完全に乾かしてから戻してください。外に干す前に、しっかり絞るか脱水してください。下の階の洗濯物に水が落ちるため、水が滴る状態で干さないでください。", "ပြန်မထားခင် အပြည့်အဝခြောက်အောင်လုပ်ပါ။ အပြင်တွင် မလှန်းမီ သေချာညှစ်ပါ သို့မဟုတ် spin-dry လုပ်ပါ။ အောက်ထပ်အိမ်နီးချင်း၏ အဝတ်ပေါ် ရေမကျစေရပါ။"),
-      t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time—wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့် — တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
+      t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time. Wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့်။ တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
     ],
     [
       photo("assets/routines/nako-floor-mat.jpg",
@@ -2341,7 +2341,7 @@ const routineTasks = [
       t("Take a clean glass from the cabinet above the coffee machine.", "コーヒーマシンの上にある戸棚から、きれいなグラスを取る。", "ကော်ဖီစက်အပေါ်ရှိဗီရိုမှ သန့်ရှင်းသောဖန်ခွက်ကို ယူပါ။"),
       t("Spirits are on the top shelves. Use a stable ladder if needed; do not climb on a chair or stool. If the bottle cannot be reached safely, ask for help.", "スピリッツは上段の棚にある。必要なら安定した脚立を使い、椅子やスツールには乗らない。安全に取れない場合は助けを求める。", "spirit များသည် အပေါ်ဆုံးစင်များတွင်ရှိသည်။ လိုအပ်ပါက တည်ငြိမ်သော ladder ကိုသုံးပြီး ထိုင်ခုံ သို့မဟုတ် stool ပေါ်မတက်ပါနှင့်။ ဘေးကင်းစွာမယူနိုင်ပါက အကူအညီတောင်းပါ။"),
       t("Add a handful of ice to the glass.", "グラスに氷をひとつかみ入れる。", "ဖန်ခွက်ထဲသို့ ရေခဲတစ်လက်တစ်ဆုပ် ထည့်ပါ။"),
-      t("Pour a generous but moderate amount of the requested spirit—enough to enjoy, but not too much.", "希望されたスピリッツを、楽しめる十分な量だが入れすぎない適量で注ぐ。", "တောင်းထားသော spirit ကို သောက်ကောင်းလောက်အောင်ထည့်ပါ၊ သို့သော် အလွန်အကျွံမထည့်ပါနှင့်။"),
+      t("Pour a generous but moderate amount of the requested spirit, enough to enjoy but not too much.", "希望されたスピリッツを、楽しめる十分な量だが入れすぎない適量で注ぐ。", "တောင်းထားသော spirit ကို သောက်ကောင်းလောက်အောင်ထည့်ပါ၊ သို့သော် အလွန်အကျွံမထည့်ပါနှင့်။"),
       t("If Edwin or Yukari asks for a mixer or water, add the requested one. Otherwise, serve the spirit over ice.", "エドウィンまたはゆかりからミキサーや水を頼まれた場合は、希望されたものを加える。指定がなければ、氷入りのスピリッツとして提供する。", "Edwin သို့မဟုတ် Yukari က mixer သို့မဟုတ် ရေတောင်းဆိုပါက တောင်းထားသည့်အရာကိုထည့်ပါ။ မတောင်းဆိုပါက spirit ကို ရေခဲနှင့်ပဲ ပေးပါ။")
     ],
     [
@@ -2439,7 +2439,7 @@ const routineTasks = [
     [
       t("1. CHECK THE GAUGE. Green = ready to use. Red = do not use; arrange servicing or replacement.", "1. 圧力計を確認。緑＝使用可能。赤＝使用せず、点検または交換を依頼します。", "၁။ ဖိအားမီတာ စစ်ပါ။ အစိမ်း = အသင့်သုံးနိုင်သည်။ အနီ = မသုံးပါနှင့်။ စစ်ဆေးပြုပြင်ရန် သို့မဟုတ် အစားထိုးရန် ပြောပါ။"),
       t("2. Use only on a small fire. Keep the exit behind you. If smoke is heavy or fire spreads, leave and call emergency services.", "2. 小さな火にのみ使用します。出口を背にします。煙が多い、または火が広がる場合は避難して緊急通報します。", "၂။ မီးငယ်အတွက်သာ သုံးပါ။ ထွက်ပေါက်ကို နောက်တွင်ထားပါ။ မီးခိုးများလျှင် သို့မဟုတ် မီးပျံ့လျှင် ထွက်ပြီး အရေးပေါ်အကူအညီခေါ်ပါ။"),
-      t("3. MOST IMPORTANT — PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး — လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
+      t("3. MOST IMPORTANT: PULL THE SAFETY PIN completely out. The lever will not work until the pin is removed.", "3. 最重要：安全ピンを完全に引き抜きます。ピンを抜かないとレバーは使えません。", "၃။ အရေးအကြီးဆုံး: လုံခြုံရေးပင်ကို လုံးဝဆွဲထုတ်ပါ။ ပင်မထုတ်လျှင် လက်ကိုင်ကို ညှစ်၍မရပါ။"),
       t("4. AIM at the base of the fire, not the flames.", "4. 炎ではなく、火元の根元を狙います。", "၄။ မီးတောက်ကိုမဟုတ်ဘဲ မီး၏အောက်ခြေကို ချိန်ပါ။"),
       t("5. SQUEEZE the lever.", "5. レバーを握ります。", "၅။ လက်ကိုင်ကို ညှစ်ပါ။"),
       t("6. SWEEP side to side across the base of the fire.", "6. 火元の根元を左右に掃くように噴射します。", "၆။ မီး၏အောက်ခြေတစ်လျှောက် ဘယ်ညာရွှေ့ပြီး ဖြန်းပါ။"),
@@ -2496,9 +2496,9 @@ if (fujiohHoodDeepCleanRoutine) {
   ];
   fujiohHoodDeepCleanRoutine.videoUrl = "https://youtu.be/bGK8jplSfQg?t=45";
   fujiohHoodDeepCleanRoutine.videoUrlLabel = t(
-    "Fujioh Hood Video Tutorial — Start at 0:45",
-    "Fujiohレンジフード動画チュートリアル — 0:45から",
-    "Fujioh hood video tutorial — 0:45 မှစကြည့်ပါ"
+    "Fujioh Hood Video Tutorial: Start at 0:45",
+    "Fujiohレンジフード動画チュートリアル：0:45から",
+    "Fujioh hood video tutorial: 0:45 မှစကြည့်ပါ"
   );
 }
 
@@ -2524,7 +2524,7 @@ if (generalSurfaceCleaningRoutine) {
 const bedroomsLinensRoutine = routineTasks.find((task) => task.id === "bedrooms-linens");
 if (bedroomsLinensRoutine) {
   bedroomsLinensRoutine.instructions = [
-    t("Put pillows, bolsters, and blankets on a chair—not on the floor.", "枕、抱き枕、毛布は床ではなく椅子に置きます。", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။"),
+    t("Put pillows, bolsters, and blankets on a chair, not on the floor.", "枕、抱き枕、毛布は床ではなく椅子に置きます。", "ခေါင်းအုံး၊ ဖက်လုံးနှင့် စောင်များကို ကြမ်းပြင်ပေါ်မထားဘဲ ကုလားထိုင်ပေါ်တင်ပါ။"),
     t("Wash the used mattress protector, but always keep another protector on the mattress.", "使用済みのマットレスプロテクターを洗いますが、マットレスには必ず別のプロテクターを付けておきます。", "အသုံးပြုပြီးသော mattress protector ကိုလျှော်ပါ။ သို့သော် မွေ့ရာပေါ်တွင် အခြား protector တစ်ထည် အမြဲထားပါ။"),
     t("Vacuum the mattress and pillows with the dedicated bedding vacuum only.", "寝具専用掃除機だけを使って、マットレスと枕に掃除機を掛けます。", "အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့်သာ မွေ့ရာနှင့် ခေါင်းအုံးများကို ဖုန်စုပ်ပါ။"),
     t("Change all pillowcases and bolster covers.", "枕カバーと抱き枕カバーをすべて交換します。", "ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်အားလုံးကို လဲပါ။"),
@@ -2768,13 +2768,13 @@ if (nakoSupervisionRoutine) {
 const dailyCookingRoutine = routineTasks.find((task) => task.id === "daily-cooking");
 if (dailyCookingRoutine) {
   dailyCookingRoutine.mustRemember.push(
-    t("**WHITE RICE — Tefal Mini:** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米 — Tefal Mini:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ — Tefal Mini:** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
+    t("**WHITE RICE (Tefal Mini):** 1) Turn on the main power switch. 2) Press **Menu** until the white line is on **White Rice**. 3) Press **Start**.", "**白米（Tefal Mini）:** ①元の電源スイッチを入れる。②白いラインが**White Rice**に来るまで**Menu**を押す。③**Start**を押す。", "**ဆန်ဖြူ (Tefal Mini):** ၁) ပင်မ power switch ကိုဖွင့်ပါ။ ၂) အဖြူရောင်လိုင်း **White Rice** နေရာရောက်အောင် **Menu** ကိုနှိပ်ပါ။ ၃) **Start** ကိုနှိပ်ပါ။"),
     t("Keep food and snacks out of bedrooms. Use only the kitchen, dining, or living areas to prevent crumbs, smells, stains, ants, cockroaches, and other pests.", "寝室に食べ物やお菓子を持ち込まないでください。食べ物はキッチン、ダイニング、リビングだけで扱い、食べくず、臭い、汚れ、アリ、ゴキブリなどの害虫を防いでください。", "အိပ်ခန်းထဲ အစားအစာနဲ့ မုန့်တွေ မယူပါနဲ့။ အစားအစာကို မီးဖိုချောင်၊ dining သို့မဟုတ် living area မှာပဲ စား/ထားပါ။ အစအန၊ အနံ့၊ အစွန်းအထင်း၊ ပုရွက်ဆိတ်၊ ပိုးဟပ်နဲ့ အခြားပိုးမွှားတွေကို ကာကွယ်ဖို့ပါ။"),
-    t("**FYI ONLY:** Other food recipes are reference only—make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
+    t("**FYI ONLY:** Other food recipes are reference only. Make them only when you are asked.", "**参考のみ:** ほかの料理レシピは参考用です。頼まれた時だけ作る。", "**အချက်အလက်အတွက်သာ:** အခြားဟင်းချက်နည်းများသည် ကိုးကားရန်သာဖြစ်သည်။ တောင်းဆိုသည့်အခါမှသာ ချက်ပါ။")
   );
   dailyCookingRoutine.photos = [
     photo("assets/routines/tefal-mini-rice-cooker-white-rice.jpg",
-      t("Tefal Mini rice cooker — White Rice controls", "Tefal Mini炊飯器 — White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး — White Rice ခလုတ်များ"),
+      t("Tefal Mini rice cooker: White Rice controls", "Tefal Mini炊飯器：White Riceの操作", "Tefal Mini ထမင်းပေါင်းအိုး: White Rice ခလုတ်များ"),
       t("For white rice: turn on the main power switch, press Menu until the white line is on White Rice, then press Start.", "白米の場合：元の電源スイッチを入れ、白いラインがWhite Riceに来るまでMenuを押し、Startを押します。", "ဆန်ဖြူအတွက် ပင်မ power switch ကိုဖွင့်ပါ၊ အဖြူရောင်လိုင်း White Rice နေရာရောက်အောင် Menu ကိုနှိပ်ပြီး Start ကိုနှိပ်ပါ။")),
     ...dailyCookingRoutine.photos
   ];
@@ -3085,7 +3085,7 @@ const trainingData = (() => {
     command("ashi-middle", "handling", tx("Ashi / Middle", "足の間 / ミドル", "ခြေကြား / Middle"), 2, "Useful", tx("Enter from behind, stand facing forward between legs, and Sit with reduced luring.", "後ろから入り、足の間で前を向き、誘導を減らして座る。", "နောက်မှဝင်၍ ခြေကြားတွင် ရှေ့ကိုမျက်နှာမူကာ ဆွဲဆောင်မှုနည်းနည်းဖြင့်ထိုင်ရန်။"), "Yukari guides her behind the legs and into the middle, but success is still inconsistent.", { order: 19, jpNote: "ユカリが足の後ろからミドルへ導いているが、まだ成功は安定していない。", mmNote: "Yukari က ခြေနောက်မှ Middle သို့လမ်းညွှန်ပေးသော်လည်း အောင်မြင်မှုမတည်ငြိမ်သေးပါ။"}),
     command("paw", "handling", tx("Paw", "おて", "လက်ပေး"), 8, "Useful", tx("Allow a brief, gentle paw inspection after Paw.", "おての後に短くやさしい足の確認を受け入れる。", "လက်ပေးပြီးနောက် ခြေထောက်ကို ခဏနူးညံ့စွာစစ်ဆေးခွင့်ပြုရန်။"), "She initially responded only with visible food but can now perform without visible food.", { order: 21, jpNote: "最初は見える食べ物だけで反応したが、今は見せなくてもできる。", mmNote: "အစတွင် မြင်ရသောအစားအစာဖြင့်သာတုံ့ပြန်သော်လည်း ယခုမပြဘဲလုပ်နိုင်သည်။"}),
     command("chin-rest", "handling", tx("Chin", "あご乗せ", "မေးတင်"), 0, "High", tx("Hold chin position for two seconds while the other hand briefly approaches.", "もう一方の手が近づく間、2秒あごを乗せる。", "အခြားလက်အနီးကပ်လာစဉ် ၂ စက္ကန့် မေးတင်ထားရန်။"), "", { order: 10, purpose: tx("Rest her chin voluntarily on a hand, towel, or cushion for cooperative care.", "ケアのために、手・タオル・クッションに自発的にあごを乗せる。", "ပူးပေါင်းစောင့်ရှောက်မှုအတွက် လက်၊ တဘက် သို့မဟုတ်ခေါင်းအုံးပေါ် မေးကို စိတ်လိုလက်ရတင်ရန်။"), safety: [tx("When she lifts her chin, handling pauses.", "あごを上げたらケアを止めます。", "မေးမြှောက်လျှင် ကိုင်တွယ်ခြင်းရပ်ပါ။")]}),
-    command("lift-carry", "handling", tx("Bao Bao — Lift / Carry", "Bao Bao — 抱き上げ / 抱っこ", "Bao Bao — ချီ / ပွေ့"), 6, "High", tx("Try the full sequence without giving a food treat after every repetition; keep rewarding often enough that Nako stays positive.", "毎回おやつを与えずに一連の動作を試しつつ、ナコが楽しく続けられる頻度でごほうびを与える。", "အကြိမ်တိုင်း အစားအစာဆုမပေးဘဲ အစအဆုံးလုပ်ကြည့်ပါ။ Nako ပျော်ရွှင်စွာဆက်လုပ်နိုင်ရန် လိုအပ်သလို မကြာခဏဆုချပါ။"), "First session on 11 July 2026: about 10 repetitions. She progressed from stepping up onto the offered left hand and receiving a treat, to responding after the Bao Bao cue, accepting right-hand support under her hindquarters, being lifted with her whole body supported, and then receiving a treat. She can complete the full sequence, but a no-treat repetition has not been tested yet.", { order: 11, setting: "liftCue", defaultCue: "Bao Bao", initialRewardReliance: 2, initialEnvironment: 0, initialLastPractisedAt: "2026-07-11T00:00:00+08:00", jpNote: "2026年7月11日の初回練習：約10回。差し出した左手に前足を乗せてからおやつをもらう段階から、Bao Bao の合図で立ち上がって左手に両前足を乗せ、右手で後ろ足側を支え、全身を支えて抱き上げた後におやつをもらうところまで進んだ。一連の動作はできるが、おやつなしの反復はまだ試していない。", mmNote: "၂၀၂၆ ခုနှစ် ဇူလိုင် ၁၁ ရက် ပထမအကြိမ်လေ့ကျင့်မှုတွင် ၁၀ ကြိမ်ခန့် လုပ်ခဲ့သည်။ ကမ်းပေးထားသော ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပြီး ဆုစားရသည့်အဆင့်မှ Bao Bao အမိန့်ကြားလျှင် မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ခြင်း၊ ညာလက်ဖြင့် နောက်ပိုင်းကိုပံ့ပိုးခြင်း၊ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပြီး ချီခြင်း၊ ထို့နောက် ဆုစားရခြင်းအထိ တိုးတက်ခဲ့သည်။ အစအဆုံးလုပ်နိုင်ပြီဖြစ်သော်လည်း ဆုမပါဘဲ မစမ်းရသေးပါ။", purpose: tx("On Bao Bao, put both front paws on the left hand. Support her hindquarters before lifting.", "Bao Bao の合図で左手に両前足を乗せる。抱き上げる前に右手で後ろ足側を支える。", "Bao Bao အမိန့်ကြားလျှင် ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပါ။ မချီမီ ညာလက်ဖြင့် နောက်ပိုင်းကို ပံ့ပိုးပါ။"), instructions: [tx("Bend down and hold the left hand straight out as her platform.", "かがみ、左手をまっすぐ差し出して足場にする。", "ကိုယ်ကိုငုံ့ပြီး ဘယ်လက်ကို သူမတက်နိုင်ရန် တန်းတန်းဆန့်ထားပါ။"), tx("Say Bao Bao once. Wait for her to stand and place both front paws on the left hand.", "Bao Bao と一度だけ言い、立ち上がって左手に両前足を乗せるのを待つ。", "Bao Bao ဟု တစ်ကြိမ်သာပြောပြီး သူမ မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်သည်အထိ စောင့်ပါ။"), tx("Place the right hand securely under her hindquarters, support her whole body, and lift smoothly.", "右手を後ろ足側の下にしっかり入れ、全身を支えて滑らかに抱き上げる。", "ညာလက်ကို သူမ၏ နောက်ပိုင်းအောက်တွင် သေချာထားပြီး ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးကာ ညင်သာစွာချီပါ။"), tx("Reward after the lift. When she remains comfortable, begin mixing in an occasional repetition without a food treat.", "抱き上げた後にごほうびを与える。落ち着いてできるようになったら、時々おやつなしの反復を混ぜる。", "ချီပြီးနောက် ဆုချပါ။ သူမ သက်တောင့်သက်သာရှိနေပါက တစ်ခါတစ်ရံ အစားအစာဆုမပေးသော အကြိမ်ကို စတင်ရောထည့်ပါ။")], safety: [tx("Her left-hand paw placement is the ready position, not the lifting point; support her whole body before her feet leave the floor.", "左手への前足乗せは準備姿勢であり、そこだけで持ち上げない。足が床を離れる前に全身を支える。", "ဘယ်လက်ပေါ် ရှေ့ခြေတင်ခြင်းသည် အဆင်သင့်အနေအထားသာဖြစ်ပြီး ထိုနေရာမှမချီပါနှင့်။ ခြေထောက်များ မြေပြင်မှမလွတ်မီ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပါ။"), tx("Never lift only by the front legs or armpits.", "前足やわきの下だけで持ち上げないでください。", "ရှေ့ခြေ သို့မဟုတ် ချိုင်းအောက်မှသာ မချီပါနှင့်။"), tx("Stop if she pulls away, looks worried, struggles, or seems sore.", "離れようとする、不安そう、暴れる、痛そうな場合は中止する。", "သူမ ရှောင်ထွက်ခြင်း၊ စိုးရိမ်ပုံရခြင်း၊ ရုန်းကန်ခြင်း သို့မဟုတ် နာကျင်ပုံရပါက ရပ်ပါ။")]}),
+    command("lift-carry", "handling", tx("Bao Bao: Lift / Carry", "Bao Bao：抱き上げ / 抱っこ", "Bao Bao: ချီ / ပွေ့"), 6, "High", tx("Try the full sequence without giving a food treat after every repetition; keep rewarding often enough that Nako stays positive.", "毎回おやつを与えずに一連の動作を試しつつ、ナコが楽しく続けられる頻度でごほうびを与える。", "အကြိမ်တိုင်း အစားအစာဆုမပေးဘဲ အစအဆုံးလုပ်ကြည့်ပါ။ Nako ပျော်ရွှင်စွာဆက်လုပ်နိုင်ရန် လိုအပ်သလို မကြာခဏဆုချပါ။"), "First session on 11 July 2026: about 10 repetitions. She progressed from stepping up onto the offered left hand and receiving a treat, to responding after the Bao Bao cue, accepting right-hand support under her hindquarters, being lifted with her whole body supported, and then receiving a treat. She can complete the full sequence, but a no-treat repetition has not been tested yet.", { order: 11, setting: "liftCue", defaultCue: "Bao Bao", initialRewardReliance: 2, initialEnvironment: 0, initialLastPractisedAt: "2026-07-11T00:00:00+08:00", jpNote: "2026年7月11日の初回練習：約10回。差し出した左手に前足を乗せてからおやつをもらう段階から、Bao Bao の合図で立ち上がって左手に両前足を乗せ、右手で後ろ足側を支え、全身を支えて抱き上げた後におやつをもらうところまで進んだ。一連の動作はできるが、おやつなしの反復はまだ試していない。", mmNote: "၂၀၂၆ ခုနှစ် ဇူလိုင် ၁၁ ရက် ပထမအကြိမ်လေ့ကျင့်မှုတွင် ၁၀ ကြိမ်ခန့် လုပ်ခဲ့သည်။ ကမ်းပေးထားသော ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပြီး ဆုစားရသည့်အဆင့်မှ Bao Bao အမိန့်ကြားလျှင် မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ခြင်း၊ ညာလက်ဖြင့် နောက်ပိုင်းကိုပံ့ပိုးခြင်း၊ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပြီး ချီခြင်း၊ ထို့နောက် ဆုစားရခြင်းအထိ တိုးတက်ခဲ့သည်။ အစအဆုံးလုပ်နိုင်ပြီဖြစ်သော်လည်း ဆုမပါဘဲ မစမ်းရသေးပါ။", purpose: tx("On Bao Bao, put both front paws on the left hand. Support her hindquarters before lifting.", "Bao Bao の合図で左手に両前足を乗せる。抱き上げる前に右手で後ろ足側を支える。", "Bao Bao အမိန့်ကြားလျှင် ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်ပါ။ မချီမီ ညာလက်ဖြင့် နောက်ပိုင်းကို ပံ့ပိုးပါ။"), instructions: [tx("Bend down and hold the left hand straight out as her platform.", "かがみ、左手をまっすぐ差し出して足場にする。", "ကိုယ်ကိုငုံ့ပြီး ဘယ်လက်ကို သူမတက်နိုင်ရန် တန်းတန်းဆန့်ထားပါ။"), tx("Say Bao Bao once. Wait for her to stand and place both front paws on the left hand.", "Bao Bao と一度だけ言い、立ち上がって左手に両前足を乗せるのを待つ。", "Bao Bao ဟု တစ်ကြိမ်သာပြောပြီး သူမ မတ်တပ်ရပ်ကာ ဘယ်လက်ပေါ် ရှေ့ခြေနှစ်ချောင်းတင်သည်အထိ စောင့်ပါ။"), tx("Place the right hand securely under her hindquarters, support her whole body, and lift smoothly.", "右手を後ろ足側の下にしっかり入れ、全身を支えて滑らかに抱き上げる。", "ညာလက်ကို သူမ၏ နောက်ပိုင်းအောက်တွင် သေချာထားပြီး ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးကာ ညင်သာစွာချီပါ။"), tx("Reward after the lift. When she remains comfortable, begin mixing in an occasional repetition without a food treat.", "抱き上げた後にごほうびを与える。落ち着いてできるようになったら、時々おやつなしの反復を混ぜる。", "ချီပြီးနောက် ဆုချပါ။ သူမ သက်တောင့်သက်သာရှိနေပါက တစ်ခါတစ်ရံ အစားအစာဆုမပေးသော အကြိမ်ကို စတင်ရောထည့်ပါ။")], safety: [tx("Her left-hand paw placement is the ready position, not the lifting point; support her whole body before her feet leave the floor.", "左手への前足乗せは準備姿勢であり、そこだけで持ち上げない。足が床を離れる前に全身を支える。", "ဘယ်လက်ပေါ် ရှေ့ခြေတင်ခြင်းသည် အဆင်သင့်အနေအထားသာဖြစ်ပြီး ထိုနေရာမှမချီပါနှင့်။ ခြေထောက်များ မြေပြင်မှမလွတ်မီ ကိုယ်တစ်ခုလုံးကိုပံ့ပိုးပါ။"), tx("Never lift only by the front legs or armpits.", "前足やわきの下だけで持ち上げないでください。", "ရှေ့ခြေ သို့မဟုတ် ချိုင်းအောက်မှသာ မချီပါနှင့်။"), tx("Stop if she pulls away, looks worried, struggles, or seems sore.", "離れようとする、不安そう、暴れる、痛そうな場合は中止する。", "သူမ ရှောင်ထွက်ခြင်း၊ စိုးရိမ်ပုံရခြင်း၊ ရုန်းကန်ခြင်း သို့မဟုတ် နာကျင်ပုံရပါက ရပ်ပါ။")]}),
     command("jump-arms", "handling", tx("Jump to Arms", "腕へ上がる", "လက်မောင်းပေါ်တက်"), 3, "Useful", tx("Confidently climb onto the handler's seated lap on cue.", "合図で飼い主の座ったひざへ自信を持って上がる。", "အမိန့်ပေးလျှင် ထိုင်နေသောကိုင်တွယ်သူ၏ ပေါင်ပေါ်ကို ယုံကြည်စွာတက်ရန်။"), "She can jump upward from approximately sitting level. Long-term aim is a safe assisted transfer into the handler's arms.", { order: 20, jpNote: "座った高さから上へ跳べます。長期目標は飼い主の腕への安全な補助移動です。", mmNote: "ထိုင်နေသည့်အမြင့်မှ အပေါ်သို့တက်နိုင်သည်။ ရေရှည်ရည်မှန်းချက်မှာ ကိုင်တွယ်သူ၏လက်မောင်းသို့ လုံခြုံစွာကူညီပြောင်းရွှေ့ခြင်းဖြစ်သည်။", safety: [tx("For a real emergency, pick her up safely; do not depend on this trick.", "本当の緊急時は安全に抱き上げ、このトリックに頼らないでください。", "အမှန်တကယ် အရေးပေါ်တွင် လုံခြုံစွာချီပါ။ ဤလှည့်ကွက်ကိုမမှီခိုပါနှင့်။"), tx("No high-impact jumps or jumping from a distance.", "高い衝撃のジャンプや離れた所からのジャンプはしません。", "ပြင်းထန်သောခုန်ခြင်းနှင့် အဝေးမှခုန်ခြင်းမလုပ်ပါနှင့်။")]}),
     command("hoop", "tricks", tx("Hoop", "フープ", "ကွင်း"), 2, "Useful", tx("Walk completely through a floor-level hoop without hesitation.", "床に置いたフープをためらわずに完全に歩いて通る。", "ကြမ်းပြင်ပေါ်ကွင်းကို မတွန့်ဆုတ်ဘဲ လုံးဝလျှောက်ဖြတ်ရန်။"), "She currently appears to climb or walk through rather than jump.", { order: 22, jpNote: "現在は跳ぶより、またいだり歩いて通ったりしているようです。", mmNote: "လက်ရှိတွင် ခုန်ခြင်းထက် ကျော်သွား သို့မဟုတ် လျှောက်ဖြတ်နေသည်။", safety: [tx("Walking through is the correct first stage; keep the hoop on the floor.", "歩いて通るのが正しい最初の段階です。フープは床に置きます。", "လျှောက်ဖြတ်ခြင်းက မှန်ကန်သောပထမအဆင့်ဖြစ်သည်။ ကွင်းကိုကြမ်းပြင်ပေါ်ထားပါ။")]}),
     command("find-it", "tricks", tx("Find It", "探して", "ရှာ"), 0, "High", tx("Find a visibly tossed kibble after hearing Find it.", "『探して』の後、見えるように投げたキブルを見つける。", "Find it ကြားပြီးနောက် မြင်သာစွာပစ်ထားသော kibble ကိုရှာရန်။"), "", { order: 23, purpose: tx("Use her nose to search for food, a person, or a toy.", "鼻を使って食べ物・人・おもちゃを探す。", "အစားအစာ၊ လူ သို့မဟုတ်ကစားစရာကို နှာခေါင်းသုံး၍ရှာရန်။")}),
@@ -3243,12 +3243,12 @@ const recipes = [
   recipe("nako-chicken-apple-vegetable-meal-prep",
     t("Nako's Chicken, Apple & Vegetable Meal Prep", "ナコの鶏肉・りんご・野菜の作り置き", "နာကိုအတွက် ကြက်သား၊ ပန်းသီးနှင့် ဟင်းသီးဟင်းရွက် အကြိုပြင်အစာ"),
     [
-      [t("Plain chicken, fully cooked", "味付けなしで十分に加熱した鶏肉", "အရသာမထည့်ဘဲ ကျက်အောင်ချက်ထားသော ကြက်သား"), "—", "chicken-breast"],
-      [t("Carrot", "にんじん", "မုန်လာဥနီ"), "—", "carrot"],
-      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), "—", "napa-cabbage"],
-      [t("Apple, core and seeds removed", "芯と種を除いたりんご", "အူတိုင်နှင့် အစေ့များ ဖယ်ထားသော ပန်းသီး"), "—", "apple"],
-      [t("Store-bought shimeji mushroom (optional; only if approved)", "市販のしめじ（任可されている場合のみ・任意）", "ဆိုင်မှဝယ်သော ရှိမေဂျီမှို (ခွင့်ပြုထားမှသာ၊ မထည့်လည်းရသည်)"), "—", "shimeji-mushroom"],
-      [t("Water", "水", "ရေ"), "—", "water"]
+      [t("Plain chicken, fully cooked", "味付けなしで十分に加熱した鶏肉", "အရသာမထည့်ဘဲ ကျက်အောင်ချက်ထားသော ကြက်သား"), t("As needed", "適量", "လိုအပ်သလို"), "chicken-breast"],
+      [t("Carrot", "にんじん", "မုန်လာဥနီ"), t("As needed", "適量", "လိုအပ်သလို"), "carrot"],
+      [t("Cabbage", "キャベツ", "ဂေါ်ဖီထုပ်"), t("As needed", "適量", "လိုအပ်သလို"), "napa-cabbage"],
+      [t("Apple, core and seeds removed", "芯と種を除いたりんご", "အူတိုင်နှင့် အစေ့များ ဖယ်ထားသော ပန်းသီး"), t("As needed", "適量", "လိုအပ်သလို"), "apple"],
+      [t("Store-bought shimeji mushroom (optional; only if approved)", "市販のしめじ（任可されている場合のみ・任意）", "ဆိုင်မှဝယ်သော ရှိမေဂျီမှို (ခွင့်ပြုထားမှသာ၊ မထည့်လည်းရသည်)"), t("As needed", "適量", "လိုအပ်သလို"), "shimeji-mushroom"],
+      [t("Water", "水", "ရေ"), t("As needed", "適量", "လိုအပ်သလို"), "water"]
     ],
     [
       t("Wash the produce. Remove the apple core, seeds, and stem; omit the mushroom unless it is already approved for Nako.", "野菜と果物を洗います。りんごの芯、種、軸を除き、しめじはナコに与えてよいと確認済みの場合のみ使います。", "ဟင်းသီးဟင်းရွက်နှင့် သစ်သီးကို ဆေးပါ။ ပန်းသီး၏ အူတိုင်၊ အစေ့နှင့် အညှာကို ဖယ်ပါ။ ရှိမေဂျီမှိုကို နာကိုအတွက် ခွင့်ပြုထားပြီးသားဖြစ်မှသာ သုံးပါ။"),
@@ -4360,7 +4360,7 @@ function checkTranslations() {
 
   // Quantities such as "100g" are language-neutral. Any amount containing
   // user-facing words must use t(en, jp, mm) so the renderer can localize it.
-  const languageNeutralAmount = /^(?:—|\d+(?:\.\d+)?\s*(?:g|kg|ml|l))$/i;
+  const languageNeutralAmount = /^\d+(?:\.\d+)?\s*(?:g|kg|ml|l)$/i;
   window.nakoData.recipes.forEach((recipe, recipeIndex) => {
     recipe.ingredients.forEach((item, ingredientIndex) => {
       if (typeof item.amount === "string" && !languageNeutralAmount.test(item.amount.trim())) {

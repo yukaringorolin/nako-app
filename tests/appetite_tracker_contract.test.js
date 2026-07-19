@@ -31,7 +31,7 @@ const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components
 const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
 const appetiteSource = fs.readFileSync(path.join(root, "src", "features", "appetite.js"), "utf8");
 assert.match(componentSource, /foodItems\.filter\(\(item\) => item\.active !== false\)\.length/);
-assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonicalRoute\)/);
+assert.match(pageSource, /if \(item\.canonicalRoute\) return replaceRoute\(item\.canonicalRoute\)/);
 assert.match(pageSource, /frequency[\s\S]*appetitePanelHtml[\s\S]*renderPhotos\(task\.photos\)/, "The tracker must render after When and before Photos");
 assert.match(pageSource, /task\.trackingMode === "input" && task\.trackingSource === "appetite"/, "Routine Check-in completion must derive from the appetite tracker");
 assert.match(pageSource, /href="#routine\/\$\{esc\(task\.id\)\}"/, "The daily check-in must link to the canonical routine page");

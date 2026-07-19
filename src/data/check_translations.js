@@ -88,7 +88,7 @@ function checkTranslations() {
 
   // Quantities such as "100g" are language-neutral. Any amount containing
   // user-facing words must use t(en, jp, mm) so the renderer can localize it.
-  const languageNeutralAmount = /^(?:—|\d+(?:\.\d+)?\s*(?:g|kg|ml|l))$/i;
+  const languageNeutralAmount = /^\d+(?:\.\d+)?\s*(?:g|kg|ml|l)$/i;
   window.nakoData.recipes.forEach((recipe, recipeIndex) => {
     recipe.ingredients.forEach((item, ingredientIndex) => {
       if (typeof item.amount === "string" && !languageNeutralAmount.test(item.amount.trim())) {

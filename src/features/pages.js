@@ -604,11 +604,11 @@ function renderRelatedPageLinks(links) {
 }
 
 function renderFood(foodId) {
-  if (foodId === "nako-weight") return go("#routine/nako-weight-tracking");
-  if (foodId === "cooking-rules") return go("#food-safety/household-cooking-rules");
+  if (foodId === "nako-weight") return replaceRoute("#routine/nako-weight-tracking");
+  if (foodId === "cooking-rules") return replaceRoute("#food-safety/household-cooking-rules");
   const item = foodItems.find((entry) => entry.id === foodId);
   if (!item) return renderHome();
-  if (item.canonicalRoute) return go(item.canonicalRoute);
+  if (item.canonicalRoute) return replaceRoute(item.canonicalRoute);
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
   const state = getFoodState(item.id);
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));

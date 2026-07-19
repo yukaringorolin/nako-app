@@ -63,6 +63,6 @@ const foodItems = [
     t("Double-check ingredients at home before starting to cook.", "料理を始める前に、家にある食材を再確認してください。", "ဟင်းမချက်မီ အိမ်ရှိပါဝင်ပစ္စည်းများကို ထပ်မံစစ်ဆေးပါ။"), 0, [
       photo("assets/sections/human-food-memories-2024.jpg",
         t("Yukari surrounded by a collage of meals she cooked for Edwin in 2024", "ゆかりと、2024年にエドウィンのために作った料理のコラージュ", "Yukari နဲ့ ၂၀၂၄ ခုနှစ်မှာ Edwin အတွက် သူချက်ပေးခဲ့တဲ့ အစားအစာများကို စုစည်းထားတဲ့ပုံ"),
-        t("Food Memories 2024 — meals Yukari cooked for Edwin during their first 3–4 months together.", "2024年の食の思い出 — 付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。", "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ — အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။"))
+        t("Food Memories 2024: meals Yukari cooked for Edwin during their first 3–4 months together.", "2024年の食の思い出：付き合い始めて最初の3〜4か月に、ゆかりがエドウィンのために作った料理。", "၂၀၂၄ ခုနှစ် အစားအသောက်အမှတ်တရများ: အတူရှိခဲ့တဲ့ ပထမ ၃–၄ လအတွင်း Yukari က Edwin အတွက် ချက်ပေးခဲ့တဲ့ အစားအစာများ။"))
     ]),
 ];
