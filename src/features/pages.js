@@ -126,7 +126,6 @@ function renderRoutineCheckIn() {
   const today = routineTracking.singaporeDateKey();
   const checklist = currentChecklist();
   const summary = window.nakoRoutineTaskSelection.summarizeChecklist(checklist);
-  const periodItems = [...new Map(checklist.map((item) => [item.task.trackingCadence, item])).values()];
   const content = `
     <section class="routine-checkin-hero">
       <div>
@@ -135,9 +134,6 @@ function renderRoutineCheckIn() {
         <p>${esc(label("routineCheckInSubtitle"))}</p>
       </div>
       <strong class="routine-progress">${esc(labelWith("progressSummary", { done: summary.completedTotal, total: checklist.length }))}</strong>
-    </section>
-    <section class="routine-periods" aria-label="${esc(label("currentPeriods"))}">
-      ${periodItems.map((item) => `<span><strong>${esc(cadenceLabel(item.task.trackingCadence))}</strong>${esc(cycleRangeLabel(item.cycle))}</span>`).join("")}
     </section>
     <button class="history-link-button" data-routine-history>${esc(label("routineHistory"))}<span aria-hidden="true">›</span></button>
     ${renderRoutineStatus()}
