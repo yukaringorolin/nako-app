@@ -81,6 +81,7 @@ const nakoEmergency = routineById("nako-emergency");
 assert.equal(nakoEmergency.frequencyBucket, "daily");
 assert.equal(nakoEmergency.photos[0].src, "assets/sections/nako-emergency.png");
 const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
+const actionsSource = fs.readFileSync(path.join(root, "src", "features", "actions.js"), "utf8");
 const shellSource = fs.readFileSync(path.join(root, "src", "ui", "shell.js"), "utf8");
 assert.match(pageSource, /if \(item\.canonicalRoute\) return replaceRoute\(item\.canonicalRoute\)/);
 assert.match(pageSource, /isDailyGuide\s*\? renderDailyGuideGroups\(items, section\)/);
@@ -142,7 +143,28 @@ assert.deepEqual(Array.from(rubbish.photos, (item) => item.src), [
   "assets/routines/nako-rubbish-downstairs-large-items.jpg"
 ]);
 assert.match(englishText(routineById("nako-training-fun").mustRemember), /exchange it for a treat/);
-assert.match(englishText(routineById("outside-shoe-rack").mustRemember), /dry fully/);
+const outsideShoeRack = routineById("outside-shoe-rack");
+assert.equal(outsideShoeRack.frequencyBucket, "monthly");
+assert.equal(outsideShoeRack.frequencyText.en, "Monthly");
+assert.equal(outsideShoeRack.trackingMode, "checkbox");
+assert.equal(outsideShoeRack.trackingCadence, "monthly");
+assert.equal(outsideShoeRack.trackingExclusionReason, null);
+assert.match(englishText(outsideShoeRack.mustRemember), /dry fully/);
+assert.match(outsideShoeRack.photos[0].caption.en, /Monthly reference/);
+const microwaveInterior = routineById("microwave-interior");
+assert.equal(microwaveInterior.frequencyBucket, "weekly");
+assert.equal(microwaveInterior.frequencyText.en, "After use if dirty + weekly");
+assert.equal(microwaveInterior.trackingMode, "checkbox");
+assert.equal(microwaveInterior.trackingCadence, "weekly");
+assert.equal(microwaveInterior.trackingExclusionReason, null);
+assert.match(microwaveInterior.summary.en, /complete wipe every week/);
+const ninjaAirFryerDeepClean = routineById("ninja-af141-air-fryer-interior-deep-clean");
+assert.equal(ninjaAirFryerDeepClean.frequencyBucket, "weekly");
+assert.equal(ninjaAirFryerDeepClean.frequencyText.en, "Weekly");
+assert.equal(ninjaAirFryerDeepClean.trackingMode, "checkbox");
+assert.equal(ninjaAirFryerDeepClean.trackingCadence, "weekly");
+assert.deepEqual(Array.from(ninjaAirFryerDeepClean.legacyTrackingCadences), ["monthly"]);
+assert.match(englishText(ninjaAirFryerDeepClean.mustRemember), /This weekly task/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /main power switch/);
 assert.match(englishText(routineById("daily-cooking").mustRemember), /crumbs, smells, stains, ants, cockroaches/);
 assert.match(englishText(routineById("nako-weekly-play-pen-deep-clean").mustRemember), /Dry the pen.*fully before letting Nako back in/);
@@ -173,8 +195,16 @@ assert.match(englishText(routineById("fridge-interior").mustRemember), /small, s
 assert.equal(routineById("fridge-interior").frequencyBucket, "monthly");
 assert.deepEqual(Array.from(routineById("fridge-interior").legacyTrackingCadences), ["weekly"]);
 assert.match(englishText(routineById("general-surface-cleaning").mustRemember), /sneezing, a runny or itchy nose/);
-assert.match(englishText(routineById("coffee-machine-descaling").mustRemember), /Do not descale the machine alone yet/);
-assert.equal(routineById("coffee-machine-descaling").videoUrl, "https://www.youtube.com/embed/vcVPB1-0huA");
+const coffeeMachineDescaling = routineById("coffee-machine-descaling");
+assert.equal(coffeeMachineDescaling.active, true);
+assert.equal(coffeeMachineDescaling.frequencyBucket, "quarterly");
+assert.equal(coffeeMachineDescaling.trackingMode, "none");
+assert.equal(coffeeMachineDescaling.trackingCadence, null);
+assert.match(coffeeMachineDescaling.trackingExclusionReason, /red descale light flashes/);
+assert.equal(coffeeMachineDescaling.summary.en, "Descale the coffee machine only when the red descale light flashes.");
+assert.doesNotMatch(coffeeMachineDescaling.summary.en, /every 4-6 months/i);
+assert.match(englishText(coffeeMachineDescaling.mustRemember), /Do not descale the machine alone yet/);
+assert.equal(coffeeMachineDescaling.videoUrl, "https://www.youtube.com/embed/vcVPB1-0huA");
 
 const weightTracking = routineById("nako-weight-tracking");
 assert.match(weightTracking.summary.en, /Only weigh her when awake/);
@@ -227,22 +257,44 @@ assert.match(englishText(groceryShopping.mustRemember), /daily active reference 
 assert.match(englishText(groceryShopping.mustRemember), /keep the receipt.*chilled or frozen food home immediately/);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
-assert.equal(groceryShopping.stockItems.length, 11);
-assert.deepEqual(Array.from(groceryShopping.stockItems, (item) => item.en), [
-  "Milk", "Eggs", "Bread", "Japanese rice", "Enoki mushrooms", "Brown shimeji mushrooms", "Tofu", "Frozen sliced pork", "Tomatoes", "Bananas", "Broccoli"
+assert.equal(groceryShopping.stockItems, undefined);
+assert.equal(groceryShopping.stockPhoto, undefined);
+assert.deepEqual(Array.from(groceryShopping.groceryShops, (shop) => shop.id), [
+  "ntuc-fairprice", "giant", "wet-market", "u-stars"
 ]);
-for (const item of groceryShopping.stockItems) assert.ok(item.en && item.jp && item.mm);
-assert.equal(groceryShopping.stockPhoto.src, "assets/routines/grocery-essential-stock.jpg");
-assert.equal(fs.existsSync(path.join(root, groceryShopping.stockPhoto.src)), true);
+const groceryItems = groceryShopping.groceryShops.flatMap((shop) => Array.from(shop.items));
+assert.deepEqual(Array.from(groceryItems, (item) => item.name.en), [
+  "Milk", "Eggs", "Bread", "Japanese rice", "Tofu", "Enoki mushrooms", "Brown shimeji mushrooms", "Frozen sliced pork", "Broccoli", "Fresh prawns", "Bananas", "Tomatoes"
+]);
+assert.equal(new Set(groceryItems.map((item) => item.id)).size, groceryItems.length);
+for (const shop of groceryShopping.groceryShops) {
+  assert.ok(shop.name.en && shop.name.jp && shop.name.mm);
+  assert.equal(typeof shop.sortOrder, "number");
+  assert.ok(shop.items.length > 0);
+}
+for (const item of groceryItems) {
+  assert.ok(item.name.en && item.name.jp && item.name.mm);
+  assert.equal(typeof item.category, "string");
+  assert.equal(typeof item.categorySort, "number");
+  assert.equal(typeof item.sortOrder, "number");
+  assert.ok(item.photos.length > 0);
+  assert.ok(item.instructions.length > 0);
+  for (const instruction of item.instructions) assert.ok(instruction.en && instruction.jp && instruction.mm);
+  for (const itemPhoto of item.photos) assert.equal(fs.existsSync(path.join(root, itemPhoto.src)), true);
+}
 assert.doesNotMatch(englishText(groceryShopping.mustRemember), /Keep milk, eggs, bread/);
-assert.match(pageSource, /renderHead[\s\S]*groceryStockPanelHtml[\s\S]*backLinkHtml/, "The compact grocery stock panel must appear directly below the page heading");
-assert.match(pageSource, /grocery-stock-label-\$\{index\}/, "The grocery stock image must place each item label directly on the image");
+assert.match(pageSource, /renderHead[\s\S]*groceryShopListHtml[\s\S]*relatedPageHtml/, "The shop-first grocery list must appear directly below the page heading");
+assert.match(pageSource, /<details class="grocery-item"[\s\S]*name="grocery-shopping-item"/);
+assert.match(pageSource, /\(a\.categorySort \|\| 0\)[\s\S]*\(a\.sortOrder \|\| 0\)/, "Hidden category and item sort values must control grocery order");
+assert.doesNotMatch(pageSource, /tr\(item\.category\)/, "Grocery category values must not render as headings");
+assert.match(actionsSource, /groceryItemSummary[\s\S]*querySelectorAll\("\[data-grocery-item\]\[open\]"\)/, "Opening one grocery item must close the others");
 assert.match(pageSource, /task\.id === "daily-cooking"[\s\S]*?#food\/human-food[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Daily Cooking must link to Human Food Ideas, Grocery Shopping, and Kitchen Rules & Food Safety");
 assert.match(pageSource, /task\.id === "grocery-shopping"[\s\S]*?#routine\/daily-cooking[\s\S]*?#food\/human-food[\s\S]*?#section\/food-safety/, "Grocery Shopping must link to Daily Cooking, Human Food Ideas, and Kitchen Rules & Food Safety");
 assert.match(pageSource, /isHuman \? renderRelatedPageLinks\([\s\S]*?#routine\/daily-cooking[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Human Food Ideas must link to Daily Cooking, Grocery Shopping, and Kitchen Rules & Food Safety");
 assert.match(shellSource, /class="brand-home-link" href="#"/, "The Nako top-bar icon must link home");
-assert.match(stylesSource, /\.grocery-stock-panel\s*\{/);
-assert.match(stylesSource, /\.grocery-stock-label-10\s*\{/);
+assert.match(stylesSource, /\.grocery-shop-guide\s*\{/);
+assert.match(stylesSource, /\.grocery-item-summary\s*\{/);
+assert.match(stylesSource, /@media \(max-width: 430px\)[\s\S]*\.grocery-item-photos[\s\S]*grid-template-columns: 1fr/);
 
 const laundromat = routineById("laundromat-heavy-items");
 assert.equal(laundromat.frequencyBucket, "as-needed");
@@ -276,6 +328,10 @@ const chickenSweetPotatoDaikonMealPrep = recipeById("nako-chicken-sweet-potato-d
 assert.deepEqual(Array.from(chickenSweetPotatoDaikonMealPrep.ingredients, (item) => item.key), [
   "chicken-minced", "sweet-potato", "daikon-radish", "tomato", "napa-cabbage", "water"
 ]);
+for (const item of chickenSweetPotatoDaikonMealPrep.ingredients) {
+  assert.equal(item.amount.en, "Not specified");
+  assert.ok(item.amount.jp && item.amount.mm);
+}
 assert.deepEqual(Array.from(chickenSweetPotatoDaikonMealPrep.photos, (item) => item.src), [
   "assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-portions.jpg",
   "assets/recipes/nako-chicken-sweet-potato-daikon-meal-prep-preparation.jpg"

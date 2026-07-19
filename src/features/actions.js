@@ -108,6 +108,14 @@ function handleClick(event) {
     selectedIngredientChoices[ingredientChoice.dataset.ingredientChoiceId] = ingredientChoice.dataset.ingredientKey;
     return render();
   }
+  const groceryItemSummary = event.target.closest(".grocery-item-summary");
+  if (groceryItemSummary) {
+    const selectedItem = groceryItemSummary.closest("[data-grocery-item]");
+    document.querySelectorAll("[data-grocery-item][open]").forEach((item) => {
+      if (item !== selectedItem) item.open = false;
+    });
+    return;
+  }
   const trainingTabButton = event.target.closest("[data-training-tab]");
   if (trainingTabButton) { trainingTab = trainingTabButton.dataset.trainingTab; trainingDraft = null; trainingSuccessMessage = ""; return render(); }
   const trainingFocus = event.target.closest("[data-training-focus]");

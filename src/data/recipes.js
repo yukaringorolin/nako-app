@@ -79,12 +79,12 @@ const recipes = [
   recipe("nako-chicken-sweet-potato-daikon-vegetable-meal-prep",
     t("Nako's Chicken, Sweet Potato & Daikon Meal Prep", "ナコの鶏肉・さつまいも・大根の作り置き", "Nako အတွက် ကြက်သား၊ ကန်စွန်းဥနှင့် မုန်လာဥဖြူ အကြိုပြင်အစာ"),
     [
-      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), "—", "chicken-minced"],
-      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), "—", "sweet-potato"],
-      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), "—", "daikon-radish"],
-      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), "—", "tomato"],
-      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "—", "napa-cabbage"],
-      [t("Water", "水", "ရေ"), "—", "water"]
+      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "chicken-minced"],
+      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "sweet-potato"],
+      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "daikon-radish"],
+      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "tomato"],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "napa-cabbage"],
+      [t("Water", "水", "ရေ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "water"]
     ],
     [
       t("Wash the vegetables and peel the sweet potato and daikon.", "野菜を洗い、さつまいもと大根の皮をむきます。", "ဟင်းသီးဟင်းရွက်များကို ဆေးပြီး ကန်စွန်းဥနှင့် မုန်လာဥဖြူကို အခွံခွာပါ။"),

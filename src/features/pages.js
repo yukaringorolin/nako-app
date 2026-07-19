@@ -543,7 +543,7 @@ function renderRoutine(routineId) {
   const completionPanelHtml = isTracked && task.active !== false && !isInputTracked ? renderRoutineCompletionPanel(task) : "";
   const historyPanelHtml = isTracked && !isInputTracked ? renderTaskRoutineHistory(task.id) : "";
   const appetitePanelHtml = task.id === "nako-feeding-water" ? renderNakoAppetiteTracker() : "";
-  const groceryStockPanelHtml = task.id === "grocery-shopping" ? renderGroceryStockPanel(task) : "";
+  const groceryShopListHtml = task.id === "grocery-shopping" ? renderGroceryShopList(task) : "";
   const relatedPageHtml = task.id === "daily-cooking"
     ? renderRelatedPageLinks([
       ["#food/human-food", "🍳", label("shortcutHumanFood"), label("relatedHumanFoodDescription")],
@@ -561,7 +561,7 @@ function renderRoutine(routineId) {
 
   const content = `
     ${renderHead(task.icon, tr(task.title), tr(task.summary), section?.iconBg || "#fff1f2", tr(section?.title || task.frequencyText), headPhoto)}
-    ${groceryStockPanelHtml}
+    ${groceryShopListHtml}
     ${relatedPageHtml}
     ${backLinkHtml}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
@@ -569,21 +569,57 @@ function renderRoutine(routineId) {
     ${appetitePanelHtml}
     ${completionPanelHtml}
     ${instructionsPanel}
-    ${renderPhotos(task.photos)}
+    ${task.id === "grocery-shopping" ? "" : renderPhotos(task.photos)}
     <section class="panel soft"><h2>${esc(label("mustRemember"))}</h2>${noteList(task.mustRemember)}</section>
     ${historyPanelHtml}
     ${renderVideo(task.videoUrl, task.videoUrlLabel)}`;
   renderShell(tr(task.title), content, true);
 }
 
-function renderGroceryStockPanel(task) {
-  const photo = task.stockPhoto;
-  const items = Array.isArray(task.stockItems) ? task.stockItems : [];
-  if (!photo?.src || !items.length) return "";
-  return `<section class="grocery-stock-panel" aria-labelledby="grocery-stock-heading">
-    <img class="grocery-stock-photo" src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" />
-    <h2 class="grocery-stock-heading" id="grocery-stock-heading">${esc(label("groceryKeepStock"))}</h2>
-    <ul class="grocery-stock-labels">${items.map((item, index) => `<li class="grocery-stock-label grocery-stock-label-${index}">${esc(tr(item))}</li>`).join("")}</ul>
+function renderGroceryShopList(task) {
+  const shops = Array.isArray(task.groceryShops)
+    ? [...task.groceryShops].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
+    : [];
+  if (!shops.length) return "";
+
+  const renderItem = (item) => {
+    const photos = Array.isArray(item.photos) ? item.photos : [];
+    const instructions = Array.isArray(item.instructions) ? item.instructions : [];
+    const thumbnail = primaryPhoto(photos);
+    const thumbnailHtml = thumbnail?.src
+      ? `<img src="${esc(thumbnail.src)}" alt="" loading="lazy" />`
+      : `<span aria-hidden="true">${esc(item.icon || "🛒")}</span>`;
+    const detailsId = `grocery-item-${item.id}-details`;
+    const photosHtml = photos.length ? `<div class="grocery-item-photos">${photos.map(renderPhoto).join("")}</div>` : "";
+    const instructionsHtml = instructions.length
+      ? `<section class="grocery-item-instructions" aria-labelledby="${esc(detailsId)}"><h4 id="${esc(detailsId)}">${esc(label("groceryBuyingInstructions"))}</h4>${orderedList(instructions)}</section>`
+      : "";
+
+    return `<details class="grocery-item" data-grocery-item="${esc(item.id)}" name="grocery-shopping-item">
+      <summary class="grocery-item-summary">
+        <span class="grocery-item-thumbnail">${thumbnailHtml}</span>
+        <strong>${esc(tr(item.name))}</strong>
+        <span class="grocery-item-arrow" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="grocery-item-details">${photosHtml}${instructionsHtml}</div>
+    </details>`;
+  };
+
+  const shopHtml = shops.map((shop) => {
+    const items = Array.isArray(shop.items)
+      ? [...shop.items].sort((a, b) => (a.categorySort || 0) - (b.categorySort || 0) || (a.sortOrder || 0) - (b.sortOrder || 0))
+      : [];
+    if (!items.length) return "";
+    const shopTitleId = `grocery-shop-${shop.id}`;
+    return `<section class="grocery-shop-group" aria-labelledby="${esc(shopTitleId)}">
+      <h3 id="${esc(shopTitleId)}"><span aria-hidden="true">${esc(shop.icon || "🛒")}</span>${esc(tr(shop.name))}</h3>
+      <div class="grocery-shop-items">${items.map(renderItem).join("")}</div>
+    </section>`;
+  }).join("");
+
+  return `<section class="grocery-shop-guide" aria-labelledby="grocery-shop-heading">
+    <h2 id="grocery-shop-heading">${esc(label("groceryByShop"))}</h2>
+    ${shopHtml}
   </section>`;
 }
 

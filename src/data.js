@@ -111,12 +111,14 @@ const ui = {
     foodFirst: "Food and logs are first.",
     frequency: "When",
     groceryKeepStock: "Always keep in stock",
+    groceryByShop: "Shop by store",
+    groceryBuyingInstructions: "How to buy",
     relatedPage: "Related page",
     relatedHumanFoodDescription: "Recipes and meal ideas for Edwin.",
     relatedDailyCooking: "Daily Cooking",
     relatedDailyCookingDescription: "Daily cooking guide and kitchen reminders.",
     relatedGroceryShopping: "Grocery Shopping",
-    relatedGroceryShoppingDescription: "Essential stock guide and shopping reminders.",
+    relatedGroceryShoppingDescription: "Shop-by-shop grocery list and reminders.",
     relatedKitchenSafety: "Kitchen Rules & Food Safety",
     relatedKitchenSafetyDescription: "Kitchen rules and food safety guidance.",
     description: "Description",
@@ -335,12 +337,14 @@ const ui = {
     foodFirst: "食事と記録を先に表示します。",
     frequency: "いつ",
     groceryKeepStock: "常に在庫しておくもの",
+    groceryByShop: "店ごとに買う",
+    groceryBuyingInstructions: "買い方",
     relatedPage: "関連ページ",
     relatedHumanFoodDescription: "エドウィンのためのレシピと食事アイデアです。",
     relatedDailyCooking: "毎日の料理",
     relatedDailyCookingDescription: "毎日の料理ガイドとキッチンの注意事項です。",
     relatedGroceryShopping: "食料品の買い物",
-    relatedGroceryShoppingDescription: "常備品の目安と買い物の注意事項です。",
+    relatedGroceryShoppingDescription: "店ごとの買い物リストと注意事項です。",
     relatedKitchenSafety: "キッチンルール・食品安全",
     relatedKitchenSafetyDescription: "キッチンルールと食品安全のガイドです。",
     description: "説明",
@@ -559,12 +563,14 @@ const ui = {
     foodFirst: "အစားအသောက်နဲ့ မှတ်တမ်းကို အရင်ပြထားသည်။",
     frequency: "ဘယ်အချိန်",
     groceryKeepStock: "အမြဲထားရမည့် ပစ္စည်းများ",
+    groceryByShop: "ဆိုင်အလိုက် ဝယ်ရန်",
+    groceryBuyingInstructions: "ဝယ်နည်း",
     relatedPage: "ဆက်စပ်စာမျက်နှာ",
     relatedHumanFoodDescription: "Edwin အတွက် ချက်နည်းများနှင့် အစားအစာ အိုင်ဒီယာများ။",
     relatedDailyCooking: "နေ့စဉ်ချက်ပြုတ်ခြင်း",
     relatedDailyCookingDescription: "နေ့စဉ်ချက်ပြုတ် လမ်းညွှန်နှင့် မီးဖိုချောင် သတိပြုရန်များ။",
     relatedGroceryShopping: "ကုန်စုံဆိုင် စျေးဝယ်ခြင်း",
-    relatedGroceryShoppingDescription: "အမြဲထားရမည့်ပစ္စည်းများနှင့် စျေးဝယ် သတိပြုရန်များ။",
+    relatedGroceryShoppingDescription: "ဆိုင်အလိုက် ကုန်စုံစာရင်းနှင့် စျေးဝယ် သတိပြုရန်များ။",
     relatedKitchenSafety: "မီးဖိုချောင်စည်းကမ်းနှင့် အစားအသောက်ဘေးကင်းရေး",
     relatedKitchenSafetyDescription: "မီးဖိုချောင်စည်းကမ်းနှင့် အစားအသောက်ဘေးကင်းရေး လမ်းညွှန်။",
     description: "ဖော်ပြချက်",
@@ -884,6 +890,7 @@ const gamificationData = (() => {
     "high-touch-surfaces": "sparkling-surfaces",
     "general-surface-cleaning": "sparkling-surfaces",
     "windows-glass-mirrors": "sparkling-surfaces",
+    "outside-shoe-rack": "sparkling-surfaces",
     "kitchen-sink-drain-rack-counter": "bubbly-washing",
     "toilet-cleaning": "bubbly-washing",
     "rubbish-bin-washing": "bubbly-washing",
@@ -900,9 +907,9 @@ const gamificationData = (() => {
     "ceiling-fan": "fresh-air",
     "aircon-filter-fan-coil": "fresh-air",
     "fridge-interior": "kitchen-sparkle",
+    "microwave-interior": "kitchen-sparkle",
     "ninja-af141-air-fryer-interior-deep-clean": "kitchen-sparkle",
     "fujioh-hood-deep-clean": "kitchen-sparkle",
-    "coffee-machine-descaling": "kitchen-sparkle",
     "ikea-bed-frame": "cozy-bedroom",
     "pillow-mattress-vacuuming": "cozy-bedroom",
     "doorbell-charging": "safe-home",
@@ -2253,10 +2260,10 @@ const routineTasks = [
     t("Wash thicker blankets one at a time so one blanket is always available for use.", "厚手の毛布を1枚ずつ洗い、常に1枚の毛布を使用できるようにします。", "အမြဲတမ်းသုံးရန် စောင်တစ်ထည် အဆင်သင့်ရှိနေစေရန် ထူထဲသော စောင်များကို တစ်ကြိမ်လျှင် တစ်ထည်စီ လျှော်ပါ။"), 
     t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"), 
     t("Do not wash both blankets on the same day.", "同じ日に両方の毛布を洗わないでください。", "စောင်နှစ်ထည်လုံးကို တစ်ရက်တည်းတွင် မလျှော်ပါနှင့်။")),
-  routine("outside-shoe-rack", "fortnightly", 20, "S", 
+  routine("outside-shoe-rack", "monthly", 18, "S",
     t("Outside Shoe Rack & Shoes", "屋外のシューズラックと靴", "အပြင်ဘက် ဖိနပ်စင်နှင့် ဖိနပ်များ"), 
     t("Clean the outside shoe rack and surrounding area. Wipe down the shoes.", "屋外のシューズラックとその周辺エリアを掃除します。靴を拭きます。", "အပြင်ဘက် ဖိနပ်စင်နှင့် ပတ်ဝန်းကျင်နေရာကို သန့်ရှင်းရေးလုပ်ပါ။ ဖိနပ်များကို သုတ်ပါ။"), 
-    t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"), 
+    t("Monthly", "毎月", "လစဉ်"),
     t("Keep the area neat, avoid blocking the corridor, and let shoes dry fully before putting them back.", "周辺をきれいに保ち、廊下を塞がず、靴は完全に乾かしてから戻してください。", "နေရာကို သပ်ရပ်စွာထားပြီး corridor မပိတ်ပါနှင့်။ ဖိနပ်များကို ပြန်မထားခင် အပြည့်အဝခြောက်အောင်ထားပါ။")),
   routine("curtain-steaming", "fortnightly", 30, "C", 
     t("Curtain Steaming", "カーテンのスチーム掛け", "လိုက်ကာများကို မီးပူတိုက်ခြင်း"), 
@@ -2268,15 +2275,15 @@ const routineTasks = [
     t("Lift/open the IKEA king-size bed frame storage area and clean dust and hair collected underneath.", "IKEAキングサイズベッドフレームの収納エリアを持ち上げ/開き、下に溜まったほこりや髪の毛を掃除します。", "IKEA ကင်းဆိုက်ကုတင်အောက် သိုလှောင်မှုနေရာကို မ/ဖွင့်ပြီး အောက်တွင် စုပုံနေသော ဖုန်မှုန့်များနှင့် ဆံပင်များကို သန့်ရှင်းရေးလုပ်ပါ။"), 
     t("Quarterly / every 3 months", "3ヶ月おき / 3ヶ月ごと", "၃ လတစ်ကြိမ် / ၃ လတစ်ခါ"),
     t("Be careful when lifting or opening the bed frame.", "ベッドフレームを持ち上げたり開いたりするときは注意してください。", "ကုတင်ဘောင်ကို မတင်သည့်အခါ သို့မဟုတ် ဖွင့်သည့်အခါ သတိထားပါ။")),
-  routine("microwave-interior", "monthly", 10, "M", 
+  routine("microwave-interior", "weekly", 10, "M",
     t("Microwave Interior Wipe", "電子レンジ内部の拭き取り", "မိုက်ခရိုဝေ့ဖ်အတွင်းပိုင်း သုတ်ခြင်း"), 
-    t("Wipe down the microwave interior, especially after food splatters. Do a complete wipe-down monthly even if it looks clean.", "特に食品が飛び散った後は、電子レンジの内部を拭き取ります。きれいに見えても毎月完全に拭き掃除を行います。", "မိုက်ခရိုဝေ့ဖ်အတွင်းပိုင်းကို သုတ်ပါ၊ အထူးသဖြင့် အစာများ စင်ပြီးနောက်။ သန့်ရှင်းသည်ဟု ထင်ရသော်လည်း လစဉ် အပြီးအပိုင် သုတ်ပေးပါ။"), 
-    t("After use if dirty + monthly", "汚れた場合は使用後＋毎月", "ညစ်ပတ်ပါက အသုံးပြုပြီးနောက် + လစဉ်"), 
+    t("Wipe the microwave after food splatters. Do a complete wipe every week even if it looks clean.", "食品が飛び散った後は電子レンジの内部を拭きます。きれいに見えても毎週全体を拭き掃除します。", "အစားအစာစင်ပါက မိုက်ခရိုဝေ့ဖ်အတွင်းပိုင်းကို သုတ်ပါ။ သန့်ရှင်းနေသော်လည်း အပတ်စဉ် အတွင်းပိုင်းတစ်ခုလုံးကို သုတ်ပါ။"),
+    t("After use if dirty + weekly", "汚れた場合は使用後＋毎週", "ညစ်ပတ်ပါက အသုံးပြုပြီးနောက် + အပတ်စဉ်"),
     t("Clean spills early so stains and smells do not set.", "シミや臭いが定着しないよう、こぼれたものは早めに掃除してください。", "အစွန်းအထင်းနှင့် အနံ့ဆိုးများ မကျန်စေရန် စောစောစီးစီး သန့်ရှင်းရေးလုပ်ပါ။")),
-  routine("ninja-af141-air-fryer-interior-deep-clean", "monthly", 15, "A",
+  routine("ninja-af141-air-fryer-interior-deep-clean", "weekly", 15, "A",
     t("Ninja AF141 Air Fryer Interior Deep Clean", "Ninja AF141 エアフライヤー内部の徹底掃除", "Ninja AF141 air fryer အတွင်းပိုင်း deep clean"),
     t("Deep clean the fixed interior walls, ceiling, and heating coil of the Ninja AF141 Air Fryer without pouring or spraying water inside.", "Ninja AF141エアフライヤーの固定された内部壁、天井、ヒーターコイルを、本体内に水を注いだりスプレーしたりせずに徹底掃除します。", "Ninja AF141 air fryer ၏ အတွင်းနံရံ၊ အပေါ်မျက်နှာပြင်နှင့် အပူပေး coil ကို အထဲသို့ ရေလောင်းခြင်း သို့မဟုတ် ဖြန်းခြင်းမလုပ်ဘဲ သန့်ရှင်းရေးအကြီးစားလုပ်ပါ။"),
-    t("Monthly", "毎月", "လစဉ်"),
+    t("Weekly", "毎週", "အပတ်စဉ်"),
     [
       t("Switch off the Ninja AF141, unplug it, and let it cool completely.", "Ninja AF141の電源を切り、プラグを抜き、完全に冷まします。", "Ninja AF141 ကို ပိတ်၊ plug ဖြုတ်ပြီး လုံးဝအေးသွားအောင် စောင့်ပါ။"),
       t("Use a slightly damp cleaning cloth to wipe the inside walls and ceiling.", "少し湿らせた掃除布で、内部の壁と天井を拭きます。", "အနည်းငယ်စိုသော သန့်ရှင်းရေးအဝတ်ဖြင့် အတွင်းနံရံနှင့် အပေါ်မျက်နှာပြင်ကို သုတ်ပါ။"),
@@ -2285,7 +2292,7 @@ const routineTasks = [
       t("Leave the air fryer open until the interior is completely dry.", "内部が完全に乾くまで、エアフライヤーを開けたままにします。", "အတွင်းပိုင်း လုံးဝခြောက်သွားသည်အထိ air fryer ကို ဖွင့်ထားပါ။"),
       t("Do not pour or spray water inside the air fryer.", "エアフライヤーの内部に水を注いだり、直接スプレーしたりしないでください。", "air fryer အတွင်းသို့ ရေမလောင်း၊ တိုက်ရိုက်မဖြန်းပါနှင့်။"),
       t("Do not use bleach, oven cleaner, or metal scrubbers.", "漂白剤、オーブンクリーナー、金属たわしは使わないでください。", "bleach၊ oven cleaner သို့မဟုတ် သံပွတ်တံကို မသုံးပါနှင့်။"),
-      t("This monthly task is for the fixed interior and heating coil. Continue cleaning removable oily parts after use under Clean Up & Cooking Appliances.", "この毎月の作業は、固定された内部とヒーターコイル用です。取り外せる油汚れ部品は、使用後に「片付けと調理器具の清掃」で引き続き洗ってください。", "ဤလစဉ်အလုပ်သည် ဖြုတ်မရသောအတွင်းပိုင်းနှင့် အပူပေး coil အတွက် ဖြစ်သည်။ ဖြုတ်လို့ရသော ဆီပေပစ္စည်းများကို သုံးပြီးတိုင်း Clean Up & Cooking Appliances အလုပ်အတိုင်း ဆက်လက်သန့်ရှင်းပါ။")
+      t("This weekly task is for the fixed interior and heating coil. Continue cleaning removable oily parts after use under Clean Up & Cooking Appliances.", "この毎週の作業は、固定された内部とヒーターコイル用です。取り外せる油汚れ部品は、使用後に「片付けと調理器具の清掃」で引き続き洗ってください。", "ဤအပတ်စဉ်အလုပ်သည် ဖြုတ်မရသောအတွင်းပိုင်းနှင့် အပူပေး coil အတွက် ဖြစ်သည်။ ဖြုတ်လို့ရသော ဆီပေပစ္စည်းများကို သုံးပြီးတိုင်း Clean Up & Cooking Appliances အလုပ်အတိုင်း ဆက်လက်သန့်ရှင်းပါ။")
     ],
     [
       photo("assets/routines/ninja-af141-air-fryer-interior.jpg",
@@ -2340,8 +2347,8 @@ const routineTasks = [
     t("Check battery level if the app shows low battery earlier.", "アプリで事前にローバッテリーが表示された場合は、バッテリー残量を確認してください。", "အက်ပ်တွင် ဘက်ထရီအားနည်းနေကြောင်း စောစောပြသပါက ဘက်ထရီပမာဏကို စစ်ဆေးပါ။")),
   routine("coffee-machine-descaling", "quarterly", 30, "C", 
     t("Coffee Machine Descaling", "コーヒーマシンの石灰除去", "ကော်ဖီစက် သံချေးချွတ်ခြင်း"), 
-    t("Descale the coffee machine when it blinks/shows the descaling indicator, or every 4-6 months depending on usage.", "石灰除去インジケーターが点滅/表示されたとき、または使用状況に応じて4〜6ヶ月ごとにコーヒーマシンの石灰除去を行います。", "သံချေးချွတ်ရန် သတိပေးချက်ပြသောအခါ သို့မဟုတ် အသုံးပြုမှုအပေါ် မူတည်၍ ၄-၆ လတစ်ကြိမ် ကော်ဖီစက်ကို သံချေးချွတ်ပါ။"), 
-    t("Ad hoc / every 4-6 months", "臨時 / 4〜6ヶ月ごと", "လိုအပ်သလို / ၄-၆ လတစ်ကြိမ်"), 
+    t("Descale the coffee machine only when the red descale light flashes.", "赤い除石灰ランプが点滅した時だけ、コーヒーマシンの除石灰を行います。", "အနီရောင် descale မီးတောက်သည့်အခါမှသာ ကော်ဖီစက်ကို descale လုပ်ပါ။"),
+    t("Only when the red descale light flashes", "赤い除石灰ランプが点滅した時だけ", "အနီရောင် descale မီးတောက်သည့်အခါမှသာ"),
     t("Follow the machine indicator and use the correct descaling process.", "マシンのインジケーターに従い、適切な石灰除去手順を行ってください。", "စက်၏ အချက်ပြချက်ကို လိုက်နာပြီး မှန်ကန်သော သံချေးချွတ်ခြင်း လုပ်ငန်းစဉ်ကို အသုံးပြုပါ။")),
   routine("grocery-shopping", "as-needed", 10, "G", 
     t("Grocery Shopping", "食料品の買い物", "ကုန်စုံဆိုင် စျေးဝယ်ခြင်း"), 
@@ -2712,27 +2719,226 @@ if (groceryShoppingRoutine) {
     "不足している物を確認し、下記の時間帯と店のルールに従って食品棚と冷蔵庫を補充します。",
     "ကုန်လုနီးသောပစ္စည်းများကို စစ်ပြီး အောက်ပါအချိန်နှင့်ဆိုင် စည်းမျဉ်းများအတိုင်း pantry နှင့် fridge ကို ပြန်ဖြည့်ပါ။"
   );
-  groceryShoppingRoutine.stockItems = [
-    t("Milk", "牛乳", "နွားနို့"),
-    t("Eggs", "卵", "ကြက်ဥ"),
-    t("Bread", "パン", "ပေါင်မုန့်"),
-    t("Japanese rice", "日本米", "ဂျပန်ဆန်"),
-    t("Enoki mushrooms", "えのき", "enoki မှို"),
-    t("Brown shimeji mushrooms", "茶色のしめじ", "အညိုရောင် shimeji မှို"),
-    t("Tofu", "豆腐", "tofu"),
-    t("Frozen sliced pork", "冷凍豚肉スライス", "အေးခဲဝက်သားပါးပါး"),
-    t("Tomatoes", "トマト", "ခရမ်းချဉ်သီး"),
-    t("Bananas", "バナナ", "ငှက်ပျောသီး"),
-    t("Broccoli", "ブロッコリー", "ဘရိုကိုလီ")
+  groceryShoppingRoutine.groceryShops = [
+    {
+      id: "ntuc-fairprice",
+      name: t("NTUC FairPrice", "NTUCフェアプライス", "NTUC FairPrice ဆိုင်"),
+      icon: "🛒",
+      sortOrder: 10,
+      items: [
+        {
+          id: "milk",
+          name: t("Milk", "牛乳", "နွားနို့"),
+          icon: "🥛",
+          category: "dairy",
+          categorySort: 10,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/milk.jpg",
+            t("Carton of milk", "牛乳パック", "နွားနို့ဘူး"),
+            t("Choose the usual milk and check the expiry date.", "いつもの牛乳を選び、賞味期限を確認します。", "ပုံမှန်ဝယ်နေကျ နွားနို့ကိုရွေးပြီး သက်တမ်းကုန်ရက် စစ်ပါ။"))],
+          instructions: [
+            t("Check the fridge before buying.", "買う前に冷蔵庫を確認します。", "မဝယ်မီ ရေခဲသေတ္တာကို စစ်ပါ။"),
+            t("Choose the usual milk with a suitable expiry date.", "賞味期限に余裕がある、いつもの牛乳を選びます。", "သက်တမ်းကုန်ရက် အဆင်ပြေသော ပုံမှန်ဝယ်နေကျ နွားနို့ကို ရွေးပါ။")
+          ]
+        },
+        {
+          id: "eggs",
+          name: t("Eggs", "卵", "ကြက်ဥ"),
+          icon: "🥚",
+          category: "dairy",
+          categorySort: 10,
+          sortOrder: 20,
+          photos: [photo("assets/ingredients/egg.jpg",
+            t("Tray of eggs", "卵のパック", "ကြက်ဥကတ်"),
+            t("Check that the eggs are not cracked.", "卵にひびがないことを確認します。", "ကြက်ဥများ အက်ကွဲမနေကြောင်း စစ်ပါ။"))],
+          instructions: [
+            t("Check how many eggs are left at home.", "家に卵がいくつ残っているか確認します。", "အိမ်မှာ ကြက်ဥ ဘယ်နှလုံးကျန်သလဲ စစ်ပါ။"),
+            t("Choose a clean tray with no cracked eggs.", "汚れがなく、ひび割れた卵がないパックを選びます。", "သန့်ရှင်းပြီး အက်ကွဲနေသော ကြက်ဥမပါသည့်ကတ်ကို ရွေးပါ။")
+          ]
+        },
+        {
+          id: "bread",
+          name: t("Bread", "パン", "ပေါင်မုန့်"),
+          icon: "🍞",
+          category: "bakery",
+          categorySort: 20,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/bread.jpg",
+            t("Loaf of bread", "食パン", "ပေါင်မုန့်ထုပ်"),
+            t("Buy the usual loaf with a suitable expiry date.", "賞味期限に余裕がある、いつもの食パンを買います。", "သက်တမ်းကုန်ရက် အဆင်ပြေသော ပုံမှန်ဝယ်နေကျ ပေါင်မုန့်ကို ဝယ်ပါ။"))],
+          instructions: [
+            t("Check the bread at home before buying.", "買う前に家のパンを確認します。", "မဝယ်မီ အိမ်မှာရှိသော ပေါင်မုန့်ကို စစ်ပါ။"),
+            t("Choose the usual loaf and check the expiry date.", "いつもの食パンを選び、賞味期限を確認します。", "ပုံမှန်ဝယ်နေကျ ပေါင်မုန့်ကိုရွေးပြီး သက်တမ်းကုန်ရက် စစ်ပါ။")
+          ]
+        },
+        {
+          id: "japanese-rice",
+          name: t("Japanese rice", "日本米", "ဂျပန်ဆန်"),
+          icon: "🍚",
+          category: "pantry",
+          categorySort: 30,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/rice.jpg",
+            t("Japanese rice", "日本米", "ဂျပန်ဆန်"),
+            t("Use this photo to identify Japanese rice.", "この写真を日本米を見分ける参考にします。", "ဂျပန်ဆန်ကို ခွဲသိရန် ဒီပုံကို ကြည့်ပါ။"))],
+          instructions: [
+            t("Check the rice container and spare bag first.", "米びつと予備の袋を先に確認します。", "ဆန်ပုံးနဲ့ ဆန်အပိုအိတ်ကို အရင်စစ်ပါ။"),
+            t("If the brand or bag size is unclear, ask before buying.", "銘柄や袋の大きさが分からない場合は、買う前に確認します。", "ဆန်တံဆိပ် သို့မဟုတ် အိတ်အရွယ်အစား မသေချာပါက မဝယ်မီ မေးပါ။")
+          ]
+        },
+        {
+          id: "tofu",
+          name: t("Tofu", "豆腐", "တို့ဖူး"),
+          icon: "◻️",
+          category: "chilled",
+          categorySort: 40,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/firm-tofu.jpg",
+            t("Pack of firm tofu", "木綿豆腐のパック", "တို့ဖူးအမာထုပ်"),
+            t("Check the tofu type and expiry date.", "豆腐の種類と賞味期限を確認します。", "တို့ဖူးအမျိုးအစားနဲ့ သက်တမ်းကုန်ရက်ကို စစ်ပါ။"))],
+          instructions: [
+            t("Check the fridge before buying tofu.", "豆腐を買う前に冷蔵庫を確認します。", "တို့ဖူးမဝယ်မီ ရေခဲသေတ္တာကို စစ်ပါ။"),
+            t("Choose the usual type and check the expiry date.", "いつもの種類を選び、賞味期限を確認します。", "ပုံမှန်ဝယ်နေကျ အမျိုးအစားကိုရွေးပြီး သက်တမ်းကုန်ရက် စစ်ပါ။")
+          ]
+        }
+      ]
+    },
+    {
+      id: "giant",
+      name: t("Giant", "ジャイアント", "Giant ဆိုင်"),
+      icon: "🟢",
+      sortOrder: 20,
+      items: [
+        {
+          id: "enoki-mushrooms",
+          name: t("Enoki mushrooms", "えのき", "enoki မှို"),
+          icon: "🍄",
+          category: "mushrooms",
+          categorySort: 10,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/enoki-mushroom.jpg",
+            t("Pack of enoki mushrooms", "えのきのパック", "enoki မှိုထုပ်"),
+            t("Choose fresh, pale enoki with no slime.", "白く新鮮で、ぬめりのないえのきを選びます。", "လတ်ဆတ်ပြီး ဖြူဖွေးကာ ချွဲမနေသော enoki မှိုကို ရွေးပါ။"))],
+          instructions: [
+            t("Choose a fresh pack with no slime or dark wet spots.", "ぬめりや黒く濡れた部分がない新鮮なパックを選びます。", "ချွဲမနေဘဲ မည်းပြီးစိုနေသော အစက်မရှိသည့် လတ်ဆတ်သောအထုပ်ကို ရွေးပါ။"),
+            t("Put it in the fridge after returning home.", "帰宅後は冷蔵庫に入れます。", "အိမ်ပြန်ရောက်လျှင် ရေခဲသေတ္တာထဲ ထည့်ပါ။")
+          ]
+        },
+        {
+          id: "brown-shimeji-mushrooms",
+          name: t("Brown shimeji mushrooms", "茶色のしめじ", "အညိုရောင် shimeji မှို"),
+          icon: "🍄",
+          category: "mushrooms",
+          categorySort: 10,
+          sortOrder: 20,
+          photos: [photo("assets/ingredients/shimeji-mushroom.jpg",
+            t("Pack of brown shimeji mushrooms", "茶色のしめじのパック", "အညိုရောင် shimeji မှိုထုပ်"),
+            t("Choose firm brown shimeji mushrooms.", "しっかりした茶色のしめじを選びます。", "တင်းရင်းသော အညိုရောင် shimeji မှိုကို ရွေးပါ။"))],
+          instructions: [
+            t("Choose firm mushrooms with a dry, clean pack.", "しっかりしていて、パックが乾いて清潔なものを選びます。", "တင်းရင်းပြီး အထုပ်ခြောက်သွေ့သန့်ရှင်းသော မှိုကို ရွေးပါ။"),
+            t("Put them in the fridge after returning home.", "帰宅後は冷蔵庫に入れます。", "အိမ်ပြန်ရောက်လျှင် ရေခဲသေတ္တာထဲ ထည့်ပါ။")
+          ]
+        },
+        {
+          id: "frozen-sliced-pork",
+          name: t("Frozen sliced pork", "冷凍豚肉スライス", "အေးခဲဝက်သားပါးပါး"),
+          icon: "🥩",
+          category: "frozen",
+          categorySort: 20,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/pork.jpg",
+            t("Sliced pork", "豚肉スライス", "ဝက်သားပါးပါး"),
+            t("Buy the usual frozen sliced pork.", "いつもの冷凍豚肉スライスを買います。", "ပုံမှန်ဝယ်နေကျ အေးခဲဝက်သားပါးပါးကို ဝယ်ပါ။"))],
+          instructions: [
+            t("Check the freezer before buying.", "買う前に冷凍庫を確認します。", "မဝယ်မီ freezer ကို စစ်ပါ။"),
+            t("Choose the usual frozen sliced pork and keep it cold on the way home.", "いつもの冷凍豚肉スライスを選び、帰宅まで冷たい状態を保ちます。", "ပုံမှန်ဝယ်နေကျ အေးခဲဝက်သားပါးပါးကိုရွေးပြီး အိမ်ပြန်ရောက်သည်အထိ အေးနေအောင်ထားပါ။"),
+            t("Put it in the freezer immediately after returning home.", "帰宅後すぐに冷凍庫へ入れます。", "အိမ်ပြန်ရောက်သည်နှင့် freezer ထဲ ချက်ချင်းထည့်ပါ။")
+          ]
+        },
+        {
+          id: "broccoli",
+          name: t("Broccoli", "ブロッコリー", "ဘရိုကိုလီ"),
+          icon: "🥦",
+          category: "vegetables",
+          categorySort: 30,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/broccoli.jpg",
+            t("Fresh broccoli", "新鮮なブロッコリー", "လတ်ဆတ်သော ဘရိုကိုလီ"),
+            t("Choose firm, dark-green broccoli.", "硬くて濃い緑色のブロッコリーを選びます。", "တင်းရင်းပြီး အစိမ်းရင့်ရောင် ဘရိုကိုလီကို ရွေးပါ။"))],
+          instructions: [
+            t("Choose firm broccoli with dark-green florets.", "硬く、花蕾が濃い緑色のブロッコリーを選びます。", "တင်းရင်းပြီး အဖူးများ အစိမ်းရင့်ရောင်ရှိသော ဘရိုကိုလီကို ရွေးပါ။"),
+            t("Put it in the fridge after returning home.", "帰宅後は冷蔵庫に入れます。", "အိမ်ပြန်ရောက်လျှင် ရေခဲသေတ္တာထဲ ထည့်ပါ။")
+          ]
+        }
+      ]
+    },
+    {
+      id: "wet-market",
+      name: t("Wet Market", "ウェットマーケット", "ရပ်ကွက်ဈေး"),
+      icon: "🐟",
+      sortOrder: 30,
+      items: [
+        {
+          id: "fresh-prawns",
+          name: t("Fresh prawns", "新鮮なエビ", "ပုစွန်လတ်"),
+          icon: "🦐",
+          category: "seafood",
+          categorySort: 10,
+          sortOrder: 10,
+          photos: [photo("assets/routines/grocery-shopping-wet-market-prawns.jpg",
+            t("Fresh prawns at the wet-market seafood stall", "市場の鮮魚店にある新鮮なエビ", "စျေးပင်လယ်စာဆိုင်ရှိ ပုစွန်လတ်များ"),
+            t("Use this stall and prawn display as the buying reference.", "この店とエビの陳列を購入時の目印にします。", "ဝယ်သည့်အခါ ဒီဆိုင်နဲ့ ပုစွန်ခင်းထားပုံကို မှတ်သားပါ။"))],
+          instructions: [
+            t("Buy prawns only when they are on the shopping list or requested.", "エビは買い物リストにある時、または頼まれた時だけ買います。", "ပုစွန်ကို shopping list ထဲမှာပါသည့်အခါ သို့မဟုတ် တောင်းဆိုထားသည့်အခါမှသာ ဝယ်ပါ။"),
+            t("If the amount is unclear, ask before buying.", "量が分からない場合は、買う前に確認します。", "ပမာဏမသေချာပါက မဝယ်မီ မေးပါ။")
+          ]
+        },
+        {
+          id: "bananas",
+          name: t("Bananas", "バナナ", "ငှက်ပျောသီး"),
+          icon: "🍌",
+          category: "fruit",
+          categorySort: 20,
+          sortOrder: 10,
+          photos: [photo("assets/routines/essential-food-stock-bananas.jpg",
+            t("Banana bunches at the wet-market fruit stall", "市場の果物店に吊られたバナナ", "စျေးသစ်သီးဆိုင်တွင် ချိတ်ထားသော ငှက်ပျောသီးခိုင်များ"),
+            t("Use the marked banana bunches as the buying reference.", "印を付けたバナナの房を購入時の目印にします。", "ဝယ်သည့်အခါ အမှတ်အသားပြထားသော ငှက်ပျောသီးခိုင်များကို ကြည့်ပါ။"))],
+          instructions: [
+            t("Check the bananas at home before buying.", "買う前に家のバナナを確認します。", "မဝယ်မီ အိမ်မှာရှိသော ငှက်ပျောသီးကို စစ်ပါ။"),
+            t("Use the marked bunches in the photo as the buying reference.", "写真で印を付けた房を購入時の目印にします。", "ဝယ်သည့်အခါ ပုံထဲမှာ အမှတ်အသားပြထားသော ငှက်ပျောသီးခိုင်များကို ကြည့်ပါ။")
+          ]
+        }
+      ]
+    },
+    {
+      id: "u-stars",
+      name: t("U Stars", "U Starsスーパー", "U Stars ဆိုင်"),
+      icon: "⭐",
+      sortOrder: 40,
+      items: [
+        {
+          id: "tomatoes",
+          name: t("Tomatoes", "トマト", "ခရမ်းချဉ်သီး"),
+          icon: "🍅",
+          category: "vegetables",
+          categorySort: 10,
+          sortOrder: 10,
+          photos: [photo("assets/ingredients/tomato.jpg",
+            t("Fresh tomatoes", "新鮮なトマト", "ခရမ်းချဉ်သီးလတ်"),
+            t("Choose firm tomatoes with no bruises.", "硬く、傷みのないトマトを選びます。", "တင်းရင်းပြီး ထိခိုက်ပျက်စီးရာမရှိသော ခရမ်းချဉ်သီးကို ရွေးပါ။"))],
+          instructions: [
+            t("Choose firm tomatoes with smooth skin and no bruises.", "皮が滑らかで、硬く、傷みのないトマトを選びます。", "အခွံချောပြီး တင်းရင်းကာ ထိခိုက်ပျက်စီးရာမရှိသော ခရမ်းချဉ်သီးကို ရွေးပါ။"),
+            t("Do not buy more than needed for the planned meals.", "予定している食事に必要な量を超えて買わないでください。", "ချက်မည့်အစားအစာအတွက် လိုသည့်ပမာဏထက် ပိုမဝယ်ပါနှင့်။")
+          ]
+        }
+      ]
+    }
   ];
-  groceryShoppingRoutine.stockPhoto = photo("assets/routines/grocery-essential-stock.jpg",
-    t("Essential groceries including milk, eggs, bread, rice, mushrooms, tofu, pork, tomatoes, bananas, and broccoli", "牛乳、卵、パン、米、きのこ、豆腐、豚肉、トマト、バナナ、ブロッコリーなどの常備食品", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဆန်၊ မှို၊ tofu၊ ဝက်သား၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီ အပါအဝင် အမြဲထားရမည့် အစားအစာများ"),
-    t("Keep these essential groceries in stock.", "これらの基本食材を常備してください。", "ဤအခြေခံအစားအစာများကို အမြဲထားပါ။"));
   groceryShoppingRoutine.mustRemember.push(
     t("This is a daily active reference check, not a completion-checklist item. Check the fridge, pantry, shopping list, and meal needs before buying.", "これは毎日確認する参照ページで、完了チェックリストの項目ではありません。買う前に冷蔵庫、食品棚、買い物リスト、食事に必要なものを確認してください。", "ဤအရာသည် နေ့စဉ် active reference check ဖြစ်ပြီး completion checklist အလုပ်မဟုတ်ပါ။ မဝယ်မီ fridge၊ pantry၊ shopping list နှင့် အစားအစာလိုအပ်ချက်များကို စစ်ပါ။"),
     t("Before about 9 a.m., buy fresh meat, fish, or vegetables from a clean, busy wet-market stall if they look fresh. After about 9 a.m., use Giant, NTUC FairPrice, Sheng Siong, Cold Storage, or another major supermarket.", "午前9時ごろより前なら、清潔で客の多いウェットマーケットの店で、新鮮に見える肉、魚、野菜を買ってよいです。午前9時ごろ以降は、Giant、NTUC FairPrice、Sheng Siong、Cold Storageなどの大手スーパーを使います。", "မနက် ၉ နာရီခန့်မတိုင်မီဆိုလျှင် သန့်ရှင်းပြီး လူဝယ်များသော wet-market ဆိုင်မှ လတ်ဆတ်ပုံရသော အသား၊ ငါး သို့မဟုတ် ဟင်းသီးဟင်းရွက်များကို ဝယ်နိုင်သည်။ မနက် ၉ နာရီခန့်နောက်ပိုင်းတွင် Giant၊ NTUC FairPrice၊ Sheng Siong၊ Cold Storage သို့မဟုတ် အခြား supermarket ကြီးများကို သုံးပါ။"),
     t("Always keep the receipt. Bring chilled or frozen food home immediately so it stays cold. Coordinate before buying large or unusual items.", "必ずレシートを保管してください。冷蔵・冷凍食品は冷たい状態を保つため、すぐ家に持ち帰ります。大きい物や普段買わない物を買う前に確認してください。", "receipt ကို အမြဲသိမ်းထားပါ။ chilled သို့မဟုတ် frozen food ကို အေးနေစေရန် ချက်ချင်းအိမ်ပြန်ယူပါ။ ကြီးသော သို့မဟုတ် ပုံမှန်မဝယ်သော ပစ္စည်းများ မဝယ်မီ အရင်မေးပါ။"),
-    t("Check expiry dates. Keep frozen sliced pork in the freezer and broccoli in the refrigerator. Broccoli is nutritious and Edwin likes it, so restock it before it runs out.", "賞味期限を確認し、冷凍豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管してください。ブロッコリーは栄養があり、エドウィンも好きなので、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ အေးခဲဝက်သားပါးပါးကို freezer ထဲတွင်ထားပြီး ဘရိုကိုလီကို refrigerator ထဲတွင်ထားပါ။ ဘရိုကိုလီသည် အာဟာရရှိပြီး Edwin လည်းကြိုက်သောကြောင့် မကုန်မီ ပြန်ဖြည့်ပါ။"),
+    t("Check expiry dates. Store sliced pork in the freezer and broccoli in the fridge. Restock broccoli before it runs out.", "賞味期限を確認します。豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管し、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ ဝက်သားပါးပါးကို freezer ထဲ၊ ဘရိုကိုလီကို ရေခဲသေတ္တာထဲ သိမ်းပါ။ ဘရိုကိုလီ မကုန်မီ ပြန်ဝယ်ပါ။"),
     t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။")
   );
   groceryShoppingRoutine.photos = [
@@ -2845,7 +3051,7 @@ if (outsideShoeRackRoutine) {
   outsideShoeRackRoutine.photos = [
     photo("assets/routines/nako-outside-shoe-rack.jpg",
       t("Outside shoe rack and shoes", "外の靴ラックと靴", "အပြင်ဘက် ဖိနပ်စင်နှင့် ဖိနပ်များ"),
-      t("Fortnightly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "外の靴ラックを掃除し、靴を拭き、周辺を整え、廊下をすっきり保つための隔週の参考写真です。", "အပြင်ဘက် ဖိနပ်စင်ကို သန့်ရှင်းရေးလုပ်ခြင်း၊ ဖိနပ်များသုတ်ခြင်း၊ အနီးတဝိုက်ကိုသပ်ရပ်စေခြင်းနှင့် လမ်းကြောင်းရှင်းလင်းထားခြင်းအတွက် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။"))
+      t("Monthly reference for cleaning the outside shoe rack, wiping shoes, tidying the surrounding area, and keeping the corridor clear.", "外の靴ラックを掃除し、靴を拭き、周辺を整え、廊下をすっきり保つための毎月の参考写真です。", "အပြင်ဘက် ဖိနပ်စင်ကို သန့်ရှင်းရေးလုပ်ခြင်း၊ ဖိနပ်များသုတ်ခြင်း၊ အနီးတဝိုက်ကိုသပ်ရပ်စေခြင်းနှင့် လမ်းကြောင်းရှင်းလင်းထားခြင်းအတွက် လစဉ် ကိုးကားပုံဖြစ်သည်။"))
   ];
 }
 
@@ -2893,6 +3099,9 @@ if (fridgeInteriorRoutine) fridgeInteriorRoutine.legacyTrackingCadences = ["week
 const cleaningToolsRoutine = routineTasks.find((task) => task.id === "cleaning-tools");
 if (cleaningToolsRoutine) cleaningToolsRoutine.legacyTrackingCadences = ["weekly"];
 
+const ninjaAirFryerDeepCleanRoutine = routineTasks.find((task) => task.id === "ninja-af141-air-fryer-interior-deep-clean");
+if (ninjaAirFryerDeepCleanRoutine) ninjaAirFryerDeepCleanRoutine.legacyTrackingCadences = ["monthly"];
+
 
 
 // Exclusions for non-daily routine tasks that are intentionally reference-only.
@@ -2900,8 +3109,7 @@ if (cleaningToolsRoutine) cleaningToolsRoutine.legacyTrackingCadences = ["weekly
 const routineTrackingExclusions = {
   "nako-inventory-check": "Inventory check is a reference guidelines page for stocking items",
   "pest-check": "Pest check is reference information for checking ants/cockroaches",
-  "outside-shoe-rack": "Shoe rack tidiness is managed daily or on-demand, not on a strict fortnightly schedule",
-  "microwave-interior": "Microwave interior is cleaned immediately after cooking as-needed, not monthly"
+  "coffee-machine-descaling": "Descaling is indicator-led and should be done only when the red descale light flashes"
 };
 
 // Display-only grouping for the Daily Care Guide. This does not affect routine tracking.
@@ -2965,6 +3173,8 @@ const weeklyGuideLayout = {
   ],
   "kitchen-health": [
     "kitchen-sink-drain-rack-counter",
+    "microwave-interior",
+    "ninja-af141-air-fryer-interior-deep-clean",
     "supplement-pill-boxes"
   ],
   "whole-home-cleaning": [
@@ -3282,12 +3492,12 @@ const recipes = [
   recipe("nako-chicken-sweet-potato-daikon-vegetable-meal-prep",
     t("Nako's Chicken, Sweet Potato & Daikon Meal Prep", "ナコの鶏肉・さつまいも・大根の作り置き", "Nako အတွက် ကြက်သား၊ ကန်စွန်းဥနှင့် မုန်လာဥဖြူ အကြိုပြင်အစာ"),
     [
-      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), "—", "chicken-minced"],
-      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), "—", "sweet-potato"],
-      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), "—", "daikon-radish"],
-      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), "—", "tomato"],
-      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), "—", "napa-cabbage"],
-      [t("Water", "水", "ရေ"), "—", "water"]
+      [t("Plain minced chicken", "味付けなしの鶏ひき肉", "အရသာမထည့်ထားသော ကြက်သားစဉ်းကော"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "chicken-minced"],
+      [t("Japanese sweet potato", "日本のさつまいも", "ဂျပန်ကန်စွန်းဥ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "sweet-potato"],
+      [t("Daikon radish", "大根", "မုန်လာဥဖြူ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "daikon-radish"],
+      [t("Tomato", "トマト", "ခရမ်းချဉ်သီး"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "tomato"],
+      [t("Napa cabbage", "白菜", "မုန်ညင်းဖြူ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "napa-cabbage"],
+      [t("Water", "水", "ရေ"), t("Not specified", "未指定", "မသတ်မှတ်ထား"), "water"]
     ],
     [
       t("Wash the vegetables and peel the sweet potato and daikon.", "野菜を洗い、さつまいもと大根の皮をむきます。", "ဟင်းသီးဟင်းရွက်များကို ဆေးပြီး ကန်စွန်းဥနှင့် မုန်လာဥဖြူကို အခွံခွာပါ။"),

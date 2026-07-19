@@ -79,6 +79,8 @@ const baselineIds = new Set([
   "nako-feeding-water",
   "high-touch-surfaces",
   "kitchen-sink-drain-rack-counter",
+  "microwave-interior",
+  "ninja-af141-air-fryer-interior-deep-clean",
   "nako-weekly-play-pen-deep-clean",
   "nako-weight-tracking",
   "supplement-pill-boxes",
@@ -93,12 +95,12 @@ const baselineIds = new Set([
   "cleaning-tools",
   "blanket-washing",
   "curtain-steaming",
+  "outside-shoe-rack",
   "ikea-bed-frame",
   "general-surface-cleaning",
   "aircon-filter-fan-coil",
   "washer-deep-clean",
   "doorbell-charging",
-  "coffee-machine-descaling",
   "fire-extinguisher-training"
 ]);
 for (const id of baselineIds) {
@@ -108,6 +110,30 @@ for (const id of baselineIds) {
 const retiredPillowMattressVacuuming = allTasks.find((task) => task.id === "pillow-mattress-vacuuming");
 assert.ok(retiredPillowMattressVacuuming, "Retired pillow/mattress vacuuming routine must retain its stable ID and history");
 assert.equal(retiredPillowMattressVacuuming.active, false, "Vacuuming is now part of weekly bedrooms and linens, so the monthly duplicate must stay inactive");
+const coffeeMachineDescalingReference = allTasks.find((task) => task.id === "coffee-machine-descaling");
+assert.ok(coffeeMachineDescalingReference, "Coffee-machine descaling must retain its stable ID and history");
+assert.equal(coffeeMachineDescalingReference.active, true, "Coffee-machine descaling must remain visible in the quarterly list");
+assert.equal(coffeeMachineDescalingReference.frequencyBucket, "quarterly");
+assert.equal(coffeeMachineDescalingReference.trackingMode, "none", "Indicator-led descaling must not appear in Routine Check-in");
+assert.equal(coffeeMachineDescalingReference.trackingCadence, null);
+assert.match(coffeeMachineDescalingReference.trackingExclusionReason, /red descale light flashes/);
+const outsideShoeRack = tracked.find((task) => task.id === "outside-shoe-rack");
+assert.equal(outsideShoeRack.frequencyBucket, "monthly", "Outside shoe-rack cleaning must appear in the monthly section");
+assert.equal(outsideShoeRack.trackingMode, "checkbox", "Outside shoe-rack cleaning must appear in Routine Check-in");
+assert.equal(outsideShoeRack.trackingCadence, "monthly");
+assert.equal(outsideShoeRack.trackingAnchor, null);
+for (const id of ["microwave-interior", "ninja-af141-air-fryer-interior-deep-clean"]) {
+  const task = tracked.find((entry) => entry.id === id);
+  assert.equal(task.frequencyBucket, "weekly", `${id} must appear in the weekly section`);
+  assert.equal(task.trackingMode, "checkbox", `${id} must appear in Routine Check-in`);
+  assert.equal(task.trackingCadence, "weekly");
+  assert.equal(task.trackingAnchor, null);
+}
+assert.deepEqual(
+  Array.from(allTasks.find((task) => task.id === "ninja-af141-air-fryer-interior-deep-clean").legacyTrackingCadences),
+  ["monthly"],
+  "Existing monthly air-fryer completions must remain compatible after moving to weekly"
+);
 const ikeaBedFrameCleaning = tracked.find((task) => task.id === "ikea-bed-frame");
 assert.equal(ikeaBedFrameCleaning.frequencyBucket, "quarterly", "IKEA bed-frame cleaning must appear in the quarterly section");
 assert.equal(ikeaBedFrameCleaning.trackingCadence, "quarterly", "IKEA bed-frame cleaning must use quarterly completion cycles");
