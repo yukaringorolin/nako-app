@@ -114,7 +114,6 @@ const gamificationData = (() => {
     "kitchen-sink-drain-rack-counter": "bubbly-washing",
     "toilet-cleaning": "bubbly-washing",
     "rubbish-bin-washing": "bubbly-washing",
-    "cleaning-tools": "bubbly-washing",
     "floor-mats": "cozy-laundry",
     "bedrooms-linens": "cozy-laundry",
     "sofa-covers-pillows": "cozy-laundry",

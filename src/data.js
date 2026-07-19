@@ -894,7 +894,6 @@ const gamificationData = (() => {
     "kitchen-sink-drain-rack-counter": "bubbly-washing",
     "toilet-cleaning": "bubbly-washing",
     "rubbish-bin-washing": "bubbly-washing",
-    "cleaning-tools": "bubbly-washing",
     "floor-mats": "cozy-laundry",
     "bedrooms-linens": "cozy-laundry",
     "sofa-covers-pillows": "cozy-laundry",
@@ -1728,7 +1727,15 @@ const routineTasks = [
     t("Physical Mailbox Check", "郵便受けの確認", "စာတိုက်ပုံး စစ်ဆေးခြင်း"),
     t("Go downstairs and physically open the household mailbox every day. Collect all letters, notices, and other mail, then bring them home.", "毎日、下の階へ行き、家の郵便受けを実際に開けて確認します。手紙、通知、その他の郵便物をすべて回収して家に持ち帰ります。", "နေ့တိုင်း အောက်ထပ်သို့ဆင်းပြီး အိမ်၏ physical mailbox ကို ကိုယ်တိုင်ဖွင့်စစ်ပါ။ စာများ၊ notice များနှင့် အခြား mail များအားလုံးကို ယူပြီး အိမ်သို့ ပြန်ယူလာပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"),
-    t("Do not only look from outside. Open the mailbox properly and tell Edwin or Yukari if any important or official letter arrives.", "外から見るだけではなく、必ず郵便受けを開けて中を確認します。重要な手紙や公的な郵便物が届いたら、エドウィンまたはゆかりに知らせてください。", "အပြင်မှကြည့်ရုံမလုပ်ပါနှင့်။ mailbox ကို သေချာဖွင့်ပြီး အတွင်းကို စစ်ပါ။ အရေးကြီးသော သို့မဟုတ် official letter ရောက်ပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။")),
+    t("Do not only look from outside. Open the mailbox properly and tell Edwin or Yukari if any important or official letter arrives.", "外から見るだけではなく、必ず郵便受けを開けて中を確認します。重要な手紙や公的な郵便物が届いたら、エドウィンまたはゆかりに知らせてください。", "အပြင်မှကြည့်ရုံမလုပ်ပါနှင့်။ mailbox ကို သေချာဖွင့်ပြီး အတွင်းကို စစ်ပါ။ အရေးကြီးသော သို့မဟုတ် official letter ရောက်ပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။"),
+    [
+      photo("assets/routines/physical-mailbox-location.jpg",
+        t("Ground-floor mailbox area beside the Block 1 lift", "ブロック1のエレベーター横にある1階の郵便受けエリア", "Block 1 ဓာတ်လှေကားဘေးရှိ မြေညီထပ် စာတိုက်ပုံးနေရာ"),
+        t("Go downstairs to this mailbox area beside the Block 1 lift.", "1階へ下り、ブロック1のエレベーター横にあるこの郵便受けエリアへ行きます。", "အောက်ထပ်ဆင်းပြီး Block 1 ဓာတ်လှေကားဘေးရှိ ဤစာတိုက်ပုံးနေရာသို့ သွားပါ။")),
+      photo("assets/routines/physical-mailbox-10-133.jpg",
+        t("Household mailbox numbered 10-133", "10-133番の家の郵便受け", "10-133 နံပါတ် အိမ်စာတိုက်ပုံး"),
+        t("Open mailbox 10-133 and collect everything inside.", "10-133番の郵便受けを開け、中にある郵便物をすべて回収します。", "10-133 စာတိုက်ပုံးကို ဖွင့်ပြီး အထဲရှိ စာအားလုံးကို ယူပါ။"))
+    ]),
 
   routine("general-tidiness", "daily", 110, "T", 
     t("General Tidiness", "一般的な整理整頓", "ယေဘုယျ သန့်ရှင်းသပ်ရပ်မှု"), 
@@ -2119,10 +2126,10 @@ const routineTasks = [
     ]),
 
 
-  routine("floor-mats", "weekly", 100, "M", 
+  routine("floor-mats", "fortnightly", 100, "M",
     t("Floor Mats", "足拭きマット", "ခြေသုတ်ကော်ဇောများ"), 
     t("Wash the 4 floor mats outside the rooms and toilet.", "部屋とトイレの外にある4枚の床マットを洗います。", "အခန်းများနှင့် အိမ်သာအပြင်ဘက်ရှိ ခြေသုတ်ကော်ဇော ၄ ခုကို လျှော်ဖွပ်ပါ။"), 
-    t("Weekly", "毎週", "အပတ်စဉ်"), 
+    t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"),
     [
       t("Dry completely before placing back. Wring or spin-dry mats before hanging them outside. They must not drip onto the downstairs neighbour's clothes.", "完全に乾かしてから戻してください。外に干す前に、しっかり絞るか脱水してください。下の階の洗濯物に水が落ちるため、水が滴る状態で干さないでください。", "ပြန်မထားခင် အပြည့်အဝခြောက်အောင်လုပ်ပါ။ အပြင်တွင် မလှန်းမီ သေချာညှစ်ပါ သို့မဟုတ် spin-dry လုပ်ပါ။ အောက်ထပ်အိမ်နီးချင်း၏ အဝတ်ပေါ် ရေမကျစေရပါ။"),
       t("Floor mats are essential to keep feet clean and prevent dust from spreading. Do not wash all four floor mats at the same time. Wash only two at a time so the living room is never left completely without mats.", "足拭きマットは足を清潔に保ち、ほこりが広がるのを防ぐために不可欠です。リビングルームが完全にマットなしにならないよう、4枚すべてのマットを同時に洗わず、一度に2枚ずつ洗うようにしてください。", "ခြေသုတ်ကော်ဇောများသည် ခြေဖဝါးများကို သန့်ရှင်းစေပြီး ဖုန်မှုန့်များ ပြန့်နှံ့ခြင်းမှ ကာကွယ်ရန် မရှိမဖြစ်လိုအပ်သည်။ ဧည့်ခန်းတွင် ခြေသုတ်ကော်ဇော လုံးဝမရှိဘဲ မဖြစ်စေရန် ခြေသုတ်ကော်ဇော ၄ ခုလုံးကို တစ်ပြိုင်နက် မလျှော်ပါနှင့်။ တစ်ကြိမ်လျှင် ၂ ခုစီသာ လျှော်ပါ။")
@@ -2169,10 +2176,10 @@ const routineTasks = [
         t("Weekly linen wash: wash the used bedsheet, blankets, pillowcases, and bolster covers.", "週1回の寝具洗濯では、使用済みのシーツ、毛布、枕カバー、抱き枕カバーを洗います。", "အပတ်စဉ် အိပ်ရာခင်းလျှော်သည့်အခါ အသုံးပြုပြီးသော အိပ်ရာခင်း၊ စောင်၊ ခေါင်းအုံးစွပ်နှင့် ဖက်လုံးစွပ်များကို လျှော်ပါ။"))
     ]),
 
-  routine("windows-glass-mirrors", "weekly", 120, "G", 
+  routine("windows-glass-mirrors", "fortnightly", 120, "G",
     t("Windows, Glass Panels & Mirrors", "窓、ガラス窓、鏡", "ပြတင်းပေါက်များ၊ မှန်ချပ်များနှင့် မှန်များ"), 
     t("Clean only the safe interior side of windows, glass panels, mirrors, window sills, frames, and tracks.", "窓、ガラスパネル、鏡、窓枠、サッシ、レールは安全な室内側だけ掃除します。", "ပြတင်းပေါက်၊ glass panel၊ မှန်၊ window sill၊ frame နှင့် track များကို လုံခြုံသော အတွင်းဘက်သာ သန့်ရှင်းပါ။"),
-    t("Weekly", "毎週", "အပတ်စဉ်"), 
+    t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"),
     [
       t("Never clean exterior or outside-facing windows.", "外側・屋外側の窓は絶対に掃除しないでください。", "အပြင်ဘက် သို့မဟုတ် exterior window ကို လုံးဝမသန့်ရှင်းပါနှင့်။"),
       t("Do not reach outside, lean out, climb, stand on stools or chairs, or unlock or remove grilles to clean windows. Ask Edwin if unsure.", "窓掃除のために、外へ手を伸ばす、身を乗り出す、登る、椅子や踏み台に立つ、窓グリルを開ける・外すことは禁止です。不明な場合はEdwinに確認してください。", "ပြတင်းပေါက်သန့်ရှင်းရန် အပြင်သို့ လက်မလှမ်း၊ ကိုယ်မယောင်း၊ မတက်၊ ခုံပေါ်မတက်၊ grille ကို မဖွင့် သို့မဟုတ် မဖြုတ်ပါနှင့်။ မသေချာပါက Edwin ကိုမေးပါ။"),
@@ -2181,17 +2188,17 @@ const routineTasks = [
     [
       photo("assets/routines/nako-windows-glass-mirrors.jpg",
         t("Windows and frames placeholder", "窓と窓枠のプレースホルダー", "ပြတင်းပေါက်များနှင့် ဘောင်များ နေရာယူပစ္စည်း"),
-        t("Wipe only the safe interior frames, tracks, and glass panes each week.", "毎週、安全な室内側の窓枠、溝、ガラス板だけを拭いてください。", "အပတ်စဉ် လုံခြုံသော အတွင်းဘက် frame၊ track နှင့် glass pane များကိုသာ သုတ်ပါ။"))
+        t("Every two weeks, wipe only the safe interior frames, tracks, and glass panes.", "2週間おきに、安全な室内側の窓枠、溝、ガラス板だけを拭いてください。", "၂ ပတ်တစ်ကြိမ် လုံခြုံသော အတွင်းဘက် frame၊ track နှင့် glass pane များကိုသာ သုတ်ပါ။"))
     ]),
 
-  routine("sofa-covers-pillows", "weekly", 130, "S", 
+  routine("sofa-covers-pillows", "fortnightly", 130, "S",
     t("Sofa Covers & Pillows", "ソファカバーとクッション", "ဆိုဖာစွပ်များနှင့် ခေါင်းအုံးများ"), 
     t("Vacuum the sofa and its 2 small square pillows. Wash the 2 sofa covers and the 2 pillows.", "ソファと小さい正方形のクッション2個に掃除機を掛けます。ソファカバー2枚とクッション2個を洗います。", "ဆိုဖာနှင့် စတုရန်းပုံစံ ဆိုဖာခေါင်းအုံးအသေး ၂ ခုကို ဖုန်စုပ်ပါ။ ဆိုဖာစွပ် ၂ ခုနှင့် ခေါင်းအုံး ၂ ခုကို လျှော်ပါ။"), 
-    t("Weekly", "毎週", "အပတ်စဉ်"), 
+    t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"),
     [
       t("Before washing, use the dedicated bedding vacuum on the sofa surface, seams, gaps, and both small square sofa pillows.", "洗う前に、寝具専用掃除機でソファの表面、縫い目、隙間、小さい正方形のクッション2個を掃除します。", "မလျှော်မီ အိပ်ရာသုံးသီးသန့် ဖုန်စုပ်စက်ဖြင့် ဆိုဖာမျက်နှာပြင်၊ ချုပ်ရိုး၊ ကြားနေရာများနှင့် စတုရန်းပုံစံ ခေါင်းအုံးအသေး ၂ ခုကို ဖုန်စုပ်ပါ။"),
       t("Dry fully before putting back to prevent damp smell.", "生乾きの臭いを防ぐため、元に戻す前に完全に乾かしてください。", "စိုထိုင်းသောအနံ့ဆိုးများမထွက်စေရန် ပြန်မစွပ်မီ ခြောက်သွေ့အောင် ထားပါ။"),
-      t("Wash the sofa covers and pillowcases weekly on a regular basis. If you cannot do it weekly, stretching the interval slightly longer is fine.", "ソファカバーと枕カバーを毎週定期的に洗ってください。毎週行うのが難しい場合は、間隔を少し長めに延ばしても大丈夫です。", "ဆိုဖာစွပ်များနှင့် ခေါင်းအုံးစွပ်များကို အပတ်စဉ် ပုံမှန်လျှော်ပေးပါ။ အပတ်စဉ်မလျှော်နိုင်ပါက လျှော်သည့်ရက်ခြားကာလကို အနည်းငယ် ပိုဆွဲထားနိုင်ပါသည်။")
+      t("Wash the sofa covers and pillowcases every two weeks. If they become dirty or smell before then, wash them sooner.", "ソファカバーとクッションカバーは2週間おきに洗います。その前に汚れたり臭いが出たりした場合は、早めに洗ってください。", "ဆိုဖာစွပ်နှင့် ခေါင်းအုံးစွပ်များကို ၂ ပတ်တစ်ကြိမ် လျှော်ပါ။ ထိုအချိန်မတိုင်မီ ညစ်ပတ်လာပါက သို့မဟုတ် အနံ့ထွက်လာပါက စောစောလျှော်ပါ။")
     ],
     [
       photo("assets/routines/nako-sofa-covers.jpg",
@@ -2265,10 +2272,10 @@ const routineTasks = [
     t("Clean the outside shoe rack and surrounding area. Wipe down the shoes.", "屋外のシューズラックとその周辺エリアを掃除します。靴を拭きます。", "အပြင်ဘက် ဖိနပ်စင်နှင့် ပတ်ဝန်းကျင်နေရာကို သန့်ရှင်းရေးလုပ်ပါ။ ဖိနပ်များကို သုတ်ပါ။"), 
     t("Monthly", "毎月", "လစဉ်"),
     t("Keep the area neat, avoid blocking the corridor, and let shoes dry fully before putting them back.", "周辺をきれいに保ち、廊下を塞がず、靴は完全に乾かしてから戻してください。", "နေရာကို သပ်ရပ်စွာထားပြီး corridor မပိတ်ပါနှင့်။ ဖိနပ်များကို ပြန်မထားခင် အပြည့်အဝခြောက်အောင်ထားပါ။")),
-  routine("curtain-steaming", "fortnightly", 30, "C", 
+  routine("curtain-steaming", "monthly", 30, "C",
     t("Curtain Steaming", "カーテンのスチーム掛け", "လိုက်ကာများကို မီးပူတိုက်ခြင်း"), 
     t("Use the standing garment steamer / steam iron to steam-clean and freshen the curtains.", "立位式の衣類スチーマー/スチームアイロンを使用して、カーテンをスチームクリーニングし、リフレッシュします。", "လိုက်ကာများကို သန့်ရှင်းလတ်ဆတ်စေရန် မီးပူရပ်တိုင် / ရေနွေးငွေ့မီးပူကို အသုံးပြု၍ သန့်ရှင်းရေးလုပ်ပါ။"), 
-    t("Fortnightly", "2週間おき", "၂ ပတ်တစ်ကြိမ်"), 
+    t("Monthly", "毎月", "လစဉ်"),
     t("Move slowly so the steam heats the fabric properly. Be careful with hot steam.", "スチームが生地にしっかりと熱を伝えるようにゆっくり動かしてください。熱いスチームに注意してください。", "ရေနွေးငွေ့က ပိတ်စကို ကောင်းမွန်စွာ အပူပေးနိုင်ရန် ဖြည်းဖြည်းချင်း ရွှေ့ပါ။ ပူပြင်းသော ရေနွေးငွေ့ကို သတိထားပါ။")),
   routine("ikea-bed-frame", "quarterly", 40, "B",
     t("IKEA Bed Frame Under-Compartment Cleaning", "IKEAベッドフレーム下部の掃除", "IKEA ကုတင်အောက်ခြေ သန့်ရှင်းရေး"), 
@@ -3060,7 +3067,7 @@ if (curtainSteamingRoutine) {
   curtainSteamingRoutine.photos = [
     photo("assets/routines/nako-curtain-steaming.jpg",
       t("Curtain steaming setup and curtain areas", "カーテンスチームの準備と対象エリア", "ကာတန် steam လုပ်ရန် ပြင်ဆင်မှုနှင့် ကာတန်နေရာများ"),
-      t("Fortnightly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "教わった後、部屋のカーテンにスチームをかけるための隔週の参考写真です。スチーマーは注意して使い、見えているカーテン部分を一通り行ってください。", "သင်ပေးပြီးနောက် အခန်းများရှိ ကာတန်များကို steam လုပ်ရန် နှစ်ပတ်တစ်ကြိမ် ကိုးကားပုံဖြစ်သည်။ steamer ကို ဂရုတစိုက်အသုံးပြုပြီး မြင်ရသော ကာတန် panel များကို လုပ်ပါ။"))
+      t("Monthly reference for steaming the curtains in the rooms after being taught. Use the steamer carefully and cover the visible curtain panels.", "教わった後、部屋のカーテンにスチームをかけるための毎月の参考写真です。スチーマーは注意して使い、見えているカーテン部分を一通り行ってください。", "သင်ပေးပြီးနောက် အခန်းများရှိ ကာတန်များကို steam လုပ်ရန် လစဉ် ကိုးကားပုံဖြစ်သည်။ steamer ကို ဂရုတစိုက်အသုံးပြုပြီး မြင်ရသော ကာတန် panel များကို လုပ်ပါ။"))
   ];
 }
 
@@ -3099,6 +3106,18 @@ if (fridgeInteriorRoutine) fridgeInteriorRoutine.legacyTrackingCadences = ["week
 const cleaningToolsRoutine = routineTasks.find((task) => task.id === "cleaning-tools");
 if (cleaningToolsRoutine) cleaningToolsRoutine.legacyTrackingCadences = ["weekly"];
 
+const curtainSteamingTrackingRoutine = routineTasks.find((task) => task.id === "curtain-steaming");
+if (curtainSteamingTrackingRoutine) curtainSteamingTrackingRoutine.legacyTrackingCadences = ["fortnightly"];
+
+const floorMatsRoutine = routineTasks.find((task) => task.id === "floor-mats");
+if (floorMatsRoutine) floorMatsRoutine.legacyTrackingCadences = ["weekly"];
+
+const windowsGlassMirrorsRoutine = routineTasks.find((task) => task.id === "windows-glass-mirrors");
+if (windowsGlassMirrorsRoutine) windowsGlassMirrorsRoutine.legacyTrackingCadences = ["weekly"];
+
+const sofaCoversPillowsRoutine = routineTasks.find((task) => task.id === "sofa-covers-pillows");
+if (sofaCoversPillowsRoutine) sofaCoversPillowsRoutine.legacyTrackingCadences = ["weekly"];
+
 const ninjaAirFryerDeepCleanRoutine = routineTasks.find((task) => task.id === "ninja-af141-air-fryer-interior-deep-clean");
 if (ninjaAirFryerDeepCleanRoutine) ninjaAirFryerDeepCleanRoutine.legacyTrackingCadences = ["monthly"];
 
@@ -3109,6 +3128,7 @@ if (ninjaAirFryerDeepCleanRoutine) ninjaAirFryerDeepCleanRoutine.legacyTrackingC
 const routineTrackingExclusions = {
   "nako-inventory-check": "Inventory check is a reference guidelines page for stocking items",
   "pest-check": "Pest check is reference information for checking ants/cockroaches",
+  "cleaning-tools": "Cleaning tools maintenance is fortnightly reference guidance and is intentionally excluded from Routine Check-in",
   "coffee-machine-descaling": "Descaling is indicator-led and should be done only when the red descale light flashes"
 };
 
@@ -3181,13 +3201,10 @@ const weeklyGuideLayout = {
     "high-touch-surfaces",
     "toilet-cleaning",
     "rubbish-bin-washing",
-    "floor-mats",
-    "windows-glass-mirrors",
     "ceiling-fan"
   ],
   "living-maintenance": [
     "bedrooms-linens",
-    "sofa-covers-pillows",
     "pest-check"
   ]
 };

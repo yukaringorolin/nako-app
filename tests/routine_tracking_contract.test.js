@@ -92,7 +92,6 @@ const baselineIds = new Set([
   "sofa-covers-pillows",
   "ceiling-fan",
   "fridge-interior",
-  "cleaning-tools",
   "blanket-washing",
   "curtain-steaming",
   "outside-shoe-rack",
@@ -142,9 +141,18 @@ assert.equal(ikeaBedFrameCleaning.trackingAnchor, null, "Quarterly IKEA bed-fram
 const fridgeInterior = allTasks.find((task) => task.id === "fridge-interior");
 const cleaningTools = allTasks.find((task) => task.id === "cleaning-tools");
 assert.equal(fridgeInterior.trackingCadence, "monthly");
-assert.equal(cleaningTools.trackingCadence, "fortnightly");
+assert.equal(cleaningTools.active, true);
+assert.equal(cleaningTools.frequencyBucket, "fortnightly");
+assert.equal(cleaningTools.trackingMode, "none");
+assert.equal(cleaningTools.trackingCadence, null);
+assert.match(cleaningTools.trackingExclusionReason, /excluded from Routine Check-in/);
 assert.deepEqual(Array.from(fridgeInterior.legacyTrackingCadences), ["weekly"]);
 assert.deepEqual(Array.from(cleaningTools.legacyTrackingCadences), ["weekly"]);
+
+const curtainSteaming = tracked.find((task) => task.id === "curtain-steaming");
+assert.equal(curtainSteaming.frequencyBucket, "monthly");
+assert.equal(curtainSteaming.trackingCadence, "monthly");
+assert.deepEqual(Array.from(curtainSteaming.legacyTrackingCadences), ["fortnightly"]);
 
 const monthlyCycle = tracking.cycleForDate("monthly", "2026-07-18");
 const legacyWeeklyRecord = {

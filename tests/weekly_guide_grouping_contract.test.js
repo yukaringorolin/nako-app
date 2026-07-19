@@ -29,19 +29,16 @@ const expectedGroups = {
     "high-touch-surfaces",
     "toilet-cleaning",
     "rubbish-bin-washing",
-    "floor-mats",
-    "windows-glass-mirrors",
     "ceiling-fan"
   ],
   "living-maintenance": [
     "bedrooms-linens",
-    "sofa-covers-pillows",
     "pest-check"
   ]
 };
 const groupOrder = Object.keys(expectedGroups);
 
-assert.equal(activeWeeklyTasks.length, 16, "The Weekly Care Guide must contain all 16 active weekly routines");
+assert.equal(activeWeeklyTasks.length, 13, "The Weekly Care Guide must contain all 13 active weekly routines");
 assert.equal(new Set(activeWeeklyTasks.map((task) => task.id)).size, activeWeeklyTasks.length, "Weekly task IDs must be unique");
 
 for (const task of activeWeeklyTasks) {
