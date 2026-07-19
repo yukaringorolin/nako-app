@@ -16,6 +16,7 @@ assert.equal(legacyFood.active, false);
 assert.equal(legacyFood.canonicalRoute, "#routine/nako-feeding-water");
 assert.match(feedingRoutine.mustRemember.map((item) => item.en).join("\n"), /appetite percentage/);
 assert.equal(feedingRoutine.photos[0].src, "assets/routines/nako-meal-prep-bowl.jpg", "The meal bowl must be the Feeding & Water primary image");
+assert.equal(feedingRoutine.photos[2].caption, undefined, "The manual water-bottle photo must not show an instruction caption");
 assert.equal(feedingRoutine.trackingMode, "input");
 assert.equal(feedingRoutine.trackingCadence, "daily");
 assert.equal(feedingRoutine.trackingSource, "appetite");
@@ -36,6 +37,8 @@ assert.match(pageSource, /task\.trackingMode === "input" && task\.trackingSource
 assert.match(pageSource, /href="#routine\/\$\{esc\(task\.id\)\}"/, "The daily check-in must link to the canonical routine page");
 assert.match(pageSource, /id: "nako-feeding-water", type: "routine", labelKey: "shortcutAppetiteTracker"/, "The home page must link directly to the appetite tracker routine");
 assert.equal(data.ui.en.shortcutAppetiteTracker, "Nako Appetite Tracker");
+assert.equal(data.ui.en.appetiteNote, "Feeding changes (optional)");
+assert.match(data.ui.en.appetiteNotePlaceholder, /deviation from the usual amount/);
 assert.ok(data.ui.jp.shortcutAppetiteTracker);
 assert.ok(data.ui.mm.shortcutAppetiteTracker);
 for (const lang of ["en", "jp", "mm"]) {
@@ -50,6 +53,7 @@ assert.match(appetiteSource, /recentEntries\(entries, today, 30/);
 assert.match(appetiteSource, /data-appetite-edit/);
 assert.match(appetiteSource, /data-appetite-measurement="kibbleGrams"/);
 assert.match(appetiteSource, /data-appetite-measurement="frozenFoodCubes"/);
+assert.match(appetiteSource, /class="appetite-history-detail"/, "Kibble and frozen-food amounts must render as separate history lines");
 assert.doesNotMatch(appetiteSource, /data-appetite-delete/);
 
 console.log("Appetite tracker route and UI contracts passed.");

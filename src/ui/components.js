@@ -277,12 +277,27 @@ function renderPhotos(photos = []) {
   return `<section class="panel photo-panel"><h2>${esc(label("photos"))}</h2><div class="photo-guide">${photos.map(renderPhoto).join("")}</div></section>`;
 }
 
+function renderRoutineLegend(task) {
+  const items = Array.isArray(task?.legendItems) ? task.legendItems : [];
+  if (!items.length) return "";
+  const titleId = `routine-legend-${task.id}`;
+  return `<section class="panel routine-legend" aria-labelledby="${esc(titleId)}">
+    <h2 id="${esc(titleId)}">${esc(tr(task.legendTitle))}</h2>
+    <div class="routine-legend-list">
+      ${items.map((item) => `<div class="routine-legend-item"><span class="routine-legend-icon" aria-hidden="true">${esc(item.icon)}</span><strong>${esc(tr(item.label))}</strong></div>`).join("")}
+    </div>
+    ${task.legendNote ? `<p class="routine-legend-note">${esc(tr(task.legendNote))}</p>` : ""}
+  </section>`;
+}
+
 function renderPhoto(photo) {
   const isVideo = photo.src.toLowerCase().endsWith('.mov') || photo.src.toLowerCase().endsWith('.mp4') || photo.src.toLowerCase().endsWith('.webm');
+  const caption = tr(photo.caption);
+  const captionHtml = caption ? `<figcaption>${esc(caption)}</figcaption>` : "";
   if (isVideo) {
-    return `<figure class="task-photo"><video src="${esc(photo.src)}" controls playsinline preload="metadata"></video><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
+    return `<figure class="task-photo"><video src="${esc(photo.src)}" controls playsinline preload="metadata"></video>${captionHtml}</figure>`;
   }
-  return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" /><figcaption>${esc(tr(photo.caption))}</figcaption></figure>`;
+  return `<figure class="task-photo"><img src="${esc(photo.src)}" alt="${esc(tr(photo.alt || photo.caption))}" loading="lazy" />${captionHtml}</figure>`;
 }
 
 function renderIngredient(item, recipeId, ingredientIndex) {

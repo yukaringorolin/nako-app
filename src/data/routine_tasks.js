@@ -5,13 +5,25 @@ const routineTasks = [
     t("Daily - morning + regularly", "毎日 - 朝＋定期的", "နေ့စဉ် - မနက် + ပုံမှန်"),
     [
       t("Check each event's time and location and prepare as needed. Tell Edwin or Yukari if an event affects the household schedule or anything is unclear. Do not change or delete events unless instructed.", "各予定の時間と場所を確認し、必要な準備をします。家の予定に影響する場合や不明点がある場合は、エドウィンまたはゆかりに伝えます。指示なしに予定を変更・削除しないでください。", "event တစ်ခုစီ၏ အချိန်နှင့် နေရာကို စစ်ပြီး လိုအပ်သလို ပြင်ဆင်ပါ။ အိမ်၏ schedule ကို သက်ရောက်ပါက သို့မဟုတ် မရှင်းလင်းပါက Edwin သို့မဟုတ် Yukari ကို ပြောပါ။ ညွှန်ကြားချက်မရှိဘဲ event ကို မပြောင်း၊ မဖျက်ပါနှင့်။"),
-      t("Chocho's salary is paid on the 1st of every month, and her mandatory rest day is the first Sunday of every month. Use the Calendar entries for the exact schedule.", "Chochoの給料日は毎月1日、必須の休日は毎月第1日曜日です。正確な予定はカレンダーの登録内容で確認してください。", "Chocho ၏ လစာပေးရက်သည် လတိုင်း ၁ ရက်နေ့ဖြစ်ပြီး မဖြစ်မနေ နားရက်သည် လတိုင်း၏ ပထမဆုံး တနင်္ဂနွေနေ့ဖြစ်သည်။ အတိအကျ schedule ကို Calendar entry များတွင် စစ်ပါ။")
+      t("Chocho's salary is paid on the 1st of every month.", "Chochoの給料日は毎月1日です。", "Chocho ၏ လစာကို လတိုင်း ၁ ရက်နေ့တွင် ပေးပါသည်။"),
+      t("Chocho's mandatory rest day is the first Sunday of every month.", "Chochoの必須の休日は毎月第1日曜日です。", "Chocho ၏ မဖြစ်မနေ နားရက်သည် လတိုင်း၏ ပထမဆုံး တနင်္ဂနွေနေ့ဖြစ်သည်။"),
+      t("Use the Calendar entries for the exact schedule.", "正確な予定はカレンダーの登録内容で確認してください。", "အတိအကျ အချိန်ဇယားကို Calendar entry များတွင် စစ်ပါ။")
     ],
     [
       photo("assets/routines/google-calendar-check.png",
         t("Google Calendar app icon", "Googleカレンダーのアプリアイコン", "Google Calendar app အိုင်ကွန်"),
         t("Use this icon to open the shared Google Calendar.", "このアイコンから共有Googleカレンダーを開きます。", "မျှဝေထားသော Google Calendar ကို ဖွင့်ရန် ဤအိုင်ကွန်ကို သုံးပါ။"))
-    ]),
+    ],
+    {
+      legendTitle: t("Calendar icon legend", "カレンダーのアイコン凡例", "Calendar အိုင်ကွန် အဓိပ္ပာယ်"),
+      legendItems: [
+        { icon: "🐱", label: t("Me (Edwin)", "私（Edwin）", "Edwin (ကျွန်တော်)") },
+        { icon: "🍎", label: t("Yukari", "ゆかり", "ယူကာရီ") },
+        { icon: "🦋", label: t("Chocho", "チョウチョ", "ချိုချို") },
+        { icon: "🌰", label: t("Auntie (Edwin's mother)", "Auntie（Edwinのお母さん）", "Auntie (Edwin ၏ မိခင်)") }
+      ],
+      legendNote: t("When 🍎 and ✈️ appear together, it means Yukari's flight schedule.", "🍎と✈️が一緒に表示されている予定は、ゆかりのフライト予定です。", "🍎 နဲ့ ✈️ ကို အတူတူတွေ့ရရင် Yukari ရဲ့ လေယာဉ်ခရီးစဉ် အချိန်ဇယားကို ဆိုလိုပါတယ်။")
+    }),
   routine("helper-diary-feedback", "daily", 200, "D",
     t("Diary & Feedback", "日記・フィードバック", "နေ့စဉ်မှတ်တမ်းနှင့် အကြံပြုချက်"),
     t("Write your thoughts, feelings, questions, or worries. The app saves them and opens a WhatsApp notice.", "考え、気持ち、質問、心配なことを書きます。アプリが保存し、WhatsApp通知を開きます。", "အတွေး၊ ခံစားချက်၊ မေးခွန်း သို့မဟုတ် စိုးရိမ်တာကို ရေးပါ။ App က သိမ်းပြီး WhatsApp အသိပေးချက်ဖွင့်ပေးမည်။"),
@@ -124,8 +136,7 @@ const routineTasks = [
         t("Nako standing in her cage next to spilt food on the floor", "床にこぼれたエサの横のケージに立つナコ", "ကြမ်းပြင်ပေါ်တွင် ဖိတ်ကျနေသော အစားအစာဘေးရှိ ခြံထဲတွင်ရပ်နေသော နာကို"),
         t("Only leave food out for a short while and watch when Nako eats. When she gets full or is done eating, she will start playing with the bowl and try to flip it, which will cause spillage and dirty the cage. She will also try to stick her paw into the bowl and end up dirtying the cage.", "エサは短い時間だけ出し、ナコが食べている間は様子を見てください。お腹がいっぱいになるか食べ終わると、ボウルで遊び始めてひっくり返そうとし、エサがこぼれてケージが汚れてしまいます。また、ボウルに足を突っ込んでケージを汚してしまうこともあります。", "ခွေးစာကို အချိန်အနည်းငယ်သာ ချထားပေးပြီး နာကို စားနေချိန်တွင် စောင့်ကြည့်ပါ။ သူမ ဗိုက်ပြည့်သွားလျှင် သို့မဟုတ် စားပြီးသွားလျှင် ခွက်ကို ကစားပြီး မှောက်ရန် ကြိုးစားလိမ့်မည်၊ ၎င်းသည် ဖိတ်စင်ပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။ သူမသည် ခွက်ထဲသို့ ခြေထောက်ထည့်ရန် ကြိုးစားပြီး ခြံကို ညစ်ပတ်စေလိမ့်မည်။")),
       photo("assets/routines/nako-manual-water-bottle.jpg",
-        t("Offering water from the manual squeeze travel bottle", "手動のスクイーズボトルから水を飲ませる様子", "လက်ဆွဲရေဘူးဖြင့် ရေတိုက်ကျွေးခြင်း"),
-        t("Squeeze the manual water bottle to let her drink regularly, as the pen's nozzle flows too slowly.", "サークルの給水器は水の出が遅いため、手動ボトルを少し押して定期的に水を飲ませてください。", "ခြံ၏ ရေပိုက်ခေါင်းသည် ရေစီးနှေးလွန်းသဖြင့် လက်ဆွဲရေဘူးကို ညှစ်၍ ပုံမှန်ရေတိုက်ပေးပါ။"))
+        t("Offering water from the manual travel bottle held horizontally", "手動の携帯用給水ボトルを横向きにして水を飲ませる様子", "လက်ကိုင်ရေဘူးကို အလျားလိုက်ကိုင်ပြီး ရေတိုက်ပေးနေခြင်း"))
     ],
     {
       trackingMode: "input",

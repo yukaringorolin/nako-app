@@ -18,7 +18,9 @@ function renderAppetiteHistoryDetails(entry) {
   const details = [];
   if (entry.kibbleGrams !== null) details.push(`${esc(label("appetiteKibbleGrams"))}: ${entry.kibbleGrams} g`);
   if (entry.frozenFoodCubes !== null) details.push(`${esc(label("appetiteFrozenFoodCubes"))}: ${entry.frozenFoodCubes}`);
-  return details.length ? `<span class="appetite-history-details">${details.join(" · ")}</span>` : "";
+  return details.length
+    ? `<span class="appetite-history-details">${details.map((detail) => `<span class="appetite-history-detail">${detail}</span>`).join("")}</span>`
+    : "";
 }
 
 function renderNakoAppetiteTracker() {

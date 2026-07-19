@@ -565,6 +565,7 @@ function renderRoutine(routineId) {
     ${relatedPageHtml}
     ${backLinkHtml}
     <section class="panel"><h2>${esc(label("frequency"))}</h2><span class="frequency-pill">${esc(tr(task.frequencyText))}</span></section>
+    ${renderRoutineLegend(task)}
     ${appetitePanelHtml}
     ${completionPanelHtml}
     ${instructionsPanel}

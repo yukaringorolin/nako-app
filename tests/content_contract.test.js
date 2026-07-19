@@ -57,6 +57,13 @@ const googleCalendarCheck = routineById("google-calendar-check");
 assert.equal(googleCalendarCheck.icon, "CAL");
 assert.equal(googleCalendarCheck.photos[0].src, "assets/routines/google-calendar-check.png");
 assert.ok(googleCalendarCheck.photos[0].alt.en && googleCalendarCheck.photos[0].alt.jp && googleCalendarCheck.photos[0].alt.mm);
+assert.deepEqual(Array.from(googleCalendarCheck.legendItems, (item) => item.icon), ["🐱", "🍎", "🦋", "🌰"]);
+assert.match(googleCalendarCheck.legendItems[3].label.en, /Edwin's mother/);
+assert.match(googleCalendarCheck.legendNote.en, /🍎.*✈️.*Yukari's flight schedule/);
+assert.ok(googleCalendarCheck.legendTitle.jp && googleCalendarCheck.legendTitle.mm);
+assert.equal(googleCalendarCheck.mustRemember[1].en, "Chocho's salary is paid on the 1st of every month.");
+assert.equal(googleCalendarCheck.mustRemember[2].en, "Chocho's mandatory rest day is the first Sunday of every month.");
+assert.equal(googleCalendarCheck.mustRemember[3].en, "Use the Calendar entries for the exact schedule.");
 
 const householdNakoSupplies = routineById("household-supplies-online");
 assert.equal(householdNakoSupplies.title.en, "Household/Nako Supplies & Online Orders");
@@ -77,6 +84,7 @@ const pageSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"
 const shellSource = fs.readFileSync(path.join(root, "src", "ui", "shell.js"), "utf8");
 assert.match(pageSource, /if \(item\.canonicalRoute\) return go\(item\.canonicalRoute\)/);
 assert.match(pageSource, /isDailyGuide\s*\? renderDailyGuideGroups\(items, section\)/);
+assert.match(pageSource, /renderRoutineLegend\(task\)/);
 const componentSource = fs.readFileSync(path.join(root, "src", "ui", "components.js"), "utf8");
 assert.match(componentSource, /function renderDailyGuideGroup\(group, tasks, section\)/);
 assert.match(componentSource, /function renderDailyGuideShortcut\(\)/);
