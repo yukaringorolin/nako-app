@@ -329,7 +329,9 @@
     const fieldPaths = [
       "state.routineCompletions",
       "state.routineTrackingMigration",
-      "state.training.contentMigrations"
+      "state.training.contentMigrations",
+      "state.textDrafts",
+      "state.diary.drafts"
     ];
     const documentName = `projects/${PROJECT_ID}/databases/(default)/documents/households/${HOUSEHOLD_ID}`;
     const response = await window.fetch(`https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents:commit`, {
@@ -347,7 +349,8 @@
     const cleanedDocument = await verifyResponse.json();
     const cleanedState = cleanedDocument?.fields?.state?.mapValue?.fields || {};
     const cleanedTraining = cleanedState.training?.mapValue?.fields || {};
-    if (cleanedState.routineCompletions || cleanedState.routineTrackingMigration || cleanedTraining.contentMigrations) {
+    const cleanedDiary = cleanedState.diary?.mapValue?.fields || {};
+    if (cleanedState.routineCompletions || cleanedState.routineTrackingMigration || cleanedState.textDrafts || cleanedTraining.contentMigrations || cleanedDiary.drafts) {
       throw new Error("Legacy shared-state cleanup verification failed");
     }
   }

@@ -187,11 +187,19 @@ function moveRoutineCompletion(recordId, nextDate) {
   render();
 }
 
-function updateRoutineCompletionNote(recordId, note) {
+function saveRoutineCompletionNote(recordId, note) {
   const record = routineRecords()[recordId];
-  if (!record) return;
-  updateRoutineCompletion(record, { note: String(note || "").slice(0, 2000) });
-  render();
+  if (!record || record.deleted) return false;
+  updateRoutineCompletion(record, { note: String(note || "").trim().slice(0, 2000) });
+  return true;
+}
+
+function deleteRoutineCompletionNote(recordId) {
+  const record = routineRecords()[recordId];
+  if (!record || record.deleted || !record.note) return false;
+  updateRoutineCompletion(record, { note: "" });
+  routineStatusMessage = label("noteDeleted");
+  return true;
 }
 
 function reconcileWeightCompletion(dateKey, options = {}) {

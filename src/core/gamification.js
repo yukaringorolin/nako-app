@@ -111,7 +111,7 @@
     });
 
     Object.entries(state.diary?.entries || {}).forEach(([dateKey, record]) => {
-      if (!record || !record.submittedAt) return;
+      if (!record || record.deleted || !record.submittedAt) return;
       const item = event("diary", "diary", `diary-${dateKey}`, record.dateKey || dateKey, record.submittedAt);
       if (item) activities.push(item);
     });

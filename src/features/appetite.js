@@ -40,7 +40,10 @@ function renderNakoAppetiteTracker() {
         <div class="appetite-history-copy">
           <strong>${esc(formatRoutineDate(item.dateKey, true))}</strong>
           ${renderAppetiteHistoryDetails(item)}
-          ${item.note ? `<span>${esc(item.note)}</span>` : ""}
+          ${item.note ? `<span>${esc(item.note)}</span><div class="saved-text-actions">
+            <button class="text-button" type="button" data-text-edit-kind="appetite" data-text-edit-id="${esc(item.dateKey)}" data-text-edit-surface="appetite-${esc(item.dateKey)}">${esc(label("editNote"))}</button>
+            <button class="text-button danger" type="button" data-text-delete-kind="appetite" data-text-delete-id="${esc(item.dateKey)}">${esc(label("deleteNote"))}</button>
+          </div>` : ""}
         </div>
         <div class="appetite-history-result">
           <span class="appetite-history-track" aria-hidden="true"><span class="appetite-history-fill percentage-${item.percentage}"></span></span>
@@ -75,10 +78,15 @@ function renderNakoAppetiteTracker() {
         <input class="appetite-number-field" type="number" min="0" step="1" inputmode="decimal" data-appetite-measurement="frozenFoodCubes" data-appetite-date="${esc(dateKey)}" value="${esc(appetiteAmountValue(entry?.frozenFoodCubes))}" placeholder="0" ${noteDisabled}>
       </label>
     </div>
-    <label class="appetite-note-label">
-      <span>${esc(label("appetiteNote"))}</span>
-      <textarea class="memo-field appetite-note-field" data-appetite-note="${esc(dateKey)}" placeholder="${esc(label("appetiteNotePlaceholder"))}" ${noteDisabled}>${esc(entry?.note || "")}</textarea>
-    </label>
+    ${entry ? renderExplicitTextEntry({
+      kind: "appetite",
+      id: dateKey,
+      surface: `appetite-${dateKey}`,
+      text: entry.note || "",
+      titleKey: "appetiteNote",
+      addLabelKey: "appetiteNote",
+      placeholderKey: "appetiteNotePlaceholder"
+    }) : ""}
     ${entry ? (isToday ? "" : status) : `<p class="appetite-helper">${esc(label("appetiteSelectFirst"))}</p>`}
     <p class="appetite-safety">${esc(label("appetiteNotify"))}</p>
     <div class="appetite-history-head"><h3>${esc(label("appetiteHistory"))}</h3></div>
@@ -99,13 +107,22 @@ function saveAppetitePercentage(dateKey, value) {
   render();
 }
 
-function updateAppetiteNote(dateKey, note) {
-  const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { note }, nowIso());
-  if (!entry) return;
-  appetiteStatusMessage = label("appetiteSaved");
-  const status = document.querySelector("[data-appetite-status]");
-  if (status) status.textContent = appetiteStatusMessage;
-  saveStateDebounced();
+function saveAppetiteNote(dateKey, note) {
+  const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { note: String(note || "").trim() }, nowIso());
+  if (!entry) return false;
+  appetiteStatusMessage = label("noteSaved");
+  saveState();
+  return true;
+}
+
+function deleteAppetiteNote(dateKey) {
+  const current = window.nakoAppetiteTracking.normalizeEntry(getAppetiteEntries()[dateKey], dateKey);
+  if (!current?.note) return false;
+  const entry = window.nakoAppetiteTracking.upsertEntry(getAppetiteEntries(), dateKey, { note: "" }, nowIso());
+  if (!entry) return false;
+  appetiteStatusMessage = label("noteDeleted");
+  saveState();
+  return true;
 }
 
 function updateAppetiteMeasurement(dateKey, field, value) {

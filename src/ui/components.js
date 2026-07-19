@@ -1,6 +1,51 @@
 /* ==========================================================================
    SECTION 4: RENDERERS - COMPONENT VIEWS & CARD BUILDERS
    ========================================================================== */
+function renderExplicitTextEntry(options = {}) {
+  const kind = String(options.kind || "");
+  const id = String(options.id || "");
+  const surface = String(options.surface || "");
+  const savedText = String(options.text || "");
+  const displayText = Object.prototype.hasOwnProperty.call(options, "displayText") ? String(options.displayText || "") : savedText;
+  const draft = textDraft(kind, id);
+  const activeDraft = draft && draft.surface === surface ? draft : null;
+  const showEditor = !savedText || Boolean(activeDraft);
+  const mode = savedText ? "edit" : "create";
+  const value = activeDraft?.text || "";
+  const titleKey = options.titleKey || "savedNote";
+  const addLabelKey = options.addLabelKey || "addNote";
+  const placeholderKey = options.placeholderKey || "notePlaceholder";
+  const deleteLabelKey = options.deleteLabelKey || "deleteNote";
+  const editLabelKey = options.editLabelKey || "editNote";
+  const createSaveLabelKey = options.createSaveLabelKey || "saveNote";
+
+  if (!showEditor) {
+    return `<div class="saved-text-card">
+      <div class="saved-text-card-head"><strong>${esc(label(titleKey))}</strong><span class="saved-text-status">${esc(label("savedTextStatus"))}</span></div>
+      <p>${esc(displayText)}</p>
+      <div class="saved-text-actions">
+        <button class="text-button" type="button" data-text-edit-kind="${esc(kind)}" data-text-edit-id="${esc(id)}" data-text-edit-surface="${esc(surface)}">${esc(label(editLabelKey))}</button>
+        <button class="text-button danger" type="button" data-text-delete-kind="${esc(kind)}" data-text-delete-id="${esc(id)}">${esc(label(deleteLabelKey))}</button>
+      </div>
+    </div>`;
+  }
+
+  const recovered = textDraftWasRecovered(kind, id, surface)
+    ? `<p class="draft-recovered" role="status">${esc(label("draftRecovered"))}</p>`
+    : "";
+  return `<div class="explicit-text-editor">
+    <label>
+      <span>${esc(label(mode === "edit" ? editLabelKey : addLabelKey))}</span>
+      <textarea data-text-draft-kind="${esc(kind)}" data-text-draft-id="${esc(id)}" data-text-draft-mode="${esc(mode)}" data-text-draft-surface="${esc(surface)}" placeholder="${esc(label(placeholderKey))}">${esc(value)}</textarea>
+    </label>
+    ${recovered}
+    <div class="explicit-text-actions">
+      <button class="action-button primary" type="button" data-text-save-kind="${esc(kind)}" data-text-save-id="${esc(id)}" data-text-save-surface="${esc(surface)}" ${value.trim() ? "" : "disabled"}>${esc(label(mode === "edit" ? "saveChanges" : createSaveLabelKey))}</button>
+      ${mode === "edit" ? `<button class="action-button secondary" type="button" data-text-cancel-kind="${esc(kind)}" data-text-cancel-id="${esc(id)}">${esc(label("cancel"))}</button>` : ""}
+    </div>
+  </div>`;
+}
+
 function renderHead(icon, title, description, iconBg, eyebrow, photo = null) {
   return `<section class="detail-head ${themeClass(iconBg)}">${renderLargeIcon(icon, photo)}<div><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="lead">${esc(description)}</p></div></section>`;
 }

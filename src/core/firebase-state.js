@@ -25,6 +25,8 @@
     const state = cloneState(value);
     delete state.routineCompletions;
     delete state.routineTrackingMigration;
+    delete state.textDrafts;
+    if (state.diary && typeof state.diary === "object") delete state.diary.drafts;
     if (state.training && typeof state.training === "object") {
       state.training = normalizeTrainingState(state.training);
     }
@@ -35,6 +37,8 @@
     const state = value && typeof value === "object" ? value : {};
     if (Object.prototype.hasOwnProperty.call(state, "routineCompletions")) return true;
     if (Object.prototype.hasOwnProperty.call(state, "routineTrackingMigration")) return true;
+    if (Object.prototype.hasOwnProperty.call(state, "textDrafts")) return true;
+    if (state.diary && Object.prototype.hasOwnProperty.call(state.diary, "drafts")) return true;
     const training = state.training;
     if (!training || typeof training !== "object") return false;
     if (Object.prototype.hasOwnProperty.call(training, "contentMigrations")) return true;
@@ -147,12 +151,13 @@
   function mergeDiaryState(remoteDiary = {}, localDiary = {}) {
     const remote = remoteDiary || {};
     const local = localDiary || {};
-    return {
+    const merged = {
       ...remote,
       ...local,
-      entries: mergeDatedRecords(remote.entries, local.entries),
-      drafts: mergeDatedRecords(remote.drafts, local.drafts)
+      entries: mergeDatedRecords(remote.entries, local.entries)
     };
+    delete merged.drafts;
+    return merged;
   }
 
   function mergeGamificationState(remoteGamification = {}, localGamification = {}) {

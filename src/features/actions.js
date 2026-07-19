@@ -6,6 +6,14 @@ function handleClick(event) {
     dismissGamificationNotice();
     return;
   }
+  const textEdit = event.target.closest("[data-text-edit-kind]");
+  if (textEdit) return beginExplicitTextEdit(textEdit.dataset.textEditKind, textEdit.dataset.textEditId, textEdit.dataset.textEditSurface);
+  const textSave = event.target.closest("[data-text-save-kind]");
+  if (textSave) return saveExplicitTextDraft(textSave.dataset.textSaveKind, textSave.dataset.textSaveId, textSave.dataset.textSaveSurface);
+  const textCancel = event.target.closest("[data-text-cancel-kind]");
+  if (textCancel) return cancelExplicitTextEdit(textCancel.dataset.textCancelKind, textCancel.dataset.textCancelId);
+  const textDelete = event.target.closest("[data-text-delete-kind]");
+  if (textDelete) return deleteExplicitText(textDelete.dataset.textDeleteKind, textDelete.dataset.textDeleteId);
   // Close search dropdown on click outside
   if (!event.target.closest(".search-container")) {
     if (searchFocused) {
@@ -88,8 +96,6 @@ function handleClick(event) {
   if (back) return handleBack();
   const langButton = event.target.closest("[data-lang]");
   if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
-  const diarySubmit = event.target.closest("[data-diary-submit]");
-  if (diarySubmit) { handleDiarySubmit(diarySubmit.dataset.diarySubmit); return; }
   const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
   if (diaryWhatsApp) { openWhatsAppNotice(); return; }
   const appetitePercentage = event.target.closest("[data-appetite-percentage]");
@@ -177,24 +183,75 @@ function handleBack() {
   }
 }
 
+function savedExplicitText(kind, id) {
+  if (kind === "routine") return String(routineRecords()[id]?.note || "");
+  if (kind === "appetite") return String(window.nakoAppetiteTracking.normalizeEntry(getAppetiteEntries()[id], id)?.note || "");
+  if (kind === "diary") {
+    const entry = getDiaryState().entries[id];
+    return entry && !entry.deleted ? String(entry.originalText || "") : "";
+  }
+  return "";
+}
 
-function handleDiarySubmit(dateKey) {
-  const draft = getDiaryDraft(dateKey);
+function beginExplicitTextEdit(kind, id, surface) {
+  const text = savedExplicitText(kind, id);
+  if (!text) return;
+  if (kind === "appetite") selectedAppetiteDate = id;
+  updateTextDraft(kind, id, text, "edit", surface);
+  render();
+  if (kind === "appetite") document.querySelector("[data-appetite-panel]")?.scrollIntoView({ block: "start" });
+}
+
+function cancelExplicitTextEdit(kind, id) {
+  clearTextDraft(kind, id);
+  render();
+}
+
+function saveExplicitTextDraft(kind, id, surface) {
+  const draft = textDraft(kind, id);
+  if (!draft || draft.surface !== surface) return;
   const text = String(draft.text || "").trim();
-
   if (!text) {
-    diaryStatusMessage = label("diaryEmptyError");
-    alert(label("diaryEmptyError"));
-    render();
+    alert(label("textEmptyError"));
     return;
   }
+  const saved = kind === "routine"
+    ? saveRoutineCompletionNote(id, text)
+    : kind === "appetite"
+      ? saveAppetiteNote(id, text)
+      : kind === "diary"
+        ? saveDiaryText(id, text)
+        : false;
+  if (!saved) return;
+  clearTextDraft(kind, id);
+  render();
+  if (kind === "diary") openWhatsAppNotice();
+}
 
+function deleteExplicitText(kind, id) {
+  const confirmationKey = kind === "diary" ? "confirmDeleteDiaryEntry" : "confirmDeleteNote";
+  if (!confirm(label(confirmationKey))) return;
+  const deleted = kind === "routine"
+    ? deleteRoutineCompletionNote(id)
+    : kind === "appetite"
+      ? deleteAppetiteNote(id)
+      : kind === "diary"
+        ? deleteDiaryEntry(id)
+        : false;
+  if (!deleted) return;
+  clearTextDraft(kind, id);
+  render();
+}
+
+
+function saveDiaryText(dateKey, text) {
   diarySaveInProgress = true;
   diaryStatusMessage = label("diarySaving");
 
   const now = nowIso();
   const diary = getDiaryState();
-  const previousEntry = diary.entries[dateKey] || {};
+  const existingEntry = diary.entries[dateKey];
+  const previousEntry = existingEntry && !existingEntry.deleted ? existingEntry : {};
   const isNewEntry = !previousEntry.submittedAt;
   const translations = previousEntry.translations || {};
 
@@ -209,15 +266,35 @@ function handleDiarySubmit(dateKey) {
     translationReviewRequired,
     status: "saved",
     submittedAt: previousEntry.submittedAt || now,
-    updatedAt: now
+    updatedAt: now,
+    deleted: false,
+    deletedAt: ""
   };
-  diary.drafts[dateKey] = { text, updatedAt: now };
   if (isNewEntry) celebrateCareSave("diary", { taskTitle: gamificationText("taskDiary") });
   saveState();
   diarySaveInProgress = false;
   diaryStatusMessage = label("diarySaved");
-  render();
-  openWhatsAppNotice();
+  return true;
+}
+
+function deleteDiaryEntry(dateKey) {
+  const diary = getDiaryState();
+  const entry = diary.entries[dateKey];
+  if (!entry || entry.deleted) return false;
+  const now = nowIso();
+  diary.entries[dateKey] = {
+    ...entry,
+    originalText: "",
+    translations: {},
+    translationReviewRequired: false,
+    status: "deleted",
+    deleted: true,
+    deletedAt: now,
+    updatedAt: now
+  };
+  diaryStatusMessage = label("diaryDeleted");
+  saveState();
+  return true;
 }
 
 function handleSubmit(event) {
@@ -321,6 +398,21 @@ function buildWhatsAppNoticeUrl() {
 }
 
 function handleInput(event) {
+  const explicitText = event.target.closest("[data-text-draft-kind]");
+  if (explicitText) {
+    updateTextDraft(
+      explicitText.dataset.textDraftKind,
+      explicitText.dataset.textDraftId,
+      explicitText.value,
+      explicitText.dataset.textDraftMode,
+      explicitText.dataset.textDraftSurface
+    );
+    const saveButton = explicitText.closest(".explicit-text-editor")?.querySelector("[data-text-save-kind]");
+    if (saveButton) saveButton.disabled = !explicitText.value.trim();
+    const recovered = explicitText.closest(".explicit-text-editor")?.querySelector(".draft-recovered");
+    if (recovered) recovered.remove();
+    return;
+  }
   const searchInput = event.target.closest("#global-search-input");
   if (searchInput) {
     searchQuery = searchInput.value;
@@ -347,22 +439,12 @@ function handleInput(event) {
     foodState.updatedAt = nowIso();
     return saveState();
   }
-  const appetiteNote = event.target.closest("[data-appetite-note]");
-  if (appetiteNote) return updateAppetiteNote(appetiteNote.dataset.appetiteNote, appetiteNote.value);
   const appetiteMeasurement = event.target.closest("[data-appetite-measurement]");
   if (appetiteMeasurement) return updateAppetiteMeasurement(
     appetiteMeasurement.dataset.appetiteDate,
     appetiteMeasurement.dataset.appetiteMeasurement,
     appetiteMeasurement.value
   );
-  const diaryText = event.target.closest("[data-diary-text]");
-  if (diaryText) {
-    const draft = getDiaryDraft(diaryText.dataset.diaryText);
-    draft.text = diaryText.value;
-    draft.updatedAt = nowIso();
-    diaryStatusMessage = "";
-    return saveState({ remote: false });
-  }
   const diaryTrans = event.target.closest("[data-diary-translation-date]");
   if (diaryTrans) {
     const dateKey = diaryTrans.dataset.diaryTranslationDate;
@@ -382,10 +464,7 @@ function handleInput(event) {
 
 function handleBlur(event) {
   if (event.target.closest?.("[data-training-input]")) saveState();
-  if (event.target.closest?.("[data-appetite-note]")) saveState();
   if (event.target.closest?.("[data-appetite-measurement]")) saveState();
-  const diaryText = event.target.closest?.("[data-diary-text]");
-  if (diaryText) saveState();
   const diaryTrans = event.target.closest?.("[data-diary-translation-date]");
   if (diaryTrans) saveState();
   flushPendingRenderAfterEdit();

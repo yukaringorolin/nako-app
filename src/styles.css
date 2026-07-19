@@ -2015,6 +2015,40 @@ img {
   opacity: 0.68;
 }
 
+.saved-text-card,
+.explicit-text-editor {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fbfdfc;
+}
+
+.saved-text-card-head,
+.saved-text-actions,
+.explicit-text-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saved-text-card-head { justify-content: space-between; }
+.saved-text-card-head strong { color: var(--ink); font-size: 12px; }
+.saved-text-status { padding: 3px 8px; border-radius: 999px; background: #eaf8f0; color: #236946; font-size: 10px; font-weight: 900; }
+.saved-text-card p { margin: 0 !important; color: var(--ink) !important; font-size: 14px !important; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.saved-text-actions { justify-content: flex-end; }
+.saved-text-actions .text-button { min-height: 34px; cursor: pointer; }
+.text-button.danger { color: #a7435a; }
+
+.explicit-text-editor > label { display: grid; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 800; }
+.explicit-text-editor textarea { width: 100%; min-height: 88px; padding: 10px 12px; resize: vertical; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font: inherit; line-height: 1.5; }
+.explicit-text-editor textarea:focus { border-color: var(--pink-strong); outline: none; box-shadow: 0 0 0 3px rgba(219, 110, 128, 0.16); }
+.explicit-text-actions { justify-content: flex-start; }
+.explicit-text-actions .action-button:disabled { cursor: not-allowed; }
+.draft-recovered { margin: 0 !important; color: #8b6a2f !important; font-size: 11px !important; line-height: 1.4; }
+
 .diary-status {
   display: inline-flex;
   align-items: center;
@@ -2080,6 +2114,10 @@ img {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
 }
+
+.diary-history-entry { grid-template-columns: minmax(0, 1fr); }
+.diary-history-entry > .saved-text-card,
+.diary-history-entry > .explicit-text-editor { padding: 10px; }
 
 .rule-strip {
   display: grid;

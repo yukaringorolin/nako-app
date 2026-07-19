@@ -7,7 +7,8 @@
 
   function diaryDay(routineTracking, entries = {}, now = new Date()) {
     const dateKey = routineTracking?.singaporeDateKey?.(now) || "";
-    return { dateKey, entry: entries?.[dateKey] || null };
+    const entry = entries?.[dateKey] || null;
+    return { dateKey, entry: entry?.deleted ? null : entry };
   }
 
   return { diaryDay };

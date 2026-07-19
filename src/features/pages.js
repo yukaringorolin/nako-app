@@ -178,7 +178,9 @@ function renderRoutineCheckRow(item, completed) {
     ? ""
     : task.trackingMode === "input"
       ? `<p class="metric-complete-note">${esc(labelWith("appetiteCompletion", { percentage: record.inputEntry.percentage }))}</p>`
-      : `<p class="metric-complete-note">${task.trackingMode === "metric" ? esc(label("metricCompleted")) : ""}</p>${renderCompletionEditor(record)}`;
+      : task.trackingMode === "metric"
+        ? `<p class="metric-complete-note">${esc(displayRoutineNote(record))}</p>`
+        : `${renderCompletionEditor(record, false, `checkin-${record.id}`)}`;
   return `<article class="routine-check-row ${completed ? "is-complete" : ""}">
     <div class="routine-row-main">
       ${control}
@@ -191,27 +193,30 @@ function renderRoutineCheckRow(item, completed) {
   </article>`;
 }
 
-function renderCompletionEditor(record, showRemove = false) {
+function renderCompletionEditor(record, showRemove = false, surface = `completion-${record?.id || ""}`, showNote = true) {
   if (!record) return "";
   return `<details class="completion-editor">
-    <summary>${esc(label("completionDate"))}: ${esc(formatRoutineDate(record.completedDate, true))} · ${esc(label("addNote"))}</summary>
+    <summary>${esc(label("editCompletion"))}: ${esc(formatRoutineDate(record.completedDate, true))}</summary>
     <div class="completion-editor-fields">
       <label>${esc(label("completionDate"))}<input type="date" value="${esc(record.completedDate)}" data-completion-date="${esc(record.id)}"></label>
-      <label>${esc(label("addNote"))}<textarea data-completion-note="${esc(record.id)}" placeholder="${esc(label("notePlaceholder"))}">${esc(record.note || "")}</textarea></label>
+      ${showNote ? renderExplicitTextEntry({ kind: "routine", id: record.id, surface, text: record.note || "" }) : ""}
       ${showRemove ? `<button class="danger-text-button" type="button" data-completion-remove="${esc(record.id)}">${esc(label("removeCompletion"))}</button>` : ""}
     </div>
   </details>`;
 }
 
-function renderRoutineHistoryRow(record, task, showTaskName = true) {
+function renderRoutineHistoryRow(record, task, showTaskName = true, surfacePrefix = "routine-history") {
   const titleHtml = showTaskName ? `<h2>${esc(tr(task.title))}</h2>` : "";
+  const noteHtml = task.trackingMode === "metric" || task.trackingMode === "input"
+    ? (displayRoutineNote(record) ? `<p class="routine-history-note">${esc(displayRoutineNote(record))}</p>` : "")
+    : renderExplicitTextEntry({ kind: "routine", id: record.id, surface: `${surfacePrefix}-note-${record.id}`, text: record.note || "" });
   return `<article class="routine-history-row ${record.missed ? "is-missed" : ""}">
     <div>
       ${titleHtml}
       <p>${esc(cadenceLabel(task.trackingCadence))} · ${record.missed ? esc(cycleRangeLabel(record.cycle)) : esc(formatRoutineDate(record.completedDate, true))}</p>
-      ${record.missed ? `<p class="routine-missed-label">${esc(label("notCompleted"))}</p>` : displayRoutineNote(record) ? `<p class="routine-history-note">${esc(displayRoutineNote(record))}</p>` : ""}
+      ${record.missed ? `<p class="routine-missed-label">${esc(label("notCompleted"))}</p>` : noteHtml}
     </div>
-    ${record.missed ? "" : renderCompletionEditor(record, true)}
+    ${record.missed ? "" : renderCompletionEditor(record, true, `${surfacePrefix}-${record.id}`, false)}
   </article>`;
 }
 
@@ -220,7 +225,7 @@ function renderRoutineHistoryRecords(records, options = {}) {
   return records.map((record) => {
     const task = routineTasks.find((item) => item.id === record.taskId);
     if (!task) return "";
-    return renderRoutineHistoryRow(record, task, showTaskName);
+    return renderRoutineHistoryRow(record, task, showTaskName, options.surfacePrefix || "routine-history");
   }).join("") || `<div class="empty-state">${esc(label("noRoutineHistory"))}</div>`;
 }
 
@@ -298,7 +303,7 @@ function renderTaskRoutineHistory(taskId) {
   const task = routineTasks.find(t => t.id === taskId);
   if (!task || task.trackingMode === "none" || !task.trackingMode) return "";
   const records = getTaskSpecificHistory(task, 8);
-  const recordsHtml = records.map(record => renderRoutineHistoryRow(record, task, false)).join("");
+  const recordsHtml = records.map(record => renderRoutineHistoryRow(record, task, false, "task-history")).join("");
   return `
     <section class="panel routine-task-history">
       <h2>${esc(label("routineHistory"))}</h2>
@@ -339,10 +344,7 @@ function renderRoutineCompletionPanel(task) {
           <span>${esc(label("completionDate"))}</span>
           <input type="date" value="${esc(record.completedDate)}" data-completion-date="${esc(record.id)}">
         </label>
-        <label>
-          <span>${esc(label("addNote"))}</span>
-          <textarea data-completion-note="${esc(record.id)}" placeholder="${esc(label("notePlaceholder"))}">${esc(record.note || "")}</textarea>
-        </label>
+        ${renderExplicitTextEntry({ kind: "routine", id: record.id, surface: `task-panel-${record.id}`, text: record.note || "" })}
         <button class="danger-text-button" type="button" data-completion-remove="${esc(record.id)}">${esc(label("removeCompletion"))}</button>
       </div>
     `;
