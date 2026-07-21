@@ -373,6 +373,7 @@ function renderShortcuts() {
   const shortcutList = [
     { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
     { id: "nako-feeding-water", type: "routine", labelKey: "shortcutAppetiteTracker" },
+    { id: "grocery-shopping", type: "routine" },
     { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs", statusKey: "futureTracking" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
@@ -708,20 +709,28 @@ function renderRecipeIndex(item) {
     const toppingOrder = ["sasami", "nako-chicken-apple-vegetable-meal-prep", "whitefish", "chickenbreast"];
     filteredRecipes.sort((a, b) => toppingOrder.indexOf(a.id) - toppingOrder.indexOf(b.id));
   }
-  const content = `
+  const maxSelections = window.nakoMenuShare.DEFAULT_MAX_SELECTIONS;
+  const selectedCount = selectedHumanRecipeIds.length;
+  const recipeCards = filteredRecipes.map((recipe) => renderRecipeCard(recipe, isHuman ? {
+    selected: selectedHumanRecipeIds.includes(recipe.id),
+    selectionDisabled: selectedCount >= maxSelections && !selectedHumanRecipeIds.includes(recipe.id)
+  } : {})).join("") || emptyState();
+  const indexContent = `
     ${renderHead(item.icon, tr(item.title), tr(item.summary), "#fff0eb", isHuman ? label("humanRecipes") : label("recipes"))}
-    <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${filteredRecipes.map(renderRecipeCard).join("") || emptyState()}</section>
+    <section class="card-list${isHuman ? " human-recipe-grid" : ""}">${recipeCards}</section>
     ${isHuman ? renderRelatedPageLinks([
       ["#routine/daily-cooking", "🍳", label("relatedDailyCooking"), label("relatedDailyCookingDescription")],
       ["#routine/grocery-shopping", "🛒", label("relatedGroceryShopping"), label("relatedGroceryShoppingDescription")],
       ["#section/food-safety", "🛡️", label("relatedKitchenSafety"), label("relatedKitchenSafetyDescription")]
     ]) : ""}
-    ${isHuman ? renderFoodMemory(item) : ""}`;
+    ${isHuman ? renderFoodMemory(item) : ""}
+    ${isHuman ? renderHumanMenuBar(selectedCount, maxSelections, humanMenuShareStatus) : ""}`;
+  const content = isHuman ? `<div class="human-food-index">${indexContent}</div>` : indexContent;
   renderShell(tr(item.title), content, true);
 }
 
 function renderRecipe(recipeId) {
-  const recipe = recipes.find((entry) => entry.id === recipeId);
+  const recipe = recipes.find((entry) => entry.id === recipeId || entry.shareSlug === recipeId);
   if (!recipe) return renderHome();
   
   const isHuman = recipe.type === "human";

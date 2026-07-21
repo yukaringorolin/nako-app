@@ -95,6 +95,7 @@ assert.match(stylesSource, /\.daily-guide-shortcut\s*\{/);
 const pagesSource = fs.readFileSync(path.join(root, "src", "features", "pages.js"), "utf8");
 assert.match(pagesSource, /renderDailyGuideShortcut\(\)/);
 assert.match(pagesSource, /homeSections\.filter\(\(section\) => section\.id !== "daily"\)/);
+assert.match(pagesSource, /id: "grocery-shopping", type: "routine"/, "Quick Links must include Grocery Shopping");
 
 const drinkingWaterPrep = routineById("drinking-water-prep");
 assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
@@ -399,9 +400,64 @@ assert.deepEqual(Array.from(chickenWings.photos, (item) => item.src), [
 
 const braisedPork = recipeById("braised-pork-tau-pok-eggs-no-onion");
 assert.equal(braisedPork.title.en, "Braised Pork, Tau Pok & Eggs");
+assert.equal(braisedPork.shareSlug, "braised-pork-tau-pok-eggs");
 assert.ok(braisedPork.ingredients.some((item) => item.key === "onion" && item.amount.en === "a small amount"));
 assert.match(englishText(braisedPork.method), /Sauté the garlic, ginger, and onion/);
 assert.match(braisedPork.note.en, /Onion is required.*human-only.*Never feed this dish to Nako/);
+assert.match(pageSource, /entry\.id === recipeId \|\| entry\.shareSlug === recipeId/);
+
+const threeIngredientPancakes = recipeById("three-ingredient-pancakes-honey-jam");
+assert.deepEqual(Array.from(threeIngredientPancakes.ingredients, (item) => item.key), [
+  "flour", "eggs", "milk", "honey", "jam"
+]);
+assert.deepEqual(Array.from(threeIngredientPancakes.photos, (item) => item.src), [
+  "assets/recipes/human-food/three-ingredient-pancakes-served.jpg",
+  "assets/recipes/human-food/three-ingredient-pancakes-pouring-batter.jpg",
+  "assets/recipes/human-food/three-ingredient-pancakes-flipping.jpg"
+]);
+assert.match(threeIngredientPancakes.note.en, /only flour, eggs, and milk in the batter/);
+assert.match(englishText(threeIngredientPancakes.method), /Serve with honey and jam/);
+
+const macaroniSalad = recipeById("macaroni-salad");
+assert.deepEqual(Array.from(macaroniSalad.ingredients, (item) => item.key), [
+  "macaroni", "eggs", "tomato", "mayonnaise", "salt"
+]);
+assert.ok(macaroniSalad.ingredients.some((item) => item.key === "eggs" && item.amount.en === "About 2"));
+assert.deepEqual(Array.from(macaroniSalad.photos, (item) => item.src), [
+  "assets/recipes/human-food/macaroni-salad.png"
+]);
+assert.match(englishText(macaroniSalad.method), /covered container.*fridge/);
+assert.match(macaroniSalad.note.en, /Do not leave it on the counter/);
+
+const creamyTomatoShrimpPasta = recipeById("creamy-tomato-shrimp-pasta");
+assert.deepEqual(Array.from(creamyTomatoShrimpPasta.ingredients, (item) => item.key), [
+  "oil", "garlic", "prawns", "water", "milk", "tomato-ketchup", "consomme-powder", "salt", "pasta", "mushrooms", "black-pepper"
+]);
+assert.deepEqual(Array.from(creamyTomatoShrimpPasta.photos, (item) => item.src), [
+  "assets/recipes/human-food/creamy-tomato-shrimp-pasta-finished.jpg",
+  "assets/recipes/human-food/creamy-tomato-shrimp-pasta-saute-shrimp.jpg",
+  "assets/recipes/human-food/creamy-tomato-shrimp-pasta-seasoning-sauce.jpg",
+  "assets/recipes/human-food/creamy-tomato-shrimp-pasta-add-pasta.jpg"
+]);
+assert.match(englishText(creamyTomatoShrimpPasta.method), /stir occasionally.*sticking or burning/);
+assert.match(englishText(creamyTomatoShrimpPasta.method), /shrimp are opaque and fully cooked/);
+
+const tunaMushroomPasta = recipeById("tuna-mushroom-one-pan-pasta");
+assert.deepEqual(Array.from(tunaMushroomPasta.ingredients, (item) => item.key), [
+  "oil", "shimeji-mushroom", "maitake-mushroom", "tuna", "garlic-paste", "water", "pasta",
+  "dashi-soy-sauce", "mirin", "soy-sauce", "salt-pepper-seasoning", "black-pepper", "spring-onion"
+]);
+assert.deepEqual(Array.from(tunaMushroomPasta.photos, (item) => item.src), [
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-finished.png",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-tuna-garlic.jpg",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-water.jpg",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-pasta.jpg",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-shirodashi.jpg",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-mirin-soy.jpg",
+  "assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-salt-pepper.jpg"
+]);
+assert.equal(tunaMushroomPasta.videoUrl, "https://vt.tiktok.com/ZSXQh9Prn/");
+assert.match(englishText(tunaMushroomPasta.method), /turn the heat to high.*light sauce coats the pasta/);
 
 const pendingDemoRecipeIds = [
   "pork-shogayaki-no-onion",

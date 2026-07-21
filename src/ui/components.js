@@ -145,21 +145,32 @@ function renderRoutineCard(task, section) {
   return `<button class="item-card routine-card theme-${esc(section.id)}" data-routine="${esc(task.id)}">${renderCardIcon(task.icon, primaryPhoto(task.photos))}<span class="card-copy"><span class="card-title">${esc(tr(task.title))}</span><span class="card-description">${esc(tr(task.summary))}</span><span class="card-meta"><span class="badge">${esc(tr(task.frequencyText))}</span></span></span><span class="chevron">›</span></button>`;
 }
 
-function renderRecipeCard(recipe) {
+function renderRecipeCard(recipe, options = {}) {
   const isHuman = recipe.type === "human";
   const mainPhoto = primaryPhoto(recipe.photos);
 
-  if (isHuman) return renderHumanRecipeCard(recipe, mainPhoto);
+  if (isHuman) return renderHumanRecipeCard(recipe, mainPhoto, options);
   
   return `<button class="recipe-card" data-recipe="${esc(recipe.id)}">${renderCardIcon(recipe.icon, mainPhoto)}<span class="card-copy"><span class="card-title">${esc(tr(recipe.title))}</span><span class="card-description">${esc(tr(recipe.description))}</span></span><span class="chevron">›</span></button>`;
 }
 
-function renderHumanRecipeCard(recipe, mainPhoto) {
+function renderHumanRecipeCard(recipe, mainPhoto, options = {}) {
+  const selected = Boolean(options.selected);
+  const selectionDisabled = Boolean(options.selectionDisabled) && !selected;
+  const toggleLabel = label(selected ? "menuRemove" : "menuAdd");
   const thumbnail = mainPhoto
     ? `<div class="recipe-card-banner"><img src="${esc(mainPhoto.src)}" alt="${esc(tr(mainPhoto.alt || mainPhoto.caption))}" loading="lazy" /></div>`
     : `<div class="recipe-card-banner recipe-card-placeholder" aria-hidden="true"><span>${esc(recipe.icon || "R")}</span></div>`;
 
-  return `<button class="recipe-card human-recipe-card" data-recipe="${esc(recipe.id)}">${thumbnail}<div class="recipe-card-content"><span class="card-title">${esc(tr(recipe.title))}</span><div class="recipe-badges recipe-index-badges">${renderRecipeIndexBadges(recipe)}</div></div></button>`;
+  return `<article class="recipe-card human-recipe-card${selected ? " is-selected" : ""}"><button type="button" class="human-recipe-open" data-recipe="${esc(recipe.id)}">${thumbnail}<div class="recipe-card-content"><span class="card-title">${esc(tr(recipe.title))}</span><div class="recipe-badges recipe-index-badges">${renderRecipeIndexBadges(recipe)}</div></div></button><button type="button" class="human-menu-toggle" data-human-menu-toggle="${esc(recipe.id)}" aria-label="${esc(`${toggleLabel}: ${tr(recipe.title)}`)}" aria-pressed="${selected}" ${selectionDisabled ? "disabled" : ""}><span aria-hidden="true">${selected ? "✓" : "+"}</span></button></article>`;
+}
+
+function renderHumanMenuBar(selectedCount, maxSelections, status = "") {
+  const count = Math.max(0, Number(selectedCount) || 0);
+  const limit = Math.max(1, Number(maxSelections) || 1);
+  const atLimit = count >= limit;
+  const feedback = String(status || (atLimit ? label("menuSelectionLimit") : "")).trim();
+  return `<section class="human-menu-bar" aria-label="${esc(label("humanRecipes"))}"><div class="human-menu-status" aria-live="polite"><span><strong>${count}/${limit}</strong> ${esc(label("menuSelected"))}</span>${feedback ? `<small>${esc(feedback)}</small>` : ""}</div><button type="button" class="action-button primary human-menu-share" data-human-menu-share ${count ? "" : "disabled"}>${esc(label("menuShare"))}</button></section>`;
 }
 
 function renderRecipeIndexBadges(recipe) {

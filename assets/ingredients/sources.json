@@ -69,6 +69,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90056305_XL1_20260711211223_1e47e9525261c41453543c332728569e.jpg",
     "bytes": 72182
   },
+  "consomme-powder": {
+    "file": "consomme-powder.jpg",
+    "target": "Chicken consommé powder packet or tub",
+    "sourcePage": "https://www.fairprice.com.sg/product/kirei-ajinomoto-chicken-consomme-powder-1kg-90016628",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90016628_XL1_20260714171641_f9ba5157fa678bc10cdd7e4653550168.jpg",
+    "bytes": 148342
+  },
   "crab-stick": {
     "file": "crab-stick.jpg",
     "target": "Crab sticks / surimi package",
@@ -111,6 +118,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90012399_XL1_20260714170138_9a44b422a647e6ac0692d56c43f11696.jpg",
     "bytes": 54704
   },
+  "flour": {
+    "file": "flour.jpg",
+    "target": "Plain wheat flour packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/prima-plain-flour-1kg-80523",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/80523_XL1_20260601.jpg",
+    "bytes": 119654
+  },
   "fresh-chilli": {
     "file": "fresh-chilli.jpg",
     "target": "Fresh red chillies",
@@ -124,6 +138,13 @@
     "sourcePage": "https://www.fairprice.com.sg/product/defu-fresh-peeled-garlic-500g-10368386",
     "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10368386_XL1_20221122.jpg",
     "bytes": 120126
+  },
+  "garlic-paste": {
+    "file": "garlic-paste.jpg",
+    "target": "Garlic-paste jar or tube",
+    "sourcePage": "https://www.fairprice.com.sg/product/13157215",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13157215_XL1.jpg",
+    "bytes": 315356
   },
   "garlic-pepper": {
     "file": "garlic-pepper.jpg",
@@ -145,6 +166,13 @@
     "sourcePage": "https://www.fairprice.com.sg/product/mother-earth-manuka-honey-umf-10-250g-13099701",
     "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13099701_XL1_20260622.jpg",
     "bytes": 159674
+  },
+  "jam": {
+    "file": "jam.jpg",
+    "target": "Fruit jam jar",
+    "sourcePage": "https://www.fairprice.com.sg/product/frezfruta-jam-mixed-fruit-450g-11027110",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11027110_XL1_20201022.jpg",
+    "bytes": 207012
   },
   "japanese-curry-blocks": {
     "file": "japanese-curry-blocks.jpg",
@@ -173,6 +201,20 @@
     "sourcePage": "https://www.fairprice.com.sg/product/knorr-chicken-quick-serve-macaroni-bundle-of-4",
     "imageUrl": "https://media.nedigital.sg/fairprice/90231905_XL1_20260715073615_f1c57473aff72eba46278ac9a50f6cbc.jpg",
     "bytes": 221804
+  },
+  "macaroni": {
+    "file": "macaroni.jpg",
+    "target": "Plain elbow macaroni packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/prego-pasta-macaroni-500g-13083276",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13083276_XL1_20251118.jpg",
+    "bytes": 178368
+  },
+  "maitake-mushroom": {
+    "file": "maitake-mushroom.jpg",
+    "target": "Fresh maitake mushroom pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/hokto-maitake-mushroom-100g-13041084",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13041084_XL1_20250929.jpg",
+    "bytes": 229150
   },
   "matcha": {
     "file": "matcha.jpg",
@@ -237,6 +279,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13235036_XL1_20230719.jpg",
     "bytes": 72380
   },
+  "pasta": {
+    "file": "pasta.jpg",
+    "target": "Plain dried spaghetti or pasta packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/fairprice-pasta-spaghetti-500g-13184515",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13184515_XL1_20260601.jpg",
+    "bytes": 114500
+  },
   "peanut-butter": {
     "file": "peanut-butter.jpg",
     "target": "Peanut butter jar",
@@ -300,6 +349,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90077123_XL1_20260711204658_081d75b0ef127a46fc86f8a2cabb7033.jpg",
     "bytes": 71624
   },
+  "salt-pepper-seasoning": {
+    "file": "salt-pepper-seasoning.jpg",
+    "target": "S&B salt-and-pepper seasoning shaker or refill pack",
+    "sourcePage": "https://www.fairprice.com.sg/product/sandb-salt-pepper-ajitsuke-shio-kosho-seasoning",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90212096_XL1_20260630211918_d160b3cd3aa74cdfc3bde628119559dd.jpg",
+    "bytes": 67672
+  },
   "spring-onion": {
     "file": "spring-onion.jpg",
     "target": "Fresh spring onion stalks",
@@ -341,6 +397,13 @@
     "sourcePage": "https://www.fairprice.com.sg/product/ping-pong-tomato-queen-red-honey-thailand-250g-10471009",
     "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10471009_XL1_20250821.jpg",
     "bytes": 426676
+  },
+  "tomato-ketchup": {
+    "file": "tomato-ketchup.jpg",
+    "target": "Tomato ketchup bottle",
+    "sourcePage": "https://www.fairprice.com.sg/product/fairprice-tomato-ketchup-320g-13066243",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13066243_XL1_20260717.jpg",
+    "bytes": 217576
   },
   "wagyu-steak": {
     "file": "wagyu-steak.jpg",

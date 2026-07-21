@@ -120,6 +120,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/s-b-ichimi-togarashi-japanese-chilli-powder-kirei-15-g-90056305
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90056305_XL1_20260711211223_1e47e9525261c41453543c332728569e.jpg
 
+## consomme-powder
+
+- **File**: `consomme-powder.jpg`
+- **Shopping target**: Chicken consommé powder packet or tub
+- **Source page**: https://www.fairprice.com.sg/product/kirei-ajinomoto-chicken-consomme-powder-1kg-90016628
+- **Downloaded image**: https://media.nedigital.sg/fairprice/90016628_XL1_20260714171641_f9ba5157fa678bc10cdd7e4653550168.jpg
+
 ## cooked-protein
 
 - **File**: `tuna.jpg`
@@ -180,6 +187,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/kirei-kikkoman-ita-kamaboko-frozen-japanese-white-fish-cake-220-g-90012399
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90012399_XL1_20260714170138_9a44b422a647e6ac0692d56c43f11696.jpg
 
+## flour
+
+- **File**: `flour.jpg`
+- **Shopping target**: Plain wheat flour packet
+- **Source page**: https://www.fairprice.com.sg/product/prima-plain-flour-1kg-80523
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/80523_XL1_20260601.jpg
+
 ## fresh-chilli
 
 - **File**: `fresh-chilli.jpg`
@@ -193,6 +207,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Fresh garlic bulb
 - **Source page**: https://www.fairprice.com.sg/product/defu-fresh-peeled-garlic-500g-10368386
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10368386_XL1_20221122.jpg
+
+## garlic-paste
+
+- **File**: `garlic-paste.jpg`
+- **Shopping target**: Garlic-paste jar or tube
+- **Source page**: https://www.fairprice.com.sg/product/13157215
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13157215_XL1.jpg
 
 ## garlic-pepper
 
@@ -221,6 +242,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/mother-earth-manuka-honey-umf-10-250g-13099701
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13099701_XL1_20260622.jpg
 
+## jam
+
+- **File**: `jam.jpg`
+- **Shopping target**: Fruit jam jar
+- **Source page**: https://www.fairprice.com.sg/product/frezfruta-jam-mixed-fruit-450g-11027110
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/11027110_XL1_20201022.jpg
+
 ## japanese-curry-blocks
 
 - **File**: `japanese-curry-blocks.jpg`
@@ -248,6 +276,20 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Knorr Chicken Quick Serve Macaroni packet
 - **Source page**: https://www.fairprice.com.sg/product/knorr-chicken-quick-serve-macaroni-bundle-of-4
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90231905_XL1_20260715073615_f1c57473aff72eba46278ac9a50f6cbc.jpg
+
+## macaroni
+
+- **File**: `macaroni.jpg`
+- **Shopping target**: Plain elbow macaroni packet
+- **Source page**: https://www.fairprice.com.sg/product/prego-pasta-macaroni-500g-13083276
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13083276_XL1_20251118.jpg
+
+## maitake-mushroom
+
+- **File**: `maitake-mushroom.jpg`
+- **Shopping target**: Fresh maitake mushroom pack
+- **Source page**: https://www.fairprice.com.sg/product/hokto-maitake-mushroom-100g-13041084
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13041084_XL1_20250929.jpg
 
 ## matcha
 
@@ -334,6 +376,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Fresh lotus root, carrots, bamboo shoots, and mushrooms mix
 - **Source page**: https://www.fairprice.com.sg/product/mr-fresh-slices-lotus-root-350g-13235036
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13235036_XL1_20230719.jpg
+
+## pasta
+
+- **File**: `pasta.jpg`
+- **Shopping target**: Plain dried spaghetti or pasta packet
+- **Source page**: https://www.fairprice.com.sg/product/fairprice-pasta-spaghetti-500g-13184515
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13184515_XL1_20260601.jpg
 
 ## peanut-butter
 
@@ -434,6 +483,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Ordinary table-salt packet
 - **Source page**: https://www.fairprice.com.sg/product/fairprice-premium-fine-salt-500g-432823
 
+## salt-pepper-seasoning
+
+- **File**: `salt-pepper-seasoning.jpg`
+- **Shopping target**: S&B salt-and-pepper seasoning shaker or refill pack
+- **Source page**: https://www.fairprice.com.sg/product/sandb-salt-pepper-ajitsuke-shio-kosho-seasoning
+- **Downloaded image**: https://media.nedigital.sg/fairprice/90212096_XL1_20260630211918_d160b3cd3aa74cdfc3bde628119559dd.jpg
+
 ## sesame-oil
 
 - **File**: `sesame-oil.jpg`
@@ -511,6 +567,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Fresh whole tomatoes
 - **Source page**: https://www.fairprice.com.sg/product/ping-pong-tomato-queen-red-honey-thailand-250g-10471009
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/10471009_XL1_20250821.jpg
+
+## tomato-ketchup
+
+- **File**: `tomato-ketchup.jpg`
+- **Shopping target**: Tomato ketchup bottle
+- **Source page**: https://www.fairprice.com.sg/product/fairprice-tomato-ketchup-320g-13066243
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13066243_XL1_20260717.jpg
 
 ## tuna
 

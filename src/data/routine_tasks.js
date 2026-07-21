@@ -461,17 +461,18 @@ const routineTasks = [
     ]),
 
   routine("kitchen-sink-drain-rack-counter", "weekly", 20, "K", 
-    t("Kitchen Sink, Drain, Dish Rack & Countertop", "流し台、排水口、水切りラック、天板", "မီးဖိုချောင်စင်၊ ရေနုတ်မြောင်း၊ ပန်းကန်ပြားစင်နှင့် စားပွဲမျက်နှာပြင်"), 
-    t("Deep clean the kitchen sink, drain area, dish rack, and kitchen cabinet countertop. Remove slime, food residue, water stains, and oil marks.", "流し台、排水口、水切りラック、キッチンの天板を大掃除します。ぬめり、食べ残し、水垢、油汚れを取り除きます。", "မီးဖိုချောင်စင်၊ ရေနုတ်မြောင်းနေရာ၊ ပန်းကန်ပြားစင်နှင့် မီးဖိုချောင် ကက်ဘိနက် စားပွဲမျက်နှာပြင်ကို သန့်ရှင်းရေးအကြီးစားလုပ်ပါ။ ဂျီးများ၊ အစားအစာအကြွင်းအကျန်များ၊ ရေကွက်များနှင့် ဆီကွက်များကို ဖယ်ရှားပါ။"),
+    t("Kitchen Rack", "キッチンラック", "မီးဖိုချောင်စင်"),
+    t("Clean the kitchen rack. Remove dust, food residue, water stains, and oil marks.", "キッチンラックを掃除します。ほこり、食べかす、水垢、油汚れを取り除きます。", "မီးဖိုချောင်စင်ကို သန့်ရှင်းပါ။ ဖုန်၊ အစားအစာအကြွင်းအကျန်၊ ရေကွက်နှင့် ဆီကွက်များကို ဖယ်ရှားပါ။"),
     t("Weekly", "毎週", "အပတ်စဉ်"), 
     [
-      t("This is separate from normal after-meal cleanup because these areas build up grime quickly.", "これらのエリアは汚れが溜まりやすいため、通常の食後の片付けとは別に行います。", "ဤနေရာများသည် ဂျီးမြန်မြန်တက်တတ်သဖြင့် သာမန် ထမင်းစားပြီးနောက် သန့်ရှင်းရေးနှင့် သီးခြားဖြစ်သည်။"),
-      t("Deep clean the kitchen sink, faucet, drain, dish rack, and the white marble countertop weekly to prevent stains and mold.", "シミやカビを防ぐため、流し台、蛇口、排水口、水切りラック、および白い大理石の天板を毎週大掃除してください。", "အစွန်းအထင်းများနှင့် မှိုများမဖြစ်စေရန် မီးဖိုချောင်စင်၊ ဘုံဘိုင်၊ ရေနုတ်မြောင်း၊ ပန်းကန်ပြားစင်နှင့် အဖြူရောင်ကျောက်ပြား စားပွဲမျက်နှာပြင်ကို အပတ်စဉ် သန့်ရှင်းရေးအကြီးစားလုပ်ပါ။")
+      t("Remove all items from the kitchen rack before cleaning.", "掃除の前に、キッチンラックからすべての物を取り出してください。", "မသန့်ရှင်းမီ မီးဖိုချောင်စင်ပေါ်က ပစ္စည်းအားလုံးကို ဖယ်ပါ။"),
+      t("Wipe every shelf, rail, corner, and underside.", "棚、レール、角、裏側をすべて拭いてください。", "စင်ချပ်၊ ဘောင်တန်း၊ ထောင့်နှင့် အောက်ဘက်အားလုံးကို သုတ်ပါ။"),
+      t("Dry the kitchen rack fully before putting the items back.", "物を戻す前に、キッチンラックを完全に乾かしてください。", "ပစ္စည်းများ ပြန်မထားမီ မီးဖိုချောင်စင်ကို လုံးဝခြောက်အောင်လုပ်ပါ။")
     ],
     [
       photo("assets/routines/nako-kitchen-sink.jpg",
-        t("Kitchen sink and countertop setup", "流し台とキッチンの天板のセットアップ", "မီးဖိုချောင်စင်နှင့် စားပွဲမျက်နှာပြင် တပ်ဆင်မှု"),
-        t("Keep the sink, black faucet, and white marble countertop clean and free of water stains.", "流し台、黒い蛇口、および白い大理石の天板を清潔に保ち、水垢がつかないようにしてください。", "စင်၊ အနက်ရောင်ဘုံဘိုင်နှင့် အဖြူရောင်ကျောက်ပြား စားပွဲမျက်နှာပြင်ကို သန့်ရှင်းအောင်ထားပြီး ရေကွက်များ ကင်းစင်ပါစေ।"))
+        t("Kitchen rack above the sink", "流し台の上のキッチンラック", "မီးဖိုချောင်စင်ပေါ်ရှိ စင်"),
+        t("Clean the kitchen rack every week.", "キッチンラックを毎週掃除してください。", "မီးဖိုချောင်စင်ကို အပတ်စဉ် သန့်ရှင်းပါ။"))
     ]),
 
   routine("nako-weekly-play-pen-deep-clean", "weekly", 25, "N",

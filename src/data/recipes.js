@@ -316,6 +316,191 @@ const recipes = [
       highProtein: false
     }
   ),
+  recipe("three-ingredient-pancakes-honey-jam",
+    t("Three-Ingredient Pancakes with Honey & Jam", "材料3つのパンケーキ（はちみつ・ジャム添え）", "ပါဝင်ပစ္စည်း ၃ မျိုး ပန်ကိတ်၊ ပျားရည်နှင့် သစ်သီးယို"),
+    [
+      [t("Plain flour", "小麦粉", "ဂျုံမှုန့်"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "flour"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "eggs"],
+      [t("Milk", "牛乳", "နွားနို့"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "milk"],
+      [t("Honey, for serving", "はちみつ（仕上げ用）", "တည်ခင်းရန် ပျားရည်"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "honey"],
+      [t("Jam, for serving", "ジャム（仕上げ用）", "တည်ခင်းရန် သစ်သီးယို"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "jam"]
+    ],
+    [
+      t("Put the flour in a mixing bowl.", "小麦粉をボウルに入れます。", "ဂျုံမှုန့်ကို ဇလုံထဲ ထည့်ပါ။"),
+      t("Crack the eggs into the flour.", "小麦粉に卵を割り入れます。", "ကြက်ဥများကို ဂျုံမှုန့်ထဲ ဖောက်ထည့်ပါ။"),
+      t("Add the milk gradually and stir until the batter is smooth.", "牛乳を少しずつ加え、生地がなめらかになるまで混ぜます。", "နွားနို့ကို နည်းနည်းစီထည့်ပြီး မုန့်နှစ်ချောမွေ့သည်အထိ မွှေပါ။"),
+      t("Heat a dry non-stick frying pan over low-medium heat.", "油をひかずに、ノンスティックのフライパンを弱めの中火で温めます。", "ဆီမထည့်ထားသော non-stick ဒယ်အိုးကို မီးအေးအေးမှ အလယ်အလတ်ဖြင့် ပူအောင်လုပ်ပါ။"),
+      t("Pour small rounds of batter into the pan.", "生地を小さな丸形になるようフライパンに流し入れます。", "မုန့်နှစ်ကို ဒယ်အိုးထဲ အဝိုင်းငယ်များဖြစ်အောင် လောင်းပါ။"),
+      t("Cook until small bubbles appear and the edges begin to set.", "小さな気泡が出て、縁が固まり始めるまで焼きます。", "ပူဖောင်းငယ်များပေါ်လာပြီး အနားများတည်လာသည်အထိ ချက်ပါ။"),
+      t("Flip each pancake and cook until the centre is fully cooked.", "パンケーキを裏返し、中まで完全に火が通るまで焼きます。", "ပန်ကိတ်တစ်ခုစီကို လှန်ပြီး အလယ်သားလုံးဝကျက်သည်အထိ ချက်ပါ။"),
+      t("Serve with honey and jam.", "はちみつとジャムを添えます。", "ပျားရည်နှင့် သစ်သီးယိုဖြင့် တည်ခင်းပါ။")
+    ],
+    t("Use only flour, eggs, and milk in the batter. Do not add sugar, baking powder, butter, or oil. Keep the heat low enough to avoid burning, and cook the egg batter fully before serving.", "生地には小麦粉、卵、牛乳だけを使います。砂糖、ベーキングパウダー、バター、油は加えません。焦げないよう火加減を弱めに保ち、卵を含む生地の中まで完全に火を通してから出します。", "မုန့်နှစ်တွင် ဂျုံမှုန့်၊ ကြက်ဥနှင့် နွားနို့ကိုသာ သုံးပါ။ သကြား၊ baking powder၊ ထောပတ် သို့မဟုတ် ဆီ မထည့်ပါနှင့်။ မလောင်စေရန် မီးအေးအေးထားပြီး ကြက်ဥပါသော မုန့်နှစ်အလယ်သား လုံးဝကျက်မှ တည်ခင်းပါ။"),
+    [
+      photo("assets/recipes/human-food/three-ingredient-pancakes-served.jpg",
+        t("Three-ingredient pancakes served with honey and jam", "はちみつとジャムを添えた材料3つのパンケーキ", "ပျားရည်နှင့် သစ်သီးယိုဖြင့် တည်ခင်းထားသော ပါဝင်ပစ္စည်း ၃ မျိုး ပန်ကိတ်"),
+        t("Serve the cooked pancakes with honey and fruit jam.", "焼き上がったパンケーキにはちみつとフルーツジャムを添えます。", "ကျက်ပြီးသော ပန်ကိတ်များကို ပျားရည်နှင့် သစ်သီးယိုဖြင့် တည်ခင်းပါ။")),
+      photo("assets/recipes/human-food/three-ingredient-pancakes-pouring-batter.jpg",
+        t("Pouring pancake batter into a non-stick pan", "ノンスティックのフライパンにパンケーキ生地を流し入れる", "non-stick ဒယ်အိုးထဲ ပန်ကိတ်မုန့်နှစ် လောင်းထည့်နေပုံ"),
+        t("Pour small portions of the smooth batter into the dry pan.", "なめらかな生地を、油をひいていないフライパンに少量ずつ流し入れます。", "ချောမွေ့သော မုန့်နှစ်ကို ဆီမထည့်ထားသော ဒယ်အိုးထဲ အနည်းငယ်စီ လောင်းပါ။")),
+      photo("assets/recipes/human-food/three-ingredient-pancakes-flipping.jpg",
+        t("Flipping pancakes in the frying pan", "フライパンでパンケーキを裏返す", "ဒယ်အိုးထဲရှိ ပန်ကိတ်များကို လှန်နေပုံ"),
+        t("Flip the pancakes carefully and cook the centre completely.", "パンケーキを丁寧に裏返し、中まで完全に火を通します。", "ပန်ကိတ်များကို ဂရုတစိုက်လှန်ပြီး အလယ်သားလုံးဝကျက်အောင် ချက်ပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / မုန့်စားချိန်"),
+      style: t("Simple", "簡単", "ရိုးရှင်းသော"),
+      highProtein: false
+    }
+  ),
+  recipe("macaroni-salad",
+    t("Macaroni Salad", "マカロニサラダ", "မကာရိုနီသုပ်"),
+    [
+      [t("Elbow macaroni", "マカロニ", "မကာရိုနီ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "macaroni"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("About 2", "約2個", "၂ လုံးခန့်"), "eggs"],
+      [t("Tomato, diced", "角切りトマト", "အတုံးသေးသေးလှီးထားသော ခရမ်းချဉ်သီး"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "tomato"],
+      [t("Mayonnaise", "マヨネーズ", "မရိုနိစ် (Mayonnaise)"), t("as needed", "適量", "လိုအပ်သလို"), "mayonnaise"],
+      [t("Salt", "塩", "ဆား"), t("to taste", "適量", "အရသာအလိုက်"), "salt"]
+    ],
+    [
+      t("Boil about 2 eggs until fully cooked.", "卵約2個を中まで完全に火が通るまでゆでます。", "ကြက်ဥ ၂ လုံးခန့်ကို ကျက်အောင် ပြုတ်ပါ။"),
+      t("Cool the eggs, then peel and chop them.", "卵を冷まし、殻をむいて小さく切ります。", "ကြက်ဥကို အေးအောင်ထားပြီး အခွံခွာကာ သေးသေးလှီးပါ။"),
+      t("Boil the macaroni until tender.", "マカロニを柔らかくなるまでゆでます。", "မကာရိုနီကို နူးအိလာသည်အထိ ပြုတ်ပါ။"),
+      t("Drain the macaroni and let it cool.", "マカロニの湯を切り、冷まします。", "မကာရိုနီကို ရေစစ်ပြီး အေးအောင်ထားပါ။"),
+      t("Dice the tomato into small pieces.", "トマトを小さな角切りにします。", "ခရမ်းချဉ်သီးကို အတုံးသေးသေးလှီးပါ။"),
+      t("Mix the macaroni, boiled eggs, tomato, mayonnaise, and salt.", "マカロニ、ゆで卵、トマト、マヨネーズ、塩を混ぜます。", "မကာရိုနီ၊ ကြက်ဥပြုတ်၊ ခရမ်းချဉ်သီး၊ Mayonnaise နှင့် ဆားကို ရောမွှေပါ။"),
+      t("Put the salad in a covered container and keep it in the fridge.", "サラダをふた付きの容器に入れ、冷蔵庫で保存します。", "အသုပ်ကို အဖုံးပါသောဘူးထဲထည့်ပြီး ရေခဲသေတ္တာထဲတွင် သိမ်းထားပါ။")
+    ],
+    t("Keep the finished salad covered in the fridge. Do not leave it on the counter after mixing.", "完成したサラダはふたをして冷蔵庫で保存します。混ぜ終わった後は室温に置いたままにしないでください。", "ပြီးသောအသုပ်ကို အဖုံးပိတ်ပြီး ရေခဲသေတ္တာထဲတွင် သိမ်းပါ။ ရောမွှေပြီးနောက် စားပွဲပေါ်တွင် မထားပါနှင့်။"),
+    [
+      photo("assets/recipes/human-food/macaroni-salad.png",
+        t("Finished macaroni salad in a metal bowl", "金属製のボウルに入った完成したマカロニサラダ", "သံဇလုံထဲရှိ ပြီးစီးသော မကာရိုနီသုပ်"),
+        t("Mix the tender macaroni with boiled eggs, diced tomato, mayonnaise, and salt.", "柔らかくゆでたマカロニに、ゆで卵、角切りトマト、マヨネーズ、塩を混ぜます。", "နူးအိသော မကာရိုနီကို ကြက်ဥပြုတ်၊ ခရမ်းချဉ်သီးအတုံး၊ Mayonnaise နှင့် ဆားတို့ဖြင့် ရောမွှေပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Side", "昼食／副菜", "နေ့လယ်စာ / အရံဟင်း"),
+      style: t("Cold salad", "冷製サラダ", "အအေးသုပ်"),
+      highProtein: false
+    }
+  ),
+  recipe("creamy-tomato-shrimp-pasta",
+    t("Creamy Tomato Shrimp Pasta", "クリーミートマトシュリンプパスタ", "ခရမ်းချဉ်သီးအရသာ ပုစွန်နို့နှစ် Pasta"),
+    [
+      [t("Olive oil", "オリーブオイル", "သံလွင်ဆီ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "oil"],
+      [t("Garlic, finely minced", "にんにく（みじん切り）", "နုပ်နုပ်စဉ်းထားသော ကြက်သွန်ဖြူ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "garlic"],
+      [t("Shrimp", "えび", "ပုစွန်"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "prawns"],
+      [t("Water", "水", "ရေ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "water"],
+      [t("Milk", "牛乳", "နို့"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "milk"],
+      [t("Tomato ketchup", "トマトケチャップ", "ခရမ်းချဉ်သီး ketchup"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "tomato-ketchup"],
+      [t("Consommé powder", "コンソメ顆粒", "ကွန်ဆိုမေးဟင်းရည်မှုန့်"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "consomme-powder"],
+      [t("Salt", "塩", "ဆား"), t("to taste", "適量", "အရသာအလိုက်"), "salt"],
+      [t("Uncooked pasta", "乾燥パスタ", "မပြုတ်ရသေးသော pasta"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "pasta"],
+      [t("Mushrooms", "きのこ", "မှို"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "mushrooms"],
+      [t("Black pepper", "黒こしょう", "ငရုတ်ကောင်းမှုန့်"), t("to taste", "適量", "အရသာအလိုက်"), "black-pepper"]
+    ],
+    [
+      t("Add the olive oil and minced garlic to a pan.", "フライパンにオリーブオイルとみじん切りのにんにくを入れます。", "ဒယ်အိုးထဲသို့ သံလွင်ဆီနှင့် နုပ်နုပ်စဉ်းထားသော ကြက်သွန်ဖြူကို ထည့်ပါ။"),
+      t("Sauté the garlic until fragrant.", "にんにくの香りが出るまで炒めます。", "ကြက်သွန်ဖြူအနံ့မွှေးလာသည်အထိ ဆီသတ်ပါ။"),
+      t("Add the shrimp and cook lightly until they begin to change colour.", "えびを加え、色が変わり始めるまで軽く炒めます。", "ပုစွန်ကိုထည့်ပြီး အရောင်အနည်းငယ်ပြောင်းလာသည်အထိ ပေါ့ပေါ့ပါးပါး ကြော်ပါ။"),
+      t("Add the water, milk, tomato ketchup, consommé powder, and salt.", "水、牛乳、トマトケチャップ、コンソメ顆粒、塩を加えます。", "ရေ၊ နို့၊ ခရမ်းချဉ်သီး ketchup၊ ကွန်ဆိုမေးဟင်းရည်မှုန့်နှင့် ဆားတို့ကို ထည့်ပါ။"),
+      t("Stir the sauce until evenly combined.", "ソースが均一になるまで混ぜます。", "ဆော့စ်သမသွားသည်အထိ မွှေပါ။"),
+      t("Add the uncooked pasta and mushrooms.", "乾燥パスタときのこを加えます。", "မပြုတ်ရသေးသော pasta နှင့် မှိုကို ထည့်ပါ။"),
+      t("Cover the pan and cook over low heat until the pasta is tender.", "ふたをして、パスタが柔らかくなるまで弱火で煮ます。", "အဖုံးဖုံးပြီး pasta နူးလာသည်အထိ မီးအေးအေးဖြင့် ချက်ပါ။"),
+      t("Open the lid and stir occasionally to prevent sticking or burning.", "時々ふたを開けて混ぜ、鍋底への焦げ付きや焦げを防ぎます。", "အောက်ခြေမကပ်ဘဲ မီးမတူးစေရန် တစ်ခါတလေ အဖုံးဖွင့်ပြီး မွှေပါ။"),
+      t("Check that the shrimp are opaque and fully cooked.", "えびが不透明になり、中まで完全に火が通っていることを確認します。", "ပုစွန်များ အရောင်မကြည်တော့ဘဲ လုံးဝကျက်ကြောင်း စစ်ပါ။"),
+      t("Sprinkle with black pepper and serve.", "仕上げに黒こしょうを振って盛り付けます。", "နောက်ဆုံးတွင် ငရုတ်ကောင်းမှုန့်ဖြူးပြီး တည်ခင်းပါ။")
+    ],
+    t("Keep the heat low and stir occasionally so the pasta does not stick or burn. Make sure the shrimp are fully cooked before serving.", "パスタが鍋底に付いたり焦げたりしないよう、弱火を保って時々混ぜます。えびは中まで完全に火を通してから出してください。", "pasta အောက်ခြေမကပ်ဘဲ မီးမတူးစေရန် မီးအေးအေးထားပြီး တစ်ခါတလေ မွှေပါ။ မတည်ခင်းမီ ပုစွန်များ လုံးဝကျက်ကြောင်း သေချာစစ်ပါ။"),
+    [
+      photo("assets/recipes/human-food/creamy-tomato-shrimp-pasta-finished.jpg",
+        t("Creamy tomato shrimp pasta ready in the pan", "フライパンで完成したクリーミートマトシュリンプパスタ", "ဒယ်အိုးထဲတွင် အဆင်သင့်ဖြစ်နေသော ခရမ်းချဉ်သီးအရသာ ပုစွန်နို့နှစ် pasta"),
+        t("Serve when the pasta is tender and the shrimp are fully cooked.", "パスタが柔らかくなり、えびに完全に火が通ったら盛り付けます。", "pasta နူးပြီး ပုစွန်များ လုံးဝကျက်လျှင် တည်ခင်းပါ။")),
+      photo("assets/recipes/human-food/creamy-tomato-shrimp-pasta-saute-shrimp.jpg",
+        t("Shrimp cooking with olive oil and minced garlic", "オリーブオイルとみじん切りにんにくで炒めるえび", "သံလွင်ဆီနှင့် နုပ်နုပ်စဉ်းထားသော ကြက်သွန်ဖြူဖြင့် ကြော်နေသော ပုစွန်"),
+        t("Cook the garlic until fragrant, then lightly cook the shrimp.", "にんにくの香りを出してから、えびを軽く炒めます。", "ကြက်သွန်ဖြူအနံ့မွှေးလာအောင် ဆီသတ်ပြီး ပုစွန်ကို ပေါ့ပေါ့ပါးပါး ကြော်ပါ။")),
+      photo("assets/recipes/human-food/creamy-tomato-shrimp-pasta-seasoning-sauce.jpg",
+        t("Adding ketchup, consommé powder, milk, water, and salt", "ケチャップ、コンソメ顆粒、牛乳、水、塩を加える", "ketchup၊ ကွန်ဆိုမေးဟင်းရည်မှုန့်၊ နို့၊ ရေနှင့် ဆားထည့်နေပုံ"),
+        t("Add the sauce ingredients and stir until evenly combined.", "ソースの材料を加え、均一になるまで混ぜます。", "ဆော့စ်ပါဝင်ပစ္စည်းများကို ထည့်ပြီး သမသွားသည်အထိ မွှေပါ။")),
+      photo("assets/recipes/human-food/creamy-tomato-shrimp-pasta-add-pasta.jpg",
+        t("Adding uncooked pasta to the creamy sauce", "クリーミーなソースに乾燥パスタを加える", "နို့နှစ်ဆော့စ်ထဲသို့ မပြုတ်ရသေးသော pasta ထည့်နေပုံ"),
+        t("Add the uncooked pasta and mushrooms, then cover and cook over low heat.", "乾燥パスタときのこを加え、ふたをして弱火で煮ます。", "မပြုတ်ရသေးသော pasta နှင့် မှိုကို ထည့်ပြီး အဖုံးဖုံးကာ မီးအေးအေးဖြင့် ချက်ပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("One-pan pasta", "ワンパンパスタ", "ဒယ်အိုးတစ်လုံးတည်း pasta"),
+      highProtein: true
+    }
+  ),
+  recipe("tuna-mushroom-one-pan-pasta",
+    t("Tuna & Mushroom One-Pan Pasta", "ツナとキノコの激うまパスタ", "တူနာနှင့် မှို ဒယ်အိုးတစ်လုံးတည်း Pasta"),
+    [
+      [t("Olive oil", "オリーブオイル", "သံလွင်ဆီ"), t("1 tbsp", "大さじ1", "စားပွဲတင်ဇွန်း ၁ ဇွန်း"), "oil"],
+      [t("Bunashimeji mushrooms", "ぶなしめじ", "ဘူနာရှိမေဂျီမှို"), t("1 pack", "1パック", "၁ ထုပ်"), "shimeji-mushroom"],
+      [t("Maitake mushrooms", "まいたけ", "မိုင်တာကေမှို"), t("1/2 pack", "1/2パック", "ထုပ်ဝက်"), "maitake-mushroom"],
+      [t("Canned tuna, drained", "ツナ缶（水気を切る）", "တူနာငါးဗူး (အရည်စစ်ထားသော)"), t("1 can", "1缶", "၁ ဗူး"), "tuna"],
+      [t("Garlic paste", "にんにくペースト", "ကြက်သွန်ဖြူ paste"), t("3 cm", "3センチ", "၃ စင်တီမီတာ"), "garlic-paste"],
+      [t("Water", "水", "ရေ"), "350 ml", "water"],
+      [t("Pasta (ZENB yellow pea noodles were used in the video)", "パスタ（動画ではZENB黄えんどう豆麺を使用）", "Pasta (ဗီဒီယိုတွင် ZENB အဝါရောင် ပဲခေါက်ဆွဲကို သုံးထားသည်)"), "100 g", "pasta"],
+      [t("Shirodashi", "白だし", "Shirodashi ဟင်းရည်"), t("2 tbsp", "大さじ2", "စားပွဲတင်ဇွန်း ၂ ဇွန်း"), "dashi-soy-sauce"],
+      [t("Mirin", "みりん", "မီရင်"), t("1 tsp", "小さじ1", "လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း"), "mirin"],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("1 tsp", "小さじ1", "လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း"), "soy-sauce"],
+      [t("Salt-and-pepper seasoning", "塩こしょう", "ဆားနှင့် ငရုတ်ကောင်း အရသာမှုန့်"), t("2 shakes", "2振り", "၂ ခါ ဖြူးရန်"), "salt-pepper-seasoning"],
+      [t("Black pepper, for topping", "黒こしょう（仕上げ用）", "အပေါ်မှဖြူးရန် ငရုတ်ကောင်းမှုန့်"), t("to taste", "適量", "အရသာအလိုက်"), "black-pepper"],
+      [t("Chopped green onions, for topping", "刻みねぎ（仕上げ用）", "အပေါ်မှဖြူးရန် လှီးထားသော ကြက်သွန်မြိတ်"), t("to taste", "適量", "အရသာအလိုက်"), "spring-onion"]
+    ],
+    [
+      t("Heat 1 tbsp olive oil in a frying pan.", "フライパンにオリーブオイル大さじ1を入れて熱します。", "ဒယ်အိုးထဲတွင် သံလွင်ဆီ စားပွဲတင်ဇွန်း ၁ ဇွန်းကို အပူပေးပါ။"),
+      t("Add 1 pack of bunashimeji mushrooms.", "ぶなしめじ1パックを加えます。", "ဘူနာရှိမေဂျီမှို ၁ ထုပ်ကို ထည့်ပါ။"),
+      t("Tear 1/2 pack of maitake mushrooms into the pan by hand.", "まいたけ1/2パックを手で割きながらフライパンに加えます。", "မိုင်တာကေမှို ထုပ်ဝက်ကို လက်ဖြင့်ဖဲ့ပြီး ဒယ်အိုးထဲ ထည့်ပါ။"),
+      t("Sauté the mushrooms lightly.", "きのこを軽く炒めます。", "မှိုများကို ပေါ့ပေါ့ပါးပါး ကြော်ပါ။"),
+      t("Add 1 drained can of tuna and 3 cm garlic paste.", "水気を切ったツナ1缶と、にんにくペースト3 cmを加えます。", "အရည်စစ်ထားသော တူနာငါး ၁ ဗူးနှင့် ကြက်သွန်ဖြူ paste ၃ စင်တီမီတာကို ထည့်ပါ။"),
+      t("Sauté until fragrant and the tuna changes colour slightly.", "香りが立ち、ツナの色が少し変わるまで軽く炒めます。", "အနံ့မွှေးလာပြီး တူနာငါးအရောင် အနည်းငယ်ပြောင်းသည်အထိ ပေါ့ပေါ့ပါးပါး ကြော်ပါ။"),
+      t("Pour in 350 ml water.", "水350 mlを注ぎます。", "ရေ ၃၅၀ ml ကို လောင်းထည့်ပါ။"),
+      t("Bring the water to a boil.", "沸騰させます。", "ရေဆူလာအောင် တည်ပါ။"),
+      t("Add 100 g pasta and separate the strands so they do not stick together.", "パスタ100 gを加え、麺同士がくっつかないようにほぐします。", "pasta ၁၀၀ g ကို ထည့်ပြီး အချောင်းများမကပ်စေရန် ခွဲမွှေပါ။"),
+      t("Cook for the time shown on the pasta package, stirring occasionally.", "時々混ぜながら、パスタの袋に表示された時間どおりに煮ます。", "တစ်ခါတလေ မွှေပေးပြီး pasta အထုပ်ပေါ်တွင် ဖော်ပြထားသော အချိန်အတိုင်း ချက်ပါ။"),
+      t("Add 2 tbsp shirodashi, 1 tsp mirin, 1 tsp soy sauce, and 2 shakes of salt-and-pepper seasoning.", "白だし大さじ2、みりん小さじ1、醤油小さじ1、塩こしょう2振りを加えます。", "Shirodashi စားပွဲတင်ဇွန်း ၂ ဇွန်း၊ မီရင် လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း၊ ပဲငံပြာရည် လက်ဖက်ရည်ဇွန်း ၁ ဇွန်းနှင့် ဆားငရုတ်ကောင်း အရသာမှုန့် ၂ ခါ ဖြူးထည့်ပါ။"),
+      t("Stir until the seasonings are evenly mixed.", "調味料が均一になじむまで混ぜます。", "ဟင်းခတ်များ သမသွားသည်အထိ မွှေပါ။"),
+      t("Near the end, turn the heat to high and reduce the excess liquid until a light sauce coats the pasta.", "仕上げに強火にし、余分な水分を飛ばして、軽いソースがパスタに絡むまで煮詰めます。", "ချက်ခါနီးတွင် မီးပြင်းပြင်းတင်ပြီး အရည်ပိုများကို ခန်းအောင်ချက်ကာ ဆော့စ်ပါးပါးက pasta ကို ဖုံးသွားသည်အထိ ချက်ပါ။"),
+      t("Top with black pepper and chopped green onions.", "黒こしょうと刻みねぎを振りかけます。", "ငရုတ်ကောင်းမှုန့်နှင့် လှီးထားသော ကြက်သွန်မြိတ်ကို အပေါ်မှ ဖြူးပါ။"),
+      t("Serve immediately.", "すぐに盛り付けます。", "ချက်ချင်း တည်ခင်းပါ။")
+    ],
+    t("Watch the pan closely after turning the heat to high. Stir continuously enough to prevent sticking, and stop reducing while a light sauce still coats the noodles.", "強火にした後はフライパンから目を離さないでください。焦げ付かないよう十分に混ぜ、麺に軽いソースが絡む状態で煮詰めるのを止めます。", "မီးပြင်းပြင်းတင်ပြီးနောက် ဒယ်အိုးကို သေချာစောင့်ကြည့်ပါ။ မကပ်စေရန် လုံလောက်အောင် မွှေပြီး ခေါက်ဆွဲတွင် ဆော့စ်ပါးပါးကပ်နေစဉ် မီးပိတ်ပါ။"),
+    [
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-finished.png",
+        t("Tuna and mushroom one-pan pasta ready to serve", "ツナときのこのワンパンパスタの完成品", "တည်ခင်းရန်အဆင်သင့်ဖြစ်သော တူနာနှင့် မှို ဒယ်အိုးတစ်လုံးတည်း pasta"),
+        t("Serve the pasta while the light sauce still coats the noodles.", "軽いソースが麺に絡んでいるうちに盛り付けます。", "ဆော့စ်ပါးပါးက ခေါက်ဆွဲတွင် ကပ်နေစဉ် တည်ခင်းပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-tuna-garlic.jpg",
+        t("Adding tuna and garlic paste to the mushrooms", "きのこにツナとにんにくペーストを加える", "မှိုထဲသို့ တူနာငါးနှင့် ကြက်သွန်ဖြူ paste ထည့်နေပုံ"),
+        t("Add the drained tuna and 3 cm garlic paste, then sauté lightly.", "水気を切ったツナとにんにくペースト3 cmを加え、軽く炒めます。", "အရည်စစ်ထားသော တူနာငါးနှင့် ကြက်သွန်ဖြူ paste ၃ စင်တီမီတာကို ထည့်ပြီး ပေါ့ပေါ့ပါးပါး ကြော်ပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-water.jpg",
+        t("Pouring water into the tuna and mushrooms", "ツナときのこに水を注ぐ", "တူနာငါးနှင့် မှိုထဲသို့ ရေလောင်းထည့်နေပုံ"),
+        t("Pour in 350 ml water and bring it to a boil.", "水350 mlを注ぎ、沸騰させます。", "ရေ ၃၅၀ ml လောင်းထည့်ပြီး ဆူလာအောင် တည်ပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-pasta.jpg",
+        t("Adding dry pasta to the boiling pan", "沸騰したフライパンに乾燥パスタを加える", "ဆူနေသော ဒယ်အိုးထဲသို့ pasta အခြောက် ထည့်နေပုံ"),
+        t("Add 100 g pasta and separate the strands as they soften.", "パスタ100 gを加え、柔らかくなり始めたら麺をほぐします。", "pasta ၁၀၀ g ကို ထည့်ပြီး နူးလာသည်နှင့် အချောင်းများကို ခွဲမွှေပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-shirodashi.jpg",
+        t("Measuring shirodashi into the pasta", "パスタに白だしを計って加える", "pasta ထဲသို့ Shirodashi တိုင်းထည့်နေပုံ"),
+        t("Add 2 tbsp shirodashi.", "白だし大さじ2を加えます。", "Shirodashi စားပွဲတင်ဇွန်း ၂ ဇွန်း ထည့်ပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-mirin-soy.jpg",
+        t("Measuring mirin and soy sauce into the pasta", "パスタにみりんと醤油を計って加える", "pasta ထဲသို့ မီရင်နှင့် ပဲငံပြာရည် တိုင်းထည့်နေပုံ"),
+        t("Add 1 tsp mirin and 1 tsp soy sauce.", "みりん小さじ1と醤油小さじ1を加えます。", "မီရင် လက်ဖက်ရည်ဇွန်း ၁ ဇွန်းနှင့် ပဲငံပြာရည် လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း ထည့်ပါ။")),
+      photo("assets/recipes/human-food/tuna-mushroom-one-pan-pasta-add-salt-pepper.jpg",
+        t("Adding salt-and-pepper seasoning to the pasta", "パスタに塩こしょうを加える", "pasta ထဲသို့ ဆားငရုတ်ကောင်း အရသာမှုန့် ထည့်နေပုံ"),
+        t("Add 2 shakes of salt-and-pepper seasoning.", "塩こしょうを2振り加えます。", "ဆားငရုတ်ကောင်း အရသာမှုန့်ကို ၂ ခါ ဖြူးထည့်ပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Japanese one-pan", "和風ワンパン", "ဂျပန်စတိုင် ဒယ်အိုးတစ်လုံးတည်း"),
+      highProtein: true,
+      videoUrl: "https://vt.tiktok.com/ZSXQh9Prn/",
+      videoUrlLabel: t("Open TikTok recipe video", "TikTokのレシピ動画を開く", "TikTok ဟင်းချက်နည်းဗီဒီယိုကို ဖွင့်ပါ")
+    }
+  ),
   recipe("egg-toast",
     t("Egg Toast", "卵トースト", "ကြက်ဥပေါင်မုန့်ကင်"),
     [
@@ -547,6 +732,7 @@ const recipes = [
     ],
     "human",
     {
+      shareSlug: "braised-pork-tau-pok-eggs",
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
       style: t("Braised", "煮込み", "နှပ်ဟင်း"),
       timeEstimate: t("60 mins", "60分", "မိနစ် ၆၀"),

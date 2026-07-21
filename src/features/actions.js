@@ -98,6 +98,19 @@ function handleClick(event) {
   if (langButton) { currentLang = langButton.dataset.lang; safeStorage.setItem(LANG_KEY, currentLang); return render(); }
   const diaryWhatsApp = event.target.closest("[data-diary-whatsapp]");
   if (diaryWhatsApp) { openWhatsAppNotice(); return; }
+  const humanMenuToggle = event.target.closest("[data-human-menu-toggle]");
+  if (humanMenuToggle) {
+    const recipeId = humanMenuToggle.dataset.humanMenuToggle;
+    if (!recipes.some((recipe) => recipe.id === recipeId && recipe.type === "human")) return;
+    humanMenuShareStatus = "";
+    selectedHumanRecipeIds = window.nakoMenuShare.toggleSelection(
+      selectedHumanRecipeIds,
+      recipeId,
+      window.nakoMenuShare.DEFAULT_MAX_SELECTIONS
+    );
+    return render();
+  }
+  if (event.target.closest("[data-human-menu-share]")) return shareHumanMenu();
   const appetitePercentage = event.target.closest("[data-appetite-percentage]");
   if (appetitePercentage) return saveAppetitePercentage(appetitePercentage.dataset.appetiteDate, appetitePercentage.dataset.appetitePercentage);
   const appetiteEdit = event.target.closest("[data-appetite-edit]");
@@ -376,6 +389,52 @@ function openWhatsAppNotice() {
 
 function buildWhatsAppNoticeUrl() {
   return `https://wa.me/?text=${encodeURIComponent(label("diaryWhatsAppMessage"))}`;
+}
+
+async function shareHumanMenu() {
+  const message = window.nakoMenuShare.buildMenuMessage({
+    selectedIds: selectedHumanRecipeIds,
+    recipes,
+    language: window.nakoMenuShare.DEFAULT_LANGUAGE,
+    intro: ui.mm.menuShareIntro,
+    ingredientsHeading: ui.mm.menuShareIngredients
+  });
+  if (!message) return;
+  const result = await window.nakoMenuShare.forwardMenuText(message, {
+    share: typeof navigator.share === "function" ? (payload) => navigator.share(payload) : null,
+    copy: (text) => copyHumanMenuText(text)
+  });
+  if (result === "shared" || result === "copied") selectedHumanRecipeIds = [];
+  humanMenuShareStatus = result === "shared"
+    ? label("menuShared")
+    : result === "copied"
+      ? label("menuCopied")
+      : result === "failed"
+        ? label("menuShareFailed")
+        : "";
+  render();
+}
+
+async function copyHumanMenuText(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {}
+  }
+  const source = document.createElement("textarea");
+  source.className = "clipboard-copy-source";
+  source.value = text;
+  source.readOnly = true;
+  source.setAttribute("aria-hidden", "true");
+  document.body.append(source);
+  try {
+    source.select();
+    source.setSelectionRange(0, source.value.length);
+    if (!document.execCommand?.("copy")) throw new Error("Clipboard copy failed");
+  } finally {
+    source.remove();
+  }
 }
 
 function handleInput(event) {
