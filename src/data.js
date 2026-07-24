@@ -4220,6 +4220,41 @@ const recipes = [
       highProtein: true
     }
   ),
+  recipe("crispy-skin-pan-fried-salmon",
+    t("Crispy-Skin Pan-Fried Salmon", "皮パリパリのフライパン焼きサーモン", "အရေပြားကြွပ်ကြွပ် ဒယ်အိုးကြော် ဆယ်လ်မွန်"),
+    [
+      [t("Skin-on salmon fillet", "皮付きサーモンフィレ", "အရေပြားပါ ဆယ်လ်မွန်အသားတုံး"), t("1 fillet", "1切れ", "၁ တုံး"), "salmon-fillet"],
+      [t("Cooking oil spray", "調理用オイルスプレー", "ဟင်းချက်ဆီ spray"), t("exactly 1 spray", "1回だけ", "၁ ခါသာ"), "oil"]
+    ],
+    [
+      t("If the salmon is frozen, thaw it safely in the fridge before cooking.", "サーモンが冷凍の場合は、調理前に冷蔵庫で安全に解凍します。", "ဆယ်လ်မွန်အေးခဲထားပါက မချက်မီ ရေခဲသေတ္တာထဲတွင် ဘေးကင်းစွာ အရည်ဖျော်ပါ။"),
+      t("Remove the salmon from the bag and pat both sides completely dry.", "サーモンを袋から出し、両面の水気を完全に拭き取ります。", "ဆယ်လ်မွန်ကို အိတ်ထဲမှထုတ်ပြီး နှစ်ဖက်လုံးကို ရေလုံးဝခြောက်အောင် သုတ်ပါ။"),
+      t("Check the salmon and remove any pin bones.", "サーモンを確認し、残っている小骨を取り除きます。", "ဆယ်လ်မွန်တွင် အရိုးသေးများ ကျန်မကျန် စစ်ပြီး ဖယ်ပါ။"),
+      t("Heat a frying pan over medium heat.", "フライパンを中火で熱します。", "ဒယ်အိုးကို မီးအလယ်အလတ်ဖြင့် ပူအောင်လုပ်ပါ။"),
+      t("Spray the pan exactly once with cooking oil.", "フライパンに調理用オイルを1回だけスプレーします。", "ဒယ်အိုးထဲ ဟင်းချက်ဆီ ၁ ခါသာ ဖြန်းပါ။"),
+      t("Place the salmon in the pan with the skin side down.", "サーモンを皮目を下にしてフライパンへ入れます。", "ဆယ်လ်မွန်ကို အရေပြားဘက်အောက်ထားပြီး ဒယ်အိုးထဲ ထည့်ပါ။"),
+      t("Cook without flipping until the skin is very crisp and the opaque cooked colour reaches about 80-90% up the side.", "裏返さず、皮がしっかりパリパリになり、火が通った不透明な色が側面の約80〜90％まで上がるまで焼きます。", "မလှန်ဘဲ အရေပြားအရမ်းကြွပ်လာပြီး ကျက်၍ အရောင်ဖျော့လာသောအပိုင်းက ဘေးဘက် 80-90% ခန့်အထိ တက်လာသည်အထိ ချက်ပါ။"),
+      t("Flip the salmon once.", "サーモンを1回だけ裏返します。", "ဆယ်လ်မွန်ကို ၁ ကြိမ်သာ လှန်ပါ။"),
+      t("Cook the other side until the thickest part reaches about 60°C.", "反対側を焼き、最も厚い部分の中心温度が約60℃になるまで加熱します。", "အခြားဘက်ကို ချက်ပြီး အသားအထူဆုံးနေရာ အတွင်းအပူချိန် 60°C ခန့် ရောက်အောင်လုပ်ပါ။"),
+      t("Check that the centre is not undercooked; cook a little longer if needed.", "中心が生焼けでないことを確認し、必要ならもう少し加熱します。", "အလယ်သား မကျက်သေးခြင်း မရှိကြောင်း စစ်ပါ။ လိုပါက ခဏထပ်ချက်ပါ။"),
+      t("Serve with the crispy skin facing up.", "パリパリの皮を上にして盛り付けます。", "ကြွပ်နေသော အရေပြားဘက်ကို အပေါ်ထားပြီး တည်ခင်းပါ။")
+    ],
+    t("Use exactly 1 spray of oil. Do not pour extra oil into the pan because the salmon releases plenty of its own fat. Cook most of the fillet skin-side down and flip only after the skin is very crisp and the cooked colour has risen about 80-90% up the side. The thickest part should reach about 60°C, and the centre must not be undercooked.", "油はスプレー1回だけ使います。サーモン自体から十分な脂が出るため、フライパンに追加の油を注がないでください。ほとんどの時間を皮目で焼き、皮がしっかりパリパリになり、火が通った色が側面の約80〜90％まで上がってから1回だけ裏返します。最も厚い部分は約60℃に達し、中心が生焼けでないことを確認します。", "ဆီကို ၁ ခါသာ ဖြန်းပါ။ ဆယ်လ်မွန်မှ ဆီအများကြီးထွက်သောကြောင့် ဒယ်အိုးထဲ ဆီထပ်မလောင်းပါနှင့်။ ချက်ချိန်အများစုကို အရေပြားဘက်အောက်ထားပြီး ချက်ပါ။ အရေပြားအရမ်းကြွပ်လာကာ ကျက်သောအရောင်က ဘေးဘက် 80-90% ခန့်အထိ တက်လာမှ ၁ ကြိမ်သာ လှန်ပါ။ အသားအထူဆုံးနေရာ 60°C ခန့် ရောက်ရမည်ဖြစ်ပြီး အလယ်သား မကျက်သေးခြင်း မရှိရပါ။"),
+    [
+      photo("assets/recipes/human-food/crispy-skin-pan-fried-salmon.jpg",
+        t("Pan-fried salmon opened to show the cooked centre and crispy skin", "中の火通りとパリパリの皮を確認できるフライパン焼きサーモン", "အတွင်းသားကျက်မှုနှင့် ကြွပ်သောအရေပြားကို မြင်ရသည့် ဒယ်အိုးကြော် ဆယ်လ်မွန်"),
+        t("After the long skin-side cook and short flesh-side finish, check that the thickest part is about 60°C and not undercooked.", "皮目を長く焼き、身側を短く仕上げた後、最も厚い部分が約60℃で生焼けでないことを確認します。", "အရေပြားဘက်ကို ကြာကြာချက်ပြီး အသားဘက်ကို ခဏချက်ပြီးနောက် အထူဆုံးနေရာ 60°C ခန့် ရောက်ကာ မကျက်သေးခြင်း မရှိကြောင်း စစ်ပါ။")),
+      photo("assets/recipes/human-food/crispy-skin-pan-fried-salmon-preparation.jpg",
+        t("Skin-on salmon fillet beside the frying pan and oil spray", "フライパンとオイルスプレーのそばに置いた皮付きサーモンフィレ", "ဒယ်အိုးနှင့် ဆီ spray ဘေးရှိ အရေပြားပါ ဆယ်လ်မွန်အသားတုံး"),
+        t("Pat the fillet dry and use only 1 spray of oil before cooking it skin-side down.", "切り身の水気を拭き、オイルスプレーは1回だけ使って皮目から焼きます。", "ဆယ်လ်မွန်အသားတုံးကို ရေခြောက်အောင်သုတ်ပြီး အရေပြားဘက်အောက်ထားမချက်မီ ဆီကို ၁ ခါသာ ဖြန်းပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Pan-fried", "フライパン焼き", "ဒယ်အိုးကြော်"),
+      highProtein: true
+    }
+  ),
   recipe("braised-pork-tau-pok-eggs-no-onion",
     t("Braised Pork, Tau Pok & Eggs", "豚肉・厚揚げ・卵の醤油煮込み", "ဝက်သား၊ တိုဟူးကြော်နှင့် ကြက်ဥ ပဲငံပြာရည်နှပ်"),
     [
