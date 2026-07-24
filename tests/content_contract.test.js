@@ -68,12 +68,18 @@ assert.equal(googleCalendarCheck.mustRemember[3].en, "Use the Calendar entries f
 const householdNakoSupplies = routineById("household-supplies-online");
 assert.equal(householdNakoSupplies.title.en, "Household/Nako Supplies & Online Orders");
 assert.match(householdNakoSupplies.summary.en, /Check household and Nako supplies weekly/);
+assert.match(householdNakoSupplies.summary.en, /Message Edwin and Yukari on Viber/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /Nako's food, pee pads, wipes, and poop bags every week/);
-assert.match(englishText(householdNakoSupplies.mustRemember), /Tell Edwin early before any household or Nako supplies fully run out/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /Viber message early.*before any household or Nako supplies fully run out/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /For now, Edwin and Yukari will buy the needed supplies on Shopee/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /Do not place orders or add items to the cart/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /2 tissue packs.*brown-lid tissue box.*white cabinet/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /upside down.*pull the string on the bottom/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /only 1 pack remains.*bottom shelf.*white cabinet or rack/);
-assert.ok(householdNakoSupplies.photos.some((item) => item.src === "assets/sections/nako-inventory.png"));
+assert.deepEqual(Array.from(householdNakoSupplies.photos, (item) => item.src), [
+  "assets/sections/nako-inventory.png",
+  "assets/routines/nako-shopee-online-orders.jpg"
+]);
 const legacyNakoInventory = data.foodItems.find((item) => item.id === "nako-inventory");
 assert.equal(legacyNakoInventory.active, false);
 assert.equal(legacyNakoInventory.canonicalRoute, "#routine/household-supplies-online");
@@ -101,14 +107,15 @@ assert.match(pagesSource, /homeSections\.filter\(\(section\) => section\.id !== 
 assert.match(pagesSource, /id: "grocery-shopping", type: "routine"/, "Quick Links must include Grocery Shopping");
 
 const drinkingWaterPrep = routineById("drinking-water-prep");
-assert.match(drinkingWaterPrep.summary.en, /Tiger MAA-A302.*fresh boiling water/);
+assert.match(drinkingWaterPrep.summary.en, /Boil, cool, and refrigerate drinking water/);
+assert.doesNotMatch(drinkingWaterPrep.summary.en, /Tiger MAA-A302/);
+assert.match(englishText(drinkingWaterPrep.instructions), /Store the bottles upright in the fridge/);
+assert.match(englishText(drinkingWaterPrep.mustRemember), /Tiger flask \(shelved\).*not for daily use/);
 assert.match(englishText(drinkingWaterPrep.mustRemember), /74°C or above after 10 hours.*59°C or above after 24 hours/);
-assert.match(englishText(drinkingWaterPrep.mustRemember), /after 2 days, pour it away/);
+assert.match(englishText(drinkingWaterPrep.mustRemember), /remaining water after 2 days/);
 assert.deepEqual(Array.from(drinkingWaterPrep.photos, (item) => item.src), [
-  "assets/routines/drinking-water-prep-tiger-maa-a302.jpg",
-  "assets/routines/drinking-water-prep-tiger-refill.jpg",
-  "assets/routines/drinking-water-prep-kettle.jpg",
-  "assets/routines/drinking-water-prep-fridge-bottles.jpg"
+  "assets/routines/drinking-water-prep-fridge-bottles.jpg",
+  "assets/routines/drinking-water-prep-kettle.jpg"
 ]);
 
 assert.equal(routineById("essential-food-stock").title.en, "Essential Food Stock");

@@ -1535,31 +1535,29 @@ const routineTasks = [
     ]),
   routine("drinking-water-prep", "daily", 10, "W", 
     t("Drinking Water Prep", "飲料水の準備", "သောက်ရေပြင်ဆင်ခြင်း"), 
-    t("Keep the Tiger MAA-A302 topped up with fresh boiling water. Also boil, cool, and refrigerate drinking water so enough is always ready.", "Tiger MAA-A302に新しく沸かしたお湯を補充します。また、飲料水を沸かして冷まし、冷蔵庫に保管して、いつでも十分な水を用意します。", "Tiger MAA-A302 ကို လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ပြန်ဖြည့်ထားပါ။ သောက်ရေကိုလည်း ကျို၊ အအေးခံပြီး ရေခဲသေတ္တာထဲသိမ်းကာ အမြဲလုံလောက်အောင် ပြင်ထားပါ။"),
+    t("Boil, cool, and refrigerate drinking water in clean reused glass bottles so enough cold water is always ready.", "飲料水を沸かして冷まし、清潔な再利用ガラス瓶に入れて冷蔵庫に保管し、冷たい水をいつでも十分に用意します。", "သောက်ရေကို ကျိုပြီး အအေးခံပါ။ သန့်ရှင်းသော ပြန်သုံးဖန်ပုလင်းများထဲ ထည့်ကာ ရေခဲသေတ္တာထဲသိမ်းပြီး သောက်ရေအေး အမြဲလုံလောက်အောင် ပြင်ထားပါ။"),
     t("Daily", "毎日", "နေ့စဉ်"), 
     [
-      t("Under Tiger's test conditions, the MAA-A302 keeps water at 74°C or above after 10 hours and 59°C or above after 24 hours.", "Tigerの試験条件では、MAA-A302のお湯は10時間後に74℃以上、24時間後に59℃以上です。", "Tiger ၏ စမ်းသပ်အခြေအနေအရ MAA-A302 ထဲရှိရေသည် ၁၀ နာရီအကြာတွင် အနည်းဆုံး 74°C နှင့် ၂၄ နာရီအကြာတွင် အနည်းဆုံး 59°C ရှိသည်။"),
-      t("Fill the Tiger pot with fresh boiling water.", "Tigerポットに新しく沸かしたお湯を入れます。", "Tiger ရေနွေးဘူးကို လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ဖြည့်ပါ။"),
-      t("Use the water normally.", "お湯は通常どおり使います。", "ရေကို ပုံမှန်အတိုင်း သုံးပါ။"),
-      t("If water is still inside after 2 days, pour it away.", "2日後もお湯が残っていたら、捨てます。", "၂ ရက်အကြာတွင် ရေကျန်နေသေးပါက သွန်ပစ်ပါ။"),
-      t("Rinse the pot with clean water.", "ポットをきれいな水ですすぎます。", "ရေနွေးဘူးကို ရေသန့်ဖြင့် ဆေးပါ။"),
-      t("Fill it again with fresh boiling water.", "新しく沸かしたお湯をもう一度入れます。", "လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ပြန်ဖြည့်ပါ။"),
-      t("This helps reduce the need to keep buying bottled water.", "これによりボトル入りの水を購入し続ける必要が減ります。", "၎င်းသည် ရေသန့်ဗူးများ အမြဲဝယ်ယူရန် လိုအပ်မှုကို လျှော့ချပေးသည်။")
+      t("Tiger flask (shelved): The Tiger MAA-A302 is not for daily use. Use it only when extra hot water is needed, such as when guests visit.", "Tigerポット（使用休止中）：Tiger MAA-A302は日常的には使用しません。来客時など、多くのお湯が必要な時だけ使用します。", "Tiger ရေနွေးဘူး (သိမ်းထားသည်)။ Tiger MAA-A302 ကို နေ့စဉ်မသုံးပါနှင့်။ ဧည့်သည်လာချိန်ကဲ့သို့ ရေနွေးအများကြီးလိုသောအခါမှသာ သုံးပါ။"),
+      t("Heat storage: Under Tiger's test conditions, it keeps water at 74°C or above after 10 hours and 59°C or above after 24 hours. If used, discard any remaining water after 2 days, rinse the flask, and refill it with fresh boiling water.", "保温温度：Tigerの試験条件では、10時間後に74℃以上、24時間後に59℃以上を保ちます。使用した場合は、2日後に残ったお湯を捨て、ポットをすすぎ、新しく沸かしたお湯を入れます。", "အပူချိန်ထိန်းထားမှု။ Tiger ၏ စမ်းသပ်ချက်အရ ၁၀ နာရီအကြာတွင် ရေသည် အနည်းဆုံး 74°C နှင့် ၂၄ နာရီအကြာတွင် အနည်းဆုံး 59°C ရှိနေပါမည်။ သုံးပါက ၂ ရက်အကြာတွင် ကျန်ရေကို သွန်ပစ်ပါ။ ဘူးကို ဆေးပြီး လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ပြန်ဖြည့်ပါ။")
     ],
     [
-      photo("assets/routines/drinking-water-prep-tiger-maa-a302.jpg",
-        t("Tiger MAA-A302 3-litre air-pump pot", "Tiger MAA-A302 3リットル エアーポット", "Tiger MAA-A302 ၃ လီတာ လေဖိအားသုံး ရေနွေးဘူး"),
-        t("Keep this Tiger pot topped up with fresh boiling water for normal use.", "このTigerポットに新しく沸かしたお湯を補充し、通常どおり使います。", "ဤ Tiger ရေနွေးဘူးကို လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ဖြည့်ပြီး ပုံမှန်အတိုင်း သုံးပါ။")),
-      photo("assets/routines/drinking-water-prep-tiger-refill.jpg",
-        t("Pouring out and refilling the Tiger pot", "Tigerポットのお湯を捨てて入れ替えているところ", "Tiger ရေနွေးဘူးမှ ရေသွန်ပြီး ပြန်ဖြည့်နေခြင်း"),
-        t("After 2 days, discard any remaining water, rinse the pot, and refill it with fresh boiling water.", "2日後に残ったお湯は捨て、ポットをすすぎ、新しく沸かしたお湯を入れます。", "၂ ရက်အကြာတွင် ကျန်ရေကို သွန်ပစ်၊ ရေနွေးဘူးကို ဆေးပြီး လတ်လတ်ဆတ်ဆတ် ဆူထားသောရေနွေးဖြင့် ပြန်ဖြည့်ပါ။")),
-      photo("assets/routines/drinking-water-prep-kettle.jpg",
-        t("Kettle for boiling drinking water", "飲料水を沸かすやかん", "သောက်ရေကျိုရန် ရေနွေးအိုး"),
-        t("Use this kettle to boil the drinking water.", "このやかんで飲料水を沸かします。", "သောက်ရေကို ဤရေနွေးအိုးဖြင့် ကျိုပါ။")),
       photo("assets/routines/drinking-water-prep-fridge-bottles.jpg",
         t("Upright reused glass bottles in the fridge", "冷蔵庫内で立てて保管する再利用ガラス瓶", "ရေခဲသေတ္တာထဲတွင် မတ်မတ်ထားသော ပြန်သုံးဖန်ပုလင်းများ"),
-        t("After the boiled water cools, store it upright in the reused glass bottles in the fridge.", "沸かした水が冷めたら、再利用しているガラス瓶に入れて、冷蔵庫で立てて保管します。", "ကျိုထားသောရေ အေးသွားပြီးနောက် ပြန်သုံးသော ဖန်ပုလင်းများထဲထည့်ပြီး ရေခဲသေတ္တာတွင် မတ်မတ်ထား၍ သိမ်းပါ။")),
-    ]),
+        t("Keep enough cooled drinking water upright in clean reused glass bottles in the fridge.", "冷ました飲料水を清潔な再利用ガラス瓶に入れ、十分な量を冷蔵庫で立てて保管します。", "အအေးခံထားသော သောက်ရေကို သန့်ရှင်းသည့် ပြန်သုံးဖန်ပုလင်းများထဲ ထည့်ပါ။ ရေခဲသေတ္တာထဲတွင် လုံလောက်အောင် မတ်မတ်ထားပြီး သိမ်းပါ။")),
+      photo("assets/routines/drinking-water-prep-kettle.jpg",
+        t("Kettle for boiling drinking water", "飲料水を沸かすやかん", "သောက်ရေကျိုရန် ရေနွေးအိုး"),
+        t("Use this kettle to boil the drinking water.", "このやかんで飲料水を沸かします。", "သောက်ရေကို ဤရေနွေးအိုးဖြင့် ကျိုပါ။"))
+    ],
+    {
+      instructions: [
+        t("Boil drinking water in the kettle.", "やかんで飲料水を沸かします。", "သောက်ရေကို ရေနွေးအိုးဖြင့် ကျိုပါ။"),
+        t("Let the boiled water cool completely.", "沸かした水を完全に冷まします。", "ကျိုထားသောရေကို လုံးဝအေးသွားအောင် ထားပါ။"),
+        t("Pour the cooled water into clean reused glass bottles.", "冷ました水を清潔な再利用ガラス瓶に入れます。", "အအေးခံထားသောရေကို သန့်ရှင်းသည့် ပြန်သုံးဖန်ပုလင်းများထဲ ထည့်ပါ။"),
+        t("Store the bottles upright in the fridge.", "瓶を冷蔵庫で立てて保管します。", "ပုလင်းများကို ရေခဲသေတ္တာထဲတွင် မတ်မတ်ထားပြီး သိမ်းပါ။"),
+        t("Prepare enough cold drinking water before it runs low.", "冷たい飲料水が少なくなる前に、十分な量を用意します。", "သောက်ရေအေး မကုန်မီ လုံလောက်အောင် ပြင်ထားပါ။")
+      ]
+    }),
   routine("essential-food-stock", "daily", 12, "F",
     t("Essential Food Stock", "常に家に置く食品", "အိမ်တွင် အမြဲထားရမည့် အစားအစာ"),
     t("Keep milk, eggs, bread, Japanese rice, enoki and brown shimeji mushrooms, tofu, frozen sliced pork, tomatoes, bananas, and broccoli in stock.", "牛乳、卵、パン、日本米、えのき、茶色のしめじ、豆腐、冷凍豚肉スライス、トマト、バナナ、ブロッコリーを常備します。", "နွားနို့၊ ကြက်ဥ၊ ပေါင်မုန့်၊ ဂျပန်ဆန်၊ enoki နှင့် အညိုရောင် shimeji မှို၊ tofu၊ အေးခဲဝက်သားပါးပါး၊ ခရမ်းချဉ်သီး၊ ငှက်ပျောသီးနှင့် ဘရိုကိုလီကို အမြဲထားပါ။"),
@@ -1942,24 +1940,24 @@ const routineTasks = [
 
   routine("household-supplies-online", "daily", 900, "S",
     t("Household/Nako Supplies & Online Orders", "家庭用品・ナコ用品とオンライン注文", "အိမ်သုံး/Nako သုံးပစ္စည်းများနှင့် အွန်လိုင်းမှာယူမှု"),
-    t("Refill low tissue boxes. Check household and Nako supplies weekly. Add low-stock items to the Shopee cart, but do not order.", "少なくなったティッシュを補充します。家庭用品とナコ用品を毎週確認します。残り少ない品はShopeeのカートに入れますが、注文はしません。", "tissue နည်းနေရင် ဖြည့်ပါ။ အိမ်သုံးနဲ့ Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးတာကို Shopee cart ထဲထည့်ပါ။ မမှာပါနဲ့။"),
+    t("Refill tissue boxes. Check household and Nako supplies weekly. Message Edwin and Yukari on Viber about low stock. They will buy it on Shopee.", "ティッシュを補充します。家庭用品とナコ用品を毎週確認し、残り少ない品をViberでEdwinとYukariに知らせます。購入は2人がShopeeで行います。", "tissue ကို ဖြည့်ပါ။ အိမ်သုံးနဲ့ Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးပစ္စည်းတွေကို Viber ကနေ Edwin နဲ့ Yukari ကို စာပို့ပြောပါ။ Shopee မှာ Edwin နဲ့ Yukari က ဝယ်ပါမယ်။"),
     t("Daily / throughout the day + weekly stock check", "毎日／日中随時＋毎週の在庫確認", "နေ့စဉ် / တစ်နေ့လုံး + အပတ်စဉ် stock စစ်ဆေးခြင်း"),
     [
       t("Keep 2 tissue packs in the brown-lid tissue box on top of the white cabinet.", "白いキャビネットの上にある茶色いふたのティッシュ箱には、常に2パック入れてください。", "အဖြူရောင် cabinet ပေါ်က အညိုရောင်အဖုံးပါတဲ့ tissue box ထဲမှာ tissue ၂ ထုပ် အမြဲထားပါ။"),
       t("Turn the box upside down and pull the string on the bottom to open it.", "箱を逆さにし、底のひもを引いて開けてください。", "box ကို မှောက်ပြီး အောက်ဘက်က ကြိုးကိုဆွဲကာ ဖွင့်ပါ။"),
       t("If only 1 pack remains, refill immediately with spares from the bottom shelf of the white cabinet or rack.", "1パックだけになったら、白いキャビネットまたはラックの一番下にある予備を使って、すぐ2パックに戻してください。", "၁ ထုပ်ပဲကျန်လျှင် အဖြူရောင် cabinet သို့မဟုတ် rack အောက်ဆုံးမှာထားတဲ့ အပို tissue ကိုယူပြီး ၂ ထုပ်ဖြစ်အောင် ချက်ချင်းဖြည့်ပါ။"),
-      t("When only 1-2 spare tissue packs remain, tell Edwin and add tissue packs to the shopping list or cart. Ask before placing an order.", "予備のティッシュが残り1〜2パックになったら、エドウィンに伝え、買い物リストまたはカートに追加します。注文確定前には必ず確認してください。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် Edwin ကိုပြောပြီး ဈေးဝယ်စာရင်း သို့မဟုတ် cart ထဲသို့ tissue ထုပ်များကိုထည့်ပါ။ မှာယူမီ အရင်မေးပါ။"),
-      t("Check Nako's food, pee pads, wipes, and poop bags every week. Add anything running low to the shopping list or Shopee cart.", "ナコのフード、おしっこシート、ウェットティッシュ、うんち袋を毎週確認してください。残り少ない品は買い物リストまたはShopeeのカートに追加します。", "Nako ရဲ့အစာ၊ ဆီးခံပြား၊ တစ်ရှူးစိုနဲ့ ချေးကောက်အိတ်တွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးတာကို ဈေးဝယ်စာရင်း သို့မဟုတ် Shopee cart ထဲထည့်ပါ။"),
-      t("Tell Edwin early before any household or Nako supplies fully run out.", "家庭用品やナコ用品が完全になくなる前に、早めにエドウィンに伝えてください。", "အိမ်သုံးပစ္စည်း သို့မဟုတ် Nako သုံးပစ္စည်းတွေ လုံးဝမကုန်ခင် Edwin ကို စောစောပြောပါ။"),
-      t("Do not place orders yourself. Tell Edwin or Yukari to review and check out the cart.", "自分で注文を確定しないでください。エドウィンかゆかりに、カートを確認して決済してもらうよう伝えてください。", "ကိုယ်တိုင် order မတင်ပါနဲ့။ cart ကို စစ်ပြီး check out လုပ်ပေးဖို့ Edwin သို့မဟုတ် Yukari ကို ပြောပါ။")
+      t("When only 1-2 spare tissue packs remain, message Edwin and Yukari on Viber that tissue is running low.", "予備のティッシュが残り1〜2パックになったら、ティッシュが少ないことをViberでEdwinとYukariに知らせます。", "tissue အပိုထုပ် ၁-၂ ထုပ်သာကျန်လျှင် tissue ကုန်ခါနီးကြောင်း Viber ကနေ Edwin နဲ့ Yukari ကို စာပို့ပြောပါ။"),
+      t("Check Nako's food, pee pads, wipes, and poop bags every week. Message Edwin and Yukari on Viber about anything running low.", "ナコのフード、おしっこシート、ウェットティッシュ、うんち袋を毎週確認します。残り少ない品をViberでEdwinとYukariに知らせます。", "Nako ရဲ့အစာ၊ ဆီးခံပြား၊ တစ်ရှူးစိုနဲ့ ချေးကောက်အိတ်တွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးပစ္စည်းတွေကို Viber ကနေ Edwin နဲ့ Yukari ကို စာပို့ပြောပါ။"),
+      t("Send the Viber message early, before any household or Nako supplies fully run out.", "家庭用品やナコ用品が完全になくなる前に、早めにViberで連絡します。", "အိမ်သုံးပစ္စည်း သို့မဟုတ် Nako သုံးပစ္စည်းတွေ လုံးဝမကုန်ခင် Viber ကနေ စောစောစာပို့ပါ။"),
+      t("Do not place orders or add items to the cart. For now, Edwin and Yukari will buy the needed supplies on Shopee.", "注文したり、カートに商品を追加したりしないでください。当面は、必要な品をEdwinとYukariがShopeeで購入します。", "ကိုယ်တိုင် order မတင်ပါနှင့်။ cart ထဲကိုလည်း ပစ္စည်းမထည့်ပါနှင့်။ လောလောဆယ် လိုအပ်သည့်ပစ္စည်းများကို Edwin နဲ့ Yukari က Shopee မှာ ဝယ်ပါမယ်။")
     ],
     [
-      photo("assets/routines/nako-shopee-online-orders.jpg",
-        t("Shopee shopping app", "Shopeeショッピングアプリ", "Shopee ဈေးဝယ်အက်ပ်"),
-        t("Use the Shopee app to search for and add low supplies to the cart.", "Shopeeアプリを使用して、少なくなった消耗品を検索し、カートに追加してください。", "ကုန်ခါနီးပစ္စည်းများကို ရှာဖွေပြီး cart ထဲသို့ ထည့်ရန် Shopee အက်ပ်ကို အသုံးပြုပါ။")),
       photo("assets/sections/nako-inventory.png",
         t("Storage basket with Nako's food bag, pee pads, wipes, and waste bags", "ナコのフードバッグ、おしっこシート、ウェットティッシュ、袋が入った収納バスケット", "Nako ၏ အစာအိတ်၊ ဆီးခံပြား၊ တစ်ရှူးစိုနှင့် အမှိုက်အိတ်များပါသည့် ပလတ်စတစ်ခြင်းတောင်း"),
-        t("Check Nako's supplies every week and add low-stock items to the shopping list or Shopee cart.", "ナコ用品を毎週確認し、残り少ない品は買い物リストまたはShopeeのカートに追加してください。", "Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပြီး ကုန်ခါနီးတာကို ဈေးဝယ်စာရင်း သို့မဟုတ် Shopee cart ထဲထည့်ပါ။"))
+        t("Check Nako's supplies every week. Message Edwin and Yukari on Viber about anything running low.", "ナコ用品を毎週確認し、残り少ない品をViberでEdwinとYukariに知らせます。", "Nako သုံးပစ္စည်းတွေကို အပတ်စဉ်စစ်ပါ။ ကုန်ခါနီးပစ္စည်းတွေကို Viber ကနေ Edwin နဲ့ Yukari ကို စာပို့ပြောပါ။")),
+      photo("assets/routines/nako-shopee-online-orders.jpg",
+        t("Shopee shopping app", "Shopeeショッピングアプリ", "Shopee ဈေးဝယ်အက်ပ်"),
+        t("For now, Edwin and Yukari will buy the needed supplies on Shopee.", "当面は、必要な品をEdwinとYukariがShopeeで購入します。", "လောလောဆယ် လိုအပ်သည့်ပစ္စည်းများကို Edwin နဲ့ Yukari က Shopee မှာ ဝယ်ပါမယ်။"))
     ]),
 
   routine("kitchen-sink-drain-rack-counter", "weekly", 20, "K", 
