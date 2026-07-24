@@ -30,10 +30,8 @@ function renderNakoAppetiteTracker() {
   const entry = window.nakoAppetiteTracking.normalizeEntry(entries[dateKey], dateKey);
   const history = window.nakoAppetiteTracking.recentEntries(entries, today, 30, routineTracking.addDays);
   const isToday = dateKey === today;
-  const percentageButtons = window.nakoAppetiteTracking.PERCENTAGES.map((percentage) => {
-    const selected = entry?.percentage === percentage;
-    return `<button class="appetite-percentage-button ${selected ? "is-selected" : ""} percentage-${percentage}" type="button" data-appetite-percentage="${percentage}" data-appetite-date="${esc(dateKey)}" aria-pressed="${selected}">${percentage}%</button>`;
-  }).join("");
+  const sliderValue = entry?.percentage ?? window.nakoAppetiteTracking.MAX_PERCENTAGE;
+  const sliderId = `appetite-percentage-${dateKey}`;
   const noteDisabled = entry ? "" : "disabled";
   const status = appetiteStatusMessage ? `<span class="appetite-save-status" data-appetite-status role="status">${esc(appetiteStatusMessage)}</span>` : `<span class="appetite-save-status" data-appetite-status role="status"></span>`;
 
@@ -48,7 +46,7 @@ function renderNakoAppetiteTracker() {
           </div>` : ""}
         </div>
         <div class="appetite-history-result">
-          <span class="appetite-history-track" aria-hidden="true"><span class="appetite-history-fill percentage-${item.percentage}"></span></span>
+          <progress class="appetite-history-track" max="100" value="${item.percentage}" aria-label="${esc(`${label("appetitePercentage")} ${item.percentage}%`)}"></progress>
           <strong>${item.percentage}%</strong>
           <button class="text-button" type="button" data-appetite-edit="${esc(item.dateKey)}">${esc(label("appetiteEdit"))}</button>
         </div>
@@ -65,7 +63,26 @@ function renderNakoAppetiteTracker() {
     </div>
     <fieldset class="appetite-percentage-fieldset">
       <legend>${esc(label("appetitePercentage"))}</legend>
-      <div class="appetite-percentage-options">${percentageButtons}</div>
+      <div class="appetite-slider-card">
+        <div class="appetite-slider-top">
+          <output class="appetite-slider-value" id="${esc(sliderId)}-value" for="${esc(sliderId)}" data-appetite-percentage-output>${sliderValue}%</output>
+          <button class="action-button primary appetite-slider-save" type="button" data-appetite-save>${esc(label("saveChanges"))}</button>
+        </div>
+        <input
+          class="appetite-percentage-slider"
+          id="${esc(sliderId)}"
+          type="range"
+          min="${window.nakoAppetiteTracking.MIN_PERCENTAGE}"
+          max="${window.nakoAppetiteTracking.MAX_PERCENTAGE}"
+          step="${window.nakoAppetiteTracking.PERCENTAGE_STEP}"
+          value="${sliderValue}"
+          data-appetite-percentage
+          data-appetite-date="${esc(dateKey)}"
+          aria-label="${esc(label("appetitePercentage"))}"
+          aria-describedby="${esc(sliderId)}-value"
+        >
+        <div class="appetite-slider-scale" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+      </div>
     </fieldset>
     <div class="appetite-amount-fields">
       <label class="appetite-amount-label">
@@ -94,6 +111,15 @@ function renderNakoAppetiteTracker() {
     <div class="appetite-history-head"><h3>${esc(label("appetiteHistory"))}</h3></div>
     ${historyHtml}
   </section>`;
+}
+
+function updateAppetitePercentagePreview(input) {
+  const percentage = window.nakoAppetiteTracking.validPercentage(input?.value);
+  if (percentage === null) return;
+  const output = input.closest(".appetite-slider-card")?.querySelector("[data-appetite-percentage-output]");
+  if (!output) return;
+  output.value = `${percentage}%`;
+  output.textContent = `${percentage}%`;
 }
 
 function saveAppetitePercentage(dateKey, value) {

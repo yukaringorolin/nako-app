@@ -111,8 +111,12 @@ function handleClick(event) {
     return render();
   }
   if (event.target.closest("[data-human-menu-share]")) return shareHumanMenu();
-  const appetitePercentage = event.target.closest("[data-appetite-percentage]");
-  if (appetitePercentage) return saveAppetitePercentage(appetitePercentage.dataset.appetiteDate, appetitePercentage.dataset.appetitePercentage);
+  const appetiteSave = event.target.closest("[data-appetite-save]");
+  if (appetiteSave) {
+    const appetiteSlider = appetiteSave.closest(".appetite-slider-card")?.querySelector("[data-appetite-percentage]");
+    if (appetiteSlider) return saveAppetitePercentage(appetiteSlider.dataset.appetiteDate, appetiteSlider.value);
+    return;
+  }
   const appetiteEdit = event.target.closest("[data-appetite-edit]");
   if (appetiteEdit) return editAppetiteDate(appetiteEdit.dataset.appetiteEdit);
   if (event.target.closest("[data-appetite-today]")) return editAppetiteDate(routineTracking.singaporeDateKey());
@@ -438,6 +442,8 @@ async function copyHumanMenuText(text) {
 }
 
 function handleInput(event) {
+  const appetitePercentage = event.target.closest("[data-appetite-percentage]");
+  if (appetitePercentage) return updateAppetitePercentagePreview(appetitePercentage);
   const explicitText = event.target.closest("[data-text-draft-kind]");
   if (explicitText) {
     updateTextDraft(

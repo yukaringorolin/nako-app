@@ -1,10 +1,15 @@
 const assert = require("node:assert/strict");
 const appetite = require("../src/core/appetite-tracking.js");
 
-assert.deepEqual(appetite.PERCENTAGES, [0, 25, 50, 75, 100]);
+assert.equal(appetite.MIN_PERCENTAGE, 0);
+assert.equal(appetite.MAX_PERCENTAGE, 100);
+assert.equal(appetite.PERCENTAGE_STEP, 1);
 assert.equal(appetite.validPercentage(0), 0, "Zero percent must remain a valid refused-food entry");
 assert.equal(appetite.validPercentage("75"), 75);
-assert.equal(appetite.validPercentage(80), null);
+assert.equal(appetite.validPercentage(90), 90);
+assert.equal(appetite.validPercentage("95"), 95);
+assert.equal(appetite.validPercentage(101), null);
+assert.equal(appetite.validPercentage(95.5), null);
 assert.equal(appetite.validPercentage(""), null, "Blank values must not create accidental zero-percent entries");
 assert.equal(appetite.validAmount(0), 0, "Zero must remain a valid amount");
 assert.equal(appetite.validAmount("42"), 42);
@@ -48,10 +53,10 @@ entries["2026-06-17"] = { percentage: 100, note: "Too old", updatedAt: "old" };
 entries["2026-06-18"] = { percentage: 25, note: "First included day", updatedAt: "included" };
 entries["2026-07-01"] = { percentage: 50, note: "Middle", updatedAt: "middle" };
 entries["2026-07-18"] = { percentage: 75, note: "Future", updatedAt: "future" };
-entries["2026-07-16"] = { percentage: 80, note: "Invalid percentage", updatedAt: "invalid" };
+entries["2026-07-16"] = { percentage: 101, note: "Invalid percentage", updatedAt: "invalid" };
 
 const recent = appetite.recentEntries(entries, "2026-07-17", 30);
 assert.deepEqual(recent.map((entry) => entry.dateKey), ["2026-07-17", "2026-07-01", "2026-06-18"]);
-assert.ok(recent.every((entry) => appetite.PERCENTAGES.includes(entry.percentage)));
+assert.ok(recent.every((entry) => entry.percentage >= appetite.MIN_PERCENTAGE && entry.percentage <= appetite.MAX_PERCENTAGE));
 
 console.log("Daily appetite tracking checks passed.");

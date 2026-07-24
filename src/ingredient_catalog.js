@@ -33,6 +33,7 @@
     "salmon-fillet": { file: "salmon.jpg", source: product("/product/catch-seafood-atlantic-salmon-fillet-1-3-kg-90122048"), target: "Raw salmon fillet package" },
     salt: { file: "salt.jpg", source: product("/product/fairprice-premium-fine-salt-500g-432823"), target: "Ordinary table-salt packet" },
     eggs: { file: "egg.jpg", source: product("/product/pasar-fresh-eggs-30-per-pack-13197730"), target: "Fresh egg carton" },
+    "plain-bee-hoon": { file: "plain-bee-hoon.jpg", source: null, target: "Cooked plain bee hoon with vegetables, wrapped in brown paper" },
     "knorr-quick-serve-macaroni": { file: null, source: product("/product/knorr-chicken-quick-serve-macaroni-bundle-of-4"), target: "Knorr Chicken Quick Serve Macaroni packet" },
     ham: { file: null, source: search("sliced ham"), target: "Ready-to-eat sliced ham" },
     "fresh-chilli": { file: null, source: product("/product/simply-finest-red-chilli-150g-13093893"), target: "Fresh red chillies" },

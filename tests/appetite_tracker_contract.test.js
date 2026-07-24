@@ -48,7 +48,10 @@ for (const lang of ["en", "jp", "mm"]) {
   assert.ok(data.ui[lang].inputOpenTracker, `Appetite tracker link needs a ${lang} label`);
   assert.ok(data.ui[lang].appetiteCompletion, `Appetite completion needs a ${lang} label`);
 }
-assert.match(appetiteSource, /PERCENTAGES\.map/);
+assert.match(appetiteSource, /type="range"/);
+assert.match(appetiteSource, /data-appetite-percentage-output/);
+assert.match(appetiteSource, /PERCENTAGE_STEP/);
+assert.match(appetiteSource, /<progress class="appetite-history-track"/, "History bars must support every percentage");
 assert.match(appetiteSource, /recentEntries\(entries, today, 30/);
 assert.match(appetiteSource, /data-appetite-edit/);
 assert.match(appetiteSource, /data-appetite-measurement="kibbleGrams"/);

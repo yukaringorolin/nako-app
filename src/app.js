@@ -188,6 +188,8 @@ function richText(value) {
 }
 
 function handleChange(event) {
+  const appetitePercentage = event.target.closest("[data-appetite-percentage]");
+  if (appetitePercentage) return saveAppetitePercentage(appetitePercentage.dataset.appetiteDate, appetitePercentage.value);
   const routineFilter = event.target.closest("[data-routine-filter]");
   if (routineFilter) {
     routineHistoryFilters[routineFilter.dataset.routineFilter] = routineFilter.value;

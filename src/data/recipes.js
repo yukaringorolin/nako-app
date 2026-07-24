@@ -316,6 +316,42 @@ const recipes = [
       highProtein: false
     }
   ),
+  recipe("edwin-childhood-bee-hoon-breakfast",
+    t("Edwin's Childhood Bee Hoon Breakfast", "エドウィンの思い出の朝食ビーフン", "Edwin ရဲ့ ကလေးဘဝအမှတ်တရ မနက်စာ Bee Hoon"),
+    [
+      [t("Plain bee hoon with vegetables", "野菜入りのプレーンビーフン", "ဟင်းသီးဟင်းရွက်ပါသော Bee Hoon အဖြူ"), t("1 packet or enough for the meal", "1包または食べる分", "၁ ထုပ် သို့မဟုတ် စားရန်လောက်"), "plain-bee-hoon"],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("2", "2個", "၂ လုံး"), "eggs"],
+      [t("Lean sliced pork", "脂身の少ない薄切り豚肉", "အဆီနည်း ဝက်သားလွှာ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "pork"],
+      [t("Cooking oil", "調理油", "ဟင်းချက်ဆီ"), t("as needed", "適量", "လိုအပ်သလို"), "oil"]
+    ],
+    [
+      t("Buy plain bee hoon with vegetables from downstairs. Check that it has no onion, coriander, parsley, or bean sprouts.", "階下で野菜入りのプレーンビーフンを買います。玉ねぎ、パクチー、パセリ、もやしが入っていないことを確認します。", "အောက်ထပ်မှ ဟင်းသီးဟင်းရွက်ပါသော Bee Hoon အဖြူကို ဝယ်ပါ။ ကြက်သွန်နီ၊ နံနံပင်၊ parsley နှင့် ပဲပင်ပေါက် မပါကြောင်း စစ်ပါ။"),
+      t("Cut the lean pork into bite-sized pieces.", "脂身の少ない豚肉を食べやすい大きさに切ります。", "အဆီနည်းဝက်သားကို စားရလွယ်သော အတုံးလေးများ လှီးပါ။"),
+      t("Crack 2 eggs into a bowl and beat them.", "卵2個をボウルに割り入れて溶きます。", "ကြက်ဥ ၂ လုံးကို ဇလုံထဲ ဖောက်ထည့်ပြီး ခလောက်ပါ။"),
+      t("Heat a small amount of oil in a frying pan over medium heat.", "フライパンに少量の油を入れ、中火で熱します。", "ဒယ်အိုးထဲ ဆီအနည်းငယ်ထည့်ပြီး မီးအလယ်အလတ်ဖြင့် ပူအောင်လုပ်ပါ။"),
+      t("Add the pork and stir-fry until fully cooked with no pink inside.", "豚肉を入れ、中にピンク色が残らず完全に火が通るまで炒めます。", "ဝက်သားကို ထည့်ပြီး အတွင်းသားပန်းရောင်မကျန်ဘဲ လုံးဝကျက်သည်အထိ ကြော်ပါ။"),
+      t("Add the beaten eggs and scramble them into small pieces.", "溶き卵を加え、小さくほぐしながら炒めます。", "ခလောက်ထားသော ကြက်ဥကို ထည့်ပြီး သေးသေးလေးဖြစ်အောင် မွှေကြော်ပါ။"),
+      t("Add the bee hoon and vegetables.", "ビーフンと野菜を加えます。", "Bee Hoon နှင့် ဟင်းသီးဟင်းရွက်များကို ထည့်ပါ။"),
+      t("Stir-fry until everything is hot and evenly mixed.", "全体が熱くなり、均一に混ざるまで炒めます。", "အားလုံးပူပြီး သမသွားသည်အထိ မွှေကြော်ပါ။"),
+      t("Serve the breakfast immediately.", "朝食としてすぐに出します。", "မနက်စာအဖြစ် ချက်ချင်းတည်ခင်းပါ။")
+    ],
+    t("When Edwin was a child, his mother liked to buy plain bee hoon downstairs and fry eggs with it. This one-off breakfast is an upgraded version: buy plain bee hoon with vegetables, always add 2 eggs, and add a protein. For this version, use lean pork. This is human food; do not give it to Nako. Cook the pork to at least 71°C.", "エドウィンが子どもの頃、母は階下でプレーンビーフンを買い、卵を焼いて添えるのが好きでした。この一度きりの朝食は、その思い出を少し豪華にしたものです。野菜入りのプレーンビーフンを買い、卵2個は必ず入れ、さらにたんぱく質を加えます。今回は脂身の少ない豚肉を使います。人用の料理なので、ナコには与えません。豚肉は中心温度71℃以上まで加熱します。", "Edwin ငယ်ငယ်တုန်းက သူ့အမေက အောက်ထပ်မှ Bee Hoon အဖြူဝယ်ပြီး ကြက်ဥကြော်နဲ့ တွဲကျွေးလေ့ရှိတယ်။ ဒီတစ်ကြိမ်သာလုပ်မယ့် မနက်စာက အဲဒီအမှတ်တရကို ပိုကောင်းအောင်လုပ်ထားတာပါ။ ဟင်းသီးဟင်းရွက်ပါ Bee Hoon အဖြူကို ဝယ်ပြီး ကြက်ဥ ၂ လုံး မဖြစ်မနေထည့်ကာ ပရိုတင်းတစ်မျိုး ထပ်ထည့်ပါ။ ဒီတစ်ခါ အဆီနည်းဝက်သားကို သုံးပါ။ ဒါက လူစားဖို့ဖြစ်လို့ Nako ကို မကျွေးပါနှင့်။ ဝက်သားအတွင်းအပူချိန် 71°C အနည်းဆုံး ရောက်အောင် ချက်ပါ။"),
+    [
+      photo("assets/recipes/human-food/edwin-childhood-bee-hoon-breakfast.jpg",
+        t("Finished bee hoon with eggs, vegetables, and lean pork", "卵、野菜、脂身の少ない豚肉入りの完成したビーフン", "ကြက်ဥ၊ ဟင်းသီးဟင်းရွက်နှင့် အဆီနည်းဝက်သားပါသော Bee Hoon အချောပန်းကန်"),
+        t("The finished breakfast mixes plain bee hoon and vegetables with 2 eggs and lean pork.", "野菜入りのプレーンビーフンに、卵2個と脂身の少ない豚肉を混ぜた朝食です。", "ဟင်းသီးဟင်းရွက်ပါ Bee Hoon အဖြူကို ကြက်ဥ ၂ လုံးနှင့် အဆီနည်းဝက်သားတို့ဖြင့် ရောထားသော မနက်စာအချောပန်းကန်ပါ။")),
+      photo("assets/recipes/human-food/edwin-childhood-bee-hoon-breakfast-ingredients.jpg",
+        t("Plain bee hoon parcels, 2 eggs, and lean pork", "包んだプレーンビーフン、卵2個、脂身の少ない豚肉", "Bee Hoon အဖြူထုပ်များ၊ ကြက်ဥ ၂ လုံးနှင့် အဆီနည်းဝက်သား"),
+        t("The bought bee hoon is wrapped in brown paper; add 2 eggs and lean pork at home.", "購入したビーフンは茶色い紙に包まれています。家で卵2個と脂身の少ない豚肉を加えます。", "ဝယ်လာသော Bee Hoon ကို အညိုရောင်စက္ကူဖြင့် ထုပ်ထားသည်။ အိမ်တွင် ကြက်ဥ ၂ လုံးနှင့် အဆီနည်းဝက်သားကို ထည့်ပါ။"))
+    ],
+    "human",
+    {
+      mealType: t("Breakfast", "朝食", "မနက်စာ"),
+      style: t("Singapore", "シンガポール", "စင်ကာပူစတိုင်"),
+      timeEstimate: t("15 mins after buying the bee hoon", "ビーフン購入後15分", "Bee Hoon ဝယ်ပြီးနောက် ၁၅ မိနစ်"),
+      highProtein: true
+    }
+  ),
   recipe("three-ingredient-pancakes-honey-jam",
     t("Three-Ingredient Pancakes with Honey & Jam", "材料3つのパンケーキ（はちみつ・ジャム添え）", "ပါဝင်ပစ္စည်း ၃ မျိုး ပန်ကိတ်၊ ပျားရည်နှင့် သစ်သီးယို"),
     [
@@ -682,6 +718,44 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
       style: t("Stir-fry", "炒め物", "ကြော်ဟင်း"),
       timeEstimate: t("20 mins plus thawing", "解凍時間＋20分", "အရည်ဖျော်ချိန် + မိနစ် ၂၀"),
+      highProtein: true
+    }
+  ),
+  recipe("prawn-mushroom-greens-rice-soup",
+    t("Prawns with Mushroom, Greens & Sotong Stir-Fry", "海老ときのこ・青菜・イカの炒め物", "ပုစွန်နှင့် မှို၊ အရွက်စိမ်း၊ ပြည်ကြီးငါးကြော်"),
+    [
+      [t("Shell-on prawns", "殻付き海老", "အခွံပါ ပုစွန်"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "prawns"],
+      [t("Sotong (squid)", "イカ", "ပြည်ကြီးငါး"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "squid"],
+      [t("Shimeji mushrooms", "しめじ", "Shimeji မှို"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "shimeji-mushroom"],
+      [t("Leafy greens such as spinach or xiao bai cai", "ほうれん草や小白菜などの葉物野菜", "ဟင်းနုနွယ် သို့မဟုတ် Xiao Bai Cai ကဲ့သို့ အရွက်စိမ်းဟင်းသီးဟင်းရွက်"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "spinach"],
+      [t("Cooking oil", "調理油", "ဟင်းချက်ဆီ"), t("a small amount", "少量", "အနည်းငယ်"), "oil"]
+    ],
+    [
+      t("If the prawns or sotong are frozen, thaw them safely in the fridge before cooking.", "海老やイカが冷凍の場合は、調理前に冷蔵庫で安全に解凍します。", "ပုစွန် သို့မဟုတ် ပြည်ကြီးငါး အေးခဲထားပါက မချက်မီ ရေခဲသေတ္တာထဲတွင် ဘေးကင်းစွာ အရည်ဖျော်ပါ။"),
+      t("Rinse the prawns and remove any visible vein while keeping the shells on.", "海老を洗い、殻を付けたまま見える背わたを取り除きます。", "ပုစွန်ကို ဆေးပြီး အခွံမခွာဘဲ မြင်ရသော အမည်းကြောင်းကို ဖယ်ပါ။"),
+      t("Drain the sotong and pat it dry.", "イカの水気を切り、よく拭きます。", "ပြည်ကြီးငါးကို ရေစစ်ပြီး ခြောက်အောင် သုတ်ပါ။"),
+      t("Trim the shimeji base and separate the mushrooms.", "しめじの根元を切り落とし、ほぐします。", "Shimeji မှိုအမြစ်ကို ဖြတ်ပြီး မှိုများကို ခွဲပါ။"),
+      t("Wash and cut the leafy greens.", "葉物野菜を洗って切ります。", "အရွက်စိမ်းဟင်းသီးဟင်းရွက်ကို ဆေးပြီး လှီးပါ။"),
+      t("Dry the mushrooms and leafy greens well.", "きのこと葉物野菜の水気をよく取ります。", "မှိုနှင့် အရွက်စိမ်းဟင်းသီးဟင်းရွက်များကို ရေခြောက်အောင် သုတ်ပါ။"),
+      t("Pan-fry the prawns gently over medium heat until fully cooked and just firm.", "海老を中火のフライパンで、中まで完全に火が通り、ちょうど弾力が出るまでやさしく焼きます。", "ပုစွန်ကို မီးအလယ်အလတ်ဖြင့် ဒယ်အိုးထဲတွင် လုံးဝကျက်ကာ အသားတင်းရုံအထိ အသာအယာကြော်ပါ။"),
+      t("Remove the prawns from the pan as soon as they are fully cooked.", "海老に完全に火が通ったら、すぐにフライパンから取り出します。", "ပုစွန်လုံးဝကျက်သည်နှင့် ဒယ်အိုးထဲမှ ချက်ချင်းထုတ်ပါ။"),
+      t("Heat a small amount of oil in a wide frying pan over medium-high heat.", "広めのフライパンに少量の油を入れ、中火から強めの中火で熱します。", "ဒယ်အိုးကျယ်ထဲ ဆီအနည်းငယ်ထည့်ပြီး မီးအလယ်အလတ်မှ အနည်းငယ်ပြင်းပြင်းဖြင့် ပူအောင်လုပ်ပါ။"),
+      t("Add the shimeji and stir-fry uncovered. Do not add water.", "しめじを加え、ふたをせずに炒めます。水は加えません。", "Shimeji မှိုကို ထည့်ပြီး အဖုံးမအုပ်ဘဲ ကြော်ပါ။ ရေမထည့်ပါနှင့်။"),
+      t("Keep stir-frying until most of the liquid released by the mushrooms has evaporated.", "きのこから出た水分がほとんど蒸発するまで炒め続けます。", "မှိုမှထွက်လာသော ရေအများစု ခမ်းသွားသည်အထိ ဆက်ကြော်ပါ။"),
+      t("Add the sotong and stir-fry until it begins to turn opaque.", "イカを加え、白くなり始めるまで炒めます。", "ပြည်ကြီးငါးကို ထည့်ပြီး အဖြူရောင်ပြောင်းစပြုသည်အထိ ကြော်ပါ။"),
+      t("Add the leafy greens and stir-fry until the sotong is fully cooked and the greens are just tender.", "葉物野菜を加え、イカに完全に火が通り、青菜がちょうどやわらかくなるまで炒めます。", "အရွက်စိမ်းဟင်းသီးဟင်းရွက်ကို ထည့်ပြီး ပြည်ကြီးငါး လုံးဝကျက်ကာ ဟင်းသီးဟင်းရွက် နူးရုံအထိ ကြော်ပါ။"),
+      t("Serve the mushroom, greens, and sotong stir-fry with the prawns.", "きのこ・青菜・イカの炒め物を海老と一緒に盛り付けます。", "မှို၊ အရွက်စိမ်းနှင့် ပြည်ကြီးငါးကြော်ကို ပုစွန်နှင့်အတူ တည်ခင်းပါ။")
+    ],
+    t("Edwin thinks the air fryer overcooked the prawns in the photo. The shells were very hard to peel, but the exact reason is not known. Next time, do not use the air fryer. Gently pan-fry the prawns and stop as soon as they are fully cooked; boiling them briefly for a different soup may also work better. The mushrooms release plenty of liquid, so do not add water to this stir-fry. Cook uncovered until most of the liquid evaporates.", "写真の海老はエアフライヤーで加熱しすぎたのではないかとエドウィンは考えています。殻がとてもむきにくくなりましたが、正確な原因は分かりません。次回はエアフライヤーを使いません。フライパンでやさしく焼き、中まで完全に火が通ったらすぐに加熱を止めます。別のスープに使うなら、短時間ゆでる方法もよさそうです。きのこから十分な水分が出るため、この炒め物には水を加えません。ふたをせず、水分がほとんど蒸発するまで炒めます。", "ပုံထဲက ပုစွန်တွေကို air fryer နှင့် အကျက်လွန်သွားတယ်လို့ Edwin ထင်တယ်။ အခွံခွာရတာ အရမ်းခက်ပေမယ့် ဘာကြောင့်လဲဆိုတာ အတိအကျ မသိပါ။ နောက်တစ်ခါ air fryer မသုံးပါနှင့်။ ဒယ်အိုးနှင့် အသာအယာကြော်ပြီး လုံးဝကျက်သည်နှင့် ချက်ချင်း မီးပိတ်ပါ။ အခြားဟင်းချိုတစ်မျိုးအတွက်ဆိုလျှင် ခဏပြုတ်တာ ပိုကောင်းနိုင်ပါတယ်။ မှိုမှ ရေအများကြီးထွက်သောကြောင့် ဒီအကြော်ထဲ ရေမထည့်ပါနှင့်။ အဖုံးမအုပ်ဘဲ ရေအများစု ခမ်းသွားသည်အထိ ကြော်ပါ။"),
+    [
+      photo("assets/recipes/human-food/prawn-mushroom-greens-stir-fry.jpg",
+        t("Shell-on prawns with mushroom, greens, and sotong stir-fry", "殻付き海老と、きのこ・青菜・イカの炒め物", "အခွံပါပုစွန်နှင့် မှို၊ အရွက်စိမ်း၊ ပြည်ကြီးငါးကြော်"),
+        t("The photographed meal has air-fried shell-on prawns beside a watery stir-fry of shimeji mushrooms, leafy greens, and sotong.", "写真の食事は、エアフライした殻付き海老と、水分が多く出たしめじ・青菜・イカの炒め物です。", "ပုံထဲက အစားအစာတွင် air fryer နှင့်ချက်ထားသော အခွံပါပုစွန်ကို ရေများထွက်နေသော Shimeji မှို၊ အရွက်စိမ်းနှင့် ပြည်ကြီးငါးကြော်ဘေးတွင် တည်ခင်းထားသည်။"))
+    ],
+    "human",
+    {
+      mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
+      style: t("Stir-fry", "炒め物", "ကြော်ဟင်း"),
       highProtein: true
     }
   ),

@@ -5,12 +5,16 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  const PERCENTAGES = Object.freeze([0, 25, 50, 75, 100]);
+  const MIN_PERCENTAGE = 0;
+  const MAX_PERCENTAGE = 100;
+  const PERCENTAGE_STEP = 1;
 
   function validPercentage(value) {
     if (value === "" || value === null || value === undefined || typeof value === "boolean") return null;
     const percentage = Number(value);
-    return PERCENTAGES.includes(percentage) ? percentage : null;
+    return Number.isInteger(percentage) && percentage >= MIN_PERCENTAGE && percentage <= MAX_PERCENTAGE
+      ? percentage
+      : null;
   }
 
   function validAmount(value) {
@@ -74,5 +78,14 @@
       .sort((a, b) => b.dateKey.localeCompare(a.dateKey));
   }
 
-  return { PERCENTAGES, normalizeEntry, recentEntries, upsertEntry, validAmount, validPercentage };
+  return {
+    MAX_PERCENTAGE,
+    MIN_PERCENTAGE,
+    PERCENTAGE_STEP,
+    normalizeEntry,
+    recentEntries,
+    upsertEntry,
+    validAmount,
+    validPercentage
+  };
 });
