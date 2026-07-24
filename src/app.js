@@ -10,10 +10,17 @@ const ingredientCatalog = window.nakoIngredientCatalog || {};
 const routineTracking = window.nakoRoutineTracking;
 
 const safeStorage = window.nakoStorage.createSafeStorage(localStorage);
+const cachedMealLogs = window.nakoMealLogs.loadCache(safeStorage);
 
 const savedLang = safeStorage.getItem(LANG_KEY);
 let currentLang = langs.includes(savedLang) ? savedLang : "mm";
 let appState = loadState();
+let mealLogsState = {
+  entries: cachedMealLogs.entries,
+  refreshedAt: cachedMealLogs.refreshedAt,
+  status: "idle",
+  error: ""
+};
 migrateTextDraftState();
 let activeTextDraftKeys = new Set();
 migrateTrainingState();
@@ -66,6 +73,7 @@ document.addEventListener("submit", handleSubmit);
 document.addEventListener("keydown", handleKeydown);
 document.addEventListener("focusin", handleFocusIn);
 document.addEventListener("error", handleGamificationImageError, true);
+document.addEventListener("visibilitychange", handleMealLogsVisibilityChange);
 const gamificationMigration = initializeGamificationState();
 if (gamificationMigration.showAlbumReady) showGamificationNotice("albumReady");
 initFirebaseSync();

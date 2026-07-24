@@ -9,11 +9,11 @@ const foodItems = [
         t("Healthy dog food bowl with chicken, broccoli, and carrots", "鶏肉、ブロッコリー、にんじんが入った健康的なドッグフードボウル", "ကြက်သား၊ ပန်းဂေါ်ဖီစိမ်းနှင့် မုန်လာဥနီတို့ပါဝင်သော ကျန်းမာရေးနှင့်ညီညွတ်သည့် ခွေးစာခွက်"),
         t("Nako Topping Recipes", "ナコのトッピングレシピ", "Nako အတွက် အပေါ်မှထည့်ရန် ဟင်းချက်နည်းများ"))
     ]),
-  food("meal-logs", "placeholder", "L", 
-    t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"), 
-    t("Future Streamlit tracking for meals, protein target, and notes.", "食事、タンパク質目標、およびメモのための将来的なStreamlit追跡機能。", "အစားအစာ၊ ပရိုတင်းရည်မှန်းချက်နှင့် မှတ်စုများအတွက် နောင်တွင်သုံးမည့် Streamlit ခြေရာခံခြင်း။"), 
-    t("Placeholder only for now. Detailed meal tracking will be handled later.", "現在はプレースホルダーのみです。詳細な食事追跡は後で対応します。", "လောလောဆယ် နေရာလွတ်ပြထားခြင်းသာဖြစ်သည်။ အသေးစိတ်အစားအစာခြေရာခံခြင်းကို နောက်မှဆောင်ရွက်မည်။"), 
-    t("Keep cooking rules visible until tracking is built.", "追跡機能が構築されるまで、料理ルールを表示したままにしてください。", "ခြေရာခံစနစ် မဆောက်ရသေးမီ ချက်ပြုတ်ခြင်းစည်းကမ်းများကို မြင်သာအောင်ထားပါ။"), 3,
+  food("meal-logs", "dashboard", "L",
+    t("Edwin Meal Logs", "エドウィンの食事記録", "Edwin ၏ အစားအသောက်မှတ်တမ်းများ"),
+    t("Daily calories and macros from Edwin's meal log.", "エドウィンの食事記録から、1日のカロリーと栄養素を表示します。", "Edwin ရဲ့ အစားအသောက်မှတ်တမ်းမှ နေ့စဉ်ကယ်လိုရီနဲ့ အာဟာရပမာဏများကို ပြပါသည်။"),
+    t("Refresh to load the latest daily totals.", "更新して最新の1日合計を読み込みます。", "နောက်ဆုံးနေ့စဉ်စုစုပေါင်းကို ကြည့်ရန် အသစ်ပြန်တင်ပါ။"),
+    t("The dashboard uses published daily totals.", "ダッシュボードは公開された1日合計を使用します。", "dashboard မှာ အများမြင်နိုင်သော နေ့စဉ်စုစုပေါင်းကို အသုံးပြုပါသည်။"), 3,
     [
       photo("assets/sections/meal-logs.png", 
         t("Meal tray with rice, miso soup, salmon, and log notebook", "ご飯、味噌汁、鮭、ログノートが入った食事トレイ", "ထမင်း၊ မစ်ဆိုဆွပ်၊ ဆယ်လ်မွန်ငါးနှင့် မှတ်တမ်းစာအုပ်ပါဝင်သော အစားအစာလင်ပန်း"),

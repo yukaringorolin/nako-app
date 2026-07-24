@@ -74,6 +74,7 @@ function handleClick(event) {
   if (routineCheckIn) return go("#routine-checkin");
   const routineHistoryButton = event.target.closest("[data-routine-history]");
   if (routineHistoryButton) return go("#routine-history");
+  if (event.target.closest("[data-meal-logs-refresh]")) return refreshMealLogs();
   const routineComplete = event.target.closest("[data-routine-complete]");
   if (routineComplete) return completeRoutine(routineComplete.dataset.routineComplete);
   if (event.target.closest("[data-routine-undo]")) return undoRoutineCompletion();

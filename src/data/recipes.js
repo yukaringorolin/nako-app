@@ -166,40 +166,24 @@ const recipes = [
   recipe("chicken-oyakodon-no-onion",
     t("Oyakodon (Chicken & Egg Rice Bowl)", "親子丼", "အိုယာကိုဒုံ (ကြက်သားနှင့် ကြက်ဥ ထမင်းပေါ်ဟင်း)"),
     [
-      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), t("1 bowl", "1杯", "၁ ပန်းကန်"), "rice"],
-      ingredient(
-        t("Skinless chicken thigh or breast", "鶏もも肉または鶏むね肉（皮なし）", "ကြက်ပေါင်သား သို့မဟုတ် ကြက်ရင်ပုံသား (အရေပြားမပါ)"),
-        t("as needed", "必要量", "လိုအပ်သလို"),
-        "chicken-thigh",
-        [
-          ingredientOption("chicken-thigh", t("Skinless chicken thigh", "皮なし鶏もも肉", "အရေပြားမပါသော ကြက်ပေါင်သား")),
-          ingredientOption("chicken-breast", t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"))
-        ]
-      ),
-      [t("Egg", "卵", "ကြက်ဥ"), t("as needed", "必要量", "လိုအပ်သလို"), "eggs"],
-      ingredient(
-        t("Shimeji or button mushroom", "しめじまたはマッシュルーム", "ရှီမဲဂျီ သို့မဟုတ် မှို"),
-        t("as needed", "必要量", "လိုအပ်သလို"),
-        "shimeji-mushroom",
-        [
-          ingredientOption("shimeji-mushroom", t("Shimeji mushroom", "しめじ", "ရှီမဲဂျီမှို")),
-          ingredientOption("button-mushroom", t("Button mushroom", "マッシュルーム", "ဘတန်မှို"))
-        ]
-      ),
-      [t("Hot water", "お湯", "ရေနွေး"), t("1 rice-bowlful", "お茶碗1杯", "ထမင်းပန်းကန် ၁ လုံးစာ"), "water"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("1 spoonful", "スプーン1杯", "ဇွန်း ၁ ဇွန်း"), "soy-sauce"],
-      [t("Mirin", "みりん", "mirin"), t("1 spoonful", "スプーン1杯", "ဇွန်း ၁ ဇွန်း"), "mirin"],
-      [t("Honey", "はちみつ", "ပျားရည်"), t("a little", "少量", "အနည်းငယ်"), "honey"]
+      [t("Cooked Japanese rice", "ご飯", "ချက်ပြီးသားထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.8, fat: 0.4 }],
+      [t("Skinless chicken breast", "皮なし鶏むね肉", "အရေပြားမပါသော ကြက်ရင်ပုံသား"), "200g", "chicken-breast", { calories: 224, protein: 45.0, carbs: 0.0, fat: 3.9 }],
+      [t("Eggs", "卵", "ကြက်ဥ"), t("2 (100g)", "2個（100g）", "၂ လုံး (၁၀၀ ဂရမ်)"), "eggs", { calories: 144, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Button mushrooms", "マッシュルーム", "ဘတန်မှို"), "70g", "button-mushroom", { calories: 15, protein: 2.2, carbs: 2.3, fat: 0.2 }],
+      [t("Hot water", "お湯", "ရေနွေး"), "180g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "18g", "soy-sauce", { calories: 10, protein: 1.4, carbs: 0.9, fat: 0.1 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "18g", "mirin", { calories: 43, protein: 0.1, carbs: 7.8, fat: 0.0 }],
+      [t("Honey", "はちみつ", "ပျားရည်"), "7g", "honey", { calories: 21, protein: 0.0, carbs: 5.7, fat: 0.0 }]
     ],
     [
       t("Cut the chicken into pieces about 2 cm wide.", "チキンを約2cm角に切ります。", "ကြက်သားကို ၂ စင်တီမီတာခန့် အတုံးများ လှီးပါ။"),
-      t("Add 1 rice-bowlful of hot water to a frying pan.", "フライパンにお湯をお茶碗1杯入れます。", "ဒယ်အိုးထဲသို့ ရေနွေး ထမင်းပန်းကန် ၁ လုံးစာ ထည့်ပါ။"),
-      t("Add 1 spoonful of soy sauce, 1 spoonful of mirin, and a little honey.", "醤油をスプーン1杯、みりんをスプーン1杯、はちみつを少し入れます。", "ပဲငံပြာရည် ဇွန်း ၁ ဇွန်း၊ mirin ဇွန်း ၁ ဇွန်းနှင့် ပျားရည် အနည်းငယ် ထည့်ပါ။"),
-      t("Add the chicken and simmer for 5 minutes.", "チキンを入れて5分煮ます。", "ကြက်သားထည့်ပြီး ၅ မိနစ် တည်ပါ။"),
-      t("Add the mushrooms and simmer for 3 minutes.", "きのこを入れて3分煮ます。", "မှိုထည့်ပြီး ၃ မိနစ် တည်ပါ။"),
-      t("Add the egg.", "卵を入れます。", "ကြက်ဥထည့်ပါ။"),
+      t("Add 180g hot water to a frying pan.", "フライパンにお湯180gを入れます。", "ဒယ်အိုးထဲသို့ ရေနွေး ၁၈၀ ဂရမ် ထည့်ပါ။"),
+      t("Add 18g soy sauce, 18g mirin, and 7g honey.", "醤油18g、みりん18g、はちみつ7gを加えます。", "ပဲငံပြာရည် ၁၈ ဂရမ်၊ mirin ၁၈ ဂရမ်နှင့် ပျားရည် ၇ ဂရမ် ထည့်ပါ။"),
+      t("Add 200g chicken and simmer for 5 minutes.", "鶏肉200gを入れて5分煮ます。", "ကြက်သား ၂၀၀ ဂရမ်ထည့်ပြီး ၅ မိနစ် တည်ပါ။"),
+      t("Add 70g mushrooms and simmer for 3 minutes.", "マッシュルーム70gを入れて3分煮ます。", "မှို ၇၀ ဂရမ်ထည့်ပြီး ၃ မိနစ် တည်ပါ။"),
+      t("Beat 2 eggs and add them to the pan.", "卵2個を溶き、フライパンに加えます。", "ကြက်ဥ ၂ လုံးကို ခလောက်ပြီး ဒယ်အိုးထဲ ထည့်ပါ။"),
       t("Check that the egg and chicken are fully cooked.", "卵とチキンの中まで火が通っていることを確認します。", "ကြက်ဥနှင့် ကြက်သား လုံးဝကျက်ကြောင်း စစ်ပါ။"),
-      t("Serve the chicken and egg mixture over the cooked rice.", "チキンと卵をご飯の上にかけます。", "ကြက်သားနှင့် ကြက်ဥအရောကို ထမင်းပေါ်တင်ပါ။")
+      t("Serve the chicken and egg mixture over 180g cooked rice.", "鶏肉と卵をご飯180gの上にかけます。", "ကြက်သားနှင့် ကြက်ဥအရောကို ထမင်း ၁၈၀ ဂရမ်ပေါ် တင်ပါ။")
     ],
     t("Keep the chicken pieces around 2 cm and use only a little honey. Make sure the chicken is fully cooked before serving.", "チキンは約2cmにそろえ、はちみつは少量だけ使います。食べる前にチキンの中まで火が通っていることを確認してください。", "ကြက်သားတုံးများကို ၂ စင်တီမီတာခန့်ထားပြီး ပျားရည် အနည်းငယ်သာ သုံးပါ။ မစားမီ ကြက်သားလုံးဝကျက်ကြောင်း စစ်ပါ။"),
     [
@@ -213,7 +197,18 @@ const recipes = [
       style: t("Japanese", "和食", "ဂျပန်စတိုင်"),
       timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
       highProtein: true,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 691,
+        protein: 65.5,
+        carbs: 69.2,
+        fat: 14.1,
+        basis: t(
+          "Calculated using 180g cooked rice, 200g raw skinless chicken breast, 2 eggs, 70g button mushrooms, 18g each of soy sauce and mirin, and 7g honey.",
+          "ご飯180g、生の皮なし鶏むね肉200g、卵2個、マッシュルーム70g、醤油とみりん各18g、はちみつ7gで計算しています。",
+          "ချက်ပြီးသားထမင်း ၁၈၀ ဂရမ်၊ အရေပြားမပါသော ကြက်ရင်ပုံသားအစိမ်း ၂၀၀ ဂရမ်၊ ကြက်ဥ ၂ လုံး၊ ဘတန်မှို ၇၀ ဂရမ်၊ ပဲငံပြာရည်နှင့် mirin တစ်မျိုးစီ ၁၈ ဂရမ်၊ ပျားရည် ၇ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
 
@@ -292,14 +287,14 @@ const recipes = [
   recipe("banana-toast",
     t("Banana Toast", "バナナトースト", "ငှက်ပျောသီးပေါင်မုန့်ကင်"),
     [
-      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice", "1枚", "၁ ချပ်"), "bread"],
-      [t("Peanut butter", "ピーナッツバター", "မြေပဲထောပတ်"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "peanut-butter"],
-      [t("Strawberry jam", "いちごジャム", "စတော်ဘယ်ရီယို"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "strawberry-jam"],
-      [t("Banana", "バナナ", "ငှက်ပျောသီး"), t("1 banana", "バナナ1本", "ငှက်ပျောသီး ၁ လုံး"), "banana"]
+      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice (35g)", "1枚（35g）", "၁ ချပ် (၃၅ ဂရမ်)"), "bread", { calories: 93, protein: 3.1, carbs: 17.2, fat: 1.1 }],
+      [t("Peanut butter", "ピーナッツバター", "မြေပဲထောပတ်"), "16g", "peanut-butter", { calories: 94, protein: 4.0, carbs: 3.2, fat: 8.0 }],
+      [t("Strawberry jam", "いちごジャム", "စတော်ဘယ်ရီယို"), "15g", "strawberry-jam", { calories: 42, protein: 0.1, carbs: 10.4, fat: 0.0 }],
+      [t("Medium banana, peeled", "中サイズのバナナ（皮なし）", "အခွံခွာထားသော အလတ်စားငှက်ပျောသီး"), t("1 (118g)", "1本（118g）", "၁ လုံး (၁၁၈ ဂရမ်)"), "banana", { calories: 101, protein: 1.2, carbs: 26.4, fat: 0.5 }]
     ],
     [
-      t("Spread peanut butter and strawberry jam on the bread.", "パンにピーナッツバターといちごジャムを塗る。", "ပေါင်မုန့်ပေါ်တွင် မြေပဲထောပတ်နှင့် စတော်ဘယ်ရီယိုကို လိမ်းပါ။"),
-      t("Place sliced banana on top.", "スライスしたバナナを上にのせる。", "လှီးထားသော ငှက်ပျောသီးကို အပေါ်တွင် တင်ပါ။"),
+      t("Spread 16g peanut butter and 15g strawberry jam on the bread.", "パンにピーナッツバター16gといちごジャム15gを塗る。", "ပေါင်မုန့်ပေါ်တွင် မြေပဲထောပတ် ၁၆ ဂရမ်နှင့် စတော်ဘယ်ရီယို ၁၅ ဂရမ်ကို လိမ်းပါ။"),
+      t("Slice the 118g banana and place it on top.", "バナナ118gをスライスして上にのせる。", "ငှက်ပျောသီး ၁၁၈ ဂရမ်ကို လှီးပြီး အပေါ်တွင် တင်ပါ။"),
       t("Put it in the air fryer and cook at 190°C for 4 minutes.", "エアフライヤーに入れ、190℃で4分加熱する。", "air fryer ထဲထည့်ပြီး 190°C ဖြင့် 4 မိနစ် အပူပေးပါ။")
     ],
     t("Air-fry at 190°C for 4 minutes. The toast and air-fryer basket will be hot when finished.", "エアフライヤーは190℃・4分。終了後はトーストとバスケットが熱いので注意する。", "air fryer ကို 190°C ဖြင့် 4 မိနစ်ထားပါ။ ပြီးသွားပါက toast နှင့် air-fryer basket ပူနေမည်ဖြစ်သောကြောင့် သတိထားပါ။"),
@@ -313,7 +308,18 @@ const recipes = [
       mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / snack"),
       style: t("Quick", "簡単", "လွယ်ကူသော"),
       timeEstimate: t("4 mins", "4分", "၄ မိနစ်"),
-      highProtein: false
+      highProtein: false,
+      nutrition: {
+        calories: 330,
+        protein: 8.4,
+        carbs: 57.2,
+        fat: 9.6,
+        basis: t(
+          "Calculated using one 35g slice of bread, 16g peanut butter, 15g strawberry jam, and one 118g peeled medium banana.",
+          "食パン1枚35g、ピーナッツバター16g、いちごジャム15g、皮をむいた中サイズのバナナ118gで計算しています。",
+          "ပေါင်မုန့် ၃၅ ဂရမ် ၁ ချပ်၊ မြေပဲထောပတ် ၁၆ ဂရမ်၊ စတော်ဘယ်ရီယို ၁၅ ဂရမ်နှင့် အခွံခွာထားသော အလတ်စားငှက်ပျောသီး ၁၁၈ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("edwin-childhood-bee-hoon-breakfast",
@@ -387,6 +393,58 @@ const recipes = [
     {
       mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / မုန့်စားချိန်"),
       style: t("Simple", "簡単", "ရိုးရှင်းသော"),
+      highProtein: false
+    }
+  ),
+  recipe("hotcake-mix-pancakes",
+    t("Hotcakes (Pancakes)", "ホットケーキ（パンケーキ）", "ဟော့ကိတ် (ပန်ကိတ်)"),
+    [
+      [t("Hotcake mix", "ホットケーキミックス", "ဟော့ကိတ်အမှုန့်"), t("1 bag", "1袋", "၁ ထုပ်"), "hotcake-mix"],
+      [t("Milk", "牛乳", "နွားနို့"), t("Amount shown on the package", "パッケージ記載量", "အထုပ်ပေါ်တွင် ဖော်ပြထားသောပမာဏ"), "milk"],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1", "1個", "၁ လုံး"), "eggs"],
+      [t("Oil, if needed", "油（必要な場合）", "လိုအပ်လျှင် ဆီ"), t("a little", "少量", "အနည်းငယ်"), "oil"]
+    ],
+    [
+      t("Put the hotcake mix, milk, and egg in a bowl.", "ホットケーキミックス、牛乳、卵をボウルに入れます。", "ဟော့ကိတ်အမှုန့်၊ နွားနို့နှင့် ကြက်ဥကို ဇလုံထဲထည့်ပါ။"),
+      t("Mix until no large lumps remain. Do not overmix.", "大きなだまがなくなるまで混ぜます。混ぜすぎないでください。", "အလုံးကြီးများ မကျန်သည်အထိ မွှေပါ။ အလွန်အကျွံ မမွှေပါနှင့်။"),
+      t("Heat a frying pan over low-medium heat. Add a little oil only if needed.", "フライパンを弱めの中火で温めます。必要な場合だけ油を少量ひきます。", "ဒယ်အိုးကို မီးအေးအေးမှ အလယ်အလတ်ဖြင့် ပူအောင်လုပ်ပါ။ လိုအပ်မှသာ ဆီအနည်းငယ်ထည့်ပါ။"),
+      t("Pour half of the batter into the pan.", "生地の半量をフライパンに流し入れます。", "မုန့်နှစ်တစ်ဝက်ကို ဒယ်အိုးထဲ လောင်းထည့်ပါ။"),
+      t("When bubbles appear and the edges are set, flip the hotcake.", "気泡が出て縁が固まったら、ホットケーキを裏返します。", "ပူဖောင်းများပေါ်လာပြီး အနားများတည်လာလျှင် ဟော့ကိတ်ကို လှန်ပါ။"),
+      t("Cook until the centre is fully cooked.", "中まで完全に火が通るまで焼きます。", "အလယ်သား လုံးဝကျက်သည်အထိ ချက်ပါ။"),
+      t("Repeat with the remaining batter to make the second hotcake.", "残りの生地でもう1枚焼きます。", "ကျန်သောမုန့်နှစ်ဖြင့် ဒုတိယဟော့ကိတ်ကို ထပ်ချက်ပါ။")
+    ],
+    t("Follow the milk quantity shown on the hotcake-mix package. Keep the heat low-medium. Take care with the hot pan, oil, and spatula.", "牛乳の量はホットケーキミックスのパッケージ表示に従ってください。火加減は弱めの中火に保ち、熱いフライパン、油、フライ返しの扱いに注意してください。", "နွားနို့ပမာဏကို ဟော့ကိတ်အမှုန့်အထုပ်ပေါ်ရှိ ညွှန်ကြားချက်အတိုင်း သုံးပါ။ မီးအေးအေးမှ အလယ်အလတ်ထားပါ။ ပူသောဒယ်အိုး၊ ဆီနှင့် spatula ကို သတိထားကိုင်တွယ်ပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / မုန့်စားချိန်"),
+      style: t("Quick", "手軽", "လွယ်ကူမြန်ဆန်သော"),
+      timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
+      highProtein: false
+    }
+  ),
+  recipe("simple-boiled-sweet-potato",
+    t("Simple Boiled Sweet Potato", "さつまいものシンプル煮", "ရိုးရှင်းသော ကန်စွန်းဥပြုတ်"),
+    [
+      [t("Sweet potato", "さつまいも", "ကန်စွန်းဥ"), t("as needed", "必要に応じて", "လိုအပ်သလို"), "sweet-potato"],
+      [t("Water", "水", "ရေ"), t("enough to cover", "かぶるくらい", "မြုပ်သည်အထိ"), "water"],
+      [t("Salt", "塩", "ဆား"), t("a little", "少量", "အနည်းငယ်"), "salt"],
+      [t("Soy sauce", "しょうゆ", "ပဲငံပြာရည်"), t("a little", "少量", "အနည်းငယ်"), "soy-sauce"]
+    ],
+    [
+      t("Wash the sweet potato and cut it into even round slices.", "さつまいもを洗い、同じ厚さの輪切りにします。", "ကန်စွန်းဥကို ဆေးပြီး အထူတူ အဝိုင်းလေးများ လှီးပါ။"),
+      t("Boil enough water to cover the slices.", "さつまいもがかぶるくらいの湯を沸かします。", "ကန်စွန်းဥအဝိုင်းများ မြုပ်လောက်အောင် ရေကိုဆူအောင်တည်ပါ။"),
+      t("Add a little salt and soy sauce.", "塩としょうゆを少量加えます。", "ဆားနှင့် ပဲငံပြာရည် အနည်းငယ်ထည့်ပါ။"),
+      t("Add the sweet-potato slices and cook until tender.", "さつまいもを加え、柔らかくなるまで煮ます。", "ကန်စွန်းဥအဝိုင်းများထည့်ပြီး နူးအိသည်အထိ ပြုတ်ပါ။"),
+      t("Check that the slices are tender but still hold their shape.", "柔らかく、形が崩れていないことを確認します。", "နူးအိပြီး ပုံသဏ္ဌာန်မပျက်သေးကြောင်း စစ်ပါ။")
+    ],
+    t("Take care with boiling water. This seasoned version is for humans only. If preparing sweet potato for Nako, keep a separate piece completely plain, with no salt or soy sauce.", "熱湯に注意してください。この味付きの作り方は人用です。ナコ用に作る場合は、塩やしょうゆを使わない無味の分を別にしてください。", "ရေဆူကို သတိထားပါ။ အရသာထည့်ထားသော ဤပုံစံသည် လူစားရန်သာဖြစ်သည်။ Nako အတွက်လုပ်လျှင် ဆားနှင့် ပဲငံပြာရည် လုံးဝမပါသော အပိုင်းကို သီးသန့်ထားပါ။"),
+    [],
+    "human",
+    {
+      mealType: t("Side/Snack", "副菜／軽食", "အရံဟင်း / မုန့်စားချိန်"),
+      style: t("Simple", "簡単", "ရိုးရှင်းသော"),
+      timeEstimate: t("20 mins", "20分", "၂၀ မိနစ်"),
       highProtein: false
     }
   ),
@@ -540,14 +598,14 @@ const recipes = [
   recipe("egg-toast",
     t("Egg Toast", "卵トースト", "ကြက်ဥပေါင်မုန့်ကင်"),
     [
-      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice", "1枚", "၁ ချပ်"), "bread"],
-      [t("Egg", "卵", "ကြက်ဥ"), t("1 egg", "卵1個", "ကြက်ဥ ၁ လုံး"), "eggs"],
-      [t("Mayonnaise", "マヨネーズ", "မေယိုနိစ်"), t("to taste", "お好みで", "အရသာအလိုက်"), "mayonnaise"],
-      [t("Salt", "塩", "ဆား"), t("to taste", "お好みで", "အရသာအလိုက်"), "salt"]
+      [t("Bread", "パン", "ပေါင်မုန့်"), t("1 slice (35g)", "1枚（35g）", "၁ ချပ် (၃၅ ဂရမ်)"), "bread", { calories: 93, protein: 3.1, carbs: 17.2, fat: 1.1 }],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1 (50g)", "1個（50g）", "၁ လုံး (၅၀ ဂရမ်)"), "eggs", { calories: 72, protein: 6.3, carbs: 0.4, fat: 4.8 }],
+      [t("Mayonnaise", "マヨネーズ", "မေယိုနိစ်"), "15g", "mayonnaise", { calories: 102, protein: 0.1, carbs: 0.1, fat: 11.3 }],
+      [t("Salt", "塩", "ဆား"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }]
     ],
     [
       t("Boil the egg in water for 10 minutes to make a hard-boiled egg, then peel it.", "卵をお湯で10分ゆでてゆで卵を作り、殻をむく。", "ကြက်ဥကို ရေနွေးထဲတွင် ၁၀ မိနစ်ပြုတ်ပြီး ကြက်ဥပြုတ်လုပ်ကာ အခွံခွာပါ။"),
-      t("Add mayonnaise and salt, then mix well.", "マヨネーズと塩を加えてよく混ぜる。", "mayonnaise နှင့် ဆားထည့်ပြီး ကောင်းကောင်းရောပါ။"),
+      t("Add 15g mayonnaise and 1g salt, then mix well.", "マヨネーズ15gと塩1gを加えてよく混ぜる。", "mayonnaise ၁၅ ဂရမ်နှင့် ဆား ၁ ဂရမ်ထည့်ပြီး ကောင်းကောင်းရောပါ။"),
       t("Place the egg mixture on the toast.", "卵のミックスをトーストの上にのせる。", "ကြက်ဥအရောကို toast ပေါ်တွင် တင်ပါ။"),
       t("Put it in the air fryer and cook at 190°C for 4 minutes.", "エアフライヤーに入れ、190℃で4分加熱する。", "air fryer ထဲထည့်ပြီး 190°C ဖြင့် 4 မိနစ် အပူပေးပါ။")
     ],
@@ -577,19 +635,30 @@ const recipes = [
       mealType: t("Breakfast/Snack", "朝食／軽食", "မနက်စာ / snack"),
       style: t("Quick", "簡単", "လွယ်ကူသော"),
       timeEstimate: t("14 mins", "14分", "၁၄ မိနစ်"),
-      highProtein: false
+      highProtein: false,
+      nutrition: {
+        calories: 267,
+        protein: 9.5,
+        carbs: 17.7,
+        fat: 17.2,
+        basis: t(
+          "Calculated using one 35g slice of bread, one 50g egg, 15g mayonnaise, and 1g salt.",
+          "食パン1枚35g、卵1個50g、マヨネーズ15g、塩1gで計算しています。",
+          "ပေါင်မုန့် ၃၅ ဂရမ် ၁ ချပ်၊ ကြက်ဥ ၅၀ ဂရမ် ၁ လုံး၊ mayonnaise ၁၅ ဂရမ်နှင့် ဆား ၁ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("air-fryer-chicken-wings",
     t("Air-Fryer Chicken Wings", "手羽先（チキンウィング）", "Air Fryer ကြက်တောင်ပံ"),
     [
-      [t("Chicken wings", "手羽先", "ကြက်တောင်ပံ"), t("as needed", "必要量", "လိုအပ်သလို"), "chicken-wings"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("for the marinade", "漬け込み用", "နှပ်ရန်"), "soy-sauce"],
-      [t("Salt", "塩", "ဆား"), t("for the marinade", "漬け込み用", "နှပ်ရန်"), "salt"],
-      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), t("for the marinade", "漬け込み用", "နှပ်ရန်"), "sesame-oil"]
+      [t("Bone-in chicken wings", "骨付き手羽先", "အရိုးပါ ကြက်တောင်ပံ"), t("500g (about 340g edible)", "500g（可食部約340g）", "၅၀၀ ဂရမ် (စားနိုင်သောအသား ၃၄၀ ဂရမ်ခန့်)"), "chicken-wings", { calories: 649, protein: 59.4, carbs: 0.0, fat: 44.7 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "30g", "soy-sauce", { calories: 16, protein: 2.6, carbs: 1.5, fat: 0.2 }],
+      [t("Salt", "塩", "ဆား"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "8g", "sesame-oil", { calories: 71, protein: 0.0, carbs: 0.0, fat: 8.0 }]
     ],
     [
-      t("Put the soy sauce, salt, sesame oil, and chicken wings in a pot.", "鍋に醤油、塩、ごま油、手羽先を入れます。", "အိုးထဲသို့ ပဲငံပြာရည်၊ ဆား၊ နှမ်းဆီနှင့် ကြက်တောင်ပံများ ထည့်ပါ။"),
+      t("Put 30g soy sauce, 1g salt, 8g sesame oil, and 500g chicken wings in a pot.", "鍋に醤油30g、塩1g、ごま油8g、手羽先500gを入れます。", "အိုးထဲသို့ ပဲငံပြာရည် ၃၀ ဂရမ်၊ ဆား ၁ ဂရမ်၊ နှမ်းဆီ ၈ ဂရမ်နှင့် ကြက်တောင်ပံ ၅၀၀ ဂရမ် ထည့်ပါ။"),
       t("Marinate in the fridge for 30 minutes to 1 hour.", "冷蔵庫で30分〜1時間漬け込みます。", "ရေခဲသေတ္တာထဲတွင် မိနစ် ၃၀ မှ ၁ နာရီအထိ နှပ်ထားပါ။"),
       t("Air-fry at 200°C for 20 minutes.", "エアフライヤーで200℃・20分加熱します。", "air fryer ဖြင့် 200°C တွင် မိနစ် ၂၀ ချက်ပါ။"),
       t("Turn the wings after 10 minutes.", "10分後に手羽先を裏返します。", "၁၀ မိနစ်ကြာလျှင် ကြက်တောင်ပံများကို လှန်ပါ။"),
@@ -612,7 +681,18 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
       style: t("Air Fryer", "エアフライヤー", "လေပူကြော်စက်"),
       timeEstimate: t("50-80 mins", "50〜80分", "မိနစ် ၅၀-၈၀"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 736,
+        protein: 62.0,
+        carbs: 1.5,
+        fat: 52.9,
+        basis: t(
+          "Calculated using 500g bone-in chicken wings with about 340g edible meat and skin, plus the full listed marinade.",
+          "骨付き手羽先500g（肉と皮の可食部約340g）と、記載した漬けだれ全量で計算しています。",
+          "အရိုးပါ ကြက်တောင်ပံ ၅၀၀ ဂရမ်မှ စားနိုင်သောအသားနှင့် အရေပြား ၃၄၀ ဂရမ်ခန့်၊ နှပ်ရည်အားလုံးကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("air-fryer-marinated-boneless-chicken-leg",
@@ -851,14 +931,14 @@ const recipes = [
   recipe("salt-garlic-pepper-pork-shoulder",
     t("Salt and Garlic Pepper Pork Shoulders", "塩ガーリックペッパー豚肩肉", "ဆား၊ ကြက်သွန်ဖြူငရုတ်ကောင်းနဲ့ ဝက်ပခုံးသား"),
     [
-      [t("Pork shoulder butt", "豚肩ロース", "ဝက်ပခုံးသား"), t("2 slices", "2枚", "၂ ချပ်"), "pork-shoulder"],
-      [t("Salt", "塩", "ဆား"), t("as needed", "適量", "လိုအပ်သလို"), "salt"],
-      [t("Garlic pepper", "ガーリックペッパー", "ကြက်သွန်ဖြူငရုတ်ကောင်းမှုန့်"), t("as needed", "適量", "လိုအပ်သလို"), "garlic-pepper"]
+      [t("Pork shoulder butt", "豚肩ロース", "ဝက်ပခုံးသား"), t("2 slices (300g total)", "2枚（合計300g）", "၂ ချပ် (စုစုပေါင်း ၃၀၀ ဂရမ်)"), "pork-shoulder", { calories: 558, protein: 52.2, carbs: 0.0, fat: 37.2 }],
+      [t("Salt", "塩", "ဆား"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Garlic pepper", "ガーリックペッパー", "ကြက်သွန်ဖြူငရုတ်ကောင်းမှုန့်"), "2g", "garlic-pepper", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }]
     ],
     [
       t("Buy 2 pork shoulder butt slices from Cut Butchery at Bukit Timah Plaza. The price is about $2.20 per 100 g; the photo shows only 1 slice.", "Bukit Timah PlazaのCut Butcheryで豚肩ロースを2枚買う。価格は100 gあたり約$2.20で、写真には1枚だけ写っている。", "Bukit Timah Plaza ရှိ Cut Butchery မှ ဝက်ပခုံးသား ၂ ချပ် ဝယ်ပါ။ 100 g လျှင် $2.20 ခန့်ဖြစ်ပြီး ပုံထဲတွင် ၁ ချပ်သာ ပြထားသည်။"),
       t("Put both slices directly in the air-fryer basket.", "2枚ともエアフライヤーのバスケットに直接入れる。", "ဝက်သား ၂ ချပ်လုံးကို air-fryer basket ထဲ တိုက်ရိုက်ထည့်ပါ။"),
-      t("Season the top with salt and garlic pepper.", "上面に塩とガーリックペッパーを振る。", "အပေါ်ဘက်ကို ဆားနဲ့ ကြက်သွန်ဖြူငရုတ်ကောင်းမှုန့် ဖြူးပါ။"),
+      t("Season the top with half the salt and garlic pepper.", "塩とガーリックペッパーの半量を上面に振る。", "ဆားနှင့် ကြက်သွန်ဖြူငရုတ်ကောင်းမှုန့် တစ်ဝက်စီကို အပေါ်ဘက် ဖြူးပါ။"),
       t("Air-fry at 200°C for 6 min.", "200℃で6分エアフライする。", "200°C ဖြင့် ၆ မိနစ် air fry လုပ်ပါ။"),
       t("Flip the pork and season the other side.", "豚肉を裏返し、反対側にも味付けする。", "ဝက်သားကိုလှန်ပြီး အခြားတစ်ဖက်ကို ဟင်းခတ်ပါ။"),
       t("Air-fry at 200°C for another 6 min.", "200℃でもう6分エアフライする。", "200°C ဖြင့် နောက်ထပ် ၆ မိနစ် air fry လုပ်ပါ။"),
@@ -891,22 +971,33 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
       style: t("Air Fryer", "エアフライヤー", "လေပူကြော်စက်"),
       timeEstimate: t("17 mins", "17分", "၁၇ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 558,
+        protein: 52.2,
+        carbs: 0.0,
+        fat: 37.2,
+        basis: t(
+          "Calculated using 300g raw pork shoulder in total. The small amounts of salt and garlic pepper are counted as nutritionally negligible.",
+          "生の豚肩ロース合計300gで計算しています。少量の塩とガーリックペッパーの栄養値は無視できるものとして扱っています。",
+          "ဝက်ပခုံးသားအစိမ်း စုစုပေါင်း ၃၀၀ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။ ဆားနှင့် ကြက်သွန်ဖြူငရုတ်ကောင်းမှုန့် အနည်းငယ်၏ အာဟာရတန်ဖိုးကို မပြောပလောက်ဟု သတ်မှတ်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("matcha-milk-manuka-honey",
     t("Matcha Milk with Manuka Honey", "マヌカハニー抹茶ミルク", "Manuka ပျားရည် မတ်ချာနို့"),
     [
-      [t("Matcha powder", "抹茶", "မတ်ချာမှုန့်"), t("2 g", "2グラム", "၂ ဂရမ်"), "matcha"],
-      [t("Milk", "牛乳", "နို့"), t("200 ml", "200ミリリットル", "၂၀၀ မီလီလီတာ"), "milk"],
-      [t("Manuka honey", "マヌカハニー", "Manuka ပျားရည်"), t("to taste", "お好みで", "အရသာအလိုက်"), "honey"]
+      [t("Matcha powder", "抹茶", "မတ်ချာမှုန့်"), "2g", "matcha", { calories: 6, protein: 0.5, carbs: 1.0, fat: 0.1 }],
+      [t("Whole milk", "全乳", "နို့အဆီပြည့်"), "200ml", "milk", { calories: 122, protein: 6.5, carbs: 9.6, fat: 6.5 }],
+      [t("Manuka honey", "マヌカハニー", "Manuka ပျားရည်"), "15g", "honey", { calories: 46, protein: 0.0, carbs: 12.1, fat: 0.0 }]
     ],
     [
       t("Weigh 2 g of matcha powder.", "抹茶を2 g量る。", "မတ်ချာမှုန့် 2 g ချိန်ပါ။"),
       t("Put the matcha in a glass and add a small splash of milk.", "抹茶をグラスに入れ、牛乳を少量加える。", "မတ်ချာမှုန့်ကို ဖန်ခွက်ထဲထည့်ပြီး နို့နည်းနည်းထည့်ပါ။"),
       t("Stir until smooth with no lumps.", "ダマがなくなるまでなめらかに混ぜる。", "အဖုမရှိအောင် ချောမွေ့သည်အထိ မွှေပါ။"),
       t("Add the remaining milk.", "残りの牛乳を加える。", "ကျန်နို့ကို ထည့်ပါ။"),
-      t("Add Manuka honey to taste and stir well.", "好みの量のマヌカハニーを加え、よく混ぜる。", "Manuka ပျားရည်ကို အရသာအလိုက်ထည့်ပြီး ကောင်းကောင်းမွှေပါ။")
+      t("Add 15g Manuka honey and stir well.", "マヌカハニー15gを加え、よく混ぜる。", "Manuka ပျားရည် ၁၅ ဂရမ်ထည့်ပြီး ကောင်းကောင်းမွှေပါ။")
     ],
     t("Mix the matcha with a little milk first so it does not form lumps.", "抹茶がダマにならないよう、最初に少量の牛乳で混ぜてください。", "မတ်ချာမှုန့် အဖုမဖြစ်အောင် နို့နည်းနည်းနဲ့ အရင်မွှေပါ။"),
     [
@@ -919,36 +1010,47 @@ const recipes = [
       mealType: t("Drink", "飲み物", "သောက်စရာ"),
       style: t("Quick", "簡単", "လွယ်ကူသော"),
       timeEstimate: t("3 mins", "3分", "၃ မိနစ်"),
-      highProtein: false
+      highProtein: false,
+      nutrition: {
+        calories: 174,
+        protein: 7.0,
+        carbs: 22.7,
+        fat: 6.6,
+        basis: t(
+          "Calculated using 2g matcha powder, 200ml whole milk, and 15g Manuka honey.",
+          "抹茶2g、全乳200ml、マヌカハニー15gで計算しています。",
+          "မတ်ချာမှုန့် ၂ ဂရမ်၊ နို့အဆီပြည့် ၂၀၀ မီလီလီတာနှင့် Manuka ပျားရည် ၁၅ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("apple-ginger-pork-loin-enoki",
     t("Apple-Ginger Pork Loin with Enoki", "りんご生姜だれの豚ロースとえのき", "ပန်းသီးချင်းဆော့စ် ဝက်ခါးသားနဲ့ enoki မှို"),
     [
-      [t("Thick-cut pork loin chops", "厚切り豚ロース", "ဝက်ခါးသားအထူ"), t("2 chops", "2枚", "၂ ချပ်"), "pork-loin"],
-      [t("Apple", "りんご", "ပန်းသီး"), t("1/2 apple", "1/2個", "ပန်းသီး တစ်ဝက်"), "apple"],
-      [t("Enoki mushrooms", "えのき", "enoki မှို"), t("1/2 pack", "1/2袋", "အထုပ်တစ်ဝက်"), "enoki-mushroom"],
-      [t("Ginger", "生姜", "ချင်း"), t("about a 2 cm piece", "約2 cm分", "2 cm ခန့် တစ်တုံး"), "ginger"],
-      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), t("1 clove", "1片", "၁ မွှာ"), "garlic"],
-      [t("Potato starch", "片栗粉", "အာလူးကော်မှုန့်"), t("2 tbsp", "大さじ2", "စားပွဲတင်ဇွန်း ၂ ဇွန်း"), "potato-starch"],
-      [t("Dashi soy sauce", "だし醤油", "dashi ပဲငံပြာရည်"), t("2 tbsp", "大さじ2", "စားပွဲတင်ဇွန်း ၂ ဇွန်း"), "dashi-soy-sauce"],
-      [t("Cooking sake", "料理酒", "ချက်ပြုတ်ဆာကေး"), t("2 tbsp", "大さじ2", "စားပွဲတင်ဇွန်း ၂ ဇွန်း"), "cooking-sake"],
-      [t("Manuka honey", "マヌカハニー", "Manuka ပျားရည်"), t("1 tbsp", "大さじ1", "စားပွဲတင်ဇွန်း ၁ ဇွန်း"), "honey"],
-      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), t("1 tsp", "小さじ1", "လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း"), "sesame-oil"],
-      [t("Water", "水", "ရေ"), t("100 ml", "100ミリリットル", "၁၀၀ မီလီလီတာ"), "water"],
-      [t("Olive oil", "オリーブオイル", "သံလွင်ဆီ"), t("1 tsp", "小さじ1", "လက်ဖက်ရည်ဇွန်း ၁ ဇွန်း"), "oil"]
+      [t("Thick-cut pork loin chops", "厚切り豚ロース", "ဝက်ခါးသားအထူ"), t("2 chops (400g total)", "2枚（合計400g）", "၂ ချပ် (စုစုပေါင်း ၄၀၀ ဂရမ်)"), "pork-loin", { calories: 777, protein: 81.4, carbs: 0.0, fat: 47.7 }],
+      [t("Apple, core and seeds removed", "芯と種を除いたりんご", "အူတိုင်နှင့် အစေ့ဖယ်ထားသော ပန်းသီး"), "90g", "apple", { calories: 47, protein: 0.2, carbs: 12.5, fat: 0.1 }],
+      [t("Enoki mushrooms", "えのき", "enoki မှို"), "100g", "enoki-mushroom", { calories: 37, protein: 2.7, carbs: 7.8, fat: 0.3 }],
+      [t("Ginger", "生姜", "ချင်း"), "10g", "ginger", { calories: 8, protein: 0.2, carbs: 1.8, fat: 0.1 }],
+      [t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"), "3g", "garlic", { calories: 4, protein: 0.2, carbs: 0.9, fat: 0.0 }],
+      [t("Potato starch", "片栗粉", "အာလူးကော်မှုန့်"), "18g", "potato-starch", { calories: 63, protein: 0.0, carbs: 15.7, fat: 0.0 }],
+      [t("Dashi soy sauce", "だし醤油", "dashi ပဲငံပြာရည်"), "30g", "dashi-soy-sauce", { calories: 17, protein: 2.3, carbs: 1.5, fat: 0.2 }],
+      [t("Cooking sake", "料理酒", "ချက်ပြုတ်ဆာကေး"), "30g", "cooking-sake", { calories: 32, protein: 0.1, carbs: 1.6, fat: 0.0 }],
+      [t("Manuka honey", "マヌカハニー", "Manuka ပျားရည်"), "21g", "honey", { calories: 64, protein: 0.0, carbs: 18.3, fat: 0.0 }],
+      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "4g", "sesame-oil", { calories: 35, protein: 0.0, carbs: 0.0, fat: 4.0 }],
+      [t("Water", "水", "ရေ"), "100g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Olive oil", "オリーブオイル", "သံလွင်ဆီ"), "4g", "oil", { calories: 36, protein: 0.0, carbs: 0.0, fat: 4.0 }]
     ],
     [
-      t("Remove the apple core and seeds. Grate 1/4 apple and cut the other 1/4 into wedges.", "りんごの芯と種を取り除く。1/4個はすりおろし、残りの1/4個はくし形に切る。", "ပန်းသီးအူတိုင်နဲ့ အစေ့ကို ဖယ်ပါ။ ပန်းသီး 1/4 ကို ခြစ်ပြီး ကျန် 1/4 ကို အစိတ်များ လှီးပါ။"),
+      t("Grate 45g apple and cut the remaining 45g into wedges.", "りんご45gをすりおろし、残りの45gをくし形に切る。", "ပန်းသီး ၄၅ ဂရမ်ကို ခြစ်ပြီး ကျန် ၄၅ ဂရမ်ကို အစိတ်များ လှီးပါ။"),
       t("Peel and grate the ginger and garlic.", "生姜とにんにくの皮をむき、すりおろす。", "ချင်းနဲ့ ကြက်သွန်ဖြူကို အခွံခွာပြီး ခြစ်ပါ။"),
       t("Mix the grated apple, ginger, garlic, dashi soy sauce, cooking sake, honey, sesame oil, and water.", "すりおろしたりんご、生姜、にんにく、だし醤油、料理酒、はちみつ、ごま油、水を混ぜる。", "ခြစ်ထားသော ပန်းသီး၊ ချင်း၊ ကြက်သွန်ဖြူ၊ dashi ပဲငံပြာရည်၊ ချက်ပြုတ်ဆာကေး၊ ပျားရည်၊ နှမ်းဆီနဲ့ ရေကို ရောပါ။"),
       t("Trim the enoki base and separate the mushrooms.", "えのきの根元を切り落とし、ほぐす。", "enoki မှိုအမြစ်ကို ဖြတ်ပြီး မှိုများကို ခွဲပါ။"),
-      t("Coat both sides of the pork with potato starch.", "豚肉の両面に片栗粉をまぶす。", "ဝက်သားနှစ်ဖက်လုံးကို အာလူးကော်မှုန့် ကပ်ပါ။"),
+      t("Coat both sides of the pork with 18g potato starch.", "豚肉の両面に片栗粉18gをまぶす。", "ဝက်သားနှစ်ဖက်လုံးကို အာလူးကော်မှုန့် ၁၈ ဂရမ် ကပ်ပါ။"),
       t("Heat the olive oil over medium heat and sear the pork for 2-3 min per side.", "オリーブオイルを中火で熱し、豚肉を片面2〜3分ずつ焼く。", "သံလွင်ဆီကို မီးအလယ်အလတ်ဖြင့် အပူပေးပြီး ဝက်သားတစ်ဖက်စီကို ၂-၃ မိနစ် ကင်ပါ။"),
       t("Add the sauce, apple wedges, and enoki. Simmer for 5-8 min, turning the pork once.", "たれ、りんご、えのきを加える。豚肉を一度返しながら5〜8分煮る。", "ဆော့စ်၊ ပန်းသီးအစိတ်များနဲ့ enoki မှိုကို ထည့်ပါ။ ဝက်သားကို တစ်ကြိမ်လှန်ပြီး ၅-၈ မိနစ် တည်ပါ။"),
       t("Check the thickest part of the pork reaches at least 71°C before serving.", "提供前に、豚肉の最も厚い部分が71℃以上になっていることを確認する。", "မစားမီ ဝက်သားအထူဆုံးနေရာ 71°C အနည်းဆုံး ရောက်ကြောင်း စစ်ပါ။")
     ],
-    t("The photos show the ingredients and cooking order, but not exact measurements. Use these amounts as a starting point and adjust the sauce to taste. Do not add onion.", "写真で材料と手順は確認できますが、正確な分量は写っていません。この分量を目安に、たれは好みに合わせて調整してください。玉ねぎは入れません。", "ပုံများတွင် ပါဝင်ပစ္စည်းနဲ့ ချက်သည့်အစဉ်ကို မြင်ရသော်လည်း ပမာဏအတိအကျ မပါပါ။ ဤပမာဏများကို အစအဖြစ်သုံးပြီး ဆော့စ်ကို အရသာအလိုက် ချိန်ညှိပါ။ ကြက်သွန်နီ မထည့်ပါနှင့်။"),
+    t("Use the listed amounts so the sauce stays balanced. Do not add onion.", "たれの味を保つため、記載した分量を使ってください。玉ねぎは入れません。", "ဆော့စ်အရသာညီစေရန် ဖော်ပြထားသော ပမာဏအတိုင်း သုံးပါ။ ကြက်သွန်နီ မထည့်ပါနှင့်။"),
     [
       photo("assets/recipes/human-food/apple-ginger-pork-loin-enoki-finished.jpg",
         t("Apple-ginger pork loin and enoki simmering in the pan", "フライパンで煮ているりんご生姜だれの豚ロースとえのき", "ဒယ်အိုးထဲတွင် တည်နေသော ပန်းသီးချင်းဆော့စ် ဝက်ခါးသားနဲ့ enoki မှို"),
@@ -974,7 +1076,18 @@ const recipes = [
       mealType: t("Lunch/Dinner", "昼食／夕食", "နေ့လယ်စာ / ညစာ"),
       style: t("Japanese", "和風", "ဂျပန်စတိုင်"),
       timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
-      highProtein: true
+      highProtein: true,
+      nutrition: {
+        calories: 1120,
+        protein: 87.1,
+        carbs: 60.1,
+        fat: 56.4,
+        basis: t(
+          "Calculated for the whole recipe using 400g raw pork loin and every listed sauce, fruit, mushroom, starch, and oil amount.",
+          "生の豚ロース400gと、記載したたれ、果物、きのこ、片栗粉、油の全量を使うレシピ全量で計算しています。",
+          "ဝက်ခါးသားအစိမ်း ၄၀၀ ဂရမ်နှင့် ဖော်ပြထားသော ဆော့စ်၊ သစ်သီး၊ မှို၊ ကော်မှုန့်နှင့် ဆီအားလုံးကို သုံးသည့် ဟင်းချက်နည်းတစ်ခုလုံးအတွက် တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("bak-kut-teh",
@@ -1024,14 +1137,14 @@ const recipes = [
   recipe("soy-marinated-eggs-chilli",
     t("Soy-Marinated Eggs with Chilli (10 Eggs)", "唐辛子入り醤油漬け卵（卵10個）", "ငရုတ်သီးပါ ပဲငံပြာရည်နှပ်ကြက်ဥ (ကြက်ဥ ၁၀ လုံး)"),
     [
-      [t("Eggs", "卵", "ကြက်ဥ"), t("10", "10個", "၁၀ လုံး"), "eggs"],
-      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), t("8 tbsp", "大さじ8", "စားပွဲတင်ဇွန်း ၈ ဇွန်း"), "soy-sauce"],
-      [t("Water", "水", "ရေ"), t("8 tbsp", "大さじ8", "စားပွဲတင်ဇွန်း ၈ ဇွန်း"), "water"],
-      [t("Mirin", "みりん", "mirin"), t("1½ tbsp", "大さじ1½", "စားပွဲတင်ဇွန်း ၁½ ဇွန်း"), "mirin"],
-      [t("Honey", "はちみつ", "ပျားရည်"), t("1½ tbsp", "大さじ1½", "စားပွဲတင်ဇွန်း ၁½ ဇွန်း"), "honey"],
-      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), t("1½ tsp", "小さじ1½", "လက်ဖက်ရည်ဇွန်း ၁½ ဇွန်း"), "sesame-oil"],
-      [t("Fresh chillies, thinly sliced", "生唐辛子（薄切り）", "ပါးပါးလှီးထားသော ငရုတ်သီးလတ်လတ်"), t("1-2", "1〜2本", "၁-၂ တောင့်"), "fresh-chilli"],
-      [t("Spring onion, finely chopped", "青ねぎ（小口切り）", "နုပ်နုပ်လှီးထားသော ကြက်သွန်မြိတ်"), t("2-3 stalks", "2〜3本", "၂-၃ ပင်"), "spring-onion"]
+      [t("Eggs", "卵", "ကြက်ဥ"), t("10 (500g without shells)", "10個（殻なし500g）", "၁၀ လုံး (အခွံမပါ ၅၀၀ ဂရမ်)"), "eggs", { calories: 720, protein: 63.0, carbs: 3.6, fat: 48.2 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "120g", "soy-sauce", { calories: 64, protein: 9.6, carbs: 5.9, fat: 0.9 }],
+      [t("Water", "水", "ရေ"), "120g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Mirin", "みりん", "ဂျပန်ချိုသာသောဝိုင်"), "27g", "mirin", { calories: 65, protein: 0.1, carbs: 11.7, fat: 0.0 }],
+      [t("Honey", "はちみつ", "ပျားရည်"), "32g", "honey", { calories: 96, protein: 0.0, carbs: 25.9, fat: 0.0 }],
+      [t("Sesame oil", "ごま油", "နှမ်းဆီ"), "6g", "sesame-oil", { calories: 53, protein: 0.0, carbs: 0.0, fat: 6.0 }],
+      [t("Fresh chillies, thinly sliced", "生唐辛子（薄切り）", "ပါးပါးလှီးထားသော ငရုတ်သီးလတ်လတ်"), "15g", "fresh-chilli", { calories: 6, protein: 0.3, carbs: 1.3, fat: 0.0 }],
+      [t("Spring onion, finely chopped", "青ねぎ（小口切り）", "နုပ်နုပ်လှီးထားသော ကြက်သွန်မြိတ်"), "30g", "spring-onion", { calories: 9, protein: 0.5, carbs: 1.8, fat: 0.0 }]
     ],
     [
       t("Boil the eggs for 6½-7 minutes for soft centres, or 9 minutes for firm centres.", "半熟なら6分30秒〜7分、固ゆでなら9分、卵をゆでます。", "အနှစ်ပျော့အတွက် ကြက်ဥကို ၆½-၇ မိနစ်၊ အနှစ်မာအတွက် ၉ မိနစ် ပြုတ်ပါ။"),
@@ -1053,18 +1166,29 @@ const recipes = [
       style: t("Soy-Marinated", "醤油漬け", "ပဲငံပြာရည်နှပ်"),
       timeEstimate: t("20 mins + 6 hrs marinating", "20分＋漬け込み6時間", "မိနစ် ၂၀ + နှပ်ချိန် ၆ နာရီ"),
       highProtein: true,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 1013,
+        protein: 73.5,
+        carbs: 50.2,
+        fat: 55.1,
+        basis: t(
+          "Calculated for all 10 eggs and the entire listed marinade. About 101 kcal per egg if all marinade is counted; actual intake is lower when marinade remains in the container.",
+          "卵10個と記載した漬けだれ全量で計算しています。漬けだれを全量含めると卵1個あたり約101 kcalですが、容器に漬けだれが残る場合の実際の摂取量は少なくなります。",
+          "ကြက်ဥ ၁၀ လုံးနှင့် ဖော်ပြထားသော နှပ်ရည်အားလုံးကို ထည့်တွက်ထားသည်။ နှပ်ရည်အားလုံးကို ထည့်တွက်လျှင် ကြက်ဥ ၁ လုံးလျှင် ၁၀၁ kcal ခန့်ဖြစ်သော်လည်း ဗူးထဲတွင် နှပ်ရည်ကျန်ပါက တကယ်စားမိသည့်ပမာဏ ပိုနည်းမည်။"
+        )
+      }
     }
   ),
   recipe("knorr-chicken-quick-serve-macaroni",
     t("Knorr Chicken Quick Serve Macaroni Breakfast", "クノール チキン・クイックサーブ・マカロニ朝食", "Knorr ကြက်သားအရသာ Quick Serve Macaroni မနက်စာ"),
     [
-      [t("Knorr Chicken Quick Serve Macaroni", "クノール チキン味クイックサーブ・マカロニ", "Knorr ကြက်သားအရသာ Quick Serve Macaroni"), t("2 packets", "2袋", "၂ ထုပ်"), "knorr-quick-serve-macaroni"],
-      [t("Ham", "ハム", "ဟမ်"), t("as needed", "適量", "လိုအပ်သလို"), "ham"],
-      [t("Water", "水", "ရေ"), t("1 litre", "1リットル", "၁ လီတာ"), "water"]
+      [t("Knorr Chicken Quick Serve Macaroni", "クノール チキン味クイックサーブ・マカロニ", "Knorr ကြက်သားအရသာ Quick Serve Macaroni"), t("2 packets (160g total)", "2袋（合計160g）", "၂ ထုပ် (စုစုပေါင်း ၁၆၀ ဂရမ်)"), "knorr-quick-serve-macaroni", { calories: 544, protein: 20.8, carbs: 111.4, fat: 3.6 }],
+      [t("Ham", "ハム", "ဟမ်"), "50g", "ham", { calories: 72, protein: 10.4, carbs: 0.8, fat: 2.7 }],
+      [t("Water", "水", "ရေ"), "1000g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }]
     ],
     [
-      t("Cut the ham into small squares.", "ハムを小さな四角に切ります。", "ဟမ်ကို လေးထောင့်ကွက်သေးသေးလေးများ လှီးပါ။"),
+      t("Cut 50g ham into small squares.", "ハム50gを小さな四角に切ります。", "ဟမ် ၅၀ ဂရမ်ကို လေးထောင့်ကွက်သေးသေးလေးများ လှီးပါ။"),
       t("Boil 1 litre of water.", "水1リットルを沸騰させます。", "ရေ ၁ လီတာကို ဆူအောင်တည်ပါ။"),
       t("Add 2 packets of Knorr macaroni and cook for about 3 minutes.", "クノールのマカロニ2袋を入れ、約3分ゆでます。", "Knorr macaroni ၂ ထုပ်ကို ထည့်ပြီး ၃ မိနစ်ခန့် ပြုတ်ပါ။"),
       t("Add the ham during the last 30 seconds.", "最後の30秒でハムを加えます。", "နောက်ဆုံး စက္ကန့် ၃၀ တွင် ဟမ်ကို ထည့်ပါ။"),
@@ -1086,37 +1210,36 @@ const recipes = [
       style: t("Quick", "簡単", "အမြန်"),
       timeEstimate: t("10 mins", "10分", "၁၀ မိနစ်"),
       highProtein: false,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 616,
+        protein: 31.2,
+        carbs: 112.2,
+        fat: 6.3,
+        basis: t(
+          "Calculated for 2 complete 80g chicken-flavour packets and 50g ham. The recipe makes 2 bowls, about 308 kcal each.",
+          "チキン味80g入り2袋とハム50gで計算しています。2杯分で、1杯あたり約308 kcalです。",
+          "ကြက်သားအရသာ ၈၀ ဂရမ်အထုပ် ၂ ထုပ်လုံးနှင့် ဟမ် ၅၀ ဂရမ်ကို အသုံးပြု၍ တွက်ချက်ထားသည်။ ပန်းကန်လုံး ၂ လုံးရပြီး ၁ လုံးလျှင် ၃၀၈ kcal ခန့်ဖြစ်သည်။"
+        )
+      }
     }
   ),
   recipe("sushiroll",
     t("Sushi Roll", "巻き寿司", "ဆူရှီလိပ်"),
     [
-      [t("Nori seaweed", "のり", "ရေညှိခြောက်"), t("as needed", "適量", "လိုအပ်သလို"), "nori"],
-      [t("Cooked Japanese rice", "炊いた日本米", "ချက်ပြီးသား ဂျပန်ဆန်"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
-      [t("Eggs", "卵", "ကြက်ဥ"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
-      [t("Oil", "油", "ဆီ"), t("a little", "少々", "အနည်းငယ်"), "oil"],
-      [t("Salt", "塩", "ဆား"), t("a little", "少々", "အနည်းငယ်"), "salt"],
-      {
-        key: "tuna",
-        name: t("Optional protein (tuna, salmon, chicken, beef, pork, crab stick)", "好みの具材（ツナ、サーモン、鶏肉、牛肉、豚肉、カニカマなど）", "ရွေးချယ်နိုင်သော ပရိုတင်း (တူနာ၊ ဆယ်လ်မွန်၊ ကြက်သား၊ အမဲသား၊ ဝက်သား၊ ကဏန်းချောင်း)"),
-        amount: t("as needed", "適量", "လိုအပ်သလို"),
-        alternatives: [
-          ingredientOption("tuna", t("Tuna", "ツナ", "တူနာ")),
-          ingredientOption("salmon-fillet", t("Salmon", "サーモン", "ဆယ်လ်မွန်")),
-          ingredientOption("chicken-breast", t("Chicken", "鶏肉", "ကြက်သား")),
-          ingredientOption("beef", t("Beef", "牛肉", "အမဲသား")),
-          ingredientOption("pork", t("Pork", "豚肉", "ဝက်သား")),
-          ingredientOption("crab-stick", t("Crab stick", "カニカマ", "ကဏန်းချောင်း"))
-        ]
-      }
+      [t("Nori seaweed", "のり", "ရေညှိခြောက်"), "3g", "nori", { calories: 9, protein: 1.2, carbs: 1.2, fat: 0.1 }],
+      [t("Cooked Japanese rice", "炊いた日本米", "ချက်ပြီးသား ဂျပန်ဆန်"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.8, fat: 0.4 }],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1 (50g)", "1個（50g）", "၁ လုံး (၅၀ ဂရမ်)"), "eggs", { calories: 72, protein: 6.3, carbs: 0.4, fat: 4.8 }],
+      [t("Oil", "油", "ဆီ"), "3g", "oil", { calories: 27, protein: 0.0, carbs: 0.0, fat: 3.0 }],
+      [t("Salt", "塩", "ဆား"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Drained canned tuna", "汁気を切ったツナ缶", "အရည်စစ်ထားသော တူနာငါးဗူး"), "60g", "tuna", { calories: 69, protein: 15.4, carbs: 0.0, fat: 0.4 }]
     ],
     [
       t("Cook the rice and let it cool slightly.", "ご飯を炊いて、少し冷まします。", "ထမင်းချက်ပြီး အနည်းငယ် အအေးခံပါ။"),
-      t("Cook the eggs as an omelette and cut into long strips.", "卵を薄焼き卵（卵焼き）にして、細長く切ります。", "ကြက်ဥကို အကြော်ကြော်ပြီး အမြှောင်းရှည်များ လှီးပါ။"),
+      t("Cook the egg with 3g oil and 1g salt, then cut it into long strips.", "油3gと塩1gで卵を焼き、細長く切ります。", "ကြက်ဥကို ဆီ ၃ ဂရမ်နှင့် ဆား ၁ ဂရမ်ဖြင့် ကြော်ပြီး အမြှောင်းရှည်များ လှီးပါ။"),
       t("Put nori on the sushi mat.", "巻きすの上にのりを置きます。", "လိပ်သည့် ဖျာပေါ်တွင် ရေညှိချပ်ကို တင်ပါ။"),
       t("Spread a thin layer of rice on the nori.", "のりの上にご飯を薄く広げます。", "ရေညှိချပ်ပေါ်တွင် ထမင်းကို ပါးပါးဖြန့်ခင်းပါ။"),
-      t("Put the egg and optional protein in the middle.", "真ん中に卵と好みの具材（プロテイン）をのせます。", "အလယ်တွင် ကြက်ဥနှင့် ရွေးချယ်နိုင်သော ပရိုတင်းတို့ကို တင်ပါ။"),
+      t("Put the egg and 60g drained tuna in the middle.", "真ん中に卵と汁気を切ったツナ60gをのせます。", "အလယ်တွင် ကြက်ဥနှင့် အရည်စစ်ထားသော တူနာ ၆၀ ဂရမ်ကို တင်ပါ။"),
       t("Roll tightly using the mat.", "巻きすを使ってきつく巻きます。", "ဖျာကိုသုံးပြီး တင်းတင်းလိပ်ပါ။"),
       t("Cut into pieces with a wet knife.", "濡らした包丁で食べやすい大きさに切ります。", "ဓားစိုဖြင့် အပိုင်းပိုင်း လှီးပါ။")
     ],
@@ -1135,7 +1258,18 @@ const recipes = [
       style: t("Sushi", "寿司", "ဆူရှီ"),
       timeEstimate: t("30 mins", "30分", "မိနစ် ၃၀"),
       highProtein: false,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 411,
+        protein: 27.1,
+        carbs: 53.4,
+        fat: 8.7,
+        basis: t(
+          "Calculated for one roll using 3g nori, 180g cooked rice, one 50g egg, 3g oil, 1g salt, and 60g drained canned tuna.",
+          "のり3g、ご飯180g、卵1個50g、油3g、塩1g、汁気を切ったツナ缶60gを使う巻き寿司1本分で計算しています。",
+          "ရေညှိခြောက် ၃ ဂရမ်၊ ချက်ပြီးသားထမင်း ၁၈၀ ဂရမ်၊ ကြက်ဥ ၅၀ ဂရမ် ၁ လုံး၊ ဆီ ၃ ဂရမ်၊ ဆား ၁ ဂရမ်နှင့် အရည်စစ်ထားသော တူနာငါးဗူး ၆၀ ဂရမ်ပါသော ဆူရှီလိပ် ၁ လိပ်အတွက် တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("simple-wagyu-steak",
@@ -1176,23 +1310,27 @@ const recipes = [
   recipe("japanese-curry-rice",
     t("Japanese Curry Rice", "カレーライス", "ဂျပန်ဟင်းချက်နည်း ကာရီထမင်း"),
     [
-      [t("Japanese curry blocks", "カレールー", "ဂျပန်ကာရီတုံး"), t("1 package", "1箱", "၁ ဘူး"), "japanese-curry-blocks"],
-      [t("Beef", "牛肉", "အမဲသား"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
-      [t("Potatoes", "じゃがいも", "အာလူး"), t("as needed", "適量", "လိုအပ်သလို"), "potato"],
-      [t("Carrots", "人参", "မုန်လာဥနီ"), t("as needed", "適量", "လိုအပ်သလို"), "carrot"],
-      [t("Water", "水", "ရေ"), t("as needed", "適量", "လိုအပ်သလို"), "water"],
-      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"]
+      [t("S&B Golden Curry Medium Hot", "S&B ゴールデンカレー 中辛", "S&B Golden Curry Medium Hot ကာရီအနှစ်"), t("1 box (92g)", "1箱（92g）", "၁ ဘူး (၉၂ ဂရမ်)"), "japanese-curry-blocks", { calories: 460, protein: 5.1, carbs: 51.1, fat: 23.0 }],
+      [t("Beef", "牛肉", "အမဲသား"), "300g", "beef", { calories: 750, protein: 78.4, carbs: 0.0, fat: 51.1 }],
+      [t("Onion", "玉ねぎ", "ကြက်သွန်နီ"), t("Amount not specified", "分量未指定", "ပမာဏ မဖော်ပြထားပါ"), "onion"],
+      [t("Potatoes", "じゃがいも", "အာလူး"), "300g", "potato", { calories: 231, protein: 6.0, carbs: 52.5, fat: 0.3 }],
+      [t("Carrots", "人参", "မုန်လာဥနီ"), "150g", "carrot", { calories: 61, protein: 1.4, carbs: 14.3, fat: 0.3 }],
+      [t("Oil", "油", "ဆီ"), t("a little", "少量", "အနည်းငယ်"), "oil"],
+      [t("Water", "水", "ရေ"), "700g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Apple, grated", "すりおろしりんご", "ခြစ်ထားသော ပန်းသီး"), t("1 slice", "1切れ", "၁ စိတ်"), "apple"],
+      [t("Coffee", "コーヒー", "ကော်ဖီ"), t("1 (type and size not specified)", "1つ（種類・サイズ未指定）", "၁ ခု (အမျိုးအစားနှင့် အရွယ်အစား မဖော်ပြထားပါ)"), "coffee"],
+      [t("Cooked rice", "ご飯", "ထမင်း"), "600g", "rice", { calories: 780, protein: 14.0, carbs: 172.4, fat: 1.2 }]
     ],
     [
-      t("Cut the beef and vegetables.", "牛肉と野菜を切ります。", "အမဲသားနှင့် ဟင်းသီးဟင်းရွက်များကို လှီးပါ။"),
-      t("Cook the beef in a pot.", "鍋で牛肉を炒めます。", "ဒယ်အိုးထဲတွင် အမဲသားကို ချက်ပါ။"),
-      t("Add the potatoes, carrots and water.", "じゃがいも、人参、水を加えます。", "အာလူး၊ မုန်လာဥနီနှင့် ရေတို့ကို ထည့်ပါ။"),
-      t("Boil until everything is soft.", "具材が柔らかくなるまで煮込みます。", "အရာအားလုံး နူးညံ့သွားသည်အထိ ပြုတ်ပါ။"),
-      t("Turn off the heat and add the curry blocks.", "火を止め、カレールーを加えます。", "မီးပိတ်ပြီး ကာရီတုံးများကို ထည့်ပါ။"),
-      t("Stir until melted, then cook for a few more minutes.", "ルーが溶けるまで混ぜ、さらに数分間煮込みます。", "အရည်ပျော်သည်အထိ မွှေပေးပါ၊ ထို့နောက် မိနစ်အနည်းငယ် ထပ်ချက်ပါ။"),
-      t("Serve with rice.", "ご飯と一緒に盛り付けます。", "ထမင်းနှင့်အတူ တွဲဖက်သုံးဆောင်ပါ။")
+      t("Cut 300g beef, the onion, 300g potatoes, and 150g carrots.", "牛肉300g、玉ねぎ、じゃがいも300g、人参150gを切ります。", "အမဲသား ၃၀၀ ဂရမ်၊ ကြက်သွန်နီ၊ အာလူး ၃၀၀ ဂရမ်နှင့် မုန်လာဥနီ ၁၅၀ ဂရမ်ကို လှီးပါ။"),
+      t("Heat a little oil in a pot. Cook the beef until its colour changes.", "鍋に油を少量熱し、牛肉の色が変わるまで炒めます。", "အိုးထဲတွင် ဆီအနည်းငယ်ပူအောင်လုပ်ပြီး အမဲသားအရောင်ပြောင်းသည်အထိ ချက်ပါ။"),
+      t("Add the onion, potatoes, carrots, and 700g water.", "玉ねぎ、じゃがいも、人参、水700gを加えます。", "ကြက်သွန်နီ၊ အာလူး၊ မုန်လာဥနီနှင့် ရေ ၇၀၀ ဂရမ်ကို ထည့်ပါ။"),
+      t("Simmer until everything is tender. Skim off any foam or scum.", "具材が柔らかくなるまで煮込み、あくを取ります。", "အရာအားလုံး နူးအိသည်အထိ မီးအေးအေးဖြင့်ပြုတ်ပြီး အမြှုပ်နှင့် အညစ်အကြေးများကို ခပ်ထုတ်ပါ။"),
+      t("Add the grated apple, the usual coffee, and the curry blocks.", "すりおろしりんご、いつものコーヒー、カレールーを加えます。", "ခြစ်ထားသော ပန်းသီး၊ ပုံမှန်သုံးသော ကော်ဖီနှင့် ကာရီတုံးများကို ထည့်ပါ။"),
+      t("Cook over low heat and stir until the blocks dissolve and the curry thickens.", "弱火で混ぜ、ルーが溶けてとろみがつくまで煮ます。", "မီးအေးအေးဖြင့် ကာရီတုံးများပျော်ပြီး ဟင်းရည်ပျစ်လာသည်အထိ မွှေ၍ချက်ပါ။"),
+      t("Divide the curry and 600g rice into 5 servings.", "カレーとご飯600gを5人分に分けます。", "ကာရီနှင့် ထမင်း ၆၀၀ ဂရမ်ကို ၅ ပွဲ ခွဲပါ။")
     ],
-    t("Keep Nako away from any onion or chocolate. Japanese curry blocks contain onion and other spices which are highly toxic to dogs.", "玉ねぎやチョコレートなどはナコに与えないでください。カレールーには玉ねぎや香辛料が含まれており、犬には非常に有害です。", "Nako ကို ကြက်သွန်နီ သို့မဟုတ် ချောကလက်နှင့် ဝေးဝေးတွင် ထားပါ။ ဂျပန်ကာရီတုံးများတွင် ခွေးများအတွက် အလွန်အဆိပ်သင့်စေသော ကြက်သွန်နီနှင့် အခြားဟင်းခတ်အမွှေးအကြိုင်များ ပါဝင်သည်။"),
+    t("Human-only recipe: it contains onion and coffee. Never feed this curry to Nako. Cook the beef fully, thaw it safely, and keep the heat low after adding the curry blocks. The coffee type and amount are not specified, so ask Edwin before adding it.", "人用のレシピです。玉ねぎとコーヒーが入るため、絶対にナコへ与えないでください。牛肉は中まで火を通し、安全に解凍し、カレールーを加えた後は弱火にしてください。コーヒーの種類と量は未指定なので、加える前にエドウィンへ確認してください。", "ဤဟင်းသည် လူစားရန်သာဖြစ်ပြီး ကြက်သွန်နီနှင့် ကော်ဖီပါသည်။ Nako ကို လုံးဝမကျွေးပါနှင့်။ အမဲသားကို လုံးဝကျက်အောင်ချက်ပြီး ဘေးကင်းစွာ အအေးဖြေပါ။ ကာရီတုံးထည့်ပြီးနောက် မီးအေးအေးထားပါ။ ကော်ဖီအမျိုးအစားနှင့် ပမာဏ မဖော်ပြထားသောကြောင့် မထည့်မီ Edwin ကို မေးပါ။"),
     [
       photo("assets/recipes/human-food/japanese-curry-served.png",
         t("Japanese curry rice served on a plate", "お皿に盛ったカレーライス", "ပန်းကန်ထဲတွင် ပြင်ဆင်ထားသော ဂျပန်ကာရီထမင်း"),
@@ -1207,26 +1345,37 @@ const recipes = [
       style: t("Curry", "カレー", "ကာရီ"),
       timeEstimate: t("45 mins", "45分", "၄၅ မိနစ်"),
       highProtein: false,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 2282,
+        protein: 104.9,
+        carbs: 290.3,
+        fat: 75.9,
+        basis: t(
+          "Calculated for the whole batch using one 92g box of S&B Golden Curry Medium Hot, 300g beef, 300g potato, 150g carrot, and 600g cooked rice. Onion, oil, apple, and coffee are excluded because their amounts are not confirmed. Makes about 5 servings at 456 kcal each.",
+          "S&Bゴールデンカレー中辛92g入り1箱、牛肉300g、じゃがいも300g、人参150g、ご飯600gを使う全量で計算しています。玉ねぎ、油、りんご、コーヒーは量が未確定のため含めていません。約5人分で、1人分は約456 kcalです。",
+          "S&B Golden Curry Medium Hot ၉၂ ဂရမ် ၁ ဘူး၊ အမဲသား ၃၀၀ ဂရမ်၊ အာလူး ၃၀၀ ဂရမ်၊ မုန်လာဥနီ ၁၅၀ ဂရမ်နှင့် ချက်ပြီးသားထမင်း ၆၀၀ ဂရမ်ပါသော ဟင်းတစ်အိုးလုံးအတွက် တွက်ချက်ထားသည်။ ကြက်သွန်နီ၊ ဆီ၊ ပန်းသီးနှင့် ကော်ဖီပမာဏ မသေချာသောကြောင့် ထည့်မတွက်ထားပါ။ ၅ ပွဲခန့်ရပြီး ၁ ပွဲလျှင် ၄၅၆ kcal ခန့်ဖြစ်သည်။"
+        )
+      }
     }
   ),
   recipe("beef-mushroom-egg-bowl",
     t("Beef, Mushroom and Egg Rice Bowl", "牛肉とエリンギと卵の丼", "အမဲသား၊ မှိုနှင့် ကြက်ဥ ထမင်းသုပ်ပန်းကန်"),
     [
-      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
-      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
-      [t("King oyster mushroom", "エリンギ", "ဘုရင်မှိုခြောက် / King oyster မှို"), t("as needed", "適量", "လိုအပ်သလို"), "king-oyster-mushroom"],
-      [t("Egg", "卵", "ကြက်ဥ"), t("1", "1個", "၁ လုံး"), "eggs"],
-      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), t("as needed", "適量", "လိုအပ်သလို"), "cherry-tomatoes"],
-      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), t("a little", "少々", "အနည်းငယ်"), "salt"],
-      [t("Chilli powder", "チリパウダー", "ငရုတ်သီးမှုန့်"), t("a little", "少々", "အနည်းငယ်"), "chilli-powder"]
+      [t("Cooked rice", "ご飯", "ထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.8, fat: 0.4 }],
+      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), "150g", "beef", { calories: 375, protein: 39.2, carbs: 0.0, fat: 25.5 }],
+      [t("King oyster mushroom", "エリンギ", "King oyster မှို"), "100g", "king-oyster-mushroom", { calories: 35, protein: 2.8, carbs: 6.5, fat: 0.3 }],
+      [t("Egg", "卵", "ကြက်ဥ"), t("1 (50g)", "1個（50g）", "၁ လုံး (၅၀ ဂရမ်)"), "eggs", { calories: 72, protein: 6.3, carbs: 0.4, fat: 4.8 }],
+      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), "80g", "cherry-tomatoes", { calories: 14, protein: 0.6, carbs: 2.5, fat: 0.2 }],
+      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Chilli powder", "チリパウダー", "ငရုတ်သီးမှုန့်"), "1g", "chilli-powder", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }]
     ],
     [
       t("Cook the egg until soft-boiled.", "卵を半熟（温泉卵）にゆでます。", "ကြက်ဥကို အကျက်ပျော့ပျော့ ပြုတ်ပါ။"),
-      t("Slice and cook the mushroom.", "エリンギをスライスして炒めます。", "မှိုကို ပါးပါးလှီးပြီး ချက်ပါ။"),
-      t("Add the beef, salt and pepper, then cook together.", "牛肉、塩コショウを加え、一緒に炒めます。", "အမဲသား၊ ဆားနှင့် ငရုတ်ကောင်းတို့ကို ထည့်ပြီး အတူတူချက်ပါ။"),
-      t("Put everything on top of hot rice.", "温かいご飯の上にすべてをのせます。", "ပူပူနွေးနွေး ထမင်းပေါ်တွင် အားလုံးကို တင်ပါ။"),
-      t("Add the egg and cherry tomatoes.", "卵とミニトマトをのせます。", "ကြက်ဥနှင့် ခရမ်းချဉ်သီးချိုတို့ကို ထည့်ပါ။"),
+      t("Slice and cook 100g mushroom.", "エリンギ100gをスライスして炒めます。", "မှို ၁၀၀ ဂရမ်ကို ပါးပါးလှီးပြီး ချက်ပါ။"),
+      t("Add 150g beef and 1g salt and pepper, then cook together.", "牛肉150gと塩コショウ1gを加え、一緒に炒めます。", "အမဲသား ၁၅၀ ဂရမ်နှင့် ဆား၊ ငရုတ်ကောင်း ၁ ဂရမ်ကို ထည့်ပြီး အတူတူချက်ပါ။"),
+      t("Put everything on top of 180g hot rice.", "温かいご飯180gの上にすべてをのせます。", "ပူပူနွေးနွေး ထမင်း ၁၈၀ ဂရမ်ပေါ်တွင် အားလုံးကို တင်ပါ။"),
+      t("Add the egg and 80g cherry tomatoes.", "卵とミニトマト80gをのせます。", "ကြက်ဥနှင့် ခရမ်းချဉ်သီးချို ၈၀ ဂရမ်ကို ထည့်ပါ။"),
       t("Sprinkle chilli powder on top.", "上からチリパウダーを振ります。", "အပေါ်မှ ငရုတ်သီးမှုန့် ဖြန်းပေးပါ။")
     ],
     t("Do not add onion, garlic or other toxic ingredients if sharing with pets, and keep Nako away from chilli powder.", "ペットと共有する場合は、玉ねぎやにんにくなどの有害な食材を加えないでください。また、チリパウダーは犬に与えないでください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် အခြားအဆိပ်သင့်စေသော ပါဝင်ပစ္စည်းများကို မထည့်ပါနှင့်။ Nako ကို ငရုတ်သီးမှုန့်နှင့် ဝေးဝေးတွင် ထားပါ။"),
@@ -1241,24 +1390,35 @@ const recipes = [
       style: t("Gyudon/Bowl", "丼もの", "ထမင်းသုပ်ပန်းကန်"),
       timeEstimate: t("20 mins", "20分", "မိနစ် ၂၀"),
       highProtein: true,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 730,
+        protein: 53.1,
+        carbs: 61.2,
+        fat: 31.2,
+        basis: t(
+          "Calculated for one bowl using 180g cooked rice, 150g sliced beef, 100g king oyster mushroom, one 50g egg, and 80g cherry tomatoes, with no added cooking oil.",
+          "ご飯180g、薄切り牛肉150g、エリンギ100g、卵1個50g、ミニトマト80gを使い、調理油を加えない1杯分で計算しています。",
+          "ချက်ပြီးသားထမင်း ၁၈၀ ဂရမ်၊ အမဲသားလွှာ ၁၅၀ ဂရမ်၊ King oyster မှို ၁၀၀ ဂရမ်၊ ကြက်ဥ ၅၀ ဂရမ် ၁ လုံးနှင့် ခရမ်းချဉ်သီးချို ၈၀ ဂရမ်ပါသော ၁ ပန်းကန်စာအတွက် တွက်ချက်ထားသည်။ ဟင်းချက်ဆီ မထည့်ထားပါ။"
+        )
+      }
     }
   ),
   recipe("soy-braised-beef-egg",
     t("Soy-Braised Beef and Egg with Rice", "牛肉と煮卵の醤油煮込みご飯", "အမဲသားနှင့် ပဲငပိရည်ပြုတ်ကြက်ဥ ထမင်း"),
     [
-      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), t("as needed", "適量", "လိုအပ်သလို"), "beef"],
-      [t("Boiled eggs", "ゆで卵", "ပြုတ်ကြက်ဥ"), t("as needed", "適量", "လိုအပ်သလို"), "eggs"],
-      [t("Soy sauce", "醤油", "ပဲငပိရည်/ပဲငါးပိရည်"), t("as needed", "適量", "လိုအပ်သလို"), "soy-sauce"],
-      [t("Water", "水", "ရေ"), t("a little", "少々", "အနည်းငယ်"), "water"],
-      [t("Cooked rice", "ご飯", "ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"]
+      [t("Sliced beef", "薄切り牛肉", "အမဲသားလွှာ"), "200g", "beef", { calories: 499, protein: 52.1, carbs: 0.0, fat: 34.0 }],
+      [t("Boiled eggs", "ゆで卵", "ကြက်ဥပြုတ်"), t("2 (100g)", "2個（100g）", "၂ လုံး (၁၀၀ ဂရမ်)"), "eggs", { calories: 144, protein: 12.6, carbs: 0.7, fat: 9.5 }],
+      [t("Soy sauce", "醤油", "ပဲငံပြာရည်"), "30g", "soy-sauce", { calories: 16, protein: 2.4, carbs: 1.4, fat: 0.2 }],
+      [t("Water", "水", "ရေ"), "60g", "water", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }],
+      [t("Cooked rice", "ご飯", "ထမင်း"), "180g", "rice", { calories: 234, protein: 4.2, carbs: 51.8, fat: 0.4 }]
     ],
     [
       t("Boil the eggs and remove the shells.", "卵をゆでて殻をむきます。", "ကြက်ဥကို ပြုတ်ပြီး အခွံနွှာပါ။"),
-      t("Cook beef, eggs, soy sauce and a little water together.", "牛肉、ゆで卵、醤油、少量の水を一緒に煮込みます。", "အမဲသား၊ ကြက်ဥ၊ ပဲငပိရည်နှင့် ရေအနည်းငယ်တို့ကို အတူတူချက်ပါ။"),
-      t("Serve with rice.", "ご飯と一緒に盛り付けます。", "ထမင်းနှင့်အတူ တည်ခင်းပါ။")
+      t("Cook 200g beef, 2 eggs, 30g soy sauce, and 60g water together.", "牛肉200g、ゆで卵2個、醤油30g、水60gを一緒に煮込みます。", "အမဲသား ၂၀၀ ဂရမ်၊ ကြက်ဥ ၂ လုံး၊ ပဲငံပြာရည် ၃၀ ဂရမ်နှင့် ရေ ၆၀ ဂရမ်ကို အတူတူချက်ပါ။"),
+      t("Serve with 180g cooked rice.", "ご飯180gと一緒に盛り付けます。", "ချက်ပြီးသားထမင်း ၁၈၀ ဂရမ်နှင့်အတူ တည်ခင်းပါ။")
     ],
-    t("Do not add onion or garlic if sharing with pets, and keep soy sauce quantities minimal/diluted if pets taste any part of the food.", "ペットと共有する場合は玉ねぎやにんにくを加えないでください。また、ペットが味見をする場合は醤油の量を最小限にし、薄めてください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မထည့်ပါနှင့်၊ တိရစ္ဆာန်များ အနည်းငယ် မြည်းစမ်းမည်ဆိုပါက ပဲငပိရည်ပမာဏကို အနည်းဆုံး/ရေရောပြီး သုံးပါ။"),
+    t("Do not add onion or garlic. Keep Nako away from the soy-braised food because it is salty.", "玉ねぎやにんにくは加えないでください。醤油煮は塩分が高いため、ナコに与えないでください。", "ကြက်သွန်နီ သို့မဟုတ် ကြက်သွန်ဖြူ မထည့်ပါနှင့်။ ပဲငံပြာရည်နှင့်ချက်ထားသော အစားအစာသည် ငန်သောကြောင့် Nako ကို မကျွေးပါနှင့်။"),
     [
       photo("assets/recipes/human-food/soy-braised-beef-egg.jpg",
         t("Soy-braised beef and egg", "牛肉と煮卵の醤油煮込み", "ပဲငပိရည်ပြုတ် အမဲသားနှင့် ကြက်ဥ"),
@@ -1270,19 +1430,30 @@ const recipes = [
       style: t("Braised/Rice", "煮込み・ご飯", "ပြုတ်/ထမင်း"),
       timeEstimate: t("25 mins", "25分", "၂၅ မိနစ်"),
       highProtein: true,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 893,
+        protein: 71.3,
+        carbs: 53.9,
+        fat: 44.1,
+        basis: t(
+          "Calculated for one meal using 200g sliced beef, 2 eggs, 30g soy sauce, 60g water, and 180g cooked rice.",
+          "薄切り牛肉200g、卵2個、醤油30g、水60g、ご飯180gを使う1食分で計算しています。",
+          "အမဲသားလွှာ ၂၀၀ ဂရမ်၊ ကြက်ဥ ၂ လုံး၊ ပဲငံပြာရည် ၃၀ ဂရမ်၊ ရေ ၆၀ ဂရမ်နှင့် ချက်ပြီးသားထမင်း ၁၈၀ ဂရမ်ပါသော ၁ ပွဲစာအတွက် တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("onigiri-rice-balls",
     t("Onigiri Rice Balls", "おにぎり", "အိုနီဂီရိ ထမင်းဆုပ်"),
     [
-      [t("Cooked Japanese rice", "ご飯（日本米）", "ဂျပန်ထမင်း"), t("as needed", "適量", "လိုအပ်သလို"), "rice"],
-      [t("Cooked protein (meat, fish, etc.)", "具材（肉、魚など）", "ချက်ပြုတ်ထားသော ပရိုတင်း (အသား၊ ငါး စသည်)"), t("as needed", "適量", "လိုအပ်သလို"), "cooked-protein"],
-      [t("Rice seasoning (Furikake)", "ふりかけ・味付け", "ထမင်းဖြူးမွှေး (Furikake)"), t("as needed", "適量", "လိုအပ်သလို"), "rice-seasoning"]
+      [t("Cooked Japanese rice", "ご飯（日本米）", "ဂျပန်ထမင်း"), "200g", "rice", { calories: 260, protein: 4.7, carbs: 57.5, fat: 0.4 }],
+      [t("Cooked salmon", "加熱した鮭", "ချက်ပြီးသား ဆယ်လ်မွန်ငါး"), "60g", "salmon-fillet", { calories: 124, protein: 12.5, carbs: 0.0, fat: 7.9 }],
+      [t("Rice seasoning (Furikake)", "ふりかけ", "ထမင်းဖြူးမွှေး (Furikake)"), "6g", "rice-seasoning", { calories: 22, protein: 0.9, carbs: 2.4, fat: 1.0 }]
     ],
     [
-      t("Mix the rice, cooked protein and seasoning.", "ご飯、具材、ふりかけを混ぜ合わせます。", "ထမင်း၊ ချက်ပြုတ်ထားသော ပရိုတင်းနှင့် ထမင်းဖြူးမွှေးတို့ကို ရောမွှေပါ။"),
-      t("Shape into rice balls with wet hands or plastic wrap.", "濡らした手やラップを使って、おにぎりの形に整えます。", "စိုစွတ်သောလက် သို့မဟုတ် ပလတ်စတစ်စဖြင့် ထမင်းဆုပ်ပုံဖော်ပါ။")
+      t("Mix 200g rice, 60g cooked salmon, and 6g furikake.", "ご飯200g、加熱した鮭60g、ふりかけ6gを混ぜ合わせます。", "ထမင်း ၂၀၀ ဂရမ်၊ ချက်ပြီးသား ဆယ်လ်မွန်ငါး ၆၀ ဂရမ်နှင့် furikake ၆ ဂရမ်ကို ရောမွှေပါ။"),
+      t("Divide the mixture in half and shape 2 rice balls with wet hands or plastic wrap.", "2等分し、濡らした手やラップを使っておにぎりを2個作ります。", "အရောကို တစ်ဝက်စီခွဲပြီး စိုစွတ်သောလက် သို့မဟုတ် ပလတ်စတစ်စဖြင့် ထမင်းဆုပ် ၂ လုံး ပုံဖော်ပါ။")
     ],
     t("Avoid using seasonings containing onion, garlic, or excessive salt if sharing with pets.", "ペットと共有する場合は、玉ねぎ、にんにく、または過度な塩分を含むふりかけ・調味料は使用しないでください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် ဆားအလွန်အကျွံပါဝင်သော အမွှေးအကြိုင်များ သုံးစွဲခြင်းမှ ရှောင်ကြဉ်ပါ။"),
     [
@@ -1296,23 +1467,34 @@ const recipes = [
       style: t("Onigiri/Rice", "おにぎり・米", "ထမင်းဆုပ်"),
       timeEstimate: t("15 mins", "15分", "၁၅ မိနစ်"),
       highProtein: false,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 406,
+        protein: 18.1,
+        carbs: 59.9,
+        fat: 9.3,
+        basis: t(
+          "Calculated for 2 rice balls using 200g cooked Japanese rice, 60g cooked salmon, and 6g furikake.",
+          "ご飯200g、加熱した鮭60g、ふりかけ6gを使うおにぎり2個分で計算しています。",
+          "ချက်ပြီးသားဂျပန်ထမင်း ၂၀၀ ဂရမ်၊ ချက်ပြီးသား ဆယ်လ်မွန်ငါး ၆၀ ဂရမ်နှင့် furikake ၆ ဂရမ်ပါသော ထမင်းဆုပ် ၂ လုံးအတွက် တွက်ချက်ထားသည်။"
+        )
+      }
     }
   ),
   recipe("clean-yukari-style-salad",
     t("Clean Yukari-Style Salad", "ゆかり風クリーンサラダ", "ယူကာရီစတိုင် သန့်ရှင်းလတ်ဆတ်သော သုပ်"),
     [
-      [t("Chicken breast", "鶏胸肉", "ကြက်ရင်အုံသား"), t("as needed", "適量", "လိုအပ်သလို"), "chicken-breast"],
-      [t("Kale", "ケール", "ကိုက်လန်/Kale"), t("as needed", "適量", "လိုအပ်သလို"), "kale"],
-      [t("Pumpkin", "かぼちゃ", "ရွှေဖရုံသီး"), t("as needed", "適量", "လိုအပ်သလို"), "pumpkin"],
-      [t("Mushrooms", "キノコ", "မှို"), t("as needed", "適量", "လိုအပ်သလို"), "mushrooms"],
-      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), t("as needed", "適量", "လိုအပ်သလို"), "cherry-tomatoes"],
-      [t("Egg", "卵", "ကြက်ဥ"), t("1", "1個", "၁ လုံး"), "eggs"],
-      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), t("a little", "少々", "အနည်းငယ်"), "salt"]
+      [t("Chicken breast", "鶏胸肉", "ကြက်ရင်အုံသား"), "180g", "chicken-breast", { calories: 202, protein: 40.6, carbs: 0.0, fat: 3.5 }],
+      [t("Kale", "ケール", "ကိုက်လန်"), "80g", "kale", { calories: 28, protein: 2.3, carbs: 4.4, fat: 0.7 }],
+      [t("Pumpkin", "かぼちゃ", "ရွှေဖရုံသီး"), "150g", "pumpkin", { calories: 70, protein: 1.7, carbs: 14.8, fat: 0.2 }],
+      [t("Mushrooms", "キノコ", "မှို"), "100g", "mushrooms", { calories: 22, protein: 3.1, carbs: 3.3, fat: 0.3 }],
+      [t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးချို"), "100g", "cherry-tomatoes", { calories: 18, protein: 0.9, carbs: 3.9, fat: 0.2 }],
+      [t("Large egg", "大きめの卵", "ကြက်ဥအကြီး"), t("1 (60g)", "1個（60g）", "၁ လုံး (၆၀ ဂရမ်)"), "eggs", { calories: 75, protein: 7.1, carbs: 0.7, fat: 5.3 }],
+      [t("Salt and pepper", "塩コショウ", "ဆားနှင့် ငရုတ်ကောင်း"), "1g", "salt", { calories: 0, protein: 0.0, carbs: 0.0, fat: 0.0 }]
     ],
     [
-      t("Boil the egg and pumpkin.", "卵とかぼちゃをゆでます。", "ကြက်ဥနှင့် ရွှေဖရုံသီးတို့ကို ပြုတ်ပါ။"),
-      t("Cook the chicken and mushrooms with salt and pepper.", "鶏肉とキノコを塩コショウで炒めます。", "ကြက်သားနှင့် မှိုတို့ကို ဆား၊ ငရုတ်ကောင်းတို့ဖြင့် ချက်ပါ။"),
+      t("Boil the egg and 150g pumpkin.", "卵とかぼちゃ150gをゆでます。", "ကြက်ဥနှင့် ရွှေဖရုံသီး ၁၅၀ ဂရမ်ကို ပြုတ်ပါ။"),
+      t("Cook 180g chicken and 100g mushrooms with 1g salt and pepper.", "鶏肉180gとキノコ100gを塩コショウ1gで炒めます。", "ကြက်သား ၁၈၀ ဂရမ်နှင့် မှို ၁၀၀ ဂရမ်ကို ဆား၊ ငရုတ်ကောင်း ၁ ဂရမ်ဖြင့် ချက်ပါ။"),
       t("Put everything together on a plate.", "すべての具材をお皿に盛り付けます。", "အားလုံးကို ပန်းကန်တစ်ခုတည်းတွင် အတူတူပြင်ဆင်ပါ။")
     ],
     t("Do not add onion, garlic or toxic herbs. Keep seasonings minimal if sharing any clean chicken or pumpkin with pets.", "ペットと共有する場合は、玉ねぎ、にんにく、または有害なハーブを加えないでください。鶏肉やかぼちゃをペットに与える場合は味付けを避けてください。", "အိမ်မွေးတိရစ္ဆာန်များနှင့် မျှဝေပါက ကြက်သွန်နီ၊ ကြက်သွန်ဖြူ သို့မဟုတ် အဆိပ်သင့်စေသော ဆေးဖက်ဝင်အပင်များ မထည့်ပါနှင့်။ ကြက်သား သို့မဟုတ် ရွှေဖရုံသီးကို ကျွေးမည်ဆိုပါက အမွှေးအကြိုင်များကို အနည်းဆုံးသာ သုံးပါ။"),
@@ -1327,7 +1509,18 @@ const recipes = [
       style: t("Clean/Healthy", "クリーン・健康食", "သန့်ရှင်း/ကျန်းမာရေးနှင့်ညီညွတ်သော"),
       timeEstimate: t("20 mins", "20分", "မိနစ် ၂၀"),
       highProtein: true,
-      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်")
+      demoStatus: t("Pending demo", "実演待ち", "လက်တွေ့ပြသရန် စောင့်ဆိုင်းနေသည်"),
+      nutrition: {
+        calories: 415,
+        protein: 55.7,
+        carbs: 27.1,
+        fat: 10.2,
+        basis: t(
+          "Calculated for one plate using 180g raw chicken breast, 80g kale, 150g pumpkin, 100g mushrooms, 100g cherry tomatoes, and one 60g egg, with no added cooking oil.",
+          "生の鶏胸肉180g、ケール80g、かぼちゃ150g、キノコ100g、ミニトマト100g、卵1個60gを使い、調理油を加えない1皿分で計算しています。",
+          "ကြက်ရင်အုံသားအစိမ်း ၁၈၀ ဂရမ်၊ ကိုက်လန် ၈၀ ဂရမ်၊ ရွှေဖရုံသီး ၁၅၀ ဂရမ်၊ မှို ၁၀၀ ဂရမ်၊ ခရမ်းချဉ်သီးချို ၁၀၀ ဂရမ်နှင့် ကြက်ဥ ၆၀ ဂရမ် ၁ လုံးပါသော ၁ ပန်းကန်စာအတွက် တွက်ချက်ထားသည်။ ဟင်းချက်ဆီ မထည့်ထားပါ။"
+        )
+      }
     }
   ),
   recipe("love-bentos-by-yukari",

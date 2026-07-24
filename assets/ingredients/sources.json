@@ -69,6 +69,13 @@
     "imageUrl": "https://media.nedigital.sg/fairprice/90056305_XL1_20260711211223_1e47e9525261c41453543c332728569e.jpg",
     "bytes": 72182
   },
+  "coffee": {
+    "file": "coffee.jpg",
+    "target": "Coffee used for Japanese curry",
+    "sourcePage": "https://www.fairprice.com.sg/product/nescafe-3-in-1-instant-coffee-original-30-x-16-5g-13039640",
+    "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13039640_XL1_20260105.jpg",
+    "bytes": 163674
+  },
   "consomme-powder": {
     "file": "consomme-powder.jpg",
     "target": "Chicken consommé powder packet or tub",
@@ -166,6 +173,13 @@
     "sourcePage": "https://www.fairprice.com.sg/product/mother-earth-manuka-honey-umf-10-250g-13099701",
     "imageUrl": "https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13099701_XL1_20260622.jpg",
     "bytes": 159674
+  },
+  "hotcake-mix": {
+    "file": "hotcake-mix.jpg",
+    "target": "Japanese hotcake-mix packet",
+    "sourcePage": "https://www.fairprice.com.sg/product/yamamori-hot-cake-mix-powder-400-g-90018323",
+    "imageUrl": "https://media.nedigital.sg/fairprice/90018323_XL1_20260724084303_c73ed49d2b3c16c6e74c09830136bf3e.jpg",
+    "bytes": 112494
   },
   "jam": {
     "file": "jam.jpg",

@@ -120,6 +120,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/s-b-ichimi-togarashi-japanese-chilli-powder-kirei-15-g-90056305
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90056305_XL1_20260711211223_1e47e9525261c41453543c332728569e.jpg
 
+## coffee
+
+- **File**: `coffee.jpg`
+- **Shopping target**: Coffee used for Japanese curry
+- **Source page**: https://www.fairprice.com.sg/product/nescafe-3-in-1-instant-coffee-original-30-x-16-5g-13039640
+- **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13039640_XL1_20260105.jpg
+
 ## consomme-powder
 
 - **File**: `consomme-powder.jpg`
@@ -127,24 +134,11 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/kirei-ajinomoto-chicken-consomme-powder-1kg-90016628
 - **Downloaded image**: https://media.nedigital.sg/fairprice/90016628_XL1_20260714171641_f9ba5157fa678bc10cdd7e4653550168.jpg
 
-## cooked-protein
-
-- **File**: `tuna.jpg`
-- **Shopping target**: Cooked meat, fish, or other protein flakes/pieces
-- **Source page**: https://www.fairprice.com.sg/product/fairprice-tuna-flakes-in-water-160g-13256630
-
 ## cooking-sake
 
 - **File**: `cooking-sake.jpg`
 - **Shopping target**: Japanese cooking-sake bottle
 - **Source page**: https://www.fairprice.com.sg/product/kirei-premium-hinode-japan-ryorishu-cooking-sake-400-ml-90121995
-
-## crab-stick
-
-- **File**: `crab-stick.jpg`
-- **Shopping target**: Crab sticks / surimi package
-- **Source page**: https://www.fairprice.com.sg/product/seaboss-kanifumi-kamaboko-surimi-japanese-crabstick-halal-500-g-90027994
-- **Downloaded image**: https://media.nedigital.sg/fairprice/90027994_XL1_20260702150316_2aef57d2fa0059b6c653cdda5b76c7b2.jpg
 
 ## daikon-radish
 
@@ -241,6 +235,13 @@ Curated online reference images for this private household app. Every file is a 
 - **Shopping target**: Honey bottle or jar
 - **Source page**: https://www.fairprice.com.sg/product/mother-earth-manuka-honey-umf-10-250g-13099701
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13099701_XL1_20260622.jpg
+
+## hotcake-mix
+
+- **File**: `hotcake-mix.jpg`
+- **Shopping target**: Japanese hotcake-mix packet
+- **Source page**: https://www.fairprice.com.sg/product/yamamori-hot-cake-mix-powder-400-g-90018323
+- **Downloaded image**: https://media.nedigital.sg/fairprice/90018323_XL1_20260724084303_c73ed49d2b3c16c6e74c09830136bf3e.jpg
 
 ## jam
 
@@ -391,6 +392,11 @@ Curated online reference images for this private household app. Every file is a 
 - **Source page**: https://www.fairprice.com.sg/product/fairprice-peanut-butter-creamy-500g-13185255
 - **Downloaded image**: https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13185255_XL1_20260516.jpg
 
+## plain-bee-hoon
+
+- **File**: `plain-bee-hoon.jpg`
+- **Shopping target**: Cooked plain bee hoon with vegetables, wrapped in brown paper
+
 ## pork
 
 - **File**: `pork.jpg`
@@ -507,6 +513,12 @@ Curated online reference images for this private household app. Every file is a 
 - **File**: `soy-sauce.jpg`
 - **Shopping target**: Japanese-style soy sauce bottle
 - **Source page**: https://www.fairprice.com.sg/product/12400028
+
+## spinach
+
+- **File**: `spinach.jpg`
+- **Shopping target**: Fresh spinach pack
+- **Source page**: https://www.fairprice.com.sg/product/kok-fah-baby-spinach-200g-13032623
 
 ## spring-onion
 

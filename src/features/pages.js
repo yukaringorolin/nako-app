@@ -374,7 +374,7 @@ function renderShortcuts() {
     { id: "nako-weight-tracking", type: "routine", labelKey: "shortcutNakoWeight" },
     { id: "nako-feeding-water", type: "routine", labelKey: "shortcutAppetiteTracker" },
     { id: "grocery-shopping", type: "routine" },
-    { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs", statusKey: "futureTracking" },
+    { id: "meal-logs", type: "food", labelKey: "shortcutMealLogs" },
     { id: "recipes", type: "food", labelKey: "shortcutNakoToppings" },
     { id: "human-food", type: "food", labelKey: "shortcutHumanFood" },
     { id: "nako-training-fun", type: "routine", labelKey: "shortcutDogTraining" },
@@ -647,6 +647,7 @@ function renderFood(foodId) {
   if (!item) return renderHome();
   if (item.canonicalRoute) return replaceRoute(item.canonicalRoute);
   if (item.type === "recipeIndex") return renderRecipeIndex(item);
+  if (item.id === "meal-logs") return renderMealLogsDashboard(item);
   const state = getFoodState(item.id);
   const hasInstructions = item.instructions.length > 1 || (item.instructions.length === 1 && tr(item.instructions[0]) !== tr(item.summary));
   const instructionsPanel = hasInstructions ? `<section class="panel"><h2>${esc(label("instructions"))}</h2>${orderedList(item.instructions)}</section>` : "";

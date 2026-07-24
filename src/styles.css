@@ -3418,6 +3418,171 @@ html[lang="my"] .shortcut-title {
   margin-top: 4px;
 }
 
+/* Edwin meal logs dashboard */
+.meal-logs-dashboard {
+  display: grid;
+  gap: 14px;
+}
+
+.meal-logs-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.meal-logs-toolbar p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.meal-logs-toolbar .action-button {
+  flex: 0 0 auto;
+}
+
+.meal-logs-error,
+.meal-logs-loading {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.45;
+}
+
+.meal-logs-error {
+  border: 1px solid #ecc5cc;
+  background: #fff7f8;
+  color: #8c3348;
+}
+
+.meal-logs-loading {
+  border: 1px solid #c4ddcf;
+  background: var(--mint-soft);
+  color: #2f7352;
+}
+
+.meal-logs-section {
+  display: grid;
+  gap: 9px;
+}
+
+.meal-logs-section > h2 {
+  margin: 0 2px;
+  font-size: 17px;
+}
+
+.meal-log-latest-card,
+.meal-log-row {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.meal-log-latest-card {
+  padding: 16px;
+  border-color: #efb8c1;
+  background: linear-gradient(135deg, #fff7f8 0%, #fffdf8 100%);
+  box-shadow: 0 8px 20px rgba(48, 62, 55, 0.06);
+}
+
+.meal-log-latest-card > time,
+.meal-log-row > time {
+  display: block;
+  color: var(--ink);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.meal-log-latest-card > time {
+  margin-bottom: 12px;
+  font-size: 19px;
+}
+
+.meal-log-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.meal-log-metric {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.meal-log-metric dt {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.meal-log-metric dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.meal-log-metric dd span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.meal-log-list {
+  display: grid;
+  gap: 8px;
+}
+
+.meal-log-row {
+  padding: 12px;
+}
+
+.meal-log-row > time {
+  margin-bottom: 9px;
+  font-size: 14px;
+}
+
+.meal-log-row .meal-log-metric {
+  padding: 7px 8px;
+  background: var(--bg);
+}
+
+.meal-log-row .meal-log-metric dd {
+  font-size: 14px;
+}
+
+.meal-logs-empty p {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (min-width: 620px) {
+  .meal-log-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 370px) {
+  .meal-logs-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
 .ingredient-copy {
   display: flex;
   flex-direction: column;

@@ -22,11 +22,13 @@ function render() {
   
   const newRouteKey = location.hash || "#home";
   activeRouteKey = newRouteKey;
+  const mealLogsOpened = isMealLogsRoute(route) && oldRouteKey !== newRouteKey;
 
   if (oldRouteKey) {
     scrollPositions[oldRouteKey] = currentScroll;
   }
 
+  if (mealLogsOpened) refreshMealLogs({ renderLoading: false });
   (routeRegistry[route.view] || routeRegistry.home)(route);
 
   const targetScroll = oldRouteKey === newRouteKey ? currentScroll : (scrollPositions[newRouteKey] || 0);

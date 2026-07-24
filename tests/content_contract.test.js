@@ -70,6 +70,9 @@ assert.equal(householdNakoSupplies.title.en, "Household/Nako Supplies & Online O
 assert.match(householdNakoSupplies.summary.en, /Check household and Nako supplies weekly/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /Nako's food, pee pads, wipes, and poop bags every week/);
 assert.match(englishText(householdNakoSupplies.mustRemember), /Tell Edwin early before any household or Nako supplies fully run out/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /2 tissue packs.*brown-lid tissue box.*white cabinet/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /upside down.*pull the string on the bottom/);
+assert.match(englishText(householdNakoSupplies.mustRemember), /only 1 pack remains.*bottom shelf.*white cabinet or rack/);
 assert.ok(householdNakoSupplies.photos.some((item) => item.src === "assets/sections/nako-inventory.png"));
 const legacyNakoInventory = data.foodItems.find((item) => item.id === "nako-inventory");
 assert.equal(legacyNakoInventory.active, false);
@@ -293,6 +296,7 @@ assert.equal(groceryShopping.trackingMode, "none");
 assert.match(englishText(groceryShopping.mustRemember), /Before about 9 a\.m\..*wet-market.*After about 9 a\.m\..*NTUC FairPrice/);
 assert.match(englishText(groceryShopping.mustRemember), /daily active reference check, not a completion-checklist item/);
 assert.match(englishText(groceryShopping.mustRemember), /keep the receipt.*chilled or frozen food home immediately/);
+assert.match(englishText(groceryShopping.mustRemember), /large beef cubes from Giant.*gamey.*rubbery.*smaller or more tender cut/);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
 assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
 assert.equal(groceryShopping.stockItems, undefined);
@@ -418,6 +422,31 @@ assert.deepEqual(Array.from(threeIngredientPancakes.photos, (item) => item.src),
 assert.match(threeIngredientPancakes.note.en, /only flour, eggs, and milk in the batter/);
 assert.match(englishText(threeIngredientPancakes.method), /Serve with honey and jam/);
 
+const hotcakeMixPancakes = recipeById("hotcake-mix-pancakes");
+assert.deepEqual(Array.from(hotcakeMixPancakes.ingredients, (item) => item.key), [
+  "hotcake-mix", "milk", "eggs", "oil"
+]);
+assert.match(englishText(hotcakeMixPancakes.method), /half of the batter/);
+assert.match(englishText(hotcakeMixPancakes.method), /bubbles appear/);
+assert.match(englishText(hotcakeMixPancakes.method), /second hotcake/);
+assert.match(hotcakeMixPancakes.note.en, /milk quantity shown on the hotcake-mix package/);
+
+const simpleBoiledSweetPotato = recipeById("simple-boiled-sweet-potato");
+assert.deepEqual(Array.from(simpleBoiledSweetPotato.ingredients, (item) => item.key), [
+  "sweet-potato", "water", "salt", "soy-sauce"
+]);
+assert.match(englishText(simpleBoiledSweetPotato.method), /even round slices/);
+assert.match(englishText(simpleBoiledSweetPotato.method), /tender but still hold their shape/);
+assert.match(simpleBoiledSweetPotato.note.en, /humans only.*Nako.*no salt or soy sauce/);
+
+const japaneseCurry = recipeById("japanese-curry-rice");
+assert.ok(japaneseCurry.ingredients.some((item) => item.key === "onion"));
+assert.ok(japaneseCurry.ingredients.some((item) => item.key === "apple"));
+assert.ok(japaneseCurry.ingredients.some((item) => item.key === "coffee"));
+assert.match(englishText(japaneseCurry.method), /grated apple.*usual coffee.*curry blocks/);
+assert.match(japaneseCurry.note.en, /Human-only.*onion and coffee.*Never feed this curry to Nako/);
+assert.match(japaneseCurry.note.en, /coffee type and amount are not specified.*ask Edwin/);
+
 const macaroniSalad = recipeById("macaroni-salad");
 assert.deepEqual(Array.from(macaroniSalad.ingredients, (item) => item.key), [
   "macaroni", "eggs", "tomato", "mayonnaise", "salt"
@@ -489,7 +518,7 @@ assert.equal(recipeById("air-fryer-chicken-wings").demoStatus, undefined);
 const soyMarinatedEggs = recipeById("soy-marinated-eggs-chilli");
 assert.equal(soyMarinatedEggs.title.en, "Soy-Marinated Eggs with Chilli (10 Eggs)");
 assert.equal(soyMarinatedEggs.demoStatus.en, "Pending demo");
-assert.ok(soyMarinatedEggs.ingredients.some((item) => item.key === "eggs" && item.amount.en === "10"));
+assert.ok(soyMarinatedEggs.ingredients.some((item) => item.key === "eggs" && /^10(?:\D|$)/.test(item.amount.en)));
 assert.deepEqual(Array.from(soyMarinatedEggs.ingredients, (item) => item.key), [
   "eggs", "soy-sauce", "water", "mirin", "honey", "sesame-oil", "fresh-chilli", "spring-onion"
 ]);
@@ -506,8 +535,8 @@ assert.equal(knorrMacaroni.demoStatus.en, "Pending demo");
 assert.deepEqual(Array.from(knorrMacaroni.ingredients, (item) => item.key), [
   "knorr-quick-serve-macaroni", "ham", "water"
 ]);
-assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "knorr-quick-serve-macaroni" && item.amount.en === "2 packets"));
-assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "water" && item.amount.en === "1 litre"));
+assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "knorr-quick-serve-macaroni" && item.amount.en.startsWith("2 packets")));
+assert.ok(knorrMacaroni.ingredients.some((item) => item.key === "water" && /^(?:1 litre|1000g)$/.test(typeof item.amount === "string" ? item.amount : item.amount.en)));
 assert.match(englishText(knorrMacaroni.method), /about 3 minutes/);
 assert.match(englishText(knorrMacaroni.method), /last 30 seconds/);
 assert.match(englishText(knorrMacaroni.method), /both seasoning packets/);
@@ -520,7 +549,7 @@ assert.deepEqual(Array.from(knorrMacaroni.photos, (item) => item.src), [
 const porkShoulder = recipeById("salt-garlic-pepper-pork-shoulder");
 assert.equal(porkShoulder.title.en, "Salt and Garlic Pepper Pork Shoulders");
 assert.equal(porkShoulder.demoStatus, undefined);
-assert.ok(porkShoulder.ingredients.some((item) => item.key === "pork-shoulder" && item.amount.en === "2 slices"));
+assert.ok(porkShoulder.ingredients.some((item) => item.key === "pork-shoulder" && item.amount.en.startsWith("2 slices")));
 assert.ok(porkShoulder.ingredients.some((item) => item.key === "garlic-pepper"));
 assert.match(englishText(porkShoulder.method), /Cut Butchery.*Bukit Timah Plaza/);
 assert.equal(englishText(porkShoulder.method).match(/200°C for (?:another )?6 min/g)?.length, 2);
@@ -532,9 +561,9 @@ const matchaMilk = recipeById("matcha-milk-manuka-honey");
 assert.equal(matchaMilk.title.en, "Matcha Milk with Manuka Honey");
 assert.equal(matchaMilk.demoStatus, undefined);
 assert.deepEqual(Array.from(matchaMilk.ingredients, (item) => item.key), ["matcha", "milk", "honey"]);
-assert.equal(matchaMilk.ingredients[0].amount.en, "2 g");
-assert.equal(matchaMilk.ingredients[1].amount.en, "200 ml");
-assert.match(englishText(matchaMilk.method), /Manuka honey to taste/);
+assert.equal((typeof matchaMilk.ingredients[0].amount === "string" ? matchaMilk.ingredients[0].amount : matchaMilk.ingredients[0].amount.en).replace(/\s/g, ""), "2g");
+assert.equal((typeof matchaMilk.ingredients[1].amount === "string" ? matchaMilk.ingredients[1].amount : matchaMilk.ingredients[1].amount.en).replace(/\s/g, ""), "200ml");
+assert.match(englishText(matchaMilk.method), /Manuka honey/);
 assert.deepEqual(Array.from(matchaMilk.photos, (item) => item.src), [
   "assets/recipes/human-food/matcha-milk-manuka-honey.jpg"
 ]);
@@ -546,7 +575,7 @@ assert.deepEqual(Array.from(appleGingerPork.ingredients, (item) => item.key), [
   "pork-loin", "apple", "enoki-mushroom", "ginger", "garlic", "potato-starch",
   "dashi-soy-sauce", "cooking-sake", "honey", "sesame-oil", "water", "oil"
 ]);
-assert.match(englishText(appleGingerPork.method), /Grate 1\/4 apple/);
+assert.match(englishText(appleGingerPork.method), /Grate (?:1\/4|45g) apple/);
 assert.match(englishText(appleGingerPork.method), /sauce, apple wedges, and enoki/);
 assert.match(englishText(appleGingerPork.method), /at least 71°C/);
 assert.match(appleGingerPork.note.en, /Do not add onion/);

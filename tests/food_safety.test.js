@@ -45,6 +45,7 @@ assert.ok(householdCookingRulesItem, "Household cooking rules item must exist");
 assert.equal(householdCookingRulesItem.id, "household-cooking-rules");
 assert.equal(householdCookingRulesItem.instructions, nakoData.cookingRules, "Household card must reuse the cookingRules array");
 assert.equal(householdCookingRulesItem.instructions.length, 6, "Household card must show all six cooking rules");
+assert.match(householdCookingRulesItem.instructions[2].en, /approved human recipe lists it.*never feed any onion dish to Nako/);
 assert.ok(!nakoData.foodItems.some((item) => item.id === "cooking-rules"), "Cooking rules must no longer appear in the Food section");
 
 const expectedIds = [
