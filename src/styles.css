@@ -1490,6 +1490,85 @@ img {
 .routine-home-cadence-count b { color: var(--ink); font-size: 17px; line-height: 1.15; }
 .routine-home-arrow { color: #bd6678; font-size: 32px; }
 
+.routine-deadline-reminder {
+  width: 100%;
+  min-height: 76px;
+  margin: 12px 0 0;
+  padding: 13px 14px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid #edc985;
+  border-left: 6px solid #e2a43a;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fffaf0 0%, #fff5f5 100%);
+  color: var(--ink);
+  box-shadow: 0 9px 22px rgba(115, 83, 40, 0.1);
+  text-decoration: none;
+}
+
+.today-priority .routine-deadline-reminder.is-home {
+  margin: 0;
+}
+
+.routine-reminder-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e2a43a;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.routine-reminder-copy {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.routine-reminder-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 9px;
+}
+
+.routine-reminder-heading strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.routine-reminder-heading b {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #fff;
+  color: #9a6212;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.routine-reminder-tasks {
+  color: #675b4d;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.routine-reminder-more {
+  color: #9a5260;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.routine-reminder-arrow {
+  color: #b8761a;
+  font-size: 28px;
+}
+
 .routine-checkin-hero,
 .routine-history-head {
   padding: 20px;
@@ -1801,6 +1880,8 @@ img {
 
 @media (max-width: 430px) {
   .routine-home-cadence-counts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .routine-deadline-reminder { grid-template-columns: 40px minmax(0, 1fr) auto; padding: 12px 11px; gap: 9px; }
+  .routine-reminder-icon { width: 38px; height: 38px; }
   .routine-history-filters { grid-template-columns: 1fr; }
   .routine-row-main { grid-template-columns: 46px minmax(0, 1fr); padding: 10px 9px; gap: 8px; }
   .routine-row-content { grid-template-columns: 44px minmax(0, 1fr) 20px; gap: 8px; }

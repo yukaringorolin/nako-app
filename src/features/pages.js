@@ -92,8 +92,50 @@ function cycleRangeLabel(cycle) {
   return labelWith("routinePeriodRange", { start: formatRoutineDate(cycle.start), end: formatRoutineDate(cycle.end) });
 }
 
+function routineReminderDeadlineLabel(daysUntilDue) {
+  if (daysUntilDue === 0) return label("routineReminderDueToday");
+  if (daysUntilDue === 1) return label("routineReminderDueTomorrow");
+  return labelWith("routineReminderDueInDays", { count: daysUntilDue });
+}
+
+function routineReminderSummary(checklist, today = routineTracking.singaporeDateKey()) {
+  return window.nakoRoutineTaskSelection.summarizeUpcomingDue(checklist, {
+    today,
+    daysBetween: routineTracking.daysBetween,
+    horizonDays: 3
+  });
+}
+
+function renderRoutineDeadlineReminder(checklist, options = {}) {
+  const summary = routineReminderSummary(checklist, options.today);
+  if (!summary.total) return "";
+  const preview = window.nakoRoutineTaskSelection.reminderPreview(summary.items, 3);
+  const taskNames = preview.visible.map((item) => {
+    const title = window.nakoRoutineTaskSelection.reminderTaskTitle(item.task);
+    return `<span class="routine-reminder-task">${esc(tr(title))}</span>`;
+  });
+  if (preview.moreCount) {
+    taskNames.push(`<span class="routine-reminder-more">${esc(labelWith("routineReminderMore", { count: preview.moreCount }))}</span>`);
+  }
+  const modifier = options.home ? " is-home" : " is-checkin";
+  return `<a class="routine-deadline-reminder${modifier}" href="#routine-checkin" data-routine-checkin>
+    <span class="routine-reminder-icon" aria-hidden="true">!</span>
+    <span class="routine-reminder-copy">
+      <span class="routine-reminder-heading">
+        <strong>${esc(label("routineReminderTitle"))}</strong>
+        <b>${esc(routineReminderDeadlineLabel(summary.nearestDaysUntilDue))}</b>
+      </span>
+      <span class="routine-reminder-tasks">${taskNames.join('<span class="routine-reminder-separator" aria-hidden="true"> · </span>')}</span>
+    </span>
+    <span class="routine-reminder-arrow" aria-hidden="true">›</span>
+  </a>`;
+}
+
 function renderRoutineHomeShortcut() {
-  const summary = window.nakoRoutineTaskSelection.summarizeChecklist(currentChecklist());
+  const checklist = currentChecklist();
+  const reminder = renderRoutineDeadlineReminder(checklist, { home: true });
+  if (reminder) return reminder;
+  const summary = window.nakoRoutineTaskSelection.summarizeChecklist(checklist);
   const recurringCadences = window.nakoRoutineTaskSelection.ROUTINE_CADENCE_ORDER.filter((cadence) => cadence !== "one-off");
   const visibleCadences = summary.remainingByCadence["one-off"] > 0
     ? [...recurringCadences, "one-off"]
@@ -135,6 +177,7 @@ function renderRoutineCheckIn() {
       </div>
       <strong class="routine-progress">${esc(labelWith("progressSummary", { done: summary.completedTotal, total: checklist.length }))}</strong>
     </section>
+    ${renderRoutineDeadlineReminder(checklist, { today })}
     <button class="history-link-button" data-routine-history>${esc(label("routineHistory"))}<span aria-hidden="true">›</span></button>
     ${renderRoutineStatus()}
     <section class="routine-list-section">

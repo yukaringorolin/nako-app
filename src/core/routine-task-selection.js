@@ -62,6 +62,49 @@
     };
   }
 
+  function summarizeUpcomingDue(checklist = [], options = {}) {
+    const today = String(options.today || "");
+    const daysBetween = options.daysBetween;
+    const horizonDays = Number.isFinite(Number(options.horizonDays))
+      ? Math.max(0, Number(options.horizonDays))
+      : 3;
+    if (!DATE_KEY_PATTERN.test(today) || typeof daysBetween !== "function") {
+      return { items: [], total: 0, nearestDeadline: "", nearestDaysUntilDue: null };
+    }
+
+    const items = checklist
+      .filter((item) => item && !item.record && DATE_KEY_PATTERN.test(String(item.cycle?.end || "")))
+      .map((item, originalIndex) => ({
+        ...item,
+        deadline: item.cycle.end,
+        daysUntilDue: daysBetween(today, item.cycle.end),
+        originalIndex
+      }))
+      .filter((item) => Number.isFinite(item.daysUntilDue) && item.daysUntilDue >= 0 && item.daysUntilDue <= horizonDays)
+      .sort((a, b) => a.daysUntilDue - b.daysUntilDue || a.originalIndex - b.originalIndex)
+      .map(({ originalIndex, ...item }) => item);
+
+    return {
+      items,
+      total: items.length,
+      nearestDeadline: items[0]?.deadline || "",
+      nearestDaysUntilDue: items.length ? items[0].daysUntilDue : null
+    };
+  }
+
+  function reminderTaskTitle(task) {
+    return task?.checkInTitle || task?.title || "";
+  }
+
+  function reminderPreview(items = [], limit = 3) {
+    const safeLimit = Math.max(0, Math.floor(Number(limit) || 0));
+    const visible = items.slice(0, safeLimit);
+    return {
+      visible,
+      moreCount: Math.max(0, items.length - visible.length)
+    };
+  }
+
   return {
     ROUTINE_CADENCE_ORDER,
     activeTrackedRoutineTasks,
@@ -69,7 +112,10 @@
     historicalTrackedRoutineTasks,
     historyFilterTasks,
     isTracked,
+    reminderPreview,
+    reminderTaskTitle,
     shouldGenerateMissed,
-    summarizeChecklist
+    summarizeChecklist,
+    summarizeUpcomingDue
   };
 });
