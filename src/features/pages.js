@@ -655,8 +655,15 @@ function renderGroceryShopList(task) {
       : [];
     if (!items.length) return "";
     const shopTitleId = `grocery-shop-${shop.id}`;
+    const shopMediaHtml = shop.photo
+      ? `<span class="grocery-shop-photo"><img src="${esc(shop.photo)}" alt="" loading="lazy" /></span>`
+      : `<span class="grocery-shop-icon" aria-hidden="true">${esc(shop.icon || "🛒")}</span>`;
+    const shopHeadingContent = `${shopMediaHtml}<span class="grocery-shop-name">${esc(tr(shop.name))}</span>`;
+    const shopHeadingHtml = shop.mapUrl
+      ? `<a class="grocery-shop-map-link" href="${esc(shop.mapUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(label("openGoogleMaps"))}">${shopHeadingContent}<span class="grocery-shop-map-arrow" aria-label="${esc(label("openGoogleMaps"))}">↗</span></a>`
+      : `<span class="grocery-shop-heading-content">${shopHeadingContent}</span>`;
     return `<section class="grocery-shop-group" aria-labelledby="${esc(shopTitleId)}">
-      <h3 id="${esc(shopTitleId)}"><span aria-hidden="true">${esc(shop.icon || "🛒")}</span>${esc(tr(shop.name))}</h3>
+      <h3 id="${esc(shopTitleId)}">${shopHeadingHtml}</h3>
       <div class="grocery-shop-items">${items.map(renderItem).join("")}</div>
     </section>`;
   }).join("");

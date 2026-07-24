@@ -1297,11 +1297,11 @@ if (groceryShoppingRoutine) {
   groceryShoppingRoutine.frequencyText = t("Daily active check", "毎日の確認", "နေ့စဉ် စစ်ဆေးရန်");
   groceryShoppingRoutine.sortOrder = 14;
   groceryShoppingRoutine.summary = t(
-    "Check what is running low, then restock the pantry and fridge using the timing and store rules below.",
-    "不足している物を確認し、下記の時間帯と店のルールに従って食品棚と冷蔵庫を補充します。",
-    "ကုန်လုနီးသောပစ္စည်းများကို စစ်ပြီး အောက်ပါအချိန်နှင့်ဆိုင် စည်းမျဉ်းများအတိုင်း pantry နှင့် fridge ကို ပြန်ဖြည့်ပါ။"
+    "Check what is running low, then restock the pantry and fridge using the store guide below.",
+    "不足している物を確認し、下記の店別ガイドに従って食品棚と冷蔵庫を補充します。",
+    "ကုန်လုနီးသောပစ္စည်းများကို စစ်ပြီး အောက်ပါဆိုင်လမ်းညွှန်အတိုင်း pantry နဲ့ fridge ကို ပြန်ဖြည့်ပါ။"
   );
-  groceryShoppingRoutine.groceryShops = [
+  const groceryItemSeedShops = [
     {
       id: "ntuc-fairprice",
       name: t("NTUC FairPrice", "NTUCフェアプライス", "NTUC FairPrice ဆိုင်"),
@@ -1516,10 +1516,547 @@ if (groceryShoppingRoutine) {
       ]
     }
   ];
+  const seededGroceryItemById = new Map(
+    groceryItemSeedShops.flatMap((shop) => shop.items.map((item) => [item.id, item]))
+  );
+  const seededGroceryItem = (id, overrides = {}) => ({
+    ...seededGroceryItemById.get(id),
+    ...overrides
+  });
+  const groceryPhotoCaption = t(
+    "Use this photo to identify the item.",
+    "この写真を商品の見分け方の参考にします。",
+    "ပစ္စည်းကို မှတ်မိရန် ဒီပုံကို ကြည့်ပါ။"
+  );
+  const groceryBuyHereInstruction = t(
+    "Buy this item here when it is on the shopping list or needed for a planned meal.",
+    "買い物リストにある時、または予定している食事に必要な時は、この店で買います。",
+    "shopping list ထဲပါသောအခါ သို့မဟုတ် စီစဉ်ထားသောအစားအစာအတွက် လိုသောအခါ ဒီဆိုင်မှာ ဝယ်ပါ။"
+  );
+  const simpleGroceryItem = ({
+    id,
+    name,
+    icon,
+    category,
+    categorySort,
+    sortOrder,
+    photoSrc,
+    instructions = [groceryBuyHereInstruction],
+    photos
+  }) => ({
+    id,
+    name,
+    icon,
+    category,
+    categorySort,
+    sortOrder,
+    photos: photos || [photo(photoSrc, name, groceryPhotoCaption)],
+    instructions
+  });
+
+  const uStarsItems = [
+    seededGroceryItem("milk", {
+      name: t("Meiji low-fat milk", "明治低脂肪牛乳", "Meiji အဆီနည်းနွားနို့"),
+      categorySort: 10,
+      sortOrder: 10,
+      photos: [photo(
+        "assets/routines/grocery-shopping-meiji-low-fat-milk.png",
+        t("Meiji pasteurized low-fat milk bottle", "明治の低脂肪殺菌牛乳ボトル", "Meiji အဆီနည်း pasteurized နွားနို့ဘူး"),
+        t("Buy this Meiji low-fat milk at U Stars.", "U Starsでこの明治低脂肪牛乳を買います。", "ဒီ Meiji အဆီနည်းနွားနို့ကို U Stars မှာ ဝယ်ပါ။")
+      )],
+      instructions: [
+        t("Check the fridge before buying.", "買う前に冷蔵庫を確認します。", "မဝယ်မီ fridge ကို စစ်ပါ။"),
+        t("Buy the Meiji pasteurized low-fat milk shown in the photo.", "写真の明治低脂肪殺菌牛乳を買います。", "ပုံထဲက Meiji အဆီနည်း pasteurized နွားနို့ကို ဝယ်ပါ။")
+      ]
+    }),
+    seededGroceryItem("eggs", { categorySort: 10, sortOrder: 20 })
+  ];
+
+  const giantItems = [
+    seededGroceryItem("japanese-rice", { categorySort: 10, sortOrder: 10 }),
+    seededGroceryItem("tofu", { categorySort: 10, sortOrder: 20 }),
+    seededGroceryItem("enoki-mushrooms", { categorySort: 10, sortOrder: 30 }),
+    seededGroceryItem("brown-shimeji-mushrooms", { categorySort: 10, sortOrder: 40 }),
+    simpleGroceryItem({
+      id: "button-mushrooms",
+      name: t("Button mushrooms", "マッシュルーム", "button မှို"),
+      icon: "🍄",
+      category: "mushrooms",
+      categorySort: 10,
+      sortOrder: 50,
+      photoSrc: "assets/ingredients/button-mushroom.jpg"
+    }),
+    simpleGroceryItem({
+      id: "maitake-mushrooms",
+      name: t("Maitake mushrooms", "まいたけ", "maitake မှို"),
+      icon: "🍄",
+      category: "mushrooms",
+      categorySort: 10,
+      sortOrder: 60,
+      photoSrc: "assets/ingredients/maitake-mushroom.jpg"
+    }),
+    simpleGroceryItem({
+      id: "king-oyster-mushrooms",
+      name: t("King oyster mushrooms", "エリンギ", "king oyster မှို"),
+      icon: "🍄",
+      category: "mushrooms",
+      categorySort: 10,
+      sortOrder: 70,
+      photoSrc: "assets/ingredients/king-oyster-mushroom.jpg"
+    }),
+    seededGroceryItem("frozen-sliced-pork", { categorySort: 10, sortOrder: 80 }),
+    seededGroceryItem("broccoli", { categorySort: 10, sortOrder: 90 }),
+    seededGroceryItem("fresh-prawns", {
+      categorySort: 10,
+      sortOrder: 100,
+      photos: [photo(
+        "assets/ingredients/prawns.jpg",
+        t("Fresh prawns", "新鮮なエビ", "ပုစွန်လတ်"),
+        t("Buy fresh prawns at Giant.", "新鮮なエビはGiantで買います。", "ပုစွန်လတ်ကို Giant မှာ ဝယ်ပါ။")
+      )]
+    }),
+    seededGroceryItem("bananas", {
+      categorySort: 10,
+      sortOrder: 110,
+      photos: [photo(
+        "assets/ingredients/banana.jpg",
+        t("Bananas", "バナナ", "ငှက်ပျောသီး"),
+        t("Buy bananas at Giant.", "バナナはGiantで買います。", "ငှက်ပျောသီးကို Giant မှာ ဝယ်ပါ။")
+      )],
+      instructions: [
+        t("Check the bananas at home before buying.", "買う前に家のバナナを確認します。", "မဝယ်မီ အိမ်မှာရှိသော ငှက်ပျောသီးကို စစ်ပါ။"),
+        t("Choose a fresh bunch at Giant.", "Giantで新鮮な房を選びます。", "Giant မှာ လတ်ဆတ်သော ငှက်ပျောသီးခိုင်ကို ရွေးပါ။")
+      ]
+    }),
+    seededGroceryItem("tomatoes", { categorySort: 10, sortOrder: 120 }),
+
+    simpleGroceryItem({
+      id: "chicken-breast",
+      name: t("Chicken breast", "鶏むね肉", "ကြက်ရင်ပုံသား"),
+      icon: "🍗",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 10,
+      photoSrc: "assets/ingredients/chicken-breast.jpg"
+    }),
+    simpleGroceryItem({
+      id: "chicken-tender",
+      name: t("Chicken tender", "ささみ", "ကြက်သားအတွင်းသား"),
+      icon: "🍗",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 20,
+      photoSrc: "assets/ingredients/chicken-tender.jpg"
+    }),
+    simpleGroceryItem({
+      id: "minced-chicken",
+      name: t("Minced chicken", "鶏ひき肉", "ကြက်သားကြိတ်"),
+      icon: "🍗",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 30,
+      photoSrc: "assets/ingredients/chicken-minced.jpg"
+    }),
+    simpleGroceryItem({
+      id: "beef",
+      name: t("Beef", "牛肉", "အမဲသား"),
+      icon: "🥩",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 40,
+      photoSrc: "assets/ingredients/beef.jpg"
+    }),
+    simpleGroceryItem({
+      id: "salmon",
+      name: t("Salmon", "サーモン", "ဆယ်လ်မွန်ငါး"),
+      icon: "🐟",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 50,
+      photoSrc: "assets/ingredients/salmon.jpg"
+    }),
+    simpleGroceryItem({
+      id: "squid",
+      name: t("Squid", "イカ", "ပြည်ကြီးငါး"),
+      icon: "🦑",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 60,
+      photoSrc: "assets/ingredients/squid.jpg"
+    }),
+    simpleGroceryItem({
+      id: "white-fish",
+      name: t("White fish", "白身魚", "ငါးဖြူ"),
+      icon: "🐟",
+      category: "meat-seafood",
+      categorySort: 20,
+      sortOrder: 70,
+      photoSrc: "assets/ingredients/whitefish.jpg"
+    }),
+
+    simpleGroceryItem({
+      id: "carrots",
+      name: t("Carrots", "にんじん", "မုန်လာဥနီ"),
+      icon: "🥕",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 10,
+      photoSrc: "assets/ingredients/carrot.jpg"
+    }),
+    simpleGroceryItem({
+      id: "cabbage",
+      name: t("Cabbage", "キャベツ・白菜", "ဂေါ်ဖီထုပ်နှင့် မုန်ညင်းဖြူ"),
+      icon: "🥬",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 20,
+      photoSrc: "assets/ingredients/napa-cabbage.jpg"
+    }),
+    simpleGroceryItem({
+      id: "sweet-potatoes",
+      name: t("Sweet potatoes", "さつまいも", "ကန်စွန်းဥ"),
+      icon: "🍠",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 30,
+      photoSrc: "assets/ingredients/sweet-potato.jpg"
+    }),
+    simpleGroceryItem({
+      id: "apples",
+      name: t("Apples", "りんご", "ပန်းသီး"),
+      icon: "🍎",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 40,
+      photoSrc: "assets/ingredients/apple.jpg"
+    }),
+    simpleGroceryItem({
+      id: "cherry-tomatoes",
+      name: t("Cherry tomatoes", "ミニトマト", "ခရမ်းချဉ်သီးအသေး"),
+      icon: "🍅",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 50,
+      photoSrc: "assets/ingredients/cherry-tomatoes.jpg"
+    }),
+    simpleGroceryItem({
+      id: "spring-onions",
+      name: t("Spring onions", "青ねぎ", "ကြက်သွန်မြိတ်"),
+      icon: "🌿",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 60,
+      photoSrc: "assets/ingredients/spring-onion.jpg"
+    }),
+    simpleGroceryItem({
+      id: "garlic",
+      name: t("Garlic", "にんにく", "ကြက်သွန်ဖြူ"),
+      icon: "🧄",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 70,
+      photoSrc: "assets/ingredients/garlic.jpg"
+    }),
+    simpleGroceryItem({
+      id: "ginger",
+      name: t("Ginger", "しょうが", "ဂျင်း"),
+      icon: "🫚",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 80,
+      photoSrc: "assets/ingredients/ginger.jpg"
+    }),
+    simpleGroceryItem({
+      id: "onions",
+      name: t("Onions", "玉ねぎ", "ကြက်သွန်နီ"),
+      icon: "🧅",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 90,
+      photoSrc: "assets/ingredients/onion.jpg"
+    }),
+    simpleGroceryItem({
+      id: "pumpkin",
+      name: t("Pumpkin", "かぼちゃ", "ရွှေဖရုံသီး"),
+      icon: "🎃",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 100,
+      photoSrc: "assets/ingredients/pumpkin.jpg"
+    }),
+    simpleGroceryItem({
+      id: "fresh-chillies",
+      name: t("Fresh chillies", "生とうがらし", "ငရုတ်သီးလတ်"),
+      icon: "🌶️",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 110,
+      photoSrc: "assets/ingredients/fresh-chilli.jpg"
+    }),
+    simpleGroceryItem({
+      id: "leafy-greens",
+      name: t("Leafy greens", "葉物野菜", "အရွက်စိမ်းဟင်းသီးဟင်းရွက်"),
+      icon: "🥬",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 120,
+      photoSrc: "assets/ingredients/spinach.jpg"
+    }),
+    simpleGroceryItem({
+      id: "potatoes",
+      name: t("Potatoes", "じゃがいも", "အာလူး"),
+      icon: "🥔",
+      category: "produce",
+      categorySort: 30,
+      sortOrder: 130,
+      photoSrc: "assets/ingredients/potato.jpg"
+    }),
+
+    simpleGroceryItem({
+      id: "tau-pok",
+      name: t("Tau Pok", "厚揚げ豆腐", "တို့ဟူးကြော်ပွ"),
+      icon: "◻️",
+      category: "chilled",
+      categorySort: 40,
+      sortOrder: 10,
+      photoSrc: "assets/ingredients/tau-pok.jpg"
+    }),
+    simpleGroceryItem({
+      id: "ham",
+      name: t("Ham", "ハム", "ဟမ်"),
+      icon: "🥓",
+      category: "chilled",
+      categorySort: 40,
+      sortOrder: 20,
+      photoSrc: "assets/ingredients/ham.jpg"
+    }),
+    simpleGroceryItem({
+      id: "fish-cake",
+      name: t("Fish cake", "かまぼこ", "ငါးကိတ်"),
+      icon: "🍥",
+      category: "chilled",
+      categorySort: 40,
+      sortOrder: 30,
+      photoSrc: "assets/ingredients/fish-cake.jpg"
+    }),
+    simpleGroceryItem({
+      id: "pantry-staples",
+      name: t("Pantry staples", "調味料・乾物", "မီးဖိုချောင်သုံး အခြေခံပစ္စည်းများ"),
+      icon: "🧂",
+      category: "pantry",
+      categorySort: 50,
+      sortOrder: 10,
+      photoSrc: "assets/routines/grocery-essential-stock.jpg",
+      instructions: [
+        t(
+          "Buy cooking oil, salt, soy sauce, dark soy sauce, mirin, cooking sake, shirodashi, sesame oil, honey, black pepper, garlic pepper, mayonnaise, pasta, and canned tuna at Giant.",
+          "食用油、塩、しょうゆ、濃口しょうゆ、みりん、料理酒、白だし、ごま油、はちみつ、黒こしょう、ガーリックペッパー、マヨネーズ、パスタ、ツナ缶はGiantで買います。",
+          "စားသုံးဆီ၊ ဆား၊ soy sauce၊ dark soy sauce၊ mirin၊ cooking sake၊ shirodashi၊ sesame oil၊ ပျားရည်၊ black pepper၊ garlic pepper၊ mayonnaise၊ pasta နဲ့ tuna ဘူးကို Giant မှာ ဝယ်ပါ။"
+        )
+      ]
+    })
+  ];
+
+  const breadCreateurItems = [
+    seededGroceryItem("bread", {
+      name: t("Sourdough", "サワードウ", "sourdough ပေါင်မုန့်"),
+      categorySort: 10,
+      sortOrder: 10,
+      instructions: [
+        t("Check the bread at home before buying.", "買う前に家のパンを確認します。", "မဝယ်မီ အိမ်မှာရှိသော ပေါင်မုန့်ကို စစ်ပါ။"),
+        t("Buy sourdough from BREAD CRÉATEUR @ Hillford.", "サワードウはHillfordのBREAD CRÉATEURで買います。", "sourdough ပေါင်မုန့်ကို Hillford ရှိ BREAD CRÉATEUR မှာ ဝယ်ပါ။")
+      ]
+    })
+  ];
+
+  const cutButcheryItems = [
+    simpleGroceryItem({
+      id: "cut-pork-shoulder-or-loin",
+      name: t(
+        "Pork shoulder butt or FRESH PORK LOIN STEAK",
+        "豚肩ロースまたはFRESH PORK LOIN STEAK",
+        "ဝက်ပခုံးသား သို့မဟုတ် FRESH PORK LOIN STEAK"
+      ),
+      icon: "🥩",
+      category: "fresh-meat",
+      categorySort: 10,
+      sortOrder: 10,
+      photoSrc: "assets/routines/grocery-shopping-cut-pork-shoulder.png",
+      instructions: [
+        t(
+          "Buy this only from Cut Butchery at Bukit Timah Plaza. The price is about $2.20 per 100 g.",
+          "Bukit Timah PlazaのCut Butcheryでのみ買います。価格は100 gあたり約$2.20です。",
+          "ဒါကို Bukit Timah Plaza ရှိ Cut Butchery မှာပဲ ဝယ်ပါ။ 100 g ကို $2.20 ခန့်ပါ။"
+        )
+      ]
+    }),
+    simpleGroceryItem({
+      id: "cut-chicken-boneless-leg",
+      name: t(
+        "CHICKEN BONELESS LEG (from Brazil)",
+        "CHICKEN BONELESS LEG（ブラジル産）",
+        "CHICKEN BONELESS LEG (Brazil မှ)"
+      ),
+      icon: "🍗",
+      category: "fresh-meat",
+      categorySort: 10,
+      sortOrder: 20,
+      photoSrc: "assets/routines/grocery-shopping-cut-chicken-boneless-leg.png",
+      instructions: [
+        t(
+          "Buy the Brazilian boneless chicken leg at Cut Butchery for about $1.50 per 100 g.",
+          "Cut Butcheryでブラジル産の骨なし鶏もも肉を100 gあたり約$1.50で買います。",
+          "Brazil မှ အရိုးမဲ့ကြက်ပေါင်သားကို Cut Butchery မှာ 100 g ကို $1.50 ခန့်နဲ့ ဝယ်ပါ။"
+        )
+      ]
+    }),
+    simpleGroceryItem({
+      id: "cut-fresh-pork-belly",
+      name: t("FRESH PORK BELLY", "豚バラ肉（FRESH PORK BELLY）", "ဝက်ဗိုက်သားလတ် (FRESH PORK BELLY)"),
+      icon: "🥓",
+      category: "fresh-meat",
+      categorySort: 10,
+      sortOrder: 30,
+      photoSrc: "assets/routines/grocery-shopping-cut-pork-belly.png",
+      instructions: [
+        t(
+          "Buy fresh pork belly at Cut Butchery for about $2.30 per 100 g.",
+          "Cut Butcheryで豚バラ肉を100 gあたり約$2.30で買います。",
+          "ဝက်ဗိုက်သားလတ်ကို Cut Butchery မှာ 100 g ကို $2.30 ခန့်နဲ့ ဝယ်ပါ။"
+        )
+      ]
+    })
+  ];
+
+  const ntucItems = [
+    simpleGroceryItem({
+      id: "zucchini",
+      name: t("Zucchini", "ズッキーニ", "ဇူကီနီ"),
+      icon: "🥒",
+      category: "produce",
+      categorySort: 10,
+      sortOrder: 10,
+      photoSrc: "assets/ingredients/zucchini.jpg"
+    }),
+    simpleGroceryItem({
+      id: "daikon",
+      name: t("Daikon", "大根", "မုန်လာဥဖြူ"),
+      icon: "🥕",
+      category: "produce",
+      categorySort: 10,
+      sortOrder: 20,
+      photoSrc: "assets/ingredients/daikon-radish.jpg"
+    }),
+    simpleGroceryItem({
+      id: "kale",
+      name: t("Kale", "ケール", "kale အရွက်"),
+      icon: "🥬",
+      category: "produce",
+      categorySort: 10,
+      sortOrder: 30,
+      photoSrc: "assets/ingredients/kale.jpg"
+    })
+  ];
+
+  const wetMarketItems = [
+    simpleGroceryItem({
+      id: "wet-market-chicken-wings",
+      name: t("Chicken wings", "手羽先", "ကြက်တောင်ပံ"),
+      icon: "🍗",
+      category: "specialty",
+      categorySort: 10,
+      sortOrder: 10,
+      photoSrc: "assets/recipes/human-food/air-fryer-chicken-wings-wet-market-stall.jpg",
+      instructions: [
+        t("Use only the marked wet-market stall and trays shown in the photo.", "写真で印を付けた市場の店とトレーだけを使います。", "ပုံထဲမှာ အမှတ်အသားပြထားသော wet-market ဆိုင်နဲ့ ခြင်းကိုပဲ သုံးပါ။")
+      ]
+    }),
+    simpleGroceryItem({
+      id: "wet-market-bak-kut-teh",
+      name: t("Bak Kut Teh pork and spice", "バクテー用の豚肉とスパイス", "Bak Kut Teh ဝက်သားနဲ့ ဟင်းခတ်ထုပ်"),
+      icon: "🍲",
+      category: "specialty",
+      categorySort: 10,
+      sortOrder: 20,
+      photoSrc: "assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg",
+      photos: [
+        photo(
+          "assets/recipes/human-food/bak-kut-teh-wet-market-cuts.jpg",
+          t("Marked Bak Kut Teh pork cuts", "印を付けたバクテー用豚肉", "အမှတ်အသားပြထားသော Bak Kut Teh ဝက်သား"),
+          t("Use these marked pork cuts.", "印を付けた豚肉を使います。", "အမှတ်အသားပြထားသော ဝက်သားကို သုံးပါ။")
+        ),
+        photo(
+          "assets/recipes/human-food/bak-kut-teh-spice-sachet-vendor.jpg",
+          t("Bak Kut Teh spice sachet at the stall", "市場の店にあるバクテー用スパイス袋", "wet-market ဆိုင်ရှိ Bak Kut Teh ဟင်းခတ်ထုပ်"),
+          t("Buy the red spice sachet from this stall.", "この店で赤いスパイス袋を買います。", "အနီရောင် ဟင်းခတ်ထုပ်ကို ဒီဆိုင်မှာ ဝယ်ပါ။")
+        )
+      ],
+      instructions: [
+        t("Use only the photographed wet-market stall for these Bak Kut Teh items.", "バクテーの材料は写真の市場の店だけで買います。", "ဒီ Bak Kut Teh ပစ္စည်းတွေကို ပုံထဲက wet-market ဆိုင်မှာပဲ ဝယ်ပါ။")
+      ]
+    })
+  ];
+
+  groceryShoppingRoutine.groceryShops = [
+    {
+      id: "u-stars",
+      name: t("U Stars (closest, open 24/7)", "U Stars（最寄り・24時間営業）", "U Stars (အနီးဆုံး၊ 24 နာရီဖွင့်)"),
+      icon: "⭐",
+      photo: "assets/routines/grocery-shopping-shop-u-stars.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=U+Stars+Supermarket+18+Toh+Yi+Drive+Singapore+590018",
+      sortOrder: 10,
+      items: uStarsItems
+    },
+    {
+      id: "giant",
+      name: t("Giant", "ジャイアント", "Giant ဆိုင်"),
+      icon: "🟢",
+      photo: "assets/routines/grocery-shopping-shop-giant-beauty-world.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Giant+Supermarket+Beauty+World+Centre+144+Upper+Bukit+Timah+Road+Singapore+588177",
+      sortOrder: 20,
+      items: giantItems
+    },
+    {
+      id: "bread-createur-hillford",
+      name: t("BREAD CRÉATEUR @ Hillford", "BREAD CRÉATEUR（Hillford）", "Hillford ရှိ BREAD CRÉATEUR"),
+      icon: "🥖",
+      photo: "assets/routines/grocery-shopping-shop-bread-createur.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=BREAD+CREATEUR+182+Jalan+Jurong+Kechil+Singapore+596152",
+      sortOrder: 30,
+      items: breadCreateurItems
+    },
+    {
+      id: "cut-butchery-bukit-timah-plaza",
+      name: t("Cut Butchery - Bukit Timah Plaza", "Cut Butchery（Bukit Timah Plaza）", "Bukit Timah Plaza ရှိ Cut Butchery"),
+      icon: "🥩",
+      photo: "assets/routines/grocery-shopping-shop-cut-butchery.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Cut+Butchery+Bukit+Timah+Plaza+1+Jalan+Anak+Bukit+Singapore+588996",
+      sortOrder: 40,
+      items: cutButcheryItems
+    },
+    {
+      id: "ntuc-fairprice",
+      name: t("NTUC FairPrice (not frequented)", "NTUCフェアプライス（普段は利用しない）", "NTUC FairPrice (ပုံမှန် မသွားသောဆိုင်)"),
+      icon: "🛒",
+      photo: "assets/routines/grocery-shopping-shop-fairprice-finest.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=FairPrice+Finest+Bukit+Timah+Plaza+1+Jalan+Anak+Bukit+Singapore+588996",
+      sortOrder: 50,
+      items: ntucItems
+    },
+    {
+      id: "wet-market",
+      name: t("Wet Market (specialty items only)", "ウェットマーケット（指定品のみ）", "Wet Market (သတ်မှတ်ထားသောပစ္စည်းသာ)"),
+      icon: "🐟",
+      photo: "assets/routines/grocery-shopping-shop-wet-market.png",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Bukit+Timah+Wet+Market+Food+Centre+Interim+2A+Jalan+Seh+Chuan+Singapore+599213",
+      sortOrder: 60,
+      items: wetMarketItems
+    }
+  ];
   groceryShoppingRoutine.mustRemember.push(
     t("This is a daily active reference check, not a completion-checklist item. Check the fridge, pantry, shopping list, and meal needs before buying.", "これは毎日確認する参照ページで、完了チェックリストの項目ではありません。買う前に冷蔵庫、食品棚、買い物リスト、食事に必要なものを確認してください。", "ဤအရာသည် နေ့စဉ် active reference check ဖြစ်ပြီး completion checklist အလုပ်မဟုတ်ပါ။ မဝယ်မီ fridge၊ pantry၊ shopping list နှင့် အစားအစာလိုအပ်ချက်များကို စစ်ပါ။"),
-    t("Before about 9 a.m., buy fresh meat, fish, or vegetables from a clean, busy wet-market stall if they look fresh. After about 9 a.m., use Giant, NTUC FairPrice, Sheng Siong, Cold Storage, or another major supermarket.", "午前9時ごろより前なら、清潔で客の多いウェットマーケットの店で、新鮮に見える肉、魚、野菜を買ってよいです。午前9時ごろ以降は、Giant、NTUC FairPrice、Sheng Siong、Cold Storageなどの大手スーパーを使います。", "မနက် ၉ နာရီခန့်မတိုင်မီဆိုလျှင် သန့်ရှင်းပြီး လူဝယ်များသော wet-market ဆိုင်မှ လတ်ဆတ်ပုံရသော အသား၊ ငါး သို့မဟုတ် ဟင်းသီးဟင်းရွက်များကို ဝယ်နိုင်သည်။ မနက် ၉ နာရီခန့်နောက်ပိုင်းတွင် Giant၊ NTUC FairPrice၊ Sheng Siong၊ Cold Storage သို့မဟုတ် အခြား supermarket ကြီးများကို သုံးပါ။"),
-    t("Always keep the receipt. Bring chilled or frozen food home immediately so it stays cold. Coordinate before buying large or unusual items.", "必ずレシートを保管してください。冷蔵・冷凍食品は冷たい状態を保つため、すぐ家に持ち帰ります。大きい物や普段買わない物を買う前に確認してください。", "receipt ကို အမြဲသိမ်းထားပါ။ chilled သို့မဟုတ် frozen food ကို အေးနေစေရန် ချက်ချင်းအိမ်ပြန်ယူပါ။ ကြီးသော သို့မဟုတ် ပုံမှန်မဝယ်သော ပစ္စည်းများ မဝယ်မီ အရင်မေးပါ။"),
+    t("Use U Stars first because it is closest and open 24/7. Use Giant for the main grocery shop. Buy only the listed items at BREAD CRÉATEUR, Cut Butchery, NTUC FairPrice, and the Wet Market.", "最寄りで24時間営業のU Starsを最初に使います。普段の食料品はGiantで買います。BREAD CRÉATEUR、Cut Butchery、NTUCフェアプライス、ウェットマーケットでは、記載された品物だけを買います。", "အနီးဆုံးဖြစ်ပြီး 24 နာရီဖွင့်သော U Stars ကို အရင်သုံးပါ။ အဓိကကုန်စုံကို Giant မှာ ဝယ်ပါ။ BREAD CRÉATEUR၊ Cut Butchery၊ NTUC FairPrice နဲ့ Wet Market မှာ စာရင်းထဲပါတာကိုပဲ ဝယ်ပါ။"),
+    t("Always keep the receipt. Bring chilled or frozen food home immediately so it stays cold.", "必ずレシートを保管してください。冷蔵・冷凍食品は冷たい状態を保つため、すぐ家に持ち帰ります。", "receipt ကို အမြဲသိမ်းထားပါ။ chilled သို့မဟုတ် frozen food ကို အေးနေစေရန် ချက်ချင်းအိမ်ပြန်ယူပါ။"),
     t("Do not buy the large beef cubes from Giant. They are difficult to cook well, may taste gamey, and can become very rubbery and hard to chew if overcooked. Choose a smaller or more tender cut, or ask Edwin before buying beef cubes.", "Giantの大きな角切り牛肉は買わないでください。調理が難しく、獣臭く感じることがあり、火を通しすぎると非常にゴムのように硬くなり、噛みにくくなります。より小さく柔らかい部位を選ぶか、角切り牛肉を買う前にエドウィンへ確認してください。", "Giant မှ အမဲသားတုံးအကြီးများကို မဝယ်ပါနှင့်။ ချက်ရန်ခက်ပြီး အနံ့ပြင်းသလို အရသာရှိနိုင်သည်။ အကျက်လွန်ပါက အလွန်ရော်ဘာကဲ့သို့ မာပြီး ဝါးရန်ခက်သွားနိုင်သည်။ ပိုသေးပြီး နူးညံ့သောအသားပိုင်းကို ရွေးပါ၊ သို့မဟုတ် အမဲသားတုံးမဝယ်မီ Edwin ကို မေးပါ။"),
     t("Check expiry dates. Store sliced pork in the freezer and broccoli in the fridge. Restock broccoli before it runs out.", "賞味期限を確認します。豚肉スライスは冷凍庫、ブロッコリーは冷蔵庫で保管し、なくなる前に補充します。", "သက်တမ်းကုန်ရက်ကို စစ်ပါ။ ဝက်သားပါးပါးကို freezer ထဲ၊ ဘရိုကိုလီကို ရေခဲသေတ္တာထဲ သိမ်းပါ။ ဘရိုကိုလီ မကုန်မီ ပြန်ဝယ်ပါ။"),
     t("Add items to the shopping list before they run out.", "なくなる前に買い物リストへ追加してください。", "ပစ္စည်းမကုန်မီ shopping list ထဲထည့်ပါ။")
@@ -1528,12 +2065,18 @@ if (groceryShoppingRoutine) {
     photo("assets/routines/nako-grocery-shopping.png",
       t("Daily grocery shopping items", "毎日の食料品の買い物品", "နေ့စဉ် ကုန်စုံဝယ်သော ပစ္စည်းများ"),
       t("Buy daily groceries based on what is running low and what is needed for meals.", "少なくなっているものと食事に必要なものを確認して、毎日の食料品を買ってください。", "ကုန်သွားခါနီးသောအရာများနှင့် အစားအစာအတွက် လိုအပ်သောအရာများအပေါ်မူတည်၍ နေ့စဉ်ကုန်စုံဝယ်ပါ။")),
-    photo("assets/routines/grocery-shopping-wet-market-prawns.jpg",
-      t("Fresh prawns at the wet-market seafood stall", "市場の鮮魚店にある新鮮なエビ", "စျေးပင်လယ်စာဆိုင်ရှိ ပုစွန်လတ်များ"),
-      t("Buy fresh prawns here only when they are on the shopping list or requested. Confirm the amount if unsure.", "買い物リストにある時、または頼まれた時だけ、ここで新鮮なエビを買います。量が不明な場合は確認してください。", "shopping list ထဲတွင်ပါသည့်အခါ သို့မဟုတ် တောင်းဆိုထားသည့်အခါမှသာ ဤနေရာမှ ပုစွန်လတ်များ ဝယ်ပါ။ ပမာဏမသေချာပါက မေးပါ။")),
-    photo("assets/routines/essential-food-stock-bananas.jpg",
-      t("Banana bunches at the wet-market fruit stall", "市場の果物店に吊られたバナナ", "စျေးသစ်သီးဆိုင်တွင် ချိတ်ထားသော ငှက်ပျောသီးခိုင်များ"),
-      t("Use the marked banana bunches as the buying reference when home stock is running low.", "家の在庫が少なくなった時は、印を付けたバナナの房を購入の目安にします。", "အိမ်တွင် ငှက်ပျောသီးနည်းလာပါက အမှတ်အသားပြထားသော ငှက်ပျောသီးခိုင်များကို ဝယ်ယူရန် ကိုးကားပါ။")),
+    photo("assets/routines/grocery-shopping-meiji-low-fat-milk.png",
+      t("Meiji pasteurized low-fat milk bottle", "明治の低脂肪殺菌牛乳ボトル", "Meiji အဆီနည်း pasteurized နွားနို့ဘူး"),
+      t("Buy this Meiji low-fat milk at U Stars.", "U Starsでこの明治低脂肪牛乳を買います。", "ဒီ Meiji အဆီနည်းနွားနို့ကို U Stars မှာ ဝယ်ပါ။")),
+    photo("assets/routines/grocery-shopping-cut-pork-shoulder.png",
+      t("Pork shoulder butt from Cut Butchery", "Cut Butcheryの豚肩ロース", "Cut Butchery မှ ဝက်ပခုံးသား"),
+      t("Buy pork shoulder butt or fresh pork loin steak at Cut Butchery.", "Cut Butcheryで豚肩ロースまたはFRESH PORK LOIN STEAKを買います。", "ဝက်ပခုံးသား သို့မဟုတ် FRESH PORK LOIN STEAK ကို Cut Butchery မှာ ဝယ်ပါ။")),
+    photo("assets/routines/grocery-shopping-cut-chicken-boneless-leg.png",
+      t("Brazilian boneless chicken leg from Cut Butchery", "Cut Butcheryのブラジル産骨なし鶏もも肉", "Cut Butchery မှ Brazil အရိုးမဲ့ကြက်ပေါင်သား"),
+      t("Buy this Brazilian boneless chicken leg at Cut Butchery.", "Cut Butcheryでこのブラジル産骨なし鶏もも肉を買います。", "ဒီ Brazil အရိုးမဲ့ကြက်ပေါင်သားကို Cut Butchery မှာ ဝယ်ပါ။")),
+    photo("assets/routines/grocery-shopping-cut-pork-belly.png",
+      t("Fresh pork belly from Cut Butchery", "Cut Butcheryの豚バラ肉", "Cut Butchery မှ ဝက်ဗိုက်သားလတ်"),
+      t("Buy fresh pork belly at Cut Butchery.", "Cut Butcheryで豚バラ肉を買います。", "ဝက်ဗိုက်သားလတ်ကို Cut Butchery မှာ ဝယ်ပါ။")),
     ...groceryShoppingRoutine.photos
   ];
 }

@@ -300,27 +300,101 @@ assert.deepEqual(Array.from(vimleSofaBed.photos, (item) => item.src), [
 const groceryShopping = routineById("grocery-shopping");
 assert.equal(groceryShopping.frequencyBucket, "daily");
 assert.equal(groceryShopping.trackingMode, "none");
-assert.match(englishText(groceryShopping.mustRemember), /Before about 9 a\.m\..*wet-market.*After about 9 a\.m\..*NTUC FairPrice/);
+assert.match(englishText(groceryShopping.mustRemember), /U Stars first.*closest.*open 24\/7.*Giant.*main grocery shop.*Wet Market/);
 assert.match(englishText(groceryShopping.mustRemember), /daily active reference check, not a completion-checklist item/);
 assert.match(englishText(groceryShopping.mustRemember), /keep the receipt.*chilled or frozen food home immediately/);
 assert.match(englishText(groceryShopping.mustRemember), /large beef cubes from Giant.*gamey.*rubbery.*smaller or more tender cut/);
 assert.ok(!groceryShopping.photos.some((item) => /ntuc|qr/i.test(item.src)));
-assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-wet-market-prawns.jpg"));
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-meiji-low-fat-milk.png"));
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-cut-pork-shoulder.png"));
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-cut-chicken-boneless-leg.png"));
+assert.ok(groceryShopping.photos.some((item) => item.src === "assets/routines/grocery-shopping-cut-pork-belly.png"));
 assert.equal(groceryShopping.stockItems, undefined);
 assert.equal(groceryShopping.stockPhoto, undefined);
 assert.deepEqual(Array.from(groceryShopping.groceryShops, (shop) => shop.id), [
-  "ntuc-fairprice", "giant", "wet-market", "u-stars"
+  "u-stars",
+  "giant",
+  "bread-createur-hillford",
+  "cut-butchery-bukit-timah-plaza",
+  "ntuc-fairprice",
+  "wet-market"
+]);
+const groceryShopById = new Map(groceryShopping.groceryShops.map((shop) => [shop.id, shop]));
+assert.deepEqual(Array.from(groceryShopById.get("u-stars").items, (item) => item.id), ["milk", "eggs"]);
+assert.deepEqual(Array.from(groceryShopById.get("giant").items, (item) => item.id), [
+  "japanese-rice",
+  "tofu",
+  "enoki-mushrooms",
+  "brown-shimeji-mushrooms",
+  "button-mushrooms",
+  "maitake-mushrooms",
+  "king-oyster-mushrooms",
+  "frozen-sliced-pork",
+  "broccoli",
+  "fresh-prawns",
+  "bananas",
+  "tomatoes",
+  "chicken-breast",
+  "chicken-tender",
+  "minced-chicken",
+  "beef",
+  "salmon",
+  "squid",
+  "white-fish",
+  "carrots",
+  "cabbage",
+  "sweet-potatoes",
+  "apples",
+  "cherry-tomatoes",
+  "spring-onions",
+  "garlic",
+  "ginger",
+  "onions",
+  "pumpkin",
+  "fresh-chillies",
+  "leafy-greens",
+  "potatoes",
+  "tau-pok",
+  "ham",
+  "fish-cake",
+  "pantry-staples"
+]);
+assert.deepEqual(Array.from(groceryShopById.get("bread-createur-hillford").items, (item) => item.id), ["bread"]);
+assert.deepEqual(Array.from(groceryShopById.get("cut-butchery-bukit-timah-plaza").items, (item) => item.id), [
+  "cut-pork-shoulder-or-loin",
+  "cut-chicken-boneless-leg",
+  "cut-fresh-pork-belly"
+]);
+assert.deepEqual(Array.from(groceryShopById.get("ntuc-fairprice").items, (item) => item.id), ["zucchini", "daikon", "kale"]);
+assert.deepEqual(Array.from(groceryShopById.get("wet-market").items, (item) => item.id), [
+  "wet-market-chicken-wings",
+  "wet-market-bak-kut-teh"
 ]);
 const groceryItems = groceryShopping.groceryShops.flatMap((shop) => Array.from(shop.items));
-assert.deepEqual(Array.from(groceryItems, (item) => item.name.en), [
-  "Milk", "Eggs", "Bread", "Japanese rice", "Tofu", "Enoki mushrooms", "Brown shimeji mushrooms", "Frozen sliced pork", "Broccoli", "Fresh prawns", "Bananas", "Tomatoes"
-]);
 assert.equal(new Set(groceryItems.map((item) => item.id)).size, groceryItems.length);
+assert.equal(groceryShopById.get("bread-createur-hillford").items[0].name.en, "Sourdough");
+assert.match(englishText(groceryShopById.get("bread-createur-hillford").items[0].instructions), /BREAD CRÉATEUR @ Hillford/);
+assert.match(
+  englishText(groceryShopById.get("cut-butchery-bukit-timah-plaza").items.flatMap((item) => item.instructions)),
+  /\$2\.20 per 100 g.*\$1\.50 per 100 g.*\$2\.30 per 100 g/s
+);
+const pantryStaples = groceryShopById.get("giant").items.find((item) => item.id === "pantry-staples");
+assert.equal(pantryStaples.instructions.length, 1);
+assert.match(englishText(pantryStaples.instructions), /cooking oil.*dark soy sauce.*canned tuna/);
 for (const shop of groceryShopping.groceryShops) {
   assert.ok(shop.name.en && shop.name.jp && shop.name.mm);
   assert.equal(typeof shop.sortOrder, "number");
   assert.ok(shop.items.length > 0);
+  assert.match(shop.photo, /^assets\/routines\/grocery-shopping-shop-/);
+  assert.equal(fs.existsSync(path.join(root, shop.photo)), true);
+  assert.match(shop.mapUrl, /^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/);
 }
+assert.match(groceryShopById.get("u-stars").mapUrl, /18\+Toh\+Yi\+Drive/);
+assert.match(groceryShopById.get("giant").mapUrl, /Beauty\+World\+Centre/);
+assert.match(groceryShopById.get("bread-createur-hillford").mapUrl, /182\+Jalan\+Jurong\+Kechil/);
+assert.match(groceryShopById.get("cut-butchery-bukit-timah-plaza").mapUrl, /Bukit\+Timah\+Plaza/);
+assert.match(groceryShopById.get("ntuc-fairprice").mapUrl, /FairPrice\+Finest\+Bukit\+Timah\+Plaza/);
+assert.match(groceryShopById.get("wet-market").mapUrl, /Interim\+2A\+Jalan\+Seh\+Chuan/);
 for (const item of groceryItems) {
   assert.ok(item.name.en && item.name.jp && item.name.mm);
   assert.equal(typeof item.category, "string");
@@ -336,12 +410,14 @@ assert.match(pageSource, /renderHead[\s\S]*groceryShopListHtml[\s\S]*relatedPage
 assert.match(pageSource, /<details class="grocery-item"[\s\S]*name="grocery-shopping-item"/);
 assert.match(pageSource, /\(a\.categorySort \|\| 0\)[\s\S]*\(a\.sortOrder \|\| 0\)/, "Hidden category and item sort values must control grocery order");
 assert.doesNotMatch(pageSource, /tr\(item\.category\)/, "Grocery category values must not render as headings");
+assert.match(pageSource, /class="grocery-shop-map-link"[\s\S]*target="_blank"[\s\S]*rel="noopener noreferrer"/);
 assert.match(actionsSource, /groceryItemSummary[\s\S]*querySelectorAll\("\[data-grocery-item\]\[open\]"\)/, "Opening one grocery item must close the others");
 assert.match(pageSource, /task\.id === "daily-cooking"[\s\S]*?#food\/human-food[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Daily Cooking must link to Human Food Ideas, Grocery Shopping, and Kitchen Rules & Food Safety");
 assert.match(pageSource, /task\.id === "grocery-shopping"[\s\S]*?#routine\/daily-cooking[\s\S]*?#food\/human-food[\s\S]*?#section\/food-safety/, "Grocery Shopping must link to Daily Cooking, Human Food Ideas, and Kitchen Rules & Food Safety");
 assert.match(pageSource, /isHuman \? renderRelatedPageLinks\([\s\S]*?#routine\/daily-cooking[\s\S]*?#routine\/grocery-shopping[\s\S]*?#section\/food-safety/, "Human Food Ideas must link to Daily Cooking, Grocery Shopping, and Kitchen Rules & Food Safety");
 assert.match(shellSource, /class="brand-home-link" href="#"/, "The Nako top-bar icon must link home");
 assert.match(stylesSource, /\.grocery-shop-guide\s*\{/);
+assert.match(stylesSource, /\.grocery-shop-photo,[\s\S]*width:\s*58px;[\s\S]*height:\s*44px;/);
 assert.match(stylesSource, /\.grocery-item-summary\s*\{/);
 assert.match(stylesSource, /@media \(max-width: 430px\)[\s\S]*\.grocery-item-photos[\s\S]*grid-template-columns: 1fr/);
 
